@@ -6,6 +6,11 @@
 #>
 [cmdletbinding()]
 param(
+    # Validate just token use for session
+    [switch]
+    $Token,
+
+    # Validate refresh token use for session
     [switch]
     $Refresh
 )
@@ -15,21 +20,27 @@ if (-not $TssSession.SecretServerHost -and (-not $TssSession.AuthToken)) {
     $false
 }
 
-if ($TssSession.AuthToken -and ($TssSession.AutoConnect -eq $false)) {
-    if ([datetime]::UtcNow -lt $TssSession.TimeOfDeath) {
-        Write-Verbose "Session within TimeOfDeath"
-        $true
+if ($Token) {
+    if ($TssSession.AuthToken -and ($TssSession.AutoConnect -eq $false)) {
+        if ([datetime]::UtcNow -lt $TssSession.TimeOfDeath) {
+            Write-Verbose "Session within TimeOfDeath"
+            return $true
+        }
+        if ([datetime]::UtcNow -gt $TssSession.TimeOfDeath) {
+            Write-Verbose "Session TimeOfDeath exceeded"
+            return $false
+        }
     }
-    if ([datetime]::UtcNow -gt $TssSession.TimeOfDeath) {
-        Write-Verbose "Session TimeOfDeath exceeded"
-        $false
+}
+if ($Refresh) {
+    if ($TssSession.RefreshCount -gt 0 -and ([datetime]::UtcNow -gt $TssSession.TimeOfDeath)) {
+        Write-Verbose "Session exceeded TimeOfDeath, RefreshToken count > 0"
+        return $true
+    }
+    if ($TssSession.RefreshCount -le 0 -and ([datetime]::UtcNow -gt $TssSession.TimeOfDeath)) {
+        Write-Verbose "Session exceeded TimeOfDeath AND RefreshCount exceeded"
+        return $false
     }
 }
-if ($Refresh -and ($TssSession.RefreshCount -gt 0) -and ([datetime]::UtcNow -gt $TssSession.TimeOfDeath)) {
-    Write-Verbose "Session exceeded TimeOfDeath, RefreshToken count > 0"
-    $true
-}
-if ($Refresh -and $TssSession.RefreshCount -le 0 -and ([datetime]::UtcNow -gt $TssSession.TimeOfDeath)) {
-    Write-Verbose "Session exceeded TimeOfDeath AND RefreshCount exceeded"
-    $false
-}
+
+$false
