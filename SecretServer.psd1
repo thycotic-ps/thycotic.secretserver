@@ -6,7 +6,7 @@
     PrivateData = @{
         PSData = @{
             Tags = 'SecretServer', 'Thycotic', 'DevOps'
-            ProjectURI = 'https://thycotic.com/products/secret-server/'
+            ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @'
 0.2 :
@@ -20,6 +20,6 @@ Initial Commit
         }
     }
     Author = 'Shawn Melton'
-    Copyright = '2020 Thycotic Secret Server'
+    Copyright = '2020 Thycotic Professional Services'
     PowerShellVersion ='5.1'
 }
