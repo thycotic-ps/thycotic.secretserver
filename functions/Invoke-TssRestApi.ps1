@@ -119,7 +119,7 @@ function Invoke-TssRestApi {
 
         # We call Invoke-RestMethod with the parameters we've passed in.
         # It will take care of converting the results from JSON.
-        Invoke-RestMethod @irmSplat # |
+        Invoke-RestMethod @irmSplat |
         & { process {
                 # What it will not do is "unroll" them.
                 if ($_ -eq 'null') {
