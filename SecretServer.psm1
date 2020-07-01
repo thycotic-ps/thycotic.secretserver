@@ -18,6 +18,7 @@ $TssSession = [ordered]@{
     ExpiresInSec     = $null
     TimeOfDeath      = $null
     AutoReconnect    = $false
+    Take = 999999999
 }
 New-Variable -Name TssSession -Value $TssSession -Scope Script -Force
 
