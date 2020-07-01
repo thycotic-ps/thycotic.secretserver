@@ -9,7 +9,7 @@ Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it
 # Load session object for token authentication
 
 $TssSession = [ordered]@{
-    SecretServerHost = $null
+    SecretServerUrl = $null
     ApiVersion       = "api/v1"
     AuthToken        = $null
     RefreshToken     = $null

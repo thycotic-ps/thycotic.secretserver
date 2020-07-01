@@ -4,8 +4,12 @@
 .Description
     Test to ensure token is still valid, if expired can use refresh token, or reconnect
 #>
-[cmdletbinding()]
 param(
+    # Validate the TssSession object has minimal values
+    # SecretServerUrl, AuthToken
+    [switch]
+    $Session,
+
     # Validate just token use for session
     [switch]
     $Token,
@@ -15,24 +19,34 @@ param(
     $Refresh
 )
 
-if (-not $TssSession.SecretServerHost -and (-not $TssSession.AuthToken)) {
-    Write-Warning "No Session details found. Please use New-TssSession to create a new session."
-    $false
+if ($Session) {
+    if (-not $TssSession.SecretServerUrl) {
+        throw 'Secret Server URL not found'
+    }
+    if ([string]::IsNullOrEmpty($TssSession.AuthToken) -and [string]::IsNullOrEmpty($TssSession.RefreshToken) -and (-not [string]::IsNullOrEmpty($TssSession.StartTime)) ) {
+        throw "No valid token found for your session"
+    }
 }
 
 if ($Token) {
-    if ($TssSession.AuthToken -and ($TssSession.AutoConnect -eq $false)) {
+    if ($TssSession.AuthToken) {
         if ([datetime]::UtcNow -lt $TssSession.TimeOfDeath) {
-            Write-Verbose "Session within TimeOfDeath"
-            return $true
+            Write-Verbose -Message "Session within TimeOfDeath"
+            # throw ""
         }
         if ([datetime]::UtcNow -gt $TssSession.TimeOfDeath) {
-            Write-Verbose "Session TimeOfDeath exceeded"
-            return $false
+            Write-Verbose -Message "Session TimeOfDeath exceeded"
+            # return $false
         }
     }
 }
 if ($Refresh) {
+    if ($TssSession.TimeOfDeath -lt [datetime]::UtcNow -and $TssSession.RefreshCount -le 0) {
+        throw "Use of Refresh Token not supported with current Session (see Get-TssSession output)"
+    }
+    if ($TssSession.TimeOfDeath -lt [datetime]::UtcNow -and $TssSession.RefreshCount -gt 0) {
+        Write-Warning -Message "TimeOfDeath not exceeded but continuing to use RefreshToken"
+    }
     if ($TssSession.RefreshCount -gt 0 -and ([datetime]::UtcNow -gt $TssSession.TimeOfDeath)) {
         Write-Verbose "Session exceeded TimeOfDeath, RefreshToken count > 0"
         return $true
@@ -42,5 +56,3 @@ if ($Refresh) {
         return $false
     }
 }
-
-$false

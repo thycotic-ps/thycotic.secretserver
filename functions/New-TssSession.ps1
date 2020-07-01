@@ -1,30 +1,37 @@
 function New-TssSession {
     [cmdletbinding(SupportsShouldProcess)]
     param(
+        [Parameter(ParameterSetName = 'New')]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
+        [Parameter(ParameterSetName = 'New')]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Utilize Refresh Token in TssSession to re-authenticate
+        [Parameter(ParameterSetName = 'Refresh')]
         [switch]
         $UseRefreshToken,
 
         # Secret Server Web Services can utilize a refresh token.
         # Default is 3, provide configured value to allow AutoConnect.
+        [Parameter(ParameterSetName = 'New')]
         [int]
         $RefreshLimit,
 
         # In conjunction with RefreshLimit will utilize the refresh token to re-authenticate up to the limit.
+        [Parameter(ParameterSetName = 'New')]
         [switch]
         $AutoReconnect,
 
         # A module session variable is used to collect output.
         # This switch can be provided to bypass use of that variable.
         # Raw output from the endpoint will be returned.
+        [Parameter(ParameterSetName = 'New')]
+        [Parameter(ParameterSetName = 'Refresh')]
         [switch]
         $Raw
     )
@@ -32,37 +39,29 @@ function New-TssSession {
 
     begin {
         $invokeParams = . $GetInvokeTssParams $PSBoundParameters
-        if ($SecretServer) {
-            $TssSession.SecretServerHost = "$SecretServer".TrimEnd("/")
-        }
+        $newTssParams = . $GetNewTssParams $PSBoundParameters
     }
 
     process {
-        if (-not $SecretServer -and (-not $TssSession.SecretServerHost)) {
-            Write-Warning "No Secret Server host provided or found in TssSession"
+        if ($newTssParams.Contains('SecretServer') -and $newTssParams.Contains('Credential')) {
+            $TssSession.SecretServerUrl = $SecretServer
         }
 
-        $uri = $TssSession.SecretServerHost, "oauth2/token" -join '/'
+        . $TestTssSession -Session
+        $uri = $TssSession.SecretServerUrl, "oauth2/token" -join '/'
 
         $postContent = [Ordered]@{ }
 
         if ($UseRefreshToken) {
+            . $TestTssSession -Refresh
             $postContent.grant_type = 'refresh_token'
-            if (. $TestTssSession -Refresh) {
-                $postContent.refresh_token = $TssSession.RefreshToken
-            } else {
-                Write-Warning "Current session state does not support use of refresh token. Try command with -Verbose or review Get-TssSession."
-                return
-            }
-        } else {
-            if ($Credential) {
-                $postContent.username = $Credential.UserName
-                $postContent.password = $Credential.GetNetworkCredential().Password
-                $postContent.grant_type = 'password'
-            } else {
-                Write-Warning "No Credential provided."
-                return
-            }
+            $postContent.refresh_token = $TssSession.RefreshToken
+        }
+
+        if ($Credential) {
+            $postContent.username = $Credential.UserName
+            $postContent.password = $Credential.GetNetworkCredential().Password
+            $postContent.grant_type = 'password'
         }
 
         $invokeParams.Uri = $Uri
@@ -79,6 +78,7 @@ function New-TssSession {
             $TssSession.ExpiresInSec = $response.expires_in
             $TssSession.StartTime = [datetime]::UtcNow
             $TssSession.TimeOfDeath = [datetime]::UtcNow.Add([timespan]::FromSeconds($response.expires_in))
+            $TssSession.AutoReconnect = $AutoReconnect
         }
         if ($response.access_token -and $Raw) {
             return $response
