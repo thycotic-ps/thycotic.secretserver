@@ -35,7 +35,6 @@ function New-TssSession {
         [switch]
         $Raw
     )
-    dynamicParam { . $GetInvokeTssParams -DynamicParameter }
 
     begin {
         $invokeParams = . $GetInvokeTssParams $PSBoundParameters
