@@ -24,7 +24,7 @@ if ($Session) {
         throw 'Secret Server URL not found'
     }
     if ([string]::IsNullOrEmpty($TssSession.AuthToken) -and [string]::IsNullOrEmpty($TssSession.RefreshToken) -and (-not [string]::IsNullOrEmpty($TssSession.StartTime)) ) {
-        throw "No valid token found for your session"
+        throw "No valid token found for your session current session"
     }
 }
 
