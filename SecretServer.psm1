@@ -10,15 +10,15 @@ Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it
 
 $TssSession = [ordered]@{
     SecretServerUrl = $null
-    ApiVersion       = "api/v1"
-    AuthToken        = $null
-    RefreshToken     = $null
-    RefreshCount     = $null
-    StartTime        = $null
-    ExpiresInSec     = $null
-    TimeOfDeath      = $null
-    AutoReconnect    = $false
-    Take = 999999999
+    ApiVersion      = "api/v1"
+    AuthToken       = $null
+    RefreshToken    = $null
+    RefreshCount    = $null
+    StartTime       = $null
+    ExpiresInSec    = $null
+    TimeOfDeath     = $null
+    AutoReconnect   = $false
+    Take            = [int]::MaxValue
 }
 New-Variable -Name TssSession -Value $TssSession -Scope Script -Force
 
