@@ -26,6 +26,7 @@ Initial Commit
         }
     }
     Author = 'Shawn Melton'
+    CompanyName = 'Thycotic'
     Copyright = '2020 Thycotic Professional Services'
     PowerShellVersion ='5.1'
 }
