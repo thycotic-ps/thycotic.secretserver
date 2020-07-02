@@ -53,7 +53,7 @@ function Find-TssSecret {
         $Raw
     )
     begin {
-        $invokeParams = . $GetInvokeTssParams $PSBoundParameters
+        $invokeParams = @{}
 
         $Parameters = @{} + $PSBoundParameters
         $Parameters.Remove('Raw')
@@ -65,8 +65,6 @@ function Find-TssSecret {
 
         $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets" -join '/'
 
-        # example: ?filter.folderId=3&filter.includeInactive=true&filter.siteId=1&take=200'
-
         $filters = $filterParams.GetEnumerator() | ForEach-Object { "filter.$($_.name)=$($_.value)" }
         $uriFilter = $filters -join "&"
 
@@ -76,6 +74,7 @@ function Find-TssSecret {
         if (-not $Raw) {
             $invokeParams.ExpandProperty = 'records'
         }
+
         Invoke-TssRestApi @invokeParams
     }
 }
