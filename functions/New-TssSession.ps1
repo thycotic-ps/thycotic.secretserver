@@ -2,6 +2,7 @@ function New-TssSession {
     [cmdletbinding(SupportsShouldProcess)]
     param(
         [Parameter(ParameterSetName = 'New')]
+        [Alias('Server')]
         [uri]
         $SecretServer,
 
