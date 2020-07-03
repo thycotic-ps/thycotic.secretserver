@@ -68,7 +68,7 @@ function New-TssSession {
         $invokeParams.Body = $postContent
         $invokeParams.Method = 'POST'
 
-        if (-not $PSCmdlet.ShouldProcess("POST $uri with $($invokeParams.body)")) { return }
+        if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
         $response = Invoke-TssRestApi @invokeParams
 
         if ($response.access_token) {
