@@ -9,6 +9,9 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.5 :
+---
+* Added Remove-TssSecret
 0.4 :
 ---
 * Added Find-TssSecret
