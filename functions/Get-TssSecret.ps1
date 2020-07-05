@@ -1,4 +1,28 @@
 function Get-TssSecret {
+    <#
+    .SYNOPSIS
+    Get a secret from Secret Server
+
+    .DESCRIPTION
+    Get a secret(s) from Secret Server
+
+    .PARAMETER Id
+    Secret ID to retrieve, accepts an array of IDs
+
+    .PARAMETER IncludeInactive
+    Include the secrets that are inactive, or have been deleted
+
+    .PARAMETER Raw
+    Output the raw response from the REST API endpoint
+
+    .EXAMPLE
+    PS C:\ > Get-TssSecret -Id 93
+
+    Returns secret associated with the Secret ID, 93
+
+    .NOTES
+    Requires New-TssSession session be set
+    #>
     [cmdletbinding()]
     param(
         # Return only specific Secret, Secret Id
@@ -7,10 +31,10 @@ function Get-TssSecret {
         [int[]]
         $Id,
 
-        # Only grab a specific item name from the Secret ID
-        [Alias('Items')]
-        [string]
-        $Item,
+        # Get secrest that may be inactive/deleted
+        [Alias('Inactive')]
+        [switch]
+        $IncludeInactive,
 
         # output the raw response from the API endpoint
         [switch]
@@ -26,6 +50,8 @@ function Get-TssSecret {
         foreach ($sid in $Id) {
             $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $sid.ToString() -join '/'
 
+            $uri = $uri, "includeInactive=$IncludeInactive" -join "?"
+
             $invokeParams.Uri = $Uri
             $invokeParams.PersonalAccessToken = $TssSession.AuthToken
             $invokeParams.Method = 'GET'
@@ -37,7 +63,7 @@ function Get-TssSecret {
                     SecretId = $restResponse.id
                     TemplateId = $restResponse.secretTemplateId
                     FolderId = if ($restResponse.folderId -eq -1) { $null } else { $restResponse.folderId }
-                    Active = $restResponse.active
+                    Status = if ($restResponse.active) { "Active" } else { "Inactive" }
                     LauncherConnectSecretId = if ($restResponse.launcherConnectAsSecretId -eq -1) { $null } else { $restResponse.launcherConnectAsSecretId }
                     Restricted = $restResponse.isRestricted
                     OutOfSync = $restResponse.isOutOfSync
