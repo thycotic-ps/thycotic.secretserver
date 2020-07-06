@@ -7,7 +7,6 @@ foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
 Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it was not already loaded.
 
 # Load session object for token authentication
-
 $TssSession = [ordered]@{
     SecretServerUrl = $null
     ApiVersion      = "api/v1"
@@ -48,3 +47,13 @@ if ($partsDirectory) {
     }
 }
 #endregion Import Parts
+
+#region alias
+
+<#
+    Secret Server does not delete secrets, just disables them.
+    Remove is a common term though and one used by SecretManagement module from Microsoft.
+    Creating an alias to map to Disable function of the module to keep things simplified.
+#>
+Set-Alias -Name Remove-TssSecret -Value Disable-TssSecret
+Export-ModuleMember -Alias * -Function * -Cmdlet *

@@ -1,25 +1,23 @@
-function Remove-TssSecret {
+function Disable-TssSecret {
     <#
     .SYNOPSIS
-    Remove a secret from Secret Server
+    Disable a secret from Secret Server
 
     .DESCRIPTION
-    Removes a secret from Secret Server.
+    Disables a secret from Secret Server.
 
     .PARAMETER Id
-    Secret ID to remove (mark inactive).
+    Secret ID to disable (mark inactive).
 
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
-    PS C:\ > Remove-TssSecret -Id 93
+    PS C:\ > Disable-TssSecret -Id 93
 
-    Removes secret 93
+    Disables secret 93
 
     .NOTES
-    Secret Server does not formally delete secrets, simply marks them inactive.
-
     Requires New-TssSession session be set
     #>
     [cmdletbinding(SupportsShouldProcess)]
