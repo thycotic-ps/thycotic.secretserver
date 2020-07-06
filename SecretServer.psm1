@@ -4,6 +4,7 @@ foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
 }
 #endregion Import Functions
 
+[Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it was not already loaded.
 
 # Load session object for token authentication
