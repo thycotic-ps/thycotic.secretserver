@@ -16,7 +16,7 @@ function Get-TssSecret {
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
-    PS C:\ > Get-TssSecret -Id 93
+    PS C:\> Get-TssSecret -Id 93
 
     Returns secret associated with the Secret ID, 93
 
