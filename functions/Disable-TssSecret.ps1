@@ -47,12 +47,21 @@ function Disable-TssSecret {
             $invokeParams.Method = 'DELETE'
 
             if (-not $PSCmdlet.ShouldProcess("DELETE $uri)")) { return }
-            $restResponse = Invoke-TssRestApi @invokeParams
+            Write-Verbose "Disabling secret: $secret"
+            $restResponse = Invoke-TssRestApi @invokeParams -ErrorVariable err -ErrorAction SilentlyContinue
+
+            if ($err[0].Exception -like "*Bad Request*") {
+                $status = "Does not exists"
+            }
             if (-not $Raw) {
+                if (-not $status) {
+                    $status = (Get-TssSecret -Id $secret).Status
+                }
+
                 [PSCustomObject]@{
-                    SecretId   = $restResponse.id
+                    SecretId   = if ($restResponse.id -eq $secret) { $restResponse.id } else { $secret }
                     ObjectType = $restResponse.objectType
-                    Status = (Get-TssSecret -Id $secret -Inactive).Status
+                    Status = $status
                 }
             } else {
                 $restResponse
