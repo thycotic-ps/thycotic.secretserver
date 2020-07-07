@@ -9,9 +9,6 @@ function Get-TssSecret {
     .PARAMETER Id
     Secret ID to retrieve, accepts an array of IDs
 
-    .PARAMETER IncludeInactive
-    Include the secrets that are inactive, or have been deleted
-
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
 
@@ -31,11 +28,6 @@ function Get-TssSecret {
         [int[]]
         $Id,
 
-        # Get secrest that may be inactive/deleted
-        [Alias('Inactive')]
-        [switch]
-        $IncludeInactive,
-
         # output the raw response from the API endpoint
         [switch]
         $Raw
@@ -47,51 +39,59 @@ function Get-TssSecret {
     process {
         . $TestTssSession -Session
 
-        foreach ($sid in $Id) {
-            $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $sid.ToString() -join '/'
-
-            $uri = $uri, "includeInactive=$IncludeInactive" -join "?"
+        foreach ($secret in $Id) {
+            $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $secret.ToString() -join '/'
+            $uri = $uri, "includeInactive=true" -join "?"
 
             $invokeParams.Uri = $Uri
             $invokeParams.PersonalAccessToken = $TssSession.AuthToken
             $invokeParams.Method = 'GET'
-            $restResponse = Invoke-TssRestApi @invokeParams
-            if ($Raw) {
+            try {
+                $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
+            } catch {
+                Write-Error -TargetObject $secret -Category InvalidData -Message "Unable to find secret $secret"
+            }
+
+            if ($Raw -and $restResponse) {
                 return $restResponse
-            } else {
+            } elseif ($restResponse) {
                 $outSecret = [PSCustomObject]@{
-                    SecretId = $restResponse.id
-                    TemplateId = $restResponse.secretTemplateId
-                    FolderId = if ($restResponse.folderId -eq -1) { $null } else { $restResponse.folderId }
-                    Status = if ($restResponse.active) { "Active" } else { "Inactive" }
-                    LauncherConnectSecretId = if ($restResponse.launcherConnectAsSecretId -eq -1) { $null } else { $restResponse.launcherConnectAsSecretId }
-                    Restricted = $restResponse.isRestricted
-                    OutOfSync = $restResponse.isOutOfSync
-                    OutOfSyncReason = $restResponse.outOfSyncReason
-                    AutoChangeEnabled = $restResponse.autoChangeEnabled
-                    AutoChangeNextPassword = $restResponse.AutoChangeNextPassword
-                    ApprovalForAccessRequired = $restResponse.requiresApprovalForAccess
-                    CommentRequired = $restResponse.requiresComment
-                    Checkout = $restResponse.checkOutEnabled
-                    CheckoutUserId = if ($restResponse.checkOutUserId -eq -1) { $null } else { $restResponse.checkOutUserId }
-                    CheckoutIntervalMinutes = if ($restResponse.CheckoutIntervalMinutes -eq -1) { $null } else { $restResponse.checkOutIntervalMinutes }
-                    CheckoutChangePassword = $restResponse.checkOutChangePasswordEnabled
-                    AccessRequestWorkflowMapId = if ($restResponse.accessRequestWorkflowMapId -eq -1) { $null } else { $restResponse.accessRequestWorkflowMapId }
-                    Proxy = $restResponse.proxyEnabled
-                    SessionRecording = $restResponse.sessionRecordingEnabled
-                    SSHCommandsRestricted = $restResponse.restrictSshCommands
+                    SecretId                      = $restResponse.id
+                    SecretName                    = $restResponse.name
+                    TemplateId                    = $restResponse.secretTemplateId
+                    FolderId                      = if ($restResponse.folderId -eq -1) { $null } else { $restResponse.folderId }
+                    Status                        = if ($restResponse.active) { "Active" } else { "Inactive" }
+                    LauncherConnectSecretId       = if ($restResponse.launcherConnectAsSecretId -eq -1) { $null } else { $restResponse.launcherConnectAsSecretId }
+                    Restricted                    = $restResponse.isRestricted
+                    OutOfSync                     = $restResponse.isOutOfSync
+                    OutOfSyncReason               = $restResponse.outOfSyncReason
+                    AutoChangeEnabled             = $restResponse.autoChangeEnabled
+                    AutoChangeNextPassword        = $restResponse.AutoChangeNextPassword
+                    ApprovalForAccessRequired     = $restResponse.requiresApprovalForAccess
+                    CommentRequired               = $restResponse.requiresComment
+                    CheckedOut                    = $restResponse.checkedOut
+                    CheckoutEnabled               = $restResponse.checkOutEnabled
+                    CheckoutUserId                = if ($restResponse.checkOutUserId -eq -1) { $null } else { $restResponse.checkOutUserId }
+                    CheckoutUserName              = if ($restResponse.checkOutUserDisplayName -eq -1) { $null } else { $restResponse.checkOutUserDisplayName }
+                    CheckoutIntervalMinutes       = if ($restResponse.CheckoutIntervalMinutes -eq -1) { $null } else { $restResponse.checkOutIntervalMinutes }
+                    CheckoutChangePassword        = $restResponse.checkOutChangePasswordEnabled
+                    AccessRequestWorkflowMapId    = if ($restResponse.accessRequestWorkflowMapId -eq -1) { $null } else { $restResponse.accessRequestWorkflowMapId }
+                    Proxy                         = $restResponse.proxyEnabled
+                    SessionRecording              = $restResponse.sessionRecordingEnabled
+                    SSHCommandsRestricted         = $restResponse.restrictSshCommands
                     SSHCommandsOwnersUnrestricted = $restResponse.allowOwnersUnrestrictedSshCommands
-                    DoubleLock = $restResponse.isDoubleLock
-                    DoubleLockId = if ($restResponse.doubleLockId -eq -1) { $null } else { $restResponse.doubleLockId }
-                    InheritPermissions = $restResponse.enableInheritPermissions
-                    InheritSecretPolicy = if ($restResponse.enableInheritSecretPolicy -eq -1) { $null } else { $restResponse.enableInheritSecretPolicy }
-                    SiteId = $restResponse.siteId
-                    SecretPolicyId = if ($restResponse.secretPolicyId -eq -1) { $null } else { $restResponse.secretPolicyId }
-                    HeartbeatStatus = $restResponse.lastHeartBeatStatus
-                    HeartbeatDate = [datetime]$restResponse.lastHeartBeatCheck
-                    PasswordChangeFailedCount = $restResponse.failedPasswordChangeAttempts
-                    PasswordChangeDate = [datetime]$restResponse.lastPasswordChangeAttempt
-                    TemplateName = $restResponse.secretTemplateName
+                    DoubleLockEnabled             = $restResponse.isDoubleLock
+                    DoubleLockId                  = if ($restResponse.doubleLockId -eq -1) { $null } else { $restResponse.doubleLockId }
+                    InheritsPermissions            = $restResponse.enableInheritPermissions
+                    InheritsSecretPolicy           = if ($restResponse.enableInheritSecretPolicy -eq -1) { $null } else { $restResponse.enableInheritSecretPolicy }
+                    SiteId                        = $restResponse.siteId
+                    SecretPolicyId                = if ($restResponse.secretPolicyId -eq -1) { $null } else { $restResponse.secretPolicyId }
+                    HeartbeatStatus               = $restResponse.lastHeartBeatStatus
+                    HeartbeatDate                 = [datetime]$restResponse.lastHeartBeatCheck
+                    PasswordChangeFailedCount     = $restResponse.failedPasswordChangeAttempts
+                    PasswordChangeAttempt         = [datetime]$restResponse.lastPasswordChangeAttempt
+                    TemplateName                  = $restResponse.secretTemplateName
+                    PasswordTypeWebscriptId       = if ($restResponse.passwordTypeWebScriptId -eq -1) { $null } else { $restResponse.passwordTypeWebScriptId }
                 }
                 foreach ($itemDetail in $restResponse.items) {
                     $name = $itemDetail.fieldName
@@ -99,7 +99,7 @@ function Get-TssSecret {
                     $outSecret.PSObject.Properties.Add([PSNoteProperty]::new($name,$value))
                 }
                 $properties = $outSecret.PSObject.Properties | Sort-Object Name
-                $final = [PSCustomObject]@{}
+                $final = [PSCustomObject]@{ }
                 foreach ($prop in $properties) {
                     $final.PSObject.Properties.Add([PSNoteProperty]::new($prop.Name,$prop.Value))
                 }
