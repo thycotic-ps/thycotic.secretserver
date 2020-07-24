@@ -23,10 +23,14 @@ function Get-TssSecret {
     [cmdletbinding()]
     param(
         # Return only specific Secret, Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName="norm")]
         [Alias("SecretId")]
         [int[]]
         $Id,
+
+        # Provide comment for restricted secret
+        [string]
+        $Comment,
 
         # output the raw response from the API endpoint
         [switch]
@@ -40,21 +44,31 @@ function Get-TssSecret {
         . $TestTssSession -Session
 
         foreach ($secret in $Id) {
+            $restResponse = $null
+            $errorResponse = $null
             $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $secret.ToString() -join '/'
-            $uri = $uri, "includeInactive=true" -join "?"
+            if ($Comment) {
+                $uri = $uri, "restricted" -join "/"
+                $body = "{'comment':'$Comment', 'includeInactive':'$true'}"
+                $invokeParams.Uri = $Uri
+                $invokeParams.Method = 'POST'
+                $invokeParams.Body = $body
+            } else {
+                $uri = $uri, "includeInactive=true" -join "?"
+                $invokeParams.Uri = $Uri
+                $invokeParams.Method = 'GET'
+            }
 
-            $invokeParams.Uri = $Uri
             $invokeParams.PersonalAccessToken = $TssSession.AuthToken
-            $invokeParams.Method = 'GET'
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
             } catch {
-                Write-Error -TargetObject $secret -Category InvalidData -Message "Unable to find secret $secret"
+                $errorResponse = $_.ErrorDetails.Message | ConvertFrom-Json
             }
 
             if ($Raw -and $restResponse) {
-                return $restResponse
-            } elseif ($restResponse) {
+                $restResponse
+            } elseif ($restResponse -and -not $restResponse.code) {
                 $outSecret = [PSCustomObject]@{
                     SecretId                      = $restResponse.id
                     SecretName                    = $restResponse.name
@@ -104,6 +118,13 @@ function Get-TssSecret {
                     $final.PSObject.Properties.Add([PSNoteProperty]::new($prop.Name,$prop.Value))
                 }
                 $final
+            }
+
+            if ($errorResponse) {
+                Write-Warning -Message "Issue retrieving secret [$secret]: $($errorResponse.message)"
+            }
+            if ($restResponse.code) {
+                Write-Warning -Message "Issue retrieving secret [$secret]: $($restResponse.message)"
             }
         }
     }
