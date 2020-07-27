@@ -9,6 +9,9 @@ function Get-TssSecret {
     .PARAMETER Id
     Secret ID to retrieve, accepts an array of IDs
 
+    .PARAMETER Comment
+    Comment to provide for restricted secret (Require Comment is enabled)
+
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
 
@@ -16,6 +19,11 @@ function Get-TssSecret {
     PS C:\> Get-TssSecret -Id 93
 
     Returns secret associated with the Secret ID, 93
+
+    .EXAMPLE
+    PS C:\> Get-TssSecret -Id 1723 -Comment "Accessing application Y"
+
+    Returns secret associated with the Secret ID, 1723, providing required comment
 
     .NOTES
     Requires New-TssSession session be set
