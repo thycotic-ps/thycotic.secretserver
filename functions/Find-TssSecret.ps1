@@ -53,7 +53,7 @@ function Find-TssSecret {
         . $TestTssSession -Session
 
         $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets" -join '/'
-        $uri += "?take=$($TssSession.Take)&includeInactive=true"
+        $uri += "?take=$($TssSession.Take)&includeInactive=true&includeRestricted=true"
 
         $filters = $filterParams.GetEnumerator() | ForEach-Object { "filter.$($_.name)=$($_.value)" }
         $uriFilter = $filters -join "&"
