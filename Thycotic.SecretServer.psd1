@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.9.0'
+    ModuleVersion = '0.10.0'
     RootModule = 'Thycotic.SecretServer.psm1'
     Description = 'PowerShell Tools for Thycotic Secret Server'
     Guid = 'e6b56c5f-41ac-4ba4-8b88-2c063f683176'
@@ -10,6 +10,8 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.10 :
+* Find-TssSecret fix bug on restricted
 0.9 :
 ---
 * Find-TssSecret set to include restricted
