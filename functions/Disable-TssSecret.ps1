@@ -43,7 +43,7 @@ function Disable-TssSecret {
             $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $secret.ToString() -join '/'
 
             $invokeParams.Uri = $Uri
-            $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
             $invokeParams.Method = 'DELETE'
 
             if (-not $PSCmdlet.ShouldProcess("DELETE $uri)")) { return }

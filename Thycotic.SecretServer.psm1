@@ -11,7 +11,7 @@ Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it
 $TssSession = [ordered]@{
     SecretServerUrl = $null
     ApiVersion      = "api/v1"
-    AuthToken       = $null
+    AccessToken       = $null
     RefreshToken    = $null
     RefreshCount    = $null
     StartTime       = $null

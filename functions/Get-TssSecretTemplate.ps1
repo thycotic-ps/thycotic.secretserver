@@ -45,7 +45,7 @@ function Get-TssSecretTemplate {
             $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/'
             $invokeParams.Uri = $Uri
             $invokeParams.Method = 'GET'
-            $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop

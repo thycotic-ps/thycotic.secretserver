@@ -6,7 +6,7 @@
 #>
 param(
     # Validate the TssSession object has minimal values
-    # SecretServerUrl, AuthToken
+    # SecretServerUrl, AccessToken
     [switch]
     $Session,
 
@@ -23,13 +23,13 @@ if ($Session) {
     if (-not $TssSession.SecretServerUrl) {
         throw 'Secret Server URL not found'
     }
-    if ([string]::IsNullOrEmpty($TssSession.AuthToken) -and [string]::IsNullOrEmpty($TssSession.RefreshToken) -and (-not [string]::IsNullOrEmpty($TssSession.StartTime)) ) {
+    if ([string]::IsNullOrEmpty($TssSession.AccessToken) -and [string]::IsNullOrEmpty($TssSession.RefreshToken) -and (-not [string]::IsNullOrEmpty($TssSession.StartTime)) ) {
         throw "No valid token found for your session current session"
     }
 }
 
 if ($Token) {
-    if ($TssSession.AuthToken) {
+    if ($TssSession.AccessToken) {
         if ([datetime]::UtcNow -lt $TssSession.TimeOfDeath) {
             Write-Verbose -Message "Session within TimeOfDeath"
             # throw ""

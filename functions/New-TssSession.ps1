@@ -72,7 +72,7 @@ function New-TssSession {
         $response = Invoke-TssRestApi @invokeParams
 
         if ($response.access_token) {
-            $TssSession.AuthToken = $response.access_token
+            $TssSession.AccessToken = $response.access_token
             $TssSession.RefreshToken = $response.refresh_token
             $TssSession.RefreshCount = if ($postContent.grant_type -eq 'refresh_token') { $TssSession.RefreshCount - 1 } else { $RefreshLimit }
             $TssSession.ExpiresInSec = $response.expires_in
@@ -82,6 +82,8 @@ function New-TssSession {
         }
         if ($response.access_token -and $Raw) {
             return $response
+        } else {
+            Get-TssSession
         }
     }
 }

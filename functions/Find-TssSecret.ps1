@@ -62,7 +62,7 @@ function Find-TssSecret {
         $uri = $uri, $uriFilter -join "&"
 
         $invokeParams.Uri = $uri
-        $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+        $invokeParams.PersonalAccessToken = $TssSession.AccessToken
         $invokeParams.Method = 'GET'
         if (-not $Raw) {
             $invokeParams.ExpandProperty = 'records'

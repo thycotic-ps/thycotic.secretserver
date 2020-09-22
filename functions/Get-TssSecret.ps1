@@ -67,7 +67,7 @@ function Get-TssSecret {
                 $invokeParams.Method = 'GET'
             }
 
-            $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
             } catch {

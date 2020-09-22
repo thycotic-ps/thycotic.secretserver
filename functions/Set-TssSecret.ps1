@@ -111,7 +111,7 @@ function Set-TssSecret {
                     $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $secret.ToString() -join '/'
 
                     $invokeParams.Uri = $Uri
-                    $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+                    $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                     $invokeParams.Body = $cSecret | ConvertTo-Json
                     $invokeParams.Method = 'PUT'
 
@@ -129,7 +129,7 @@ function Set-TssSecret {
                 $body = "{'value': '$Value'}"
                 $invokeParams.Uri = $uri
                 $invokeParams.Body = $body
-                $invokeParams.PersonalAccessToken = $TssSession.AuthToken
+                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 $invokeParams.Method = 'PUT'
 
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
