@@ -1,8 +1,12 @@
 @{
-    ModuleVersion = '0.11.0'
+    ModuleVersion = '0.12.0'
     RootModule = 'Thycotic.SecretServer.psm1'
     Description = 'PowerShell Tools for Thycotic Secret Server'
     Guid = 'e6b56c5f-41ac-4ba4-8b88-2c063f683176'
+    Author = 'Shawn Melton'
+    CompanyName = 'Thycotic'
+    Copyright = '(c) Thycotic Professional Services. All rights reserved.'
+    PowerShellVersion ='5.1'
     PrivateData = @{
         PSData = @{
             PreRelease = 'beta'
@@ -10,6 +14,10 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.12 :
+* New-TssSession - add comment-based help
+* Get-TssSession - add comment-based help
+* TestTssSession - update throw message
 0.11 :
 * Rename TssSession object property AuthToken to AccessToken
 * Created build script
@@ -51,8 +59,4 @@ Initial Commit
 "@
         }
     }
-    Author = 'Shawn Melton'
-    CompanyName = 'Thycotic'
-    Copyright = '2020 Thycotic Professional Services'
-    PowerShellVersion ='5.1'
 }
