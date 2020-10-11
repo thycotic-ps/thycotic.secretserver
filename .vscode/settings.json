@@ -9,5 +9,6 @@
     // selecting variables to include the '$':
     "[powershell]": {
         "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
-    }
+    },
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true
 }
