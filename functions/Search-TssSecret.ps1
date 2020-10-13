@@ -1,4 +1,41 @@
-function Find-TssSecret {
+function Search-TssSecret {
+    <#
+    .SYNOPSIS
+    Search for a secret
+
+    .DESCRIPTION
+    Search for secrets using various filters provided by each parameter
+
+    .PARAMETER FolderId
+    Folder ID to search, allows multiple
+
+    .PARAMETER SecretTemplateId
+    Template ID to search, allows multiple
+
+    .PARAMETER SiteId
+    Site ID to filter on, allows multiple
+
+    .PARAMETER HeartbeatStatus
+    Heartbeat status to filter on
+
+    .PARAMETER SearchField
+    Field to filter on
+
+    .PARAMETER SearchText
+    Field value to filter on
+
+    .PARAMETER SearchSlug
+    Slug name of field to filter on
+
+    .PARAMETER Raw
+    Output the raw response from the REST API endpoint
+
+    .EXAMPLE
+    An example
+
+    .NOTES
+    General notes
+    #>
     [cmdletbinding(DefaultParameterSetName = "filter")]
     param(
         # Return only secrets within a certain folder
@@ -44,9 +81,9 @@ function Find-TssSecret {
     begin {
         $invokeParams = @{ }
 
-        $Parameters = @{} + $PSBoundParameters
+        $Parameters = @{ } + $PSBoundParameters
         $Parameters.Remove('Raw')
-        $filterParams = . $GetFindSecretParams $Parameters
+        $filterParams = . $GetSearchSecretParams $Parameters
     }
 
     process {
