@@ -1,12 +1,15 @@
-function Invoke-TssRestApi {
+﻿function Invoke-TssRestApi {
     <#
     .SYNOPSIS
-        Invokes the Secret Server Rest API
+    Invokes the Secret Server Rest API
+
     .DESCRIPTION
-        Invokes the Thycotic Secret Server REST API
+    Invokes the Thycotic Secret Server REST API
+
     .EXAMPLE
-    .LINK
-        Invoke-RestMethod
+    PS C:\> Invoke-TssRestApi -Uri 'https://vault.company.com/api/v1/oauth2/token' -Method POST -Body $body
+
+    Performs POST request to the URI specified, returning the output from the endpoint.
     #>
     [Cmdletbinding()]
     param(

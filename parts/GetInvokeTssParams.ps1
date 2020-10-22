@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
     Gets Invoke-TssRestApi's parameters
 .Description

@@ -1,4 +1,4 @@
-#region Import Functions
+﻿#region Import Functions
 foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
     . $file.FullName
 }

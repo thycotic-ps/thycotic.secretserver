@@ -1,4 +1,4 @@
-function Get-TssSession {
+﻿function Get-TssSession {
     <#
     .SYNOPSIS
     Retrieve the internal TssSession Object

@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
     Validates token in $SecSrvSession is still valid
 .Description

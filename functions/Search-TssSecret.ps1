@@ -1,4 +1,4 @@
-function Search-TssSecret {
+﻿function Search-TssSecret {
     <#
     .SYNOPSIS
     Search for a secret
@@ -31,7 +31,14 @@ function Search-TssSecret {
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
-    An example
+    PS C:\> Search-TssSecret -FolderId 50
+
+    Will return all secrets found with a folder ID of 50
+
+    .EXAMPLE
+    PS C:\> Search-TssSecret -FolderId 50 -SecretTemplateId 6001
+
+    Will return all secrets found in Folder ID 50 using secret template 6001 (Active Directory Account).
 
     .NOTES
     General notes

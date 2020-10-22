@@ -1,4 +1,4 @@
-function Get-TssSecretTemplate {
+﻿function Get-TssSecretTemplate {
     <#
     .SYNOPSIS
     Get a secret template from Secret Server

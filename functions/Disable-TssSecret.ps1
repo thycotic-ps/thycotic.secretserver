@@ -1,13 +1,13 @@
-function Disable-TssSecret {
+﻿function Disable-TssSecret {
     <#
     .SYNOPSIS
     Disable a secret from Secret Server
 
     .DESCRIPTION
-    Disables a secret from Secret Server.
+    Disables a secret from Secret Server
 
     .PARAMETER Id
-    Secret ID to disable (mark inactive).
+    Secret ID to disable (mark inactive)
 
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
@@ -61,7 +61,7 @@ function Disable-TssSecret {
                 [PSCustomObject]@{
                     SecretId   = if ($restResponse.id -eq $secret) { $restResponse.id } else { $secret }
                     ObjectType = $restResponse.objectType
-                    Status = $status
+                    Status     = $status
                 }
             } else {
                 $restResponse

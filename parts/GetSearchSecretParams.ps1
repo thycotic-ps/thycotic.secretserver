@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
     Gets Search-TssSecret's parameters
 .Description

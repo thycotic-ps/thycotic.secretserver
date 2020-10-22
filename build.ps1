@@ -1,4 +1,4 @@
-param(
+﻿param(
     $gallerykey
 )
 $beta = $true

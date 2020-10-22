@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
     Gets New-TssSession's parameters
 .Description

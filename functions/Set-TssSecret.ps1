@@ -1,4 +1,4 @@
-function Set-TssSecret {
+﻿function Set-TssSecret {
     <#
     .SYNOPSIS
     Set a value for a given secret in Secret Server

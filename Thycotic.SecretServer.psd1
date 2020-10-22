@@ -1,4 +1,4 @@
-@{
+﻿@{
     ModuleVersion = '0.12.0'
     RootModule = 'Thycotic.SecretServer.psm1'
     Description = 'PowerShell Tools for Thycotic Secret Server'
