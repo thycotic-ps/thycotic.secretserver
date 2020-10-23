@@ -6,7 +6,6 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
         $fullName = $_.FullName
         $file = $_
 
-        . "$PSScriptRoot\exceptions\module.FileIntegrity.Exceptions.ps1"
         $bandCommands = @('Write-Host','Get-WmiObject','Write-Debug')
 
         $tokens, $parseErrors = $null
