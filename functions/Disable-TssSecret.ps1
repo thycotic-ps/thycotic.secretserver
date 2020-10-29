@@ -13,7 +13,7 @@
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
-    PS C:\ > Disable-TssSecret -Id 93
+    PS C:\> Disable-TssSecret -Id 93
 
     Disables secret 93
 
