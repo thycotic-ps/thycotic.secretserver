@@ -1,5 +1,9 @@
-﻿$moduleRoot = (Resolve-Path "$PSScriptRoot\..").Path
-$allFiles = Get-ChildItem -Path $moduleRoot -Recurse -Filter "*.ps1" | Where-Object FullName -NotLike "$moduleRoot\tests\*"
+﻿BeforeDiscovery {
+    $moduleRoot = (Resolve-Path "$PSScriptRoot\..").Path
+    $allFiles = Get-ChildItem -Path $moduleRoot -Recurse -Filter "*.ps1" |
+    Where-Object FullName -NotLike "$moduleRoot\tests\*" |
+    Where-Object FullName -NotLike "$moduleRoot\Build.ps1"
+}
 Describe "Verifying module PS1 files" -Foreach $allFiles {
     BeforeAll {
         $name = $_.Name
@@ -83,7 +87,7 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
     }
 
     Context "Verify <_> does not contain unapproved code" {
-        It "<_> should not contain unapproved commands"{
+        It "<_> should not contain unapproved commands" {
             $tokens | Where-Object Text -in $bandCommands | Should -BeNullOrEmpty -Because "These are commands that should be utilized in this module"
         }
 
