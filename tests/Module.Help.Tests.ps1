@@ -1,5 +1,5 @@
 BeforeDiscovery {
-    $ModuleRoot = (Resolve-Path "$PSScriptRoot\..").Path
+    $ModuleRoot = (Resolve-Path "$PSScriptRoot\..\src").Path
     $ModuleName = (Get-ChildItem "$ModuleRoot\*.psd1").Name.Trim(".psd1")
     $CommandPath = "$ModuleRoot\functions"
 

@@ -8,7 +8,7 @@ $staging = "C:\temp\staging\"
 if (Test-Path $staging) {
     Remove-Item -Recurse -Force $staging
 }
-$imported = Import-Module .\Thycotic.SecretServer.psd1 -Force -PassThru
+$imported = Import-Module .\src\Thycotic.SecretServer.psd1 -Force -PassThru
 $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$beta
 
 if ($foundModule.Version -ge $imported.Version) {
