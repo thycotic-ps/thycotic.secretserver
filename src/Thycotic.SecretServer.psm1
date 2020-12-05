@@ -13,11 +13,9 @@ $TssSession = [ordered]@{
     ApiVersion      = "api/v1"
     AccessToken       = $null
     RefreshToken    = $null
-    RefreshCount    = $null
     StartTime       = $null
     ExpiresInSec    = $null
     TimeOfDeath     = $null
-    AutoReconnect   = $false
     Take            = [int]::MaxValue
 }
 New-Variable -Name TssSession -Value $TssSession -Scope Script -Force

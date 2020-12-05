@@ -124,12 +124,9 @@
         } else {
             $TssSession.AccessToken = $response.access_token
             $TssSession.RefreshToken = $response.refresh_token
-            $TssSession.RefreshCount = if ($postContent.grant_type -eq 'refresh_token') { $TssSession.RefreshCount - 1 } else { $RefreshLimit }
             $TssSession.ExpiresInSec = $response.expires_in
             $TssSession.StartTime = [datetime]::UtcNow
             $TssSession.TimeOfDeath = [datetime]::UtcNow.Add([timespan]::FromSeconds($response.expires_in))
-            $TssSession.AutoReconnect = $AutoReconnect
-
             Get-TssSession
         }
     }
