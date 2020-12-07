@@ -3,7 +3,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken', 'UseRefreshToken', 'RefreshLimit', 'AutoReconnect', 'Raw'
+        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken', 'Raw'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($CommandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }

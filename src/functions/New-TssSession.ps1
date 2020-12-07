@@ -40,12 +40,12 @@
     A prompt to ener the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
     .OUTPUTS
-    System.Management.Automation.PSCustomObject.
+    TssSession.
     #>
     [cmdletbinding(SupportsShouldProcess)]
     param(
-        [Parameter(ParameterSetName = 'New')]
-        [Parameter(ParameterSetName = 'tss')]
+        [Parameter(ParameterSetName = 'New', Mandatory)]
+        [Parameter(ParameterSetName = 'tss', Mandatory)]
         [Alias('Server')]
         [uri]
         $SecretServer,
@@ -60,27 +60,10 @@
         [Parameter(ParameterSetName = 'tss')]
         $AccessToken,
 
-        # Utilize Refresh Token in TssSession to re-authenticate
-        [Parameter(ParameterSetName = 'Refresh')]
-        [switch]
-        $UseRefreshToken,
-
-        # Secret Server Web Services can utilize a refresh token.
-        # Default is 3, provide configured value to allow AutoConnect.
-        [Parameter(ParameterSetName = 'New')]
-        [int]
-        $RefreshLimit,
-
-        # In conjunction with RefreshLimit will utilize the refresh token to re-authenticate up to the limit.
-        [Parameter(ParameterSetName = 'New')]
-        [switch]
-        $AutoReconnect,
-
         # A module session variable is used to collect output.
         # This switch can be provided to bypass use of that variable.
         # Raw output from the endpoint will be returned.
         [Parameter(ParameterSetName = 'New')]
-        [Parameter(ParameterSetName = 'Refresh')]
         [switch]
         $Raw
     )
@@ -88,6 +71,8 @@
     begin {
         $invokeParams = . $GetInvokeTssParams $PSBoundParameters
         $newTssParams = . $GetNewTssParams $PSBoundParameters
+
+        $TssSession = [TssSession]::new()
     }
 
     process {
@@ -95,18 +80,14 @@
             $TssSession.SecretServerUrl = $SecretServer
         }
 
-        . $TestTssSession -Session
-        $uri = $TssSession.SecretServerUrl, "oauth2/token" -join '/'
+        # . $TestTssSession -Session
+        if (-not $TssSession.IsValidSession()) {
+            $uri = $TssSession.SecretServerUrl, "oauth2/token" -join '/'
+        }
 
         $postContent = [Ordered]@{ }
 
-        if ($UseRefreshToken) {
-            . $TestTssSession -Refresh
-            $postContent.grant_type = 'refresh_token'
-            $postContent.refresh_token = $TssSession.RefreshToken
-        }
-
-        if ($Credential) {
+        if ($newTssParams.Contains('Credential')) {
             $postContent.username = $Credential.UserName
             $postContent.password = $Credential.GetNetworkCredential().Password
             $postContent.grant_type = 'password'
@@ -124,10 +105,10 @@
         } else {
             $TssSession.AccessToken = $response.access_token
             $TssSession.RefreshToken = $response.refresh_token
-            $TssSession.ExpiresInSec = $response.expires_in
+            $TssSession.ExpiresIn = $response.expires_in
             $TssSession.StartTime = [datetime]::UtcNow
             $TssSession.TimeOfDeath = [datetime]::UtcNow.Add([timespan]::FromSeconds($response.expires_in))
-            Get-TssSession
+            return $TssSession
         }
     }
 }
