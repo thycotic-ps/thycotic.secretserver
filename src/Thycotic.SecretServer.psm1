@@ -1,27 +1,53 @@
-﻿#region Import Functions
+﻿#region classes
+class TssSession
+{
+    [string]$SecretServerUrl
+    [string]$ApiVersion = "api/v1"
+    [string]$AccessToken
+    [string]$RefreshToken
+    hidden [datetime]$StartTime
+    [int]$ExpiresIn
+    hidden [datetime]$TimeOfDeath
+    [int]$Take = [int]::MaxValue
+
+    [boolean]IsValidSession()
+    {
+        if ([string]::IsNullOrEmpty($this.SecretServerUrl)) {
+            return $false
+        }
+        if ([string]::IsNullOrEmpty($this.AccessToken) -and [string]::IsNullOrEmpty($this.RefreshToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
+            return $false
+        }
+        return $true
+    }
+
+    [boolean]IsValidToken()
+    {
+        if ([string]::IsNullOrEmpty($this.AccessToken)) {
+            Write-Host 'No valid token found for current TssSession object'
+            return $false
+        }
+        if ([datetime]::UtcNow -lt $this.TimeOfDeath) {
+            return $true
+        }
+        if ([datetime]::UtcNow -gt $this.TimeOfDeath) {
+            Write-Host 'Token is not valid and has exceeded TimeOfDeath'
+            return $false
+        }
+        return $true
+    }
+}
+#endregion classes
+
+#region Import Functions
 foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
     . $file.FullName
 }
 #endregion Import Functions
-
 [Net.ServicePointManager]::SecurityProtocol = [Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls12
 Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it was not already loaded.
 
-# Load session object for token authentication
-$TssSession = [ordered]@{
-    SecretServerUrl = $null
-    ApiVersion      = "api/v1"
-    AccessToken       = $null
-    RefreshToken    = $null
-    StartTime       = $null
-    ExpiresInSec    = $null
-    TimeOfDeath     = $null
-    Take            = [int]::MaxValue
-}
-New-Variable -Name TssSession -Value $TssSession -Scope Script -Force
-
 #region Import Parts
-
 # Parts are simple .ps1 files beneath a /Parts directory that can be used throughout the module.
 $partsDirectory = $( # Because we want to be case-insensitive, and because it's fast
     foreach ($dir in [IO.Directory]::GetDirectories($psScriptRoot)) {
