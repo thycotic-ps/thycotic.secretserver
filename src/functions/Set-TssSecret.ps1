@@ -124,7 +124,7 @@
                         $invokeParams.Body = $cSecret | ConvertTo-Json
                         $invokeParams.Method = 'PUT'
 
-                        if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
+                        if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                         try {
                             $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                         } catch {
@@ -212,7 +212,7 @@
                     $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                     $invokeParams.Method = 'PUT'
 
-                    if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
+                    if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                     try {
                         $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                     } catch {
