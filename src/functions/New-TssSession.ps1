@@ -106,8 +106,8 @@
             $TssSession.AccessToken = $response.access_token
             $TssSession.RefreshToken = $response.refresh_token
             $TssSession.ExpiresIn = $response.expires_in
-            $TssSession.StartTime = [datetime]::UtcNow
-            $TssSession.TimeOfDeath = [datetime]::UtcNow.Add([timespan]::FromSeconds($response.expires_in))
+            $TssSession.StartTime = [datetime]::Now
+            $TssSession.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($response.expires_in))
             return $TssSession
         }
     }
