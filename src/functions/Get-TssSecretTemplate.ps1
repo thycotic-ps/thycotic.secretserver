@@ -55,7 +55,7 @@
                 $invokeParams.Method = 'GET'
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
-                Write-Debug "$($invokeParas.Method) $uri with $body"
+                Write-Verbose "$($invokeParas.Method) $uri with $body"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
