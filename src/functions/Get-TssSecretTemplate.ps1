@@ -6,6 +6,9 @@
     .DESCRIPTION
     Get a secret template(s) from Secret Server
 
+    .PARAMETER TssSession
+    TssSession object created by New-TssSession
+
     .PARAMETER Id
     Secret template ID to retrieve, accepts an array of IDs
 
@@ -13,15 +16,20 @@
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Get-TssSecretTemplate -Id 93
 
     Returns secret associated with the Secret ID, 93
 
     .NOTES
-    Requires New-TssSession session be set
+    Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
     param(
+        # TssSession object passed for auth info
+        [Parameter(Mandatory,ValueFromPipeline)]
+        [TssSession]$TssSession,
+
         # Return only specific Secret, Secret Id
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("TemplateId")]
@@ -33,74 +41,74 @@
         $Raw
     )
     begin {
+        $tssParams = . $GetParams $PSBoundParameters 'Get-TssSecretTemplate'
         $invokeParams = @{ }
     }
 
     process {
-        . $TestTssSession -Session
+        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+            foreach ($template in $Id) {
+                $restResponse = $null
+                $errorResponse = $null
+                $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/')
+                $invokeParams.Uri = $Uri
+                $invokeParams.Method = 'GET'
+                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
-        foreach ($template in $Id) {
-            $restResponse = $null
-            $errorResponse = $null
-            $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/'
-            $invokeParams.Uri = $Uri
-            $invokeParams.Method = 'GET'
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
+                } catch {
+                    $errorResponse = $_.ErrorDetails.Message | ConvertFrom-Json
+                }
 
-            try {
-                $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
-            } catch {
-                $errorResponse = $_.ErrorDetails.Message | ConvertFrom-Json
-            }
-
-            if ($Raw -and $restResponse) {
-                $restResponse
-            } elseif ($restResponse) {
-                foreach ($fieldDetail in $restResponse.fields) {
-                    $fieldType =
-                    if ($fieldDetail.isFile) {
-                        "File"
-                    } elseif ($fieldDetail.isNotes) {
-                        "Notes"
-                    } elseif ($fieldDetail.isPassword) {
-                        "Password"
-                    } elseif ($fieldDetail.isUrl) {
-                        "URL"
-                    } else {
-                        "Text"
-                    }
-
-                    $history =
-                    if ($fieldDetail.historyLength -eq [int]::MaxValue) {
-                        "All"
-                    } else {
-                        $fieldDetail.historyLength
-                    }
-
+                if ($Raw -and $restResponse) {
+                    $restResponse
+                } elseif ($restResponse) {
                     $outTemplate = [pscustomobject]@{
-                        TemplatId        = $restResponse.Id
-                        TemplateName     = $restResponse.Name
-                        FieldName        = $fieldDetail.name
-                        SlugName         = $fieldDetail.fieldSlugName
-                        Description      = $fieldDetail.description
-                        FieldType        = $fieldType
-                        Required         = $fieldDetail.isRequired
-                        History          = $history
-                        Searchable       = $fieldDetail.isIndexable
-                        EditRequires     = $fieldDetail.editRequires
-                        HideOnView       = $fieldDetail.hideOnView
-                        ExposeForDisplay = $fieldDetail.mustEncrypt
+                        PSTypeName = 'TssSecretTemplate'
+                        Id         = $restResponse.id
+                        Name       = $restResponse.name
                     }
+
+                    $fields = foreach ($field in $restResponse.fields) {
+                        [pscustomobject] {
+                            PSTypeName = 'TssSecretTemplateField'
+                            SecretTempalteFieldId = $field.secretTempalteFieldId
+                            IsExpirationField = $field.isExpirationField
+                            DisplayName = $field.displayName
+                            Description = $field.description
+                            Name = $field.name
+                            HistoryLength = $field.historyLength
+                            FieldSlugName = $field.fieldSlugName
+                            IsIndexable = $field.isIndexable
+                            EditRequires = $field.editRequires
+                            HideOnView = $field.hideOnView
+                            MustEncrypt = $field.mustEncrypt #ExposeForDisplay
+                            GeneratePasswordCharacterSet = $field.generatePasswordCharacterSet
+                            GeneratePasswordLength = $field.generatePasswordLength
+                            PasswordTypeFieldId = $field.passwordTypeFieldId
+                            PasswordRequirementId = $field.passwordRequirementId
+                            SortOrder = $field.sortOrder
+                            EditablePermission = $field.editablePermission
+                            IsFile = $field.isFile
+                            IsNotes = $field.isNotes
+                            IsPassword = $field.isPassword
+                            IsUrl = $field.isUrl
+                            Required = $field.isRequired
+                        }
+                    }
+                    $outTempalte.PSObject.Properties.Add([PSNoteProperty]::new('FIelds',$fields))
                     $outTemplate
                 }
+                if ($errorResponse) {
+                    Write-Warning -Message "Issue retrieving secret [$template]: $($errorResponse.message)"
+                }
+                if ($restResponse.code) {
+                    Write-Warning -Message "Issue retrieving secret [$template]: $($restResponse.message)"
+                }
             }
-
-            if ($errorResponse) {
-                Write-Warning -Message "Issue retrieving secret [$template]: $($errorResponse.message)"
-            }
-            if ($restResponse.code) {
-                Write-Warning -Message "Issue retrieving secret [$template]: $($restResponse.message)"
-            }
+        } else {
+            Write-Warning "No valid session found"
         }
     }
 }
