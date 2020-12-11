@@ -20,19 +20,9 @@ Describe "$commandName verify parameters" {
 Describe "$commandName updates session object" {
     Context "Oauth2 authentication" {
         BeforeEach {
-            $expiresIn = 1199
-            [uri]$secretServer = 'https://alpha'
+            [uri]$secretServer = $ssc
             $apiV = 'api/v1'
-            Mock Invoke-RestMethod {
-                @{
-                    access_token = [System.Convert]::ToBase64String((New-Guid).ToByteArray())
-                    token_type = 'bearer'
-                    expires_in = $expiresIn
-                    refresh_token = [System.Convert]::ToBase64String((New-Guid).ToByteArray())
-                }
-            }
-            $cred = [pscredential]::new('user',(ConvertTo-SecureString "p" -AsPlainText -Force))
-            $session = New-TssSession -SecretServer $secretServer -Credential $cred
+            $session = New-TssSession -SecretServer $secretServer -Credential $secretCloudCred
         }
         It "Populates SecretServerUrl Propety" {
             $session.SecretServerUrl | Should -Be $secretServer
