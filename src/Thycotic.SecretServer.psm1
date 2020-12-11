@@ -12,13 +12,11 @@ class TssSession
 
     [boolean]IsValidSession()
     {
-        if ([string]::IsNullOrEmpty($this.SecretServerUrl)) {
-            return $false
-        }
         if ([string]::IsNullOrEmpty($this.AccessToken) -and [string]::IsNullOrEmpty($this.RefreshToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
             return $false
+        } else {
+            return $true
         }
-        return $true
     }
 
     [boolean]IsValidToken()
@@ -26,15 +24,14 @@ class TssSession
         if ([string]::IsNullOrEmpty($this.AccessToken)) {
             Write-Host 'No valid token found for current TssSession object'
             return $false
-        }
-        if ([datetime]::UtcNow -lt $this.TimeOfDeath) {
+        } elseif ([datetime]::Now -lt $this.TimeOfDeath) {
             return $true
-        }
-        if ([datetime]::UtcNow -gt $this.TimeOfDeath) {
+        } elseif ([datetime]::Now -gt $this.TimeOfDeath) {
             Write-Host 'Token is not valid and has exceeded TimeOfDeath'
             return $false
+        } else {
+            return $true
         }
-        return $true
     }
 }
 #endregion classes
