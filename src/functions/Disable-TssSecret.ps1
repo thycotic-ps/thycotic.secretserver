@@ -55,22 +55,23 @@
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("DELETE $uri)")) { return }
+                if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
                 Write-Verbose "Disabling secret: $secret"
-                $restResponse = Invoke-TssRestApi @invokeParams -ErrorVariable err -ErrorAction SilentlyContinue
 
-                if ($err[0].Exception -like "*Bad Request*") {
-                    $status = "Does not exists"
-                }
-                if (-not $Raw) {
-                    if (-not $status) {
-                        $status = (Get-TssSecret -Id $secret).Status
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
+                } catch {
+                    if ($err.Exception -like "*Bad Request*") {
+                        throw "$secret does not exists"
+                    } else {
+                        throw $err
                     }
+                }
 
+                if (-not $Raw) {
                     [PSCustomObject]@{
-                        SecretId   = if ($restResponse.id -eq $secret) { $restResponse.id } else { $secret }
+                        Id         = $restResponse.id
                         ObjectType = $restResponse.objectType
-                        Status     = $status
                     }
                 } else {
                     $restResponse
