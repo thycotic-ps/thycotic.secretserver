@@ -6,6 +6,9 @@
     .DESCRIPTION
     Disables a secret from Secret Server
 
+    .PARAMETER TssSession
+    TssSession object created by New-TssSession
+
     .PARAMETER Id
     Secret ID to disable (mark inactive)
 
@@ -13,15 +16,20 @@
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Disable-TssSecret -Id 93
 
     Disables secret 93
 
     .NOTES
-    Requires New-TssSession session be set
+    Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
     param(
+        # TssSession object passed for auth info
+        [Parameter(Mandatory,ValueFromPipeline)]
+        [TssSession]$TssSession,
+
         # Delete only specific Secret, Secret Id
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
@@ -33,39 +41,43 @@
         $Raw
     )
     begin {
+        $tssParams = . $GetParams $PSBoundParameters 'Disable-TssSecret'
         $invokeParams = @{ }
     }
 
     process {
-        . $TestTssSession -Session
+        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
 
-        foreach ($secret in $Id) {
-            $uri = $TssSession.SecretServerUrl, $TssSession.ApiVersion, "secrets", $secret.ToString() -join '/'
+            foreach ($secret in $Id) {
+                $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
 
-            $invokeParams.Uri = $Uri
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-            $invokeParams.Method = 'DELETE'
+                $invokeParams.Uri = $Uri
+                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+                $invokeParams.Method = 'DELETE'
 
-            if (-not $PSCmdlet.ShouldProcess("DELETE $uri)")) { return }
-            Write-Verbose "Disabling secret: $secret"
-            $restResponse = Invoke-TssRestApi @invokeParams -ErrorVariable err -ErrorAction SilentlyContinue
+                if (-not $PSCmdlet.ShouldProcess("DELETE $uri)")) { return }
+                Write-Verbose "Disabling secret: $secret"
+                $restResponse = Invoke-TssRestApi @invokeParams -ErrorVariable err -ErrorAction SilentlyContinue
 
-            if ($err[0].Exception -like "*Bad Request*") {
-                $status = "Does not exists"
-            }
-            if (-not $Raw) {
-                if (-not $status) {
-                    $status = (Get-TssSecret -Id $secret).Status
+                if ($err[0].Exception -like "*Bad Request*") {
+                    $status = "Does not exists"
                 }
+                if (-not $Raw) {
+                    if (-not $status) {
+                        $status = (Get-TssSecret -Id $secret).Status
+                    }
 
-                [PSCustomObject]@{
-                    SecretId   = if ($restResponse.id -eq $secret) { $restResponse.id } else { $secret }
-                    ObjectType = $restResponse.objectType
-                    Status     = $status
+                    [PSCustomObject]@{
+                        SecretId   = if ($restResponse.id -eq $secret) { $restResponse.id } else { $secret }
+                        ObjectType = $restResponse.objectType
+                        Status     = $status
+                    }
+                } else {
+                    $restResponse
                 }
-            } else {
-                $restResponse
             }
+        } else {
+            Write-Warning "No valid session found"
         }
     }
 }
