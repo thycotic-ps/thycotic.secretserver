@@ -119,7 +119,6 @@
 
     process {
         if ($filterParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-
             $uri = $TssSession.SecretServerUrl + ( $TssSession.ApiVersion, "secrets" -join '/')
             $uri += "?take=$($TssSession.Take)"
             if ($filterParams.Contains('IncludeInactive')) {
@@ -136,18 +135,22 @@
             $invokeParams.Uri = $uri
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
             $invokeParams.Method = 'GET'
-            if (-not $Raw) {
-                $invokeParams.ExpandProperty = 'records'
-            }
 
+            Write-Debug "$($invokeParams.Method) $uri with $body"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
+                $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
             } catch {
-                Write-Error -TargetObject $Uri -Category InvalidOperation -Message "Unable to search for secrets: $($_.Exception)"
+                throw ($err | ConvertFrom-Json).Message
             }
 
-            if ($restResponse) {
-                foreach ($record in $restResponse) {
+            if ($Raw) {
+                return $restResponse
+            }
+            if ($restResponse.Records.Count -le 0 -and $restResponse.Records.Length -eq 0) {
+                Write-Warning "No secrets found"
+            }
+            if ($restResponse.records -and -not $Raw) {
+                foreach ($record in $restResponse.records) {
                     $output = [PSCustomObject]@{
                         SecretId              = $record.id
                         SecretName            = $record.name
