@@ -30,6 +30,9 @@
     .PARAMETER SearchSlug
     Slug name of field to filter on
 
+    .PARAMETER IncludeInactive
+    Include inactive or disabled Secrets
+
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
 
@@ -37,13 +40,19 @@
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Search-TssSecret -TssSession $session -FolderId 50
 
-    Will return all secrets found with a folder ID of 50
+    Return all secrets found with a folder ID of 50
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Search-TssSecret -TssSession $session -FolderId 50 -SecretTemplateId 6001
 
-    Will return all secrets using Secret Template 6001 that are found in FolderID 50.
+    Return all secrets using Secret Template 6001 that are found in FolderID 50.
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Search-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
+
+    Return all secrets using Secret Template 6047 that are active **and** inactive.
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -85,10 +94,16 @@
         [string]
         $SearchText,
 
-        # Field-slug to search. This will override SearchField.
+        # Field-slug to search. This Roverride SearchField.
         [Parameter(ParameterSetName = "field")]
         [string]
         $SearchSlug,
+
+        # Include inactive or disabled secrets
+        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = "filter")]
+        [switch]
+        $IncludeInactive,
 
         # output the raw response from the API endpoint
         [switch]
@@ -106,7 +121,11 @@
         if ($filterParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
 
             $uri = $TssSession.SecretServerUrl + ( $TssSession.ApiVersion, "secrets" -join '/')
-            $uri += "?take=$($TssSession.Take)&filter.includeInactive=true&filter.includeRestricted=true"
+            $uri += "?take=$($TssSession.Take)"
+            if ($filterParams.Contains('IncludeInactive')) {
+                $uri += "&filter.includeInactive=true"
+            }
+            $uri += "&filter.includeRestricted=true"
 
             $filters = $filterParams.GetEnumerator() | ForEach-Object { "filter.$($_.name)=$($_.value)" }
             $uriFilter = $filters -join "&"

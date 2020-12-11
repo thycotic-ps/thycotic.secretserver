@@ -3,7 +3,7 @@
 }
 Describe "$commandName veirfy parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'FolderId', 'SecretTemplateId', 'SiteId', 'HeartbeatStatus', 'SearchField', 'SearchText', 'SearchSlug', 'Raw'
+        [object[]]$knownParameters = 'TssSession', 'FolderId', 'SecretTemplateId', 'SiteId', 'HeartbeatStatus', 'SearchField', 'SearchText', 'SearchSlug', 'IncludeInactive', 'Raw'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($CommandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
