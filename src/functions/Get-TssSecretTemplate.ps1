@@ -59,12 +59,20 @@
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
-                    throw $err
+                    $apiError = $err | ConvertFrom-Json
+                    if ($apiError.errorCode) {
+                        throw "$($apiError.errorCode): $($apiError.message)"
+                    } elseif ($apiError.message) {
+                        throw $apiError.message
+                    } else {
+                        throw $err
+                    }
                 }
 
-                if ($Raw -and $restResponse) {
-                    $restResponse
-                } elseif ($restResponse) {
+                if ($Raw) {
+                    return $restResponse
+                }
+                if ($restResponse) {
                     $outTemplate = [pscustomobject]@{
                         PSTypeName = 'TssSecretTemplate'
                         Id         = $restResponse.id
@@ -72,40 +80,34 @@
                     }
 
                     $fields = foreach ($field in $restResponse.fields) {
-                        [pscustomobject] {
-                            PSTypeName = 'TssSecretTemplateField'
-                            SecretTempalteFieldId = $field.secretTempalteFieldId
-                            IsExpirationField = $field.isExpirationField
-                            DisplayName = $field.displayName
-                            Description = $field.description
-                            Name = $field.name
-                            HistoryLength = $field.historyLength
-                            FieldSlugName = $field.fieldSlugName
-                            IsIndexable = $field.isIndexable
-                            EditRequires = $field.editRequires
-                            HideOnView = $field.hideOnView
-                            MustEncrypt = $field.mustEncrypt #ExposeForDisplay
+                        [pscustomobject]@{
+                            PSTypeName                   = 'TssSecretTemplateField'
+                            SecretTempalteFieldId        = $field.secretTempalteFieldId
+                            IsExpirationField            = $field.isExpirationField
+                            DisplayName                  = $field.displayName
+                            Description                  = $field.description
+                            Name                         = $field.name
+                            HistoryLength                = $field.historyLength
+                            FieldSlugName                = $field.fieldSlugName
+                            IsIndexable                  = $field.isIndexable
+                            EditRequires                 = $field.editRequires
+                            HideOnView                   = $field.hideOnView
+                            MustEncrypt                  = $field.mustEncrypt #ExposeForDisplay
                             GeneratePasswordCharacterSet = $field.generatePasswordCharacterSet
-                            GeneratePasswordLength = $field.generatePasswordLength
-                            PasswordTypeFieldId = $field.passwordTypeFieldId
-                            PasswordRequirementId = $field.passwordRequirementId
-                            SortOrder = $field.sortOrder
-                            EditablePermission = $field.editablePermission
-                            IsFile = $field.isFile
-                            IsNotes = $field.isNotes
-                            IsPassword = $field.isPassword
-                            IsUrl = $field.isUrl
-                            Required = $field.isRequired
+                            GeneratePasswordLength       = $field.generatePasswordLength
+                            PasswordTypeFieldId          = $field.passwordTypeFieldId
+                            PasswordRequirementId        = $field.passwordRequirementId
+                            SortOrder                    = $field.sortOrder
+                            EditablePermission           = $field.editablePermission
+                            IsFile                       = $field.isFile
+                            IsNotes                      = $field.isNotes
+                            IsPassword                   = $field.isPassword
+                            IsUrl                        = $field.isUrl
+                            IsRequired                   = $field.isRequired
                         }
                     }
-                    $outTempalte.PSObject.Properties.Add([PSNoteProperty]::new('FIelds',$fields))
+                    $outTemplate.PSObject.Properties.Add([PSNoteProperty]::new('Fields',$fields))
                     $outTemplate
-                }
-                if ($errorResponse) {
-                    Write-Warning -Message "Issue retrieving secret [$template]: $($errorResponse.message)"
-                }
-                if ($restResponse.code) {
-                    Write-Warning -Message "Issue retrieving secret [$template]: $($restResponse.message)"
                 }
             }
         } else {

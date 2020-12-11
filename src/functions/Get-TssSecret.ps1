@@ -80,12 +80,20 @@
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
-                    throw $err
+                    $apiError = $err | ConvertFrom-Json
+                    if ($apiError.errorCode) {
+                        throw "$($apiError.errorCode): $($apiError.message)"
+                    } elseif ($apiError.message) {
+                        throw $apiError.message
+                    } else {
+                        throw $err
+                    }
                 }
 
-                if ($Raw -and $restResponse) {
-                    $restResponse
-                } elseif ($restResponse -and -not $restResponse.code) {
+                if ($Raw) {
+                    return $restResponse
+                }
+                if ($restResponse) {
                     $outSecret = [PSCustomObject]@{
                         PSTypeName                         = 'TssSecret'
                         Id                                 = $restResponse.id
@@ -144,15 +152,6 @@
                     }
                     $outSecret.PSObject.Properties.Add([PSNoteProperty]::new('Items',$items))
                     $outSecret
-                } elseif ($restResponse.code) {
-                    throw "$($restResponse.Code) - $($restResponse.Message)"
-                }
-
-                if ($errorResponse) {
-                    Write-Warning -Message "Issue retrieving secret [$secret]: $($errorResponse.message)"
-                }
-                if ($restResponse.code) {
-                    Write-Warning -Message "Issue retrieving secret [$secret]: $($restResponse.message)"
                 }
             }
         } else {

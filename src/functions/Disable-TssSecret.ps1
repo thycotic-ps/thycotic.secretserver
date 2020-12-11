@@ -56,25 +56,27 @@
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
-                Write-Verbose "Disabling secret: $secret"
-
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
-                    if ($err.Exception -like "*Bad Request*") {
-                        throw "$secret does not exists"
+                    $apiError = $err | ConvertFrom-Json
+                    if ($apiError.errorCode) {
+                        throw "$($apiError.errorCode): $($apiError.message)"
+                    } elseif ($apiError.message) {
+                        throw $apiError.message
                     } else {
                         throw $err
                     }
                 }
 
+                if ($Raw) {
+                    $restResponse
+                }
                 if (-not $Raw) {
                     [PSCustomObject]@{
                         Id         = $restResponse.id
                         ObjectType = $restResponse.objectType
                     }
-                } else {
-                    $restResponse
                 }
             }
         } else {

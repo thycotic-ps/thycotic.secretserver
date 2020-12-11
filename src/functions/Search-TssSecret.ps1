@@ -140,7 +140,14 @@
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
             } catch {
-                throw ($err | ConvertFrom-Json).Message
+                $apiError = $err | ConvertFrom-Json
+                if ($apiError.errorCode) {
+                    throw "$($apiError.errorCode): $($apiError.message)"
+                } elseif ($apiError.message) {
+                    throw $apiError.message
+                } else {
+                    throw $err
+                }
             }
 
             if ($Raw) {
@@ -149,7 +156,7 @@
             if ($restResponse.Records.Count -le 0 -and $restResponse.Records.Length -eq 0) {
                 Write-Warning "No secrets found"
             }
-            if ($restResponse.records -and -not $Raw) {
+            if ($restResponse.records) {
                 foreach ($record in $restResponse.records) {
                     $output = [PSCustomObject]@{
                         SecretId              = $record.id
