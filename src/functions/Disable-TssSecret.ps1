@@ -55,7 +55,7 @@
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $body")) { return }
+                if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
