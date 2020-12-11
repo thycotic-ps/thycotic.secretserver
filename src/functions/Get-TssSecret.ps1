@@ -78,9 +78,9 @@
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop
+                    $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
                 } catch {
-                    $errorResponse = $_.ErrorDetails.Message | ConvertFrom-Json
+                    throw $err
                 }
 
                 if ($Raw -and $restResponse) {
@@ -144,6 +144,8 @@
                     }
                     $outSecret.PSObject.Properties.Add([PSNoteProperty]::new('Items',$items))
                     $outSecret
+                } elseif ($restResponse.code) {
+                    throw "$($restResponse.Code) - $($restResponse.Message)"
                 }
 
                 if ($errorResponse) {
