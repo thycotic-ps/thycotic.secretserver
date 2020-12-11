@@ -1,5 +1,5 @@
 ﻿@{
-    ModuleVersion = '0.12.0'
+    ModuleVersion = '0.13.0'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
@@ -16,6 +16,15 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.13 :
+* Removed Get-TssSession
+* Find-TssSecret renamed to Search-TssSecret
+* Added TssSession class
+* New TssSession parameter added to all public functions
+* Added unit test
+* Added format and types file
+* Get-TssSecret - Modified output
+* Search-TssSecret - Added IncludeInactive parameter
 0.12 :
 * New-TssSession - add comment-based help
 * Get-TssSession - add comment-based help

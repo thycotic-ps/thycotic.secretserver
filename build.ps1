@@ -19,43 +19,6 @@ if ($foundModule.Version -ge $imported.Version) {
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
-    $moduleGitpath = Join-Path $moduleTempPath '.git'
-    $moduleGitIgnore = Join-Path $moduleTempPath '.gitignore'
-    $moduleDebugLog = Join-Path $moduleTempPath 'debug.log'
-    $moduleVscPath = Join-Path $moduleTempPath '.vscode'
-    $moduleBuildScript = Join-Path $moduleTempPath 'build.ps1'
-    $moduleTests = Join-Path $moduleTempPath 'tests'
-    $moduleReadme = Join-Path $moduleTempPath 'README.md'
-
-    if (Test-Path $moduleReadme) {
-        Write-Host "Removing README.md directory"
-        Remove-Item -Recurse -Force $moduleReadme
-    }
-    if (Test-Path $moduleGitPath) {
-        Write-Host "Removing .git directory"
-        Remove-Item -Recurse -Force $moduleGitpath
-    }
-    if (Test-Path $moduleGitIgnore) {
-        Write-Host "Removing .gitignore file"
-        Remove-Item -Recurse -Force $moduleGitIgnore
-    }
-    if (Test-Path $moduleDebugLog) {
-        Write-Host "Removing debug.log file"
-        Remove-Item -Recurse -Force $moduleDebugLog
-    }
-    if (Test-Path $moduleVscPath) {
-        Write-Host "Removing .vscode directory"
-        Remove-Item -Recurse -Force $moduleVscPath
-    }
-    if (Test-Path $moduleTests) {
-        Write-Host "Removing tests directory"
-        Remove-Item -Recurse -Force $moduleTests
-    }
-    if (Test-Path $moduleBuildScript) {
-        Write-Host "Removing build script"
-        Remove-Item -Recurse -Force $moduleBuildScript
-    }
-
     Write-Host "Module Files:"
     Get-ChildItem $moduleTempPath -Recurse | Select-Object Directory, Name
 
