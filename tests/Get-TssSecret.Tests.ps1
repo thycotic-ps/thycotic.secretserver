@@ -1,9 +1,9 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
 }
-Describe "$commandName Unit Tests" {
+Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'Id', 'Comment', 'Raw'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'Comment', 'Raw'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($CommandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
