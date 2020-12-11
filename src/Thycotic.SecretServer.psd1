@@ -1,5 +1,7 @@
 ﻿@{
     ModuleVersion = '0.12.0'
+    FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
+    TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
     Description = 'PowerShell Tools for Thycotic Secret Server'
     Guid = 'e6b56c5f-41ac-4ba4-8b88-2c063f683176'
