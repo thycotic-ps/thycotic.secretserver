@@ -98,7 +98,11 @@
         $invokeParams.Method = 'POST'
 
         if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
-        $response = Invoke-TssRestApi @invokeParams
+        try {
+            $response = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
+        } catch {
+            throw $err
+        }
 
         if ($response.access_token -and $Raw) {
             return $response
@@ -108,7 +112,12 @@
             $TssSession.ExpiresIn = $response.expires_in
             $TssSession.StartTime = [datetime]::Now
             $TssSession.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($response.expires_in))
+        }
+
+        if ($TssSession.IsValidSession()) {
             return $TssSession
+        } else {
+            throw "Invalid session"
         }
     }
 }
