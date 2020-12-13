@@ -1,4 +1,7 @@
 #Requires -Modules ImportExcel
+if (Test-Path .\SwaggerDetails.xlsx) {
+    Remove-Item .\SwaggerDetails.xlsx -Force
+}
 $ss9 = get-content C:\temp\swagger\swagger_token_10.9.json | ConvertFrom-Json
 $ss932 = get-content C:\temp\swagger\swagger_token_10.9.32.json | ConvertFrom-Json
 $ss8 = get-content C:\temp\swagger\swagger_token_10.8.4.json | ConvertFrom-Json
@@ -14,7 +17,7 @@ foreach ($def in $ss9.definitions) {
         $props = $def.$d.properties
         $propsProps = $props.PSObject.Properties.Name | Sort-Object
         foreach ($p in $propsProps) {
-            $ss9Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
+            $ss9Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyName';E={$p}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
         }
     }
 }
@@ -30,7 +33,7 @@ foreach ($def in $ss932.definitions) {
         $props = $def.$d.properties
         $propsProps = $props.PSObject.Properties.Name | Sort-Object
         foreach ($p in $propsProps) {
-            $ss932Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
+            $ss932Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyName';E={$p}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
         }
     }
 }
@@ -46,7 +49,7 @@ foreach ($def in $ss8.definitions) {
         $props = $def.$d.properties
         $propsProps = $props.PSObject.Properties.Name | Sort-Object
         foreach ($p in $propsProps) {
-            $ss8Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
+            $ss8Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyName';E={$p}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
         }
     }
 }
@@ -62,7 +65,7 @@ foreach ($def in $ss7.definitions) {
         $props = $def.$d.properties
         $propsProps = $props.PSObject.Properties.Name | Sort-Object
         foreach ($p in $propsProps) {
-            $ss7Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
+            $ss7Data += $props.$p | Select-Object @{L='ModelName';E={$primName}}, @{L='ModelDescription';E={$description}}, @{L='PropertyName';E={$p}}, @{L='PropertyDescription';E={$_.description}}, @{L='PropertyType';E={$_.type}}
         }
     }
 }
