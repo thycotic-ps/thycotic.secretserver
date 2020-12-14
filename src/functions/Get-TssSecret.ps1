@@ -62,7 +62,6 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $errorResponse = $null
                 $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
                 if ($Comment) {
                     $uri = $uri, "restricted" -join "/"
