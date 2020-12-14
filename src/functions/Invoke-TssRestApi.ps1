@@ -135,6 +135,12 @@
                 } elseif ($_.Value -and $_.Count) {
                     # If that's what we're dealing with
                     $_.Value # pass value down the pipe.
+                } elseif ($_.code -like '*API_*') {
+                    $PSCmdlet.WriteError(
+                        [Management.Automation.ErrorRecord]::new(
+                            [Exception]::new("$($_.message)"),"$($_.code)","InvalidOperation",$_))
+                        $PSCmdlet.WriteVerbose("$_")
+                        return
                 } elseif ($_ -notlike '*<html*') {
                     # Otherwise, As long as the value doesn't look like HTML,
                     $_ # pass it down the pipe.
@@ -144,7 +150,7 @@
                         [Management.Automation.ErrorRecord]::new(
                             [Exception]::new("Response was HTML, Request Failed."),
                             "ResultWasHTML", "NotSpecified", $_))
-                    $psCmdlet.WriteVerbose("$_") # and write the full content to verbose.
+                    $PSCmdlet.WriteVerbose("$_") # and write the full content to verbose.
                     return
                 }
             } } |
