@@ -93,11 +93,7 @@
         $invokeParams.Method = 'POST'
 
         if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
-        try {
-            $response = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err -Property @{SecretServer = $SecretServer}
-        } catch {
-            throw $err
-        }
+        $response = Invoke-TssRestApi @invokeParams -Property @{SecretServer = $SecretServer}
 
         if ($Raw -and $response) {
             return $response

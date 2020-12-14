@@ -137,18 +137,7 @@
             $invokeParams.Method = 'GET'
 
             Write-Verbose "$($invokeParams.Method) $uri with $body"
-            try {
-                $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
-            } catch {
-                $apiError = $err | ConvertFrom-Json
-                if ($apiError.errorCode) {
-                    throw "$($apiError.errorCode): $($apiError.message)"
-                } elseif ($apiError.message) {
-                    throw $apiError.message
-                } else {
-                    throw $err
-                }
-            }
+            $restResponse = Invoke-TssRestApi @invokeParams
 
             if ($Raw) {
                 return $restResponse

@@ -125,17 +125,7 @@
                         $invokeParams.Method = 'PUT'
 
                         if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-                        try {
-                            $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
-                        } catch {
-                            if ($apiError.errorCode) {
-                                throw "$($apiError.errorCode): $($apiError.message)"
-                            } elseif ($apiError.message) {
-                                throw $apiError.message
-                            } else {
-                                throw $err
-                            }
-                        }
+                        $restResponse = Invoke-TssRestApi @invokeParams
 
                         if ($Raw) {
                             $restResponse
@@ -213,17 +203,7 @@
                     $invokeParams.Method = 'PUT'
 
                     if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-                    try {
-                        $restResponse = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
-                    } catch {
-                        if ($apiError.errorCode) {
-                            throw "$($apiError.errorCode): $($apiError.message)"
-                        } elseif ($apiError.message) {
-                            throw $apiError.message
-                        } else {
-                            throw $err
-                        }
-                    }
+                    $restResponse = Invoke-TssRestApi @invokeParams
 
                     if ($Raw) {
                         $restResponse
