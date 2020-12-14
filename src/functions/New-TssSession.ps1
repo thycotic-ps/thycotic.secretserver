@@ -80,7 +80,6 @@
             $TssSession.SecretServerUrl = $SecretServer
         }
 
-        # . $TestTssSession -Session
         if (-not $TssSession.IsValidSession()) {
             $uri = $TssSession.SecretServerUrl, "oauth2/token" -join '/'
         }
