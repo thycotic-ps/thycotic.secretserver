@@ -121,7 +121,7 @@
 
                         $invokeParams.Uri = $Uri
                         $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                        $invokeParams.Body = $cSecret | ConvertTo-Json
+                        $invokeParams.Body = ($cSecret | ConvertTo-Json)
                         $invokeParams.Method = 'PUT'
 
                         if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
