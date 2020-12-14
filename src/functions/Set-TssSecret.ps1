@@ -117,7 +117,7 @@
                             continue
                         }
 
-                        $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
+                        $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
 
                         $invokeParams.Uri = $Uri
                         $invokeParams.PersonalAccessToken = $TssSession.AccessToken
@@ -204,7 +204,7 @@
                     }
                 }
                 if ($Field) {
-                    $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
+                    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
 
                     $body = "{'value': '$Value'}"
                     $invokeParams.Uri = $uri

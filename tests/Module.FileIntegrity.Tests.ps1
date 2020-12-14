@@ -10,8 +10,6 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
         $fullName = $_.FullName
         $file = $_
 
-        $bandCommands = @('Write-Host','Get-WmiObject','Write-Debug')
-
         $tokens, $parseErrors = $null
         $ast = [System.Management.Automation.Language.Parser]::ParseFile($fullName, [ref]$tokens, [ref]$parseErrors)
         function Get-FileEncoding {
@@ -87,10 +85,6 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
     }
 
     Context "Verify <_> does not contain unapproved code" {
-        It "<_> should not contain unapproved commands" {
-            $tokens | Where-Object Text -in $bandCommands | Should -BeNullOrEmpty -Because "These are commands that should be utilized in this module"
-        }
-
         It "<_> should not contain any aliases" {
             $tokens | Where-Object TokenFlags -eq CommandName | Where-Object { Test-Path "alias:\$($_.Text)" } | Measure-Object | Select-Object -ExpandProperty Count | Should -BeExactly 0
         }

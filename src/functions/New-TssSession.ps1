@@ -72,16 +72,12 @@
         $invokeParams = . $GetInvokeTssParams $PSBoundParameters
         $newTssParams = . $GetNewTssParams $PSBoundParameters
 
-        $TssSession = [TssSession]::new()
+        # $TssSession = [TssSession]::new()
     }
 
     process {
         if ($newTssParams.Contains('SecretServer')) {
-            $TssSession.SecretServerUrl = $SecretServer
-        }
-
-        if (-not $TssSession.IsValidSession()) {
-            $uri = $TssSession.SecretServerUrl, "oauth2/token" -join '/'
+            $uri = $SecretServer, "oauth2/token" -join '/'
         }
 
         $postContent = [Ordered]@{ }
@@ -98,25 +94,23 @@
 
         if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
         try {
-            $response = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err
+            $response = Invoke-TssRestApi @invokeParams -ErrorAction Stop -ErrorVariable err -Property @{SecretServer = $SecretServer}
         } catch {
             throw $err
         }
 
-        if ($response.access_token -and $Raw) {
+        if ($Raw -and $response) {
             return $response
         } else {
-            $TssSession.AccessToken = $response.access_token
-            $TssSession.RefreshToken = $response.refresh_token
-            $TssSession.ExpiresIn = $response.expires_in
-            $TssSession.StartTime = [datetime]::Now
-            $TssSession.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($response.expires_in))
-        }
-
-        if ($TssSession.IsValidSession()) {
-            return $TssSession
-        } else {
-            throw "Invalid session"
+            [TssSession]@{
+                SecretServer = $response.SecretServer
+                AccessToken = $response.access_token
+                RefreshToken = $response.refresh_token
+                ExpiresIn = $response.expires_in
+                TokenType = $response.token_type
+                StartTime = [datetime]::Now
+                TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($response.expires_in))
+            }
         }
     }
 }

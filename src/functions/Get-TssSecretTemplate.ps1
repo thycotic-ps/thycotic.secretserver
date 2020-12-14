@@ -50,7 +50,7 @@
             foreach ($template in $Id) {
                 $restResponse = $null
                 $errorResponse = $null
-                $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/')
+                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/')
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken

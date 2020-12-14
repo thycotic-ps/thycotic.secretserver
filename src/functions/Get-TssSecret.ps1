@@ -62,7 +62,7 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
+                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
                 if ($Comment) {
                     $uri = $uri, "restricted" -join "/"
                     $body = "{'comment':'$Comment', 'includeInactive':'$true'}"

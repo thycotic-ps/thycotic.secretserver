@@ -49,7 +49,7 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
 
             foreach ($secret in $Id) {
-                $uri = $TssSession.SecretServerUrl + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
+                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
 
                 $invokeParams.Uri = $Uri
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken

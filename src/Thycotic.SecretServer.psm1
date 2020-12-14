@@ -1,40 +1,8 @@
-﻿#region classes
-class TssSession
-{
-    [string]$SecretServerUrl
-    [string]$ApiVersion = "api/v1"
-    [string]$AccessToken
-    [string]$RefreshToken
-    hidden [datetime]$StartTime
-    [int]$ExpiresIn
-    hidden [datetime]$TimeOfDeath
-    [int]$Take = [int]::MaxValue
-
-    [boolean]IsValidSession()
-    {
-        if ([string]::IsNullOrEmpty($this.AccessToken) -and [string]::IsNullOrEmpty($this.RefreshToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
-            return $false
-        } else {
-            return $true
-        }
-    }
-
-    [boolean]IsValidToken()
-    {
-        if ([string]::IsNullOrEmpty($this.AccessToken)) {
-            Write-Host 'No valid token found for current TssSession object'
-            return $false
-        } elseif ([datetime]::Now -lt $this.TimeOfDeath) {
-            return $true
-        } elseif ([datetime]::Now -gt $this.TimeOfDeath) {
-            Write-Host 'Token is not valid and has exceeded TimeOfDeath'
-            return $false
-        } else {
-            return $true
-        }
-    }
+﻿#region Import Classes
+foreach ($file in Get-ChildItem -Path $psScriptRoot\classes -Filter *.class.ps1) {
+    . $file.FullName
 }
-#endregion classes
+#endregion Import Functions
 
 #region Import Functions
 foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {

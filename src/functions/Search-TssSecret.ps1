@@ -119,7 +119,7 @@
 
     process {
         if ($filterParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            $uri = $TssSession.SecretServerUrl + ( $TssSession.ApiVersion, "secrets" -join '/')
+            $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets" -join '/')
             $uri += "?take=$($TssSession.Take)"
             if ($filterParams.Contains('IncludeInactive')) {
                 $uri += "&filter.includeInactive=true"

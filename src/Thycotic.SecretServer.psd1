@@ -1,5 +1,5 @@
 ﻿@{
-    ModuleVersion = '0.14.0'
+    ModuleVersion = '0.15.0'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
@@ -16,6 +16,11 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.15 :
+* TssSession
+    - Updated properties
+    - Added two new methods: SessionRefresh() and SessionExpire()
+    - Added help on class: Get-Help about_tsssession
 0.14 :
 * Standardized error handling on endpoint call
 * Minor adjusted types and formats

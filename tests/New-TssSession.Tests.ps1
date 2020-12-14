@@ -24,8 +24,8 @@ Describe "$commandName updates session object" {
             $apiV = 'api/v1'
             $session = New-TssSession -SecretServer $secretServer -Credential $secretCloudCred
         }
-        It "Populates SecretServerUrl Propety" {
-            $session.SecretServerUrl | Should -Be $secretServer
+        It "Populates SecretServer Propety" {
+            $session.SecretServer | Should -Be $secretServer
         }
         It "ApiVersion Propety is set" {
             $session.ApiVersion | Should -Be $apiV
@@ -43,6 +43,14 @@ Describe "$commandName updates session object" {
         It "Calculates StartTime" {
             $currentTime = [datetime]::UtcNow
             $session.StartTime | Should -BeLessOrEqual $currentTime
+        }
+        It "ExpireSession() method should return true" {
+            $session.SessionExpire() | Should -Be $true
+        }
+        It "RefreshSession() method updates AccessToken" {
+            $orgAccessToken = $session.AccessToken
+            $session.SessionRefresh() | Should -Be $true
+            $session.AccessToken | Should -Not -Match $orgAccessToken
         }
     }
 }
