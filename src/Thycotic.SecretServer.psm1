@@ -2,7 +2,7 @@
 foreach ($file in Get-ChildItem -Path $psScriptRoot\classes -Filter *.class.ps1) {
     . $file.FullName
 }
-#endregion Import Functions
+#endregion Import Classes
 
 #region Import Functions
 foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
