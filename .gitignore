@@ -3,6 +3,7 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 *.xlsx
+/tests/constants.ps1
 # User-specific files
 *.suo
 *.user
