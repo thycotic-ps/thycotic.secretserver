@@ -34,13 +34,14 @@
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
+    [OutputType('TssSecret')]
     param(
         # TssSession object passed for auth info
         [Parameter(Mandatory,ValueFromPipeline)]
         [TssSession]$TssSession,
 
         # Return only specific Secret, Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName = "norm")]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
         [int[]]
         $Id,
@@ -139,7 +140,7 @@
                         }
                     }
                     $outSecret.PSObject.Properties.Add([PSNoteProperty]::new('Items',$items))
-                    $outSecret
+                    return $outSecret
                 }
             }
         } else {
