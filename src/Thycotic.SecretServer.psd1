@@ -16,6 +16,8 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.xx :
+* Get-TssSession updated to use TssSecret class
 0.17 :
 * Invoke-TssRestApi - parse response for code/message API error object
 * Functions - adjust error handling on endpoint calls
