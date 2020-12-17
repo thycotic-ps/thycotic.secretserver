@@ -24,6 +24,9 @@
     .PARAMETER Value
     Value to set for field or property
 
+    .PARAMETER Clear
+    If provided will clear/blank out the field value
+
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
 
@@ -51,6 +54,12 @@
 
     Sets secret 1455's field, "Notes", to the provided value providing required comment
 
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
+
+    Sets secret 1455's field, "Notes", to an empty value
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
@@ -70,20 +79,28 @@
         [string]
         $Comment,
 
+        # Property of the secret
         [Parameter(ParameterSetName = "prop")]
         [Alias('PropertyName')]
         [string]
         $Property,
 
+        # Field of the secret
         [Parameter(ParameterSetName = "field")]
         [Alias('FieldName')]
         [string]
         $Field,
 
+        # Value for the property or field
         [Parameter(ParameterSetName = "prop",Mandatory)]
-        [Parameter(ParameterSetName = "field",Mandatory)]
+        [Parameter(ParameterSetName = "field")]
         [string]
         $Value,
+
+        # Clear the current field value
+        [Parameter(ParameterSetName = "field")]
+        [switch]
+        $Clear,
 
         # output the raw response from the API endpoint
         [switch]
@@ -98,7 +115,7 @@
     process {
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
-                if ($Property) {
+                if ($TssParams.Contains('Property')) {
                     $getSecretParams.TssSession = $TssSession
                     $getSecretParams.Id = $secret
                     $getSecretParams.Raw = $true
@@ -193,10 +210,20 @@
                         }
                     }
                 }
-                if ($Field) {
+                if ($TssParams.Contains('Field')) {
                     $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
 
-                    $body = "{'value': '$Value'}"
+                    if ([string]::IsNullOrEmpty($Value)) {
+                        $Value = ""
+                    }
+                    if ($TssParams.Contains('Clear') -and $TssParams.Contains('Value')) {
+                        Write-Warning "Clear and Value provided, only one is supported"
+                        return
+                    } elseif ($TssParams.Contains('Clear')) {
+                        $body = '{"value": ""}'
+                    } else {
+                        $body = "{'value': '$Value'}"
+                    }
                     $invokeParams.Uri = $uri
                     $invokeParams.Body = $body
                     $invokeParams.PersonalAccessToken = $TssSession.AccessToken
@@ -209,12 +236,12 @@
                         $restResponse
                         continue
                     }
-                    if ($restResponse) {
-                        $getSecretParams.TssSession = $TssSession
-                        $getSecretParams.Id = $secret
-                        $getSecretParams.Comment = $Comment
-
-                        Get-TssSecret @getSecretParams
+                    if ($restResponse -eq $Value) {
+                        return $true
+                    } elseif ($TssParams.Contains('Clear') -and ($null -eq $restResponse)) {
+                        return $true
+                    } else {
+                        return $false
                     }
                 }
             }
