@@ -30,6 +30,13 @@
 
     Returns secret associated with the Secret ID, 1723, providing required comment
 
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> $secret = Get-TssSecret -TssSession $session -Id 46
+    PS C:\> $cred = $secret.GetCredential()
+
+    Gets Secret ID 46 and then output a PSCredential to utilize in script workflow
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -16,6 +16,10 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
+0.xx :
+* Update about_tsssecret
+* Get-TssSecret add example for using GetCredential() method
+* Get-TssSecret add alias gts
 0.18 :
 * Get-TssSession updated to use TssSecret class
 * Get-TssSession added GetCredential() method

@@ -45,5 +45,11 @@ if ($partsDirectory) {
     Remove is a common term though and one used by SecretManagement module from Microsoft.
     Creating an alias to map to Disable function of the module to keep things simplified.
 #>
+$shortcuts = @{
+    'gts' = 'Get-TssSecret'
+}
+foreach ($_ in $shortcuts.GetEnumerator()) {
+    New-Alias -Name $_.Key -Value $_.Value
+}
 Set-Alias -Name Remove-TssSecret -Value Disable-TssSecret
 Export-ModuleMember -Alias * -Function * -Cmdlet *
