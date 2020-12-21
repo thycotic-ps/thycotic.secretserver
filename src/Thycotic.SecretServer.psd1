@@ -1,5 +1,5 @@
 ﻿@{
-    ModuleVersion = '0.17.0'
+    ModuleVersion = '0.18.0'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
@@ -16,8 +16,9 @@
             ProjectURI = 'https://thycotic.com/products/professional-services-training/'
             LicenseURI = ''
             ReleaseNotes = @"
-0.xx :
+0.18 :
 * Get-TssSession updated to use TssSecret class
+* Get-TssSession added GetCredential() method
 * Set-TssSession add Clear param to clear field values
 0.17 :
 * Invoke-TssRestApi - parse response for code/message API error object

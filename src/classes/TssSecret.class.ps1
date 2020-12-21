@@ -52,4 +52,11 @@ class TssSecret {
     [int]$SecretPolicyId
     [boolean]$SessionRecordingEnabled
     [TssSecretItem[]]$Items
+
+    [System.Management.Automation.PSCredential] GetCredential()
+    {
+        $username = ($this.Items | Where-Object FieldName -eq 'username').ItemValue
+        $passwd = ($this.Items | Where-Object IsPassword).ItemValue
+        return [pscredential]::new($username,(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
+    }
 }

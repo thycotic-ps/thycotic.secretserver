@@ -43,16 +43,24 @@ Describe "$commandName works - basic level" {
         }
         $secret = Get-TssSecret @params
     }
-    Context "Basic checks for output and pipe support" -Foreach @{secret = $secret} {
+    Context "Basic checks" -Foreach @{secret = $secret} {
         It "Should not be empty" {
             $secret | Should -Not -BeNullOrEmpty
         }
-        It "Should output type of TssSecret" {
+        It "$commandName should have parent output type of TssSecret" {
             $secret.PSTypeNames | Should -Contain 'TssSecret'
         }
-
+        It "$commandName Items should have output type TssSecretItem" {
+            ($secret.Items).PSTypeNames | Should -Contain 'TssSecretItem[]'
+        }
+        It "$commandName TssSecret should include GetCredential method" {
+            $secret.GetCredential | Should -Not -BeNullOrEmpty
+        }
         It "$commandName should get property <_> at minimum" -TestCases 'SecretId','Name', 'SecretTemplateName' {
             $secret.PSObject.Properties.Name | Should -Contain $_
+        }
+        It "$commandName should return PSCredential with method: GetCredential" {
+            $secret.GetCredential() | Should -BeOfType System.Management.Automation.PSCredential
         }
     }
 }
