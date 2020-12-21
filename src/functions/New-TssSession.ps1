@@ -39,6 +39,11 @@
 
     A prompt to ener the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
+    .EXAMPLE
+    PS C:\> $session = nts https://ssvault.com/SecretServer $secretCred
+
+    Utilize alias for New-TssSession, nts, to create the session object
+
     .OUTPUTS
     TssSession.
     #>

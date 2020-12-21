@@ -20,6 +20,7 @@
 * Update about_tsssecret
 * Get-TssSecret add example for using GetCredential() method
 * Get-TssSecret add alias gts
+* New-TssSession add alias nts
 0.18 :
 * Get-TssSession updated to use TssSecret class
 * Get-TssSession added GetCredential() method

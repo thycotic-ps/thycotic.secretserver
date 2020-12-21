@@ -47,6 +47,7 @@ if ($partsDirectory) {
 #>
 $shortcuts = @{
     'gts' = 'Get-TssSecret'
+    'nts' = 'New-TssSession'
 }
 foreach ($_ in $shortcuts.GetEnumerator()) {
     New-Alias -Name $_.Key -Value $_.Value
