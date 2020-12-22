@@ -16,6 +16,8 @@ Installing the module can be done via the PowerShell Gallery.
 
 It is recommended to update to the latest release of [PowerShellGet module](https://docs.microsoft.com/en-us/powershell/scripting/gallery/installing-psget). The module is in beta release at this time, so `-AllowPreRelease` will be required for both `Find-Module` and `Install-Module`. _This requires being on version 2.0.0 or greater of PowerShellGet._
 
+> A release process will be added to this repository at a later time for those environments that may be blocking access to the PowerShell Gallery.
+
 ## Limitations
 
 The limitations in the product's REST API will also limit the module. Discovery of these limitations is being provided to Product Management by the maintainers of this module. As those are addressed or endpoints enhanced, the module will be updated accordingly.
