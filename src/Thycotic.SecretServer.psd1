@@ -13,7 +13,7 @@
         PSData = @{
             PreRelease = 'beta'
             Tags = 'SecretServer', 'Thycotic', 'DevOps'
-            ProjectURI = 'https://thycotic.com/products/professional-services-training/'
+            ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
             LicenseURI = ''
             ReleaseNotes = @"
 0.xx :

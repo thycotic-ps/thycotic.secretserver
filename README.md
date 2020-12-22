@@ -1,6 +1,5 @@
 <img src="https://user-images.githubusercontent.com/11204251/102900538-0b165a80-4432-11eb-9164-2996d0222a88.png" width="30" height="30">
 A contribution guide is pending, due to this Pull Requests are not being accepted at this time.
-<img src="https://user-images.githubusercontent.com/11204251/102900538-0b165a80-4432-11eb-9164-2996d0222a88.png" width="30" height="30">
 
 # Introduction
 
@@ -9,6 +8,8 @@ Welcome to the Thycotic Secret Server PowerShell module. This module utilizes th
 The goal of the module is to be able to have a similar workflow as the UI, but also to make things easier for users for interactive and writing automation scripts. In some cases, an endpoint's raw output is manipulated to be more readable and matching the output of the product's UI. Where applicable, each command will include a `-Raw` parameter for users to access that raw output of an endpoint utilized.
 
 > There will be functions that will utilize multiple endpoints to accomplish this and, therefore, will not have the `-Raw` parameter.
+
+A [quick start guide](https://github.com/thycotic-ps/thycotic.secretserver/wiki) can be found in the Wiki of this repository to provide some context around the basic use of the module.
 
 # Installation
 
