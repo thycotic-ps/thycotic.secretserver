@@ -124,24 +124,25 @@
         # It will take care of converting the results from JSON.
         Invoke-RestMethod @irmSplat |
         & { process {
+                $in = $_
                 # What it will not do is "unroll" them.
-                if ($_ -eq 'null') {
+                if ($in -eq 'null') {
                     return
                 }
                 if ($ExpandProperty) {
-                    if ($_.$ExpandProperty) {
-                        $_.$ExpandProperty
+                    if ($in.$ExpandProperty) {
+                        $in.$ExpandProperty
                     }
-                } elseif ($_.Value -and $_.Count) {
+                } elseif ($in.Value -and $in.Count) {
                     # If that's what we're dealing with
                     $_.Value # pass value down the pipe.
-                } elseif ($_.code -like '*API_*') {
+                } elseif ($in.code -like '*API_*') {
                     $PSCmdlet.WriteError(
                         [Management.Automation.ErrorRecord]::new(
-                            [Exception]::new("$($_.message)"),"$($_.code)","InvalidOperation",$_))
-                        $PSCmdlet.WriteVerbose("$_")
-                        return
-                } elseif ($_ -notlike '*<html*') {
+                            [Exception]::new("$($in.message)"),"$($in.code)","InvalidOperation",$in))
+                    $PSCmdlet.WriteVerbose("$in")
+                    return
+                } elseif ($in -notlike '*<html*') {
                     # Otherwise, As long as the value doesn't look like HTML,
                     $_ # pass it down the pipe.
                 } else {
@@ -149,11 +150,12 @@
                     $PSCmdlet.WriteError(
                         [Management.Automation.ErrorRecord]::new(
                             [Exception]::new("Response was HTML, Request Failed."),
-                            "ResultWasHTML", "NotSpecified", $_))
-                    $PSCmdlet.WriteVerbose("$_") # and write the full content to verbose.
+                            "ResultWasHTML", "NotSpecified", $in))
+                    $PSCmdlet.WriteVerbose("$in") # and write the full content to verbose.
                     return
                 }
-            } } |
+                # Redirect standard error (2) to same place as standard output (1)
+            } } 2>&1 |
         & { process {
                 # One more step of the pipeline will unroll each of the values.
                 if ($_ -is [string]) { return $_ }
