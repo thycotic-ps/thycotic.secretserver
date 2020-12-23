@@ -27,7 +27,9 @@
     [cmdletbinding()]
     param(
         # TssSession object passed for auth info
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory,
+            ValueFromPipeline,
+            Position = 0)]
         [TssSession]$TssSession,
 
         # Return only specific Secret, Secret Id
