@@ -100,7 +100,7 @@
         if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
         $restResponse = Invoke-TssRestApi @invokeParams -Property @{SecretServer = $SecretServer}
 
-        if ($tssParams['Raw']) {
+        if ($newTssParams['Raw']) {
             return $restResponse
         } else {
             [TssSession]@{
