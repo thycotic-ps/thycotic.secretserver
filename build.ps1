@@ -11,38 +11,30 @@ if (Test-Path $staging) {
 }
 $imported = Import-Module .\src\Thycotic.SecretServer.psd1 -Force -PassThru
 
-try {
-    Import-Module Pester
-    Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -ErrorAction Stop
-} catch {
-    throw "Pester test failed: $_"
-    $publish = $false
-}
+Import-Module Pester
+$tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
 
 $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$beta
 if ($foundModule.Version -ge $imported.Version) {
     Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
 } else {
-    $moduleTempPath = Join-Path $staging $moduleName
-    Write-Host "Staging directory: $moduleTempPath"
-    $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
-
-    Write-Host "Module Files:"
-    Get-ChildItem $moduleTempPath -Recurse | Select-Object Directory, Name
-
-    if ($publish) {
+    if ($tests.FailedCount -eq 0) {
         try {
+            $moduleTempPath = Join-Path $staging $moduleName
+            Write-Host "Staging directory: $moduleTempPath"
+            $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+
+            Write-Host "Module Files:"
+            Get-ChildItem $moduleTempPath -Recurse | Select-Object Directory, Name
+
             Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
             Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-            Write-Host "successfully published - mock"
+            Write-Host "successfully published to PS Gallery"
+            Remove-Item -Recurse -Force $staging
         } catch {
             throw "Publish to PowerShell Gallery failed: $($_.Exception.Message)"
         }
-        if ($?) {
-            Write-Host "Published to PowerShell Gallery"
-            Remove-Item -Recurse -Force $staging
-        } else {
-            throw "PowerShell Gallery Publish Failed"
-        }
+    } else {
+        Write-Host "Tests failures detected; cancelling and cleaning up"
     }
 }
