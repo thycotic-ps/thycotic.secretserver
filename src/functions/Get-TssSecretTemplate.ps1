@@ -51,7 +51,6 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($template in $Id) {
                 $restResponse = $null
-                $errorResponse = $null
                 $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/')
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
@@ -60,7 +59,7 @@
                 Write-Verbose "$($invokeParas.Method) $uri with $body"
                 $restResponse = Invoke-TssRestApi @invokeParams
 
-                if ($Raw) {
+                if ($tssParams['Raw']) {
                     return $restResponse
                 }
                 if ($restResponse) {

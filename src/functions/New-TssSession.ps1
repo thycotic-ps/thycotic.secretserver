@@ -98,19 +98,19 @@
         $invokeParams.Method = 'POST'
 
         if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
-        $response = Invoke-TssRestApi @invokeParams -Property @{SecretServer = $SecretServer}
+        $restResponse = Invoke-TssRestApi @invokeParams -Property @{SecretServer = $SecretServer}
 
-        if ($Raw -and $response) {
-            return $response
+        if ($tssParams['Raw']) {
+            return $restResponse
         } else {
             [TssSession]@{
-                SecretServer = $response.SecretServer
-                AccessToken = $response.access_token
-                RefreshToken = $response.refresh_token
-                ExpiresIn = $response.expires_in
-                TokenType = $response.token_type
+                SecretServer = $restResponse.SecretServer
+                AccessToken = $restResponse.access_token
+                RefreshToken = $restResponse.refresh_token
+                ExpiresIn = $restResponse.expires_in
+                TokenType = $restResponse.token_type
                 StartTime = [datetime]::Now
-                TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($response.expires_in))
+                TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
             }
         }
     }

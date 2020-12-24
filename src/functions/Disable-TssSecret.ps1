@@ -60,10 +60,10 @@
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
                 $restResponse = Invoke-TssRestApi @invokeParams
 
-                if ($Raw) {
-                    $restResponse
+                if ($tssParams['Raw']) {
+                    return $restResponse
                 }
-                if (-not $Raw) {
+                if ($restResponse) {
                     [PSCustomObject]@{
                         Id         = $restResponse.id
                         ObjectType = $restResponse.objectType
