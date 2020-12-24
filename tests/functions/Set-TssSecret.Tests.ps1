@@ -7,7 +7,7 @@ Describe "$commandName verify parameters" {
         [object[]]$knownParameters = 'TssSession', 'Id', 'Comment',
             'Field', 'Value', 'Clear',
             'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails'
-        [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($CommandName, 'Function')).Parameters.Keys
+        [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
     Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
