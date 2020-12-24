@@ -24,6 +24,7 @@
 * Set-TssSession restructure use of function
     * Removed Property parameter
     * Added params to set Email settings on a secret
+* Get-TssVersion added
 0.18 :
 * Get-TssSession updated to use TssSecret class
 * Get-TssSession added GetCredential() method
