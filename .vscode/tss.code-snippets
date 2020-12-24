@@ -78,5 +78,30 @@
             "}"
         ],
         "description": "template for building a Get function"
+    },
+    "Base Test": {
+        "scope": "powershell",
+        "prefix": "tsstest",
+        "body": [
+            "BeforeDiscovery {",
+            "\t\\$commandName = Split-Path (\\$PSCommandPath.Replace.('.Tests.ps1','')) -Leaf",
+            "}",
+            "\tDescribe \"\\$commandName verify parameters\" {",
+            "\tBeforeDiscovery {",
+            "\t\t[object[]]\\$knownParameters = 'TssSession','Raw'",
+            "\t\t[object[]]\\$currentParams = ([Management.Automation.CommandMetaData]\\$ExecutionContext.SessionState.InvokeCommand.GetCommand(\\$commandName,'Function')).Parameters.Keys",
+            "\t\t\\$unknownParameters = Compare-Object -ReferenceObject \\$knownParameters -DifferenceObject \\$currentParms -PassThru",
+            "\t}",
+            "\tContext \"Verify parmaeters\" -Forceach @{currentParams = \\$currentParams} {",
+            "\t\tIt \"\\$commandName should contain <_> parameter\" -TestCases \\$knownParameters {",
+            "\t\t\t\\$_ -in \\$currentParams | Should -Be \\$true",
+            "\t\t}",
+            "\t\tIt \"\\$commandName should not contain parameter: <_>\" -TestCases \\$unknownParameters {",
+            "\t\t\t\\$_ | Should -BeNullOrEmpty",
+            "\t\t}",
+            "\t}",
+            "}"
+        ],
+        "description": "template for tests with Thycotic.SecretServer"
     }
 }
