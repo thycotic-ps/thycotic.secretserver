@@ -23,7 +23,7 @@ Describe "$commandName verify parameters" {
     }
 }
 
-Describe "$commandName works - basic level" {
+Describe "$commandName works" {
     BeforeDiscovery {
         . "$PSScriptRoot\constants.ps1"
         $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
@@ -43,7 +43,7 @@ Describe "$commandName works - basic level" {
         }
         $secret = Get-TssSecret @params
     }
-    Context "Basic checks" -Foreach @{secret = $secret} {
+    Context "Checking" -Foreach @{secret = $secret} {
         It "Should not be empty" {
             $secret | Should -Not -BeNullOrEmpty
         }
