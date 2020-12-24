@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Ask a question about Thycotic.SecretServer module
+    url: https://github.com/thycotic-ps/thycotic.secretserver/discussions/new
+    about: Get support via forums
