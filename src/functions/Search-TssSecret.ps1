@@ -116,19 +116,19 @@
 
         $Parameters = @{ } + $PSBoundParameters
         $Parameters.Remove('Raw')
-        $filterParams = . $GetSearchSecretParams $Parameters
+        $searchParams = . $GetSearchSecretParams $Parameters
     }
 
     process {
-        if ($filterParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($searchParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets" -join '/')
             $uri += "?take=$($TssSession.Take)"
-            if ($filterParams.Contains('IncludeInactive')) {
+            if ($searchParams.Contains('IncludeInactive')) {
                 $uri += "&filter.includeInactive=true"
             }
             $uri += "&filter.includeRestricted=true"
 
-            $filters = $filterParams.GetEnumerator() | ForEach-Object { "filter.$($_.name)=$($_.value)" }
+            $filters = $searchParams.GetEnumerator() | ForEach-Object { "filter.$($_.name)=$($_.value)" }
             $uriFilter = $filters -join "&"
             Write-Verbose "Filters: $uriFilter"
 
@@ -141,7 +141,7 @@
             Write-Verbose "$($invokeParams.Method) $uri with $body"
             $restResponse = Invoke-TssRestApi @invokeParams
 
-            if ($Raw) {
+            if ($searchParams['Raw']) {
                 return $restResponse
             }
             if ($restResponse.Records.Count -le 0 -and $restResponse.Records.Length -eq 0) {

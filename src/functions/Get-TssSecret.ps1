@@ -81,14 +81,14 @@
                     $invokeParams.Body = $body
                 } else {
                     $uri = $uri, "includeInactive=true" -join "?"
-                    $invokeParams.Uri = $Uri
+                    $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
                 }
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 $restResponse = Invoke-TssRestApi @invokeParams
 
-                if ($Raw) {
+                if ($tssParams['Raw']) {
                     return $restResponse
                 }
                 if ($restResponse) {
