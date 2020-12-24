@@ -21,6 +21,9 @@
 * Get-TssSecret add example for using GetCredential() method
 * Get-TssSecret add alias gts
 * New-TssSession add alias nts
+* Set-TssSession restructure use of function
+    * Removed Property parameter
+    * Added params to set Email settings on a secret
 0.18 :
 * Get-TssSession updated to use TssSecret class
 * Get-TssSession added GetCredential() method

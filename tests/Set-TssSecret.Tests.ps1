@@ -4,7 +4,9 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id', 'Comment', 'Property', 'Field', 'Value', 'Clear', 'Raw'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'Comment',
+            'Field', 'Value', 'Clear',
+            'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($CommandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
@@ -54,22 +56,23 @@ Describe "$commandName works" {
         It "Should set the value on the Notes field" -TestCases $setSecret {
             $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
             $valueField = "your friendly local PowerShell Module"
-            Set-TssSecret -TssSession $session -Id $_.id -Field Notes -Value $valueField | Should -Be $true
+            Set-TssSecret -TssSession $session -Id $_.id -Field Notes -Value $valueField | Should -BeNullOrEmpty
         }
         It "Should Clear the Notes field" -TestCases $setSecret {
             $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
-            Set-TssSecret -TssSession $session -Id $_.Id -Field Notes -Clear | Should -Be $true
+            Set-TssSecret -TssSession $session -Id $_.Id -Field Notes -Clear | Should -BeNullOrEmpty
         }
-        It "Should update the ProxyEnabled" -TestCases $setSecret {
+        It "Should set EmailWhenChanged" -TestCases $setSecret {
             $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
-            Set-TssSecret -TssSession $session -Id $_.Id -Property ProxyEnabled -Value $true | Should -Be $true
-
-            Set-TssSecret -TssSession $session -Id $_.Id -Property ProxyEnabled -Value $false | Should -Be $true
+            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
         }
-        It "Should not return an object" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ssvault1 -Credential $vault1Cred
-            $output = Set-TssSecret -TssSession $session -Id $_.Id -Property ProxyEnabled -Value $false
-            $output.PSObject.Properties.Name | Should -BeNullOrEmpty
+        It "Should set EmailWhenViewed" -TestCases $setSecret {
+            $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
+            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
+        }
+        It "Should set EmailWhenHeartbeatFails" -TestCases $setSecret {
+            $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
+            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
         }
     }
 }

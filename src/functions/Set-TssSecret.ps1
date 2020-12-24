@@ -15,9 +15,6 @@
     .PARAMETER Comment
     Comment to provide for restricted secret (Require Comment is enabled)
 
-    .PARAMETER Property
-    Property name to set.
-
     .PARAMETER Field
     Field name to set
 
@@ -26,9 +23,6 @@
 
     .PARAMETER Clear
     If provided will clear/blank out the field value
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -78,23 +72,18 @@
         $Id,
 
         # Provide comment for restricted secret
+        [Parameter(ParameterSetName = "field")]
         [string]
         $Comment,
 
-        # Property of the secret
-        [Parameter(ParameterSetName = "prop")]
-        [Alias('PropertyName')]
-        [string]
-        $Property,
-
         # Field of the secret
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(Mandatory,
+            ParameterSetName = "field")]
         [Alias('FieldName')]
         [string]
         $Field,
 
         # Value for the property or field
-        [Parameter(ParameterSetName = "prop",Mandatory)]
         [Parameter(ParameterSetName = "field")]
         [string]
         $Value,
@@ -104,114 +93,36 @@
         [switch]
         $Clear,
 
-        # output the raw response from the API endpoint
+        # Set email when changed to true
+        [Parameter(ParameterSetName= "email")]
         [switch]
-        $Raw
+        $EmailWhenChanged,
+
+        # Set email when HB fails to true
+        [Parameter(ParameterSetName= "email")]
+        [switch]
+        $EmailWhenViewed,
+
+        # Set email when viewed to true
+        [Parameter(ParameterSetName= "email")]
+        [switch]
+        $EmailWhenHeartbeatFails
     )
     begin {
         $tssParams = . $GetParams $PSBoundParameters 'Set-TssSecret'
         $invokeParams = @{ }
-        $getSecretParams = @{ }
+
+        # data object for Email Settings
+        $emailBody = @{
+            data = @{ }
+        }
     }
 
     process {
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             foreach ($secret in $Id) {
-                if ($TssParams.Contains('Property')) {
-                    $getSecretParams.TssSession = $TssSession
-                    $getSecretParams.Id = $secret
-                    $getSecretParams.Raw = $true
-                    $getSecretParams.Comment = $Comment
-                    $getSecretParams.WarningVariable = "warn"
-                    $getSecretParams.WarningAction = "Stop"
-
-                    $cSecret = Get-TssSecret @getSecretParams
-                    if ($cSecret) {
-                        $props = $cSecret.PSObject.Properties
-
-                        if ($props["$Property"]) {
-                            $cSecret.$Property = $Value
-                        } else {
-                            Write-Warning "Property [$Property] not found on secret [$secret]"
-                            continue
-                        }
-
-                        $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
-
-                        $invokeParams.Uri = $Uri
-                        $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                        $invokeParams.Body = ($cSecret | ConvertTo-Json)
-                        $invokeParams.Method = 'PUT'
-
-                        if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-                        $restResponse = Invoke-TssRestApi @invokeParams
-
-                        if ($Raw) {
-                            $restResponse
-                            continue
-                        }
-                        if ($restResponse) {
-                            $outSecret = [PSCustomObject]@{
-                                PSTypeName                         = 'TssSecret'
-                                Id                                 = $restResponse.id
-                                Name                               = $restResponse.name
-                                SecretTemplateId                   = $restResponse.secretTemplateId
-                                SecretTemplateName                 = $restResponse.secretTemplateName
-                                FolderId                           = if ($restResponse.folderId -eq -1) { $null } else { $restResponse.folderId }
-                                Active                             = $restResponse.active
-                                LauncherConnectSecretId            = if ($restResponse.launcherConnectAsSecretId -eq -1) { $null } else { $restResponse.launcherConnectAsSecretId }
-                                IsRestricted                       = $restResponse.isRestricted
-                                IsOutOfSync                        = $restResponse.isOutOfSync
-                                OutOfSyncReason                    = $restResponse.outOfSyncReason
-                                AutoChangeEnabled                  = $restResponse.autoChangeEnabled
-                                AutoChangeNextPassword             = $restResponse.AutoChangeNextPassword
-                                RequiresApprovalForAccess          = $restResponse.requiresApprovalForAccess
-                                RequiresComment                    = $restResponse.requiresComment
-                                CheckedOut                         = $restResponse.checkedOut
-                                CheckoutEnabled                    = $restResponse.checkOutEnabled
-                                CheckoutUserId                     = if ($restResponse.checkOutUserId -eq -1) { $null } else { $restResponse.checkOutUserId }
-                                CheckoutUserDisplayName            = if ($restResponse.checkOutUserDisplayName -eq -1) { $null } else { $restResponse.checkOutUserDisplayName }
-                                CheckoutIntervalMinutes            = if ($restResponse.CheckoutIntervalMinutes -eq -1) { $null } else { $restResponse.checkOutIntervalMinutes }
-                                CheckoutChangePassword             = $restResponse.checkOutChangePasswordEnabled
-                                AccessRequestWorkflowMapId         = if ($restResponse.accessRequestWorkflowMapId -eq -1) { $null } else { $restResponse.accessRequestWorkflowMapId }
-                                ProxyEnabled                       = $restResponse.proxyEnabled
-                                SessionRecordingEnabled            = $restResponse.sessionRecordingEnabled
-                                RestrictSshCommands                = $restResponse.restrictSshCommands
-                                AllowOwnersUnrestrictedSshCommands = $restResponse.allowOwnersUnrestrictedSshCommands
-                                IsDoubleLock                       = $restResponse.isDoubleLock
-                                DoubleLockId                       = if ($restResponse.doubleLockId -eq -1) { $null } else { $restResponse.doubleLockId }
-                                EnableInheritsPermissions          = $restResponse.enableInheritPermissions
-                                EnableInheritsSecretPolicy         = if ($restResponse.enableInheritSecretPolicy -eq -1) { $null } else { $restResponse.enableInheritSecretPolicy }
-                                SiteId                             = $restResponse.siteId
-                                SecretPolicyId                     = if ($restResponse.secretPolicyId -eq -1) { $null } else { $restResponse.secretPolicyId }
-                                LastHeartbeatStatus                = $restResponse.lastHeartBeatStatus
-                                LastHeartbeatCheck                 = [datetime]$restResponse.lastHeartBeatCheck
-                                FailedPasswordChangeAttempts       = $restResponse.failedPasswordChangeAttempts
-                                LastPasswordChangeAttempt          = [datetime]$restResponse.lastPasswordChangeAttempt
-                                PasswordTypeWebscriptId            = if ($restResponse.passwordTypeWebScriptId -eq -1) { $null } else { $restResponse.passwordTypeWebScriptId }
-                            }
-
-                            $items = foreach ($itemDetail in $restResponse.items) {
-                                [pscustomobject]@{
-                                    PSTypeName       = 'TssSecretItem'
-                                    ItemId           = $itemDetail.itemId
-                                    ItemValue        = $itemDetail.itemValue
-                                    FieldId          = $itemDetail.fieldId
-                                    FieldName        = $itemDetail.fieldName
-                                    Slug             = $itemDetail.slug
-                                    FieldDescription = $itemDetail.fieldDescription
-                                    IsFile           = $itemDetail.isFile
-                                    FileAttachmentId = $itemDetail.fileAttachmentId
-                                    FileName         = $itemDetail.fileName
-                                    IsNotes          = $itemDetail.isNotes
-                                    IsPassword       = $itemDetail.isPassword
-                                }
-                            }
-                            $outSecret.PSObject.Properties.Add([PSNoteProperty]::new('Items',$items))
-                            $outSecret
-                        }
-                    }
-                }
                 if ($TssParams.Contains('Field')) {
                     $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
 
@@ -234,20 +145,53 @@
                     if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                     $restResponse = Invoke-TssRestApi @invokeParams
 
-                    if ($Raw) {
-                        $restResponse
-                        continue
-                    }
                     if ($restResponse -eq $Value) {
-                        return $true
+                        Write-Verbose "$secret field $Field updated successfully"
                     } elseif ($TssParams.Contains('Clear') -and ($null -eq $restResponse)) {
-                        return $true
+                        Write-Verbose "$secret field $Field cleared successfully"
                     } else {
-                        return $false
+                        $restResponse
+                    }
+                }
+                if ($TssParams.Contains('EmailWhenChanged') -or $TssParams.Contains('EmailWhenViewed') -or $TssParams.Contains('EmailWhenHeartbeatFails')) {
+                    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "email" -join "/")
+
+                    if ($TssParams.Contains('EmailWhenChanged')) {
+                        $sendEmailWhenChanged = @{
+                            dirty = $true
+                            value = $EmailWhenChanged
+                        }
+                        $emailBody.data.Add('sendEmailWhenChanged',$sendEmailWhenChanged)
+                    }
+                    if ($TssParams.Contains('EmailWhenViewed')) {
+                        $sendEmailWhenViewed = @{
+                            dirty = $true
+                            value = $EmailWhenViewed
+                        }
+                        $emailBody.data.Add('sendEmailWhenViewd',$sendEmailWhenViewed)
+                    }
+                    if ($TssParams.Contains('EmailWhenHeartbeatFails')) {
+                        $sendEmailWhenHeartbeatFails = @{
+                            dirty = $true
+                            value = $EmailWhenHeartbeatFails
+                        }
+                        $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
+                    }
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Body = $emailBody | ConvertTo-Json
+                    $invokeParams.Method = 'PATCH'
+
+                    if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+
+                    try {
+                        $restResponse = Invoke-TssRestApi @invokeParams
+                    } catch {
+                        Write-Warning "Issue setting email settings, verify Email Server is configured in Secret Server"
+                        $err = $_.ErrorDetails.Message
+                        Write-Error $err
                     }
                 }
             }
-
         } else {
             Write-Warning "No valid session found"
         }
