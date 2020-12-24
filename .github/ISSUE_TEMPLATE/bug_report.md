@@ -7,6 +7,11 @@ assignees: ''
 
 ---
 
+<!--
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+The more detail you provide, the easier it is for us to help identify and fix the bug
+🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
+-->
 **Describe the bug**
 A clear and concise description of what the bug is.
 
