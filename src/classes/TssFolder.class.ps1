@@ -13,4 +13,7 @@ class TssFolder {
     [int]$FolderTypeId
     [int]$SecretPolicyId
     [boolean]$InheritSecretPolicy
+    [boolean]$InheritPermissions
+    [TssFolder[]]$ChildFolders
+    [TssFolderTemplate[]]$SecretTemplates
 }
