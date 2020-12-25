@@ -84,7 +84,7 @@
         "prefix": "tsstest",
         "body": [
             "BeforeDiscovery {",
-            "\t\\$commandName = Split-Path (\\$PSCommandPath.Replace.('.Tests.ps1','')) -Leaf",
+            "\t\\$commandName = Split-Path (\\$PSCommandPath.Replace('.Tests.ps1','')) -Leaf",
             "}",
             "\tDescribe \"\\$commandName verify parameters\" {",
             "\tBeforeDiscovery {",
@@ -92,7 +92,7 @@
             "\t\t[object[]]\\$currentParams = ([Management.Automation.CommandMetaData]\\$ExecutionContext.SessionState.InvokeCommand.GetCommand(\\$commandName,'Function')).Parameters.Keys",
             "\t\t\\$unknownParameters = Compare-Object -ReferenceObject \\$knownParameters -DifferenceObject \\$currentParms -PassThru",
             "\t}",
-            "\tContext \"Verify parmaeters\" -Forceach @{currentParams = \\$currentParams} {",
+            "\tContext \"Verify parmaeters\" -Foreach @{currentParams = \\$currentParams} {",
             "\t\tIt \"\\$commandName should contain <_> parameter\" -TestCases \\$knownParameters {",
             "\t\t\t\\$_ -in \\$currentParams | Should -Be \\$true",
             "\t\t}",
