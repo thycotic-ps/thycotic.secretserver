@@ -1,5 +1,5 @@
 ﻿@{
-    ModuleVersion = '0.18.0'
+    ModuleVersion = '0.19.0'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
@@ -16,7 +16,7 @@
             ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
             LicenseURI = ''
             ReleaseNotes = @"
-0.xx :
+0.19 :
 * Update about_tsssecret
 * Get-TssSecret add example for using GetCredential() method
 * Get-TssSecret add alias gts
@@ -25,6 +25,7 @@
     * Removed Property parameter
     * Added params to set Email settings on a secret
 * Get-TssVersion added
+* Get-TssFolder added
 0.18 :
 * Get-TssSession updated to use TssSecret class
 * Get-TssSession added GetCredential() method

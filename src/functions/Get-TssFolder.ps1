@@ -15,11 +15,29 @@
     .PARAMETER Recurse
     Retrieve all child folders within the requested folder
 
-    .PARAMETER IncludeTempaltes
+    .PARAMETER IncludeTemplates
     Include allowable Secret Templates of the requested folder
 
     .PARAMETER Raw
     Output the raw response from the REST API endpoint
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Get-TssFolder -TssSession $session -Id 4
+
+    Returns folder associated with the Folder ID, 4
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Get-TssFolder -TssSession $session -Id 93 -Recurse
+
+    Returns folder associated with the Folder ID, 93 and include child folders
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Get-TssFolder -TssSession $session -Id 93 -IncludeTemplates
+
+    Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
 
     .NOTES
     Requires TssSession object returned by New-TssSession

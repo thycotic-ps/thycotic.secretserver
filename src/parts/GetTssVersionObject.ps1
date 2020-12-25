@@ -1,4 +1,4 @@
-<#
+﻿<#
 .Synopsis
     Creates a TssVersion object and outputs
 .Description
