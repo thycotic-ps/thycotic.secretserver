@@ -16,6 +16,8 @@
             ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
             LicenseURI = ''
             ReleaseNotes = @"
+"0.xx":
+* Add alias for Invoke-RestApi: itra
 0.19 :
 * Update about_tsssecret
 * Get-TssSecret add example for using GetCredential() method
