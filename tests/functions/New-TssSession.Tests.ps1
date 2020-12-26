@@ -1,5 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -20,9 +21,9 @@ Describe "$commandName verify parameters" {
 Describe "$commandName updates session object" {
     Context "Oauth2 authentication" {
         BeforeEach {
-            [uri]$secretServer = $ssc
+            [uri]$secretServer = $ss
             $apiV = 'api/v1'
-            $session = New-TssSession -SecretServer $secretServer -Credential $secretCloudCred
+            $session = New-TssSession -SecretServer $secretServer -Credential $ssCred
         }
         It "Populates SecretServer Propety" {
             $session.SecretServer | Should -Be $secretServer
@@ -44,13 +45,13 @@ Describe "$commandName updates session object" {
             $currentTime = [datetime]::UtcNow
             $session.StartTime | Should -BeLessOrEqual $currentTime
         }
-        It "ExpireSession() method should return true" {
-            $session.SessionExpire() | Should -Be $true
-        }
         It "RefreshSession() method updates AccessToken" {
             $orgAccessToken = $session.AccessToken
             $session.SessionRefresh() | Should -Be $true
             $session.AccessToken | Should -Not -Match $orgAccessToken
+        }
+        It "SessionExpire() method should return true" {
+            $session.SessionExpire() | Should -Be $true
         }
     }
 }

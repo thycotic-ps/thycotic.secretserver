@@ -1,5 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
     Describe "$commandName verify parameters" {
     BeforeDiscovery {

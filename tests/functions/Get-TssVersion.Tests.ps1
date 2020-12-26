@@ -1,5 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -19,9 +20,9 @@ Describe "$commandName verify parameters" {
 
 Describe "$commandName works" {
     BeforeDiscovery {
-        . "$PSScriptRoot\constants.ps1"
-        $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
+        $session = New-TssSession -SecretServer $ss -Credential $ssCred
         $version = Get-TssVersion $session
+        $session.SessionExpire()
     }
     Context "Checking" -Foreach @{version = $version} {
         It "Should not be empty" {

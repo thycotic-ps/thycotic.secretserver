@@ -1,5 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -25,23 +26,23 @@ Describe "$commandName verify parameters" {
 
 Describe "$commandName works" {
     BeforeDiscovery {
-        . "$PSScriptRoot\constants.ps1"
-        $session = New-TssSession -SecretServer $ssVault1 -Credential $vault1Cred
+        $session = New-TssSession -SecretServer $ss -Credential $ssCred
 
         $invokeParams = @{
-            Uri = "$ssVault1/api/v1/folders?take=$($session.take)"
+            Uri = "$ss/api/v1/folders?take=$($session.take)"
             ExpandProperty = 'records'
             PersonalAccessToken = $session.AccessToken
         }
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing\\GetTssSecret'})
-        $getSecrets = Invoke-TssRestApi -Uri "$ssVault1/api/v1/secrets??take=$($session.take)&folderid=$($TssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
+        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($TssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
 
         $params = @{
             TssSession = $session
             Id = $getSecrets[0].id
         }
         $secret = Get-TssSecret @params
+        $session.SessionExpire()
     }
     Context "Checking" -Foreach @{secret = $secret} {
         It "Should not be empty" {
