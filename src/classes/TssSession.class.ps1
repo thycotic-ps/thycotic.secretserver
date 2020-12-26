@@ -10,7 +10,7 @@
     [int]$Take = [int]::MaxValue
 
     [boolean]IsValidSession() {
-        if ([string]::IsNullOrEmpty($this.AccessToken) -and [string]::IsNullOrEmpty($this.RefreshToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
+        if ([string]::IsNullOrEmpty($this.AccessToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
             return $false
         } else {
             return $true
