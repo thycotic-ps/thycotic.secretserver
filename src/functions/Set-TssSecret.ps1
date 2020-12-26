@@ -143,7 +143,13 @@
                     $invokeParams.Method = 'PUT'
 
                     if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    try {
+                        $restResponse = Invoke-TssRestApi @invokeParams
+                    } catch {
+                        Write-Warning "Issue setting field $Field on secret [$secret]"
+                        $err = $_.ErrorDetails.Message
+                        Write-Error $err
+                    }
 
                     if ($restResponse -eq $Value) {
                         Write-Verbose "$secret field $Field updated successfully"
