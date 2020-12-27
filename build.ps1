@@ -16,8 +16,11 @@ param(
     [Parameter(ParameterSetName = 'release')]
     [Parameter(ParameterSetName = 'publish')]
     [switch]
-    $Draft
+    $Draft,
 
+    [Parameter(ParameterSetName = 'publish')]
+    [switch]
+    $SkipTests
 )
 
 $moduleName = 'Thycotic.SecretServer'
@@ -28,8 +31,10 @@ if (Test-Path $staging) {
 }
 $imported = Import-Module .\src\Thycotic.SecretServer.psd1 -Force -PassThru
 
-Import-Module Pester
-$tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
+if (-not $PSBoundParameters['SkipTests']) {
+    Import-Module Pester
+    $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
+}
 
 if ($PSBoundParameters['Prerelease']) {
     $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$Prerelease
@@ -41,7 +46,7 @@ if ($foundModule.Version -ge $imported.Version) {
     Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
 }
 
-if ($tests.FailedCount -eq 0) {
+if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
     $moduleTempPath = Join-Path $staging $moduleName
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse

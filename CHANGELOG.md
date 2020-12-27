@@ -5,9 +5,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.20.0] - 2020-12-26
 
-* Add alias for Invoke-RestApi: `itra`
+### Added
+
+* Alias for Invoke-RestApi: `itra` (4286a415)
+* Add CHANGELOG to repository (ba3eadf8)
+* Added GitHub release to build process [#18](https://github.com/thycotic-ps/thycotic.secretserver/issues/18)
+* Add IconUri, CompatiblePSEditions (a4bb233a)
+* Support for external access token, example via Client SDK `tss.exe token` [#26](https://github.com/thycotic-ps/thycotic.secretserver/issues/26)
+
+### Changed
+
+* `Set-TssSecret` - updated help, added examples for email setting params (fc21c006)
+* Standardized error handeling function calling `Invoke-TssRestApi` (7b6b8272)
 
 ## [0.19.0] - 2020-12-24
 
@@ -18,13 +29,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssSecret` add alias `gts`
 * `New-TssSession` add alias `nts`
 * `Get-TssSecret` add example for using `GetCredential()` method
+* `Set-TssSecret` added parameters for setting Email Settings on secrets
 
 ### Changed
 
 * Update `about_tsssecret`
-* `Set-TssSession` restructure use of function
-    * Removed `Property` parameter
-    * Added params to set Email settings on a secret
 
 ## [0.18.0] - 2020-12-21
 
