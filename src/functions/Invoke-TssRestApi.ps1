@@ -13,27 +13,25 @@
     #>
     [Cmdletbinding()]
     param(
-        # The REST API Url
+        # Secret Server REST API URL
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias('Url')]
         [uri]
         $Uri,
 
-        # A Personal Access Token
+        # Valid Access Token issued by Secret Server
         [Parameter(ValueFromPipelineByPropertyName)]
         [Alias('PAT')]
         [string]
         $PersonalAccessToken,
 
-        # Specifies the method used for the web request
+        # Method used for the web request, supported by Secret Server
         [Parameter(ValueFromPipelineByPropertyName)]
         [ValidateSet('GET','DELETE', 'PATCH', 'POST', 'PUT')]
         [string]
         $Method,
 
         # Specifies the body of the request.
-        # If this value is a string, it will be passed as-is
-        # Otherwise, this value will be converted into JSON.
         [Parameter(ValueFromPipelineByPropertyName)]
         [Object]
         $Body,
@@ -43,12 +41,12 @@
         [string]
         $ContentType = 'application/json',
 
-        # Specifies the headers of the web request. Enter a hash table or dictionary.
+        # Header of the web request. Enter a hash table or dictionary.
         [System.Collections.IDictionary]
         [Alias('Header')]
         $Headers,
 
-        # Indicates that the cmdlet uses the credentials of the current user to send the web request (winauth).
+        # Indicates using the credentials of the current user to send the web request (winauth).
         [Alias('UseDefaultCredential')]
         [switch]
         $UseDefaultCredentials,
@@ -69,7 +67,7 @@
         [switch]
         $ProxyUseDefaultCredentials,
 
-        # The typename of the results.
+        # Output a custom type name for the results.
         [Parameter(ValueFromPipelineByPropertyName)]
         [string[]]
         $PSTypeName,
@@ -83,7 +81,7 @@
         [string[]]
         $RemoveProperty,
 
-        # If provided, will expand a given property returned from the REST api.
+        # Expand a given property from an object
         [string]
         $ExpandProperty
     )

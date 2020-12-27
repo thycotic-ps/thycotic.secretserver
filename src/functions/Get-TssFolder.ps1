@@ -6,21 +6,6 @@
     .DESCRIPTION
     Get a folder(s) from Secret Server
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Id
-    Folder ID to retrieve, accepts an array of IDs
-
-    .PARAMETER Recurse
-    Retrieve all child folders within the requested folder
-
-    .PARAMETER IncludeTemplates
-    Include allowable Secret Templates of the requested folder
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Get-TssFolder -TssSession $session -Id 4
@@ -45,31 +30,31 @@
     [cmdletbinding()]
     [OutputType('TssFolder')]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Return only specific Secret, Secret Id
+        # Folder ID to retrieve
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("FolderId")]
         [int[]]
         $Id,
 
-        # get all children folders
+        # Retrieve all child folders within the requested folder
         [Parameter(ParameterSetName = 'filter')]
         [Alias("GetAllChildren")]
         [switch]
         $Recurse,
 
-        # Get associated templates
+        # Include allowable Secret Templates of the requested folder
         [Parameter(ParameterSetName = 'filter')]
         [Alias("IncludeAssociatedTemplates")]
         [switch]
         $IncludeTemplates,
 
-        # output the raw response from the API endpoint
+        # Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
@@ -89,7 +74,13 @@
                 $invokeParams.Method = 'GET'
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                $restResponse = Invoke-TssRestApi @invokeParams
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams
+                } catch {
+                    Write-Warning "Issue getting folder [$folder]"
+                    $err = $_.ErrorDetails.Message
+                    Write-Error $err
+                }
 
                 if ($tssParams['Raw']) {
                     return $restResponse

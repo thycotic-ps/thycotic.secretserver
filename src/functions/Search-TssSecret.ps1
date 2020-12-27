@@ -6,36 +6,6 @@
     .DESCRIPTION
     Search for secrets using various filters provided by each parameter
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER FolderId
-    Folder ID to search, allows multiple
-
-    .PARAMETER SecretTemplateId
-    Template ID to search, allows multiple
-
-    .PARAMETER SiteId
-    Site ID to filter on, allows multiple
-
-    .PARAMETER HeartbeatStatus
-    Heartbeat status to filter on
-
-    .PARAMETER SearchField
-    Field to filter on
-
-    .PARAMETER SearchText
-    Field value to filter on
-
-    .PARAMETER SearchSlug
-    Slug name of field to filter on
-
-    .PARAMETER IncludeInactive
-    Include inactive or disabled Secrets
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Search-TssSecret -TssSession $session -FolderId 50
@@ -59,7 +29,7 @@
     #>
     [cmdletbinding(DefaultParameterSetName = "filter")]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
@@ -87,27 +57,29 @@
         [string]
         $HeartbeatStatus,
 
+        # Search text of a specific field
         [Parameter(ParameterSetName = "field")]
         [string]
         $SearchField,
 
-        # Search text value for field
+        # Search text of the provided field
         [Parameter(ParameterSetName = "field")]
         [string]
         $SearchText,
 
-        # Field-slug to search. This Roverride SearchField.
+        # Field slug to search
+        # This overrides the SearchField
         [Parameter(ParameterSetName = "field")]
         [string]
         $SearchSlug,
 
-        # Include inactive or disabled secrets
+        # Include inactive/disabled secrets
         [Parameter(ParameterSetName = "field")]
         [Parameter(ParameterSetName = "filter")]
         [switch]
         $IncludeInactive,
 
-        # output the raw response from the API endpoint
+        # Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
@@ -139,7 +111,13 @@
             $invokeParams.Method = 'GET'
 
             Write-Verbose "$($invokeParams.Method) $uri with $body"
-            $restResponse = Invoke-TssRestApi @invokeParams
+            try {
+                $restResponse = Invoke-TssRestApi @invokeParams
+            } catch {
+                Write-Warning "Issue on search request"
+                $err = $_.ErrorDetails.Message
+                Write-Error $err
+            }
 
             if ($searchParams['Raw']) {
                 return $restResponse

@@ -6,15 +6,6 @@
     .DESCRIPTION
     Disables a secret from Secret Server
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Id
-    Secret ID to disable (mark inactive)
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Disable-TssSecret -Id 93
@@ -26,19 +17,19 @@
     #>
     [cmdletbinding(SupportsShouldProcess)]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Delete only specific Secret, Secret Id
+        # Secret ID to disable (mark inactive)
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
         [int[]]
         $Id,
 
-        # output the raw response from the API endpoint
+        # Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
@@ -58,7 +49,13 @@
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
-                $restResponse = Invoke-TssRestApi @invokeParams
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams
+                } catch {
+                    Write-Warning "Issue disabling secret [$secret]"
+                    $err = $_.ErrorDetails.Message
+                    Write-Error $err
+                }
 
                 if ($tssParams['Raw']) {
                     return $restResponse

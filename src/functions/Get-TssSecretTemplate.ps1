@@ -6,15 +6,6 @@
     .DESCRIPTION
     Get a secret template(s) from Secret Server
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Id
-    Secret template ID to retrieve, accepts an array of IDs
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Get-TssSecretTemplate -Id 93
@@ -26,19 +17,19 @@
     #>
     [cmdletbinding()]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Return only specific Secret, Secret Id
+        # Secret template ID to retrieve
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("TemplateId")]
         [int[]]
         $Id,
 
-        # output the raw response from the API endpoint
+        #  Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
@@ -57,7 +48,13 @@
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
                 Write-Verbose "$($invokeParas.Method) $uri with $body"
-                $restResponse = Invoke-TssRestApi @invokeParams
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams
+                } catch {
+                    Write-Warning "Issue getting template [$template]"
+                    $err = $_.ErrorDetails.Message
+                    Write-Error $err
+                }
 
                 if ($tssParams['Raw']) {
                     return $restResponse

@@ -6,18 +6,6 @@
     .DESCRIPTION
     Get a secret(s) from Secret Server
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Id
-    Secret ID to retrieve, accepts an array of IDs
-
-    .PARAMETER Comment
-    Comment to provide for restricted secret (Require Comment is enabled)
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Get-TssSecret -TssSession $session -Id 93
@@ -43,23 +31,23 @@
     [cmdletbinding()]
     [OutputType('TssSecret')]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Return only specific Secret, Secret Id
+        # Secret ID to retrieve
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
         [int[]]
         $Id,
 
-        # Provide comment for restricted secret
+        # Comment to provide for restricted secret (Require Comment is enabled)
         [string]
         $Comment,
 
-        # output the raw response from the API endpoint
+        # Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
@@ -86,7 +74,13 @@
                 }
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                $restResponse = Invoke-TssRestApi @invokeParams
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams
+                } catch {
+                    Write-Warning "Issue getting secret [$secret]"
+                    $err = $_.ErrorDetails.Message
+                    Write-Error $err
+                }
 
                 if ($tssParams['Raw']) {
                     return $restResponse

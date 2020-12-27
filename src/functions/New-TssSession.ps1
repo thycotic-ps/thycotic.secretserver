@@ -41,9 +41,7 @@
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # Secret Server URL
-        [Parameter(ParameterSetName = 'New',
-            Mandatory,
-            HelpMessage = 'URL for Secret Server, e.g. https://vault.company.com/SecretServer')]
+        [Parameter(ParameterSetName = 'New',Mandatory)]
         [Parameter(ParameterSetName = 'tss',
             Mandatory)]
         [Alias('Server')]
@@ -70,8 +68,6 @@
     begin {
         $invokeParams = . $GetInvokeTssParams $PSBoundParameters
         $newTssParams = . $GetNewTssParams $PSBoundParameters
-
-        # $TssSession = [TssSession]::new()
     }
 
     process {
