@@ -6,41 +6,11 @@
     .DESCRIPTION
     Sets a secret property or field in Secret Server.
 
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Id
-    Secret ID to the property/field.
-
-    .PARAMETER Comment
-    Comment to provide for restricted secret (Require Comment is enabled)
-
-    .PARAMETER Field
-    Field name to set
-
-    .PARAMETER Value
-    Value to set for field or property
-
-    .PARAMETER Clear
-    If provided will clear/blank out the field value
-
-    .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 93 -Property Name -Value "Server2 admin account"
-
-    Sets secret 93's property, "Name", to "Server2 admin account"
-
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     PS C:\> Set-TssSecret -TssSession $session -Id 93 -Field Machine -Value "server2"
 
     Sets secret 93's field, "Machine", to "server2"
-
-    .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 1455 -Property enableInheritPermissions -Value $false -Comment "disabling folder inheritance"
-
-    Sets secret 1455's property, "enableInheritPermissions", to false and providing required comment
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -54,12 +24,24 @@
 
     Sets secret 1455's field, "Notes", to an empty value
 
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
+
+    Sets secret 1455 email when viewed setting to true
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
+
+    Sets secret 1455 disables emailing when changed
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
@@ -71,39 +53,39 @@
         [int[]]
         $Id,
 
-        # Provide comment for restricted secret
+        # Comment to provide for restricted secret (Require Comment is enabled)
         [Parameter(ParameterSetName = "field")]
         [string]
         $Comment,
 
-        # Field of the secret
+        # Field name (slug) of the secret
         [Parameter(Mandatory,
             ParameterSetName = "field")]
         [Alias('FieldName')]
         [string]
         $Field,
 
-        # Value for the property or field
+        # Value to set for the provided field
         [Parameter(ParameterSetName = "field")]
         [string]
         $Value,
 
-        # Clear the current field value
+        # Clear/blank out the field value
         [Parameter(ParameterSetName = "field")]
         [switch]
         $Clear,
 
-        # Set email when changed to true
+        # Email when changed to true
         [Parameter(ParameterSetName= "email")]
         [switch]
         $EmailWhenChanged,
 
-        # Set email when HB fails to true
+        # Email when viewed to true
         [Parameter(ParameterSetName= "email")]
         [switch]
         $EmailWhenViewed,
 
-        # Set email when viewed to true
+        # Email when HB fails to true
         [Parameter(ParameterSetName= "email")]
         [switch]
         $EmailWhenHeartbeatFails
