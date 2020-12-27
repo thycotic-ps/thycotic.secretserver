@@ -1,5 +1,6 @@
 ﻿@{
     ModuleVersion = '0.19.0'
+    CompatiblePSEditions = 'Desktop', 'Core'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
     RootModule = 'Thycotic.SecretServer.psm1'
@@ -12,7 +13,8 @@
     PrivateData = @{
         PSData = @{
             PreRelease = 'beta'
-            Tags = 'SecretServer', 'Thycotic', 'DevOps'
+            Tags = 'SecretServer', 'Thycotic', 'DevOps', 'Security'
+            IconUri = 'https://updates.thycotic.net/proservices/powershell/IsoSecretServer.png'
             ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
             LicenseURI = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/master/LICENSE'
             ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/master/CHANGELOG.md'
