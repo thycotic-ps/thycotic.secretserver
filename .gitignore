@@ -2,3 +2,4 @@
 tests/functions/constants.ps1
 tests/constants.ps1
 debug.log
+release.md
