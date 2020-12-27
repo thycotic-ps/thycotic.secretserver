@@ -5,26 +5,67 @@
     Creates an instance of the TssVersion class to output based on the calling command
 #>
 param(
-    [pscustomobject]$VersionRecord
+    [TssSession]
+    $TssSession,
+
+    [switch]
+    $Raw
 )
 
 begin {
-    $source = $PSCmdlet.MyInvocation.MyCommand
-
-    switch ($source) {
-        'Get-TssVersion' {
-            $versionProperties = $VersionRecord.model.PSObject.Properties.Name
-            $VersionRecord = $VersionRecord.model
-            $returnProps = 'Version'
-        }
-    }
+    $versionParams = $PSBoundParameters + @{}
+    $invokeParams = @{ }
 }
 
 process {
+    $source = $PSCmdlet.MyInvocation.MyCommand
+
+    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "version" -join '/')
+    $invokeParams.Uri = $Uri
+    $invokeParams.Method = 'GET'
+    $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
+    try {
+        $restResponse = Invoke-TssRestApi @invokeParams
+    } catch {
+        Write-Warning "Issue reading version, verify Hide Secret Server Version Numbers is disabled in Secret Server"
+        $err = $_.ErrorDetails.Message
+        Write-Error $err
+    }
+
+    if ($versionParams['Raw']) {
+        return $restResponse
+    }
+
+    $versionProperties = $restResponse.model.PSObject.Properties.Name
+    $VersionRecord = $restResponse.model
+
     foreach ($v in $VersionRecord) {
         $outVersion = [TssVersion]::new()
         foreach ($vProp in $versionProperties) {
             $outVersion.$vProp = $v.$vProp
+        }
+    }
+
+    switch ($source) {
+        'Get-TssVersion' {
+            $returnProps = 'Version'
+        }
+        'Test-TssVersion' {
+            $getLatestUrl = "https://updates.thycotic.net/secretserver/LatestVersion.aspx?v=$($outVersion.Version.ToString())"
+            Write-Verbose "Accessing $getLatestUrl to validate latest version"
+            try {
+                $latest = Invoke-RestMethod -Uri $getLatestUrl -UseBasicParsing
+            } catch {
+                Write-Warning "Issue getting latest version information"
+                $err = $_.ErrorDetails.Message
+                Write-Error $err
+            }
+
+            $outVersion.LatestVersion = $latest
+            $outVersion.IsLatest = if ($outVersion.Version -ge $latest) { $true }
+
+            $returnProps = 'Version','LatestVersion','IsLatest'
         }
     }
     Select-Object -InputObject $outVersion -Property $returnProps

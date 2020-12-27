@@ -1,38 +1,28 @@
-﻿function Get-TssVersion {
+﻿function Test-TssVersion {
     <#
     .SYNOPSIS
-    Get version of Secret Server
+    Test Secret Server version
 
     .DESCRIPTION
-    Get the version of Secret Server
-
-    .PARAMETER TssSession
-    TssSession object created by New-TssSession
-
-    .PARAMETER Raw
-    Output the raw response from the REST API endpoint
+    Tests whether Secret Server version returned by Get-TssVersion is the latest
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssVersion -TssSession $session
+    PS C:\> Test-TssVersion -TssSession $session
 
-    Returns version of Secret Server alpha
+    Pulls version of Secret Server and queries for latest version, returning object with details
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding()]
+    [CmdletBinding()]
     [OutputType('TssVersion')]
-    param(
-        # TssSession object passed for auth info
+    param (
+        # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
-
-        # output the raw response from the API endpoint
-        [switch]
-        $Raw
+        [TssSession]$TssSession
     )
     begin {
         $tssParams = . $GetParams $PSBoundParameters 'Get-TssVersion'
@@ -40,7 +30,7 @@
 
     process {
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            . $GetTssVersionObject -TssSession $TssSession -Raw:$Raw
+            . $GetTssVersionObject -TssSession $TssSession
         } else {
             Write-Warning "No valid session found"
         }
