@@ -17,7 +17,7 @@ Describe "$commandName verify parameters" {
             $_ | Should -BeNullOrEmpty
         }
     }
-    Context "Command speicifc details" {
+    Context "Command specific details" {
         It "$commandName should set OutputType to TssSecret" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'TssSecret'
         }
