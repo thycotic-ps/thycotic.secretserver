@@ -16,7 +16,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * `Get-TssVersion` - moved version endpoint call to part function [#22](https://github.com/thycotic-ps/thycotic.secretserver/issues/22)
 * `Search-TssSecret` - fixed issue with validateset for HeartbeatStatus (6e5b7c37)
-* `Get-TssFolder` - updates class output type and test (3bfbded6)
+* `Get-TssFolder` - update class output type and test (3bfbded6)
+* `Get-TssSecretTemplate` - updated to class output and tests [#31](https://github.com/thycotic-ps/thycotic.secretserver/issues/31)
 
 ## [0.20.0] - 2020-12-26
 

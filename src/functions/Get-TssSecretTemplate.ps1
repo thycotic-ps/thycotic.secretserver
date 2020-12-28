@@ -16,6 +16,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
+    [OutputType('TssSecretTemplate')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -60,41 +61,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    $outTemplate = [pscustomobject]@{
-                        PSTypeName = 'TssSecretTemplate'
-                        Id         = $restResponse.id
-                        Name       = $restResponse.name
-                    }
-
-                    $fields = foreach ($field in $restResponse.fields) {
-                        [pscustomobject]@{
-                            PSTypeName                   = 'TssSecretTemplateField'
-                            SecretTempalteFieldId        = $field.secretTempalteFieldId
-                            IsExpirationField            = $field.isExpirationField
-                            DisplayName                  = $field.displayName
-                            Description                  = $field.description
-                            Name                         = $field.name
-                            HistoryLength                = $field.historyLength
-                            FieldSlugName                = $field.fieldSlugName
-                            IsIndexable                  = $field.isIndexable
-                            EditRequires                 = $field.editRequires
-                            HideOnView                   = $field.hideOnView
-                            MustEncrypt                  = $field.mustEncrypt #ExposeForDisplay
-                            GeneratePasswordCharacterSet = $field.generatePasswordCharacterSet
-                            GeneratePasswordLength       = $field.generatePasswordLength
-                            PasswordTypeFieldId          = $field.passwordTypeFieldId
-                            PasswordRequirementId        = $field.passwordRequirementId
-                            SortOrder                    = $field.sortOrder
-                            EditablePermission           = $field.editablePermission
-                            IsFile                       = $field.isFile
-                            IsNotes                      = $field.isNotes
-                            IsPassword                   = $field.isPassword
-                            IsUrl                        = $field.isUrl
-                            IsRequired                   = $field.isRequired
-                        }
-                    }
-                    $outTemplate.PSObject.Properties.Add([PSNoteProperty]::new('Fields',$fields))
-                    $outTemplate
+                    . $GetTssSecretTemplateObject $restResponse
                 }
             }
         } else {
