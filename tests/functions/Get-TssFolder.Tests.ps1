@@ -17,4 +17,9 @@
             $_ | Should -BeNullOrEmpty
         }
     }
+    Context "Command specific details" {
+        It "$commandName should set OutputType to TssFolderTemplate" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssFolderTemplate'
+        }
+    }
 }

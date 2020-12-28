@@ -28,7 +28,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssFolder')]
+    [OutputType('TssFolderTemplate')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -86,7 +86,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssFolderObject $restResponse
+                    . $GetTssFolderTemplateObject $restResponse
                 }
             }
         } else {
