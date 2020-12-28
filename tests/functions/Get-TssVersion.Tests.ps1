@@ -29,12 +29,14 @@ Describe "$commandName works" {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
         $version = Get-TssVersion $session
         $session.SessionExpire()
+
+        $props = 'Version'
     }
     Context "Checking" -Foreach @{version = $version} {
         It "Should not be empty" {
             $version | Should -Not -BeNullOrEmpty
         }
-        It "$commandName should get property <_> at minimum" -TestCases 'Version' {
+        It "$commandName should get property <_> at minimum" -TestCases $props {
             $version.PSObject.Properties.Name | Should -Contain $_
         }
     }
