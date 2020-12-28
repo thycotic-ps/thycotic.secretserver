@@ -117,6 +117,10 @@
             "\t\t\t\\$object | Should -Not -BeNullOrEmpty",
             "\t\t}",
             "\t}",
+            "\t\tIt \"Should output <_> property\" -TestCases 'Prop1','Prop2','Prop3' {",
+            "\t\t\t\\$object.PSObject.Properties.Name | Should -Contain \\$_",
+            "\t\t}",
+            "\t}",
             "}"
         ],
         "description": "template for tests with Thycotic.SecretServer"
