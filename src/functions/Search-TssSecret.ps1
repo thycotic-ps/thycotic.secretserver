@@ -53,7 +53,7 @@
 
         # Return only secrets with a certain heartbeat status
         [Parameter(ParameterSetName = "filter")]
-        [ValidateSet({'Failed','Success','Pending','Disabled','UnableToConnect','UnknownError','IncompatibleHost','AccountLockedOut','DnsMismatch','UnableToValidateServerPublicKey','Processing','ArgumentError','AccessDenied'})]
+        [ValidateSet('Failed','Success','Pending','Disabled','UnableToConnect','UnknownError','IncompatibleHost','AccountLockedOut','DnsMismatch','UnableToValidateServerPublicKey','Processing','ArgumentError','AccessDenied')]
         [string]
         $HeartbeatStatus,
 
