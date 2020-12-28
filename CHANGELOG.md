@@ -5,6 +5,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2020-xx-xx
+
+### Added
+
+* New function: `Test-TssVersion` [#22](https://github.com/thycotic-ps/thycotic.secretserver/issues/22)
+* New function: `Find-TssSecret` [#3](https://github.com/thycotic-ps/thycotic.secretserver/issues/3)
+
+### Changed
+
+* `Get-TssVersion` - moved version endpoint call to part function [#22](https://github.com/thycotic-ps/thycotic.secretserver/issues/22)
+* `Search-TssSecret` - fixed issue with validateset for HeartbeatStatus (6e5b7c37)
+* `Get-TssFolder` - updates class output type and test (3bfbded6)
+
 ## [0.20.0] - 2020-12-26
 
 ### Added
