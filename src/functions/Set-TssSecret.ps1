@@ -76,28 +76,23 @@
         $Clear,
 
         # Email when changed to true
-        [Parameter(ParameterSetName= "email")]
+        [Parameter(ParameterSetName = "email")]
         [switch]
         $EmailWhenChanged,
 
         # Email when viewed to true
-        [Parameter(ParameterSetName= "email")]
+        [Parameter(ParameterSetName = "email")]
         [switch]
         $EmailWhenViewed,
 
         # Email when HB fails to true
-        [Parameter(ParameterSetName= "email")]
+        [Parameter(ParameterSetName = "email")]
         [switch]
         $EmailWhenHeartbeatFails
     )
     begin {
         $tssParams = . $GetParams $PSBoundParameters 'Set-TssSecret'
         $invokeParams = @{ }
-
-        # data object for Email Settings
-        $emailBody = @{
-            data = @{ }
-        }
     }
 
     process {
@@ -134,14 +129,22 @@
                     }
 
                     if ($restResponse -eq $Value) {
-                        Write-Verbose "$secret field $Field updated successfully"
+                        Write-Verbose "Secret [$secret] field $Field updated successfully"
+                        return $true
                     } elseif ($TssParams.Contains('Clear') -and ($null -eq $restResponse)) {
-                        Write-Verbose "$secret field $Field cleared successfully"
+                        Write-Verbose "Secret [$secret] field $Field cleared successfully"
+                        return $true
                     } else {
-                        $restResponse
+                        Write-Verbose "Response for secret [$secret]: $restResponse"
+                        return $false
                     }
                 }
                 if ($TssParams.Contains('EmailWhenChanged') -or $TssParams.Contains('EmailWhenViewed') -or $TssParams.Contains('EmailWhenHeartbeatFails')) {
+                    # data object for Email Settings
+                    $emailBody = @{
+                        data = @{ }
+                    }
+
                     $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "email" -join "/")
 
                     if ($TssParams.Contains('EmailWhenChanged')) {
@@ -177,6 +180,16 @@
                         Write-Warning "Issue setting email settings, verify Email Server is configured in Secret Server"
                         $err = $_.ErrorDetails.Message
                         Write-Error $err
+                    }
+
+                    if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $TssParams['EmailWhenChanged']) {
+                        Write-Verbose "Secret [$secret] email setting [Send Email When Changed] updated to $EmailWhenChanged"
+                    }
+                    if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenViewed' -and $TssParams['EmailWhenViewed']) {
+                        Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] updated to $EmailWhenViewed"
+                    }
+                    if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $TssParams['EmailWhenHeartbeatFails']) {
+                        Write-Verbose "Secret [$secret] email setting [Sned Email When Heartbeat Fails] updated to $EmailWhenHeartbeatFails"
                     }
                 }
             }

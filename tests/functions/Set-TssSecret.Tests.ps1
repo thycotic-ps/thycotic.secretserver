@@ -8,6 +8,7 @@ Describe "$commandName verify parameters" {
             'Field', 'Value', 'Clear',
             'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
+        [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
     Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
@@ -17,6 +18,9 @@ Describe "$commandName verify parameters" {
         It "$commandName should not contain parameter: <_>" -TestCases $unknownParameters {
             $_ | Should -BeNullOrEmpty
         }
+    }
+    Context "Command specific details" {
+        # This command is written to not output an object. Nothing if successful, else it writes out the error
     }
 }
 
