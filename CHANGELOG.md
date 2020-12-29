@@ -5,15 +5,27 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] - 2020-xx-xx
+## [Unreleased] -- 2020-xx-xx
 
 ### Added
 
+* None
+
+### Changed
+
+* None
+
+## [0.21.5] - 2020-12-28
+
+### Added
+
+* All parts for classes validate if a property does not exists, will now provide a warning with link to create bug report (244ac1d)
 
 ### Changed
 
 * `Get-TssFolder` - renamed `Recurse` to `GetChildrent`; updated tests (d12ac57)
 * `Find-TssSecret` - fix output issue [#32](https://github.com/thycotic-ps/thycotic.secretserver/issues/32)
+* `Get-TssSecret` - add new property to TssSecret class [#33](https://github.com/thycotic-ps/thycotic.secretserver/issues/33)
 
 ## [0.21.0] - 2020-12-28
 
