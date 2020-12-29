@@ -46,7 +46,7 @@
         [Parameter(ParameterSetName = 'filter')]
         [Alias("GetAllChildren")]
         [switch]
-        $Recurse,
+        $GetChildren,
 
         # Include allowable Secret Templates of the requested folder
         [Parameter(ParameterSetName = 'filter')]
@@ -68,7 +68,7 @@
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "folders", $folder.ToString() -join '/')
-                $uri = $uri + '?' + "getAllChildren=$Recurse" + "&" + "includeAssociatedTemplates=$IncludeTemplates"
+                $uri = $uri + '?' + "getAllChildren=$GetChildren" + "&" + "includeAssociatedTemplates=$IncludeTemplates"
 
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
