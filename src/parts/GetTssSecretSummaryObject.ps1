@@ -22,7 +22,11 @@ process {
     foreach ($ef in $Object.extendedFields) {
         $item = [TssSecretSummaryExtendedField]::new()
         foreach ($iProp in $extFieldProperties) {
-            $item.$iProp = $ef.$iProp
+            if ($iProp -in $item.PSObject.Properties.Name) {
+                $item.$iProp = $ef.$iProp
+            } else {
+                Write-Warning "Property $iProp does not exist in the TssSecretSummaryExtendedField class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+            }
             $extFields += $item
         }
     }
@@ -33,8 +37,12 @@ process {
             if ($sProp -eq 'extendedFields') {
                 $outObject.ExtendedFields = $extFields
             }
-            if ($s.$sProp) {
-                $outObject.$sProp = $s.$sProp
+            if ($sProp -in $outObject.PSObject.Properties.Name) {
+                if ($s.$sProp) {
+                    $outObject.$sProp = $s.$sProp
+                }
+            } else {
+                Write-Warning "Property $sProp does nto exist in the TssSecretSummary class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
             }
         }
     }

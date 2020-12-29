@@ -27,7 +27,11 @@ process {
     foreach ($ft in $FolderRecord.secretTemplates) {
         $fTemplate = [TssFolderTemplate]::new()
         foreach ($tProp in $folderTemplateProperties) {
-            $fTemplate.$tProp = $ft.$tProp
+            if ($tProp -in $fTemplate.PSObject.Properties.Name) {
+                $fTemplate.$tProp = $ft.$tProp
+            } else {
+                Write-warning "Property $tProp does not exist in the TssFOlderTemplate class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+            }
         }
         $secretTemplates += $fTemplate
     }
@@ -35,7 +39,11 @@ process {
     foreach ($cf in $FolderRecord.childFolders) {
         $cFolder = [TssFolder]::new()
         foreach ($cProp in $folderChildrenProperties) {
-            $cFolder.$cProp = $cf.$cProp
+            if ($cProp -in $cFolder.PSObject.Properties.Name) {
+                $cFolder.$cProp = $cf.$cProp
+            } else {
+                Write-warning "Property $tProp does not exist in the TssFolder class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+            }
         }
         $childFolders += $cFolder
     }
@@ -49,7 +57,11 @@ process {
             if ($fProp -eq 'SecretTemplates') {
                 $outFolder.SecretTemplates = $secretTemplates
             }
-            $outFolder.$fProp = $f.$fProp
+            if ($fProp -in $outFolder.PSObject.Properties.Name) {
+                $outFolder.$fProp = $f.$fProp
+            } else {
+                Write-Warning "Property $fProp does not exist in the TssFolder class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+            }
         }
     }
     return $outFolder

@@ -18,7 +18,11 @@ process {
         foreach ($f in $Object.fields) {
             $field = [TssSecretTemplateField]::new()
             foreach ($fProp in $fieldProperties) {
-                $field.$fProp = $f.$fProp
+                if ($fProp -in $field.PSObject.Properties.Name) {
+                    $field.$fProp = $f.$fProp
+                } else {
+                    Write-Warning "Property $fProp does not exist in the TssSecretTempalteField class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+                }
                 $fields += $field
             }
         }
@@ -29,7 +33,11 @@ process {
                     if ($sProp -eq 'fields') {
                         $outObject.Fields = $fields
                     }
-                    $outObject.$sProp = $s.$sProp
+                    if ($sProp -in $outObject.PSObject.Properties.Name) {
+                        $outObject.$sProp = $s.$sProp
+                    } else {
+                        Write-Warning "Property $sProp does not exist in the TssSecretTempalte class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+                    }
                 }
         }
         return $outObject
