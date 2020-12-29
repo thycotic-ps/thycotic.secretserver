@@ -247,7 +247,7 @@
             if ($tssParams['Raw']) {
                 return $restResponse
             }
-            if ($restResponse.records.Count -le 0 -and $restResponse.Records.Length -eq 0) {
+            if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                 Write-Warning "No secrets found"
             }
             if ($restResponse.records) {

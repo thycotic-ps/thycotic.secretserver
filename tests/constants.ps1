@@ -1,5 +1,5 @@
-$script:ss = 'http://vault1'
+$script:ss = 'http://vault2'
 # $script:ss = 'https://tenant.secretservercloud.com'
 
-$script:ssCred = $secretVault1Cred
+$script:ssCred = $secretVault2Cred
 # $script:ssCred = $secretCloudCred

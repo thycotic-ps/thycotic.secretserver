@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * New function: `Test-TssVersion` [#22](https://github.com/thycotic-ps/thycotic.secretserver/issues/22)
 * New function: `Find-TssSecret` [#16](https://github.com/thycotic-ps/thycotic.secretserver/issues/16)
+* Added XML export of folders and secrets utilized by Pester Tests in repository (e42d9fc0)
 
 ### Changed
 
@@ -18,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Search-TssSecret` - fixed issue with validateset for HeartbeatStatus (6e5b7c37)
 * `Get-TssFolder` - update class output type and test (3bfbded6)
 * `Get-TssSecretTemplate` - updated to class output and tests [#31](https://github.com/thycotic-ps/thycotic.secretserver/issues/31)
+* `Set-TssSecret` - update to include verbose output for Email settings (7bd7ac80)
+* `Search-TssSecret` - updated to class output and tests [#30](https://github.com/thycotic-ps/thycotic.secretserver/issues/30)
 
 ## [0.20.0] - 2020-12-26
 
