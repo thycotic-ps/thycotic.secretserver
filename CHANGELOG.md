@@ -5,15 +5,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2020-xx-xx
+## [Unreleased] -- 2021-xx-xx
 
 ### Added
 
-* None
+* `Invoke-TssRestApi` - integration tests added (2ce6787)
 
 ### Changed
 
-* None
+* `Find-TssSecret` - adjusted to include `/secrets/lookup/{id}` endpoint, part of [#16](https://github.com/thycotic-ps/thycotic.secretserver/issues/16) that was missed
 
 ## [0.21.5] - 2020-12-29
 
