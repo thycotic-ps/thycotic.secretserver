@@ -1,5 +1,9 @@
-$script:ss = 'http://vault2'
-# $script:ss = 'https://tenant.secretservercloud.com'
+if (Test-Path "$env:USERPROFILE\constants.ps1") {
+    . "$env:USERPROFILE\constants.ps1"
+} else {
+    $script:ss = 'http://vault3'
+    # $script:ss = 'https://tenant.secretservercloud.com'
 
-$script:ssCred = $secretVault2Cred
-# $script:ssCred = $secretCloudCred
+    $script:ssCred = $secretVault3Cred
+    # $script:ssCred = $secretCloudCred
+}
