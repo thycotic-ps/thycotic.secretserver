@@ -12,6 +12,7 @@ param(
 begin {
 }
 process {
+    $outObject = @()
     foreach ($f in $FindRecord) {
         $outLookup = [TssSecretLookup]::new()
         $outLookup.SecretId = $f.Id
@@ -21,6 +22,7 @@ process {
         $outLookup.SecretTemplateId = $itemParse[1]
         $outLookup.SecretName = $itemParse[2]
 
+        $outObject += $outLookup
     }
-    return $outLookup
+    return $outObject
 }

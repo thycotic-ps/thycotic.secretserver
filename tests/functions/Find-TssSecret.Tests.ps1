@@ -32,17 +32,22 @@ Describe "$commandName verify parameters" {
 Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $object = Find-TssSecret $session -RpcEnabled -SecretTemplateId 6003
-        $session.SessionExpire()
 
+        $invokeParams = @{
+            Uri = "$ss/api/v1/folders?take=$($session.take)"
+            ExpandProperty = 'records'
+            PersonalAccessToken = $session.AccessToken
+        }
+        $getFolders = Invoke-TssRestApi @invokeParams
+        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
+
+        $object = Find-TssSecret $session -IncludeSubFolders -SecretTemplateId 6001 -FolderId $tssSecretFolder.Id
+        $session.SessionExpire()
         $props = 'SecretId','FolderId','SecretTemplateId','SecretName'
     }
     Context "Checking" -Foreach @{object = $object} {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should find one secret with RPC enabled" {
-            $object.SecretTemplateId | Should -Be 6003
         }
         It "Should output <_> property" -TestCases $props {
             $object.PSObject.Properties.Name | Should -Contain $_
