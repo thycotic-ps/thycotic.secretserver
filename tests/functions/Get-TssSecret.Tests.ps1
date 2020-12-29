@@ -35,7 +35,7 @@ Describe "$commandName works" {
         }
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing\\GetTssSecret'})
-        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($TssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
+        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
 
         $params = @{
             TssSession = $session
