@@ -39,7 +39,7 @@
         # Return only secrets within a certain folder
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "folder")]
-        [int[]]
+        [int]
         $FolderId,
 
         # Include secrets in subfolders of the specified FolderId
@@ -92,13 +92,13 @@
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "secret")]
         [Alias('TemplateId')]
-        [int[]]
+        [int]
         $SecretTemplateId,
 
         # Return only secrets within a certain site
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "secret")]
-        [int[]]
+        [int]
         $SiteId,
 
         # Return only secrets with a certain heartbeat status
