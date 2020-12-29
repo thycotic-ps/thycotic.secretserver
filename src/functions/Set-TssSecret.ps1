@@ -130,13 +130,10 @@
 
                     if ($restResponse -eq $Value) {
                         Write-Verbose "Secret [$secret] field $Field updated successfully"
-                        return $true
                     } elseif ($TssParams.Contains('Clear') -and ($null -eq $restResponse)) {
                         Write-Verbose "Secret [$secret] field $Field cleared successfully"
-                        return $true
                     } else {
                         Write-Verbose "Response for secret [$secret]: $restResponse"
-                        return $false
                     }
                 }
                 if ($TssParams.Contains('EmailWhenChanged') -or $TssParams.Contains('EmailWhenViewed') -or $TssParams.Contains('EmailWhenHeartbeatFails')) {
