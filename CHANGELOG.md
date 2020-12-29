@@ -19,7 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* All parts for classes validate if a property does not exists, will now provide a warning with link to create bug report (244ac1d)
+* All parts for classes validate if a property does not exist, will now provide a warning with a link to create bug report (244ac1d)
 
 ### Changed
 
