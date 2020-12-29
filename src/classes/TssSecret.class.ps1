@@ -14,21 +14,12 @@
 
 class TssSecret {
 
-    [int]$Id
-    [string]$Name
-    [int]$FolderId
-    [boolean]$Active
-    [int]$SecretTemplateId
-    [string]$SecretTemplateName
-    [int]$SiteId
-    [boolean]$CheckedOut
-    [datetime]$LastHeartBeatCheck
-    [string]$LastHeartBeatStatus
-    [datetime]$LastPasswordChangeAttempt
     [int]$AccessRequestWorkflowMapId
+    [boolean]$Active
     [boolean]$AllowOwnersUnrestrictedSshCommands
     [boolean]$AutoChangeEnabled
     [string]$AutoChangeNextPassword
+    [boolean]$CheckedOut
     [boolean]$CheckOutChangePasswordEnabled
     [boolean]$CheckOutEnabled
     [int]$CheckOutIntervalMinutes
@@ -39,10 +30,18 @@ class TssSecret {
     [boolean]$EnableInheritPermissions
     [boolean]$EnableInheritSecretPolicy
     [int]$FailedPasswordChangeAttempts
+    [int]$FolderId
+    [int]$Id
     [boolean]$IsDoubleLock
     [boolean]$IsOutOfSync
     [boolean]$IsRestricted
+    [TssSecretItem[]]$Items
+    [datetime]$LastHeartBeatCheck
+    [ValidateSet('Failed','Success','Pending','Disabled','UnableToConnect','UnknownError','IncompatibleHost','AccountLockedOut','DnsMismatch','UnableToValidateServerPublicKey','Processing','ArgumentError','AccessDenied')]
+    [string]$LastHeartBeatStatus
+    [datetime]$LastPasswordChangeAttempt
     [int]$LauncherConnectAsSecretId
+    [string]$Name
     [string]$OutOfSyncReason
     [int]$PasswordTypeWebScriptId
     [boolean]$ProxyEnabled
@@ -50,8 +49,11 @@ class TssSecret {
     [boolean]$RequiresComment
     [boolean]$RestrictSshCommands
     [int]$SecretPolicyId
+    [int]$SecretTemplateId
+    [string]$SecretTemplateName
     [boolean]$SessionRecordingEnabled
-    [TssSecretItem[]]$Items
+    [int]$SiteId
+    [boolean]$WebLauncherRequiresIncognitoMode
 
     [System.Management.Automation.PSCredential] GetCredential()
     {
