@@ -23,7 +23,6 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-
 Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred

@@ -17,3 +17,24 @@ Describe "$commandName Unit Tests" {
         }
     }
 }
+Describe "$commandName works" {
+    BeforeDiscovery {
+        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+
+        $invokeParams = @{ }
+        $invokeParams.Uri = $session.SecretServer + ($session.ApiVersion, "version" -join '/')
+        $invokeParams.Method = 'GET'
+        $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+        $restResponse = Invoke-TssRestApi @invokeParams
+
+        $session.SessionExpire()
+    }
+    Context "Checking" -Foreach @{restResponse = $restResponse} {
+        It "Should not be empty" {
+            $restResponse | Should -Not -BeNullOrEmpty
+        }
+        It "Should be successful" {
+            $restResponse.success | Should -BeTrue
+        }
+    }
+}
