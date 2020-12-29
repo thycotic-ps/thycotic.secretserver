@@ -7,22 +7,30 @@
         <Folder ID> - <Secret Template ID> - <Secret Name>
 #>
 param(
-    [pscustomobject]$FindRecord
+    [pscustomobject]$FindRecord,
+    [switch]$IsId
 )
 begin {
 }
 process {
     $outObject = @()
-    foreach ($f in $FindRecord) {
-        $outLookup = [TssSecretLookup]::new()
-        $outLookup.SecretId = $f.Id
+    if ($PSBoundParameters['IsId']) {
+        $outObject = [TssSecretLookup]@{
+            Id = $FindRecord.id
+            SecretName = $FindRecord.value
+        }
+    } else {
+        foreach ($f in $FindRecord) {
+            $outLookup = [TssSecretLookup]::new()
+            $outLookup.Id = $f.Id
 
-        $itemParse = $f.value.Split('-').Trim()
-        $outLookup.FolderId = $itemParse[0]
-        $outLookup.SecretTemplateId = $itemParse[1]
-        $outLookup.SecretName = $itemParse[2]
+            $itemParse = $f.value.Split('-').Trim()
+            $outLookup.FolderId = $itemParse[0]
+            $outLookup.SecretTemplateId = $itemParse[1]
+            $outLookup.SecretName = $itemParse[2]
 
-        $outObject += $outLookup
+            $outObject += $outLookup
+        }
     }
     return $outObject
 }

@@ -10,7 +10,7 @@ Describe "$commandName verify parameters" {
         # field param set
         'Field','FieldText','ExactMatch','FieldSlug','ExtendedField','ExtendedTypeId',
         # secret param set
-        'SecretTemplateId','SiteId','HeartbeatStatus','IncludeInactive','ExcludeActive','RpcEnabled','SharedWithMe','PasswordTypeIds','ExcludeDoubleLock','DoubleLockId'
+        'Id','SecretTemplateId','SiteId','HeartbeatStatus','IncludeInactive','ExcludeActive','RpcEnabled','SharedWithMe','PasswordTypeIds','ExcludeDoubleLock','DoubleLockId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -42,15 +42,22 @@ Describe "$commandName works" {
         $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
 
         $object = Find-TssSecret $session -IncludeSubFolders -SecretTemplateId 6001 -FolderId $tssSecretFolder.Id
-        $session.SessionExpire()
         $props = 'SecretId','FolderId','SecretTemplateId','SecretName'
+
+        $getSecret = (Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records)[0]
+        $object2 = Find-TssSecret $session -Id $getSecret.Id
+        $props2 = 'SecretId','Id','SecretName'
+        $session.SessionExpire()
     }
-    Context "Checking" -Foreach @{object = $object} {
+    Context "Checking" -Foreach @{object = $object; object2 = $object2} {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
         It "Should output <_> property" -TestCases $props {
             $object.PSObject.Properties.Name | Should -Contain $_
+        }
+        It "Should output <_> properties when Id param used" -TestCases $props2 {
+            $object2.PSObject.Properties.Name | Should -Contain $_
         }
     }
 }

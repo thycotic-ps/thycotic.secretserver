@@ -24,10 +24,17 @@
             Position = 0)]
         [TssSession]$TssSession,
 
+        # Secret ID to retrieve
+        [Parameter(ParameterSetName = "filter")]
+        [Parameter(ParameterSetName = "secret")]
+        [Alias("SecretId")]
+        [int]
+        $Id,
+
         # Return only secrets within a certain folder
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "folder")]
-        [int[]]
+        [int]
         $FolderId,
 
         # Include secrets in subfolders of the specified FolderId
@@ -80,13 +87,13 @@
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "secret")]
         [Alias('TemplateId')]
-        [int[]]
+        [int]
         $SecretTemplateId,
 
         # Return only secrets within a certain site
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "secret")]
-        [int[]]
+        [int]
         $SiteId,
 
         # Return only secrets with a certain heartbeat status
@@ -166,71 +173,76 @@
 
     process {
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets/lookup" -join '/')
-            $uri += "?take=$($TssSession.Take)"
-            $uri += "&filter.includeRestricted=true"
+            if ($tssParams['Id']) {
+                $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets/lookup", $Id -join '/')
+            } else {
+                $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets/lookup" -join '/')
+                $uri += "?take=$($TssSession.Take)"
+                $uri += "&filter.includeRestricted=true"
 
-            $filters = @()
-            $filterEnum = $filterParams.GetEnumerator()
-            foreach ($f in $filterEnum) {
-                switch ($f.Name) {
-                    'Field' {
-                        $filters += "filter.searchField=$($f.Value)"
-                    }
-                    'FieldSlug' {
-                        $filters += "filter.searchFieldSlug=$($f.Value)"
-                    }
-                    'FieldText' {
-                        $filters += "filter.searchText=$($f.Value)"
-                    }
-                    'ExactMatch' {
-                        $filters += "filter.isExactmatch=$($f.Value)"
-                    }
-                    'ExtendedField' {
-                        foreach ($v in $f.Value) {
-                            $filters += "filter.extendedField=$v"
+                $filters = @()
+                $filterEnum = $filterParams.GetEnumerator()
+                foreach ($f in $filterEnum) {
+                    switch ($f.Name) {
+                        'Field' {
+                            $filters += "filter.searchField=$($f.Value)"
                         }
-                    }
-                    'PasswordTypeIds' {
-                        foreach ($v in $f.Value) {
-                            $filters += "filter.passwordTypeIds=$v"
+                        'FieldSlug' {
+                            $filters += "filter.searchFieldSlug=$($f.Value)"
                         }
-                    }
-                    'Permission' {
-                        $filters += switch ($Permission) {
-                            'List' { "filter.permissionRequired=1" }
-                            'View' { "filter.permissionRequired=2" }
-                            'Edit' { "filter.permissionRequired=3" }
-                            'Owner' { "filter.permissionRequired=4" }
+                        'FieldText' {
+                            $filters += "filter.searchText=$($f.Value)"
                         }
-                    }
-                    'Scope' {
-                        $filters += switch ($Permission) {
-                            'All' { "filter.scope=1" }
-                            'Recent' { "filter.scope=2" }
-                            'Favorit' { "filter.scope=3" }
+                        'ExactMatch' {
+                            $filters += "filter.isExactmatch=$($f.Value)"
                         }
-                    }
-                    'RpcEnabled' {
-                        $filters += "filter.onlyRPCEnabled=$($f.Value)"
-                    }
-                    'SharedWithMe' {
-                        $filters += "filter.onlySharedWithMe=$($f.Value)"
-                    }
-                    'ExcludeDoubleLock' {
-                        $filters += "filter.allowDoubleLocks=$($f.Value)"
-                    }
-                    'ExcludeActive' {
-                        $filters += "filter.includeActive=$($f.Value)"
-                    }
-                    default {
-                        $filters += "filter.$($f.name)=$($f.Value)"
+                        'ExtendedField' {
+                            foreach ($v in $f.Value) {
+                                $filters += "filter.extendedField=$v"
+                            }
+                        }
+                        'PasswordTypeIds' {
+                            foreach ($v in $f.Value) {
+                                $filters += "filter.passwordTypeIds=$v"
+                            }
+                        }
+                        'Permission' {
+                            $filters += switch ($Permission) {
+                                'List' { "filter.permissionRequired=1" }
+                                'View' { "filter.permissionRequired=2" }
+                                'Edit' { "filter.permissionRequired=3" }
+                                'Owner' { "filter.permissionRequired=4" }
+                            }
+                        }
+                        'Scope' {
+                            $filters += switch ($Permission) {
+                                'All' { "filter.scope=1" }
+                                'Recent' { "filter.scope=2" }
+                                'Favorit' { "filter.scope=3" }
+                            }
+                        }
+                        'RpcEnabled' {
+                            $filters += "filter.onlyRPCEnabled=$($f.Value)"
+                        }
+                        'SharedWithMe' {
+                            $filters += "filter.onlySharedWithMe=$($f.Value)"
+                        }
+                        'ExcludeDoubleLock' {
+                            $filters += "filter.allowDoubleLocks=$($f.Value)"
+                        }
+                        'ExcludeActive' {
+                            $filters += "filter.includeActive=$($f.Value)"
+                        }
+                        default {
+                            $filters += "filter.$($f.name)=$($f.Value)"
+                        }
                     }
                 }
+                $uriFilter = $filters -join "&"
+                Write-Verbose "Filters: $uriFilter"
+                $uri = $uri, $uriFilter -join "&"
             }
-            $uriFilter = $filters -join "&"
-            Write-Verbose "Filters: $uriFilter"
-            $uri = $uri, $uriFilter -join "&"
+
 
             $invokeParams.Uri = $uri
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
@@ -247,11 +259,15 @@
             if ($tssParams['Raw']) {
                 return $restResponse
             }
-            if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No secrets found"
-            }
-            if ($restResponse.records) {
-                . $GetTssSecretLookupObject $restResponse.records
+            if ($tssParams['Id']) {
+                . $GetTssSecretLookupObject $restResponse -IsId
+            } else {
+                if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
+                    Write-Warning "No secrets found"
+                }
+                if ($restResponse) {
+                    . $GetTssSecretLookupObject $restResponse.records
+                }
             }
         } else {
             Write-Warning "No valid session found"
