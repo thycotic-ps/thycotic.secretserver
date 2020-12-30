@@ -30,7 +30,7 @@ process {
             $extFields += $item
         }
     }
-
+    $outSearch = @()
     foreach ($s in $Object) {
         $outObject = [TssSecretSummary]::new()
         foreach ($sProp in $Properties) {
@@ -45,6 +45,7 @@ process {
                 Write-Warning "Property $sProp does nto exist in the TssSecretSummary class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
             }
         }
+        $outSearch += $outObject
     }
-    return $outObject
+    return $outSearch
 }

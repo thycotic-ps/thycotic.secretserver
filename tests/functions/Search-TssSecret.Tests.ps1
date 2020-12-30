@@ -50,14 +50,14 @@ Describe "$commandName works" {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
-        It "Should find one secret with RPC enabled" {
-            $objectRpc.SecretTemplateId | Should -Be 6001
+        It "Should find a secret with RPC enabled" {
+            $objectRpc.Count | Should -BeGreaterOrEqual 1
         }
         It "Should return more than one secret" {
             $object.Count | Should -BeGreaterOrEqual 2
         }
         It "Should output <_> property" -TestCases $props {
-            $object.PSObject.Properties.Name | Should -Contain $_
+            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
