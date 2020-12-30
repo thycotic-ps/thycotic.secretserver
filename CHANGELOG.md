@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* none
+
+### Changed
+
+* none
+
+## [0.22.0] -- 2020-12-30
+
+### Added
+
 * `Invoke-TssRestApi` - integration tests added (2ce6787)
 * `Get-TssSecret` - add `GetValue()` to `TssSecret` class to allow easy access to field values on secrets (b73deb9)
 
