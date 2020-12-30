@@ -63,5 +63,8 @@ Describe "$commandName works" {
         It "$commandName should return PSCredential with method: GetCredential" {
             $secret.GetCredential() | Should -BeOfType System.Management.Automation.PSCredential
         }
+        It "$commandName should return Username field value with method: GetValue" {
+            $secret.GetValue('username') | Should -Not -BeNullOrEmpty
+        }
     }
 }

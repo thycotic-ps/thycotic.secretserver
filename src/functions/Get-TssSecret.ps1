@@ -25,6 +25,16 @@
 
     Gets Secret ID 46 and then output a PSCredential to utilize in script workflow
 
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> $secret = Search-TssSecret -TssSesion $session -FieldSlug server -FieldText 'sql1' | Get-TssSecret
+    PS C:\> $cred = $secret.GetCredential()
+    PS C:\> $serverName = $secret.GetValue('server')
+
+    Search for the secret with server value of sql1 and pull the secret details
+    Call GetCredential() method to get the PSCredential object with the username and password
+    Call GetValue() method passing the slug name to grab the ItemValue of the server field.
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

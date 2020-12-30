@@ -1,15 +1,15 @@
 ﻿class TssSecretItem {
-    [string]$fieldDescription
-    [int]$fieldId
-    [string]$fieldName
-    [int]$fileAttachmentId
-    [string]$filename
-    [boolean]$isFile
-    [boolean]$isNotes
-    [boolean]$isPassword
-    [int]$itemId
-    [string]$itemValue
-    [string]$slug
+    [string]$FieldDescription
+    [int]$FieldId
+    [string]$FieldName
+    [int]$FileAttachmentId
+    [string]$Filename
+    [boolean]$IsFile
+    [boolean]$IsNotes
+    [boolean]$IsPassword
+    [int]$ItemId
+    [string]$ItemValue
+    [string]$Slug
 }
 
 class TssSecret {
@@ -60,5 +60,10 @@ class TssSecret {
         $username = ($this.Items | Where-Object FieldName -eq 'username').ItemValue
         $passwd = ($this.Items | Where-Object IsPassword).ItemValue
         return [pscredential]::new($username,(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
+    }
+
+    [System.String] GetValue([string]$Slug) {
+        $value = $this.Items.Where({$_.Slug -eq $Slug}).ItemValue
+        return $value
     }
 }
