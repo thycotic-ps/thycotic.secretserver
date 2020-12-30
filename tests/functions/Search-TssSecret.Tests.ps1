@@ -32,17 +32,29 @@ Describe "$commandName veirfy parameters" {
 Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $object = Search-TssSecret $session -RpcEnabled -SecretTemplateId 6003
-        $session.SessionExpire()
+        $invokeParams = @{
+            Uri = "$ss/api/v1/folders?take=$($session.take)"
+            ExpandProperty = 'records'
+            PersonalAccessToken = $session.AccessToken
+        }
+        $getFolders = Invoke-TssRestApi @invokeParams
+        $tssSecretFolder = $getFolders.Where({$_.folderPath -match '\tss_module_testing\SearchTssSecret'})
 
+        $objectRpc = Search-TssSecret $session -RpcEnabled -SecretTemplateId 6001 -FolderId $tssSecretFolder.Id
+        $object = Search-TssSecret $session -FolderId $tssSecretFolder.Id -IncludeSubFolders
         $props = 'SecretId','FolderId','SecretTemplateId','Name'
+
+        $session.SessionExpire()
     }
-    Context "Checking" -Foreach @{object = $object} {
+    Context "Checking" -Foreach @{object = $object; objectRpc = $objectRpc} {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
         It "Should find one secret with RPC enabled" {
-            $object.SecretTemplateId | Should -Be 6003
+            $objectRpc.SecretTemplateId | Should -Be 6001
+        }
+        It "Should return more than one secret" {
+            $object.Count | Should -BeGreaterOrEqual 2
         }
         It "Should output <_> property" -TestCases $props {
             $object.PSObject.Properties.Name | Should -Contain $_
