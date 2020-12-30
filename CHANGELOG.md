@@ -10,10 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 * `Invoke-TssRestApi` - integration tests added (2ce6787)
+* `Get-TssSecret` - add `GetValue()` to `TssSecret` class to allow easy access to field values on secrets (b73deb9)
 
 ### Changed
 
 * `Find-TssSecret` - adjusted to include `/secrets/lookup/{id}` endpoint, part of [#16](https://github.com/thycotic-ps/thycotic.secretserver/issues/16) that was missed
+* `Search-TssSecret` - address truncating output [#35](https://github.com/thycotic-ps/thycotic.secretserver/issues/35)
 
 ## [0.21.5] - 2020-12-29
 
