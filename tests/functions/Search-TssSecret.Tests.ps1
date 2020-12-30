@@ -61,23 +61,3 @@ Describe "$commandName works" {
         }
     }
 }
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $object = Search-TssSecret $session -RpcEnabled -SecretTemplateId 6003
-        $session.SessionExpire()
-
-        $props = 'SecretId','FolderId','SecretTemplateId','SecretName'
-    }
-    Context "Checking" -Foreach @{object = $object} {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should find one secret with RPC enabled" {
-            $object.SecretTemplateId | Should -Be 6003
-        }
-        It "Should output <_> property" -TestCases $props {
-            $object.PSObject.Properties.Name | Should -Contain $_
-        }
-    }
-}

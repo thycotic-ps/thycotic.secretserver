@@ -39,25 +39,32 @@ Describe "$commandName works" {
             PersonalAccessToken = $session.AccessToken
         }
         $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
+        $tssSecretFolder = $getFolders.Where({$_.folderPath -match '\tss_module_testing\SearchTssSecret'})
 
-        $object = Find-TssSecret $session -IncludeSubFolders -SecretTemplateId 6001 -FolderId $tssSecretFolder.Id
+        $objectRpc = Search-TssSecret $session -RpcEnabled -SecretTemplateId 6001 -FolderId $tssSecretFolder.Id
+        $objectMultiple = Search-TssSecret $session -FolderId $tssSecretFolder.Id -IncludeSubFolders
         $props = 'SecretId','FolderId','SecretTemplateId','SecretName'
 
         $getSecret = (Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records)[0]
-        $object2 = Find-TssSecret $session -Id $getSecret.Id
+        $object = Find-TssSecret $session -Id $getSecret.Id
         $props2 = 'SecretId','Id','SecretName'
         $session.SessionExpire()
     }
-    Context "Checking" -Foreach @{object = $object; object2 = $object2} {
+    Context "Checking" -Foreach @{object = $object; objectRpc = $objectRpc;objectMultiple = $objectMultiple} {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
-        It "Should output <_> property" -TestCases $props {
-            $object.PSObject.Properties.Name | Should -Contain $_
+        It "Should find a secret with RPC enabled" {
+            $objectRpc.Count | Should -BeGreaterOrEqual 1
         }
-        It "Should output <_> properties when Id param used" -TestCases $props2 {
-            $object2.PSObject.Properties.Name | Should -Contain $_
+        It "Should return more than one secret" {
+            $objectMultiple.Count | Should -BeGreaterOrEqual 2
+        }
+        It "Should output <_> property" -TestCases $props {
+            $objectMultiple[0].PSObject.Properties.Name | Should -Contain $_
+        }
+        It "Should output <_> property" -TestCases $props2 {
+            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
