@@ -1,6 +1,6 @@
 ﻿class TssSecretTemplateField {
     [string]$Description
-    [string]$Displayname
+    [string]$DisplayName
     [int]$EditablePermission
     [ValidateSet('Edit','Owner','NotEditable')]
     [string]$EditRequires
@@ -29,4 +29,9 @@ class TssSecretTemplate {
     [string]$Name
     [int]$PasswordTypeId
     [TssSecretTemplateField[]]$Fields
+
+    [System.String] GetSlugName([string]$DisplayName) {
+        $slugName = $this.Fields.Where( { $_.DisplayName -eq $DisplayName }).FieldSlugName
+        return $slugName
+    }
 }
