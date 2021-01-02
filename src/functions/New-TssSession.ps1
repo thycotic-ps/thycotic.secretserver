@@ -71,6 +71,7 @@
     }
 
     process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if (-not $newTssParams['AccessToken']) {
             if ($newTssParams.Contains('SecretServer')) {
                 $uri = $SecretServer, "oauth2/token" -join '/'

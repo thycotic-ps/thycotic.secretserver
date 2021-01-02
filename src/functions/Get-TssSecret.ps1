@@ -67,6 +67,7 @@
     }
 
     process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
                 $restResponse = $null

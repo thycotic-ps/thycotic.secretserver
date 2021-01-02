@@ -177,6 +177,7 @@
     }
 
     process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets" -join '/')
             $uri += "?take=$($TssSession.Take)"
