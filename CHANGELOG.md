@@ -9,11 +9,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* none
+* Added verbose output to applicable commands to provide parameter and values (cfd5304)
+* Added `GetSlugName()` on TssSecretTemplate class, pass in the display name and get the slug name (1cd1b98)
 
 ### Changed
 
-* none
+* Renamed `GetValue()` method to `GetFieldValue()` to make it unique to the module on TssSecret class (d740ae7)
 
 ## [0.22.0] -- 2020-12-30
 
