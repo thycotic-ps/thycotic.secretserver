@@ -62,7 +62,7 @@ class TssSecret {
         return [pscredential]::new($username,(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
     }
 
-    [System.String] GetValue([string]$Slug) {
+    [System.String] GetFieldValue([string]$Slug) {
         $value = $this.Items.Where({$_.Slug -eq $Slug}).ItemValue
         return $value
     }
