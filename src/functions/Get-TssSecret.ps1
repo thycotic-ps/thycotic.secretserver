@@ -38,7 +38,7 @@
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding()]
+    [cmdletbinding(DefaultParameterSetName = 'secret')]
     [OutputType('TssSecret')]
     param(
         # TssSession object created by New-TssSession for auth
@@ -48,14 +48,43 @@
         [TssSession]$TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory,
+            ValueFromPipelineByPropertyName,
+            ParameterSetName = 'secret')]
+        [Parameter(ParameterSetName = 'restricted')]
         [Alias("SecretId")]
         [int[]]
         $Id,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
+
+        # Double lock password, provie as a secure string
+        [Parameter(ParameterSetName = 'restricted')]
+        [securestring]
+        $DoublelockPassword,
+
+        # Check in the secret if it is checked out
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]
+        $ForceCheckIn,
+
+        # Include secrets that are inactive/disabled
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]
+        $IncludeInactive,
+
+        # Associated ticket number (required for ticket integrations)
+        [Parameter(ParameterSetName = 'restricted')]
+        [string]
+        $TicketNumber,
+
+        # Associated ticket system ID (required for ticket integrations)
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketSystemId,
 
         # Output the raw response from the REST API endpoint
         [switch]
@@ -72,14 +101,36 @@
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
-                if ($Comment) {
-                    $uri = $uri, "restricted" -join "/"
-                    $body = "{'comment':'$Comment', 'includeInactive':'$true'}"
-                    $invokeParams.Uri = $Uri
+
+                $body = @{}
+                if ($PSCmdlet.ParameterSetName -eq 'restricted') {
+                    switch ($tssParams) {
+                        'Comment' {
+                            $body.Add('comment',$Comment)
+                        }
+                        'DoublelockPassword' {
+                            $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
+                            $body.Add('doubleLockPassword',$passwd)
+                        }
+                        'ForceCheckIn' {
+                            $body.Add('forceCheckIn',$ForceCheckIn)
+                        }
+                        'IncludeInactive' {
+                            $body.Add('includeInactive',$IncludeInactive)
+                        }
+                        'TicketNumber' {
+                            $body.Add('ticketNumber',$TicketNumber)
+                        }
+                        'TicketSystemId' {
+                            $body.Add('ticketSystemId',$TicketSystemId)
+                        }
+                    }
+                    $uri = $uri, 'restricted' -join '/'
+                    $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
                     $invokeParams.Body = $body
                 } else {
-                    $uri = $uri, "includeInactive=true" -join "?"
+                    $uri = $uri
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
                 }

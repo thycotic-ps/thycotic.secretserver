@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Added verbose output to applicable commands to provide parameter and values (cfd5304)
 * Added `GetSlugName()` on TssSecretTemplate class, pass in the display name and get the slug name (1cd1b98)
+* Added restricted params to `Get-TssSecret` [#37](https://github.com/thycotic-ps/thycotic.secretserver/issues/37)
 
 ### Changed
 
