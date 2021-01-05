@@ -4,7 +4,7 @@
 }
 Describe "$commandName Unit Tests" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'Uri', 'PersonalAccessToken', 'Method', 'Body', 'ContentType', 'Headers', 'UseDefaultCredentials', 'Proxy', 'ProxyCredential', 'ProxyUseDefaultCredentials', 'PSTypeName', 'Property', 'RemoveProperty', 'ExpandProperty'
+        [object[]]$knownParameters = 'Uri', 'PersonalAccessToken', 'Method', 'Body', 'OutFile', 'ContentType', 'Headers', 'UseDefaultCredentials', 'Proxy', 'ProxyCredential', 'ProxyUseDefaultCredentials', 'PSTypeName', 'Property', 'RemoveProperty', 'ExpandProperty'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }

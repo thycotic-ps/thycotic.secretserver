@@ -36,6 +36,11 @@
         [Object]
         $Body,
 
+        # Specifies the file path to write the content.
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [string]
+        $OutFile,
+
         # Specifies the content type of the web request.
         # If this parameter is omitted and the request method is POST, Invoke-RestMethod sets the content type to application/x-www-form-urlencoded. Otherwise, the content type is not specified in the call.
         [string]
