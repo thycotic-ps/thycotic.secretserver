@@ -111,7 +111,7 @@
             "\t\t\\$invokeParams = @{",
             "\t\t\tUri = \"\\$ss/api/v1/folders?take=\\$(\\$session.take)\"",
             "\t\t\tExpandProperty = 'records'",
-            "\t\t\tPersonalAccessToken = $session.AccessToken",
+            "\t\t\tPersonalAccessToken = \\$session.AccessToken",
             "\t\t}",
             "\t\t\\$getFolders = Invoke-TssRestApi @invokeParams",
             "\t\t\\$tssSecretFolder = \\$getFolders.Where({\\$_.folderPath -eq 'tss_module_testing'})",
