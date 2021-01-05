@@ -37,7 +37,7 @@ Describe "$commandName works" {
         }
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing\\GetTssSecret'})
-        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
+        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets?take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
 
         $params = @{
             TssSession = $session
@@ -66,7 +66,7 @@ Describe "$commandName works" {
             $secret.GetCredential() | Should -BeOfType System.Management.Automation.PSCredential
         }
         It "$commandName should return Username field value with method: GetValue" {
-            $secret.GetValue('username') | Should -Not -BeNullOrEmpty
+            $secret[0].GetFieldValue('username') | Should -Not -BeNullOrEmpty
         }
     }
 }
