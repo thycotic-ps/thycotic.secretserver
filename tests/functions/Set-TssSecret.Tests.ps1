@@ -34,61 +34,41 @@ Describe "$commandName works" {
             ExpandProperty = 'records'
             PersonalAccessToken = $session.AccessToken
         }
-        $getFolders = Invoke-TssRestApi @invokeParams
-        $tssFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing\\SetTssSecret'})
-        $session.SessionExpire()
-    }
-    Context "Set a secret field and property" {
-        BeforeDiscovery {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        $getFolders = Invoke-TssRestApi @invokeParams | Where-Object Folderpath -eq '\tss_module_testing\SetTssSecret'
 
-            $invokeParams = @{
-                Uri = "$ss/api/v1/secrets/lookup?take=$($session.take)&folderid=$($TssFolder.id)"
-                Method = 'GET'
-                PersonalAccessToken = $session.AccessToken
-                ExpandProperty = 'records'
-            }
-            $getSecrets = Invoke-TssRestApi @invokeParams
-
-            $secretId = $getSecrets.Where({$_.value -match 'Test Setting Field and Property'}).id
-            $invokeParams = @{
-                Uri = "$ss/api/v1/secrets/$secretId"
-                Method = 'GET'
-                PersonalAccessToken = $session.AccessToken
-            }
-            $setSecret = Invoke-TssRestApi @invokeParams
-            $session.SessionExpire()
+        $invokeParams = @{
+            Uri = "$ss/api/v1/secrets/lookup?take=$($session.take)&folderid=$($TssFolder.id)"
+            Method = 'GET'
+            PersonalAccessToken = $session.AccessToken
+            ExpandProperty = 'records'
         }
-        It "Should set the value on the Notes field" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            $valueField = "your friendly local PowerShell Module"
-            Set-TssSecret -TssSession $session -Id $_.id -Field Notes -Value $valueField | Should -BeNullOrEmpty
+        $getSecrets = Invoke-TssRestApi @invokeParams
 
-            $session.SessionExpire()
+        $secretId = $getSecrets.Where({$_.value -match 'Test Setting Field and Property'}).id
+        $invokeParams = @{
+            Uri = "$ss/api/v1/secrets/$secretId"
+            Method = 'GET'
+            PersonalAccessToken = $session.AccessToken
+        }
+        $setSecret = Invoke-TssRestApi @invokeParams
+
+    }
+    Context "Set a secret field and property" -Foreach @{secret = $setSecret;session = $session} {
+        It "Should set the value on the Notes field" -TestCases $setSecret {
+            $valueField = "your friendly local PowerShell Module"
+            Set-TssSecret -TssSession $session -Id $secret.id -Field Notes -Value $valueField | Should -BeNullOrEmpty
         }
         It "Should Clear the Notes field" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            Set-TssSecret -TssSession $session -Id $_.Id -Field Notes -Clear | Should -BeNullOrEmpty
-
-            $session.SessionExpire()
+            Set-TssSecret -TssSession $session -Id $secret.Id -Field Notes -Clear | Should -BeNullOrEmpty
         }
         It "Should set EmailWhenChanged" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
-
-            $session.SessionExpire()
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
         }
         It "Should set EmailWhenViewed" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
-
-            $session.SessionExpire()
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
         }
         It "Should set EmailWhenHeartbeatFails" -TestCases $setSecret {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            Set-TssSecret -TssSession $session -Id $_.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
-
-            $session.SessionExpire()
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
         }
     }
 }

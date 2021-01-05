@@ -101,22 +101,23 @@
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
             foreach ($secret in $Id) {
-                if ($TssParams.Contains('Field')) {
+                if ($tssParams.Contains('Field')) {
                     $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
-
-                    if ([string]::IsNullOrEmpty($Value)) {
-                        $Value = ""
-                    }
                     if ($TssParams.Contains('Clear') -and $TssParams.Contains('Value')) {
                         Write-Warning "Clear and Value provided, only one is supported"
                         return
-                    } elseif ($TssParams.Contains('Clear')) {
-                        $body = '{"value": ""}'
-                    } else {
-                        $body = "{'value': '$Value'}"
+                    }
+
+                    $body = @{}
+
+                    if ($tssParams['Clear']) {
+                        $body.Add('value',"")
+                    }
+                    if ($tssParams['Value']) {
+                        $body.Add('value',$Value)
                     }
                     $invokeParams.Uri = $uri
-                    $invokeParams.Body = $body
+                    $invokeParams.Body = $body | ConvertTo-Json
                     $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                     $invokeParams.Method = 'PUT'
 

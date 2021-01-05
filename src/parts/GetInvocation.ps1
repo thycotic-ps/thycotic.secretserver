@@ -15,7 +15,7 @@ param(
 $cmdText = $Invocation.InvocationName
 foreach ($param in $Invocation.BoundParameters.GetEnumerator()) {
     $name = $param.Key
-    $value = switch ($param.Value) {
+    $paramValue = switch ($param.Value) {
         { $_ -is [TssSession] } {
             "TssSessionObject"
         }
@@ -40,7 +40,7 @@ foreach ($param in $Invocation.BoundParameters.GetEnumerator()) {
         }
     }
 
-    $cmdText += " -${name}:${value}"
+    $cmdText += " -${name}:${paramValue}"
 }
 
-return $cmdText
+$cmdText
