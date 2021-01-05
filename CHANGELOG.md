@@ -9,13 +9,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* Added verbose output to applicable commands to provide parameter and values (cfd5304)
-* Added `GetSlugName()` on TssSecretTemplate class, pass in the display name and get the slug name (1cd1b98)
-* Added restricted params to `Get-TssSecret` [#37](https://github.com/thycotic-ps/thycotic.secretserver/issues/37)
+* None
 
 ### Changed
 
-* Renamed `GetValue()` method to `GetFieldValue()` to make it unique to the module on TssSecret class (d740ae7)
+* None
+
+## [0.23.0] -- 2021-01-04
+
+### Added
+
+* Added verbose output to applicable commands to provide parameter and values (cfd5304)
+* Added `GetSlugName()` on TssSecretTemplate class, pass in the display name and get the slug name (1cd1b98)
+* Added restricted params to `Get-TssSecret` [#37](https://github.com/thycotic-ps/thycotic.secretserver/issues/37)
+* Added `Get-TssSecretField` [#6](https://github.com/thycotic-ps/thycotic.secretserver/issues/6)
+
+### Changed
+
+* `Get-TssSecret` - renamed `GetValue()` method to `GetFieldValue()` to make it unique in TssSecret class (d740ae7)
 
 ## [0.22.0] -- 2020-12-30
 
