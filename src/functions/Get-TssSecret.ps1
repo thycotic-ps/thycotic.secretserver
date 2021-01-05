@@ -69,7 +69,7 @@
         # Check in the secret if it is checked out
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
-        $ForceCheckIn,
+        $ForceCheckin,
 
         # Include secrets that are inactive/disabled
         [Parameter(ParameterSetName = 'restricted')]
