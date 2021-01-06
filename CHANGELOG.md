@@ -9,11 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* None
+* Add `ApiUrl` to `TssSession` class [#39](https://github.com/thycotic-ps/thycotic.secretserver/issues/39) (ce0aeba9)
+* Added script to call tests, `runTests.ps1` (0f2fa357)
+* Add `Get-TssReport` [#5](https://github.com/thycotic-ps/thycotic.secretserver/issues/5) (2630239)
 
 ### Changed
 
-* None
+* Adjust process to build API call, `New-TssSession` builds the API URL now [#39](https://github.com/thycotic-ps/thycotic.secretserver/issues/39) (ce0aeba9)
+* Update tests to support PS7+ (a66f2f49)
+* Adjusted `Get-TssVersion` and `Test-TssVersion`, refine property output (227585cd)
 
 ## [0.23.0] -- 2021-01-04
 
