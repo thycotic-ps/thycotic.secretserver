@@ -19,7 +19,18 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
                 [string]$Path
             )
 
-            [byte[]]$byte = Get-Content -Encoding byte -ReadCount 4 -TotalCount 4 -Path $Path
+            $params = @{
+                ReadCount = 4
+                TotalCount = 4
+                Path = $Path
+            }
+            if ($PSVersionTable.PSEdition -ne 'Desktop') {
+                $params.Add('AsByteStream',$true)
+            } else {
+                $params.Add('Encoding','Byte')
+            }
+
+            [byte[]]$byte = Get-Content @params
             #Write-Host Bytes: $byte[0] $byte[1] $byte[2] $byte[3]
 
             # EF BB BF (UTF8)
