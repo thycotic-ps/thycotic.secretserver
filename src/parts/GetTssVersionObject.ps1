@@ -9,6 +9,9 @@ param(
     [TssSession]
     $TssSession,
 
+    [System.Management.Automation.InvocationInfo]
+    $Invocation,
+
     [switch]
     $Raw
 )
@@ -19,14 +22,13 @@ begin {
 }
 
 process {
-    $source = $PSCmdlet.MyInvocation.MyCommand
+    $source = $Invocation.MyCommand
 
     $uri = $TssSession.ApiUrl, 'version' -join '/'
     $invokeParams.Uri = $Uri
     $invokeParams.Method = 'GET'
     $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
-    Write-Verbose "$($invokeParams.Method) $uri"
     try {
         $restResponse = Invoke-TssRestApi @invokeParams
     } catch {
@@ -42,8 +44,8 @@ process {
     $versionProperties = $restResponse.model.PSObject.Properties.Name
     $VersionRecord = $restResponse.model
 
+    $outVersion = [TssVersion]::new()
     foreach ($v in $VersionRecord) {
-        $outVersion = [TssVersion]::new()
         foreach ($vProp in $versionProperties) {
             $outVersion.$vProp = $v.$vProp
         }
