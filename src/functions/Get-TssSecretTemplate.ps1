@@ -44,12 +44,12 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($template in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secret-templates", $template.ToString() -join '/')
+                $uri = $TssSession.ApiUrl, 'secret-templates', $template.ToString() -join '/'
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
-                Write-Verbose "$($invokeParas.Method) $uri with $body"
+                Write-Verbose "$($invokeParas.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {

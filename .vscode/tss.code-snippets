@@ -48,7 +48,7 @@
             "\t\tif (\\$tssParams.Contains('TssSession') -and \\$TssSession.IsValidSession()) {",
             "\t\t\tforeach (\\$${7} in \\$${4}) {",
             "\t\t\t\t\\$restResponse = \\$null",
-            "\t\t\t\t\\$uri = \\$TssSession.SecretServer + (\\$TssSession.ApiVersion, \"${1}\", \\$${8}.ToString() -join '/')",
+            "\t\t\t\t\\$uri = \\$TssSession.ApiUrl, '${1}', \\$${8}.ToString() -join '/'",
             "\t\t\t\t\\$invokeParams.Uri = \\$uri",
             "\t\t\t\t\\$invokeParams.Method = 'GET'",
             "",

@@ -26,19 +26,17 @@
     A prompt to enter the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
     .EXAMPLE
+    PS C:\> $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
     PS C:\> $session = nts https://ssvault.com/SecretServer $secretCred
 
-    Utilize alias for New-TssSession, nts, to create the session object
-
-    .EXAMPLE
-    PS C:\> $session = nts https://ssvault.com/SecretServer $secretCred
-
-    Utilize alias for New-TssSession, nts, to create the session object
+    Create a credential object
+    Use the alias nts to create a session object
 
     .OUTPUTS
     TssSession.
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType('TssSession')]
     param(
         # Secret Server URL
         [Parameter(ParameterSetName = 'New',Mandatory)]
@@ -71,7 +69,6 @@
     }
 
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if (-not $newTssParams['AccessToken']) {
             if ($newTssParams.Contains('SecretServer')) {
                 $uri = $SecretServer, "oauth2/token" -join '/'
@@ -100,16 +97,26 @@
 
             if ($newTssParams['Raw']) {
                 return $restResponse
-            } else {
-                [TssSession]@{
-                    SecretServer = $restResponse.SecretServer
-                    AccessToken  = $restResponse.access_token
-                    RefreshToken = $restResponse.refresh_token
-                    ExpiresIn    = $restResponse.expires_in
-                    TokenType    = $restResponse.token_type
-                    StartTime    = [datetime]::Now
-                    TimeOfDeath  = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
+            }
+            if ($restResponse) {
+                $sessionObj = [TssSession]::new()
+                $sessionObj.SecretServer = $restResponse.SecretServer
+                $sessionObj.ApiUrl =
+                if ( ($restResponse.SecretServer).PathAndQuery -eq '/') {
+                    [string]$restResponse.SecretServer + $sessionObj.ApiVersion
+                } elseif ( ($restResponse.SecretServer).PathAndQuery.Length -gt 1) {
+                    [string]$restResponse.SecretServer, $sessionObj.ApiVersion -join '/'
+                } elseif ( ($restResponse.SecretServer).Segments -contains 'api/') {
+                    [string]$restResponse.SecretServer
                 }
+                $sessionObj.AccessToken = $restResponse.access_token
+                $sessionObj.RefreshToken = $restResponse.refresh_token
+                $sessionObj.ExpiresIn = $restResponse.expires_in
+                $sessionObj.TokenType = $restResponse.token_type
+                $sessionObj.StartTime = [datetime]::Now
+                $sessionObj.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
+
+                return $sessionObj
             }
         }
         if ($newTssParams['SecretServer'] -and $newTssParams['AccessToken']) {

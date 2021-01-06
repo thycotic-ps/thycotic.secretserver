@@ -39,16 +39,18 @@
     }
 
     process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
 
             foreach ($secret in $Id) {
-                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret.ToString() -join '/')
+                $uri = $TssSession.ApiUrl, "secrets", $secret.ToString() -join '/'
 
                 $invokeParams.Uri = $Uri
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
+                Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {

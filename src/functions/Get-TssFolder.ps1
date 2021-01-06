@@ -67,13 +67,14 @@
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($folder in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "folders", $folder.ToString() -join '/')
+                $uri = $TssSession.ApiUrl, 'folders', $folder.ToString() -join '/'
                 $uri = $uri + '?' + "getAllChildren=$GetChildren" + "&" + "includeAssociatedTemplates=$IncludeTemplates"
 
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+                Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {

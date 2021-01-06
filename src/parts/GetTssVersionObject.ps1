@@ -4,6 +4,7 @@
 .Description
     Creates an instance of the TssVersion class to output based on the calling command
 #>
+[cmdletbinding()]
 param(
     [TssSession]
     $TssSession,
@@ -20,11 +21,12 @@ begin {
 process {
     $source = $PSCmdlet.MyInvocation.MyCommand
 
-    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "version" -join '/')
+    $uri = $TssSession.ApiUrl, 'version' -join '/'
     $invokeParams.Uri = $Uri
     $invokeParams.Method = 'GET'
     $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
+    Write-Verbose "$($invokeParams.Method) $uri"
     try {
         $restResponse = Invoke-TssRestApi @invokeParams
     } catch {

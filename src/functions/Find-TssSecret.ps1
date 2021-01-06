@@ -175,9 +175,9 @@
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams['Id']) {
-                $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets/lookup", $Id -join '/')
+                $uri = $TssSession.ApiUrl + ("secrets/lookup", $Id -join '/')
             } else {
-                $uri = $TssSession.SecretServer + ( $TssSession.ApiVersion, "secrets/lookup" -join '/')
+                $uri = $TssSession.ApiUrl, "secrets/lookup" -join '/'
                 $uri += "?take=$($TssSession.Take)"
                 $uri += "&filter.includeRestricted=true"
 
@@ -239,16 +239,16 @@
                         }
                     }
                 }
-                $uriFilter = $filters -join "&"
+                $uriFilter = $filters -join '&'
                 Write-Verbose "Filters: $uriFilter"
-                $uri = $uri, $uriFilter -join "&"
+                $uri = $uri, $uriFilter -join '&'
             }
 
 
             $invokeParams.Uri = $uri
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
             $invokeParams.Method = 'GET'
-            Write-Verbose "$($invokeParams.Method) $uri with $body"
+            Write-Verbose "$($invokeParams.Method) $uri"
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams
             } catch {

@@ -83,9 +83,10 @@
     }
 
     process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
-                $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, 'secrets', $secret.ToString() -join '/')
+                $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString() -join '/'
                 $restResponse = $null
 
                 $body = @{}
@@ -134,6 +135,7 @@
                         $invokeParams.OutFile = $OutFile
                     }
                 }
+                Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {

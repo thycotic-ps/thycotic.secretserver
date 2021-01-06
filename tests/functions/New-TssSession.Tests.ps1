@@ -8,7 +8,7 @@ Describe "$commandName verify parameters" {
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -19,17 +19,19 @@ Describe "$commandName verify parameters" {
 }
 
 Describe "$commandName updates session object" {
+    BeforeAll {
+        $apiV = 'api/v1'
+        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+    }
     Context "Oauth2 authentication" {
-        BeforeEach {
-            [uri]$secretServer = $ss
-            $apiV = 'api/v1'
-            $session = New-TssSession -SecretServer $secretServer -Credential $ssCred
-        }
         It "Populates SecretServer Propety" {
-            $session.SecretServer | Should -Be $secretServer
+            $session.SecretServer | Should -Be ([uri]$ss)
         }
         It "ApiVersion Propety is set" {
             $session.ApiVersion | Should -Be $apiV
+        }
+        It "ApiUrl Propety is set" {
+            $session.ApiUrl | Should -Not -BeNullOrEmpty
         }
         It "Populates AccessToken Property" {
             $session.AccessToken | Should -Not -BeNullOrEmpty

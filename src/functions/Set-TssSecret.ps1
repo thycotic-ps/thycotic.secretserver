@@ -102,7 +102,7 @@
 
             foreach ($secret in $Id) {
                 if ($tssParams.Contains('Field')) {
-                    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "fields", $Field -join "/")
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join "/"
                     if ($TssParams.Contains('Clear') -and $TssParams.Contains('Value')) {
                         Write-Warning "Clear and Value provided, only one is supported"
                         return
@@ -122,6 +122,7 @@
                     $invokeParams.Method = 'PUT'
 
                     if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+                    Write-Verbose "$($invokeParams.Method) $uri with $body"
                     try {
                         $restResponse = Invoke-TssRestApi @invokeParams
                     } catch {
@@ -144,7 +145,7 @@
                         data = @{ }
                     }
 
-                    $uri = $TssSession.SecretServer + ($TssSession.ApiVersion, "secrets", $secret, "email" -join "/")
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'email' -join "/"
 
                     if ($TssParams.Contains('EmailWhenChanged')) {
                         $sendEmailWhenChanged = @{
@@ -172,7 +173,7 @@
                     $invokeParams.Method = 'PATCH'
 
                     if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-
+                    Write-Verbose "$($invokeParams.Method) $uri with $body"
                     try {
                         $restResponse = Invoke-TssRestApi @invokeParams
                     } catch {

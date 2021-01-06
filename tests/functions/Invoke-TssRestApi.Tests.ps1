@@ -21,12 +21,12 @@ Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
 
-        $invokeParams = @{ }
-        $invokeParams.Uri = $session.SecretServer + ($session.ApiVersion, "version" -join '/')
-        $invokeParams.Method = 'GET'
-        $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+        $invokeParams = @{
+            Uri = $session.ApiUrl, "version" -join '/'
+            Method = 'GET'
+            PersonalAccessToken = $session.AccessToken
+        }
         $restResponse = Invoke-TssRestApi @invokeParams
-
         $session.SessionExpire()
     }
     Context "Checking" -Foreach @{restResponse = $restResponse} {

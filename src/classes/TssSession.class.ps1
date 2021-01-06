@@ -1,6 +1,7 @@
 ﻿class TssSession {
     [string]$SecretServer
-    [string]$ApiVersion = "api/v1"
+    [string]$ApiVersion = 'api/v1'
+    [string]$ApiUrl
     [string]$AccessToken
     [string]$RefreshToken
     [string]$TokenType
