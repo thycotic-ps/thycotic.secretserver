@@ -1,11 +1,11 @@
 ﻿#region Import Classes
-foreach ($file in Get-ChildItem -Path $psScriptRoot\classes -Filter *.class.ps1) {
+foreach ($file in Get-ChildItem -Path $psScriptRoot\classes -Recurse -Filter *.class.ps1) {
     . $file.FullName
 }
 #endregion Import Classes
 
 #region Import Functions
-foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Filter *-*.ps1) {
+foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Recurse -Filter *-*.ps1) {
     . $file.FullName
 }
 #endregion Import Functions
