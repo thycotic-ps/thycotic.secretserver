@@ -32,7 +32,7 @@
 
         # Report Category Id, returns all if not provided
         [Parameter(ValueFromPipelineByPropertyName)]
-        [Alias("ReportCategoryId")]
+        [Alias('ReportCategoryId')]
         [int[]]
         $Id,
 

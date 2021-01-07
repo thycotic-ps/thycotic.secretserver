@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-16"?>
 <secrettype xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <name>FileTemplate</name>
+  <name>tssFileTemplate</name>
   <active>true</active>
   <fields>
     <field isexpirationfield="false">
@@ -58,10 +58,11 @@
       <hideonview>false</hideonview>
     </field>
   </fields>
+  <descriptions />
   <expirationdays>0</expirationdays>
   <secretnamehistorylength>0</secretnamehistorylength>
   <imageclass>fa-cogs</imageclass>
-  <onetimepasswordenabled xsi:nil="true" />
+  <onetimepasswordenabled>false</onetimepasswordenabled>
   <onetimepasswordcodelength xsi:nil="true" />
   <onetimepassworddurationseconds xsi:nil="true" />
   <onetimepasswordhashmode xsi:nil="true" />
