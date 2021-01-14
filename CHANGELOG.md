@@ -9,11 +9,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+* None
+
+### Changed
+
+* None
+
+## [0.24.0] -- 2021-01-14
+
+### Added
+
 * Add `ApiUrl` to `TssSession` class [#39](https://github.com/thycotic-ps/thycotic.secretserver/issues/39) (ce0aeba9)
 * Added script to call tests, `runTests.ps1` (0f2fa357)
 * Add `Get-TssReport` [#5](https://github.com/thycotic-ps/thycotic.secretserver/issues/5) (2630239)
 * Add `Get-TssReportCategory` [#20](https://github.com/thycotic-ps/thycotic.secretserver/issues/20) (a76c89f)
 * Add `Remove-TssReportCategory` [#40](https://github.com/thycotic-ps/thycotic.secretserver/issues/40) (7f11f4d)
+* Add `New-TssReport` [#38](https://github.com/thycotic-ps/thycotic.secretserver/issues/38) (7776c60)
 
 ### Changed
 
