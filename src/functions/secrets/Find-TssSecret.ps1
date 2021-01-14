@@ -261,13 +261,13 @@
                 return $restResponse
             }
             if ($tssParams['Id']) {
-                . $GetTssSecretLookupObject $restResponse -IsId
+                . $TssSecretLookupObject $restResponse -IsId
             } else {
                 if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                     Write-Warning "No secrets found"
                 }
                 if ($restResponse) {
-                    . $GetTssSecretLookupObject $restResponse.records
+                    . $TssSecretLookupObject $restResponse.records
                 }
             }
         } else {

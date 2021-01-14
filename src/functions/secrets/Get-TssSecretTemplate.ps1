@@ -62,7 +62,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssSecretTemplateObject $restResponse
+                    . $TssSecretTemplateObject $restResponse
                 }
             }
         } else {

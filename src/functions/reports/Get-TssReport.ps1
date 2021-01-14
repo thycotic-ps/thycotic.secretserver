@@ -62,7 +62,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssReportObject $restResponse
+                    . $TssReportObject $restResponse
                 }
             }
         } else {

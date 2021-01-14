@@ -150,7 +150,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssSecretObject $restResponse
+                    . $TssSecretObject $restResponse
                 }
             }
         } else {

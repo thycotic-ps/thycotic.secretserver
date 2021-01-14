@@ -64,8 +64,8 @@
     )
 
     begin {
-        $invokeParams = . $GetInvokeTssParams $PSBoundParameters
-        $newTssParams = . $GetNewTssParams $PSBoundParameters
+        $invokeParams = . $InvokeTssParams $PSBoundParameters
+        $newTssParams = . $NewTssSessionParams $PSBoundParameters
     }
 
     process {

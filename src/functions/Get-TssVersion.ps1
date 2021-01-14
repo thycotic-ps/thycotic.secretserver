@@ -41,7 +41,7 @@
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            . $GetTssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation -Raw:$Raw
+            . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation -Raw:$Raw
         } else {
             Write-Warning "No valid session found"
         }

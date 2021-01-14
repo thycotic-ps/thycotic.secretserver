@@ -87,7 +87,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssFolderTemplateObject $restResponse
+                    . $TssFolderTemplateObject $restResponse
                 }
             }
         } else {

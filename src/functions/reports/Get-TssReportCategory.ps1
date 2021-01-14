@@ -46,14 +46,14 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssReportCategory'
+        $tssReportCatParams = . $GetReportCategoryParams $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            if ($tssParams['Id']) {
+        if ($tssReportCatParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+            if ($tssReportCatParams['Id']) {
                 foreach ($reportCategory in $Id) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'reports/categories', $reportCategory.ToString() -join '/'
@@ -70,15 +70,15 @@
                         Write-Error $err
                     }
 
-                    if ($tssParams['Raw']) {
+                    if ($tssReportCatParams['Raw']) {
                         return $restResponse
                     }
                     if ($restResponse) {
-                        . $GetTssReportCategoryObject $restResponse
+                        . $TssReportCategoryObject $restResponse
                     }
                 }
             }
-            if ($tssParams['All']) {
+            if ($tssReportCatParams['All']) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'reports/categories' -join '/'
                 $invokeParams.Uri = $uri
@@ -94,11 +94,11 @@
                     Write-Error $err
                 }
 
-                if ($tssParams['Raw']) {
+                if ($tssReportCatParams['Raw']) {
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $GetTssReportCategoryObject $restResponse.model -All:$All
+                    . $TssReportCategoryObject $restResponse.model -All:$All
                 }
 
             }

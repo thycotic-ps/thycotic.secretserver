@@ -168,8 +168,8 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Search-TssSecret'
-        $searchParams = . $GetParams $PSBoundParameters 'Search-TssSecret'
+        $tssParams = . $SearchSecretParams $PSBoundParameters
+        $searchParams = . $SearchSecretParams $PSBoundParameters
         $invokeParams = @{ }
 
         $searchParams.Remove('Raw')
@@ -264,7 +264,7 @@
                 Write-Warning "No secrets found"
             }
             if ($restResponse.records) {
-                . $GetTssSecretSummaryObject $restResponse.records
+                . $TssSecretSummaryObject $restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
