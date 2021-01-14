@@ -1,6 +1,8 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
+
+    $PSDefaultParameterValues.Remove("*:TssSession")
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -26,24 +28,24 @@ Describe "$commandName verify parameters" {
 Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $body = @{
-            reportCategoryDescription = 'tss test category to be deleted'
-            reportCategoryName = 'tss module testing to remove'
-            sortOrder = $null
-        }
-        $invokeParams = @{
-            Uri = "$ss/api/v1/reports/categories"
-            Body = $body
-            Method = 'POST'
-            PersonalAccessToken = $session.AccessToken
-        }
-        $createdCategory = Invoke-TssRestApi @invokeParams
+        $PSDefaultParameterValues.Add("*:TssSession",$session)
+
+        $reportCatName = "tssModuleTest$(Get-Random)"
+        $bodData = @{
+            data = @{
+                reportCategoryDescription = 'tss Module test category'
+                reportCategoryName = $reportCatName
+            }
+        } | ConvertTo-Json
+        # bug in endpoint where it won't return the Category ID properly
+        Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/categories" -Method 'POST' -Body $bodData -PersonalAccessToken $session.AccessToken > $null
+        $categoryId = (Get-TssReportCategory -All).Where({$_.Name -eq $reportCatName}).CategoryId
     }
-    Context "Checking" -Foreach @{createdCategory = $createdCategory} {
+    Context "Checking" -Foreach @{categoryId = $categoryId} {
         It "Should delete the category" {
-            Remove-TssReportCategory -TssSession $session -ReportCategoryId $createdCategory.reportCategoryId -Confirm:$false
-            $cat = Get-TssReportCategory -TssSession $session -ReportCategoryId $createdCategory.reportCategoryId -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
-            $cat | Should -Not -BeNullOrEmpty
+            Remove-TssReportCategory -ReportCategoryId $categoryId -Confirm:$false
+            $cat = Get-TssReportCategory -ReportCategoryId $categoryId -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+            $cat | Should -BeNullOrEmpty
         }
     }
 }
