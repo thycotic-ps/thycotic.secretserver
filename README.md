@@ -39,3 +39,7 @@ Each function includes comment-based help. An online source for this documentati
 # Testing
 
 At this time, the PowerShell module Pester is utilized for writing both unit and integration tests.
+
+# Disclaimer
+
+The content (scripts, documentation, examples) included in this repository is not supported under any Thycotic standard support program, agreement, or service. The code is provided AS IS without warranty of any kind. Thycotic further disclaims all implied warranties, including, without limitation, any implied warranties of merchantability or fitness for a particular purpose. The entire risk arising out of the code and content's use or performance remains with you. In no event shall Thycotic, its authors, or anyone else involved in the creation, production, or delivery of the content be liable for any damages whatsoever (including, without limitation, damages for loss of business profits, business interruption, loss of business information, or other pecuniary loss) arising out of the use of or inability to use the code or content, even if Thycotic has been advised of the possibility of such damages.
