@@ -1,4 +1,4 @@
-﻿function Remove-TssReportCategory {
+﻿function Remove-ReportCategory {
     <#
     .SYNOPSIS
     Delete a report category

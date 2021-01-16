@@ -1,4 +1,4 @@
-﻿function Invoke-TssRestApi {
+﻿function Invoke-RestApi {
     <#
     .SYNOPSIS
     Invokes the Secret Server Rest API

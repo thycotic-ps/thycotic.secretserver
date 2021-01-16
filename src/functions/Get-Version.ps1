@@ -1,4 +1,4 @@
-﻿function Get-TssVersion {
+﻿function Get-Version {
     <#
     .SYNOPSIS
     Get version of Secret Server

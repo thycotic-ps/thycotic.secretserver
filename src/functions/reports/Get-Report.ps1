@@ -1,60 +1,59 @@
-﻿function Disable-TssSecret {
+﻿function Get-Report {
     <#
     .SYNOPSIS
-    Disable a secret from Secret Server
+    Gets a report
 
     .DESCRIPTION
-    Disables a secret from Secret Server
+    Gets a report based on Report ID
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Disable-TssSecret -Id 93
+    PS C:\> Get-TssReport -TssSession $session -Id 6
 
-    Disables secret 93
+    Gets the details on report ID 6
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess)]
-    param(
+    [CmdletBinding()]
+    [OutputType('TssReport')]
+    param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Secret ID to disable (mark inactive)
+        # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Alias("ReportId")]
         [int[]]
         $Id,
 
-        # Output the raw response from the REST API endpoint
+        # Output the raw response from the API endpoint
         [switch]
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Disable-TssSecret'
+        $tssParams = . $GetParams $PSBoundParameters 'Get-TssReport'
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+            foreach ($report in $Id) {
+                $restResponse = $null
+                $uri = $TssSession.ApiUrl, 'reports', $report.ToString() -join '/'
+                $invokeParams.Uri = $uri
+                $invokeParams.Method = 'GET'
 
-            foreach ($secret in $Id) {
-                $uri = $TssSession.ApiUrl, "secrets", $secret.ToString() -join '/'
-
-                $invokeParams.Uri = $Uri
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                $invokeParams.Method = 'DELETE'
-
-                if (-not $PSCmdlet.ShouldProcess($secret, "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue disabling secret [$secret]"
+                    Write-Warning "Issue getting report [$report]"
                     $err = $_.ErrorDetails.Message
                     Write-Error $err
                 }
@@ -63,10 +62,7 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    [PSCustomObject]@{
-                        Id         = $restResponse.id
-                        ObjectType = $restResponse.objectType
-                    }
+                    . $TssReportObject $restResponse
                 }
             }
         } else {

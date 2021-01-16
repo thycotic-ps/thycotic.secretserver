@@ -1,4 +1,4 @@
-﻿function Test-TssVersion {
+﻿function Test-Version {
     <#
     .SYNOPSIS
     Test Secret Server version

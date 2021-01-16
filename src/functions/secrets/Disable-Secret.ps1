@@ -1,22 +1,21 @@
-﻿function Get-TssSecretTemplate {
+﻿function Disable-Secret {
     <#
     .SYNOPSIS
-    Get a secret template from Secret Server
+    Disable a secret from Secret Server
 
     .DESCRIPTION
-    Get a secret template(s) from Secret Server
+    Disables a secret from Secret Server
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssSecretTemplate -Id 93
+    PS C:\> Disable-TssSecret -Id 93
 
-    Returns secret associated with the Secret ID, 93
+    Disables secret 93
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding()]
-    [OutputType('TssSecretTemplate')]
+    [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -24,36 +23,38 @@
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Secret template ID to retrieve
+        # Secret ID to disable (mark inactive)
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("TemplateId")]
+        [Alias("SecretId")]
         [int[]]
         $Id,
 
-        #  Output the raw response from the REST API endpoint
+        # Output the raw response from the REST API endpoint
         [switch]
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssSecretTemplate'
+        $tssParams = . $GetParams $PSBoundParameters 'Disable-TssSecret'
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
-            foreach ($template in $Id) {
-                $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secret-templates', $template.ToString() -join '/'
-                $invokeParams.Uri = $Uri
-                $invokeParams.Method = 'GET'
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
-                Write-Verbose "$($invokeParas.Method) $uri"
+            foreach ($secret in $Id) {
+                $uri = $TssSession.ApiUrl, "secrets", $secret.ToString() -join '/'
+
+                $invokeParams.Uri = $Uri
+                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+                $invokeParams.Method = 'DELETE'
+
+                if (-not $PSCmdlet.ShouldProcess($secret, "$($invokeParams.Method) $uri")) { return }
+                Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting template [$template]"
+                    Write-Warning "Issue disabling secret [$secret]"
                     $err = $_.ErrorDetails.Message
                     Write-Error $err
                 }
@@ -62,7 +63,10 @@
                     return $restResponse
                 }
                 if ($restResponse) {
-                    . $TssSecretTemplateObject $restResponse
+                    [PSCustomObject]@{
+                        Id         = $restResponse.id
+                        ObjectType = $restResponse.objectType
+                    }
                 }
             }
         } else {

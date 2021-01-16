@@ -20,4 +20,5 @@
             ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/master/CHANGELOG.md'
         }
     }
+    DefaultCommandPrefix = 'Tss'
 }

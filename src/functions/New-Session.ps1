@@ -1,4 +1,4 @@
-﻿function New-TssSession {
+﻿function New-Session {
     <#
     .SYNOPSIS
     Create new session

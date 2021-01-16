@@ -1,4 +1,4 @@
-﻿function Get-TssFolder {
+﻿function Get-Folder {
     <#
     .SYNOPSIS
     Get a folder from Secret Server

@@ -1,4 +1,4 @@
-﻿function Get-TssReportCategory {
+﻿function Get-ReportCategory {
     <#
     .SYNOPSIS
     Get report categories

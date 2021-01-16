@@ -1,4 +1,4 @@
-﻿function New-TssReport {
+﻿function New-Report {
     <#
     .SYNOPSIS
     Short of what command does

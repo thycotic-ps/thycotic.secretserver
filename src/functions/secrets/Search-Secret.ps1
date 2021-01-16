@@ -1,4 +1,4 @@
-﻿function Search-TssSecret {
+﻿function Search-Secret {
     <#
     .SYNOPSIS
     Search for a secret
