@@ -1,12 +1,18 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
+
+    $PSDefaultParameterValues.Remove("*:TssSession")
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'TssSession', 'Id', 'Comment',
+            <# Fields #>
             'Field', 'Value', 'Clear',
-            'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails'
+            <# Email settings #>
+            'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails',
+            <# General settings #>
+            'Active', 'EnableInheritSecretPolicy', 'Folder', 'GenerateSshKeys', 'HeartbeatEnabled', 'SecretPolicy', 'Site', 'Template','IsOutOfSync', 'SecretName'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -44,31 +50,70 @@ Describe "$commandName works" {
         }
         $getSecrets = Invoke-TssRestApi @invokeParams
 
-        $secretId = $getSecrets.Where({$_.value -match 'Test Setting Field and Property'}).id
+        $secretId = $getSecrets.Where({$_.value -match 'Test Setting Field'}).id
         $invokeParams = @{
             Uri = "$ss/api/v1/secrets/$secretId"
             Method = 'GET'
             PersonalAccessToken = $session.AccessToken
         }
-        $setSecret = Invoke-TssRestApi @invokeParams
+        $setField = Invoke-TssRestApi @invokeParams
 
+        $secretId = $getSecrets.Where({$_.value -match 'Test Setting Email'}).id
+        $invokeParams = @{
+            Uri = "$ss/api/v1/secrets/$secretId"
+            Method = 'GET'
+            PersonalAccessToken = $session.AccessToken
+        }
+        $setEmail = Invoke-TssRestApi @invokeParams
+
+        $secretId = $getSecrets.Where({$_.value -match 'Test Setting General Settings'}).id
+        $invokeParams = @{
+            Uri = "$ss/api/v1/secrets/$secretId"
+            Method = 'GET'
+            PersonalAccessToken = $session.AccessToken
+        }
+        $setGeneral = Invoke-TssRestApi @invokeParams
     }
-    Context "Set a secret field and property" -Foreach @{secret = $setSecret;session = $session} {
-        It "Should set the value on the Notes field" -TestCases $setSecret {
+    Context "Set a secret field" -Foreach @{secret = $setField;session = $session} {
+        It "Should set the value on the Notes field" {
             $valueField = "your friendly local PowerShell Module"
             Set-TssSecret -TssSession $session -Id $secret.id -Field Notes -Value $valueField | Should -BeNullOrEmpty
         }
-        It "Should Clear the Notes field" -TestCases $setSecret {
+        It "Should Clear the Notes field" {
             Set-TssSecret -TssSession $session -Id $secret.Id -Field Notes -Clear | Should -BeNullOrEmpty
         }
-        It "Should set EmailWhenChanged" -TestCases $setSecret {
+        It "Should set EmailWhenChanged" {
             Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
         }
-        It "Should set EmailWhenViewed" -TestCases $setSecret {
+        It "Should set EmailWhenViewed" {
             Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
         }
-        It "Should set EmailWhenHeartbeatFails" -TestCases $setSecret {
+        It "Should set EmailWhenHeartbeatFails" {
             Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
+        }
+    }
+    Context "Sets email settings of a secret" -Foreach @{secret = $setEmail;session = $session} {
+        It "Should set EmailWhenChanged" {
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
+        }
+        It "Should set EmailWhenViewed" {
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
+        }
+        It "Should set EmailWhenHeartbeatFails" {
+            Set-TssSecret -TssSession $session -Id $secret.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
+        }
+    }
+    Context "Sets general settings of a secret" -Foreach @{secret = $setGeneral;session = $session} {
+        <# not going to test all of them, just enough #>
+        It "Should set Name" {
+            $newName = "Test Setting General Settings $(Get-Random)"
+            Set-TssSecret -TssSession $session -Id $secret.Id -SecretName $newName | Should -BeNullOrEmpty
+        }
+        It "Should set HeartbeatEnabled" {
+            Set-TssSecret -TssSession $session -Id $secret.Id -HeartbeatEnabled:$false | Should -BeNullOrEmpty
+        }
+        It "Should set Active" {
+            Set-TssSecret -TssSession $session -Id $secret.Id -Active | Should -BeNullOrEmpty
         }
     }
 }
