@@ -1,4 +1,4 @@
-﻿function Get-TssSecret {
+﻿function Get-Secret {
     <#
     .SYNOPSIS
     Get a secret from Secret Server
