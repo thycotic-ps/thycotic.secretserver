@@ -2,14 +2,14 @@
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
-    Describe "$commandName verify parameters" {
+Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'TssSession','Id','GetChildren','IncludeTemplates','Raw'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parmaeters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parmaeters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -28,18 +28,18 @@ Describe "$commandName works" {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
 
         $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
+            Uri                 = "$ss/api/v1/folders?take=$($session.take)"
+            ExpandProperty      = 'records'
             PersonalAccessToken = $session.AccessToken
         }
         $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
+        $tssSecretFolder = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing' })
 
         $object = Get-TssFolder $session -Id $tssSecretFolder.Id -GetChildren
         $session.SessionExpire()
         $props = 'Id','FolderName','ChildFolders','SecretTemplates'
     }
-    Context "Checking" -Foreach @{object = $object} {
+    Context "Checking" -ForEach @{object = $object } {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
