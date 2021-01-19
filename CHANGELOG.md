@@ -9,11 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* `Set-TssSecret` - additional parameters for General settings [#12](https://github.com/thycotic-ps/thycotic.secretserver/issues/12) (aefb780)
+* None
 
 ### Changed
 
 * None
+
+## [0.25.0] -- 2021-01-19
+
+### Added
+
+* `Set-TssSecret` - additional parameters for General settings [#12](https://github.com/thycotic-ps/thycotic.secretserver/issues/12) (aefb780)
+
+### Changed
+
+* Fixed name of functions: `Get-TssSecret`, `Get-TssSecretField`, `Remove-TssReportCategory` (8bd9e13)
+* Fixed issue on `Find-TssSecret` for looking up via ID (2be2358)
+* Fixed issue identified by test failure on `Test-TssVersion` (254d572)
 
 ## [0.24.0] -- 2021-01-14
 
