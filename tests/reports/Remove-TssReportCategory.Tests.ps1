@@ -1,8 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
-
-    $PSDefaultParameterValues.Remove("*:TssSession")
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -28,7 +26,6 @@ Describe "$commandName verify parameters" {
 Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $PSDefaultParameterValues.Add("*:TssSession",$session)
 
         $reportCatName = "tssModuleTest$(Get-Random)"
         $bodData = @{
@@ -39,12 +36,15 @@ Describe "$commandName works" {
         } | ConvertTo-Json
         # bug in endpoint where it won't return the Category ID properly
         Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/categories" -Method 'POST' -Body $bodData -PersonalAccessToken $session.AccessToken > $null
-        $categoryId = (Get-TssReportCategory -All).Where({$_.Name -eq $reportCatName}).CategoryId
+        $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq $reportCatName}).CategoryId
     }
-    Context "Checking" -Foreach @{categoryId = $categoryId} {
+    Context "Checking" -Foreach @{categoryId = $categoryId; session = $session} {
+        AfterAll {
+            $session.SessionExpire()
+        }
         It "Should delete the category" {
-            Remove-TssReportCategory -ReportCategoryId $categoryId -Confirm:$false
-            $cat = Get-TssReportCategory -ReportCategoryId $categoryId -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
+            Remove-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -Confirm:$false
+            $cat = Get-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
             $cat | Should -BeNullOrEmpty
         }
     }

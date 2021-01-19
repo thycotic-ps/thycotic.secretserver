@@ -51,7 +51,7 @@ process {
         }
     }
 
-    switch ($source) {
+    switch ($source.Name) {
         'Get-TssVersion' {
             $returnProps = 'Version'
         }

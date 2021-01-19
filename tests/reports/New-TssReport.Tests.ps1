@@ -1,8 +1,6 @@
 ﻿BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot,'..','constants.ps1'))
-
-    $PSDefaultParameterValues.Remove("*:TssSession")
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -29,9 +27,8 @@ Describe "$commandName works" {
     BeforeDiscovery {
         $reportName = ("TssTestReport$(Get-Random)")
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $PSDefaultParameterValues.Add("*:TssSession",$session)
 
-        $categoryId = (Get-TssReportCategory -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
+        $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
         if ($null -eq $categoryId) {
             $bodData = @{
                 data = @{
@@ -41,10 +38,11 @@ Describe "$commandName works" {
             } | ConvertTo-Json
             # bug in endpoint where it won't return the Category ID properly
             Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/categories" -Method 'POST' -Body $bodData -PersonalAccessToken $session.AccessToken > $null
-            $categoryId = (Get-TssReportCategory -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
+            $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
         }
 
         $newReport = @{
+            TssSession = $session
             ReportName = $reportName
             CategoryId = $categoryId
             Description = "Tss Module Test report"
@@ -55,9 +53,8 @@ Describe "$commandName works" {
 
         # delete report created
         Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/$($object.Id)" -Method DELETE -PersonalAccessToken $session.AccessToken > $null
-        Remove-TssReportCategory -ReportCategoryId $categoryId -Confirm:$false > $null
+        Remove-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -Confirm:$false > $null
         $session.SessionExpire()
-        $PSDefaultParameterValues.Remove("*:TssSession")
     }
     Context "Checking" -Foreach @{object = $object} {
         It "Should not be empty" {
