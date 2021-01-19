@@ -175,7 +175,7 @@
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams['Id']) {
-                $uri = $TssSession.ApiUrl + ("secrets/lookup", $Id -join '/')
+                $uri = $TssSession.ApiUrl , "secrets/lookup", $Id -join '/'
             } else {
                 $uri = $TssSession.ApiUrl, "secrets/lookup" -join '/'
                 $uri += "?take=$($TssSession.Take)"
