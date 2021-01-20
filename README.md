@@ -1,5 +1,4 @@
-<img src="https://user-images.githubusercontent.com/11204251/102900538-0b165a80-4432-11eb-9164-2996d0222a88.png" width="30" height="30">
-A contribution guide is pending, due to this Pull Requests are not being accepted at this time.
+![test import](https://github.com/thycotic-ps/thycotic.secretserver/workflows/test%20import/badge.svg)
 
 # Introduction
 
