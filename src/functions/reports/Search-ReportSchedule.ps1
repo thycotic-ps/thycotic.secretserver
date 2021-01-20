@@ -67,7 +67,7 @@
                 Write-Warning "No report schedules found"
             }
             if ($restReponse.records) {
-                . $TssReportScheduleObject $restReponse.records
+                . $TssReportScheduleSummaryObject $restReponse.records
             }
         } else {
             Write-Warning "No valid session found"
