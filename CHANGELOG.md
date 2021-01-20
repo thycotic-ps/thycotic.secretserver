@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* GitHub Action for testing import on cross-platforms eb2e9bb89e0b7b3019b3b97b0569faddecca7234
+* GitHub Action for testing import on cross-platforms - https://github.com/thycotic-ps/thycotic.secretserver/commit/eb2e9bb89e0b7b3019b3b97b0569faddecca7234
 
 ### Changed
 
