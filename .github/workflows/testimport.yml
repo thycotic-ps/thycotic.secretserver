@@ -1,0 +1,19 @@
+﻿name: test import
+on:
+  push:
+    branches: master
+
+jobs:
+  build:
+    name: Module imports on all platforms
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Perform the import
+      shell: pwsh
+      run: Import-Module ./src/Thycotic.SecretServer.psd1 -ErrorAction Stop;
