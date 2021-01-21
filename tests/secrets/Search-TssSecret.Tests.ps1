@@ -4,7 +4,7 @@
 }
 Describe "$commandName veirfy parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Raw','Permission','Scope',
+        [object[]]$knownParameters = 'TssSession','Raw', 'SortBy', 'Permission','Scope',
         # Folder param set
         'FolderId','IncludeSubFolders',
         # field param set
