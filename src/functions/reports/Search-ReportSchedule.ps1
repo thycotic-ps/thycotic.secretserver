@@ -1,7 +1,28 @@
 ﻿function Search-ReportSchedule {
+    <#
+    .SYNOPSIS
+    Search report schedule
 
+    .DESCRIPTION
+    Search for report schedule(s)
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Search-TssReportSchedule -TssSession $session -ReportId 50
+
+    Return all schedules found associated with Report ID 50.
+
+    .EXAMPLE
+    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS C:\> Search-TssReportSchedule -TssSession $session -IncludeDeleted
+
+    Returns list of all report schedules, including those that were deleted
+
+    .NOTES
+    Requires TssSession object returned by New-TssSession
+    #>
     [cmdletbinding(DefaultParameterSetName = "filter")]
-    [OutputType('TssReportSchedule')]
+    [OutputType('TssReportScheduleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
