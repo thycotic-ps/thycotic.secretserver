@@ -13,15 +13,17 @@ begin {
 }
 
 process {
-        foreach ($r in $Object) {
-            $outObject = [TssReport]::new()
-                foreach ($rProp in $Properties) {
-                    if ($rProp -in $outObject.PSObject.Properties.Name) {
-                        $outObject.$rProp = $r.$rProp
-                    } else {
-                        Write-Warning "Property $rProp does not exist in the TssReport class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
-                    }
-                }
+    $outObject = @()
+    foreach ($r in $Object) {
+        $outReportObject = [TssReport]::new()
+        foreach ($rProp in $Properties) {
+            if ($rProp -in $outReportObject.PSObject.Properties.Name) {
+                $outReportObject.$rProp = $r.$rProp
+            } else {
+                Write-Warning "Property $rProp does not exist in the TssReport class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
+            }
         }
-        return $outObject
+        $outObject += $outReportObject
+    }
+    return $outObject
 }

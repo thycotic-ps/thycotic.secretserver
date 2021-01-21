@@ -13,6 +13,7 @@ begin {
 }
 
 process {
+    $outObject = @()
     foreach ($s in $Object) {
         $outReportSched = [TssReportScheduleSummary]::new()
         foreach ($rsProp in $Properties) {
@@ -24,6 +25,7 @@ process {
                 Write-Warning "Property $rsProp does not exist in the TssReportScheduleSummary class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
             }
         }
+        $outObject += $outReportSched
     }
-    return $outReportSched
+    return $outObject
 }

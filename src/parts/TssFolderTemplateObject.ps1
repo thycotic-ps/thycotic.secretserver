@@ -47,7 +47,7 @@ process {
         }
         $childFolders += $cFolder
     }
-
+    $outFolders = @()
     foreach ($f in $FolderRecord) {
         $outFolder = [TssFolder]::new()
         foreach ($fProp in $folderProperties) {
@@ -63,6 +63,7 @@ process {
                 Write-Warning "Property $fProp does not exist in the TssFolder class. Please create a bug report at https://github.com/thycotic-ps/thycotic.secretserver/issues/new/choose"
             }
         }
+        $outFolders += $outFolder
     }
-    return $outFolder
+    return $outFolders
 }
