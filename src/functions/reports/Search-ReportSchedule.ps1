@@ -38,6 +38,10 @@
         [int]
         $ReportId,
 
+        # Sort by specific property, default Name
+        [string]
+        $SortBy = 'Name',
+
         # Output the raw response from the REST API endpoint
         [switch]
         $Raw
@@ -49,14 +53,13 @@
         $reportSchedParams = . $SearchReportSchedParams $PSBoundParameters
         $reportSchedParams.Remove('TssSession')
         $reportSchedParams.Remove('Raw')
-
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.ApiUrl, 'reports', 'schedules' -join '/'
-            $uri += "?take=$($TssSession.Take)"
+            $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
 
             $filters = @()
             if ($reportSchedParams.Contains('IncludeDeleted')) {
@@ -65,9 +68,12 @@
             if ($reportSchedParams.Contains('ReportId')) {
                 $filters += "filter.reportId=$ReportId"
             }
-            $uriFilter = $filters -join '&'
-            Write-Verbose "Filters: $uriFilter"
-            $uri = $uri, $uriFilter -join '&'
+
+            if ($filters) {
+                $uriFilter = $filters -join '&'
+                Write-Verbose "Filters: $uriFilter"
+                $uri = $uri, $uriFilter -join '&'
+            }
 
             $invokeParams.Uri = $uri
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
