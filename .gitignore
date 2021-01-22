@@ -1,3 +1,4 @@
 *.xlsx
 debug.log
 release.md
+.vs/
