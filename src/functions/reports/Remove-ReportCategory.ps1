@@ -39,13 +39,13 @@
         $ReportCategoryId
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Remove-TssReportCategory'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($id in $ReportCategoryId) {
                 $uri = $TssSession.ApiUrl, 'reports/categories', $id.ToString() -join '/'
                 $invokeParams.Uri = $uri

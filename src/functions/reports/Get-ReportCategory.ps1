@@ -46,13 +46,13 @@
         $Raw
     )
     begin {
-        $tssReportCatParams = . $GetReportCategoryParams $PSBoundParameters
+        $tssReportCatParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssReportCatParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssReportCatParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssReportCatParams['Id']) {
                 foreach ($reportCategory in $Id) {
                     $restResponse = $null

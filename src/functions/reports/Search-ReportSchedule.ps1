@@ -47,25 +47,25 @@
         $Raw
     )
     begin {
-        $tssParams = . $SearchReportSchedParams $PSBoundParameters
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
 
-        $reportSchedParams = . $SearchReportSchedParams $PSBoundParameters
+        $reportSchedParams = $PSBoundParameters
         $reportSchedParams.Remove('TssSession')
         $reportSchedParams.Remove('Raw')
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.ApiUrl, 'reports', 'schedules' -join '/'
             $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
 
             $filters = @()
-            if ($reportSchedParams.Contains('IncludeDeleted')) {
+            if ($reportSchedParams.ContainsKey('IncludeDeleted')) {
                 $filters += "filter.includeDeleted=$IncludeDeleted"
             }
-            if ($reportSchedParams.Contains('ReportId')) {
+            if ($reportSchedParams.ContainsKey('ReportId')) {
                 $filters += "filter.reportId=$ReportId"
             }
 

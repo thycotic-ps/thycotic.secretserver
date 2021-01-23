@@ -83,21 +83,20 @@
         $Raw
     )
     begin {
-        $tssNewReportParams = . $NewTssReportParams $PSBoundParameters
+        $tssNewReportParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssNewReportParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssNewReportParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'reports' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
 
             $newReportBody = [ordered]@{}
-            # $reportParamEnums = $tssNewReportParams.GetEnumerator()
-            switch ($tssNewReportParams.GetEnumerator().Name) {
+            switch ($tssNewReportParams.Keys) {
                 'CategoryId' { $newReportBody.Add('categoryId',$CategoryId) }
                 'ChartType' { $newReportBody.Add('chartType', $ChartType) }
                 'Description' { $newReportBody.Add('description', $Description) }

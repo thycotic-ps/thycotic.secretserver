@@ -59,12 +59,12 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssFolder'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folders', $folder.ToString() -join '/'

@@ -155,7 +155,7 @@
         $Template
     )
     begin {
-        $setSecretParams = . $SetSecretParams $PSBoundParameters
+        $setSecretParams = $PSBoundParameters
 
         $fieldParamSet = . $ParameterSetParams 'Set-TssSecret' 'field'
         $emailParamSet = . $ParameterSetParams 'Set-TssSecret' 'email'
@@ -166,28 +166,28 @@
         $fieldParams = @()
         $invokeParamsField = @{ }
         foreach ($f in $fieldParamSet) {
-            if ($setSecretParams.Contains($f)) {
+            if ($setSecretParams.ContainsKey($f)) {
                 $fieldParams += $f
             }
         }
         $emailParams = @()
         $invokeParamsEmail = @{ }
         foreach ($e in $emailParamSet) {
-            if ($setSecretParams.Contains($e)) {
+            if ($setSecretParams.ContainsKey($e)) {
                 $emailParams += $e
             }
         }
         $generalParams = @()
         $invokeParamsGenearl = @{ }
         foreach ($g in $generalParamSet) {
-            if ($setSecretParams.Contains($g)) {
+            if ($setSecretParams.ContainsKey($g)) {
                 $generalParams += $g
             }
         }
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($setSecretParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($setSecretParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $invokeParamsField.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsEmail.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsGenearl.PersonalAccessToken = $TssSession.AccessToken
@@ -196,16 +196,16 @@
                 if ($fieldParams.Count -gt 0) {
                     Write-Verbose "Working on field parameter set values"
 
-                    if ($setSecretParams.Contains('Clear') -and $setSecretParams.Contains('Value')) {
+                    if ($setSecretParams.ContainsKey('Clear') -and $setSecretParams.ContainsKey('Value')) {
                         Write-Warning "Clear and Value provided, only one is supported"
                         return
                     }
 
                     $body = @{}
-                    if ($setSecretParams.Contains('Clear')) {
+                    if ($setSecretParams.ContainsKey('Clear')) {
                         $body.Add('value',"")
                     }
-                    if ($setSecretParams.Contains('Value')) {
+                    if ($setSecretParams.ContainsKey('Value')) {
                         $body.Add('value',$Value)
                     }
 
@@ -226,7 +226,7 @@
 
                         if ($fieldResponse -eq $Value) {
                             Write-Verbose "Secret [$secret] field $Field updated successfully"
-                        } elseif ($setSecretParams.Contains('Clear') -and ($null -eq $fieldResponse)) {
+                        } elseif ($setSecretParams.ContainsKey('Clear') -and ($null -eq $fieldResponse)) {
                             Write-Verbose "Secret [$secret] field $Field cleared successfully"
                         } else {
                             Write-Verbose "Response for secret [$secret]: $fieldResponse"
@@ -241,21 +241,21 @@
                         data = @{ }
                     }
 
-                    if ($setSecretParams.Contains('EmailWhenChanged')) {
+                    if ($setSecretParams.ContainsKey('EmailWhenChanged')) {
                         $sendEmailWhenChanged = @{
                             dirty = $true
                             value = $EmailWhenChanged
                         }
                         $emailBody.data.Add('sendEmailWhenChanged',$sendEmailWhenChanged)
                     }
-                    if ($setSecretParams.Contains('EmailWhenViewed')) {
+                    if ($setSecretParams.ContainsKey('EmailWhenViewed')) {
                         $sendEmailWhenViewed = @{
                             dirty = $true
                             value = $EmailWhenViewed
                         }
                         $emailBody.data.Add('sendEmailWhenViewd',$sendEmailWhenViewed)
                     }
-                    if ($setSecretParams.Contains('EmailWhenHeartbeatFails')) {
+                    if ($setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
                         $sendEmailWhenHeartbeatFails = @{
                             dirty = $true
                             value = $EmailWhenHeartbeatFails
@@ -278,13 +278,13 @@
                             Write-Error $err
                         }
 
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $setSecretParams.Contains('EmailWhenChanged')) {
+                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $setSecretParams.ContainsKey('EmailWhenChanged')) {
                             Write-Verbose "Secret [$secret] email setting [Send Email When Changed] updated to $EmailWhenChanged"
                         }
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenViewed' -and $setSecretParams.Contains('EmailWhenViewed')) {
+                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenViewed' -and $setSecretParams.ContainsKey('EmailWhenViewed')) {
                             Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] updated to $EmailWhenViewed"
                         }
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $setSecretParams.Contains('EmailWhenHeartbeatFails')) {
+                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
                             Write-Verbose "Secret [$secret] email setting [Sned Email When Heartbeat Fails] updated to $EmailWhenHeartbeatFails"
                         }
                     }
@@ -297,67 +297,67 @@
                         data = @{ }
                     }
 
-                    if ($setSecretParams.Contains('Active')) {
+                    if ($setSecretParams.ContainsKey('Active')) {
                         $setActive = @{
                             dirty = $true
                             value = $Active
                         }
                         $generalBody.data.Add('active',$setActive)
                     }
-                    if ($setSecretParams.Contains('EnableInheritSecretPolicy')) {
+                    if ($setSecretParams.ContainsKey('EnableInheritSecretPolicy')) {
                         $setInheritance = @{
                             dirty = $true
                             value = $EnableInheritSecretPolicy
                         }
                         $generalBody.data.Add('enableInheritSecretPolicy',$setInheritance)
                     }
-                    if ($setSecretParams.Contains('Folder')) {
+                    if ($setSecretParams.ContainsKey('Folder')) {
                         $setFolder = @{
                             dirty = $true
                             value = $Folder
                         }
                         $generalBody.data.Add('folder',$setFolder)
                     }
-                    if ($setSecretParams.Contains('GenerateSshKeys')) {
+                    if ($setSecretParams.ContainsKey('GenerateSshKeys')) {
                         #does not require dirty and value properties
                         $generalBody.data.Add('generateSshKeys',$GenerateSshKeys)
                     }
-                    if ($setSecretParams.Contains('HeartbeatEnabled')) {
+                    if ($setSecretParams.ContainsKey('HeartbeatEnabled')) {
                         $setHb = @{
                             dirty = $true
                             value = $HeartbeatEnabled
                         }
                         $generalBody.data.Add('heartbeatEnabled',$setHb)
                     }
-                    if ($setSecretParams.Contains('SecretPolicy')) {
+                    if ($setSecretParams.ContainsKey('SecretPolicy')) {
                         $setSecretPolicy = @{
                             dirty = $true
                             value = $SecretPolicy
                         }
                         $generalBody.data.Add('secretPolicy',$setSecretPolicy)
                     }
-                    if ($setSecretParams.Contains('Site')) {
+                    if ($setSecretParams.ContainsKey('Site')) {
                         $setSite = @{
                             dirty = $true
                             value = $Site
                         }
                         $generalBody.data.Add('enableInheritSecretPolicy',$setSite)
                     }
-                    if ($setSecretParams.Contains('Template')) {
+                    if ($setSecretParams.ContainsKey('Template')) {
                         $setTemplate = @{
                             dirty = $true
                             value = $Template
                         }
                         $generalBody.data.Add('template',$setTemplate)
                     }
-                    if ($setSecretParams.Contains('IsOutOfSync')) {
+                    if ($setSecretParams.ContainsKey('IsOutOfSync')) {
                         $setOutOfSync = @{
                             dirty = $true
                             value = $IsOutOfSync
                         }
                         $generalBody.data.Add('isOutOfSync',$setOutOfSync)
                     }
-                    if ($setSecretParams.Contains('SecretName')) {
+                    if ($setSecretParams.ContainsKey('SecretName')) {
                         $setName = @{
                             dirty = $true
                             value = $SecretName

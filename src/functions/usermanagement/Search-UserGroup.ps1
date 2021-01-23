@@ -45,28 +45,24 @@
         $Raw
     )
     begin {
-        $tssParams = . $SearchUserGroupParams $PSBoundParameters
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
-
-        $groupParams = . $SearchUserGroupParams $PSBoundParameters
-        $groupParams.Remove('TssSession')
-        $groupParams.Remove('Raw')
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.ApiUrl, 'groups' -join '/'
             $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
 
             $filters = @()
-            if ($groupParams.Contains('DomainId')) {
+            if ($tssParams.ContainsKey('DomainId')) {
                 $filters += "filter.domainId=$DomainId"
             }
-            if ($groupParams.Contains('IncludeInactive')) {
+            if ($tssParams.ContainsKey('IncludeInactive')) {
                 $filters += "filter.includeInactive=$IncludeInactive"
             }
-            if ($groupParams.Contains('SearchText')) {
+            if ($tssParams.ContainsKey('SearchText')) {
                 $filters += "filter.searchText=$SearchText"
             }
             if ($filters) {

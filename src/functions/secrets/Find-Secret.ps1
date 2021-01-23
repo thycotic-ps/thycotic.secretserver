@@ -163,17 +163,13 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Find-TssSecret'
-        $filterParams = . $GetParams $PSBoundParameters 'Find-TssSecret'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
-
-        $filterParams.Remove('Raw')
-        $filterParams.Remove('TssSession')
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams['Id']) {
                 $uri = $TssSession.ApiUrl , "secrets/lookup", $Id -join '/'
             } else {
@@ -182,60 +178,59 @@
                 $uri += "&filter.includeRestricted=true"
 
                 $filters = @()
-                $filterEnum = $filterParams.GetEnumerator()
-                foreach ($f in $filterEnum) {
-                    switch ($f.Name) {
-                        'Field' {
-                            $filters += "filter.searchField=$($f.Value)"
+                switch ($tssParams.Keys) {
+                    'Field' {
+                        $filters += "filter.searchField=$($tssParams['Field'])"
+                    }
+                    'FieldSlug' {
+                        $filters += "filter.searchFieldSlug=$($tssParams['FieldSlug'])"
+                    }
+                    'FieldText' {
+                        $filters += "filter.searchText=$($tssParams['FieldText'])"
+                    }
+                    'ExactMatch' {
+                        $filters += "filter.isExactmatch=$($tssParams['ExactMatch'])"
+                    }
+                    'ExtendedField' {
+                        foreach ($v in $tssParams['ExtendedField']) {
+                            $filters += "filter.extendedField=$v"
                         }
-                        'FieldSlug' {
-                            $filters += "filter.searchFieldSlug=$($f.Value)"
+                    }
+                    'PasswordTypeIds' {
+                        foreach ($v in $tssParams['PasswordTypeIds']) {
+                            $filters += "filter.passwordTypeIds=$v"
                         }
-                        'FieldText' {
-                            $filters += "filter.searchText=$($f.Value)"
+                    }
+                    'Permission' {
+                        $filters += switch ($tssParams['Permission']) {
+                            'List' { "filter.permissionRequired=1" }
+                            'View' { "filter.permissionRequired=2" }
+                            'Edit' { "filter.permissionRequired=3" }
+                            'Owner' { "filter.permissionRequired=4" }
                         }
-                        'ExactMatch' {
-                            $filters += "filter.isExactmatch=$($f.Value)"
+                    }
+                    'Scope' {
+                        $filters += switch ($tssParams['Scope']) {
+                            'All' { "filter.scope=1" }
+                            'Recent' { "filter.scope=2" }
+                            'Favorit' { "filter.scope=3" }
                         }
-                        'ExtendedField' {
-                            foreach ($v in $f.Value) {
-                                $filters += "filter.extendedField=$v"
-                            }
-                        }
-                        'PasswordTypeIds' {
-                            foreach ($v in $f.Value) {
-                                $filters += "filter.passwordTypeIds=$v"
-                            }
-                        }
-                        'Permission' {
-                            $filters += switch ($Permission) {
-                                'List' { "filter.permissionRequired=1" }
-                                'View' { "filter.permissionRequired=2" }
-                                'Edit' { "filter.permissionRequired=3" }
-                                'Owner' { "filter.permissionRequired=4" }
-                            }
-                        }
-                        'Scope' {
-                            $filters += switch ($Permission) {
-                                'All' { "filter.scope=1" }
-                                'Recent' { "filter.scope=2" }
-                                'Favorit' { "filter.scope=3" }
-                            }
-                        }
-                        'RpcEnabled' {
-                            $filters += "filter.onlyRPCEnabled=$($f.Value)"
-                        }
-                        'SharedWithMe' {
-                            $filters += "filter.onlySharedWithMe=$($f.Value)"
-                        }
-                        'ExcludeDoubleLock' {
-                            $filters += "filter.allowDoubleLocks=$($f.Value)"
-                        }
-                        'ExcludeActive' {
-                            $filters += "filter.includeActive=$($f.Value)"
-                        }
-                        default {
-                            $filters += "filter.$($f.name)=$($f.Value)"
+                    }
+                    'RpcEnabled' {
+                        $filters += "filter.onlyRPCEnabled=$($tssParams['RpcEnabled'])"
+                    }
+                    'SharedWithMe' {
+                        $filters += "filter.onlySharedWithMe=$($tssParams['SharedWithMe'])"
+                    }
+                    'ExcludeDoubleLock' {
+                        $filters += "filter.allowDoubleLocks=$($tssParams['ExcludeDoubleLock'])"
+                    }
+                    'ExcludeActive' {
+                        $filters += "filter.includeActive=$($tssParams['ExcludeActive'])"
+                    }
+                    default {
+                        if ($_ -in 'Verbose','TssSession','Raw') { continue } else {
+                            $filters += "filter.$($_)=$($tssParams[$_])"
                         }
                     }
                 }

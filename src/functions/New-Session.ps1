@@ -64,19 +64,19 @@
     )
 
     begin {
-        $invokeParams = . $InvokeTssParams $PSBoundParameters
-        $newTssParams = . $NewTssSessionParams $PSBoundParameters
+        $newTssParams = $PSBoundParameters
+        $invokeParams = @{ }
     }
 
     process {
         if (-not $newTssParams['AccessToken']) {
-            if ($newTssParams.Contains('SecretServer')) {
+            if ($newTssParams.ContainsKey('SecretServer')) {
                 $uri = $SecretServer, "oauth2/token" -join '/'
             }
 
             $postContent = [Ordered]@{ }
 
-            if ($newTssParams.Contains('Credential')) {
+            if ($newTssParams.ContainsKey('Credential')) {
                 $postContent.username = $Credential.UserName
                 $postContent.password = $Credential.GetNetworkCredential().Password
                 $postContent.grant_type = 'password'

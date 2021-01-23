@@ -25,12 +25,12 @@
         [TssSession]$TssSession
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssVersion'
+        $tssParams = $PSBoundParameters
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation
         } else {
             Write-Warning "No valid session found"

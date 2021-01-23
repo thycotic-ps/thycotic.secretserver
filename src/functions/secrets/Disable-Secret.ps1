@@ -34,13 +34,13 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Disable-TssSecret'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
 
             foreach ($secret in $Id) {
                 $uri = $TssSession.ApiUrl, "secrets", $secret.ToString() -join '/'

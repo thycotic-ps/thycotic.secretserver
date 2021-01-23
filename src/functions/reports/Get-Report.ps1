@@ -35,13 +35,13 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssReport'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($report in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'reports', $report.ToString() -join '/'

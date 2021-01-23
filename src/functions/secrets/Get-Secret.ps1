@@ -91,20 +91,20 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssSecret'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString() -join '/'
 
                 $body = @{}
                 if ($PSCmdlet.ParameterSetName -eq 'restricted') {
-                    switch ($tssParams) {
+                    switch ($tssParams.Keys) {
                         'Comment' {
                             $body.Add('comment',$Comment)
                         }

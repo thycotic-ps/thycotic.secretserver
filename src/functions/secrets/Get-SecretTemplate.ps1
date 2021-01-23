@@ -35,13 +35,13 @@
         $Raw
     )
     begin {
-        $tssParams = . $GetParams $PSBoundParameters 'Get-TssSecretTemplate'
+        $tssParams = $PSBoundParameters
         $invokeParams = @{ }
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($tssParams.Contains('TssSession') -and $TssSession.IsValidSession()) {
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($template in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secret-templates', $template.ToString() -join '/'
