@@ -7,27 +7,27 @@
     Create a new TssSession for working with a Secret Server
 
     .EXAMPLE
-    PS C:\> $cred = [PSCredential]::new('apiuser',(ConvertTo-SecureString -String "Fancy%$#Passwod" -AsPlainText -Force))
-    PS C:\> New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential $cred
+    $cred = [PSCredential]::new('apiuser',(ConvertTo-SecureString -String "Fancy%$#Passwod" -AsPlainText -Force))
+    New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential $cred
 
     A PSCredential is created for the apiuser account. The internal TssSession is updated upon successful authentication, and then output to the console.
 
     .EXAMPLE
-    PS C:\> $token = .\tss.exe -kd c:\secretserver\module_testing\ -cd c:\secretserver\module_testing
-    PS C:\> $tssSession = New-TssSession -SecretServer https://ssvault.com/SecretServer -AccessToken $token
+    $token = .\tss.exe -kd c:\secretserver\module_testing\ -cd c:\secretserver\module_testing
+    $tssSession = New-TssSession -SecretServer https://ssvault.com/SecretServer -AccessToken $token
 
     A token is requested via Client SDK (after proper init has been done)
     TssSession object is created with minimum properties required by the module.
     Note that this use case, SessionRefresh and SessionExpire are not supported
 
     .EXAMPLE
-    PS C:\> New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential (Get-Credential apiuser) -Raw
+    New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential (Get-Credential apiuser) -Raw
 
     A prompt to enter the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
     .EXAMPLE
-    PS C:\> $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
-    PS C:\> $session = nts https://ssvault.com/SecretServer $secretCred
+    $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
+    $session = nts https://ssvault.com/SecretServer $secretCred
 
     Create a credential object
     Use the alias nts to create a session object

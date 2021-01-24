@@ -28,7 +28,7 @@
         [Parameter(Mandatory,
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'field')]
-        [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(Mandatory, ParameterSetName = 'restricted')]
         [Alias("SecretId")]
         [int[]]
         $Id,
@@ -37,13 +37,14 @@
         [Parameter(Mandatory,
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'field')]
-        [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(Mandatory, ParameterSetName = 'restricted')]
         [Alias("FieldName")]
         [string]
         $Slug,
 
         # Write contents to a file (for file attachments and SSH public/private keys)
         [Parameter(ParameterSetName = 'field')]
+        [Parameter(ParameterSetName = 'restricted')]
         [System.IO.FileInfo]
         $OutFile,
 
@@ -103,7 +104,7 @@
                             $body.Add('forceCheckIn',$ForceCheckIn)
                         }
                         'IncludeInactive' {
-                            $body.Add('includeInactive',$IncludeInactive)
+                            $body.Add('includeInactive',[boolean]$IncludeInactive)
                         }
                         'TicketNumber' {
                             $body.Add('ticketNumber',$TicketNumber)
@@ -115,7 +116,7 @@
                     $uri = $uri, 'restricted/fields', $Slug -join '/'
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
-                    $invokeParams.Body = $body
+                    $invokeParams.Body = $body | ConvertTo-Json
                 } else {
                     $uri = $uri, 'fields', $Slug -join '/'
                     $invokeParams.Uri = $uri
@@ -135,7 +136,7 @@
                         $invokeParams.OutFile = $OutFile
                     }
                 }
-                Write-Verbose "$($invokeParams.Method) $uri with $body"
+                Write-Verbose "$($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {

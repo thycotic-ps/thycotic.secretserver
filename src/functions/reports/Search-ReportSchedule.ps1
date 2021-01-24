@@ -7,14 +7,14 @@
     Search for report schedule(s)
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssReportSchedule -TssSession $session -ReportId 50
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssReportSchedule -TssSession $session -ReportId 50
 
     Return all schedules found associated with Report ID 50.
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssReportSchedule -TssSession $session -IncludeDeleted
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssReportSchedule -TssSession $session -IncludeDeleted
 
     Returns list of all report schedules, including those that were deleted
 

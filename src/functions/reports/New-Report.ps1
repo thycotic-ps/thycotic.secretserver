@@ -7,20 +7,20 @@
     Longer of what command does
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> New-TssReport -TssSession $session -ReportName 'TssTestReport' -CategoryId 15 -ReportSql "SELECT 1" -Description 'Tss Test Report for POC'
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    New-TssReport -TssSession $session -ReportName 'TssTestReport' -CategoryId 15 -ReportSql "SELECT 1" -Description 'Tss Test Report for POC'
 
     Creates a new report with minimum requirements Name, CategoryId, ReportSql and Description
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer 'https://alpha/SecretServer' -Credential $ssCred
-    PS C:\> $params = @{
+    $session = New-TssSession -SecretServer 'https://alpha/SecretServer' -Credential $ssCred
+    $params = @{
     >> ReportName = 'Tss Test Report from SQL File'
     >> Category = (Get-TssReportCategory -TssSession $session -All | Where-Object Name -eq 'TssCategory').CategoryId
     >> Description = 'Test report using SQL file'
     >> ReportSql = (Get-Content .\tests\exports\testReport.sql | Out-String)
     >> }
-    PS C:\> New-TssReport -TssSession $session @params
+    New-TssReport -TssSession $session @params
 
     Create a new report where the T-SQL is stored in a SQL script file
 
@@ -115,7 +115,7 @@
 
             $invokeParams.Body = ($newReportBody | ConvertTo-Json)
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-            Write-Verbose "$($invokeParams.Method) $uri with $newReportBody"
+            Write-Verbose "$($invokeParams.Method) $uri with:`n $newReportBody"
             if (-not $PSCmdlet.ShouldProcess($ReportName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams

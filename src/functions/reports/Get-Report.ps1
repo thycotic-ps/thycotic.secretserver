@@ -7,8 +7,8 @@
     Gets a report based on Report ID
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssReport -TssSession $session -Id 6
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssReport -TssSession $session -Id 6
 
     Gets the details on report ID 6
 

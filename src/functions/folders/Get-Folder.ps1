@@ -7,20 +7,20 @@
     Get a folder(s) from Secret Server
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssFolder -TssSession $session -Id 4
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolder -TssSession $session -Id 4
 
     Returns folder associated with the Folder ID, 4
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssFolder -TssSession $session -Id 93 -Recurse
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolder -TssSession $session -Id 93 -Recurse
 
     Returns folder associated with the Folder ID, 93 and include child folders
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssFolder -TssSession $session -Id 93 -IncludeTemplates
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolder -TssSession $session -Id 93 -IncludeTemplates
 
     Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
 

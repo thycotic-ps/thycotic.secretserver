@@ -13,8 +13,8 @@
     Output the raw response from the REST API endpoint
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssVersion -TssSession $session
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssVersion -TssSession $session
 
     Returns version of Secret Server alpha
 

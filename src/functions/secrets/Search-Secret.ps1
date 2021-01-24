@@ -7,20 +7,20 @@
     Search for secrets using various filters provided by each parameter
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssSecret -TssSession $session -FolderId 50
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -FolderId 50
 
     Return all secrets found with a folder ID of 50
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssSecret -TssSession $session -FolderId 50 -SecretTemplateId 6001
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -FolderId 50 -SecretTemplateId 6001
 
     Return all secrets using Secret Template 6001 that are found in FolderID 50.
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
 
     Return all secrets using Secret Template 6047 that are active **and** inactive.
 

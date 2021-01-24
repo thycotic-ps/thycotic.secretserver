@@ -7,15 +7,15 @@
     Deletes the report category, associated reports are changed to inactive and moved to the Delete category
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Remove-TssReportCategory -TssSession $session -Id 11
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Remove-TssReportCategory -TssSession $session -Id 11
 
     A confirmation prompt will be shown.
     Removes report category 11
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Remove-TssReportCategory -TssSession $session -Id 21 -Confirm:$false
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Remove-TssReportCategory -TssSession $session -Id 21 -Confirm:$false
 
     Confirmation prompt is bypassed
     Removes report category 21

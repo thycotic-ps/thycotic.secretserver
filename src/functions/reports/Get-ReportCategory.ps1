@@ -7,14 +7,14 @@
     Get a report category by Id or list all
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssReportCategory -TssSession $session -Id 26
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssReportCategory -TssSession $session -Id 26
 
     Returns Report Category details for 26
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssReportCategory -TssSession $session
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssReportCategory -TssSession $session
 
     Returns a list of all categories
 

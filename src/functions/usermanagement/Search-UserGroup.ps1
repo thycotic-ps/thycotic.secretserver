@@ -7,8 +7,8 @@
     Search for user management groups
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-UserGroup -TssSession $session
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-UserGroup -TssSession $session
 
     Return list of all groups found in Secret Server that account has access to manage
 

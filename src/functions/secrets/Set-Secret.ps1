@@ -7,32 +7,32 @@
     Sets a secret property or field in Secret Server.
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 93 -Field Machine -Value "server2"
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 93 -Field Machine -Value "server2"
 
     Sets secret 93's field, "Machine", to "server2"
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 1455 -Field Notes -Value "to be decommissioned" -Comment "updating notes field"
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 1455 -Field Notes -Value "to be decommissioned" -Comment "updating notes field"
 
     Sets secret 1455's field, "Notes", to the provided value providing required comment
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
 
     Sets secret 1455's field, "Notes", to an empty value
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
 
     Sets secret 1455 email when viewed setting to true
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
 
     Sets secret 1455 disables emailing when changed
 

@@ -7,8 +7,8 @@
     Find secrets using the filter parameters provided
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Find-TssSecret -TssSession $session -FolderId 50 -RpcEnabled
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -FolderId 50 -RpcEnabled
 
     Return secrets found in folder 50 where RPC is enabled on the secret templates
 

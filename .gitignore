@@ -2,3 +2,6 @@
 debug.log
 release.md
 .vs/
+
+# ignoring doc works for now
+/docs

@@ -7,8 +7,8 @@
     Get a secret template(s) from Secret Server
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssSecretTemplate -Id 93
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretTemplate -Id 93
 
     Returns secret associated with the Secret ID, 93
 

@@ -7,8 +7,8 @@
     Disables a secret from Secret Server
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Disable-TssSecret -Id 93
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Disable-TssSecret -TssSession $session -Id 93
 
     Disables secret 93
 

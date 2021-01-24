@@ -7,8 +7,8 @@
     Tests whether Secret Server version returned by Get-TssVersion is the latest
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Test-TssVersion -TssSession $session
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Test-TssVersion -TssSession $session
 
     Pulls version of Secret Server and queries for latest version, returning object with details
 
