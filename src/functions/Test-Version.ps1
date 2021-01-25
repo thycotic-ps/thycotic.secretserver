@@ -12,6 +12,9 @@
 
     Pulls version of Secret Server and queries for latest version, returning object with details
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Test-TssVersion
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

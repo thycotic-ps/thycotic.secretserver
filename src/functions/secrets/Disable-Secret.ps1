@@ -12,6 +12,9 @@
 
     Disables secret 93
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Disable-TssSecret
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

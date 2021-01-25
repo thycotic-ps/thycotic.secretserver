@@ -35,6 +35,9 @@
     Call GetCredential() method to get the PSCredential object with the username and password
     Call GetValue() method passing the slug name to grab the ItemValue of the server field.
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Get-TssSecret
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

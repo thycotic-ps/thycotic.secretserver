@@ -12,6 +12,9 @@
 
     Gets the details on report ID 6
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Get-TssReport
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

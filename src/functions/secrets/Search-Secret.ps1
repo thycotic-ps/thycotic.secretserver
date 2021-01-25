@@ -24,6 +24,9 @@
 
     Return all secrets using Secret Template 6047 that are active **and** inactive.
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Search-TssSecret
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -32,6 +32,9 @@
     Create a credential object
     Use the alias nts to create a session object
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/New-TssSession
+
     .OUTPUTS
     TssSession.
     #>
@@ -39,26 +42,26 @@
     [OutputType('TssSession')]
     param(
         # Secret Server URL
-        [Parameter(ParameterSetName = 'New',Mandatory)]
-        [Parameter(ParameterSetName = 'tss',
+        [Parameter(ParameterSetName = 'new',Mandatory)]
+        [Parameter(ParameterSetName = 'sdk',
             Mandatory)]
         [Alias('Server')]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
-        [Parameter(ParameterSetName = 'New')]
+        [Parameter(ParameterSetName = 'new')]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Specify Access Token
         # Bypasses requesting a token from Secret Server
-        [Parameter(ParameterSetName = 'tss')]
+        [Parameter(ParameterSetName = 'sdk')]
         $AccessToken,
 
         # Raw output from the endpoint will be returned.
-        [Parameter(ParameterSetName = 'New')]
+        [Parameter(ParameterSetName = 'new')]
         [switch]
         $Raw
     )

@@ -12,6 +12,9 @@
 
     Return list of all groups found in Secret Server that account has access to manage
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Search-TssUserGroup
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

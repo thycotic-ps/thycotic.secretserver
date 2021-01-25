@@ -10,6 +10,9 @@
     Invoke-TssRestApi -Uri 'https://vault.company.com/api/v1/oauth2/token' -Method POST -Body $body
 
     Performs POST request to the URI specified, returning the output from the endpoint.
+
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Invoke-TssRestApi
     #>
     [Cmdletbinding()]
     param(

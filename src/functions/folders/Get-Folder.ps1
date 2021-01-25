@@ -24,6 +24,9 @@
 
     Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Get-TssFolder
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

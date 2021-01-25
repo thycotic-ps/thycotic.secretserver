@@ -12,6 +12,9 @@
 
     Get the username value of secret ID 14
 
+    .LINK
+    https://thycotic.secretserver.github.io/commands/Get-TssSecretField
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
