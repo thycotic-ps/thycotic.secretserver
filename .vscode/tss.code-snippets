@@ -3,7 +3,7 @@
         "scope": "powershell",
         "prefix": "tssget",
         "body": [
-            "function Get-Tss${1:Verb} {",
+            "function Get-${1:Verb} {",
             "\t<#",
             "\t.SYNOPSIS",
             "\t${2:Short of what command does}",
@@ -82,7 +82,7 @@
         "scope": "powershell",
         "prefix": "tssremove",
         "body": [
-            "function Remove-Tss${1:Verb} {",
+            "function Remove-${1:Verb} {",
             "\t<#",
             "\t.SYNOPSIS",
             "\t${2:Short of what command does}",
