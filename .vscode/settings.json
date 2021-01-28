@@ -10,5 +10,6 @@
     "[powershell]": {
         "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
     },
-    "powershell.codeFormatting.addWhitespaceAroundPipe": true
+    "powershell.codeFormatting.addWhitespaceAroundPipe": true,
+    "files.encoding": "utf8bom"
 }
