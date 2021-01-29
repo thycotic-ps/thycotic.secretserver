@@ -1,4 +1,4 @@
-﻿function Search-UserGroup {
+﻿function Search-Group {
     <#
     .SYNOPSIS
     Search for user management groups
@@ -8,7 +8,7 @@
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-UserGroup -TssSession $session
+    Search-Group -TssSession $session
 
     Return list of all groups found in Secret Server that account has access to manage
 

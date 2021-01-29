@@ -1,4 +1,4 @@
-﻿function Stop-PasswordChange {
+﻿function Stop-SecretPasswordChange {
     <#
     .SYNOPSIS
     Stop a current password change
@@ -8,7 +8,7 @@
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Stop-TssPasswordChange -TssSession $session -Id 46
+    PS C:\> Stop-TssSecretPasswordChange -TssSession $session -Id 46
 
     Stop a current password change operation on secret 46
 
