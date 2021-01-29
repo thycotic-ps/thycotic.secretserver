@@ -1,5 +1,9 @@
 ﻿[cmdletbinding()]
 param(
+    [Parameter(ParameterSetName = 'docs')]
+    [switch]
+    $PublishDocs,
+
     [Parameter(ParameterSetName = 'publish')]
     [string]
     $GalleryKey,
@@ -31,6 +35,30 @@ if (Test-Path $staging) {
 }
 $imported = Import-Module .\src\Thycotic.SecretServer.psd1 -Force -PassThru
 
+if ($PSBoundParameters['PublishDocs']) {
+    if ($PSEdition -eq 'Desktop') {
+        Write-Warning "Doc processing has to run under PowerShell Core"
+        return
+    }
+    Import-Module platyPS
+    $commands = Get-Command -Module $moduleName -CommandType Function
+    foreach ($cmd in $commands) {
+        switch ($cmd.Name) {
+            {$_ -match 'Secret'} { $category = 'secrets' }
+            {$_ -match 'Report'} { $category = 'reports' }
+            {$_ -match 'Group'} { $category = 'groups' }
+            {$_ -match 'Folder'} { $category = 'folders' }
+            default { $category = 'general' }
+        }
+        $metadata = @{
+            'category' = $category
+            'title' = $cmd.Name
+        }
+        New-MarkdownHelp -OutputFolder "$PSScriptRoot\docs\collections\_commands" -Command $cmd.Name -Metadata $metadata -Force
+    }
+    return
+}
+
 if (-not $PSBoundParameters['SkipTests']) {
     Import-Module Pester
     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
@@ -54,15 +82,16 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
     Write-Host "Module Files:"
     Get-ChildItem $moduleTempPath -Recurse | Select-Object Directory, Name
 
-    try {
-        Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
+    if ($PSBoundParameters['GalleryKey']) {
+        try {
+            Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
 
-        Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-        Write-Host "successfully published to PS Gallery"
-    } catch {
-        Write-Warning "Publish failed: $_"
+            Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+            Write-Host "successfully published to PS Gallery"
+        } catch {
+            Write-Warning "Publish failed: $_"
+        }
     }
-
     if ($PSBoundParameters['Release']) {
         if ((gh config get prompt) -eq 'enabled') {
             Invoke-Expression "gh config set prompt disabled"
@@ -89,5 +118,6 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
 
     Remove-Item -Recurse -Force $staging
 } else {
+    Remove-Item -Recurse -Force $staging
     Write-Host "Tests failures detected; cancelling and cleaning up"
 }

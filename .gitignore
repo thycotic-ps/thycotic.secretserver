@@ -4,4 +4,4 @@ release.md
 .vs/
 
 # ignoring doc works for now
-/docs
+/docs/_site
