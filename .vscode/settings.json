@@ -5,11 +5,51 @@
     "editor.autoClosingBrackets": "always",
     "editor.autoClosingQuotes": "always",
     "editor.autoSurround": "languageDefined",
+    "powershell.codeFormatting.autoCorrectAliases": true,
+    "powershell.codeFormatting.pipelineIndentationStyle": "IncreaseIndentationForFirstPipeline",
+    "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
+    "powershell.codeFormatting.useCorrectCasing": true,
+
+    // performance issues with VS Code, disabling auto format with save
+    "editor.formatOnSave": false,
 
     // selecting variables to include the '$':
     "[powershell]": {
         "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
     },
     "powershell.codeFormatting.addWhitespaceAroundPipe": true,
-    "files.encoding": "utf8bom"
+    // best practice UTF8 With BOM
+    "files.encoding": "utf8bom",
+    // GitHub PR extension
+    "githubIssues.queries": [
+
+        {
+            "label": "Assigned Issues",
+            "query": "default"
+        },
+        {
+            "label": "Secret Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:secrets"
+        },
+        {
+            "label": "Folder Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:folder"
+        },
+        {
+            "label": "Bug Reports",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:bug"
+        },
+        {
+            "label": "Module Reports",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:module"
+        },
+        {
+            "label": "Feature Request",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:\"feature request\""
+        }
+        // {
+        //     "label": "Created Issues",
+        //     "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
+        // }
+    ]
 }
