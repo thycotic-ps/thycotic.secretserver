@@ -33,7 +33,19 @@
         },
         {
             "label": "Folder Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:folder"
+            "query": "author:${user} state:open repo:${owner}/${repository} label:folders"
+        },
+        {
+            "label": "Group Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:groups"
+        },
+        {
+            "label": "Role Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:roles"
+        },
+        {
+            "label": "User Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:users"
         },
         {
             "label": "Bug Reports",
