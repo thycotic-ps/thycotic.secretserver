@@ -16,7 +16,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretStub')]
+    [OutputType('TssSecret')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -26,9 +26,11 @@
 
         # Secret Template ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Alias('TemplateId')]
         [int]
         $SecretTemplateId,
 
+        # Folder ID, sets the Folder ID property on the ouput object
         [Parameter(ValueFromPipeline)]
         [int]
         $FolderId
