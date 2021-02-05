@@ -16,16 +16,13 @@
         $currentTemplate = $WindowsAccountTemplate.PSObject.Copy()
         $machine = $item.Machine
         $user = $item.Username
-
         $currentTemplate.Name = "$machine $user"
         $currentTemplate.FolderId = 9
         $currentTemplate.Items.SetFieldValue('Machine',$item.Machine) > $null
         $currentTemplate.Items.SetFieldValue('Username',$item.Username) > $null
         $currentTemplate.Items.SetFieldValue('Password',$item.Password) > $null
-
         $created = New-TssSecret -TssSession $session -SecretStub $currentTemplate -Verbose
         $createdSecrets += $created
-
         Remove-Variable currentTemplate,machine,user -Force
     }
     return $createdSecrets | Select-Object FolderId, Name, SecretTemplateName, Active
