@@ -10,10 +10,16 @@
     [int]$ItemId
     [string]$ItemValue
     [string]$Slug
+
+    [boolean] SetFieldValue([string]$Slug,$Value) {
+        if ($this.Slug -eq $Slug) {
+            $this.ItemValue = $Value
+        }
+        return $true
+    }
 }
 
 class TssSecret {
-
     [int]$AccessRequestWorkflowMapId
     [boolean]$Active
     [boolean]$AllowOwnersUnrestrictedSshCommands
@@ -55,15 +61,13 @@ class TssSecret {
     [int]$SiteId
     [boolean]$WebLauncherRequiresIncognitoMode
 
-    [System.Management.Automation.PSCredential] GetCredential()
-    {
-        $username = ($this.Items | Where-Object FieldName -eq 'username').ItemValue
+    [System.Management.Automation.PSCredential] GetCredential() {
+        $username = ($this.Items | Where-Object FieldName -EQ 'username').ItemValue
         $passwd = ($this.Items | Where-Object IsPassword).ItemValue
         return [pscredential]::new($username,(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
     }
-
     [System.String] GetFieldValue([string]$Slug) {
-        $value = $this.Items.Where({$_.Slug -eq $Slug}).ItemValue
+        $value = $this.Items.Where( { $_.Slug -eq $Slug }).ItemValue
         return $value
     }
 }
