@@ -35,7 +35,7 @@ Describe "$commandName works" {
             TssSession = $session
             Id = $getSecrets[0].id
         }
-        $secret = Get-TssSecret @params | Stop-TssPasswordChange -TssSession $session
+        $secret = Get-TssSecret @params | Stop-TssSecretPasswordChange -TssSession $session
         $session.SessionExpire()
 
         $props = 'SecretId','Status','Notes'
