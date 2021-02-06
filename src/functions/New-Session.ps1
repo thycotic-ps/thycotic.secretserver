@@ -58,12 +58,7 @@
         # Specify Access Token
         # Bypasses requesting a token from Secret Server
         [Parameter(ParameterSetName = 'sdk')]
-        $AccessToken,
-
-        # Raw output from the endpoint will be returned.
-        [Parameter(ParameterSetName = 'new')]
-        [switch]
-        $Raw
+        $AccessToken
     )
 
     begin {
@@ -98,9 +93,6 @@
                 Write-Error $err
             }
 
-            if ($newTssParams['Raw']) {
-                return $restResponse
-            }
             if ($restResponse) {
                 $sessionObj = [TssSession]::new()
                 $sessionObj.SecretServer = $restResponse.SecretServer

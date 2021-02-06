@@ -42,11 +42,7 @@
         # Return list of all categories
         [Parameter()]
         [switch]
-        $All,
-
-        # Output the raw response from the API endpoint
-        [switch]
-        $Raw
+        $All
     )
     begin {
         $tssReportCatParams = $PSBoundParameters
@@ -97,9 +93,6 @@
                     Write-Error $err
                 }
 
-                if ($tssReportCatParams['Raw']) {
-                    return $restResponse
-                }
                 if ($restResponse) {
                     . $TssReportCategoryObject $restResponse.model -All:$All
                 }

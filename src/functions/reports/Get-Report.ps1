@@ -31,11 +31,7 @@
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("ReportId")]
         [int[]]
-        $Id,
-
-        # Output the raw response from the API endpoint
-        [switch]
-        $Raw
+        $Id
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -61,9 +57,6 @@
                     Write-Error $err
                 }
 
-                if ($tssParams['Raw']) {
-                    return $restResponse
-                }
                 if ($restResponse) {
                     . $TssReportObject $restResponse
                 }

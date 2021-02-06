@@ -30,11 +30,7 @@
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
         [int[]]
-        $Id,
-
-        # Output the raw response from the REST API endpoint
-        [switch]
-        $Raw
+        $Id
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -62,9 +58,6 @@
                     Write-Error $err
                 }
 
-                if ($tssParams['Raw']) {
-                    return $restResponse
-                }
                 if ($restResponse) {
                     [PSCustomObject]@{
                         Id         = $restResponse.id

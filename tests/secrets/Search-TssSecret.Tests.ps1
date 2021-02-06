@@ -4,13 +4,13 @@
 }
 Describe "$commandName veirfy parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Raw', 'SortBy', 'Permission','Scope',
+        [object[]]$knownParameters = 'TssSession', 'SortBy', 'Permission','Scope',
         # Folder param set
-        'FolderId','IncludeSubFolders',
+        'FolderId', 'IncludeSubFolders',
         # field param set
-        'Field','FieldText','ExactMatch','FieldSlug','ExtendedField','ExtendedTypeId',
+        'Field', 'FieldText', 'ExactMatch', 'FieldSlug', 'ExtendedField', 'ExtendedTypeId',
         # secret param set
-        'SecretTemplateId','SiteId','HeartbeatStatus','IncludeInactive','ExcludeActive','RpcEnabled','SharedWithMe','PasswordTypeIds','ExcludeDoubleLock','DoubleLockId'
+        'SecretTemplateId', 'SiteId', 'HeartbeatStatus', 'IncludeInactive', 'ExcludeActive', 'RpcEnabled', 'SharedWithMe', 'PasswordTypeIds', 'ExcludeDoubleLock', 'DoubleLockId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru

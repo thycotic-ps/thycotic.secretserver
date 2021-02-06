@@ -55,11 +55,7 @@
         [Parameter(ParameterSetName = 'filter')]
         [Alias("IncludeAssociatedTemplates")]
         [switch]
-        $IncludeTemplates,
-
-        # Output the raw response from the REST API endpoint
-        [switch]
-        $Raw
+        $IncludeTemplates
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -86,9 +82,6 @@
                     Write-Error $err
                 }
 
-                if ($tssParams['Raw']) {
-                    return $restResponse
-                }
                 if ($restResponse) {
                     . $TssFolderTemplateObject $restResponse
                 }

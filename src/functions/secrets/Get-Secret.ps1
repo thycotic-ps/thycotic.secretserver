@@ -87,11 +87,7 @@
         # Associated ticket system ID (required for ticket integrations)
         [Parameter(ParameterSetName = 'restricted')]
         [int]
-        $TicketSystemId,
-
-        # Output the raw response from the REST API endpoint
-        [switch]
-        $Raw
+        $TicketSystemId
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -149,9 +145,6 @@
                     Write-Error $err
                 }
 
-                if ($tssParams['Raw']) {
-                    return $restResponse
-                }
                 if ($restResponse) {
                     . $TssSecretObject $restResponse
                 }

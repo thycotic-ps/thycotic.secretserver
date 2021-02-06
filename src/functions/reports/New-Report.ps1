@@ -79,11 +79,7 @@
         # T-SQL for the report to run
         [Parameter(Mandatory,ValueFromPipeline)]
         [string]
-        $ReportSql,
-
-        # Output the raw response from the API endpoint
-        [switch]
-        $Raw
+        $ReportSql
     )
     begin {
         $tssNewReportParams = $PSBoundParameters
@@ -128,9 +124,6 @@
                 Write-Error $err
             }
 
-            if ($tssNewReportParams['Raw']) {
-                return $restResponse
-            }
             if ($restResponse) {
                 . $TssReportObject $restResponse
             }

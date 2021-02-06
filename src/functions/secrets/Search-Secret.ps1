@@ -168,11 +168,7 @@
 
         # Sort by specific property, default Name
         [string]
-        $SortBy = 'Name',
-
-        # Output the raw response from the REST API endpoint
-        [switch]
-        $Raw
+        $SortBy = 'Name'
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -262,9 +258,6 @@
                 Write-Error $err
             }
 
-            if ($tssParams['Raw']) {
-                return $restResponse
-            }
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                 Write-Warning "No secrets found"
             }

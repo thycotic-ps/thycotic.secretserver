@@ -31,11 +31,7 @@
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
-
-        # output the raw response from the API endpoint
-        [switch]
-        $Raw
+        [TssSession]$TssSession
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -44,7 +40,7 @@
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation -Raw:$Raw
+            . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation
         } else {
             Write-Warning "No valid session found"
         }

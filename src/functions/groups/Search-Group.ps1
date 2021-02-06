@@ -41,11 +41,7 @@
 
         # Sort by specific property, default Name
         [string]
-        $SortBy = 'Name',
-
-        # Output the raw response from the API endpoint
-        [switch]
-        $Raw
+        $SortBy = 'Name'
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -86,9 +82,6 @@
                 Write-Error $err
             }
 
-            if ($tssParams['Raw']) {
-                return $restReponse
-            }
             if ($restReponse.records.Count -le 0 -and $restReponse.records.Length -eq 0) {
                 Write-Warning "No groups found"
             }

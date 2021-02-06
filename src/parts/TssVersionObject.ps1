@@ -10,10 +10,7 @@ param(
     $TssSession,
 
     [System.Management.Automation.InvocationInfo]
-    $Invocation,
-
-    [switch]
-    $Raw
+    $Invocation
 )
 
 begin {
@@ -35,10 +32,6 @@ process {
         Write-Warning "Issue reading version, verify Hide Secret Server Version Numbers is disabled in Secret Server"
         $err = $_.ErrorDetails.Message
         Write-Error $err
-    }
-
-    if ($versionParams['Raw']) {
-        return $restResponse
     }
 
     $versionProperties = $restResponse.model.PSObject.Properties.Name

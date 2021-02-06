@@ -159,11 +159,7 @@
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "secret")]
         [int]
-        $DoubleLockId,
-
-        # Output the raw response from the REST API endpoint
-        [switch]
-        $Raw
+        $DoubleLockId
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -255,9 +251,6 @@
                 Write-Error $err
             }
 
-            if ($tssParams['Raw']) {
-                return $restResponse
-            }
             if ($tssParams['Id']) {
                 . $TssSecretLookupObject $restResponse -IsId
             } else {
