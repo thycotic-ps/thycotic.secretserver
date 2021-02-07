@@ -4,6 +4,10 @@ param(
     [switch]
     $PublishDocs,
 
+    [Parameter(ParameterSetName = 'docs')]
+    [string]
+    $Command,
+
     [Parameter(ParameterSetName = 'publish')]
     [string]
     $GalleryKey,
@@ -41,7 +45,12 @@ if ($PSBoundParameters['PublishDocs']) {
         return
     }
     Import-Module platyPS
-    $commands = Get-Command -Module $moduleName -CommandType Function
+    $cmdParams = @{
+        Module = $moduleName
+        CommandType = 'Function'
+        Name = $Command
+    }
+    $commands = Get-Command @cmdParams
     foreach ($cmd in $commands) {
         switch ($cmd.Name) {
             {$_ -match 'Secret'} { $category = 'secrets' }
