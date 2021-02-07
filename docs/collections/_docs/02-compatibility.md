@@ -19,4 +19,4 @@ The Secret Server version listed is the minimum required to use the function.
 -------------------------------------------------------------| ------------------------------| :----------------
 [New-TssReportSchedule][New-TssReportSchedule]               | **10.9.32**                   | Endpoint `POST /reports/schedules` added
 
-[New-TssReportSchedule]:/commands/New-TssReportSchedule
+[New-TssReportSchedule]:/thycotic.secretserver/commands/New-TssReportSchedule

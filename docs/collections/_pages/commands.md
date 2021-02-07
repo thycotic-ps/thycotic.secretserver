@@ -78,25 +78,25 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 ---------------- | ---------- | --------------------------------- |
 [/version][/version] | GET | [Get-TssVersion][Get-TssVersion]
 
-[New-TssSession]:/commands/New-TssSession
-[Get-TssFolder]:/commands/Get-TssFolder
-[Search-TssGroup]:/commands/Search-TssGroup
-[Get-TssReport]:/commands/Get-TssReport
-[Get-TssReportCategory]:/commands/Get-TssReportCategory
-[New-TssReport]:/commands/New-TssReport
-[Remove-TssReportCategory]:/commands/Remove-TssReportCategory
-[Search-TssReportSchedule]:/commands/Search-TssReportSchedule
-[Disable-TssSecret]:/commands/Disable-TssSecret
-[Find-TssSecret]:/commands/Find-TssSecret
-[Get-TssSecret]:/commands/Get-TssSecret
-[Get-TssSecretField]:/commands/Get-TssSecretField
-[Search-TssSecret]:/commands/Search-TssSecret
-[Set-TssSecret]:/commands/Set-TssSecret
-[Get-TssSecretTemplate]:/commands/Get-TssSecretTemplate
-[Stop-TssSecretPasswordChange]:/commands/Stop-TssSecretPasswordChange
-[Get-TssVersion]:/commands/Get-TssVersion
-[New-TssSecret]:/commands/New-TssSecret
-[Get-TssSecretStub]:/commands/Get-TssSecretStub
+[New-TssSession]:/thycotic.secretserver/commands/New-TssSession
+[Get-TssFolder]:/thycotic.secretserver/commands/Get-TssFolder
+[Search-TssGroup]:/thycotic.secretserver/commands/Search-TssGroup
+[Get-TssReport]:/thycotic.secretserver/commands/Get-TssReport
+[Get-TssReportCategory]:/thycotic.secretserver/commands/Get-TssReportCategory
+[New-TssReport]:/thycotic.secretserver/commands/New-TssReport
+[Remove-TssReportCategory]:/thycotic.secretserver/commands/Remove-TssReportCategory
+[Search-TssReportSchedule]:/thycotic.secretserver/commands/Search-TssReportSchedule
+[Disable-TssSecret]:/thycotic.secretserver/commands/Disable-TssSecret
+[Find-TssSecret]:/thycotic.secretserver/commands/Find-TssSecret
+[Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
+[Get-TssSecretField]:/thycotic.secretserver/commands/Get-TssSecretField
+[Search-TssSecret]:/thycotic.secretserver/commands/Search-TssSecret
+[Set-TssSecret]:/thycotic.secretserver/commands/Set-TssSecret
+[Get-TssSecretTemplate]:/thycotic.secretserver/commands/Get-TssSecretTemplate
+[Stop-TssSecretPasswordChange]:/thycotic.secretserver/commands/Stop-TssSecretPasswordChange
+[Get-TssVersion]:/thycotic.secretserver/commands/Get-TssVersion
+[New-TssSecret]:/thycotic.secretserver/commands/New-TssSecret
+[Get-TssSecretStub]:/thycotic.secretserver/commands/Get-TssSecretStub
 
 [/secrets/stubs]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-stub-get
 [/secrets]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-post

@@ -34,23 +34,23 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssFolder][TssFolder]              | [Get-TssFolder][Get-TssFolder]
 [TssFolderTemplate][TssFolderTemplate]              | [Get-TssFolder][Get-TssFolder]
 
-[New-TssSession]:/commands/New-TssSession
-[Get-TssSecret]:/commands/Get-TssSecret
-[Find-TssSecret]:/commands/Find-TssSecret
-[Search-TssSecret]:/commands/Search-TssSecret
-[Get-TssSecretTemplate]:/commands/Get-TssSecretTemplate
-[Get-TssSecretTemplate]:/commands/Get-TssSecretTemplate
-[Get-TssFolder]:/commands/Get-TssFolder
-[Get-TssSecretStub]:/commands/Get-TssSecretStub
-[New-TssSecret]:/commands/New-TssSecret
+[New-TssSession]:/thycotic.secretserver/commands/New-TssSession
+[Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
+[Find-TssSecret]:/thycotic.secretserver/commands/Find-TssSecret
+[Search-TssSecret]:/thycotic.secretserver/commands/Search-TssSecret
+[Get-TssSecretTemplate]:/thycotic.secretserver/commands/Get-TssSecretTemplate
+[Get-TssSecretTemplate]:/thycotic.secretserver/commands/Get-TssSecretTemplate
+[Get-TssFolder]:/thycotic.secretserver/commands/Get-TssFolder
+[Get-TssSecretStub]:/thycotic.secretserver/commands/Get-TssSecretStub
+[New-TssSecret]:/thycotic.secretserver/commands/New-TssSecret
 
-[TssSession]:/abouttopics/about_tsssession
-[TssSecret]:/abouttopics/about_tsssecret
-[TssSecretItem]:/abouttopics/about_tsssecretitem
-[TssSecretLookup]:/abouttopics/about_tsssecretlookup
-[TssSecretSummary]:/abouttopics/about_tsssecretsummary
-[TssSecretSummaryExtendedField]:/abouttopics/about_tsssecretsummaryextendedfield
-[TssSecretTemplate]:/abouttopics/about_tsssecrettemplate
-[TssSecretTemplateField]:/abouttopics/about_tsssecrettemplatefield
-[TssFolder]:/abouttopics/about_tssfolder
-[TssFolderTemplate]:/abouttopics/about_tssfoldertemplate
+[TssSession]:/thycotic.secretserver/abouttopics/about_tsssession
+[TssSecret]:/thycotic.secretserver/abouttopics/about_tsssecret
+[TssSecretItem]:/thycotic.secretserver/abouttopics/about_tsssecretitem
+[TssSecretLookup]:/thycotic.secretserver/abouttopics/about_tsssecretlookup
+[TssSecretSummary]:/thycotic.secretserver/abouttopics/about_tsssecretsummary
+[TssSecretSummaryExtendedField]:/thycotic.secretserver/abouttopics/about_tsssecretsummaryextendedfield
+[TssSecretTemplate]:/thycotic.secretserver/abouttopics/about_tsssecrettemplate
+[TssSecretTemplateField]:/thycotic.secretserver/abouttopics/about_tsssecrettemplatefield
+[TssFolder]:/thycotic.secretserver/abouttopics/about_tssfolder
+[TssFolderTemplate]:/thycotic.secretserver/abouttopics/about_tssfoldertemplate
