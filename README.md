@@ -1,4 +1,7 @@
-![test import](https://github.com/thycotic-ps/thycotic.secretserver/workflows/test%20import/badge.svg)
+[![banner][]][Docs]
+
+[banner]:/docs/assets/images/banner_symbol_title.png
+[Docs]:https://thycotic-ps.github.io/thycotic.secretserver
 
 # Introduction
 
