@@ -21,7 +21,7 @@ title_separator          : "-"
 subtitle                 : # PowerShell | Thycotic
 name                     : "Shawn Melton"
 description              : "Thycotic.SecretServer"
-url                      : "http://http://127.0.0.1:4000" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : "https://thycotic-ps.github.io/thycotic.secretserver" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : "thycotic-ps/Thycotic.SecretServer" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/.png" # fallback teaser image
