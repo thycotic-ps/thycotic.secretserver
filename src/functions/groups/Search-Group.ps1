@@ -52,7 +52,7 @@
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.ApiUrl, 'groups' -join '/'
-            $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
+            $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
             $filters = @()
             if ($tssParams.ContainsKey('DomainId')) {

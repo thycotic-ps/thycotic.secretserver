@@ -31,7 +31,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssFolderTemplate')]
+    [OutputType('TssFolder')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -83,7 +83,7 @@
                 }
 
                 if ($restResponse) {
-                    . $TssFolderTemplateObject $restResponse
+                    . $TssFolderObject $restResponse
                 }
             }
         } else {
