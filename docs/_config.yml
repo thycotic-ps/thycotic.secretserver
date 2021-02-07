@@ -22,7 +22,7 @@ subtitle                 : # PowerShell | Thycotic
 name                     : "Shawn Melton"
 description              : "Thycotic.SecretServer"
 url                      : "https://thycotic-ps.github.io" # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
-baseurl                  : /thycotic.secretserver # the subpath of your site, e.g. "/blog"
+baseurl                  : "/thycotic.secretserver" # the subpath of your site, e.g. "/blog"
 repository               : "thycotic-ps/Thycotic.SecretServer" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : # "/assets/images/.png" # fallback teaser image
 logo                     : "/assets/images/banner_symbol_title.png" #displays in masthead
