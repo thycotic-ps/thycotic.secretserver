@@ -1,0 +1,31 @@
+---
+category: secrets
+title: "TssSecretTemplate"
+last_modified_at: 2021-02-10T00:00:00-00:00
+---
+
+# TOPIC
+    This help topic describes the TssSecretTemplate class in the Thycotic.SecretServer module.
+
+# CLASS
+    TssSecretTemplate
+
+#INHERITANCE
+    None
+
+# DESCRIPTION
+    The TssSecretTemplate class represents the SecretTemplateModel object returned by Secret Server endpoint /secret-tempaltes/{id}.
+
+# CONSTRUCTORS
+    new()
+
+# PROPERTIES
+    Documented in the REST API doc for Secret Server, see SecretTemplateModel definition
+
+# METHODS
+
+    [System.String] GetSlugName(string DisplayName)
+        Pulls the FieldSlugName from the fields object based on the Display Name
+
+# RELATED LINKS:
+    Get-TssSecretTemplate

@@ -1,0 +1,167 @@
+# main links
+main:
+  - title: "Docs"
+    url: /docs/authentication/
+  - title: "Commands"
+    url: commands/
+  - title: "About Topics"
+    url: abouttopics/
+  - title: "Install"
+    url: /docs/install/
+  - title: "About Us"
+    url: /aboutus/
+
+# ++++++++++++++ Commands ++++++++++++++
+commands:
+  - title: "Authentication"
+    children:
+      - title: "New-TssSession"
+        url: /commands/New-TssSession
+
+  - title: "Secrets"
+    children:
+      - title: "Get-TssSecret"
+        url: /commands/Get-TssSecret
+      - title: "Get-TssSecretField"
+        url: /commands/Get-TssSecretField
+      - title: "Search-TssSecret"
+        url: /commands/Search-TssSecret
+      - title: "Set-TssSecret"
+        url: /commands/Set-TssSecret
+      - title: "Disable-TssSecret"
+        url: /commands/Disable-TssSecret
+      - title: "Find-TssSecret"
+        url: /commands/Find-TssSecret
+      - title: "Stop-TssSecretPasswordChange"
+        url: /commands/Stop-TssSecretPasswordChange
+
+  - title: "Secrets-Templates"
+    children:
+      - title: "Get-TssSecretTemplate"
+        url: /commands/Get-TssSecretTemplate
+
+  - title: "Folders"
+    children:
+      - title: "Get-TssFolder"
+        url: /commands/Get-TssFolder
+
+  - title: "Reports"
+    children:
+      - title: "Get-TssReport"
+        url: /commands/Get-TssReport
+      - title: "New-TssReport"
+        url: /commands/New-TssReport
+      - title: "Get-TssReportCategory"
+        url: /commands/Get-TssReportCategory
+      - title: "Remove-TssReportCategory"
+        url: /commands/Remove-TssReportCategory
+      - title: "Search-TssReportSchedule"
+        url: /commands/Search-TssReportSchedule
+
+  - title: "Groups"
+    children:
+      - title: "Search-TssUserGroup"
+        url: /commands/Search-TssUserGroup
+
+  - title: "General"
+    children:
+      - title: "Get-TssVersion"
+        url: /commands/Get-TssVersion
+      - title: "Test-TssVersion"
+        url: /commands/Test-TssVersion
+
+  - title: External Links
+    children:
+      - title: GitHub
+        url: https://github.com/thycotic-ps/Thycotic.SecretServer/
+      - title: API Documentation
+        url: https://docs.thycotic.com/ss/10.9.0/api-scripting/rest-api-reference-download
+
+# ++++++++++++++ About Topics ++++++++++++++
+abouttopics:
+  - title: "Authentication"
+    children:
+      - title: "TssSession"
+        url: /abouttopics/about_tsssession
+
+  - title: "Secrets"
+    children:
+      - title: "TssSecret"
+        url: /abouttopics/about_tsssecret
+      - title: "TssSecretItem"
+        url: /abouttopics/about_tsssecretitem
+      - title: "TssSecretLookup"
+        url: /abouttopics/about_tsssecretlookup
+      - title: "TssSecretSummary"
+        url: /abouttopics/about_tsssecretsummary
+      - title: "TssSecretSummaryExtendedField"
+        url: /abouttopics/about_tsssecretsummaryextendedfield
+      - title: "TssSecretTemplate"
+        url: /abouttopics/about_tsssecrettemplate
+      - title: "TssSecretTemplateField"
+        url: /abouttopics/about_tsssecrettemplatefield
+
+  - title: "Folders"
+    children:
+      - title: "TssFolder"
+        url: /abouttopics/about_tssfolder
+      - title: "TssFolderTemplate"
+        url: /abouttopics/about_tssfoldertemplate
+
+  - title: "Reports"
+    children:
+      - title: "TssReport"
+        url: /abouttopics/about_tssreport
+      - title: "TssReportCategory"
+        url: /abouttopics/about_tssreportcategory
+      - title: "TssReportScheduleSummary"
+        url: /abouttopics/about_tssreportschedulesummary
+
+  - title: "Groups"
+    children:
+      - title: "TssGroupSummary"
+        url: /abouttopics/about_tssgroupsummary
+
+  - title: "General"
+    children:
+      - title: "TssVersion"
+        url: /abouttopics/about_tssversion
+
+  - title: External Links
+    children:
+      - title: GitHub
+        url: https://github.com/thycotic-ps/Thycotic.SecretServer/
+      - title: API Documentation
+        url: https://docs.thycotic.com/ss/10.9.0/api-scripting/rest-api-reference-download
+
+# ++++++++++++++ Docs ++++++++++++++
+docs:
+  - title: Getting Started
+    children:
+      - title: "Install Options"
+        url: /docs/install/
+      - title: "Authentication"
+        url: /docs/authentication/
+      - title: "Invoke-TssRestApi"
+        url: /docs/invoke-tssrestapi
+      - title: "Compatibility"
+        url: /docs/compatibility/
+
+  # - title: "Working With"
+  #   children:
+  #     - title: "Creating Secrets"
+  #       url: /docs/secret-examples/
+  #     - title: "Finding Secrets"
+  #       url: /docs/finding-secrets/
+
+  - title: External Links
+    children:
+      - title: GitHub
+        url: https://github.com/thycotic-ps/Thycotic.SecretServer/
+      - title: API Documentation
+        url: https://docs.thycotic.com/ss/10.9.0/api-scripting/rest-api-reference-download
+
+  - title: More Tools
+    children:
+      - title: "Secret Server Postman Collection"
+        url: https://github.com/thycotic-ps/secretserver-postman
