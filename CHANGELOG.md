@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * None
 
+## [0.28.1] -- 2021-02-07
+
+### Added
+
+* None
+
+### Changed
+
+* Corrected LINK in function CBH [7cfc849](https://github.com/thycotic-ps/thycotic.secretserver/commit/7cfc8497b24f9b24b8d11412b9d42db394adabc4)
+
 ## [0.28.0] -- 2021-02-07
 
 ### Added
