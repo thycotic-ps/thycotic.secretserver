@@ -4,7 +4,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Raw','Permission','Scope',
+        [object[]]$knownParameters = 'TssSession','Permission','Scope',
         # Folder param set
         'FolderId','IncludeSubFolders',
         # field param set
