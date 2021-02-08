@@ -34,6 +34,7 @@
         $SearchText,
 
         # Filter based on folder permission (Owner, Edit, AddSecret, View). Default: View
+        [ValidateSet('Owner','Edit','AddSecret','View')]
         [string]
         $PermissionRequired,
 
