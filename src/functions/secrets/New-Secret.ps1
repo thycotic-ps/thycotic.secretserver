@@ -75,7 +75,7 @@
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams
             } catch {
-                Write-Warning "Issue creating report [$ReportName]"
+                Write-Warning "Issue creating secret [$($SecretStub.Name)]"
                 $err = $_.ErrorDetails.Message
                 Write-Error $err
             }
