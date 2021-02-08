@@ -2,7 +2,7 @@
 category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Invoke-TssRestApi
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi
 schema: 2.0.0
 title: Invoke-TssRestApi
 ---
@@ -281,5 +281,5 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Invoke-TssRestApi](https://thycotic.secretserver.github.io/commands/Invoke-TssRestApi)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi](https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi)
 

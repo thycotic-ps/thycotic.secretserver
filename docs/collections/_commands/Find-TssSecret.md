@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Find-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssSecret
 schema: 2.0.0
 title: Find-TssSecret
 ---
@@ -401,5 +401,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Find-TssSecret](https://thycotic.secretserver.github.io/commands/Find-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssSecret)
 

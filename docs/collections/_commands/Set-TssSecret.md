@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Set-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret
 schema: 2.0.0
 title: Set-TssSecret
 ---
@@ -430,5 +430,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Set-TssSecret](https://thycotic.secretserver.github.io/commands/Set-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret)
 

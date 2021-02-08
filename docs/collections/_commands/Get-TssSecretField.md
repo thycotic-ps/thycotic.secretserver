@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Get-TssSecretField
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretField
 schema: 2.0.0
 title: Get-TssSecretField
 ---
@@ -229,5 +229,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Get-TssSecretField](https://thycotic.secretserver.github.io/commands/Get-TssSecretField)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretField](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretField)
 

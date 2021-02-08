@@ -2,7 +2,7 @@
 category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Get-TssVersion
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion
 schema: 2.0.0
 title: Get-TssVersion
 ---
@@ -61,5 +61,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Get-TssVersion](https://thycotic.secretserver.github.io/commands/Get-TssVersion)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion)
 

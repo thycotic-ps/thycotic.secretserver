@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/New-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
 schema: 2.0.0
 title: New-TssFolder
 ---
@@ -202,5 +202,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/New-TssSecret](https://thycotic.secretserver.github.io/commands/New-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret)
 

@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Get-TssFolder
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolder
 schema: 2.0.0
 title: Get-TssFolder
 ---
@@ -122,5 +122,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Get-TssFolder](https://thycotic.secretserver.github.io/commands/Get-TssFolder)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolder)
 
