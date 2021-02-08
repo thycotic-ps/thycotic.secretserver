@@ -28,8 +28,8 @@ commands:
         url: /commands/Search-TssSecret
       - title: "Set-TssSecret"
         url: /commands/Set-TssSecret
-      - title: "Disable-TssSecret"
-        url: /commands/Disable-TssSecret
+      - title: "Remove-TssSecret"
+        url: /commands/Remove-TssSecret
       - title: "Find-TssSecret"
         url: /commands/Find-TssSecret
       - title: "Stop-TssSecretPasswordChange"

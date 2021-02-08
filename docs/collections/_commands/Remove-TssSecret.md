@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret
 schema: 2.0.0
 title: Remove-TssSecret
 ---
@@ -107,5 +107,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret)
 

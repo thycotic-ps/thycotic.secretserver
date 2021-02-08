@@ -31,7 +31,7 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 ---------------- | ---------- | --------------------------------- |
 [/secrets][/secrets] | PUT | [New-TssSecret][New-TssSecret]
 [/secrets/stubs][/secrets/stubs] | GET | [Get-TssSecretStub][Get-TssSecretStub]
-[/secrets/{id}][/secrets/{id}] | DELETE | [Disable-TssSecret][Disable-TssSecret]
+[/secrets/{id}][/secrets/{id}] | DELETE | [Remove-TssSecret][Remove-TssSecret]
 [/secrets/lookup][/secrets/lookup] | GET | [Find-TssSecret][Find-TssSecret]
 [/secrets/lookup/{id}][/secrets/lookup/{id}] | GET | [Find-TssSecret][Find-TssSecret]
 [/secrets/{id}][/secrets/{id}] | GET | [Get-TssSecret][Get-TssSecret][Get-TssSecret]
@@ -91,7 +91,7 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [New-TssReport]:/thycotic.secretserver/commands/New-TssReport
 [Remove-TssReportCategory]:/thycotic.secretserver/commands/Remove-TssReportCategory
 [Search-TssReportSchedule]:/thycotic.secretserver/commands/Search-TssReportSchedule
-[Disable-TssSecret]:/thycotic.secretserver/commands/Disable-TssSecret
+[Remove-TssSecret]:/thycotic.secretserver/commands/Remove-TssSecret
 [Find-TssSecret]:/thycotic.secretserver/commands/Find-TssSecret
 [Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
 [Get-TssSecretField]:/thycotic.secretserver/commands/Get-TssSecretField
