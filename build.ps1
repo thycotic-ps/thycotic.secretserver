@@ -4,10 +4,6 @@ param(
     [switch]
     $PublishDocs,
 
-    [Parameter(ParameterSetName = 'docs')]
-    [string]
-    $Command,
-
     [Parameter(ParameterSetName = 'publish')]
     [string]
     $GalleryKey,
@@ -37,6 +33,9 @@ $staging = "$env:TEMP\tss_staging\"
 if (Test-Path $staging) {
     Remove-Item -Recurse -Force $staging
 }
+if (Get-Module Thycotic.SecretServer) {
+    Remove-Module Thycotic.SecretServer -Force
+}
 $imported = Import-Module .\src\Thycotic.SecretServer.psd1 -Force -PassThru
 
 if ($PSBoundParameters['PublishDocs']) {
@@ -44,26 +43,25 @@ if ($PSBoundParameters['PublishDocs']) {
         Write-Warning "Doc processing has to run under PowerShell Core"
         return
     }
+    Remove-Item "$PSScriptRoot\docs\collections\_commands\" -Filter *.md -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue
+
     Import-Module platyPS
     $cmdParams = @{
-        Module = $moduleName
+        Module      = $moduleName
         CommandType = 'Function'
-    }
-    if ($PSBoundParameters['Command']) {
-        $cmdParams.Add('Name',$Command)
     }
     $commands = Get-Command @cmdParams
     foreach ($cmd in $commands) {
         switch ($cmd.Name) {
-            {$_ -match 'Secret'} { $category = 'secrets' }
-            {$_ -match 'Report'} { $category = 'reports' }
-            {$_ -match 'Group'} { $category = 'groups' }
-            {$_ -match 'Folder'} { $category = 'folders' }
+            { $_ -match 'Secret' } { $category = 'secrets' }
+            { $_ -match 'Report' } { $category = 'reports' }
+            { $_ -match 'Group' } { $category = 'groups' }
+            { $_ -match 'Folder' } { $category = 'folders' }
             default { $category = 'general' }
         }
         $metadata = @{
             'category' = $category
-            'title' = $cmd.Name
+            'title'    = $cmd.Name
         }
         New-MarkdownHelp -OutputFolder "$PSScriptRoot\docs\collections\_commands" -Command $cmd.Name -Metadata $metadata -Force
     }
