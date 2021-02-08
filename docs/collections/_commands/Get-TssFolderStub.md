@@ -1,35 +1,35 @@
 ---
-category: reports
+category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Get-TssReport
+online version:
 schema: 2.0.0
-title: Get-TssReport
+title: Get-TssFolderStub
 ---
 
-# Get-TssReport
+# Get-TssFolderStub
 
 ## SYNOPSIS
-Gets a report
+Get template for new secret folder
 
 ## SYNTAX
 
 ```
-Get-TssReport [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssFolderStub [-TssSession] <TssSession> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Gets a report based on Report ID
+Get template for new secret folder
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssReport -TssSession $session -Id 6
+PS C:\> Get-TssFolderStub -TssSession $session
 ```
 
-Gets the details on report ID 6
+Returns folder template as an object
 
 ## PARAMETERS
 
@@ -48,21 +48,6 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Short description for parameter
-
-```yaml
-Type: Int32[]
-Parameter Sets: (All)
-Aliases: ReportId
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -70,11 +55,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssReport
+### TssFolder
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
-
-[https://thycotic.secretserver.github.io/commands/Get-TssReport](https://thycotic.secretserver.github.io/commands/Get-TssReport)
-

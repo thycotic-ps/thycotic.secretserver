@@ -1,46 +1,35 @@
 ---
-category: reports
+category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory
+online version:
 schema: 2.0.0
-title: Remove-TssReportCategory
+title: Remove-TssFolder
 ---
 
-# Remove-TssReportCategory
+# Remove-TssFolder
 
 ## SYNOPSIS
-Delete a report category
+Delete secret folder
 
 ## SYNTAX
 
 ```
-Remove-TssReportCategory [-TssSession] <TssSession> -ReportCategoryId <Int32[]> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Remove-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Deletes the report category, associated reports are changed to inactive and moved to the Delete category
+Delete secret folder
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssReportCategory -TssSession $session -Id 11
+PS C:\> Remove-TssFolder -TssSession $session -Id 28
 ```
 
-A confirmation prompt will be shown.
-Removes report category 11
-
-### EXAMPLE 2
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssReportCategory -TssSession $session -Id 21 -Confirm:$false
-```
-
-Confirmation prompt is bypassed
-Removes report category 21
+Delete Folder ID 28
 
 ## PARAMETERS
 
@@ -59,13 +48,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -ReportCategoryId
-Category ID
+### -Id
+Short description for parameter
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: Id
+Aliases: FolderId
 
 Required: True
 Position: Named
@@ -117,6 +106,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
-
-[https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory](https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory)
-

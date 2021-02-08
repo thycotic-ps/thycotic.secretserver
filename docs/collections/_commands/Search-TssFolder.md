@@ -1,35 +1,36 @@
 ---
-category: secrets
+category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Disable-TssSecret
+online version:
 schema: 2.0.0
-title: Disable-TssSecret
+title: Search-TssFolder
 ---
 
-# Disable-TssSecret
+# Search-TssFolder
 
 ## SYNOPSIS
-Disable a secret from Secret Server
+Search secret folders
 
 ## SYNTAX
 
 ```
-Disable-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Raw] [-WhatIf] [-Confirm] [<CommonParameters>]
+Search-TssFolder [-TssSession] <TssSession> [-ParentFolderId <Int32>] [-SearchText <String>]
+ [-PermissionRequired <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Disables a secret from Secret Server
+Search secret folders
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Disable-TssSecret -TssSession $session -Id 93
+PS C:\> Search-TssFolder -TssSession $session -ParentFolderId 54
 ```
 
-Disables secret 93
+Return all child folders found under root folder 54
 
 ## PARAMETERS
 
@@ -48,44 +49,44 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Secret ID to disable (mark inactive)
+### -ParentFolderId
+Parent Folder Id
 
 ```yaml
-Type: Int32[]
+Type: Int32
 Parameter Sets: (All)
-Aliases: SecretId
+Aliases: FolderId
 
-Required: True
+Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
+Default value: 0
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Raw
-Output the raw response from the REST API endpoint
+### -SearchText
+Search by text value
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -PermissionRequired
+Filter based on folder permission (Owner, Edit, AddSecret, View).
+Default: View
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: wi
+Aliases:
 
 Required: False
 Position: Named
@@ -94,17 +95,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -SortBy
+Sort by specific property, default FolderPath
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: FolderPath
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,10 +117,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssFolderSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
-
-[https://thycotic.secretserver.github.io/commands/Disable-TssSecret](https://thycotic.secretserver.github.io/commands/Disable-TssSecret)
-

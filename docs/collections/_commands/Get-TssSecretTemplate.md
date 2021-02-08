@@ -15,7 +15,7 @@ Get a secret template from Secret Server
 ## SYNTAX
 
 ```
-Get-TssSecretTemplate [-TssSession] <TssSession> -Id <Int32[]> [-Raw] [<CommonParameters>]
+Get-TssSecretTemplate [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,21 +60,6 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the REST API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

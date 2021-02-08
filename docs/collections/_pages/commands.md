@@ -54,6 +54,11 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 **API Endpoint** | **Method** | **Thycotic.SecretServer Command** |
 ---------------- | ---------- | --------------------------------- |
 [/folders/{id}][/folders/{id}] | GET | [Get-TssFolder][Get-TssFolder]
+[/folders][/folders] | GET | [Search-TssFolder][Search-TssFolder]
+[/folders/lookup][/folders/lookup] | GET | [Find-TssFolder][Find-TssFolder]
+[/folders][/folders] | POST | [New-TssFolder][New-TssFolder]
+[/folders/{id}][/folders/{id}] | DELETE | [Remove-TssFolder][Remove-TssFolder]
+[/folders/stub][/folders/stub] | GET | [Get-TssFolderStub][Get-TssFolderStub]
 
 ## Reports
 
@@ -97,7 +102,17 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [Get-TssVersion]:/thycotic.secretserver/commands/Get-TssVersion
 [New-TssSecret]:/thycotic.secretserver/commands/New-TssSecret
 [Get-TssSecretStub]:/thycotic.secretserver/commands/Get-TssSecretStub
+[Search-TssFolder]:/thycotic.secretserver/commands/Search-TssFolder
+[Find-TssFolder]:/thycotic.secretserver/commands/Find-TssFolder
+[New-TssFolder]:/thycotic.secretserver/commands/New-TssFolder
+[Get-TssFolderStub]:/thycotic.secretserver/commands/Get-TssFolderStub
+[Remove-TssFolder]:/thycotic.secretserver/commands/Remove-TssFolder
 
+[/folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--delete
+[/folders/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-stub-get
+[/folders]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-post
+[/folders/lookup]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-lookup-get
+[/folders]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-get
 [/secrets/stubs]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-stub-get
 [/secrets]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-post
 [/oauth2/token]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/OAuth/#path--oauth2-token

@@ -16,7 +16,7 @@ Search for user management groups
 
 ```
 Search-TssGroup [-TssSession] <TssSession> [-DomainId <Int32>] [-IncludeInactive] [-SearchText <String>]
- [-SortBy <String>] [-Raw] [<CommonParameters>]
+ [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -105,21 +105,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: Name
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

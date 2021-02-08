@@ -1,36 +1,35 @@
 ---
-category: groups
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Search-TssUserGroup
+online version: https://thycotic.secretserver.github.io/commands/Disable-TssSecret
 schema: 2.0.0
-title: Search-TssUserGroup
+title: Remove-TssSecret
 ---
 
-# Search-TssUserGroup
+# Remove-TssSecret
 
 ## SYNOPSIS
-Search for user management groups
+Delete a secret from Secret Server
 
 ## SYNTAX
 
 ```
-Search-TssUserGroup [-TssSession] <TssSession> [-DomainId <Int32>] [-IncludeInactive] [-SearchText <String>]
- [-SortBy <String>] [-Raw] [<CommonParameters>]
+Remove-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search for user management groups
+Delete a secret from Secret Server
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-UserGroup -TssSession $session
+Remove-TssSecret -TssSession $session -Id 93
 ```
 
-Return list of all groups found in Secret Server that account has access to manage
+Delete Secret ID 93
 
 ## PARAMETERS
 
@@ -49,43 +48,29 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -DomainId
-Active Directory Domain Id
+### -Id
+Secret ID to disable (mark inactive)
 
 ```yaml
-Type: Int32
+Type: Int32[]
 Parameter Sets: (All)
-Aliases:
+Aliases: SecretId
 
-Required: False
+Required: True
 Position: Named
-Default value: 0
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -IncludeInactive
-Include inactive groups in results
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SearchText
-Text to search for group name
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
+Aliases: wi
 
 Required: False
 Position: Named
@@ -94,32 +79,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SortBy
-Sort by specific property, default Name
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Name
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the API endpoint
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: cf
 
 Required: False
 Position: Named
-Default value: False
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -131,11 +101,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssGroupSummary
+### TssDelete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/Search-TssUserGroup](https://thycotic.secretserver.github.io/commands/Search-TssUserGroup)
+[https://thycotic.secretserver.github.io/commands/Disable-TssSecret](https://thycotic.secretserver.github.io/commands/Disable-TssSecret)
 

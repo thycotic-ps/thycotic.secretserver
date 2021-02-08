@@ -21,19 +21,19 @@ Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFold
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
  [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
  [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
- [-Raw] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ### folder
 ```
-Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-SortBy <String>] [-Raw]
+Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### field
 ```
 Search-TssSecret [-TssSession] <TssSession> [-Field <String>] [-FieldText <String>] [-ExactMatch]
- [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-SortBy <String>] [-Raw]
+ [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -41,7 +41,7 @@ Search-TssSecret [-TssSession] <TssSession> [-Field <String>] [-FieldText <Strin
 ```
 Search-TssSecret [-TssSession] <TssSession> [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <String>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
- [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>] [-Raw]
+ [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -404,21 +404,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: Name
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the REST API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

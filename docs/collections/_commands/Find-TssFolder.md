@@ -1,46 +1,36 @@
 ---
-category: reports
+category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory
+online version:
 schema: 2.0.0
-title: Remove-TssReportCategory
+title: Find-TssFolder
 ---
 
-# Remove-TssReportCategory
+# Find-TssFolder
 
 ## SYNOPSIS
-Delete a report category
+Find secret folders
 
 ## SYNTAX
 
 ```
-Remove-TssReportCategory [-TssSession] <TssSession> -ReportCategoryId <Int32[]> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Find-TssFolder [-TssSession] <TssSession> [-ParentFolderId <Int32>] [-SearchText <String>]
+ [-PermissionRequired <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Deletes the report category, associated reports are changed to inactive and moved to the Delete category
+Find secret folders returning Folder ID and Name only
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssReportCategory -TssSession $session -Id 11
+PS C:\> Find-TssFolder -TssSession $session -ParentFolderId 56
 ```
 
-A confirmation prompt will be shown.
-Removes report category 11
-
-### EXAMPLE 2
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssReportCategory -TssSession $session -Id 21 -Confirm:$false
-```
-
-Confirmation prompt is bypassed
-Removes report category 21
+Return folders with Parent Folder ID of 56
 
 ## PARAMETERS
 
@@ -59,29 +49,28 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -ReportCategoryId
-Category ID
+### -ParentFolderId
+Parent Folder Id
 
 ```yaml
-Type: Int32[]
+Type: Int32
 Parameter Sets: (All)
-Aliases: Id
+Aliases: FolderId
 
-Required: True
+Required: False
 Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
+Default value: 0
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -SearchText
+Search by text value
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: wi
+Aliases:
 
 Required: False
 Position: Named
@@ -90,17 +79,34 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -PermissionRequired
+Filter based on folder permission (Owner, Edit, AddSecret, View).
+Default: View
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SortBy
+Sort by specific property (Id, FolderName).
+Default: FolderName
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: FolderName
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -112,11 +118,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDelete
+### TssFolderLookup
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
-
-[https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory](https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory)
-

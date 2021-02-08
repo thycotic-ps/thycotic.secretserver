@@ -16,7 +16,7 @@ Search report schedule
 
 ```
 Search-TssReportSchedule [-TssSession] <TssSession> [-IncludeDeleted] [-ReportId <Int32>] [-SortBy <String>]
- [-Raw] [<CommonParameters>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -98,21 +98,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: Name
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the REST API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -15,7 +15,7 @@ Get report categories
 ## SYNTAX
 
 ```
-Get-TssReportCategory [-TssSession] <TssSession> [-Id <Int32[]>] [-All] [-Raw] [<CommonParameters>]
+Get-TssReportCategory [-TssSession] <TssSession> [-Id <Int32[]>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -73,21 +73,6 @@ Accept wildcard characters: False
 
 ### -All
 Return list of all categories
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the API endpoint
 
 ```yaml
 Type: SwitchParameter

@@ -1,51 +1,55 @@
 ---
-category: reports
+category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic.secretserver.github.io/commands/New-TssReport
+online version: https://thycotic.secretserver.github.io/commands/New-TssSecret
 schema: 2.0.0
-title: New-TssReport
+title: New-TssFolder
 ---
 
-# New-TssReport
+# New-TssFolder
 
 ## SYNOPSIS
-Short of what command does
+Create a new folde
 
 ## SYNTAX
 
 ```
-New-TssReport [-TssSession] <TssSession> [-ReportName] <String> [-CategoryId] <Int32> -Description <String>
- [-ChartType <String>] [-Is3DReport] [-PageSize <Int32>] [-Paging <String>] -ReportSql <String> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+New-TssFolder [-TssSession] <TssSession> [-FolderStub] <TssFolder> -FolderName <String> -ParentFolderId <Int32>
+ [-SecretPolicyId <Int32>] [-InheritPermissions] [-InheritSecretPolicy] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Longer of what command does
+Create a new folder
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-New-TssReport -TssSession $session -ReportName 'TssTestReport' -CategoryId 15 -ReportSql "SELECT 1" -Description 'Tss Test Report for POC'
+$folderStub = Get-TssFolderStub -TssSession $session
+New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
 ```
 
-Creates a new report with minimum requirements Name, CategoryId, ReportSql and Description
+Creates a folder named "tssNewFolder" at the root of Secret Server application
 
 ### EXAMPLE 2
 ```
-$session = New-TssSession -SecretServer 'https://alpha/SecretServer' -Credential $ssCred
-$params = @{
->> ReportName = 'Tss Test Report from SQL File'
->> Category = (Get-TssReportCategory -TssSession $session -All | Where-Object Name -eq 'TssCategory').CategoryId
->> Description = 'Test report using SQL file'
->> ReportSql = (Get-Content .\tests\exports\testReport.sql | Out-String)
->> }
-New-TssReport -TssSession $session @params
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$folderStub = Get-TssFolderStub -TssSession $session
+New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
 ```
 
-Create a new report where the T-SQL is stored in a SQL script file
+Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
+
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
+```
+
+Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
 
 ## PARAMETERS
 
@@ -64,13 +68,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -ReportName
-Name of the report
+### -FolderStub
+Input object obtained via Get-TssFolderStub
 
 ```yaml
-Type: String
+Type: TssFolder
 Parameter Sets: (All)
-Aliases: Name
+Aliases:
 
 Required: True
 Position: 2
@@ -79,23 +83,8 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -CategoryId
-Category for the report
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: 3
-Default value: 0
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Description
-Description of the report
+### -FolderName
+Folder Name
 
 ```yaml
 Type: String
@@ -103,29 +92,44 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -ChartType
-Chart type for the report
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
 Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Is3DReport
-Report chart should be 3D
+### -ParentFolderId
+Parent Folder ID, use -1 to create root folder
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: ParentFolder
+
+Required: True
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SecretPolicyId
+Secret Policy ID
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases: SecretPolicy
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -InheritPermissions
+Inherit Permissions
 
 ```yaml
 Type: SwitchParameter
@@ -139,48 +143,18 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -PageSize
-Number of records the report should return per page
+### -InheritSecretPolicy
+Inherit Secret Policy
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Paging
-Perform paging in the database (default) or application server
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Database
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ReportSql
-T-SQL for the report to run
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -222,11 +196,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssReport
+### TssSecret
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic.secretserver.github.io/commands/New-TssReport](https://thycotic.secretserver.github.io/commands/New-TssReport)
+[https://thycotic.secretserver.github.io/commands/New-TssSecret](https://thycotic.secretserver.github.io/commands/New-TssSecret)
 

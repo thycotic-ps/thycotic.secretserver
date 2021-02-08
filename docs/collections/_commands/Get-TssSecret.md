@@ -16,14 +16,14 @@ Get a secret from Secret Server
 
 ### secret (Default)
 ```
-Get-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Raw] [<CommonParameters>]
+Get-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ### restricted
 ```
 Get-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Comment <String>]
  [-DoublelockPassword <SecureString>] [-ForceCheckin] [-IncludeInactive] [-TicketNumber <String>]
- [-TicketSystemId <Int32>] [-Raw] [<CommonParameters>]
+ [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -198,21 +198,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the REST API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

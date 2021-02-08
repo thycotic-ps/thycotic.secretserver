@@ -21,8 +21,7 @@ New-TssSession -SecretServer <Uri> [-AccessToken <Object>] [-WhatIf] [-Confirm] 
 
 ### new
 ```
-New-TssSession -SecretServer <Uri> [-Credential <PSCredential>] [-Raw] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-Credential <PSCredential>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -110,21 +109,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Raw output from the endpoint will be returned.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: new
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

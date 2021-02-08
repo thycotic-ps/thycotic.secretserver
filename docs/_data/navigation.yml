@@ -44,6 +44,16 @@ commands:
     children:
       - title: "Get-TssFolder"
         url: /commands/Get-TssFolder
+      - title: "Search-TssFolder"
+        url: /commands/Search-TssFolder
+      - title: "Find-TssFolder"
+        url: /commands/Find-TssFolder
+      - title: "Get-TssFolderStub"
+        url: /commands/Get-TssFolderStub
+      - title: "New-TssFolder"
+        url: /commands/New-TssFolder
+      - title: "Remove-TssFolder"
+        url: /commands/Remove-TssFolder
 
   - title: "Reports"
     children:
@@ -96,6 +106,9 @@ abouttopics:
         url: /abouttopics/about_tsssecretsummary
       - title: "TssSecretSummaryExtendedField"
         url: /abouttopics/about_tsssecretsummaryextendedfield
+
+  - title: "Secrets-Templates"
+    children:
       - title: "TssSecretTemplate"
         url: /abouttopics/about_tsssecrettemplate
       - title: "TssSecretTemplateField"
@@ -107,6 +120,10 @@ abouttopics:
         url: /abouttopics/about_tssfolder
       - title: "TssFolderTemplate"
         url: /abouttopics/about_tssfoldertemplate
+      - title: "TssFolderSummary"
+        url: /abouttopics/about_tssfoldersummary
+      - title: "TssFolderLookup"
+        url: /abouttopics/about_tssfolderlookup
 
   - title: "Reports"
     children:
@@ -126,6 +143,8 @@ abouttopics:
     children:
       - title: "TssVersion"
         url: /abouttopics/about_tssversion
+      - title: "TssDelete"
+        url: /abouttopics/about_tssdelete
 
   - title: External Links
     children:

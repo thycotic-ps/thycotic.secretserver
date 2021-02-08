@@ -20,26 +20,25 @@ Find-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-FolderId <Int32>] [-In
  [-Field <String>] [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
  [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
- [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-Raw]
- [<CommonParameters>]
+ [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [<CommonParameters>]
 ```
 
 ### secret
 ```
 Find-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <String>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
- [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-Raw] [<CommonParameters>]
+ [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [<CommonParameters>]
 ```
 
 ### folder
 ```
-Find-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-Raw] [<CommonParameters>]
+Find-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [<CommonParameters>]
 ```
 
 ### field
 ```
 Find-TssSecret [-TssSession] <TssSession> [-Field <String>] [-FieldText <String>] [-ExactMatch]
- [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-Raw] [<CommonParameters>]
+ [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -385,21 +384,6 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Raw
-Output the raw response from the REST API endpoint
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
