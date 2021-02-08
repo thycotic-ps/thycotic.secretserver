@@ -28,3 +28,4 @@ METHODS
 
 RELATED LINKS:
     Get-TssVersion
+    Test-TssVersion

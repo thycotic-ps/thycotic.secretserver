@@ -18,4 +18,4 @@ PROPERTIES
 METHODS
 
 RELATED LINKS:
-    Search-TssReportScheduleSummary
+    Search-TssReportSchedule
