@@ -27,7 +27,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
-    [OutputType('Boolean')]
+    [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -58,12 +58,18 @@
                 Write-Verbose "$($invokeParams.Method) $uri"
                 if (-not $PSCmdlet.ShouldProcess($id, "$($invokeParams.Method) $uri")) { return }
                 try {
-                    Invoke-TssRestApi @invokeParams
-                    $true
+                    $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue removing [$id]"
                     $err = $_.ErrorDetails.Message
                     Write-Error $err
+                }
+
+                if ($restResponse) {
+                    [TssDelete]@{
+                        Id         = $id
+                        ObjectType = 'ReportCategory'
+                    }
                 }
             }
         } else {
