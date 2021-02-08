@@ -30,7 +30,6 @@
             "\t\t[TssSession]\\$TssSession,",
             "",
             "\t\t# Short description for parameter",
-            "\t\t[Parameter(Mandatory,ValueFromPipelineByPropertyName)]",
             "\t\t[Alias(\"${1}Id\")]",
             "\t\t[int]",
             "\t\t\\$${4},",
