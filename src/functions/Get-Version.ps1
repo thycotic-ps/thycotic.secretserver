@@ -19,7 +19,7 @@
     Returns version of Secret Server alpha
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Get-TssVersion
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion
 
     .NOTES
     Requires TssSession object returned by New-TssSession

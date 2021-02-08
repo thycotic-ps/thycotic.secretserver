@@ -27,7 +27,7 @@
     Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/New-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession

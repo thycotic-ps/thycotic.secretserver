@@ -33,7 +33,7 @@
     Use the alias nts to create a session object
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/New-TssSession
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession
 
     .OUTPUTS
     TssSession.

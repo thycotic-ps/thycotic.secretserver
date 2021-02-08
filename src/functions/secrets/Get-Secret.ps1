@@ -36,7 +36,7 @@
     Call GetValue() method passing the slug name to grab the ItemValue of the server field.
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Get-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession

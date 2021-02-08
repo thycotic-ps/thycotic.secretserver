@@ -19,7 +19,7 @@
     Returns list of all report schedules, including those that were deleted
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Search-TssReportSchedule
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssReportSchedule
 
     .NOTES
     Requires TssSession object returned by New-TssSession

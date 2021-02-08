@@ -19,7 +19,7 @@
     Returns a list of all categories
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Get-TssReportCategory
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportCategory
 
     .NOTES
     Requires TssSession object returned by New-TssSession

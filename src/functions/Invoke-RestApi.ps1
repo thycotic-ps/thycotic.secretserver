@@ -12,7 +12,7 @@
     Performs POST request to the URI specified, returning the output from the endpoint.
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Invoke-TssRestApi
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi
     #>
     [Cmdletbinding()]
     param(

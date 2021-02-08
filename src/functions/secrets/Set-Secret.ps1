@@ -37,7 +37,7 @@
     Sets secret 1455 disables emailing when changed
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Set-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession

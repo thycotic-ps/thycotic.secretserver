@@ -13,7 +13,7 @@
     Return secrets found in folder 50 where RPC is enabled on the secret templates
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Find-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession

@@ -31,7 +31,7 @@
     Output will show the FolderId, Name, SecretTemplateName, and Active properties.
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/New-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession

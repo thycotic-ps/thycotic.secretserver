@@ -25,7 +25,7 @@
     Create a new report where the T-SQL is stored in a SQL script file
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/New-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssReport
 
     .NOTES
     Requires TssSession object returned by New-TssSession

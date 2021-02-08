@@ -21,7 +21,7 @@
     Removes report category 21
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Remove-TssReportCategory
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReportCategory
 
     .NOTES
     Requires TssSession object returned by New-TssSession

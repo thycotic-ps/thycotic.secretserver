@@ -13,7 +13,7 @@
     Returns secret associated with the Secret ID, 93
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Get-TssSecretTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretTemplate
 
     .NOTES
     Requires TssSession object returned by New-TssSession

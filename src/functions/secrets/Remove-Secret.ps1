@@ -13,7 +13,7 @@
     Delete Secret ID 93
 
     .LINK
-    https://thycotic.secretserver.github.io/commands/Disable-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecret
 
     .NOTES
     Requires TssSession object returned by New-TssSession
