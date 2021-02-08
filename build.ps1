@@ -48,7 +48,9 @@ if ($PSBoundParameters['PublishDocs']) {
     $cmdParams = @{
         Module = $moduleName
         CommandType = 'Function'
-        Name = $Command
+    }
+    if ($PSBoundParameters['Command']) {
+        $cmdParams.Add('Name',$Command)
     }
     $commands = Get-Command @cmdParams
     foreach ($cmd in $commands) {
