@@ -1,16 +1,16 @@
-﻿function Disable-Secret {
+﻿function Remove-Secret {
     <#
     .SYNOPSIS
-    Disable a secret from Secret Server
+    Delete a secret from Secret Server
 
     .DESCRIPTION
-    Disables a secret from Secret Server
+    Delete a secret from Secret Server
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Disable-TssSecret -TssSession $session -Id 93
+    Remove-TssSecret -TssSession $session -Id 93
 
-    Disables secret 93
+    Delete Secret ID 93
 
     .LINK
     https://thycotic.secretserver.github.io/commands/Disable-TssSecret
@@ -19,6 +19,7 @@
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType('TssDelete')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -59,7 +60,7 @@
                 }
 
                 if ($restResponse) {
-                    [PSCustomObject]@{
+                    [TssDelete]@{
                         Id         = $restResponse.id
                         ObjectType = $restResponse.objectType
                     }

@@ -53,5 +53,4 @@ $shortcuts = @{
 foreach ($_ in $shortcuts.GetEnumerator()) {
     New-Alias -Name $_.Key -Value $_.Value
 }
-Set-Alias -Name Remove-TssSecret -Value Disable-TssSecret
 Export-ModuleMember -Alias * -Function * -Cmdlet *
