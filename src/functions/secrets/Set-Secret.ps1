@@ -103,6 +103,24 @@
         [switch]
         $Active,
 
+        # Whether Auto Change is enabled
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'password')]
+        [switch]
+        $AutoChangeEnabled,
+
+        # Manual password to use on next Auto Change
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'password')]
+        [securestring]
+        $AutoChangeNextPassword,
+
+        # Enable Folder inherit permissions
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'folder')]
+        [switch]
+        $EnableInheritPermissions,
+
         # Whether Secret Policy is inherited from containing folder
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
@@ -187,6 +205,24 @@
                 $generalParams += $g
             }
         }
+
+        # Require Get-TssSecret and PUT /secrets/{id} endpoint
+        $passwordParamSet = . $ParameterSetParams 'Set-TssSecret' 'password'
+        $folderParamSet = . $ParameterSetParams 'Set-TssSecret' 'folder'
+        $otherParams = @()
+        $invokeParamsOther = @{ }
+        foreach ($p in $passwordParamSet) {
+            if ($setSecretParams.ContainsKey($p)) {
+                $otherParams += $p
+            }
+        }
+        foreach ($f in $folderParamSet) {
+            if ($setSecretParams.ContainsKey($f)) {
+                $otherParams += $f
+            }
+        }
+
+
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -194,8 +230,83 @@
             $invokeParamsField.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsEmail.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsGenearl.PersonalAccessToken = $TssSession.AccessToken
+            $invokeParamsOther.PersonalAccessToken = $TssSession.AccessToken
 
             foreach ($secret in $Id) {
+                if ($otherParams.Count -gt 0) {
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
+                    $invokeParamsOther.Uri = $uri
+                    $invokeParamsOther.Method = 'PUT'
+
+                    $whatifProcessing = 0
+                    if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeEnabled to $AutoChangeEnabled")) {
+                        $whatifProcessing++
+                    }
+                    if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
+                        $whatifProcessing++
+                    }
+                    if ($setSecretParams.ContainsKey('EnableInheritPermissions') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating EnableInheritPermissions to $EnableInheritPermissions")) {
+                        $whatifProcessing++
+                    }
+
+                    if ($whatifProcessing -eq 0) {
+                        try {
+                            $getParams = @{
+                                TssSession = $TssSession
+                                Id         = $secret
+                            }
+                            if ($setSecretParams.ContainsKey('Comment')) {
+                                $getParams.Add('Comment',$Comment)
+                            }
+                            $getSecret = Get-TssSecret @getParams
+                        } catch {
+                            Write-Error "Issue getting Secret [$secret] details: $_"
+                        }
+
+                        if ($getSecret) {
+
+                            if ($setSecretParams.ContainsKey('AutoChangeEnabled')) {
+                                $getSecret.AutoChangeEnabled = $AutoChangeEnabled
+                            }
+                            if ($setSecretParams.ContainsKey('AutoChangeNextPassword')) {
+                                if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $AutoChangeEnabled) {
+                                    Write-Warning "AutoChangeNextPassword requires AutoChange to be enabled. Please provide -AutoChangeEnabled parameter to enable it and set next manual password on secret [$secret]."
+                                } elseif ($getSecret.AutoChangeEnabled -eq $false -and -not $AutoChangeEnabled) {
+                                    Write-Warning "AutoChangeNextPassword require AutoChange to be enabled. AutoChange found disabled on secret [$secret]. Please provide -AutoChangeEnabled parameter to enable it and set next manual password."
+                                } else {
+                                    $getSecret.AutoChangeNextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($AutoChangeNextPassword))
+                                }
+                            }
+                            if ($setSecretParams.ContainsKey('EnableInheritPermissions')) { $getSecret.EnableInheritPermissions = $EnableInheritPermissions }
+                            $invokeParamsOther.Body = $getSecret | ConvertTo-Json
+
+                            Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParams.Body)`n"
+                            try {
+                                $otherResponse = Invoke-TssRestApi @invokeParamsOther
+                            } catch {
+                                Write-Warning "Issue setting property on secret [$secret]"
+                                $err = $_.ErrorDetails.Message
+                                Write-Error $err
+                            }
+
+                            if ($otherResponse.PSObject.Properties.Name -contains 'AutoChangeEnabled' -and $setSecretParams.ContainsKey('AutoChangeEnabled')) {
+                                if ($otherResponse.AutoChangeEnabled -eq $AutoChangeEnabled) {
+                                    Write-Verbose "Secret [$secret] AutoChangeEnabled was set to $AutoChangeEnabled"
+                                }
+                            }
+                            if ($otherResponse.PSObject.Properties.Name -contains 'AutoChangeNextPassword' -and $setSecretParams.ContainsKey('AutoChangeNextPassword')) {
+                                if ($otherResponse.AutoChangeNextPassword -eq $AutoChangeNextPassword) {
+                                    Write-Verbose "Secret [$secret] AutoChangeNextPassword was set to $AutoChangeNextPassword"
+                                }
+                            }
+                            if ($otherResponse.PSObject.Properties.Name -contains 'EnableInheritPermissions' -and $setSecretParams.ContainsKey('EnableInheritPermissions')) {
+                                if ($otherResponse.EnableInheritPermissions -eq $EnableInheritPermissions) {
+                                    Write-Verbose "Secret [$secret] EnableInheritPermissions was set to $EnableInheritPermissions"
+                                }
+                            }
+                        }
+                    }
+                }
                 if ($fieldParams.Count -gt 0) {
                     Write-Verbose "Working on field parameter set values"
 
@@ -212,13 +323,13 @@
                         $body.Add('value',$Value)
                     }
 
-                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join "/"
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join '/'
                     $invokeParamsField.Uri = $uri
                     $invokeParamsField.Method = 'PUT'
                     $invokeParamsField.Body = $body | ConvertTo-Json
 
-                    if ($PSCmdlet.ShouldProcess("$($invokeParamsField.Method) $uri with:`n$($invokeParamsField.Body)")) {
-                        Write-Verbose "$($invokeParamsField.Method) $uri with:`n$body"
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsField.Method) $uri with:`n$($invokeParamsField.Body)`n")) {
+                        Write-Verbose "$($invokeParamsField.Method) $uri with:`n$body`n"
                         try {
                             $fieldResponse = Invoke-TssRestApi @invokeParamsField
                         } catch {
@@ -266,13 +377,13 @@
                         $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
                     }
 
-                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'email' -join "/"
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'email' -join '/'
                     $invokeParamsEmail.Uri = $uri
                     $invokeParamsEmail.Method = 'PATCH'
                     $invokeParamsEmail.Body = $emailBody | ConvertTo-Json
 
-                    if ($PSCmdlet.ShouldProcess("$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)")) {
-                        Write-Verbose "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)"
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n")) {
+                        Write-Verbose "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n"
                         try {
                             $emailResponse = Invoke-TssRestApi @invokeParamsEmail
                         } catch {
@@ -368,13 +479,13 @@
                         $generalBody.data.Add('name',$setName)
                     }
 
-                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'general' -join "/"
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'general' -join '/'
                     $invokeParamsGenearl.Uri = $uri
                     $invokeParamsGenearl.Method = 'PATCH'
                     $invokeParamsGenearl.Body = $generalBody | ConvertTo-Json
 
-                    if ($PSCmdlet.ShouldProcess("$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)")) {
-                        Write-Verbose "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)"
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n")) {
+                        Write-Verbose "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n"
                         try {
                             $generalResponse = Invoke-TssRestApi @invokeParamsGenearl
                         } catch {
