@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-Describe "$commandName works" {
-    BeforeDiscovery {
+Describe "$commandName works" -Skip {
+    BeforeAll {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
 
         $invokeParams = @{

@@ -65,8 +65,8 @@
                         $restResponse = Invoke-TssRestApi @invokeParams
                     } catch {
                         Write-Warning "Issue getting details on [$reportCategory]"
-                        $err = $_.ErrorDetails.Message
-                        Write-Error $err
+                        $err = $_
+                        . $ErrorHandling $err
                     }
 
                     if ($tssReportCatParams['Raw']) {
@@ -89,8 +89,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting details on [$reportCategory]"
-                    $err = $_.ErrorDetails.Message
-                    Write-Error $err
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse) {

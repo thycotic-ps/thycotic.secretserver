@@ -75,18 +75,18 @@
             $invokeParams.Method = 'GET'
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
-                $restReponse = Invoke-TssRestApi @invokeParams
+                $restResponse = Invoke-TssRestApi @invokeParams
             } catch {
                 Write-Warning "Issue on search request"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
+                $err = $_
+                . $ErrorHandling $err
             }
 
-            if ($restReponse.records.Count -le 0 -and $restReponse.records.Length -eq 0) {
+            if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                 Write-Warning "No groups found"
             }
-            if ($restReponse.records) {
-                . $TssGroupSummaryObject $restReponse.records
+            if ($restResponse.records) {
+                . $TssGroupSummaryObject $restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

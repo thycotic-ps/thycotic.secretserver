@@ -4,7 +4,7 @@
     Stop a current password change
 
     .DESCRIPTION
-    Stop a current passwor change
+    Stop a current password change
 
     .EXAMPLE
     PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -49,17 +49,8 @@
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    if (($_.ErrorDetails.Message | ConvertFrom-Json).Message) {
-                        [PSCustomObject]@{
-                            SecretId = $secret
-                            Status = $false
-                            Notes = ($_.ErrorDetails.Message | ConvertFrom-Json).Message
-                        }
-                    } else {
-                        Write-Warning "Issue removing [$secret]"
-                        $err = $_.ErrorDetails.Message
-                        Write-Error $err
-                    }
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse.success) {

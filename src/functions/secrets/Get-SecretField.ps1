@@ -144,12 +144,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
-                    $err = $_.ErrorDetails.Message
-                    if ($err) {
-                        Write-Error $err
-                    } else {
-                        Write-Error $_.Exception
-                    }
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 $restResponse

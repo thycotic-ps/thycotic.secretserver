@@ -27,7 +27,7 @@
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    $secret = Search-TssSecret -TssSesion $session -FieldSlug server -FieldText 'sql1' | Get-TssSecret
+    $secret = Search-TssSecret -TssSession $session -FieldSlug server -FieldText 'sql1' | Get-TssSecret
     $cred = $secret.GetCredential()
     $serverName = $secret.GetValue('server')
 
@@ -72,7 +72,7 @@
         # Check in the secret if it is checked out
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
-        $ForceCheckin,
+        $ForceCheckIn,
 
         # Include secrets that are inactive/disabled
         [Parameter(ParameterSetName = 'restricted')]
@@ -141,8 +141,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting secret [$secret]"
-                    $err = $_.ErrorDetails.Message
-                    Write-Error $err
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse) {

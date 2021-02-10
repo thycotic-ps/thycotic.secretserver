@@ -30,8 +30,8 @@ process {
         $restResponse = Invoke-TssRestApi @invokeParams
     } catch {
         Write-Warning "Issue reading version, verify Hide Secret Server Version Numbers is disabled in Secret Server"
-        $err = $_.ErrorDetails.Message
-        Write-Error $err
+        $err = $_
+        . $ErrorHandling $err
     }
 
     $versionProperties = $restResponse.model.PSObject.Properties.Name
@@ -55,8 +55,8 @@ process {
                 $latest = Invoke-RestMethod -Uri $getLatestUrl -UseBasicParsing
             } catch {
                 Write-Warning "Issue getting latest version information"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
+                $err = $_
+                . $ErrorHandling $err
             }
 
             $outVersion.LatestVersion = $latest

@@ -30,7 +30,7 @@
         [int]
         $SecretTemplateId,
 
-        # Folder ID, sets the Folder ID property on the ouput object
+        # Folder ID, sets the Folder ID property on the output object
         [Parameter(ValueFromPipeline)]
         [int]
         $FolderId
@@ -60,8 +60,8 @@
                 $restResponse = Invoke-TssRestApi @invokeParams
             } catch {
                 Write-Warning "Issue getting secret stub template [$SecretTemplateId]"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
+                $err = $_
+                . $ErrorHandling $err
             }
 
             if ($restResponse) {

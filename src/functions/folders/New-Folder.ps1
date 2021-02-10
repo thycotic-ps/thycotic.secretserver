@@ -1,7 +1,7 @@
 ﻿function New-Folder {
     <#
     .SYNOPSIS
-    Create a new folde
+    Create a new folder
 
     .DESCRIPTION
     Create a new folder
@@ -105,8 +105,8 @@
                 $restResponse = Invoke-TssRestApi @invokeParams
             } catch {
                 Write-Warning "Issue creating folder [$ReportName]"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
+                $err = $_
+                . $ErrorHandling $err
             }
             if ($restResponse) {
                 . $TssFolderObject $restResponse

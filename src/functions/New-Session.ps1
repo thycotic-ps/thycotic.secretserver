@@ -69,7 +69,7 @@
             throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
         } else {
             $outputTssSession.SecretServer = $SecretServer
-            $outputTssSession.ApiUrl = ($outputTssSession.SecretServer, $outputTssSession.ApiVersion -join '/')
+            $outputTssSession.ApiUrl = ($outputTssSession.SecretServer + $outputTssSession.ApiVersion)
         }
     }
 

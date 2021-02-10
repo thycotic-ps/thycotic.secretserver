@@ -78,8 +78,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting folder [$folder]"
-                    $err = $_.ErrorDetails.Message
-                    Write-Error $err
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse) {

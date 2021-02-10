@@ -218,7 +218,7 @@
                     $filters += switch ($tssParams['Scope']) {
                         'All' { "filter.scope=1" }
                         'Recent' { "filter.scope=2" }
-                        'Favorit' { "filter.scope=3" }
+                        'Favorite' { "filter.scope=3" }
                     }
                 }
                 'RpcEnabled' {
@@ -254,8 +254,8 @@
                 $restResponse = Invoke-TssRestApi @invokeParams
             } catch {
                 Write-Warning "Issue on search request"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
+                $err = $_
+                . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {

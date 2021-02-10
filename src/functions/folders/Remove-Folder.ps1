@@ -51,8 +51,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue removing [$]"
-                    $err = $_.ErrorDetails.Message
-                    Write-Error $err
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse) {

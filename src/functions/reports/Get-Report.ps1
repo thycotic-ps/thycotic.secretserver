@@ -53,8 +53,8 @@
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting report [$report]"
-                    $err = $_.ErrorDetails.Message
-                    Write-Error $err
+                    $err = $_
+                    . $ErrorHandling $err
                 }
 
                 if ($restResponse) {

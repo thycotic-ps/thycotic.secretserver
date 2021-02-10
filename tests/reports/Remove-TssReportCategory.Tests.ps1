@@ -44,8 +44,7 @@ Describe "$commandName works" {
         }
         It "Should delete the category" {
             Remove-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -Confirm:$false
-            $cat = Get-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -ErrorAction SilentlyContinue -WarningAction SilentlyContinue
-            $cat | Should -BeNullOrEmpty
+            (Get-TssReportCategory -TssSession $session -All).CategoryId | Should -Not -Contain $categoryId
         }
     }
 }

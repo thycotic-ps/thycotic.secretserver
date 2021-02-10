@@ -238,18 +238,18 @@
                     $invokeParamsOther.Uri = $uri
                     $invokeParamsOther.Method = 'PUT'
 
-                    $whatifProcessing = 0
+                    $whatIfProcessing = 0
                     if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeEnabled to $AutoChangeEnabled")) {
-                        $whatifProcessing++
+                        $whatIfProcessing++
                     }
                     if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
-                        $whatifProcessing++
+                        $whatIfProcessing++
                     }
                     if ($setSecretParams.ContainsKey('EnableInheritPermissions') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating EnableInheritPermissions to $EnableInheritPermissions")) {
-                        $whatifProcessing++
+                        $whatIfProcessing++
                     }
 
-                    if ($whatifProcessing -eq 0) {
+                    if ($whatIfProcessing -eq 0) {
                         try {
                             $getParams = @{
                                 TssSession = $TssSession
@@ -285,8 +285,8 @@
                                 $otherResponse = Invoke-TssRestApi @invokeParamsOther
                             } catch {
                                 Write-Warning "Issue setting property on secret [$secret]"
-                                $err = $_.ErrorDetails.Message
-                                Write-Error $err
+                                $err = $_
+                                . $ErrorHandling $err
                             }
 
                             if ($otherResponse.PSObject.Properties.Name -contains 'AutoChangeEnabled' -and $setSecretParams.ContainsKey('AutoChangeEnabled')) {
@@ -334,8 +334,8 @@
                             $fieldResponse = Invoke-TssRestApi @invokeParamsField
                         } catch {
                             Write-Warning "Issue setting field $Field on secret [$secret]"
-                            $err = $_.ErrorDetails.Message
-                            Write-Error $err
+                            $err = $_
+                            . $ErrorHandling $err
                         }
 
                         if ($fieldResponse -eq $Value) {
@@ -367,7 +367,7 @@
                             dirty = $true
                             value = $EmailWhenViewed
                         }
-                        $emailBody.data.Add('sendEmailWhenViewd',$sendEmailWhenViewed)
+                        $emailBody.data.Add('sendEmailWhenViewed',$sendEmailWhenViewed)
                     }
                     if ($setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
                         $sendEmailWhenHeartbeatFails = @{
@@ -388,8 +388,8 @@
                             $emailResponse = Invoke-TssRestApi @invokeParamsEmail
                         } catch {
                             Write-Warning "Issue configuring [$secret] email settings, verify Email Server is configured in Secret Server"
-                            $err = $_.ErrorDetails.Message
-                            Write-Error $err
+                            $err = $_
+                            . $ErrorHandling $err
                         }
 
                         if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $setSecretParams.ContainsKey('EmailWhenChanged')) {
@@ -399,7 +399,7 @@
                             Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] updated to $EmailWhenViewed"
                         }
                         if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
-                            Write-Verbose "Secret [$secret] email setting [Sned Email When Heartbeat Fails] updated to $EmailWhenHeartbeatFails"
+                            Write-Verbose "Secret [$secret] email setting [Send Email When Heartbeat Fails] updated to $EmailWhenHeartbeatFails"
                         }
                     }
                 }
@@ -490,8 +490,8 @@
                             $generalResponse = Invoke-TssRestApi @invokeParamsGenearl
                         } catch {
                             Write-Warning "Issue configuring general settings on [$secret]"
-                            $err = $_.ErrorDetails.Message
-                            Write-Error $err
+                            $err = $_
+                            . $ErrorHandling $err
                         }
 
                         if ($generalResponse.id -eq $secret -and $generalResponse.name.value -eq $SecretName) {
