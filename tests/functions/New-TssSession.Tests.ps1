@@ -6,9 +6,10 @@ Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
+        [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -16,44 +17,86 @@ Describe "$commandName verify parameters" {
             $_ | Should -BeNullOrEmpty
         }
     }
+    Context "Command specific details" {
+        It "$commandName should set OutputType to TssSession" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssSession'
+        }
+    }
 }
 
-Describe "$commandName updates session object" {
+Describe "$commandName works" {
     BeforeAll {
         $apiV = 'api/v1'
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        $sessionCredential = New-TssSession -SecretServer $ss -Credential $ssCred
+
+        $secretServerHost = 'https://tenant.secretservercloud.com'
+        $generatedAccessToken = (New-Guid).Guid
+        $sessionAccessToken = New-TssSession -SecretServer $secretServerHost -AccessToken $generatedAccessToken
+
+        $hostnameSampleFile = ([IO.Path]::Combine([string]$PSScriptRoot, '..\test_data', 'newsession_hostsamples.txt'))
+        $hostnameSamples = Get-Content $hostnameSampleFile
     }
-    Context "Oauth2 authentication" {
-        It "Populates SecretServer Propety" {
-            $session.SecretServer | Should -Be ([uri]$ss)
+    Context "Validates SecretServer argument" {
+        It "Should catch invalid URL arguments" {
+            { New-TssSession -SecretServer 'https://alpha/api/v1' -AccessToken "$(Get-Random)" } | Should -Throw
         }
-        It "ApiVersion Propety is set" {
-            $session.ApiVersion | Should -Be $apiV
+    }
+    Context "Credential parameter" {
+        It "Populates SecretServer Property" {
+            $sessionCredential.SecretServer | Should -Be ([uri]$ss)
         }
-        It "ApiUrl Propety is set" {
-            $session.ApiUrl | Should -Not -BeNullOrEmpty
+        It "ApiVersion Property is set" {
+            $sessionCredential.ApiVersion | Should -Be $apiV
+        }
+        It "ApiUrl Property is set" {
+            $sessionCredential.ApiUrl | Should -Not -BeNullOrEmpty
         }
         It "Populates AccessToken Property" {
-            $session.AccessToken | Should -Not -BeNullOrEmpty
+            $sessionCredential.AccessToken | Should -Not -BeNullOrEmpty
         }
         It "Populates RefreshToken Property" {
-            $session.RefreshToken | Should -Not -BeNullOrEmpty
+            $sessionCredential.RefreshToken | Should -Not -BeNullOrEmpty
         }
         It "Calculates TimeOfDeath" {
             $expectedValue = [datetime]::UtcNow.Add([timespan]::FromSeconds($expiresIn))
-            $session.TimeOfDeath | Should -BeLessOrEqual $expectedValue
+            $sessionCredential.TimeOfDeath | Should -BeLessOrEqual $expectedValue
         }
         It "Calculates StartTime" {
             $currentTime = [datetime]::UtcNow
-            $session.StartTime | Should -BeLessOrEqual $currentTime
+            $sessionCredential.StartTime | Should -BeLessOrEqual $currentTime
         }
         It "RefreshSession() method updates AccessToken" {
-            $orgAccessToken = $session.AccessToken
-            $session.SessionRefresh() | Should -Be $true
-            $session.AccessToken | Should -Not -Match $orgAccessToken
+            $orgAccessToken = $sessionCredential.AccessToken
+            $sessionCredential.SessionRefresh() | Should -Be $true
+            $sessionCredential.AccessToken | Should -Not -Match $orgAccessToken
         }
         It "SessionExpire() method should return true" {
-            $session.SessionExpire() | Should -Be $true
+            $sessionCredential.SessionExpire() | Should -Be $true
+        }
+    }
+    Context "AccessToken parameter" {
+        It "Should set SecretServer to <_>" -TestCases $secretServerHost {
+            $sessionAccessToken.SecretServer | Should -Be $_
+        }
+        It "Sets AccessToken to <_>" -TestCases $sessionAccessToken {
+            $sessionAccessToken.AccessToken | Should $_
+        }
+        It "ApiUrl Property is set" {
+            $sessionAccessToken.ApiUrl | Should -Not -BeNullOrEmpty
+        }
+        It "Does not populate a RefreshToken Property" {
+            $sessionAccessToken.RefreshToken | Should -BeNullOrEmpty
+        }
+        It "SessionExpire() method should return true" {
+            $sessionAccessToken.SessionExpire() | Should -Be $true
+        }
+        It "Does not calculate a TimeOfDeath" {
+            $expectedValue = [datetime]::UtcNow.Add([timespan]::FromSeconds($expiresIn))
+            $sessionAccessToken.TimeOfDeath | Should -BeLessOrEqual $expectedValue
+        }
+        It "Calculates StartTime" {
+            $currentTime = [datetime]::UtcNow
+            $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
         }
     }
 }

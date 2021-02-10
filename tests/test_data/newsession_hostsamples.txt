@@ -1,0 +1,10 @@
+﻿https://tenant.secretservercloud.com
+https://tenant.secretservercloud.com/api/v1
+https://tenant.secretservercloud.com/oauth2/token
+https://vault.com/SecretServer/api/v1
+https://vault.com/SecretServer/oauth2/token
+https://vault.com/SecretServer/SecretServer/SecretServer
+https://vault.com/SecretServer/whatareyoudoing
+https://vault.com/SecretServer/KarneWasHere
+https://vault.com/SecretServer/KarenWasHere/api/v1
+https://vault.com/SecretServer/dogdog/oauth2/api/dog/v1

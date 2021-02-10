@@ -9,7 +9,6 @@
     [int]$ExpiresIn
     hidden [datetime]$TimeOfDeath
     [int]$Take = [int]::MaxValue
-    hidden [boolean]$ExternalToken
 
     [boolean]IsValidSession() {
         if ([string]::IsNullOrEmpty($this.AccessToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
@@ -20,12 +19,12 @@
     }
 
     [boolean]IsValidToken() {
-        if ([string]::IsNullOrEmpty($this.AccessToken) -and (-not $this.ExternalToken)) {
+        if ([string]::IsNullOrEmpty($this.AccessToken)) {
             Write-Host 'No valid token found for current TssSession object'
             return $false
-        } elseif ([datetime]::Now -lt $this.TimeOfDeath -and (-not $this.ExternalToken)) {
+        } elseif ([datetime]::Now -lt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
             return $true
-        } elseif ([datetime]::Now -gt $this.TimeOfDeath -and (-not $this.ExternalToken)) {
+        } elseif ([datetime]::Now -gt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
             Write-Host 'Token is not valid and has exceeded TimeOfDeath'
             return $false
         } elseif ($this.ExternalToken) {
@@ -37,22 +36,17 @@
     }
 
     [boolean]SessionExpire() {
-        if (-not $this.ExternalToken) {
-            $url = $this.SecretServer, $this.ApiVersion, 'oauth-expiration' -join '/'
-            try {
-                Invoke-TssRestApi -Uri $url -Method Post -PersonalAccessToken $this.AccessToken
-                return $true
-            } catch {
-                return $false
-            }
-        } else {
-            Write-Warning 'Token was provided through external source and cannot be expired'
+        $url = $this.ApiUrl, 'oauth-expiration' -join '/'
+        try {
+            Invoke-TssRestApi -Uri $url -Method Post -PersonalAccessToken $this.AccessToken
+            return $true
+        } catch {
             return $false
         }
     }
 
     [boolean]SessionRefresh() {
-        if ($this.ExternalToken) {
+        if ($this.TokenType -eq 'ExternalToken') {
             Write-Warning 'Token was provided through external source, SessionRefresh is not supported'
             return $false
         }

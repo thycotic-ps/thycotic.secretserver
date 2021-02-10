@@ -38,89 +38,92 @@
     .OUTPUTS
     TssSession.
     #>
-    [cmdletbinding(SupportsShouldProcess)]
+    [cmdletbinding()]
     [OutputType('TssSession')]
     param(
         # Secret Server URL
-        [Parameter(ParameterSetName = 'new',Mandatory)]
-        [Parameter(ParameterSetName = 'sdk',
-            Mandatory)]
-        [Alias('Server')]
+        [Parameter(ParameterSetName = 'new',Mandatory, Position = 0)]
+        [Parameter(ParameterSetName = 'sdk',Mandatory, Position = 0)]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
-        [Parameter(ParameterSetName = 'new')]
+        [Parameter(ParameterSetName = 'new', Mandatory)]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Specify Access Token
         # Bypasses requesting a token from Secret Server
-        [Parameter(ParameterSetName = 'sdk')]
+        [Parameter(ParameterSetName = 'sdk', Mandatory)]
         $AccessToken
     )
 
     begin {
         $newTssParams = $PSBoundParameters
         $invokeParams = @{ }
+
+        $outputTssSession = [TssSession]::new()
+
+        if ($SecretServer -match "(?:\/api\/v1)|(?:\/oauth2\/token)") {
+            throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
+        } else {
+            $outputTssSession.SecretServer = $SecretServer
+            $outputTssSession.ApiUrl = ($outputTssSession.SecretServer, $outputTssSession.ApiVersion -join '/')
+        }
     }
 
     process {
-        if (-not $newTssParams['AccessToken']) {
-            if ($newTssParams.ContainsKey('SecretServer')) {
-                $uri = $SecretServer, "oauth2/token" -join '/'
-            }
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
 
-            $postContent = [Ordered]@{ }
-
+        if ($outputTssSession.SecretServer) {
+            Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
             if ($newTssParams.ContainsKey('Credential')) {
-                $postContent.username = $Credential.UserName
-                $postContent.password = $Credential.GetNetworkCredential().Password
-                $postContent.grant_type = 'password'
-            }
+                $invokeParams.Uri = $SecretServer, 'oauth2/token' -join '/'
 
-            $invokeParams.Uri = $Uri
-            $invokeParams.Body = $postContent
-            $invokeParams.Method = 'POST'
-
-            if (-not $PSCmdlet.ShouldProcess("POST $uri")) { return }
-            try {
-                $restResponse = Invoke-TssRestApi @invokeParams -Property @{SecretServer = $SecretServer }
-            } catch {
-                Write-Warning "Issue authenticating to [$SecretServer]"
-                $err = $_.ErrorDetails.Message
-                Write-Error $err
-            }
-
-            if ($restResponse) {
-                $sessionObj = [TssSession]::new()
-                $sessionObj.SecretServer = $restResponse.SecretServer
-                $sessionObj.ApiUrl =
-                if ( ($restResponse.SecretServer).PathAndQuery -eq '/') {
-                    [string]$restResponse.SecretServer + $sessionObj.ApiVersion
-                } elseif ( ($restResponse.SecretServer).PathAndQuery.Length -gt 1) {
-                    [string]$restResponse.SecretServer, $sessionObj.ApiVersion -join '/'
-                } elseif ( ($restResponse.SecretServer).Segments -contains 'api/') {
-                    [string]$restResponse.SecretServer
+                $oauth2Body = [Ordered]@{ }
+                if ($newTssParams.ContainsKey('Credential')) {
+                    $oauth2Body.username = $Credential.UserName
+                    $oauth2Body.password = $Credential.GetNetworkCredential().Password
+                    $oauth2Body.grant_type = 'password'
                 }
-                $sessionObj.AccessToken = $restResponse.access_token
-                $sessionObj.RefreshToken = $restResponse.refresh_token
-                $sessionObj.ExpiresIn = $restResponse.expires_in
-                $sessionObj.TokenType = $restResponse.token_type
-                $sessionObj.StartTime = [datetime]::Now
-                $sessionObj.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
 
-                return $sessionObj
+                $invokeParams.Body = $oauth2Body
+                $invokeParams.Method = 'POST'
+
+                Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                try {
+                    $restResponse = Invoke-TssRestApi @invokeParams
+                } catch {
+                    Write-Warning "Issue authenticating to [$SecretServer]"
+                    $err = $_.ErrorDetails.Message
+                    if ($err.Length -gt 0) {
+                        throw $err
+                    } elseif ($_ -like '*<html*') {
+                        $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new("Response was HTML, Request Failed."),"ResultWasHTML", "NotSpecified", $invokeParams.Uri))
+                    } else {
+                        throw $_.Exception
+                    }
+                }
+
+                if ($restResponse) {
+                    $outputTssSession.AccessToken = $restResponse.access_token
+                    $outputTssSession.RefreshToken = $restResponse.refresh_token
+                    $outputTssSession.ExpiresIn = $restResponse.expires_in
+                    $outputTssSession.TokenType = $restResponse.token_type
+                    $outputTssSession.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
+                }
             }
-        }
-        if ($newTssParams['SecretServer'] -and $newTssParams['AccessToken']) {
-            [TssSession]@{
-                SecretServer  = $SecretServer
-                AccessToken   = $AccessToken
-                StartTime     = [datetime]::Now
-                ExternalToken = $true
+
+            if ($newTssParams.ContainsKey('AccessToken')) {
+                $outputTssSession.AccessToken = $AccessToken
+                $outputTssSession.TokenType = 'External'
             }
+
+            $outputTssSession.StartTime = [datetime]::Now
+            return $outputTssSession
+        } else {
+            Write-Warning "SecretServer argument not found"
         }
     }
 }

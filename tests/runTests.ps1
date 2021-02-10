@@ -1,4 +1,8 @@
-﻿$testRootPath = $PSScriptRoot
+﻿switch ($PSEdition) {
+    'Desktop' { Write-Host "Testing in Windows PowerShell" -ForegroundColor Cyan -BackgroundColor DarkBlue}
+    'Core' { Write-Host "Testing in Windows PowerShell" -ForegroundColor DarkBlue -BackgroundColor Cyan}
+}
+$testRootPath = $PSScriptRoot
 $modulePsd1 = [IO.Path]::Combine(($PSScriptRoot.Trim("tests")), 'src\Thycotic.SecretServer.psd1')
 $module = Import-Module $modulePsd1 -Force -PassThru
 
