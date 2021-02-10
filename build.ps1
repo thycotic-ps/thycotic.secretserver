@@ -26,10 +26,16 @@ param(
     [switch]
     $SkipTests
 )
-
+Push-Location
+Set-Location $PSScriptRoot
 $moduleName = 'Thycotic.SecretServer'
 $staging = "$env:TEMP\tss_staging\"
 
+$git = git status
+if ($git[1] -notmatch "You branch is up to date") {
+    Pop-Location
+    throw "Local branch has commits not in GitHub"
+}
 if (Test-Path $staging) {
     Remove-Item -Recurse -Force $staging
 }
@@ -135,3 +141,4 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
     Remove-Item -Recurse -Force $staging
     Write-Host "Tests failures detected; cancelling and cleaning up"
 }
+Pop-Location
