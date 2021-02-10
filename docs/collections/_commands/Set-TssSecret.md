@@ -17,10 +17,10 @@ Set a value for a given secret in Secret Server
 ### all (Default)
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Field <String>] [-Value <String>]
- [-Clear] [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active]
- [-EnableInheritSecretPolicy] [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync]
- [-SecretName <String>] [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-Clear] [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
+ [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermissions] [-EnableInheritSecretPolicy]
+ [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
+ [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### field
@@ -41,6 +41,18 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Act
  [-EnableInheritSecretPolicy] [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync]
  [-SecretName <String>] [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
+```
+
+### password
+```
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-AutoChangeEnabled]
+ [-AutoChangeNextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### folder
+```
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-EnableInheritPermissions]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -243,6 +255,51 @@ Set the secret active secret is active
 ```yaml
 Type: SwitchParameter
 Parameter Sets: all, general
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoChangeEnabled
+Whether Auto Change is enabled
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, password
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoChangeNextPassword
+Manual password to use on next Auto Change
+
+```yaml
+Type: SecureString
+Parameter Sets: all, password
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EnableInheritPermissions
+Enable Folder inherit permissions
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, folder
 Aliases:
 
 Required: False

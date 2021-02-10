@@ -19,7 +19,7 @@ Stop-TssSecretPasswordChange [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] 
 ```
 
 ## DESCRIPTION
-Stop a current passwor change
+Stop a current password change
 
 ## EXAMPLES
 

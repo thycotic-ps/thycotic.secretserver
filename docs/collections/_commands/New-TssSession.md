@@ -16,12 +16,12 @@ Create new session
 
 ### sdk
 ```
-New-TssSession -SecretServer <Uri> [-AccessToken <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession [-SecretServer] <Uri> -AccessToken <Object> [<CommonParameters>]
 ```
 
 ### new
 ```
-New-TssSession -SecretServer <Uri> [-Credential <PSCredential>] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession [-SecretServer] <Uri> -Credential <PSCredential> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -73,10 +73,10 @@ Secret Server URL
 ```yaml
 Type: Uri
 Parameter Sets: (All)
-Aliases: Server
+Aliases:
 
 Required: True
-Position: Named
+Position: 1
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -90,7 +90,7 @@ Type: PSCredential
 Parameter Sets: new
 Aliases:
 
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False
@@ -106,38 +106,7 @@ Type: Object
 Parameter Sets: sdk
 Aliases:
 
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
+Required: True
 Position: Named
 Default value: None
 Accept pipeline input: False

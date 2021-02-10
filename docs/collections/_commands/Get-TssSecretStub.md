@@ -64,7 +64,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderId
-Folder ID, sets the Folder ID property on the ouput object
+Folder ID, sets the Folder ID property on the output object
 
 ```yaml
 Type: Int32

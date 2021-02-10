@@ -10,7 +10,7 @@ title: New-TssFolder
 # New-TssFolder
 
 ## SYNOPSIS
-Create a new folde
+Create a new folder
 
 ## SYNTAX
 

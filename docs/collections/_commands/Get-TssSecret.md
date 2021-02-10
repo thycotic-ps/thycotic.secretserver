@@ -22,7 +22,7 @@ Get-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ### restricted
 ```
 Get-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Comment <String>]
- [-DoublelockPassword <SecureString>] [-ForceCheckin] [-IncludeInactive] [-TicketNumber <String>]
+ [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
@@ -59,7 +59,7 @@ Gets Secret ID 46 and then output a PSCredential to utilize in script workflow
 ### EXAMPLE 4
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$secret = Search-TssSecret -TssSesion $session -FieldSlug server -FieldText 'sql1' | Get-TssSecret
+$secret = Search-TssSecret -TssSession $session -FieldSlug server -FieldText 'sql1' | Get-TssSecret
 $cred = $secret.GetCredential()
 $serverName = $secret.GetValue('server')
 ```
@@ -142,7 +142,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ForceCheckin
+### -ForceCheckIn
 Check in the secret if it is checked out
 
 ```yaml
