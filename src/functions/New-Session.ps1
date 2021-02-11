@@ -117,7 +117,7 @@
 
             if ($newTssParams.ContainsKey('AccessToken')) {
                 $outputTssSession.AccessToken = $AccessToken
-                $outputTssSession.TokenType = 'External'
+                $outputTssSession.TokenType = 'ExternalToken'
             }
 
             $outputTssSession.StartTime = [datetime]::Now
