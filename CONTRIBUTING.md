@@ -52,7 +52,7 @@ Please adhere to the general guideline that you should never force push to a pub
 
 ## Pester Tests
 
-A folder of [exports](https://github.com/thycotic-ps/thycotic.secretserver/tree/master/tests/exports)` is included with the testing suite. These files are utilized against an active version of Secret Server. A [constants file](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/tests/constants.ps1) exists at the root of the test folder and is to point the test to run against your local Secret Server. You can create a copy of this file to your local profile `$env:USERPROFILE\constants.ps1` to keep the file unique to your environment.
+A folder of [exports](https://github.com/thycotic-ps/thycotic.secretserver/tree/master/tests/exports) is included with the testing suite. These files are utilized against an active version of Secret Server. A [constants file](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/tests/constants.ps1) exists at the root of the test folder and is to point the test to run against your local Secret Server. You can create a copy of this file to your local profile `$env:USERPROFILE\constants.ps1` to keep the file unique to your environment.
 
 ## Contribution Help
 
