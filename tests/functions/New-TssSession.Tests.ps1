@@ -98,5 +98,8 @@ Describe "$commandName works" {
             $currentTime = [datetime]::UtcNow
             $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
         }
+        It "Sets correct TokenType" {
+            $sessionAccessToken.TokenType | Should -be 'ExternalToken'
+        }
     }
 }
