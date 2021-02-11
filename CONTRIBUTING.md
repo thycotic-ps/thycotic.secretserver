@@ -34,6 +34,8 @@ Once your changes and tests are ready to submit for review:
 
     [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. Run the test for the module or the specific function to make sure nothing is broken.
 
+    Since the module's testing framework cannot be run (at this time) in an automated manner with each PR, we request that you run the tests locally and provide an indication (screenshot or output content) in the PR.
+
     > If your change is altering the module's functionality or function, this requires explicit approval from maintainer(s) before being submitted as a PR.
 
 2. Rebase your changes
@@ -44,7 +46,9 @@ Once your changes and tests are ready to submit for review:
 
     Push your local changes to your forked copy of the repository and [submit a pull request](https://help.github.com/articles/using-pull-requests). In the pull request, choose a title that sums up the changes you have made, and in the body, provide more details about what your changes do. Also, mention the number of issues where the discussion has taken place, e.g., `Fixes #143` or `Closes #143`.
 
-    > Every pull request will require updates to our CHANGELOG file with your change and referenced issue. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
+    > **Every** pull request requires an associated issue to be linked to it.
+
+    > **Every** pull request will require the inclusion of the CHANGELOG file with your change and referenced issue. The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 Then sit back and wait. There will probably be a discussion about the pull request and, if any changes are needed, we would love to work with you to get your pull request merged into Thycotic.SecretServer.
 
