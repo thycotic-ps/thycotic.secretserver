@@ -4,7 +4,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken'
+        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken', 'UseDefaultCredentials'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -27,11 +27,13 @@ Describe "$commandName verify parameters" {
 Describe "$commandName works" {
     BeforeAll {
         $apiV = 'api/v1'
+        $iwaApiV = 'winauthwebservices/' + $apiV
         $sessionCredential = New-TssSession -SecretServer $ss -Credential $ssCred
 
         $secretServerHost = 'https://tenant.secretservercloud.com'
         $generatedAccessToken = (New-Guid).Guid
         $sessionAccessToken = New-TssSession -SecretServer $secretServerHost -AccessToken $generatedAccessToken
+        $sessionDefaultCredentials = New-TssSession -SecretServer $secretServerHost -UseDefaultCredentials
 
         $hostnameSampleFile = ([IO.Path]::Combine([string]$PSScriptRoot, '..\test_data', 'newsession_hostsamples.txt'))
         $hostnameSamples = Get-Content $hostnameSampleFile
@@ -97,6 +99,27 @@ Describe "$commandName works" {
         It "Calculates StartTime" {
             $currentTime = [datetime]::UtcNow
             $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
+        }
+    }
+    Context "UseDefaultCredentials parameter" {
+        It "ApiVersion Property is set" {
+            $sessionDefaultCredentials.ApiVersion | Should -Be $iwaApiV
+        }
+        It "ApiUrl Property is set" {
+            $sessionDefaultCredentials.ApiUrl | Should -Not -BeNullOrEmpty
+        }
+        It "RefreshSession() method should return true" {
+            $sessionDefaultCredentials.SessionRefresh() | Should -Be $true
+        }
+        It "SessionExpire() method should return false" {
+            $sessionDefaultCredentials.SessionExpire() | Should -Be $false
+        }
+        It "Calculates StartTime" {
+            $currentTime = [datetime]::Now
+            $sessionDefaultCredentials.StartTime | Should -BeLessOrEqual $currentTime
+        }
+        It "Sets correct TokenType" {
+            $sessionDefaultCredentials.TokenType | Should -Be 'DefaultCredentials'
         }
     }
 }

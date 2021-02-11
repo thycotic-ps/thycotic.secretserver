@@ -44,6 +44,7 @@
         # Secret Server URL
         [Parameter(ParameterSetName = 'new',Mandatory, Position = 0)]
         [Parameter(ParameterSetName = 'sdk',Mandatory, Position = 0)]
+        [Parameter(ParameterSetName = 'iwa',Mandatory, Position = 0)]
         [uri]
         $SecretServer,
 
@@ -56,7 +57,12 @@
         # Specify Access Token
         # Bypasses requesting a token from Secret Server
         [Parameter(ParameterSetName = 'sdk', Mandatory)]
-        $AccessToken
+        $AccessToken,
+
+        # Uses the credentials of the current user to create session.
+        [Parameter(ParameterSetName = 'iwa', Mandatory)]
+        [switch]
+        $UseDefaultCredentials
     )
 
     begin {
@@ -64,6 +70,9 @@
         $invokeParams = @{ }
 
         $outputTssSession = [TssSession]::new()
+        if ($UseDefaultCredentials.IsPresent) {
+            $outputTssSession.ApiVersion = 'winauthwebservices/' + $outputTssSession.ApiVersion
+        }
 
         if ($SecretServer -match "(?:\/api\/v1)|(?:\/oauth2\/token)") {
             throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
@@ -118,6 +127,10 @@
             if ($newTssParams.ContainsKey('AccessToken')) {
                 $outputTssSession.AccessToken = $AccessToken
                 $outputTssSession.TokenType = 'External'
+            }
+
+            if ($newTssParams.ContainsKey('UseDefaultCredentials')) {
+                $outputTssSession.TokenType = 'DefaultCredentials'
             }
 
             $outputTssSession.StartTime = [datetime]::Now

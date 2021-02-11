@@ -19,7 +19,10 @@
     }
 
     [boolean]IsValidToken() {
-        if ([string]::IsNullOrEmpty($this.AccessToken)) {
+        if ($this.TokenType -like 'DefaultCredentials') {
+            Write-Host 'Token is using currently logged on user credentials'
+            return $true
+        } elseif ([string]::IsNullOrEmpty($this.AccessToken)) {
             Write-Host 'No valid token found for current TssSession object'
             return $false
         } elseif ([datetime]::Now -lt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
@@ -27,7 +30,7 @@
         } elseif ([datetime]::Now -gt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
             Write-Host 'Token is not valid and has exceeded TimeOfDeath'
             return $false
-        } elseif ($this.ExternalToken) {
+        } elseif ($this.TokenType -eq 'ExternalToken') {
             Write-Warning 'Token was provided through external source so it cannot be validated'
             return $true
         } else {
@@ -36,6 +39,11 @@
     }
 
     [boolean]SessionExpire() {
+        if ($this.TokenType -eq 'DefaultCredentials') {
+            Write-Warning 'Using currently logged on user, SessionExpire is not possible'
+            return $false
+        }
+
         $url = $this.ApiUrl, 'oauth-expiration' -join '/'
         try {
             Invoke-TssRestApi -Uri $url -Method Post -PersonalAccessToken $this.AccessToken
@@ -46,9 +54,15 @@
     }
 
     [boolean]SessionRefresh() {
-        if ($this.TokenType -eq 'ExternalToken') {
-            Write-Warning 'Token was provided through external source, SessionRefresh is not supported'
-            return $false
+        switch ($this.TokenType) {
+            'ExternalToken' {
+                Write-Warning 'Token was provided through external source, SessionRefresh is not supported'
+                return $false
+            }
+            'DefaultCredentials' {
+                Write-Host 'Using currently logged on user, SessionRefresh is not needed'
+                return $true
+            }
         }
         try {
             $url = $this.SecretServer + 'oauth2/token' -join '/'
