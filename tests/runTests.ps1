@@ -1,6 +1,6 @@
 ﻿switch ($PSEdition) {
-    'Desktop' { Write-Host "Testing in Windows PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue}
-    'Core' { Write-Host "Testing in Windows PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue}
+    'Desktop' { Write-Host "Testing in Windows PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue }
+    'Core' { Write-Host "Testing in PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue}
 }
 $testRootPath = $PSScriptRoot
 $modulePsd1 = [IO.Path]::Combine(($PSScriptRoot.Trim("tests")), 'src\Thycotic.SecretServer.psd1')
