@@ -126,7 +126,7 @@
 
             if ($newTssParams.ContainsKey('AccessToken')) {
                 $outputTssSession.AccessToken = $AccessToken
-                $outputTssSession.TokenType = 'External'
+                $outputTssSession.TokenType = 'ExternalToken'
             }
 
             if ($newTssParams.ContainsKey('UseDefaultCredentials')) {
