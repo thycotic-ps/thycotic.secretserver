@@ -15,7 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * `New-TssSession` - fixed token type when AccessToken parameter is used. [26720ba](https://github.com/thycotic-ps/thycotic.secretserver/pull/73/commits/26720ba9d37b3f2c6c8986a2f1b2ed30dc5c20e7)
 
-## [0.29.0] -- 2021-xx-xx
+## [0.29.0] -- 2021-02-09
 
 ### Added
 
