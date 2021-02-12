@@ -26,7 +26,7 @@ Delete secret folder
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-PS C:\> Remove-TssFolder -TssSession $session -Id 28
+Remove-TssFolder -TssSession $session -Id 28
 ```
 
 Delete Folder ID 28

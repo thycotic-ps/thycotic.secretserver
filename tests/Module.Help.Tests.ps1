@@ -29,9 +29,6 @@ Describe "Test help for module" -ForEach $commands {
         It "Should have an Example" {
             $help.examples | Select-Object -First 1 | Should -HaveCount 1
         }
-        It "<_.title -replace '-',''> Should have an introduction of PS C:\>" -TestCases $examples {
-            $_.introduction.Text | Should -Be "PS C:\>"
-        }
         It "<_.title -replace '-',''> Should have remarks" -TestCases $examples {
             $_.remarks.Text | Should -Not -BeNullOrEmpty
         }

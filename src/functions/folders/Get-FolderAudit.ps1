@@ -7,8 +7,8 @@
     Get a list of audit for Folder ID
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Get-TssFolderAudit -TssSession $session -Id 42
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolderAudit -TssSession $session -Id 42
 
     Gets the audit entries for Folder ID
 

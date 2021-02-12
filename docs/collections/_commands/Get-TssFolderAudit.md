@@ -26,7 +26,7 @@ Get a list of audit for Folder ID
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-PS> Get-TssFolderAudit -TssSession $session -Id 42
+Get-TssFolderAudit -TssSession $session -Id 42
 ```
 
 Gets the audit entries for Folder ID

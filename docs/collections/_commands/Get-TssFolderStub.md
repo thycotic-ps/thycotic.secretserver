@@ -26,7 +26,7 @@ Get template for new secret folder
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-PS C:\> Get-TssFolderStub -TssSession $session
+Get-TssFolderStub -TssSession $session
 ```
 
 Returns folder template as an object

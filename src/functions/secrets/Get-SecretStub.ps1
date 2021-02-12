@@ -7,8 +7,8 @@
     Return a template object to be used for create a new secret
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Get-TssSecretStub -TssSession $session -SecretTemplateId 6001
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretStub -TssSession $session -SecretTemplateId 6001
 
     Return the Active Directory template as an object
 
