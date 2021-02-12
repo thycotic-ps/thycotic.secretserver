@@ -1,21 +1,22 @@
-﻿function Stop-SecretPasswordChange {
+﻿function Get-FolderAudit {
     <#
     .SYNOPSIS
-    Stop a current password change
+    Get a list of audits
 
     .DESCRIPTION
-    Stop a current password change
+    Get a list of audit for Folder ID
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Stop-TssSecretPasswordChange -TssSession $session -Id 46
+    Get-TssFolderAudit -TssSession $session -Id 42
 
-    Stop a current password change operation on secret 46
+    Gets the audit entries for Folder ID
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding()]
+    [OutputType('TssFolderAuditSummary')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -23,9 +24,9 @@
             Position = 0)]
         [TssSession]$TssSession,
 
-        # Secret Id
+        # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Alias("FolderAuditId")]
         [int[]]
         $Id
     )
@@ -37,28 +38,24 @@
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            foreach ($secret in $Id) {
+            foreach ($folder in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString(), 'stop-password-change' -join '/'
+                $uri = $TssSession.ApiUrl, 'folders', $folder, 'audit' -join '/'
                 $invokeParams.Uri = $uri
-                $invokeParams.Method = 'POST'
+                $invokeParams.Method = 'GET'
 
                 $invokeParams.PersonalAccessToken = $TssSession.AccessToken
-                if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri with $body"
+                Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
+                    Write-Warning "Issue getting folder [$folder]"
                     $err = $_
                     . $ErrorHandling $err
                 }
 
-                if ($restResponse.success) {
-                    [PSCustomObject]@{
-                        SecretId = $secret
-                        Status = $true
-                        Notes = $null
-                    }
+                if ($restResponse) {
+                    . $TssFolderAuditSummaryObject $restResponse.records
                 }
             }
         } else {

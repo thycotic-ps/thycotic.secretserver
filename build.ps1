@@ -32,7 +32,7 @@ $moduleName = 'Thycotic.SecretServer'
 $staging = "$env:TEMP\tss_staging\"
 
 $git = git status
-if ($git[1] -notmatch "Your branch is up to date") {
+if ($git[1] -notmatch "Your branch is up to date" -and (-not $PSBoundParameters.ContainsKey('PublishDocs'))) {
     Pop-Location
     throw "Local branch has commits not in GitHub"
 }

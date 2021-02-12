@@ -1,6 +1,6 @@
 ﻿---
 category: folders
-title: "TssFolderSummary"
+title: "TssFolderLookup"
 last_modified_at: 2021-02-10T00:00:00-00:00
 ---
 

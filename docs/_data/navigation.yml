@@ -54,6 +54,8 @@ commands:
         url: /commands/New-TssFolder
       - title: "Remove-TssFolder"
         url: /commands/Remove-TssFolder
+      - title: "Get-TssFolderAudit"
+        url: /commands/Get-TssFolderAudit
 
   - title: "Reports"
     children:
@@ -124,6 +126,8 @@ abouttopics:
         url: /abouttopics/about_tssfoldersummary
       - title: "TssFolderLookup"
         url: /abouttopics/about_tssfolderlookup
+      - title: "TssFolderAuditSummary"
+        url: /abouttopics/about_tssfolderauditsummary
 
   - title: "Reports"
     children:

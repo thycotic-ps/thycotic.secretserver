@@ -7,8 +7,8 @@
     Search secret folders
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Search-TssFolder -TssSession $session -ParentFolderId 54
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssFolder -TssSession $session -ParentFolderId 54
 
     Return all child folders found under root folder 54
 
