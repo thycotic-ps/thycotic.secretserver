@@ -2,7 +2,7 @@
 title: "Thycotic.SecretServer About topics"
 permalink: /abouttopics/
 excerpt: "About Topics"
-last_modified_at: 2021-02-10T00:00:00-00:00
+last_modified_at: 2021-02-11T00:00:00-00:00
 toc: false
 layout: single-mod
 classes: wide
@@ -45,6 +45,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssFolderTemplate][TssFolderTemplate] | [Get-TssFolder][Get-TssFolder]
 [TssFolderLookup][TssFolderLookup] | [Find-TssFolder][Find-TssFolder]
 [TssFolderSummary][TssFolderSummary] | [Search-TssFolder][Search-TssFolder]
+[TssFolderAuditSummary][TssFolderAuditSummary] | [Get-TssFolderAudit][Get-TssFolderAudit]
 
 ## Reports
 
@@ -89,7 +90,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssReport]:/thycotic.secretserver/commands/Get-TssReport
 [Get-TssReportCategory]:/thycotic.secretserver/commands/Get-TssReportCategory
 [Search-TssReportScheduleSummary]:/thycotic.secretserver/commands/Search-TssReportScheduleSummary
+[Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
 
+[TssFolderAuditSummary]:/thycotic.secretserver/abouttopics/about_tssfolderauditsummary
 [TssSession]:/thycotic.secretserver/abouttopics/about_tsssession
 [TssSecret]:/thycotic.secretserver/abouttopics/about_tsssecret
 [TssSecretItem]:/thycotic.secretserver/abouttopics/about_tsssecretitem
