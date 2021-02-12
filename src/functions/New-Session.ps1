@@ -70,7 +70,7 @@
         $invokeParams = @{ }
 
         $outputTssSession = [TssSession]::new()
-        if ($UseDefaultCredentials.IsPresent) {
+        if ($newTssParams.ContainsKey('UseDefaultCredentials')) {
             $outputTssSession.ApiVersion = 'winauthwebservices/' + $outputTssSession.ApiVersion
         }
 

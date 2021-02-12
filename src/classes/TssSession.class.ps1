@@ -20,7 +20,7 @@
 
     [boolean]IsValidToken() {
         if ($this.TokenType -like 'DefaultCredentials') {
-            Write-Host 'Token is using currently logged on user credentials'
+            Write-Host 'Windows Integrated Auth in use'
             return $true
         } elseif ([string]::IsNullOrEmpty($this.AccessToken)) {
             Write-Host 'No valid token found for current TssSession object'
