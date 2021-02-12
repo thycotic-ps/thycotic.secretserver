@@ -4,32 +4,32 @@ external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
 online version:
 schema: 2.0.0
-title: Get-TssFolderStub
+title: Get-TssFolderAudit
 ---
 
-# Get-TssFolderStub
+# Get-TssFolderAudit
 
 ## SYNOPSIS
-Get template for new secret folder
+Get a list of audits
 
 ## SYNTAX
 
 ```
-Get-TssFolderStub [-TssSession] <TssSession> [<CommonParameters>]
+Get-TssFolderAudit [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get template for new secret folder
+Get a list of audit for Folder ID
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderStub -TssSession $session
+Get-TssFolderAudit -TssSession $session -Id 42
 ```
 
-Returns folder template as an object
+Gets the audit entries for Folder ID
 
 ## PARAMETERS
 
@@ -48,6 +48,21 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
+### -Id
+Short description for parameter
+
+```yaml
+Type: Int32[]
+Parameter Sets: (All)
+Aliases: FolderAuditId
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -55,7 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolder
+### TssFolderAuditSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

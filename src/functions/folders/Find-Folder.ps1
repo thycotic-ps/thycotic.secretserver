@@ -7,8 +7,8 @@
     Find secret folders returning Folder ID and Name only
 
     .EXAMPLE
-    PS C:\> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS C:\> Find-TssFolder -TssSession $session -ParentFolderId 56
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssFolder -TssSession $session -ParentFolderId 56
 
     Return folders with Parent Folder ID of 56
 

@@ -35,7 +35,7 @@ Get data from a given secret field
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-PS C:\> Get-TssSecretField -TssSession $session -Id 14 -Slug username
+Get-TssSecretField -TssSession $session -Id 14 -Slug username
 ```
 
 Get the username value of secret ID 14

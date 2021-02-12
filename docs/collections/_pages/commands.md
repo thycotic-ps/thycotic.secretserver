@@ -2,7 +2,7 @@
 title: "Thycotic.SecretServer + API Command Reference"
 permalink: /commands/
 excerpt: "Command Reference"
-last_modified_at: 2021-02-10T00:00:00-00:00
+last_modified_at: 2021-02-11T00:00:00-00:00
 toc: false
 layout: single-mod
 classes: wide
@@ -59,6 +59,7 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [/folders][/folders] | POST | [New-TssFolder][New-TssFolder]
 [/folders/{id}][/folders/{id}] | DELETE | [Remove-TssFolder][Remove-TssFolder]
 [/folders/stub][/folders/stub] | GET | [Get-TssFolderStub][Get-TssFolderStub]
+[/folders/{id}/audit][/folders/{id}/audit] | GET | [Get-TssFolderAuditSummary][Get-TssFolderAuditSummary]
 
 ## Reports
 
@@ -107,7 +108,9 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [New-TssFolder]:/thycotic.secretserver/commands/New-TssFolder
 [Get-TssFolderStub]:/thycotic.secretserver/commands/Get-TssFolderStub
 [Remove-TssFolder]:/thycotic.secretserver/commands/Remove-TssFolder
+[Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
 
+[/folders/{id}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--audit-get
 [/folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--delete
 [/folders/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-stub-get
 [/folders]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-post

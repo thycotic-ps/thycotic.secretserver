@@ -75,10 +75,9 @@ Describe "$commandName works" {
         It "SessionExpire() method should return true" {
             $sessionCredential.SessionExpire() | Should -Be $true
         }
-        It "Sets correct TokenType" {
-            $sessionAccessToken.TokenType | Should -BeIn @('bearer')
+        It "Sets TokenType to bearer" {
+            $sessionCredential.TokenType | Should -Be 'bearer'
         }
-
     }
     Context "AccessToken parameter" {
         It "Should set SecretServer to <_>" -TestCases $secretServerHost {
@@ -104,8 +103,8 @@ Describe "$commandName works" {
             $currentTime = [datetime]::UtcNow
             $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
         }
-        It "Sets correct TokenType" {
-            $sessionAccessToken.TokenType | Should -be 'ExternalToken'
+        It "Sets TokenType to ExternalToken" {
+            $sessionAccessToken.TokenType | Should -Be 'ExternalToken'
         }
     }
     Context "UseDefaultCredentials parameter" {
