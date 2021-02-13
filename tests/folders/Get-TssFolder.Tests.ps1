@@ -9,7 +9,7 @@ Describe "$commandName verify parameters" {
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parmaeters" -ForEach @{currentParams = $currentParams } {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
