@@ -4,12 +4,13 @@
     $ErrorRecord
 )
 process {
-    $errDetailMsg = $ErrorRecord.ErrorDetails.Message
-    if ($errDetailMsg.Length -gt 0) {
-        throw $errDetailMsg
+    $errDetail = $ErrorRecord.ErrorDetails
+    if ($errDetail) {
+        $errMessage = ConvertFrom-Json -InputObject $errDetail.Message
+        Write-Error "$($ErrorRecord.Exception.Message) | $($errMessage.Message)"
     } elseif ($ErrorRecord -like '*<html*') {
         $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new("Response was HTML, Request Failed."),"ResultWasHTML", "NotSpecified", $invokeParams.Uri))
     } else {
-        throw $ErrorRecord.Exception
+        Write-Error $ErrorRecord.Exception
     }
 }
