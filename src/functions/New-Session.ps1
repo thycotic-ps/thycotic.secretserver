@@ -38,7 +38,7 @@
     .OUTPUTS
     TssSession.
     #>
-    [cmdletbinding()]
+    [cmdletbinding(SupportsShouldProcess)]
     [OutputType('TssSession')]
     param(
         # Secret Server URL
@@ -69,7 +69,7 @@
             throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
         } else {
             $outputTssSession.SecretServer = $SecretServer
-            $outputTssSession.ApiUrl = ($outputTssSession.SecretServer + $outputTssSession.ApiVersion)
+            $outputTssSession.ApiUrl = $outputTssSession.SecretServer + $outputTssSession.ApiVersion
         }
     }
 
@@ -79,7 +79,7 @@
         if ($outputTssSession.SecretServer) {
             Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
             if ($newTssParams.ContainsKey('Credential')) {
-                $invokeParams.Uri = $SecretServer, 'oauth2/token' -join '/'
+                $invokeParams.Uri = $outputTssSession.SecretServer + 'oauth2/token'
 
                 $oauth2Body = [Ordered]@{ }
                 if ($newTssParams.ContainsKey('Credential')) {
@@ -91,6 +91,7 @@
                 $invokeParams.Body = $oauth2Body
                 $invokeParams.Method = 'POST'
 
+                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($invokeParams.Uri)]")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
@@ -116,6 +117,7 @@
             }
 
             if ($newTssParams.ContainsKey('AccessToken')) {
+                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Setting SecretServer: [$($outputTssSession.SecretServer)] and TokenType: ['ExternalToken']")) { return }
                 $outputTssSession.AccessToken = $AccessToken
                 $outputTssSession.TokenType = 'ExternalToken'
             }
