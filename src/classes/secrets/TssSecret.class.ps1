@@ -20,6 +20,7 @@
 }
 
 class TssSecret {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute('PSAvoidUsingConvertToSecureStringWithPlainText', '', Scope = 'Class')]
     [int]$AccessRequestWorkflowMapId
     [boolean]$Active
     [boolean]$AllowOwnersUnrestrictedSshCommands
