@@ -14,7 +14,6 @@ param(
 )
 
 begin {
-    $versionParams = $PSBoundParameters + @{}
     $invokeParams = @{ }
 }
 
