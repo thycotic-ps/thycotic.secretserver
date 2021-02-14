@@ -58,12 +58,12 @@ Describe "$commandName works" {
             $sessionCredential.RefreshToken | Should -Not -BeNullOrEmpty
         }
         It "Calculates TimeOfDeath" {
-            $expectedValue = [datetime]::UtcNow.Add([timespan]::FromSeconds($expiresIn))
-            $sessionCredential.TimeOfDeath | Should -BeLessOrEqual $expectedValue
+            $expectedValue = "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f [datetime]::Now.Add([timespan]::FromSeconds($expiresIn))
+            "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f $sessionCredential.TimeOfDeath | Should -BeGreaterOrEqual $expectedValue
         }
         It "Calculates StartTime" {
-            $currentTime = [datetime]::UtcNow
-            $sessionCredential.StartTime | Should -BeLessOrEqual $currentTime
+            $currentTime = "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f [datetime]::Now
+            "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f $sessionCredential.StartTime | Should -BeGreaterOrEqual $currentTime
         }
         It "RefreshSession() method updates AccessToken" {
             $orgAccessToken = $sessionCredential.AccessToken
