@@ -12,8 +12,7 @@
 
     // newer versions of VS Code now have ability to format modifications
     //  instead of whole file
-    "editor.formatOnSave": true,
-    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnSave": false,
 
     // selecting variables to include the '$':
     "[powershell]": {
