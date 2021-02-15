@@ -21,7 +21,7 @@
     Note that this use case, SessionRefresh and SessionExpire are not supported
 
     .EXAMPLE
-    New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential (Get-Credential apiuser) -Raw
+    New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential (Get-Credential apiuser)
 
     A prompt to enter the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
@@ -30,6 +30,12 @@
     $session = nts https://ssvault.com/SecretServer $secretCred
 
     Create a credential object
+    Use the alias nts to create a session object
+
+    .EXAMPLE
+    $session = nts https://ssvault.com/SecretServer -UseWindowsAuth
+
+    Create a session object utilizing Windows Integrated Authentication (IWA)
     Use the alias nts to create a session object
 
     .LINK
