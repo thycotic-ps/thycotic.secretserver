@@ -1,7 +1,7 @@
 ---
 category: secrets
 title: "TssSecretItem"
-last_modified_at: 2021-02-10T00:00:00-00:00
+last_modified_at: 2021-02-15T00:00:00-00:00
 ---
 
 # TOPIC
@@ -24,5 +24,10 @@ last_modified_at: 2021-02-10T00:00:00-00:00
 
 # METHODS
 
+    [boolean] SetFieldValue([slug]Slug, Value)
+        Set the ItemValue for the current item record, filtered by Slug
+
 # RELATED LINKS:
     Get-TssSecret
+    Get-TssSecretStub
+    New-TssSecret

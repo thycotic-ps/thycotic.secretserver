@@ -1,7 +1,7 @@
 ---
 category: authentication
 title: "TssSession"
-last_modified_at: 2021-02-10T00:00:00-00:00
+last_modified_at: 2021-02-15T00:00:00-00:00
 ---
 
 # TOPIC
@@ -24,21 +24,27 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     SecretServer:
         Secret Server base URL
 
+    ApiVersion:
+        Default value of `api/v1`
+
+    WindowsAuth:
+        Default to `winauthwebservices`, utilized with IWA
+
     AccessToken:
         Authentication token
 
     RefreshToken:
         Authentication token (when using refresh_token grant type)
 
-    ExpiresIn:
-        Authentication token expiration time, in seconds
-
     TokenType:
-        Authentication token type
+        Based on the authentication method (possible values: bearer, ExternalToken, or WindowsAuth)
 
     StartTime:
         Current date and time when session was created
         Hidden property
+
+    ExpiresIn:
+        Authentication token expiration time, in seconds
 
     TimeOfDeath:
         Expiration date and time based on ExpiresIn value.
@@ -50,22 +56,26 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     [boolean] IsValidSession()
         Validates the AccessToken and RefreshToken are set on the object
         Checks that StartTime is not set to '0001-01-01 00:00:00'
+        If WindowsAuth is the TokenType will return true
 
     [boolean] IsValidToken()
         Validates AccessToken is set
         Validates that TimeOfDeath is less than current time
         Validates that TimeOfDeath is not greater than current time
+        If ExternalToken or WindowsAuth is the TokenType will return true
 
     [boolean] SessionExpire()
         POST to oauth-expiration endpoint of Secret Server to expire the session
         for the current AccessToken
         If endpoint call fails will return false
+        If WindowsAuth is TokenType will return false (unsupported)
 
     [boolean] SessionRefresh()
         Post to oauth2/token endpoint of Secret Server utilizing the RefreshToken
         to re-authenticate
         It will update the current object properties with the new associated values
         I endpoint call fails will return error
+        If TokenType is ExternalToken or WindowsAuth will return false (unsupported)
 
 # RELATED LINKS:
     New-TssSession
