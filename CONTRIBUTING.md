@@ -54,9 +54,44 @@ Then sit back and wait. There will probably be a discussion about the pull reque
 
 Please adhere to the general guideline that you should never force push to a publicly shared branch. Once you have opened your pull request, you should consider your branch publicly shared. Instead of force pushing, you can add incremental commits; this is generally easier on your reviewers. If you need to pick up changes from master, you can merge master into your branch. A reviewer might ask you to rebase a long-running pull request, in which case force pushing is okay for that request. Note that squashing at the end of the review process should also not be done, that can be done when the pull request is [integrated via GitHub](https://github.com/blog/2141-squash-your-commits).
 
-## Pester Tests
+## Test Environment Setup
 
-A folder of [exports](https://github.com/thycotic-ps/thycotic.secretserver/tree/master/tests/exports) is included with the testing suite. These files are utilized against an active version of Secret Server. A [constants file](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/tests/constants.ps1) exists at the root of the test folder and is to point the test to run against your local Secret Server. You can create a copy of this file to your local profile `$env:USERPROFILE\constants.ps1` to keep the file unique to your environment.
+The test framework for this module utilizes Pester 5.1+ and includes both unit and integration tests. The integration tests require a properly licensed Secret Server.
+
+🚨
+**Tests about folders and secrets _will be_ restricted to work against a specific parent folder (`tss_module_testing`). Function tests that affect or create objects outside of this will be restricted to mocking (where feasible). It is recommended to test against a test environment.**
+
+🚨
+**You accept the risk of running these tests against your production environment.**
+
+### Prerequisites
+
+Test about secrets and folders require a specific secret folder to exists: `tss_module_testing`.
+
+An export XML file is provided and can be found under [tests/test_data](/tests/test_data). There is an included test template that needs to be added to Secret Server ** before importing the XML of secrets**. An attachment test file is also included to attach to the secret referenced in the test **after secret import**.
+
+It is recommended to create a local Secret Server user as an application account, granting it `tss_module'_testing` for folder and secrets. Utilize this new account for running the Pester tests.
+
+<img src="https://user-images.githubusercontent.com/11204251/103263755-64b8e080-496e-11eb-8e63-2c02c225f504.png" width="188" height="125" alt="test folder structure">
+
+### Pester
+
+The test is written for Pester 5.1, minimum, version and will not run on a lower version due to syntax and framework changes made to that module. Documentation for Pester can be found [here](https://pester.dev).
+
+### Limitations
+
+Some tests do not have direct integration tests because of external systems or resources required to use them (e.g., Distributed Engines). In some cases, where feasible, mocking is used to expand the unit test coverage as much as possible. Mocking will be a large focus on tests that can potentially break an installation.
+
+### `Constants.ps1` File
+
+The `constants` file is utilized by the test to indicate the following:
+
+- Secret Server URL
+- Secret Server User credential
+
+If you save this file to your profile directly (`$env:USERPROFILE` or `$env:HOME` on Linux), you can include setting the needed variables directly.
+
+The file will check if `$env:USERPROFILE\constants.ps1` or `$env:HOME\constants.ps1` exists, and if it does, will dot-source the file instead of using the values from the repository's version.
 
 ## Contribution Help
 

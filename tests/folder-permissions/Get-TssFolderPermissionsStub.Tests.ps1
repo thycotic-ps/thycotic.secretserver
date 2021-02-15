@@ -4,7 +4,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id'
+        [object[]]$knownParameters = 'TssSession', 'FolderId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssFolderAuditSummary" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssFolderAuditSummary'
+        It "$commandName should set OutputType to TssFolderPermission" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssFolderPermission'
         }
     }
 }
@@ -27,24 +27,24 @@ Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
         $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
+            Uri = "$ssv3/api/v1/folders?take=$($session.take)"
             ExpandProperty = 'records'
             PersonalAccessToken = $session.AccessToken
         }
         $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing'})
+        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
 
-        $object = Get-TssFolderAudit -TssSession $session -Id $tssSecretFolder.id
+        $folderPermStub = Get-TssFolderPermissionsStub -TssSession $session -FolderId $tssSecretFolder.Id
 
         $session.SessionExpire()
-        $props = 'Action', 'AuditFolderId', 'Notes'
+        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRole'
     }
-    Context "Checking" -Foreach @{object = $object} {
+    Context "Checking" -Foreach @{folderPermStub = $folderPermStub} {
         It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
+            $folderPermStub | Should -Not -BeNullOrEmpty
         }
         It "Should output <_> property" -TestCases $props {
-            $object[0].PSObject.Properties.Name | Should -Contain $_
+            $folderPermStub.PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
