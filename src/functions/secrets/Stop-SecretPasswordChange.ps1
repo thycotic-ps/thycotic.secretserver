@@ -12,6 +12,9 @@
 
     Stop a current password change operation on secret 46
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretPasswordChange
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

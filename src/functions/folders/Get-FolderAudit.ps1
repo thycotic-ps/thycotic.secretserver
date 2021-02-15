@@ -12,6 +12,9 @@
 
     Gets the audit entries for Folder ID
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

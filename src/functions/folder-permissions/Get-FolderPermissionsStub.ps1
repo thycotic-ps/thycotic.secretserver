@@ -7,10 +7,13 @@
     Get default values for a new folder permission, a template object
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Get-TssFolderPermissionsStub -TssSession $session -FolderId 36
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolderPermissionsStub -TssSession $session -FolderId 36
 
     Return template object of a new folder permission
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub
 
     .NOTES
     Requires TssSession object returned by New-TssSession

@@ -27,13 +27,13 @@
     Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecret')]
+    [OutputType('TssFolder')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,

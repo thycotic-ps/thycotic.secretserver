@@ -12,6 +12,9 @@
 
     Return folders with Parent Folder ID of 56
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssFolder
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

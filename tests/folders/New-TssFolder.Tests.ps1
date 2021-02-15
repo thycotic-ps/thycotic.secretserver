@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssSecret" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssSecret'
+        It "$commandName should set OutputType to TssFolder" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssFolder'
         }
     }
 }

@@ -8,12 +8,12 @@
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-Group -TssSession $session
+    Search-TssGroup -TssSession $session
 
     Return list of all groups found in Secret Server that account has access to manage
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUserGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup
 
     .NOTES
     Requires TssSession object returned by New-TssSession

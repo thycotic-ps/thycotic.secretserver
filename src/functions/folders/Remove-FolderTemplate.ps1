@@ -12,6 +12,9 @@
 
     Removes Template 6001 from Folder ID 23
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderTemplate
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -12,6 +12,9 @@
 
     Delete Folder ID 28
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

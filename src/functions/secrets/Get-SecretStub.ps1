@@ -12,6 +12,9 @@
 
     Return the Active Directory template as an object
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

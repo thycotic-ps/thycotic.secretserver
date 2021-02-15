@@ -12,6 +12,9 @@
 
     Returns folder template as an object
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderStub
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

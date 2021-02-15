@@ -12,6 +12,9 @@
 
     Return all child folders found under root folder 54
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolder
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
