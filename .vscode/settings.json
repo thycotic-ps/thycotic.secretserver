@@ -10,8 +10,10 @@
     "powershell.codeFormatting.trimWhitespaceAroundPipe": true,
     "powershell.codeFormatting.useCorrectCasing": true,
 
-    // performance issues with VS Code, disabling auto format with save
-    "editor.formatOnSave": false,
+    // newer versions of VS Code now have ability to format modifications
+    //  instead of whole file
+    "editor.formatOnSave": true,
+    "editor.formatOnSaveMode": "modifications",
 
     // selecting variables to include the '$':
     "[powershell]": {

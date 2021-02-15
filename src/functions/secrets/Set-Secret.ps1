@@ -1,10 +1,10 @@
 ﻿function Set-Secret {
     <#
     .SYNOPSIS
-    Set a value for a given secret in Secret Server
+    Set various settings or fields for a given secret
 
     .DESCRIPTION
-    Sets a secret property or field in Secret Server.
+    Set various settings or fields for a given secret.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -118,8 +118,9 @@
         # Enable Folder inherit permissions
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'folder')]
+        [Alias('EnableInheritPermissions')]
         [switch]
-        $EnableInheritPermissions,
+        $EnableInheritPermission,
 
         # Whether Secret Policy is inherited from containing folder
         [Parameter(ParameterSetName = 'all')]
@@ -245,7 +246,7 @@
                     if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
                         $whatIfProcessing++
                     }
-                    if ($setSecretParams.ContainsKey('EnableInheritPermissions') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating EnableInheritPermissions to $EnableInheritPermissions")) {
+                    if ($setSecretParams.ContainsKey('EnableInheritPermission') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating EnableInheritPermission to $EnableInheritPermission")) {
                         $whatIfProcessing++
                     }
 
