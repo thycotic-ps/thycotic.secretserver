@@ -56,6 +56,15 @@ commands:
         url: /commands/Remove-TssFolder
       - title: "Get-TssFolderAudit"
         url: /commands/Get-TssFolderAudit
+      - title: "Remove-TssFolderTemplate"
+        url: /commands/Remove-TssFolderTemplate
+      - title: "Set-TssFolder"
+        url: /commands/Set-TssFolder
+
+  - title: "Folder Permissions"
+    children:
+      - title: "Get-TssFolderPermissionsStub"
+        url: /commands/Get-TssFolderpermissionsStub
 
   - title: "Reports"
     children:
@@ -120,14 +129,14 @@ abouttopics:
     children:
       - title: "TssFolder"
         url: /abouttopics/about_tssfolder
-      - title: "TssFolderTemplate"
-        url: /abouttopics/about_tssfoldertemplate
-      - title: "TssFolderSummary"
-        url: /abouttopics/about_tssfoldersummary
-      - title: "TssFolderLookup"
-        url: /abouttopics/about_tssfolderlookup
       - title: "TssFolderAuditSummary"
         url: /abouttopics/about_tssfolderauditsummary
+      - title: "TssFolderLookup"
+        url: /abouttopics/about_tssfolderlookup
+      - title: "TssFolderSummary"
+        url: /abouttopics/about_tssfoldersummary
+      - title: "TssFolderTemplate"
+        url: /abouttopics/about_tssfoldertemplate
 
   - title: "Reports"
     children:
