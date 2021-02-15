@@ -60,6 +60,15 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [/folders/{id}][/folders/{id}] | DELETE | [Remove-TssFolder][Remove-TssFolder]
 [/folders/stub][/folders/stub] | GET | [Get-TssFolderStub][Get-TssFolderStub]
 [/folders/{id}/audit][/folders/{id}/audit] | GET | [Get-TssFolderAuditSummary][Get-TssFolderAuditSummary]
+[/folders/{id}][folders/{id}] | PATCH | [Set-TssFolder][Set-TssFolder]
+[/folders/{id}/audit][/folders/{id}/audit] | GET | [Get-TssFolderAudit][Get-TssFolderAudit]
+[/folders/{id}/templates/{templateId}][/folders/{id}/templates/{templateId}] | DELETE | [Remove-TssFolderTemplate][Remove-TssFolderTemplate]
+
+## Folder-Permissions
+
+**API Endpoint** | **Method** | **Thycotic.SecretServer Command** |
+---------------- | ---------- | --------------------------------- |
+[/folder-permissions/stub][/folder-permissions/stub] | GET | [Get-TssFolderPermissionsStub][Get-TssFolderPermissionsStub]
 
 ## Reports
 
@@ -109,7 +118,15 @@ A Thycotic.SecretServer command may not appear in the below list due to it not b
 [Get-TssFolderStub]:/thycotic.secretserver/commands/Get-TssFolderStub
 [Remove-TssFolder]:/thycotic.secretserver/commands/Remove-TssFolder
 [Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
+[Set-TssFolder]:/thycotic.secretserver/commands/Set-TssFolder
+[Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
+[Remove-TssFolderTemplate]:/thycotic.secretserver/commands/Remove-TssFolderTemplate
+[Get-TssFolderPermissionsStub]:/thycotic.secretserver/commands/Get-TssFolderPermissionsStub
 
+[/folder-permissions/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folder-permissions-stub-get
+[/folders/{id}/templates/{templateId}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--templates--templateId--delete
+[/folders/{id}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--audit-get
+[/folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folder--id--patch
 [/folders/{id}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--audit-get
 [/folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--delete
 [/folders/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-stub-get
