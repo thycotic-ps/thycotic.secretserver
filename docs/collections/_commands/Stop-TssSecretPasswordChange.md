@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version:
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretPasswordChange
 schema: 2.0.0
 title: Stop-TssSecretPasswordChange
 ---
@@ -105,3 +105,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretPasswordChange](https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretPasswordChange)
+

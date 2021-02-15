@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version:
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub
 schema: 2.0.0
 title: Get-TssFolderPermissionsStub
 ---
@@ -26,7 +26,7 @@ Get default values for a new folder permission, a template object
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-PS> Get-TssFolderPermissionsStub -TssSession $session -FolderId 36
+Get-TssFolderPermissionsStub -TssSession $session -FolderId 36
 ```
 
 Return template object of a new folder permission
@@ -75,3 +75,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub)
+

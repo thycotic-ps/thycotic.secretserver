@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
 schema: 2.0.0
 title: New-TssFolder
 ---
@@ -196,11 +196,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecret
+### TssFolder
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder)
 

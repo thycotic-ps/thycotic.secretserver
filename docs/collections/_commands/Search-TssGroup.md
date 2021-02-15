@@ -2,7 +2,7 @@
 category: groups
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUserGroup
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup
 schema: 2.0.0
 title: Search-TssGroup
 ---
@@ -27,7 +27,7 @@ Search for user management groups
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-Group -TssSession $session
+Search-TssGroup -TssSession $session
 ```
 
 Return list of all groups found in Secret Server that account has access to manage
@@ -122,5 +122,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUserGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUserGroup)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup)
 

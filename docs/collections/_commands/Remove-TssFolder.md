@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version:
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder
 schema: 2.0.0
 title: Remove-TssFolder
 ---
@@ -106,3 +106,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder)
+

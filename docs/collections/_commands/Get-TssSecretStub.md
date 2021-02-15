@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version:
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub
 schema: 2.0.0
 title: Get-TssSecretStub
 ---
@@ -90,3 +90,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub)
+
