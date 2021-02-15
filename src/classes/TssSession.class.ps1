@@ -1,6 +1,7 @@
 ﻿class TssSession {
     [string]$SecretServer
     [string]$ApiVersion = 'api/v1'
+    [string]$WindowsAuth = 'winauthwebservices'
     [string]$ApiUrl
     [string]$AccessToken
     [string]$RefreshToken
@@ -13,6 +14,8 @@
     [boolean]IsValidSession() {
         if ([string]::IsNullOrEmpty($this.AccessToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
             return $false
+        } elseif ($this.TokenType -eq 'WindowsAuth') {
+            return $true
         } else {
             return $true
         }
@@ -20,15 +23,18 @@
 
     [boolean]IsValidToken() {
         if ([string]::IsNullOrEmpty($this.AccessToken)) {
-            Write-Host 'No valid token found for current TssSession object'
+            Write-Warning 'No valid token found for current TssSession object'
             return $false
         } elseif ([datetime]::Now -lt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
             return $true
         } elseif ([datetime]::Now -gt $this.TimeOfDeath -and ($this.TokenType -ne 'ExternalToken')) {
-            Write-Host 'Token is not valid and has exceeded TimeOfDeath'
+            Write-Warning 'Token is not valid and has exceeded TimeOfDeath'
             return $false
-        } elseif ($this.ExternalToken) {
-            Write-Warning 'Token was provided through external source so it cannot be validated'
+        } elseif ($this.TokenType -eq 'ExternalToken') {
+            Write-Warning 'Token was provided through external source, unable to validate'
+            return $true
+        } elseif ($this.TokenType -eq 'WindowsAuth') {
+            Write-Warning 'Windows Authentication being used, no validation required'
             return $true
         } else {
             return $true
@@ -38,8 +44,13 @@
     [boolean]SessionExpire() {
         $url = $this.ApiUrl, 'oauth-expiration' -join '/'
         try {
-            Invoke-TssRestApi -Uri $url -Method Post -PersonalAccessToken $this.AccessToken
-            return $true
+            if ($this.TokenType -ne 'WindowsAuth') {
+                Invoke-TssRestApi -Uri $url -Method Post -PersonalAccessToken $this.AccessToken
+                return $true
+            } else {
+                Write-Warning "Windows Authentication being used, SessionExpire is not supported"
+                return $false
+            }
         } catch {
             return $false
         }
@@ -48,6 +59,10 @@
     [boolean]SessionRefresh() {
         if ($this.TokenType -eq 'ExternalToken') {
             Write-Warning 'Token was provided through external source, SessionRefresh is not supported'
+            return $false
+        }
+        if ($this.TokenType -eq 'WindowsAuth') {
+            Write-Warning 'Windows Authentication being used, SessionRefresh is not supported'
             return $false
         }
         try {

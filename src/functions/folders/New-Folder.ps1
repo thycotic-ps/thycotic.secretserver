@@ -73,7 +73,7 @@
 
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -98,7 +98,7 @@
             }
 
             $invokeParams.Body = ($FolderStub | ConvertTo-Json)
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             Write-Verbose "$($invokeParams.Method) $uri with:`n $FolderStub"
             if (-not $PSCmdlet.ShouldProcess($FolderStub.FolderName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {

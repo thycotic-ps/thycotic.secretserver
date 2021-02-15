@@ -25,31 +25,35 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/secret-templates?take=$($session.take)&filter.searchText=tssFileTemplate"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $session.ApiUrl, "secret-templates?take=$($session.take)&filter.searchText=tssFileTemplate" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getTemplates = Invoke-TssRestApi @invokeParams
 
-        $invokeParams = @{
-            Uri                 = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty      = 'records'
-            PersonalAccessToken = $session.AccessToken
-        }
+        $invokeParams.Uri = $session.ApiUrl, "folders?take=$($session.take)" -join '/'
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing' })
 
         $tssFileTemplateId = $getTemplates.id
         $tssFolderId = $tssSecretFolder.Id
 
-        # Prep work
         $stub = Get-TssSecretStub -TssSession $session -SecretTemplateId $tssFileTemplateId
         $stubWithFolder = Get-TssSecretStub -TssSession $session -SecretTemplateId $tssFileTemplateId -FolderId $tssFolderId
 
-        $session.SessionExpire()
         $props = 'Name', 'Active', 'SecretTemplateId', 'FolderId'
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{stub = $stub;stubWithFolder = $stubWithFolder} {
         It "Should not be empty" {

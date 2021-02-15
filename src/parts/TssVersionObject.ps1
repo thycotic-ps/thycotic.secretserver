@@ -14,7 +14,7 @@ param(
 )
 
 begin {
-    $invokeParams = @{ }
+    $invokeParams = . $GetInvokeTssParams $TssSession
 }
 
 process {
@@ -23,7 +23,7 @@ process {
     $uri = $TssSession.ApiUrl, 'version' -join '/'
     $invokeParams.Uri = $Uri
     $invokeParams.Method = 'GET'
-    $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
 
     try {
         $restResponse = Invoke-TssRestApi @invokeParams

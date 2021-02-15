@@ -4,7 +4,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken'
+        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken', 'UseWindowsAuth'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -25,23 +25,19 @@ Describe "$commandName verify parameters" {
 }
 
 Describe "$commandName works" {
-    BeforeAll {
-        $apiV = 'api/v1'
-        $sessionCredential = New-TssSession -SecretServer $ss -Credential $ssCred
-
-        $secretServerHost = 'https://tenant.secretservercloud.com'
-        $generatedAccessToken = (New-Guid).Guid
-        $sessionAccessToken = New-TssSession -SecretServer $secretServerHost -AccessToken $generatedAccessToken
-
-        $hostnameSampleFile = ([IO.Path]::Combine([string]$PSScriptRoot, '..\test_data', 'newsession_hostsamples.txt'))
-        $hostnameSamples = Get-Content $hostnameSampleFile
-    }
     Context "Validates SecretServer argument" {
         It "Should catch invalid URL arguments" {
             { New-TssSession -SecretServer 'https://alpha/api/v1' -AccessToken "$(Get-Random)" } | Should -Throw
         }
+        It "Should not contain double forward slashes in PathAndQuery of ApiUrl" {
+            ([uri](New-TssSession -SecretServer 'https://alpah/SecretServer/' -AccessToken "$(Get-Random)").ApiUrl).PathAndQuery | Should -Not -Match "(?:\/\/)"
+        }
     }
-    Context "Credential parameter" {
+    Context "Credential parameter" -Skip:$tssTestUsingWindowsAuth {
+        BeforeAll {
+            $apiV = 'api/v1'
+            $sessionCredential = New-TssSession -SecretServer $ss -Credential $ssCred
+        }
         It "Populates SecretServer Property" {
             $sessionCredential.SecretServer | Should -Be ([uri]$ss)
         }
@@ -78,10 +74,15 @@ Describe "$commandName works" {
         }
     }
     Context "AccessToken parameter" {
+        BeforeAll {
+            $secretServerHost = 'https://tenant.secretservercloud.com'
+            $generatedAccessToken = (New-Guid).Guid
+            $sessionAccessToken = New-TssSession -SecretServer $secretServerHost -AccessToken $generatedAccessToken
+        }
         It "Should set SecretServer to <_>" -TestCases $secretServerHost {
             $sessionAccessToken.SecretServer | Should -Be $_
         }
-        It "Sets AccessToken to <_>" -TestCases $sessionAccessToken {
+        It "Sets AccessToken to <_>" -TestCases $generatedAccessToken {
             $sessionAccessToken.AccessToken | Should $_
         }
         It "ApiUrl Property is set" {
@@ -93,16 +94,52 @@ Describe "$commandName works" {
         It "SessionExpire() method should return true" {
             $sessionAccessToken.SessionExpire() | Should -Be $true
         }
+        It "SessionRefresh() method should return false" {
+            $sessionAccessToken.SessionRefresh() 3>$null | Should -Be $false
+        }
         It "Does not calculate a TimeOfDeath" {
-            $expectedValue = [datetime]::UtcNow.Add([timespan]::FromSeconds($expiresIn))
-            $sessionAccessToken.TimeOfDeath | Should -BeLessOrEqual $expectedValue
+            "{0:yyyy}-{0:MM}-{0:dd}" -f $sessionAccessToken.TimeOfDeath | Should -Be ([datetime]'0001-01-01')
         }
         It "Calculates StartTime" {
-            $currentTime = [datetime]::UtcNow
-            $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
+            $currentTime = "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f [datetime]::Now
+            "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f $sessionAccessToken.StartTime | Should -BeLessOrEqual $currentTime
         }
         It "Sets TokenType to ExternalToken" {
             $sessionAccessToken.TokenType | Should -Be 'ExternalToken'
+        }
+    }
+    Context "UseWindowsAuth" {
+        BeforeAll {
+            $secretServerHost = 'https://tenant.secretservercloud.com'
+            $sessionWinAuth = New-TssSession -SecretServer $secretServerHost -UseWindowsAuth
+        }
+        It "Should set SecretServer to <_>" -TestCases $secretServerHost {
+            $sessionWinAuth.SecretServer | Should -Be $_
+        }
+        It "Does not set AccessToken" {
+            $sessionWinAuth.AccessToken | Should -BeNullOrEmpty
+        }
+        It "ApiUrl Property is set" {
+            $sessionWinAuth.ApiUrl | Should -Not -BeNullOrEmpty
+        }
+        It "Does not populate a RefreshToken Property" {
+            $sessionWinAuth.RefreshToken | Should -BeNullOrEmpty
+        }
+        It "SessionExpire() method should return false" {
+            $sessionWinAuth.SessionExpire() 3>$null | Should -Be $false
+        }
+        It "SessionRefresh() method should return false" {
+            $sessionWinAuth.SessionRefresh() 3>$null | Should -Be $false
+        }
+        It "Does not calculate a TimeOfDeath" {
+            "{0:yyyy}-{0:MM}-{0:dd}" -f $sessionWinAuth.TimeOfDeath | Should -Be ([datetime]'0001-01-01')
+        }
+        It "Calculates StartTime" {
+            $currentTime = "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f [datetime]::Now
+            "{0:yyyy}-{0:MM}-{0:dd} {0:hh}:{0:mm}" -f $sessionWinAuth.StartTime | Should -BeLessOrEqual $currentTime
+        }
+        It "Sets TokenType to WindowsAuth" {
+            $sessionWinAuth.TokenType | Should -Be 'WindowsAuth'
         }
     }
 }

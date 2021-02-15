@@ -53,7 +53,7 @@
 
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -69,7 +69,7 @@
                 $SecretStub.SiteId = 1
             }
             $invokeParams.Body = ($SecretStub | ConvertTo-Json)
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             Write-Verbose "$($invokeParams.Method) $uri with:`n $SecretStub"
             if (-not $PSCmdlet.ShouldProcess($SecretStub.Name, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {

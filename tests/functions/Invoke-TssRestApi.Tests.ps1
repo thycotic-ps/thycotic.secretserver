@@ -19,15 +19,21 @@ Describe "$commandName Unit Tests" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-
-        $invokeParams = @{
-            Uri = $session.ApiUrl, "version" -join '/'
-            Method = 'GET'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $session.ApiUrl, "version" -join '/'
         $restResponse = Invoke-TssRestApi @invokeParams
-        $session.SessionExpire()
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{restResponse = $restResponse} {
         It "Should not be empty" {

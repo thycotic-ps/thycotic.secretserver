@@ -4,7 +4,7 @@
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'TemplateId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -25,18 +25,27 @@ Describe "$commandName verify parameters" {
 }
 # Describe "$commandName works" {
 #     BeforeDiscovery {
-#         $session = New-TssSession -SecretServer $ss -Credential $ssCred
-#         $invokeParams = @{
-#             Uri = "$ss/api/v1/folders?take=$($session.take)"
-#             ExpandProperty = 'records'
-#             PersonalAccessToken = $session.AccessToken
+#         $invokeParams = @{}
+#         if ($tssTestUsingWindowsAuth) {
+#             $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+#             $invokeParams.UseDefaultCredentials = $true
+#         } else {
+#             $session = New-TssSession -SecretServer $ss -Credential $ssCred
+#             $invokeParams.PersonalAccessToken = $session.AccessToken
 #         }
+
+#         $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
+#         $invokeParams.ExpandProperty = 'records'
+
 #         $getFolders = Invoke-TssRestApi @invokeParams
 #         $tssSecretFolder = $getFolders.Where({$_.folderPath -match '\tss_module_testing'})
+
 #         # Prep work
 
-#         $session.SessionExpire()
 #         $props = 'Prop1', 'Prop2', 'Prop3'
+#         if (-not $tssTestUsingWindowsAuth) {
+#             $session.SessionExpire()
+#         }
 #     }
 #     Context "Checking" -Foreach @{object = $object} {
 #         It "Should not be empty" {

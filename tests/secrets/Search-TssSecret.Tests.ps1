@@ -2,7 +2,7 @@
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
     . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
-Describe "$commandName veirfy parameters" {
+Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'TssSession', 'SortBy', 'Permission','Scope',
         # Folder param set
@@ -31,12 +31,18 @@ Describe "$commandName veirfy parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $session.ApiUrl, "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match '\tss_module_testing\SearchTssSecret'})
 
@@ -44,7 +50,9 @@ Describe "$commandName works" {
         $object = Search-TssSecret $session -FolderId $tssSecretFolder.Id -IncludeSubFolders
         $props = 'SecretId','FolderId','SecretTemplateId','Name'
 
-        $session.SessionExpire()
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{object = $object; objectRpc = $objectRpc} {
         It "Should not be empty" {

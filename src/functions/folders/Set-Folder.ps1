@@ -61,12 +61,12 @@
     )
     begin {
         $setFolderParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setFolderParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folder', $folder -join '/'

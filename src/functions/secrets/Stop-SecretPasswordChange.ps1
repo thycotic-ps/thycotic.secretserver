@@ -31,7 +31,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -43,7 +43,7 @@
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {

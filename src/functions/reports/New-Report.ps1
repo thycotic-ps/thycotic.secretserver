@@ -83,7 +83,7 @@
     )
     begin {
         $tssNewReportParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -113,7 +113,7 @@
             }
 
             $invokeParams.Body = ($newReportBody | ConvertTo-Json)
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             Write-Verbose "$($invokeParams.Method) $uri with:`n $newReportBody"
             if (-not $PSCmdlet.ShouldProcess($ReportName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {

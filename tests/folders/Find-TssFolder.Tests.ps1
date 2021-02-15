@@ -25,12 +25,18 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderName -eq 'tss_module_testing'})
 
@@ -39,7 +45,9 @@ Describe "$commandName works" {
         $findObject = Find-TssFolder -TssSession $session -ParentFolderId $tssSecretFolder.Id
         $findTextObject = Find-TssFolder -TssSession $session -SearchText $searchText
 
-        $session.SessionExpire()
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
         $props = 'FolderId', 'Id', 'FolderId'
     }
     Context "Checking" -Foreach @{findObject = $findObject; findTextObject = $findTextObject} {

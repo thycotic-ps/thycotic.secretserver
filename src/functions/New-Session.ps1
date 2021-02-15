@@ -42,21 +42,26 @@
     [OutputType('TssSession')]
     param(
         # Secret Server URL
-        [Parameter(ParameterSetName = 'new',Mandatory, Position = 0)]
-        [Parameter(ParameterSetName = 'sdk',Mandatory, Position = 0)]
+        [Parameter(Mandatory,ParameterSetName = 'new', Position = 0)]
+        [Parameter(Mandatory,ParameterSetName = 'sdk', Position = 0)]
+        [Parameter(Mandatory,ParameterSetName = 'winauth', Position = 1)]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
-        [Parameter(ParameterSetName = 'new', Mandatory)]
+        [Parameter(Mandatory, ParameterSetName = 'new')]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Specify Access Token
-        # Bypasses requesting a token from Secret Server
-        [Parameter(ParameterSetName = 'sdk', Mandatory)]
-        $AccessToken
+        [Parameter(Mandatory, ParameterSetName = 'sdk')]
+        $AccessToken,
+
+        # Utilize Windows Authentication (IWA)
+        [Parameter(Mandatory, ParameterSetName = 'winauth')]
+        [switch]
+        $UseWindowsAuth
     )
 
     begin {
@@ -67,8 +72,14 @@
 
         if ($SecretServer -match "(?:\/api\/v1)|(?:\/oauth2\/token)") {
             throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
+            return
         } else {
             $outputTssSession.SecretServer = $SecretServer
+        }
+        if ($newTssParams.ContainsKey('UseWindowsAuth')) {
+            $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.WindowsAuth, $outputTssSession.ApiVersion -join '/'
+            $outputTssSession.TokenType = 'WindowsAuth'
+        } else {
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer + $outputTssSession.ApiVersion
         }
     }
@@ -115,13 +126,14 @@
                     $outputTssSession.TimeOfDeath = [datetime]::Now.Add([timespan]::FromSeconds($restResponse.expires_in))
                 }
             }
-
             if ($newTssParams.ContainsKey('AccessToken')) {
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Setting SecretServer: [$($outputTssSession.SecretServer)] and TokenType: ['ExternalToken']")) { return }
                 $outputTssSession.AccessToken = $AccessToken
                 $outputTssSession.TokenType = 'ExternalToken'
             }
-
+            if ($newTssParams.ContainsKey('UseWindowsAuth')) {
+                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Setting SecretServer: [$($outputTssSession.SecretServer)] and TokenType: ['WinAuth']")) { return }
+            }
             $outputTssSession.StartTime = [datetime]::Now
             return $outputTssSession
         } else {

@@ -163,7 +163,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -240,7 +240,7 @@
 
 
             $invokeParams.Uri = $uri
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             $invokeParams.Method = 'GET'
             Write-Verbose "$($invokeParams.Method) $uri"
             try {

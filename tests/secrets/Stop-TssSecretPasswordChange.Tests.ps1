@@ -20,25 +20,33 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" -Skip {
     BeforeAll {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $session.ApiUrl, "folders?take=$($session.take)" -join '/'
         $getFolders = Invoke-TssRestApi @invokeParams
+
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match 'tss_module_testing\\GetTssSecret'})
-        $getSecrets = Invoke-TssRestApi -Uri "$ss/api/v1/secrets?take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records
+
+        $invokeParams.Uri = $session.ApiUrl, "secrets?take=$($session.take)&folderId=$($tssSecretFolder.id)" -join '/'
+        $getSecrets = Invoke-TssRestApi @invokeParams
 
         $params = @{
             TssSession = $session
             Id = $getSecrets[0].id
         }
         $secret = Get-TssSecret @params | Stop-TssSecretPasswordChange -TssSession $session
-        $session.SessionExpire()
-
         $props = 'SecretId','Status','Notes'
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{secret = $secret} {
         It "Should not be empty" {

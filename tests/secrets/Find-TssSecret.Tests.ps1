@@ -31,13 +31,18 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $session.ApiUrl, "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderPath -match '\tss_module_testing\SearchTssSecret'})
 
@@ -45,10 +50,14 @@ Describe "$commandName works" {
         $objectMultiple = Search-TssSecret $session -FolderId $tssSecretFolder.Id -IncludeSubFolders
         $props = 'SecretId','FolderId','SecretTemplateId','SecretName'
 
-        $getSecret = (Invoke-TssRestApi -Uri "$ss/api/v1/secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -Method Get -PersonalAccessToken $session.AccessToken -ExpandProperty records)[0]
+        $invokeParams.Uri = $session.ApiUrl, "secrets??take=$($session.take)&folderid=$($tssSecretFolder.id)" -join '/'
+        $getSecret = (Invoke-TssRestApi @invokeParams)[0]
         $object = Find-TssSecret $session -Id $getSecret.Id
         $props2 = 'SecretId','Id','SecretName'
-        $session.SessionExpire()
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{object = $object; objectRpc = $objectRpc;objectMultiple = $objectMultiple} {
         It "Should not be empty" {

@@ -35,7 +35,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -46,7 +46,7 @@
                 $uri = $TssSession.ApiUrl, 'secret-templates', $template.ToString() -join '/'
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
 
                 Write-Verbose "$($invokeParas.Method) $uri"
                 try {

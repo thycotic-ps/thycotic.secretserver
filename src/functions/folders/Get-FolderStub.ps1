@@ -26,7 +26,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -37,7 +37,7 @@
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
             Write-Verbose "$($invokeParams.Method) $uri with $body"
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams

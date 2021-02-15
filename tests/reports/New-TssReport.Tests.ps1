@@ -25,8 +25,15 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
+        $invokeParams = @{}
         $reportName = ("TssTestReport$(Get-Random)")
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
+        }
 
         $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
         if ($null -eq $categoryId) {
@@ -37,7 +44,8 @@ Describe "$commandName works" {
                 }
             } | ConvertTo-Json
             # bug in endpoint where it won't return the Category ID properly
-            Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/categories" -Method 'POST' -Body $bodData -PersonalAccessToken $session.AccessToken > $null
+            $invokeParams.Uri = $($session.ApiUrl), "reports/categories" -join '/'
+            Invoke-TssRestApi @invokeParams -Method 'POST' -Body $bodData > $null
             $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq 'tssModuleTest'}).CategoryId
         }
 
@@ -52,9 +60,14 @@ Describe "$commandName works" {
         $props = 'ReportId', 'Id', 'CategoryId', 'Name', 'ReportSql'
 
         # delete report created
-        Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/$($object.Id)" -Method DELETE -PersonalAccessToken $session.AccessToken > $null
+        $invokeParams.Uri = $session.ApiUrl, "reports/$($object.Id)" -join '/'
+        $invokeParams.Remove('ExpandProperty') > $null
+        Invoke-TssRestApi @invokeParams -Method DELETE > $null
         Remove-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -Confirm:$false > $null
-        $session.SessionExpire()
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{object = $object} {
         It "Should not be empty" {

@@ -83,7 +83,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -126,7 +126,7 @@
                     $invokeParams.Method = 'GET'
                 }
 
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
 
                 if ($tssParams['OutFile']) {
                     if (Test-Path -Path $OutFile -PathType Container) {

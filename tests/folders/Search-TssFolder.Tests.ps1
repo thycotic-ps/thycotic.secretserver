@@ -25,23 +25,31 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.folderName -eq 'tss_module_testing'})
 
         $parentFolder = 'tss_module_testing'
         $searchText = 'SearchTssSecret'
-        # Prep work
         $searchObject = Search-TssFolder -TssSession $session -ParentFolderId $tssSecretFolder.Id
         $searchTextObject = Search-TssFolder -TssSession $session -SearchText $searchText
 
-        $session.SessionExpire()
         $props = 'FolderId', 'Id', 'FolderPath', 'InheritPermissions'
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{searchObject = $searchObject; searchTextObject = $searchTextObject} {
         It "Should not be empty" {

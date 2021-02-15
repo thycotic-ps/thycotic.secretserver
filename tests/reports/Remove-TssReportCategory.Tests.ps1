@@ -9,7 +9,7 @@ Describe "$commandName verify parameters" {
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -25,26 +25,36 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
+        }
 
         $reportCatName = "tssModuleTest$(Get-Random)"
         $bodData = @{
             data = @{
                 reportCategoryDescription = 'tss Module test category'
-                reportCategoryName = $reportCatName
+                reportCategoryName        = $reportCatName
+                sortOrder                 = $null
             }
         } | ConvertTo-Json
+
         # bug in endpoint where it won't return the Category ID properly
-        Invoke-TssRestApi -Uri "$($session.ApiUrl)/reports/categories" -Method 'POST' -Body $bodData -PersonalAccessToken $session.AccessToken > $null
-        $categoryId = (Get-TssReportCategory -TssSession $session -All).Where({$_.Name -eq $reportCatName}).CategoryId
+        $invokeParams.Uri = $session.ApiUrl, "reports/categories" -join '/'
+        Invoke-TssRestApi @invokeParams -Method 'POST' -Body $bodData > $null
+        $categoryId = (Get-TssReportCategory -TssSession $session -All).Where( { $_.Name -eq $reportCatName }).CategoryId
     }
-    Context "Checking" -Foreach @{categoryId = $categoryId; session = $session} {
-        AfterAll {
-            $session.SessionExpire()
-        }
+    Context "Checking" -ForEach @{categoryId = $categoryId; session = $session } {
         It "Should delete the category" {
             Remove-TssReportCategory -TssSession $session -ReportCategoryId $categoryId -Confirm:$false
             (Get-TssReportCategory -TssSession $session -All).CategoryId | Should -Not -Contain $categoryId
+            if (-not $tssTestUsingWindowsAuth) {
+                $session.SessionExpire()
+            }
         }
     }
 }

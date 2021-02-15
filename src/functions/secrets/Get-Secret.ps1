@@ -91,7 +91,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -99,7 +99,7 @@
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString() -join '/'
+                $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
                 $body = @{}
                 if ($PSCmdlet.ParameterSetName -eq 'restricted') {
@@ -133,8 +133,6 @@
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
                 }
-
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
 
                 Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {

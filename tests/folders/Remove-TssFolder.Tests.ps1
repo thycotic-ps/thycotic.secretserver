@@ -25,12 +25,18 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
         $tssSecretFolder = $getFolders.Where({$_.FolderPath -eq '\tss_module_testing\DeleteFolder'})
 
@@ -38,8 +44,11 @@ Describe "$commandName works" {
         $createdFolder = Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName $folderName -ParentFolderId $tssSecretFolder.Id
         $deletedFolder = Remove-TssFolder -TssSession $session -Id $createdFolder.Id
 
-        $session.SessionExpire()
         $props = 'Id', 'ObjectType'
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking" -Foreach @{createdFolder = $createdFolder; deletedFolder = $deletedFolder} {
         It "Should not be empty" {

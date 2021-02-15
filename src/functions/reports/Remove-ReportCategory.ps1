@@ -43,7 +43,7 @@
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = @{ }
+        $invokeParams = . $GetInvokeTssParams $TssSession
     }
 
     process {
@@ -54,7 +54,7 @@
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+
                 Write-Verbose "$($invokeParams.Method) $uri"
                 if (-not $PSCmdlet.ShouldProcess($id, "$($invokeParams.Method) $uri")) { return }
                 try {

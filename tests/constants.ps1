@@ -10,4 +10,6 @@ if (Test-Path "$env:USERPROFILE\constants.ps1") {
 
     $script:ssCred = $secretVault3Cred
     # $script:ssCred = $secretCloudCred
+
+    $tssTestUsingWindowsAuth = $false
 }

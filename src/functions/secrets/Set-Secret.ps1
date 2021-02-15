@@ -246,7 +246,7 @@
                     if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
                         $whatIfProcessing++
                     }
-                    if ($setSecretParams.ContainsKey('EnableInheritPermission') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating EnableInheritPermission to $EnableInheritPermission")) {
+                    if ($setSecretParams.ContainsKey('EnableInheritPermission') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating Inherit Permission to $EnableInheritPermission")) {
                         $whatIfProcessing++
                     }
 
@@ -278,10 +278,10 @@
                                     $getSecret.AutoChangeNextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($AutoChangeNextPassword))
                                 }
                             }
-                            if ($setSecretParams.ContainsKey('EnableInheritPermissions')) { $getSecret.EnableInheritPermissions = $EnableInheritPermissions }
+                            if ($setSecretParams.ContainsKey('EnableInheritPermission')) { $getSecret.EnableInheritPermissions = $EnableInheritPermission }
                             $invokeParamsOther.Body = $getSecret | ConvertTo-Json
 
-                            Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParams.Body)`n"
+                            Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
                             try {
                                 $otherResponse = Invoke-TssRestApi @invokeParamsOther
                             } catch {
@@ -300,9 +300,9 @@
                                     Write-Verbose "Secret [$secret] AutoChangeNextPassword was set to $AutoChangeNextPassword"
                                 }
                             }
-                            if ($otherResponse.PSObject.Properties.Name -contains 'EnableInheritPermissions' -and $setSecretParams.ContainsKey('EnableInheritPermissions')) {
-                                if ($otherResponse.EnableInheritPermissions -eq $EnableInheritPermissions) {
-                                    Write-Verbose "Secret [$secret] EnableInheritPermissions was set to $EnableInheritPermissions"
+                            if ($otherResponse.PSObject.Properties.Name -contains 'EnableInheritPermissions' -and $setSecretParams.ContainsKey('EnableInheritPermission')) {
+                                if ($otherResponse.EnableInheritPermissions -eq $EnableInheritPermission) {
+                                    Write-Verbose "Secret [$secret] EnableInheritPermissions was set to $EnableInheritPermission"
                                 }
                             }
                         }

@@ -25,11 +25,19 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        }
+
         $objectId = Get-TssReportCategory -TssSession $session -Id 4
         $objectAll = Get-TssReportCategory -TssSession $session -All
-        $session.SessionExpire()
         $props = 'CategoryId', 'Name', 'Description'
+
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking Id" -Foreach @{object = $objectId} {
         It "Should not be empty" {

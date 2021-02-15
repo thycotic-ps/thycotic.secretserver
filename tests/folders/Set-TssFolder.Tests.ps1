@@ -20,28 +20,45 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName works" {
     BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri                 = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty      = 'records'
-            PersonalAccessToken = $session.AccessToken
+        $invokeParams = @{}
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+            $invokeParams.UseDefaultCredentials = $true
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+            $invokeParams.PersonalAccessToken = $session.AccessToken
         }
+
+        $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
+        $invokeParams.ExpandProperty      = 'records'
+
         $getFolders = Invoke-TssRestApi @invokeParams
 
         <# Allowed Template testing #>
         $setAllowedTemplates = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing\SetFolder\AllowedTemplates' })
         $getAllowedTemplatesF = Get-TssFolder -TssSession $session -Id $setAllowedTemplates.id -IncludeTemplates
-        $templateIds = (Invoke-TssRestApi -Uri "$ss/api/v1/secret-templates" -PersonalAccessToken $session.AccessToken -ExpandProperty records).id
+
+        $invokeParams.Uri = $($session.ApiUrl), "secret-templates" -join '/'
+        $templateIds = (Invoke-TssRestApi @invokeParams).id
         $randomNum = Get-Random -Maximum 6
         $testTemplate = $templateIds[$randomNum]
 
-        $session.SessionExpire()
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     BeforeAll {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
+        if ($tssTestUsingWindowsAuth) {
+            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
+        } else {
+            $session = New-TssSession -SecretServer $ss -Credential $ssCred
+        }
     }
     AfterAll {
-        $session.SessionExpire()
+        if (-not $tssTestUsingWindowsAuth) {
+            $session.SessionExpire()
+        }
     }
     Context "Checking AllowedTemplates" -Foreach @{setAllowedTemplates = $setAllowedTemplates } {
         It "Should have found AllowedTemplates folder for testing" {
