@@ -80,6 +80,8 @@ The test is written for Pester 5.1, minimum, version and will not run on a lower
 
 ### Limitations
 
+**To run the full gauntlet of tests for the module will require Administrator role permissions to Secret Server.** At a future time, a large portion of tests will include mocking instead of direct integration tests to make this easier.
+
 Some tests do not have direct integration tests because of external systems or resources required to use them (e.g., Distributed Engines). In some cases, where feasible, mocking is used to expand the unit test coverage as much as possible. Mocking will be a large focus on tests that can potentially break an installation.
 
 ### `Constants.ps1` File
@@ -88,6 +90,7 @@ The `constants` file is utilized by the test to indicate the following:
 
 - Secret Server URL
 - Secret Server User credential
+- Utilize Windows Authentication (setting `$tssTestUsingWindowsAuth = $true`)
 
 If you save this file to your profile directly (`$env:USERPROFILE` or `$env:HOME` on Linux), you can include setting the needed variables directly.
 

@@ -10,7 +10,7 @@ title: Set-TssSecret
 # Set-TssSecret
 
 ## SYNOPSIS
-Set a value for a given secret in Secret Server
+Set various settings or fields for a given secret
 
 ## SYNTAX
 
@@ -18,7 +18,7 @@ Set a value for a given secret in Secret Server
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Field <String>] [-Value <String>]
  [-Clear] [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
- [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermissions] [-EnableInheritSecretPolicy]
+ [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
  [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
  [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
@@ -51,12 +51,12 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Aut
 
 ### folder
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-EnableInheritPermissions]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-EnableInheritPermission] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Sets a secret property or field in Secret Server.
+Set various settings or fields for a given secret.
 
 ## EXAMPLES
 
@@ -294,13 +294,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -EnableInheritPermissions
+### -EnableInheritPermission
 Enable Folder inherit permissions
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: all, folder
-Aliases:
+Aliases: EnableInheritPermissions
 
 Required: False
 Position: Named
