@@ -86,6 +86,8 @@ commands:
 
   - title: "General"
     children:
+      - title: "Invoke-TssRestApi"
+        url: /commands/Invoke-TssRestApi
       - title: "Get-TssVersion"
         url: /commands/Get-TssVersion
       - title: "Test-TssVersion"
