@@ -28,10 +28,11 @@ Invokes the Thycotic Secret Server REST API
 
 ### EXAMPLE 1
 ```
-Invoke-TssRestApi -Uri 'https://vault.company.com/api/v1/oauth2/token' -Method POST -Body $body
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Invoke-TssRestApi -Uri 'https://vault.company.com/SecretServer/api/v1/secrets -PersonalAccessToken $session.AccessToken
 ```
 
-Performs POST request to the URI specified, returning the output from the endpoint.
+Performs request to the URI specified, returning all secrets the current credential has access to view (minimum).
 
 ## PARAMETERS
 
@@ -278,6 +279,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ## NOTES
+More detailed examples: https://thycotic-ps.github.io/thycotic.secretserver/docs/invoke-tssrestapi/
 
 ## RELATED LINKS
 
