@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * None
 
+## [0.31.1] -- 2021-02-17
+
+### Added
+
+* None
+
+### Changed
+
+* Updated help for `Initialize-TssSdkClient` and `New-TssSession` [922200b](https://github.com/thycotic-ps/thycotic.secretserver/commit/922200bc6627546873368e38fc660d88db4fb54c)
+
 ## [0.31.0] -- 2021-02-17
 
 ### Added
