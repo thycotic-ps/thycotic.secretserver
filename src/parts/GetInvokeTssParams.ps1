@@ -20,6 +20,9 @@ process {
         'ExternalToken' {
             $invokeParams.PersonalAccessToken = $TssSession.AccessToken
         }
+        'SdkClient' {
+            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+        }
         'WindowsAuth' {
             $invokeParams.UseDefaultCredentials = $true
         }

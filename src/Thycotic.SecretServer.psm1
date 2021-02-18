@@ -39,7 +39,7 @@ if ($partsDirectory) {
 #endregion Import Parts
 
 #region alias
-
+$script:PSModuleRoot = $PSScriptRoot
 <#
     Secret Server does not delete secrets, just disables them.
     Remove is a common term though and one used by SecretManagement module from Microsoft.

@@ -51,25 +51,36 @@
         [Parameter(Mandatory,ParameterSetName = 'new', Position = 0)]
         [Parameter(Mandatory,ParameterSetName = 'sdk', Position = 0)]
         [Parameter(Mandatory,ParameterSetName = 'winauth', Position = 1)]
+        [Parameter(Mandatory,ParameterSetName = 'clientSdk')]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
-        [Parameter(Mandatory, ParameterSetName = 'new')]
+        [Parameter(Mandatory,ParameterSetName = 'new')]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Specify Access Token
-        [Parameter(Mandatory, ParameterSetName = 'sdk')]
+        [Parameter(Mandatory,ParameterSetName = 'sdk')]
         $AccessToken,
 
         # Utilize Windows Authentication (IWA)
-        [Parameter(Mandatory, ParameterSetName = 'winauth')]
+        [Parameter(Mandatory,ParameterSetName = 'winauth')]
         [switch]
-        $UseWindowsAuth
-    )
+        $UseWindowsAuth,
 
+        # Utilize SDK Client
+        [Parameter(Mandatory,ParameterSetName = 'clientSdk')]
+        [switch]
+        $UseSdkClient,
+
+        # Config path for the key/config files
+        [Parameter(ParameterSetName = 'clientSdk',Mandatory)]
+        [ValidateScript( { Test-Path $_ -PathType Container })]
+        [string]
+        $ConfigPath
+    )
     begin {
         $newTssParams = $PSBoundParameters
         $invokeParams = @{ }
@@ -88,6 +99,8 @@
         } else {
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer + $outputTssSession.ApiVersion
         }
+
+        $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
     }
 
     process {
@@ -137,8 +150,40 @@
                 $outputTssSession.AccessToken = $AccessToken
                 $outputTssSession.TokenType = 'ExternalToken'
             }
-            if ($newTssParams.ContainsKey('UseWindowsAuth')) {
-                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Setting SecretServer: [$($outputTssSession.SecretServer)] and TokenType: ['WinAuth']")) { return }
+            if ($newTssParams.ContainsKey('UseSdkClient')) {
+                if (Test-Path $tssExe) {
+                    try {
+                        $status = Invoke-Expression -Command "$tssExe status --key-directory '$ConfigPath' --config-directory '$ConfigPath'"
+                        Write-Verbose "SDK Client raw response: $status"
+                        $sdkEndpoint = $status.Trim("Connected to endpoint ")
+                    } catch {
+                        Write-Warning "Issue capturing status of current SDK Client (tss) config for [$SecretServer]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+
+                    if ([uri]$sdkEndpoint -ne $outputTssSession.SecretServer) {
+                        Write-Warning "Provided SecretServer host [$SecretServer] does not match SDK Client configuration of [$sdkEndpoint]"
+                        return
+                    }
+
+                    try {
+                        $sdkToken = Invoke-Expression -Command "$tssExe token --key-directory '$ConfigPath' --config-directory '$ConfigPath'"
+                        Write-Verbose "SDK Client token value: $sdkToken"
+                    } catch {
+                        Write-Warning "Issue obtaining token via SDK Client (tss) config"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+
+                    if ($sdkToken.Length -gt 0) {
+                        $outputTssSession.AccessToken = $sdkToken
+                        $outputTssSession.TokenType = 'SdkClient'
+                    }
+                } else {
+                    Write-Warning 'Issue finding SDK Client (tss) in module, please ensure bin files still exists'
+                    return
+                }
             }
             $outputTssSession.StartTime = [datetime]::Now
             return $outputTssSession
