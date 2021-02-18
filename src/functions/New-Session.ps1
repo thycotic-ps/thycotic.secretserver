@@ -103,7 +103,7 @@
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.WindowsAuth, $outputTssSession.ApiVersion -join '/'
             $outputTssSession.TokenType = 'WindowsAuth'
         } else {
-            $outputTssSession.ApiUrl = $outputTssSession.SecretServer + $outputTssSession.ApiVersion
+            $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.ApiVersion -join '/'
         }
 
         $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
