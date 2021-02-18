@@ -14,19 +14,25 @@ Create new session
 
 ## SYNTAX
 
+### clientSdk
+```
+New-TssSession -SecretServer <Uri> [-UseSdkClient] -ConfigPath <String> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
 ### winauth
 ```
-New-TssSession [-SecretServer] <Uri> [-UseWindowsAuth] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-UseWindowsAuth] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### sdk
 ```
-New-TssSession [-SecretServer] <Uri> -AccessToken <Object> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> -AccessToken <Object> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### new
 ```
-New-TssSession [-SecretServer] <Uri> -Credential <PSCredential> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> -Credential <PSCredential> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,7 +95,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: True
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -136,6 +142,36 @@ Aliases:
 Required: True
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -UseSdkClient
+Utilize SDK Client
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: clientSdk
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ConfigPath
+Config path for the key/config files
+
+```yaml
+Type: String
+Parameter Sets: clientSdk
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

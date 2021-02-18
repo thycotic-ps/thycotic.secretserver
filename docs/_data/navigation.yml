@@ -17,6 +17,8 @@ commands:
     children:
       - title: "New-TssSession"
         url: /commands/New-TssSession
+      - title: "Initialize-TssSdkClient"
+        url: /commands/Initialize-TssSdkClient
 
   - title: "Secrets"
     children:
