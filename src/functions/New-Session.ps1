@@ -38,11 +38,17 @@
     Create a session object utilizing Windows Integrated Authentication (IWA)
     Use the alias nts to create a session object
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -UseSdkClient -ConfigPath c:\thycotic
+
+    Create a session object utilizing SDK Client configuration, assumes Initialize-TssSdkClient was run with config path of C:\thycotic
+    Token request performed via SDK Client meaning that token is good for life of the configuration
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession
 
     .OUTPUTS
-    TssSession.
+    TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
     [OutputType('TssSession')]

@@ -10,7 +10,7 @@ title: Initialize-TssSdkClient
 # Initialize-TssSdkClient
 
 ## SYNOPSIS
-{{ Fill in the Synopsis }}
+Initialize SDK Client for the module
 
 ## SYNTAX
 
@@ -20,21 +20,74 @@ Initialize-TssSdkClient -SecretServer <String> -RuleName <String> [-OnboardingKe
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Initialize SDK Client for the module to utilize token request using machine authentication via SDK Client Management feature in Secret Server (see notes section)
+See help for New-TssSession using the associated UseSdkClient/ConfigPath parameters
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath $env:HOME
 ```
 
-{{ Add example description here }}
+On Ubuntu 20.04 client, initialize SDK Client saving the configuration files in the user's HOME path
+
+### EXAMPLE 2
+```
+Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath c:\thycotic -Force
+```
+
+Initializes SDK Client saving the configuration files to c:\thycotic, with Force provided configuration will drop current configs (if exist) and recreate
 
 ## PARAMETERS
 
+### -SecretServer
+Secret Server
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RuleName
+SDK Client Management rule name
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OnboardingKey
+SDK Client Management rule onboarding key
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -ConfigPath
-{{ Fill ConfigPath Description }}
+Config path for the key/config files
 
 ```yaml
 Type: String
@@ -49,7 +102,7 @@ Accept wildcard characters: False
 ```
 
 ### -Force
-{{ Fill Force Description }}
+Overwrite configuration (drop and create a new)
 
 ```yaml
 Type: SwitchParameter
@@ -58,52 +111,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -OnboardingKey
-{{ Fill OnboardingKey Description }}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -RuleName
-{{ Fill RuleName Description }}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SecretServer
-{{ Fill SecretServer Description }}
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -113,11 +121,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## INPUTS
 
-### None
-
 ## OUTPUTS
 
-### System.Object
 ## NOTES
+Secret Server docs cover configuring Application Account and SDK Client rule
+https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
 
 ## RELATED LINKS

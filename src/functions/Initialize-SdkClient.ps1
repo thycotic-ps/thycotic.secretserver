@@ -1,4 +1,26 @@
 ﻿function Initialize-SdkClient {
+    <#
+    .SYNOPSIS
+    Initialize SDK Client for the module
+
+    .DESCRIPTION
+    Initialize SDK Client for the module to utilize token request using machine authentication via SDK Client Management feature in Secret Server (see notes section)
+    See help for New-TssSession using the associated UseSdkClient/ConfigPath parameters
+
+    .EXAMPLE
+    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath $env:HOME
+
+    On Ubuntu 20.04 client, initialize SDK Client saving the configuration files in the user's HOME path
+
+    .EXAMPLE
+    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath c:\thycotic -Force
+
+    Initializes SDK Client saving the configuration files to c:\thycotic, with Force provided configuration will drop current configs (if exist) and recreate
+
+    .NOTES
+    Secret Server docs cover configuring Application Account and SDK Client rule
+    https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
+    #>
     [cmdletbinding()]
     param(
         # Secret Server
