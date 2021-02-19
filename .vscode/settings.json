@@ -19,8 +19,6 @@
         "editor.wordSeparators": "`~!@#$%^&*()-=+[{]}\\|;:'\",.<>/?"
     },
     "powershell.codeFormatting.addWhitespaceAroundPipe": true,
-    // best practice UTF8 With BOM
-    "files.encoding": "utf8bom",
     // GitHub PR extension
     "githubIssues.queries": [
 
