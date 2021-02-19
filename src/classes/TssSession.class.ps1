@@ -1,4 +1,4 @@
-﻿class TssSession {
+class TssSession {
     [string]$SecretServer
     [string]$ApiVersion = 'api/v1'
     hidden [string]$WindowsAuth = 'winauthwebservices'

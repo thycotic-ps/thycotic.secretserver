@@ -1,4 +1,4 @@
-﻿TOPIC
+TOPIC
     This help topic describes the TssGroupSummary class in the Thycotic.SecretServer module
 
 CLASS

@@ -1,4 +1,4 @@
-﻿class TssReportScheduleSummary {
+class TssReportScheduleSummary {
     # Schedule change type
     [ValidateSet('Daily','Weekly','Monthly')]
     [string]$ChangeType

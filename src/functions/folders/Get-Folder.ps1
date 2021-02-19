@@ -1,4 +1,4 @@
-﻿function Get-Folder {
+function Get-Folder {
     <#
     .SYNOPSIS
     Get a folder from Secret Server
@@ -14,13 +14,13 @@
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssFolder -TssSession $session -Id 93 -Recurse
+    Get-TssFolder -TssSession $session -Id 93 -GetChildren
 
     Returns folder associated with the Folder ID, 93 and include child folders
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssFolder -TssSession $session -Id 93 -IncludeTemplates
+    Get-TssFolder -TssSession $session -Id 93 -IncludeTemplate
 
     Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
 
@@ -53,9 +53,9 @@
 
         # Include allowable Secret Templates of the requested folder
         [Parameter(ParameterSetName = 'filter')]
-        [Alias("IncludeAssociatedTemplates")]
+        [Alias('IncludeAssociatedTemplates','IncludeTemplates')]
         [switch]
-        $IncludeTemplates
+        $IncludeTemplate
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -67,11 +67,10 @@
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folders', $folder.ToString() -join '/'
-                $uri = $uri + '?' + "getAllChildren=$GetChildren" + "&" + "includeAssociatedTemplates=$IncludeTemplates"
+                $uri = $uri + '?' + "getAllChildren=$GetChildren" + "&" + "includeAssociatedTemplates=$IncludeTemplate"
 
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
-
 
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {

@@ -1,4 +1,4 @@
-﻿<#
+<#
     .Synopsis
         Creates a TssFolderAuditSummary object to output the FolderAuditSummary object
 #>

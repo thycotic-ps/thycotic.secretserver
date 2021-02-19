@@ -1,4 +1,4 @@
-﻿[cmdletbinding()]
+[cmdletbinding()]
 param(
     [Parameter(ParameterSetName = 'docs')]
     [switch]

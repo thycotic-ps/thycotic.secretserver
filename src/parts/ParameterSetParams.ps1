@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
     Gets Set-TssSecret's parameters based on parameter set
 #>

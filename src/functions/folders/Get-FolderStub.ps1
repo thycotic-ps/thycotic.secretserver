@@ -1,4 +1,4 @@
-﻿function Get-FolderStub {
+function Get-FolderStub {
     <#
     .SYNOPSIS
     Get template for new secret folder

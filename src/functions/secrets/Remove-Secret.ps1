@@ -1,4 +1,4 @@
-﻿function Remove-Secret {
+function Remove-Secret {
     <#
     .SYNOPSIS
     Delete a secret from Secret Server

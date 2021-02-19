@@ -1,4 +1,4 @@
-﻿function New-Report {
+function New-Report {
     <#
     .SYNOPSIS
     Short of what command does

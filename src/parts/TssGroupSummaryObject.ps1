@@ -1,4 +1,4 @@
-﻿<#
+<#
     .Synopsis
         Creates a TssGroupSummary class in the Thycotic.SecretServer module.
     .Description

@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
     Creates a TssSecret object to output the SecretModel object
 .Description

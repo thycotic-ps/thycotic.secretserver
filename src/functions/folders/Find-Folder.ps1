@@ -1,4 +1,4 @@
-﻿function Find-Folder {
+function Find-Folder {
     <#
     .SYNOPSIS
     Find secret folders

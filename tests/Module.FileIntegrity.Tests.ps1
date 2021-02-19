@@ -1,4 +1,4 @@
-﻿BeforeDiscovery {
+BeforeDiscovery {
     $moduleRoot = (Resolve-Path "$PSScriptRoot\..\src").Path
     $allFiles = Get-ChildItem -Path $moduleRoot -Recurse -Filter "*.ps1" |
     Where-Object FullName -NotLike "$moduleRoot\tests\*" |

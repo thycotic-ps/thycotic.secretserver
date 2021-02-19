@@ -1,4 +1,4 @@
-﻿class TssDelete {
+class TssDelete {
     [int]$Id
     [string]$ObjectType
 }

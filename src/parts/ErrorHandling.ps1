@@ -1,4 +1,4 @@
-﻿param(
+param(
     [Parameter(Mandatory,Position = 0)]
     [System.Management.Automation.ErrorRecord]
     $ErrorRecord

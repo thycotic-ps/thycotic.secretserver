@@ -1,4 +1,4 @@
-﻿function Get-SecretStub {
+function Get-SecretStub {
     <#
     .SYNOPSIS
     Return template object

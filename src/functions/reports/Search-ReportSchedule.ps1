@@ -1,4 +1,4 @@
-﻿function Search-ReportSchedule {
+function Search-ReportSchedule {
     <#
     .SYNOPSIS
     Search report schedule

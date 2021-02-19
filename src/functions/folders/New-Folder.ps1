@@ -1,4 +1,4 @@
-﻿function New-Folder {
+function New-Folder {
     <#
     .SYNOPSIS
     Create a new folder

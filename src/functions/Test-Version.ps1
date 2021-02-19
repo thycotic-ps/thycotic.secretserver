@@ -1,4 +1,4 @@
-﻿function Test-Version {
+function Test-Version {
     <#
     .SYNOPSIS
     Test Secret Server version

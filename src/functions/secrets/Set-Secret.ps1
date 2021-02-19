@@ -1,4 +1,4 @@
-﻿function Set-Secret {
+function Set-Secret {
     <#
     .SYNOPSIS
     Set various settings or fields for a given secret

@@ -1,4 +1,4 @@
-﻿class TssFolderSummary {
+class TssFolderSummary {
     # folder name
     [string]$FolderName
     # folder path

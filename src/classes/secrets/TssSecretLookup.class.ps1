@@ -1,4 +1,4 @@
-﻿class TssSecretLookup {
+class TssSecretLookup {
     [int]$Id
     [int]$FolderId
     [int]$SecretTemplateId

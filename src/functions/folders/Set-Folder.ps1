@@ -1,4 +1,4 @@
-﻿function Set-Folder {
+function Set-Folder {
     <#
     .SYNOPSIS
     Set various properties for a given secret folder

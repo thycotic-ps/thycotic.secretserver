@@ -1,4 +1,4 @@
-﻿function Get-FolderPermissionsStub {
+function Get-FolderPermissionsStub {
     <#
     .SYNOPSIS
     Get default values for a new folder permission

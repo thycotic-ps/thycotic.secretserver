@@ -1,4 +1,4 @@
-﻿class TssSecretSummaryExtendedField {
+class TssSecretSummaryExtendedField {
     [string]$Name
     [string]$Value
 }

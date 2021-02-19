@@ -1,4 +1,4 @@
-﻿SELECT gdn.DisplayName AS [GroupName]
+SELECT gdn.DisplayName AS [GroupName]
     ,CASE g.Active WHEN 1 THEN 'Yes' WHEN 0 THEN 'No' END AS [IsGroupActive]
 FROM tbGroup g WITH (NOLOCK)
 INNER JOIN vGroupDisplayName gdn WITH (NOLOCK) ON g.GroupId = gdn.GroupId

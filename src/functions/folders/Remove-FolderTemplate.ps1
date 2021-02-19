@@ -1,4 +1,4 @@
-﻿function Remove-FolderTemplate {
+function Remove-FolderTemplate {
     <#
     .SYNOPSIS
     Remove the associated template on the folder

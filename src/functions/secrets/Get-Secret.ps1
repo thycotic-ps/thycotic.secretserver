@@ -1,4 +1,4 @@
-﻿function Get-Secret {
+function Get-Secret {
     <#
     .SYNOPSIS
     Get a secret from Secret Server

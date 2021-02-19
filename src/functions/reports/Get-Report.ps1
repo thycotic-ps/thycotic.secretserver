@@ -1,4 +1,4 @@
-﻿function Get-Report {
+function Get-Report {
     <#
     .SYNOPSIS
     Gets a report

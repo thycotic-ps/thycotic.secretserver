@@ -1,4 +1,4 @@
-﻿<#
+<#
     .Synopsis
         Creates a TssReport class in the Thycotic.SecretServer module.
     .Description

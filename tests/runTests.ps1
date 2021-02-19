@@ -1,4 +1,4 @@
-﻿switch ($PSEdition) {
+switch ($PSEdition) {
     'Desktop' { Write-Host "Testing in Windows PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue }
     'Core' { Write-Host "Testing in PowerShell" -ForegroundColor Black -BackgroundColor DarkBlue}
 }

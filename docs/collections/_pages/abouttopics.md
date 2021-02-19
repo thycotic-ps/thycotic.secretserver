@@ -1,4 +1,4 @@
-﻿---
+---
 title: "Thycotic.SecretServer About topics"
 permalink: /abouttopics/
 excerpt: "About Topics"

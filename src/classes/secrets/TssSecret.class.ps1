@@ -1,4 +1,4 @@
-﻿class TssSecretItem {
+class TssSecretItem {
     [string]$FieldDescription
     [int]$FieldId
     [string]$FieldName

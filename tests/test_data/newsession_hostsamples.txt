@@ -1,4 +1,4 @@
-﻿https://tenant.secretservercloud.com
+https://tenant.secretservercloud.com
 https://tenant.secretservercloud.com/api/v1
 https://tenant.secretservercloud.com/oauth2/token
 https://vault.com/SecretServer/api/v1

@@ -1,4 +1,4 @@
-﻿function Get-FolderAudit {
+function Get-FolderAudit {
     <#
     .SYNOPSIS
     Get a list of audits

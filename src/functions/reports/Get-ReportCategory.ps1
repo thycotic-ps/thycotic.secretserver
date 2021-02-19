@@ -1,4 +1,4 @@
-﻿function Get-ReportCategory {
+function Get-ReportCategory {
     <#
     .SYNOPSIS
     Get report categories

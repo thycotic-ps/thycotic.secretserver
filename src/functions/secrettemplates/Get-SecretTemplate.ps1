@@ -1,4 +1,4 @@
-﻿function Get-SecretTemplate {
+function Get-SecretTemplate {
     <#
     .SYNOPSIS
     Get a secret template from Secret Server

@@ -1,4 +1,4 @@
-﻿function Remove-ReportCategory {
+function Remove-ReportCategory {
     <#
     .SYNOPSIS
     Delete a report category

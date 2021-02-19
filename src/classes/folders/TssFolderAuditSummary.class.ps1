@@ -1,4 +1,4 @@
-﻿class TssFolderAuditSummary {
+class TssFolderAuditSummary {
     # Action
     [string]$Action
     # Audit Folder Id

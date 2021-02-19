@@ -1,4 +1,4 @@
-﻿function Get-SecretField {
+function Get-SecretField {
     <#
     .SYNOPSIS
     Get data of a field

@@ -1,4 +1,4 @@
-﻿class TssFolderTemplate {
+class TssFolderTemplate {
     [int]$Id
     [string]$Name
     [int]$SecretCount

@@ -1,4 +1,4 @@
-﻿function Search-Folder {
+function Search-Folder {
     <#
     .SYNOPSIS
     Search secret folders

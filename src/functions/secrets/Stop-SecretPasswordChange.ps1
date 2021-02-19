@@ -1,4 +1,4 @@
-﻿function Stop-SecretPasswordChange {
+function Stop-SecretPasswordChange {
     <#
     .SYNOPSIS
     Stop a current password change

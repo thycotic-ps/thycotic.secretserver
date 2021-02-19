@@ -1,4 +1,4 @@
-﻿function Get-Version {
+function Get-Version {
     <#
     .SYNOPSIS
     Get version of Secret Server

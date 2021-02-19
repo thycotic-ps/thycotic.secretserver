@@ -1,4 +1,4 @@
-﻿function Search-Secret {
+function Search-Secret {
     <#
     .SYNOPSIS
     Search for a secret

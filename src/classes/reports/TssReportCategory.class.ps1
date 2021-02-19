@@ -1,4 +1,4 @@
-﻿class TssReportCategory {
+class TssReportCategory {
     # Category Id
     [int]$ReportCategoryId = -1
     # Category name

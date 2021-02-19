@@ -1,4 +1,4 @@
-﻿class TssGroupSummary {
+class TssGroupSummary {
     # Created date
     [datetime]$Created
     # Domain Directory Group GUID

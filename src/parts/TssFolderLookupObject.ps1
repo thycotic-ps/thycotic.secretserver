@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
     Creates a TssFolderLookup object to output the SecretLookup object
 .Description

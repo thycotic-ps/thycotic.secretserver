@@ -1,4 +1,4 @@
-﻿function Search-Group {
+function Search-Group {
     <#
     .SYNOPSIS
     Search for user management groups

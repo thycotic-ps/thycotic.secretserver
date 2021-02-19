@@ -1,4 +1,4 @@
-﻿function New-Secret {
+function New-Secret {
     <#
     .SYNOPSIS
     Create a new secret

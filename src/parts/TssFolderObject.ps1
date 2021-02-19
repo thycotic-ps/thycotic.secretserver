@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
     Creates a TssFolder object to output the FolderModel object
 .Description

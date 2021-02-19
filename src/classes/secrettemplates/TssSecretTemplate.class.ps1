@@ -1,4 +1,4 @@
-﻿class TssSecretTemplateField {
+class TssSecretTemplateField {
     [string]$Description
     [string]$DisplayName
     [int]$EditablePermission

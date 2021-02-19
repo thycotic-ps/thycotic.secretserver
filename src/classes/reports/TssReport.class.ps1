@@ -1,4 +1,4 @@
-﻿class TssReport {
+class TssReport {
     # Report Category Id
     [int]$CategoryId
     # Report chart type, null if no chart

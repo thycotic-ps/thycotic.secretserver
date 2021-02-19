@@ -1,4 +1,4 @@
-﻿function Remove-Folder {
+function Remove-Folder {
     <#
     .SYNOPSIS
     Delete secret folder

@@ -1,4 +1,4 @@
-﻿<#
+<#
     .Synopsis
         Creates a TssFolderSummary class in the Thycotic.SecretServer module.
     .Description

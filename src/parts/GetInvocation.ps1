@@ -1,4 +1,4 @@
-﻿<#
+<#
 .Synopsis
 Gets the input parameters and values
 .Description
