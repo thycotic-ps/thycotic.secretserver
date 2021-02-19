@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * None
 
+## [0.31.2] -- 2021-02-18
+
+### Added
+
+* None
+
+### Changed
+
+* Fixed issue with using SDK Client integration from AllUsers scope [#83](https://github.com/thycotic-ps/thycotic.secretserver/issues/83) [981a988](https://github.com/thycotic-ps/thycotic.secretserver/commit/981a988b2a56e1d92e0c9a0e1a4747cf998a9341)
+
 ## [0.31.1] -- 2021-02-17
 
 ### Added

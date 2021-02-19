@@ -1,5 +1,5 @@
 @{
-    ModuleVersion = '0.31.1'
+    ModuleVersion = '0.31.2'
     CompatiblePSEditions = 'Desktop', 'Core'
     FormatsToProcess = 'Thycotic.SecretServer.Format.ps1xml'
     TypesToProcess = 'Thycotic.SecretServer.Types.ps1xml'
