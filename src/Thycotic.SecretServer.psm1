@@ -1,11 +1,11 @@
-﻿#region Import Classes
-foreach ($file in Get-ChildItem -Path $psScriptRoot\classes -Recurse -Filter *.class.ps1) {
+#region Import Classes
+foreach ($file in Get-ChildItem -Path $PSScriptRoot\classes -Recurse -Filter *.class.ps1) {
     . $file.FullName
 }
 #endregion Import Classes
 
 #region Import Functions
-foreach ($file in Get-ChildItem -Path $psScriptRoot\functions -Recurse -Filter *-*.ps1) {
+foreach ($file in Get-ChildItem -Path $PSScriptRoot\functions -Recurse -Filter *-*.ps1) {
     . $file.FullName
 }
 #endregion Import Functions
@@ -15,7 +15,7 @@ Add-Type -AssemblyName System.Web # Add System.Web now, in the unlikely event it
 #region Import Parts
 # Parts are simple .ps1 files beneath a /Parts directory that can be used throughout the module.
 $partsDirectory = $( # Because we want to be case-insensitive, and because it's fast
-    foreach ($dir in [IO.Directory]::GetDirectories($psScriptRoot)) {
+    foreach ($dir in [IO.Directory]::GetDirectories($PSScriptRoot)) {
         # [IO.Directory]::GetDirectories()
         if ($dir -imatch "\$([IO.Path]::DirectorySeparatorChar)Parts$") {
             # and some Regex

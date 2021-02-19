@@ -15,7 +15,7 @@ Get a folder from Secret Server
 ## SYNTAX
 
 ```
-Get-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-GetChildren] [-IncludeTemplates] [<CommonParameters>]
+Get-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,7 +34,7 @@ Returns folder associated with the Folder ID, 4
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolder -TssSession $session -Id 93 -Recurse
+Get-TssFolder -TssSession $session -Id 93 -GetChildren
 ```
 
 Returns folder associated with the Folder ID, 93 and include child folders
@@ -42,7 +42,7 @@ Returns folder associated with the Folder ID, 93 and include child folders
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolder -TssSession $session -Id 93 -IncludeTemplates
+Get-TssFolder -TssSession $session -Id 93 -IncludeTemplate
 ```
 
 Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
@@ -94,13 +94,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -IncludeTemplates
+### -IncludeTemplate
 Include allowable Secret Templates of the requested folder
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: IncludeAssociatedTemplates
+Aliases: IncludeAssociatedTemplates, IncludeTemplates
 
 Required: False
 Position: Named

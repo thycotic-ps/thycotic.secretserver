@@ -10,13 +10,13 @@ The [TssSession](/thycotic.secretserver/abouttopics/about_tsssession) is utilize
 
 # Windows Integrated Authentication (IWA)
 
-In order to utilize Windows Authentication with Secret Server your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/ss/10.9.0/api-scripting/webservice-iwa-powershell/index.md).
+To utilize Windows Authentication with Secret Server, your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/ss/10.9.0/api-scripting/webservice-iwa-powershell/index.md).
 
-As of **version `0.30.0`**, Windows Authentication can be utilized with the module. A parameter was added to `New-TssSession` as `-UseWindowsAuth`. See examples of this use via the command help [New-TssSession](/thycotic.secretserver/commands/New-TssSession).
+As of **version `0.30.0`**, Windows Authentication is supported with the module. A parameter, `-UseWindowsAuth` is available in `New-TssSession`. See examples of this use via the command help [New-TssSession](/thycotic.secretserver/commands/New-TssSession).
 
 # OAuth2 Authentication
 
-`New-TssSession` is used to request an OAuth token to Secret Server. On successful authentication, the function returns an object with type: `TssSession`. Capturing this object into a variable and providing to functions in the module is required for authenticating.
+`New-TssSession` is used to request an OAuth token to Secret Server. On successful authentication, the function returns an object with type: `TssSession`. Capturing this object into a variable and providing functions in the module is required for authenticating.
 
 The mandatory parameters:
 
@@ -78,14 +78,27 @@ More:
 - [PowerShell SecretManagement](https://github.com/PowerShell/SecretManagement)
 - [PowerShell SecretStore](https://github.com/PowerShell/SecretStore)
 
-# Client SDK (Token)
+# SDK Client
 
-The Client SDK with Secret Server is a .NET library that allows integration with a custom application. It includes an additional utility that is accessible from the command line (`tss.exe`). The authentication is done via the SDK Client Management configuration. Access can be restricted by IP Address, and user assignment controls what operations with secrets are allowed. The primary use of this is to quickly get a token and prevent the need for using a username and password combo, as is required with OAuth2 authentication.
+The SDK Client with Secret Server is a command-line utility (`tss.exe`) that allows you an alternative method to interact with Secret Server in your automation. The authentication is done via the [SDK Client Management](https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#how_it_works) configuration within Secret Server. Access can be restricted by IP Address, and the user assignment controls what secrets are accessible. The primary use with the module it offers is quickly requesting a token without having to provide the username and password.
 
-When using the Client SDK against Secret Server Cloud subscription, the IP filtering is based on your machine's public IP at this time.
+Using the SDK Client against Secret Server Cloud subscription, the IP filtering is based on your machine's public IP. A recommended practice is to utilize the onboarding key as an additional level of security for authentication.
 {: .notice--info}
 
 ## Client SDK Setup
+
+The `tss` utility is packaged with the module as of version 0.30.0. You have the option of using the utility installed in a separate location and passing the requested token via the `-AccessToken` parameter with `New-TssSession` if you desire.
+
+The `Initialize-TssSdkClient` is used to generate the configuration and key files the utility needs. Once that is done, you use `New-TssSession` with the added `-UseSdkClient` and `-ConfigPath` parameters.
+
+```powershell
+Initialize-TssSdkClient -SecretServer https://tenant.secretservercloud.com -RuleName tssmodule -Onboardingkey d93d1d97-f0fd-4997-a38a-3f673a8ed97c -ConfigPath c:\thycotic
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.com -ConfigPath c:\thycotic -UseSdkClient
+
+Search-TssSecret -TssSession $session
+```
+
+Use the steps below to set up the Client SDK outside of the module if desired.
 
 1. Download the Client SDK and extract it to your device
 2. Open a PowerShell session to that directory (`Set-Location c:\tools\SecretServerClientSdk`)
@@ -188,7 +201,7 @@ Note that these methods are defined as `boolean`, so they will only return true 
 
 ## IsValidToken
 
-This method utilizes a hidden properties on the `TssObject` called `TimeOfDeath` (`datetime` type). The value of this property is calculated based on the `expires_in` value returned by the OAuth2 endpoint and based on the local time of the machine calling the function.
+This method utilizes a hidden properties on the `TssObject` called `TimeOfDeath` (`datetime` type). This property's value is calculated based on the `expires_in` value returned by the OAuth2 endpoint and based on the local time of the machine calling the function.
 
 More details: [TssSession source code](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/src/classes/TssSession.class.ps1)
 

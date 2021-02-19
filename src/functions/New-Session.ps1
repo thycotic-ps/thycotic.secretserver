@@ -1,4 +1,4 @@
-﻿function New-Session {
+function New-Session {
     <#
     .SYNOPSIS
     Create new session
@@ -159,9 +159,22 @@
             if ($newTssParams.ContainsKey('UseSdkClient')) {
                 if (Test-Path $tssExe) {
                     try {
-                        $status = Invoke-Expression -Command "$tssExe status --key-directory '$ConfigPath' --config-directory '$ConfigPath'"
-                        Write-Verbose "SDK Client raw response: $status"
-                        $sdkEndpoint = $status.Trim("Connected to endpoint ")
+                        $tssStatusArgs = "status --key-directory $ConfigPath --config-directory $ConfigPath"
+                        $tssStatusInfo = New-Object System.Diagnostics.ProcessStartInfo
+                        $tssStatusInfo.FileName = $tssExe
+                        $tssStatusInfo.Arguments = $tssStatusArgs
+                        $tssStatusInfo.RedirectStandardError = $true
+                        $tssStatusInfo.RedirectStandardOutput = $true
+                        $tssStatusInfo.UseShellExecute = $false
+                        $tssProcess = New-Object System.Diagnostics.Process
+                        $tssProcess.StartInfo = $tssStatusInfo
+                        $tssProcess.Start() | Out-Null
+                        $tssProcess.WaitForExit()
+                        $tssStatusOutput = $tssProcess.StandardOutput.ReadToEnd()
+                        $tssStatusOutput += $tssProcess.StandardError.ReadToEnd()
+
+                        Write-Verbose "SDK Client raw response: $tssStatusOutput"
+                        $sdkEndpoint = $tssStatusOutput.Trim("Connected to endpoint ")
                     } catch {
                         Write-Warning "Issue capturing status of current SDK Client (tss) config for [$SecretServer]"
                         $err = $_
@@ -174,7 +187,21 @@
                     }
 
                     try {
-                        $sdkToken = Invoke-Expression -Command "$tssExe token --key-directory '$ConfigPath' --config-directory '$ConfigPath'"
+                        $tssTokenArgs = "token --key-directory $ConfigPath --config-directory $ConfigPath"
+                        $tssTokenInfo = New-Object System.Diagnostics.ProcessStartInfo
+                        $tssTokenInfo.FileName = $tssExe
+                        $tssTokenInfo.Arguments = $tssTokenArgs
+                        $tssTokenInfo.RedirectStandardError = $true
+                        $tssTokenInfo.RedirectStandardOutput = $true
+                        $tssTokenInfo.UseShellExecute = $false
+                        $tssProcess = New-Object System.Diagnostics.Process
+                        $tssProcess.StartInfo = $tssTokenInfo
+                        $tssProcess.Start() | Out-Null
+                        $tssProcess.WaitForExit()
+                        $tssTokenOutput = $tssProcess.StandardOutput.ReadToEnd()
+                        $tssTokenOutput += $tssProcess.StandardError.ReadToEnd()
+
+                        $sdkToken = $tssTokenOutput
                         Write-Verbose "SDK Client token value: $sdkToken"
                     } catch {
                         Write-Warning "Issue obtaining token via SDK Client (tss) config"
@@ -183,7 +210,7 @@
                     }
 
                     if ($sdkToken.Length -gt 0) {
-                        $outputTssSession.AccessToken = $sdkToken
+                        $outputTssSession.AccessToken = $sdkToken.TrimEnd()
                         $outputTssSession.TokenType = 'SdkClient'
                     }
                 } else {

@@ -87,7 +87,7 @@ Accept wildcard characters: False
 ```
 
 ### -ConfigPath
-Config path for the key/config files
+Config path for the key/config files, no folder names with spaces allowed
 
 ```yaml
 Type: String

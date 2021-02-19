@@ -1,4 +1,4 @@
-﻿function Initialize-SdkClient {
+function Initialize-SdkClient {
     <#
     .SYNOPSIS
     Initialize SDK Client for the module
@@ -38,9 +38,10 @@
         [string]
         $OnboardingKey,
 
-        # Config path for the key/config files
+        # Config path for the key/config files, no folder names with spaces allowed
         [Parameter(Mandatory, ParameterSetName = 'init')]
         [ValidateScript( { Test-Path $_ -PathType Container })]
+        [ValidateScript( { $_ -notmatch '\s' })]
         [string]
         $ConfigPath,
 
@@ -60,13 +61,27 @@
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
 
         if ($tssParams.ContainsKey('Force')) {
-            $tssRemoveArgs = "remove --confirm --key-directory '$ConfigPath' --config-directory '$ConfigPath'"
+            $tssRemoveArgs = "remove --confirm --key-directory $ConfigPath --config-directory $ConfigPath"
+            Write-Verbose "arguments for tss init: $tssRemoveArgs"
             try {
-                $remove = Invoke-Expression -Command "$tssExe $tssRemoveArgs"
-                Write-Verbose "SDK Client raw output: $remove"
-                if ($remove -eq 'Your configuration settings have been removed.') {
+                $tssRmInfo = New-Object System.Diagnostics.ProcessStartInfo
+                $tssRmInfo.FileName = $tssExe
+                $tssRmInfo.Arguments = $tssRemoveArgs
+                $tssRmInfo.RedirectStandardError = $true
+                $tssRmInfo.RedirectStandardOutput = $true
+                $tssRmInfo.UseShellExecute = $false
+                $tssRmProcess = New-Object System.Diagnostics.Process
+                $tssRmProcess.StartInfo = $tssRmInfo
+                $tssRmProcess.Start() | Out-Null
+                $tssRmProcess.WaitForExit()
+                $tssRmOutput = $tssRmProcess.StandardOutput.ReadToEnd()
+                $tssRmOutput += $tssRmProcess.StandardError.ReadToEnd()
+
+                Write-Verbose "SDK Client raw output: $tssRmOutput"
+                if ($tssRmOutput -match 'Your configuration settings have been removed.') {
+                    Write-Verbose "SDK Client configuration has been removed"
                 } else {
-                    Write-Waring "Issue removing configuration files for [$SecretServer]: $remove"
+                    Write-Waring "Issue removing configuration files for [$SecretServer]: $tssRmProcessOutput"
                     return
                 }
             } catch {
@@ -81,22 +96,35 @@
             'SecretServer' { $tssArgs.SecretServer = "--url $SecretServer" }
             'RuleName' { $tssArgs.RuleName = "--rule-name $RuleName" }
             'OnboardingKey' { $tssArgs.OnboardingKey = "--onboarding-key '$OnboardingKey'" }
-            'ConfigPath' { $tssArgs.ConfigDirectory = "--key-directory '$ConfigPath' --config-directory '$ConfigPath'" }
+            'ConfigPath' { $tssArgs.ConfigDirectory = "--key-directory $ConfigPath --config-directory $ConfigPath" }
         }
 
         $tssInitArgs = "init $($tssArgs['SecretServer']) $($tssArgs['RuleName']) $($tssArgs['OnboardingKey']) $($tssArgs['ConfigDirectory'])"
+        Write-Verbose "arguments for tss init: $tssInitArgs"
         try {
-            $response = Invoke-Expression -Command "$tssExe $tssInitArgs"
-            Write-Verbose "SDK Client raw output: $response"
+            $tssInitInfo = New-Object System.Diagnostics.ProcessStartInfo
+            $tssInitInfo.FileName = $tssExe
+            $tssInitInfo.Arguments = $tssInitArgs
+            $tssInitInfo.RedirectStandardError = $true
+            $tssInitInfo.RedirectStandardOutput = $true
+            $tssInitInfo.UseShellExecute = $false
+            $tssProcess = New-Object System.Diagnostics.Process
+            $tssProcess.StartInfo = $tssInitInfo
+            $tssProcess.Start() | Out-Null
+            $tssProcess.WaitForExit()
+            $tssInitOutput = $tssProcess.StandardOutput.ReadToEnd()
+            $tssInitOutput += $tssProcess.StandardError.ReadToEnd()
 
-            if ($response -eq 'Your SDK client account registration is complete.') {
+            Write-Verbose "SDK Client raw output: $tssInitOutput"
+            if ($tssInitOutput -eq 'Your SDK client account registration is complete.') {
                 Write-Host 'SDK Client initialization completed successfully'
             }
-            if ($response -eq 'This machine is already initialized. Remove the configuration settings.') {
+            if ($tssInitOutput -match 'This machine is already initialized. Remove the configuration settings.') {
                 Write-Warning "Initialization has already been run for this host, include -Force parameter if you want to drop and reinitialize"
             }
         } catch {
             Write-Warning "Issue initializing SDK Client (tss) for [$SecretServer]"
+            Write-Error $_
             $err = $_
             . $ErrorHandling $err
         }
