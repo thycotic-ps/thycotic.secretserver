@@ -36,6 +36,12 @@ function Set-Secret {
 
     Sets secret 1455 disables emailing when changed
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 113 -ForceCheckIn
+
+    Sets secret 1455 disables emailing when changed
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret
 
@@ -57,8 +63,29 @@ function Set-Secret {
         $Id,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
+
+        # Force check-in of the Secret
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(ParameterSetName = 'checkIn')]
+        [switch]
+        $ForceCheckIn,
+
+        # Associated Ticket Number
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketNumber,
+
+        #Associated Ticket System ID
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketSystemId,
 
         # Field name (slug) of the secret
         [Parameter(ParameterSetName = 'all')]
@@ -174,7 +201,13 @@ function Set-Secret {
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
         [int]
-        $Template
+        $Template,
+
+        # Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secret in
+        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'checkIn')]
+        [switch]
+        $CheckIn
     )
     begin {
         $setSecretParams = $PSBoundParameters
@@ -223,7 +256,17 @@ function Set-Secret {
             }
         }
 
+        # restricted params
+        $restrictedParamSet = . $ParameterSetParams 'Set-TssSecret' 'restricted'
+        $restrictedParams = @()
+        foreach ($r in $restrictedParamSet) {
+            if ($setSecretParams.ContainsKey($r)) {
+                $restrictedParams += $r
+            }
+        }
 
+        # Check-In
+        $invokeParamsCheckIn = @{ }
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -232,6 +275,7 @@ function Set-Secret {
             $invokeParamsEmail.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsGenearl.PersonalAccessToken = $TssSession.AccessToken
             $invokeParamsOther.PersonalAccessToken = $TssSession.AccessToken
+            $invokeParamsCheckIn.PersonalAccessToken = $TssSession.AccessToken
 
             foreach ($secret in $Id) {
                 if ($otherParams.Count -gt 0) {
@@ -253,11 +297,12 @@ function Set-Secret {
                     if ($whatIfProcessing -eq 0) {
                         try {
                             $getParams = @{
-                                TssSession = $TssSession
-                                Id         = $secret
-                            }
-                            if ($setSecretParams.ContainsKey('Comment')) {
-                                $getParams.Add('Comment',$Comment)
+                                TssSession     = $TssSession
+                                Id             = $secret
+                                ForceCheckIn   = $restrictedParams['ForceCheckIn']
+                                TicketNumber   = $restrictedParams['TicketNumber']
+                                TicketSystemId = $restrictedParams['TicketSystemId']
+                                Comment        = $restrictedParams['Comment']
                             }
                             $getSecret = Get-TssSecret @getParams
                         } catch {
@@ -316,21 +361,30 @@ function Set-Secret {
                         return
                     }
 
-                    $body = @{}
+                    $fieldBody = @{}
                     if ($setSecretParams.ContainsKey('Clear')) {
-                        $body.Add('value',"")
+                        $fieldBody.Add('value',"")
                     }
                     if ($setSecretParams.ContainsKey('Value')) {
-                        $body.Add('value',$Value)
+                        $fieldBody.Add('value',$Value)
+                    }
+
+                    if ($restrictedParams.Count -gt 0) {
+                        switch ($restrictedParams) {
+                            'Comment' { $fieldBody.Add('comment', $Comment) }
+                            'ForceCheckIn' { $fieldBody.Add('forceCheckIn', "$ForceCheckIn") }
+                            'TicketNumber' { $fieldBody.Add('ticketNumber', $TicketNumber) }
+                            'TicketSystemId' { $fieldBody.Add('ticketSystemId', $TicketSystemId) }
+                        }
                     }
 
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join '/'
                     $invokeParamsField.Uri = $uri
                     $invokeParamsField.Method = 'PUT'
-                    $invokeParamsField.Body = $body | ConvertTo-Json
+                    $invokeParamsField.Body = $fieldBody | ConvertTo-Json
 
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsField.Method) $uri with:`n$($invokeParamsField.Body)`n")) {
-                        Write-Verbose "$($invokeParamsField.Method) $uri with:`n$body`n"
+                        Write-Verbose "$($invokeParamsField.Method) $uri with:`n$fieldBody`n"
                         try {
                             $fieldResponse = Invoke-TssRestApi @invokeParamsField
                         } catch {
@@ -501,6 +555,44 @@ function Set-Secret {
                         if ($generalResponse.id -eq $secret -and $generalResponse.active.value -eq $Active) {
                             Write-Verbose "Secret [$secret] Active set to [$($generalResponse.active.value)]"
                         }
+                    }
+                }
+                if ($setSecretParams.ContainsKey('CheckIn')) {
+                    Write-Verbose "Working on check-in"
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
+                    $invokeParamsCheckIn.Uri = $uri
+                    $invokeParamsCheckIn.Method = 'POST'
+
+                    $checkInBody = @{}
+                    if ($restrictedParams.Count -gt 0) {
+                        switch ($restrictedParams) {
+                            'Comment' { $checkInBody.Add('comment', $Comment) }
+                            'ForceCheckIn' { $checkInBody.Add('forceCheckIn', "$ForceCheckIn") }
+                            'TicketNumber' { $checkInBody.Add('ticketNumber', $TicketNumber) }
+                            'TicketSystemId' { $checkInBody.Add('ticketSystemId', $TicketSystemId) }
+                        }
+                    }
+
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
+                    $invokeParamsCheckIn.Uri = $uri
+                    $invokeParamsCheckIn.Method = 'POST'
+                    $invokeParamsCheckIn.Body = $checkInBody | ConvertTo-Json
+
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsCheckIn.Method) $uri with:`n$($invokeParamsCheckIn.Body)`n")) {
+                        Write-Verbose "$($invokeParamsCheckIn.Method) $uri with:`n$checkInBody`n"
+                        try {
+                            $checkInResponse = Invoke-TssRestApi @invokeParamsCheckIn
+                        } catch {
+                            Write-Warning "Issue performing check-in on secret [$secret]"
+                            $err = $_
+                            . $ErrorHandling $err
+                        }
+                    }
+
+                    if ($checkInResponse.checkedOut) {
+                        Write-Warning "Secret [$secret] not checked in"
+                    } else {
+                        Write-Verbose "Secret [$secret] checked in"
                     }
                 }
             }
