@@ -95,7 +95,7 @@ function Initialize-SdkClient {
         switch ($tssParams.Keys) {
             'SecretServer' { $tssArgs.SecretServer = "--url $SecretServer" }
             'RuleName' { $tssArgs.RuleName = "--rule-name $RuleName" }
-            'OnboardingKey' { $tssArgs.OnboardingKey = "--onboarding-key '$OnboardingKey'" }
+            'OnboardingKey' { $tssArgs.OnboardingKey = "--onboarding-key $OnboardingKey" }
             'ConfigPath' { $tssArgs.ConfigDirectory = "--key-directory $ConfigPath --config-directory $ConfigPath" }
         }
 
