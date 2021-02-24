@@ -294,22 +294,35 @@ function Set-Secret {
                         $whatIfProcessing++
                     }
 
+                    $getParams = @{
+                        TssSession     = $TssSession
+                        Id             = $secret
+                    }
+                    if ($restrictedParams.Count -gt 0) {
+                        $getParams.Add('ForceCheckIn', $ForceCheckIn)
+                        $getParams.Add('TicketNumber', $TicketNumber)
+                        $getParams.Add('TicketSystemId', $TicketSystemId)
+                        $getParams.Add('Comment', $Comment)
+                    }
+                    if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "Calling Get-TssSecret with keys:`n $($getParams.Keys)`n and values: $($getParams.Values)")) {
+                        $whatIfProcessing++
+                    }
+
                     if ($whatIfProcessing -eq 0) {
                         try {
-                            $getParams = @{
-                                TssSession     = $TssSession
-                                Id             = $secret
-                                ForceCheckIn   = $restrictedParams['ForceCheckIn']
-                                TicketNumber   = $restrictedParams['TicketNumber']
-                                TicketSystemId = $restrictedParams['TicketSystemId']
-                                Comment        = $restrictedParams['Comment']
-                            }
+                            Write-Verbose "Calling Get-TssSecret with:`t$($getParams)`n"
                             $getSecret = Get-TssSecret @getParams
                         } catch {
                             Write-Error "Issue getting Secret [$secret] details: $_"
                         }
 
                         if ($getSecret) {
+                            if ($restrictedParams.Count -gt 0) {
+                                $getSecret.Add('ForceCheckIn', $ForceCheckIn)
+                                $getSecret.Add('TicketNumber', $TicketNumber)
+                                $getSecret.Add('TicketSystemId', $TicketSystemId)
+                                $getSecret.Add('Comment', $Comment)
+                            }
 
                             if ($setSecretParams.ContainsKey('AutoChangeEnabled')) {
                                 $getSecret.AutoChangeEnabled = $AutoChangeEnabled
@@ -324,7 +337,7 @@ function Set-Secret {
                                 }
                             }
                             if ($setSecretParams.ContainsKey('EnableInheritPermission')) { $getSecret.EnableInheritPermissions = $EnableInheritPermission }
-                            $invokeParamsOther.Body = $getSecret | ConvertTo-Json
+                            $invokeParamsOther.Body = $getSecret | ConvertTo-Json -Depth 5
 
                             Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
                             try {
@@ -372,7 +385,7 @@ function Set-Secret {
                     if ($restrictedParams.Count -gt 0) {
                         switch ($restrictedParams) {
                             'Comment' { $fieldBody.Add('comment', $Comment) }
-                            'ForceCheckIn' { $fieldBody.Add('forceCheckIn', "$ForceCheckIn") }
+                            'ForceCheckIn' { $fieldBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                             'TicketNumber' { $fieldBody.Add('ticketNumber', $TicketNumber) }
                             'TicketSystemId' { $fieldBody.Add('ticketSystemId', $TicketSystemId) }
                         }
@@ -381,7 +394,7 @@ function Set-Secret {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join '/'
                     $invokeParamsField.Uri = $uri
                     $invokeParamsField.Method = 'PUT'
-                    $invokeParamsField.Body = $fieldBody | ConvertTo-Json
+                    $invokeParamsField.Body = $fieldBody | ConvertTo-Json -Depth 5
 
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsField.Method) $uri with:`n$($invokeParamsField.Body)`n")) {
                         Write-Verbose "$($invokeParamsField.Method) $uri with:`n$fieldBody`n"
@@ -413,21 +426,21 @@ function Set-Secret {
                     if ($setSecretParams.ContainsKey('EmailWhenChanged')) {
                         $sendEmailWhenChanged = @{
                             dirty = $true
-                            value = $EmailWhenChanged
+                            value = [boolean]$EmailWhenChanged
                         }
                         $emailBody.data.Add('sendEmailWhenChanged',$sendEmailWhenChanged)
                     }
                     if ($setSecretParams.ContainsKey('EmailWhenViewed')) {
                         $sendEmailWhenViewed = @{
                             dirty = $true
-                            value = $EmailWhenViewed
+                            value = [boolean]$EmailWhenViewed
                         }
                         $emailBody.data.Add('sendEmailWhenViewed',$sendEmailWhenViewed)
                     }
                     if ($setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
                         $sendEmailWhenHeartbeatFails = @{
                             dirty = $true
-                            value = $EmailWhenHeartbeatFails
+                            value = [boolean]$EmailWhenHeartbeatFails
                         }
                         $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
                     }
@@ -435,7 +448,7 @@ function Set-Secret {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'email' -join '/'
                     $invokeParamsEmail.Uri = $uri
                     $invokeParamsEmail.Method = 'PATCH'
-                    $invokeParamsEmail.Body = $emailBody | ConvertTo-Json
+                    $invokeParamsEmail.Body = $emailBody | ConvertTo-Json -Depth 5
 
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n")) {
                         Write-Verbose "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n"
@@ -469,14 +482,14 @@ function Set-Secret {
                     if ($setSecretParams.ContainsKey('Active')) {
                         $setActive = @{
                             dirty = $true
-                            value = $Active
+                            value = [boolean]$Active
                         }
                         $generalBody.data.Add('active',$setActive)
                     }
                     if ($setSecretParams.ContainsKey('EnableInheritSecretPolicy')) {
                         $setInheritance = @{
                             dirty = $true
-                            value = $EnableInheritSecretPolicy
+                            value = [boolean]$EnableInheritSecretPolicy
                         }
                         $generalBody.data.Add('enableInheritSecretPolicy',$setInheritance)
                     }
@@ -489,12 +502,12 @@ function Set-Secret {
                     }
                     if ($setSecretParams.ContainsKey('GenerateSshKeys')) {
                         #does not require dirty and value properties
-                        $generalBody.data.Add('generateSshKeys',$GenerateSshKeys)
+                        $generalBody.data.Add('generateSshKeys', [boolean]$GenerateSshKeys)
                     }
                     if ($setSecretParams.ContainsKey('HeartbeatEnabled')) {
                         $setHb = @{
                             dirty = $true
-                            value = $HeartbeatEnabled
+                            value = "$HeartbeatEnabled"
                         }
                         $generalBody.data.Add('heartbeatEnabled',$setHb)
                     }
@@ -522,7 +535,7 @@ function Set-Secret {
                     if ($setSecretParams.ContainsKey('IsOutOfSync')) {
                         $setOutOfSync = @{
                             dirty = $true
-                            value = $IsOutOfSync
+                            value = [boolean]$IsOutOfSync
                         }
                         $generalBody.data.Add('isOutOfSync',$setOutOfSync)
                     }
@@ -537,7 +550,7 @@ function Set-Secret {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'general' -join '/'
                     $invokeParamsGenearl.Uri = $uri
                     $invokeParamsGenearl.Method = 'PATCH'
-                    $invokeParamsGenearl.Body = $generalBody | ConvertTo-Json
+                    $invokeParamsGenearl.Body = $generalBody | ConvertTo-Json -Depth 5
 
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n")) {
                         Write-Verbose "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n"
@@ -567,7 +580,7 @@ function Set-Secret {
                     if ($restrictedParams.Count -gt 0) {
                         switch ($restrictedParams) {
                             'Comment' { $checkInBody.Add('comment', $Comment) }
-                            'ForceCheckIn' { $checkInBody.Add('forceCheckIn', "$ForceCheckIn") }
+                            'ForceCheckIn' { $checkInBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                             'TicketNumber' { $checkInBody.Add('ticketNumber', $TicketNumber) }
                             'TicketSystemId' { $checkInBody.Add('ticketSystemId', $TicketSystemId) }
                         }
@@ -576,7 +589,7 @@ function Set-Secret {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
                     $invokeParamsCheckIn.Uri = $uri
                     $invokeParamsCheckIn.Method = 'POST'
-                    $invokeParamsCheckIn.Body = $checkInBody | ConvertTo-Json
+                    $invokeParamsCheckIn.Body = $checkInBody | ConvertTo-Json -Depth 5
 
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsCheckIn.Method) $uri with:`n$($invokeParamsCheckIn.Body)`n")) {
                         Write-Verbose "$($invokeParamsCheckIn.Method) $uri with:`n$checkInBody`n"
