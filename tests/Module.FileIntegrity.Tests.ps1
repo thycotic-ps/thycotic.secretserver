@@ -82,8 +82,8 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
         }
     }
     Context "Validating <_>" {
-        It "<_> Should have UTF8 encoding" {
-            Get-FileEncoding -Path $fullName | Should -Be 'UTF8'
+        It "<_> Should have ASCII encoding" {
+            Get-FileEncoding -Path $fullName | Should -Be 'ASCII'
         }
 
         It "<_> Should have no trailing space" {
