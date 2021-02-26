@@ -1,0 +1,29 @@
+TOPIC
+    This help topic describes the TssFolderPermission class in the Thycotic.SecretServer module
+
+CLASS
+    TssFolderPermission
+
+INHERITANCE
+    None
+
+DESCRIPTION
+    The TssFolderPermission class represents the FolderPermissionModel object returned by Secret Server endpoint GET /folder-permissions/{id}
+
+CONSTRUCTORS
+    new()
+
+PROPERTIES
+    FolderAccessRoleId
+        Folder Access Role Id
+
+    GroupId
+        Group Id
+
+    SecretAccessRoleId
+        Secret Access Role Id
+
+METHODS
+
+RELATED LINKS:
+    Get-TssFolderPermission
