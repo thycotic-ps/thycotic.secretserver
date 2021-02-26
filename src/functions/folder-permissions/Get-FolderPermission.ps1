@@ -58,11 +58,7 @@ function Get-FolderPermission {
                 }
 
                 if ($restResponse) {
-                    [TssFolderPermission]@{
-                        FolderAccessRoleId = $restResponse.folderAccessRoleId
-                        GroupId            = $restResponse.groupId
-                        SecretAccessRole   = $restResponse.secretAccessRoleId
-                    }
+                    . $TssFolderPermissionObject $restResponse
                 }
             }
         } else {
