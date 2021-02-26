@@ -53,7 +53,7 @@ function Remove-FolderTemplate {
                 $invokeParams.Method = 'DELETE'
 
 
-                if (-not $PSCmdlet.ShouldProcess($folder,"$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("FolderId: $folder","$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams

@@ -49,7 +49,7 @@ function Remove-Secret {
 
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess($secret, "$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
