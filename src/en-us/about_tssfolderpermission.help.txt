@@ -17,13 +17,21 @@ PROPERTIES
     FolderAccessRoleId
         Folder Access Role Id
 
+    FolderAccessRoleName
+        Permission on the folder
+
     GroupId
         Group Id
 
     SecretAccessRoleId
         Secret Access Role Id
 
+    SecretAccessRoleName
+        Permission on the secrets in the folder
+
 METHODS
 
 RELATED LINKS:
     Get-TssFolderPermission
+    Get-TssFolderPermissionStub
+    New-TssFolderPermission
