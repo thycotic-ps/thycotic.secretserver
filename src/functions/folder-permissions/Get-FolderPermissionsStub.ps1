@@ -57,11 +57,7 @@ function Get-FolderPermissionsStub {
             }
 
             if ($restResponse) {
-                [TssFolderPermission]@{
-                    FolderAccessRoleId = $restResponse.folderAccessRoleId
-                    GroupId            = $restResponse.groupId
-                    SecretAccessRole   = $restResponse.secretAccessRoleId
-                }
+                . $TssFolderPermissionSummaryObject $restResponse
             }
         } else {
             Write-Warning "No valid session found"
