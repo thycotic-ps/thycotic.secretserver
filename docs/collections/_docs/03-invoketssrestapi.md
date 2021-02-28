@@ -5,11 +5,11 @@ excerpt: "Thycotic.SecretServer raw API calls"
 last_modified_at: 2021-02-10T00:00:00-00:00
 ---
 
-The module functions utilize this command for calling endpoints. The functions are meant to handle formatting the output where it can be more easily read and utilzied for processing in PowerShell scripts. If you want to see the raw endpoint's output you can utilize `Invoke-TssRestApi` for that purpose.
+The module functions utilize this command for calling endpoints. The functions are meant to handle formatting the output where it can be more easily read and utilized for processing in PowerShell scripts. If you want to see the raw endpoint's output, you can utilize `Invoke-TssRestApi` for that purpose.
 
 ## What about Invoke-RestMethod
 
-In PowerShell, the cmdlet used for REST API calls is `Invoke-RestMethod`, and Thycotic.SecretServer uses this same command. The `Invoke-TssRestApi` acts as a wrapper to `Invoke-RestMethod` with a few additions:
+In PowerShell, the cmdlet used for REST API calls is `Invoke-RestMethod` and Thycotic.SecretServer uses this same command. The `Invoke-TssRestApi` acts as a wrapper to `Invoke-RestMethod` with a few additions:
 
 - Deals with creating the required header object for Secret Server using `-PersonalAccessToken`
 - Unwrap objects returned by an endpoint easily using `-ExpandProperty`

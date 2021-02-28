@@ -6,7 +6,10 @@ last_modified_at: 2021-02-10T00:00:00-00:00
 toc: false
 ---
 
-Back support use of the module with older versions of Secret Server is limited. Endpoints used in the module where the endpoint exists in a specific version are listed below for reference.
+The module will attempt to support version 10.0 and higher of Secret Server. Endpoints added in specific releases of Secret Server in the module are listed below for reference.
+
+Each function listed below will include a test for the Secret Server version to warn of any potential failure with an endpoint.
+{: .notice--info}
 
 ## Function List
 
