@@ -219,21 +219,18 @@ function Set-Secret {
         # Need to know if any of the params provided are in the specific parameter sets
         # if they are not we will null out the variable so the code below is not triggered
         $fieldParams = @()
-        $invokeParamsField = @{ }
         foreach ($f in $fieldParamSet) {
             if ($setSecretParams.ContainsKey($f)) {
                 $fieldParams += $f
             }
         }
         $emailParams = @()
-        $invokeParamsEmail = @{ }
         foreach ($e in $emailParamSet) {
             if ($setSecretParams.ContainsKey($e)) {
                 $emailParams += $e
             }
         }
         $generalParams = @()
-        $invokeParamsGenearl = @{ }
         foreach ($g in $generalParamSet) {
             if ($setSecretParams.ContainsKey($g)) {
                 $generalParams += $g
@@ -244,7 +241,6 @@ function Set-Secret {
         $passwordParamSet = . $ParameterSetParams 'Set-TssSecret' 'password'
         $folderParamSet = . $ParameterSetParams 'Set-TssSecret' 'folder'
         $otherParams = @()
-        $invokeParamsOther = @{ }
         foreach ($p in $passwordParamSet) {
             if ($setSecretParams.ContainsKey($p)) {
                 $otherParams += $p
@@ -265,18 +261,16 @@ function Set-Secret {
             }
         }
 
-        # Check-In
-        $invokeParamsCheckIn = @{ }
+
+        $invokeParamsField = . $GetInvokeTssParams $TssSession
+        $invokeParamsEmail = . $GetInvokeTssParams $TssSession
+        $invokeParamsGenearl = . $GetInvokeTssParams $TssSession
+        $invokeParamsOther = . $GetInvokeTssParams $TssSession
+        $invokeParamsCheckIn = . $GetInvokeTssParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setSecretParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            $invokeParamsField.PersonalAccessToken = $TssSession.AccessToken
-            $invokeParamsEmail.PersonalAccessToken = $TssSession.AccessToken
-            $invokeParamsGenearl.PersonalAccessToken = $TssSession.AccessToken
-            $invokeParamsOther.PersonalAccessToken = $TssSession.AccessToken
-            $invokeParamsCheckIn.PersonalAccessToken = $TssSession.AccessToken
-
             foreach ($secret in $Id) {
                 if ($otherParams.Count -gt 0) {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
@@ -295,8 +289,8 @@ function Set-Secret {
                     }
 
                     $getParams = @{
-                        TssSession     = $TssSession
-                        Id             = $secret
+                        TssSession = $TssSession
+                        Id         = $secret
                     }
                     if ($restrictedParams.Count -gt 0) {
                         $getParams.Add('ForceCheckIn', $ForceCheckIn)
@@ -450,6 +444,11 @@ function Set-Secret {
                     $invokeParamsEmail.Method = 'PATCH'
                     $invokeParamsEmail.Body = $emailBody | ConvertTo-Json -Depth 5
 
+                    if ($restrictedParams.Count -gt 0) {
+                        if ($PSCmdlet.ShouldProcess("SecretId: $secret", "Pre-check out secret for setting email settings")) {
+                            . $CheckOutSecret $TssSession $setSecretParams $secret
+                        }
+                    }
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n")) {
                         Write-Verbose "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n"
                         try {

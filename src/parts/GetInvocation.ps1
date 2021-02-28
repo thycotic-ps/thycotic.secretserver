@@ -6,7 +6,7 @@ Gets the inputs and values from the parameters of the called command and outputs
 ref: https://stackoverflow.com/a/65521994/12974596
 #>
 param(
-    # A collection of parameters.  Parameters not used in Invoke-TssRestApi will be removed
+    # A collection of parameters.
     [Parameter(Position = 0,Mandatory)]
     [System.Management.Automation.InvocationInfo]
     $Invocation

@@ -62,9 +62,13 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
 
         $secretId = $getSecrets.Where({$_.SecretName -eq 'Test Setting Email'}).SecretId
         $setEmail = Get-TssSecret -TssSession $session -Id $secretId
+        $secretId = $getSecrets.Where({$_.SecretName -eq 'Test Setting Restricted Email'}).SecretId
+        $setRestrictedEmail = Get-TssSecret -TssSession $session -Id $secretId -Comment "tssModule Test execution"
 
         $secretId = $getSecrets.Where({$_.SecretName -match 'Test Setting General Settings'}).SecretId
         $setGeneral = Get-TssSecret -TssSession $session -Id $secretId
+        $secretId = $getSecrets.Where({$_.SecretName -match 'Test Setting Restricted General Settings'}).SecretId
+        $setRestrictedGeneral = Get-TssSecret -TssSession $session -Id $secretId -Comment "tssModule Test execution"
 
         $secretId = $getSecrets.Where({$_.SecretName -eq 'Test Setting AutoChangeEnabled AutoChangeNextPassword EnableInheritPermissions'}).SecretId
         $setOther = Get-TssSecret -TssSession $session -Id $secretId
@@ -77,17 +81,14 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
         It "Should Clear the Notes field" {
             Set-TssSecret -TssSession $session -Id $setField.Id -Field Notes -Clear | Should -BeNullOrEmpty
         }
-        It "Should set EmailWhenChanged" {
-            Set-TssSecret -TssSession $session -Id $setField.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
-        }
-        It "Should set EmailWhenViewed" {
-            Set-TssSecret -TssSession $session -Id $setField.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
-        }
-        It "Should set EmailWhenHeartbeatFails" {
-            Set-TssSecret -TssSession $session -Id $setField.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
-        }
     }
-    Context "Sets email settings of a secret" -Foreach @{setEmail = $setEmail;session = $session} {
+    Context "Sets email settings of a secret" -Foreach @{setEmail = $setEmail;setRestrictedEmail = $setRestrictedEmail;session = $session} {
+        AfterAll {
+            $invokeParams.Uri = $session.ApiUrl, 'secrets', $setRestrictedEmail.Id, 'check-in' -join '/'
+            $invokeParams.Method = 'POST'
+            $invokeParams.Remove('ExpandProperty')
+            Invoke-TssRestApi @invokeParams
+        }
         It "Should set EmailWhenChanged" {
             Set-TssSecret -TssSession $session -Id $setEmail.Id -EmailWhenChanged:$false | Should -BeNullOrEmpty
         }
@@ -97,8 +98,17 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
         It "Should set EmailWhenHeartbeatFails" {
             Set-TssSecret -TssSession $session -Id $setEmail.Id -EmailWhenHeartbeatFails:$false | Should -BeNullOrEmpty
         }
+        It "Should set EmailWhenViewed on Restricted secret (require checkout/comment)" {
+            Set-TssSecret -TssSession $session -Id $setRestrictedEmail.Id -EmailWhenViewed:$false | Should -BeNullOrEmpty
+        }
     }
-    Context "Sets general settings of a secret" -Foreach @{setGeneral = $setGeneral;session = $session} {
+    Context "Sets general settings of a secret" -Foreach @{setGeneral = $setGeneral;setRestrictedGeneral = $setRestrictedGeneral; session = $session} {
+        AfterAll {
+            $invokeParams.Uri = $session.ApiUrl, 'secrets', $setRestrictedGeneral.Id, 'check-in' -join '/'
+            $invokeParams.Method = 'POST'
+            $invokeParams.Remove('ExpandProperty')
+            Invoke-TssRestApi @invokeParams
+        }
         <# not going to test all of them, just enough #>
         It "Should set Name" {
             $newName = "Test Setting General Settings $(Get-Random)"
@@ -110,13 +120,17 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
         It "Should set Active" {
             Set-TssSecret -TssSession $session -Id $setGeneral.Id -Active | Should -BeNullOrEmpty
         }
+        It "Should set Name on Restricted Secret (require checkout/comment)" {
+            $newRestrictedName = "Test Setting Restricted General Settings $(Get-Random)"
+            Set-TssSecret -TssSession $session -Id $setRestrictedGeneral.Id -SecretName $newRestrictedName
+        }
     }
     Context "Sets other settings of a secret" -Foreach @{setOther = $setOther;session = $session} {
         It "Should set AutoChangeEnabled" {
             Set-TssSecret -TssSession $session -Id $setOther.Id -AutoChangeEnabled | Should -BeNullOrEmpty
         }
         It "Should set AutoChangeNextPassword" {
-            $secureString = ConvertTo-SecureString -String ("tssmodulewashere$((New-Guid).Guid)") -AsPlainText -Force
+            $secureString = ConvertTo-SecureString -String ("tssModuleWasHere$((New-Guid).Guid)") -AsPlainText -Force
             Set-TssSecret -TssSession $session -Id $setOther.Id -AutoChangeNextPassword $secureString | Should -BeNullOrEmpty
         }
         It "Should set EnableInheritPermissions" {
