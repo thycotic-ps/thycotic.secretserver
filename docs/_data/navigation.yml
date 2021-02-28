@@ -70,17 +70,17 @@ commands:
   - title: "Folder Permissions"
     children:
       - title: "Search-TssFolderPermission"
-        url: /commands/Search-TssFolderpermission
+        url: /commands/Search-TssFolderPermission
       - title: "Get-TssFolderPermission"
-        url: /commands/Get-TssFolderpermission
+        url: /commands/Get-TssFolderPermission
       - title: "Set-TssFolderPermission"
-        url: /commands/Set-TssFolderpermission
+        url: /commands/Set-TssFolderPermission
       - title: "Get-TssFolderPermissionsStub"
-        url: /commands/Get-TssFolderpermissionsStub
+        url: /commands/Get-TssFolderPermissionsStub
       - title: "New-TssFolderPermission"
-        url: /commands/New-TssFolderpermission
+        url: /commands/New-TssFolderPermission
       - title: "Remove-TssFolderPermission"
-        url: /commands/Remove-TssFolderpermission
+        url: /commands/Remove-TssFolderPermission
 
   - title: "Reports"
     children:
