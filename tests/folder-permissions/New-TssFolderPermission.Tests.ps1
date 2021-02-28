@@ -25,35 +25,35 @@ Describe "$commandName verify parameters" {
     }
 }
 Describe "$commandName functions" {
-    BeforeAll {
-        . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssSession.class.ps1'))
-        . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssDelete.class.ps1'))
-        Mock -CommandName Invoke-TssRestApi -MockWith {
-            return @{
-                FolderAccessRoleId = 7
-                FolderAccessRoleName = 'Edit'
-                GroupId = 0
-                SecretAccessRoleId = $null
-                SecretAccessRoleName = '<none>'
-            }
-        }
-        Mock New-TssSession -MockWith {
-            return [TssSession]@{
-                ApiVersion   = 'api/v1'
-                Take         = 2147483647
-                SecretServer = 'http://vault3/'
-                ApiUrl       = 'http://vault3/api/v1'
-                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_19C-Z8FQbgtID9xz9hHmm0BfL9DzEsDI1gVjG7Kltpq-K3SOa3WbYLIgIb9FGwW2vV6JYvcW4uEBqPBvcY9l4fHKIKJ5pyLp'
-                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv5 rten1Y_3_L2MQX7cflVy7iDbRIuj-ohkVnVfXbYdRQqQmrCTB 3j7VcSKlkLXF2FnUP4LnObcgucrBEUdgS1UN0bySXZ8RJh_ez'
-                TokenType    = 'bearer'
-                ExpiresIn    = 1199
-            }
-        }
 
-        $session = New-TssSession -SecretServer 'http://vault3' -AccessToken (Get-Random)
-        $object = New-TssFolderPermission -TssSession $session -FolderId 999 -UserId 497 -FolderAccessRoleName Edit -SecretAccessRoleName None
-    }
-    Context "Checking" -ForEach { object = $object } {
+    Context "Checking" {
+        BeforeAll {
+            . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssSession.class.ps1'))
+            . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssDelete.class.ps1'))
+            Mock -CommandName Invoke-TssRestApi -MockWith {
+                return @{
+                    FolderAccessRoleId = 7
+                    FolderAccessRoleName = 'Edit'
+                    GroupId = 0
+                    SecretAccessRoleId = $null
+                    SecretAccessRoleName = '<none>'
+                }
+            }
+            Mock -Command New-TssSession -MockWith {
+                return [TssSession]@{
+                    ApiVersion   = 'api/v1'
+                    Take         = 2147483647
+                    SecretServer = 'http://alpha/'
+                    ApiUrl       = 'http://alpha/api/v1'
+                    AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_19C-Z8FQbgtID9xz9hHmm0BfL9DzEsDI1gVjG7Kltpq-K3SOa3WbYLIgIb9FGwW2vV6JYvcW4uEBqPBvcY9l4fHKIKJ5pyLp'
+                    RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv5 rten1Y_3_L2MQX7cflVy7iDbRIuj-ohkVnVfXbYdRQqQmrCTB 3j7VcSKlkLXF2FnUP4LnObcgucrBEUdgS1UN0bySXZ8RJh_ez'
+                    TokenType    = 'bearer'
+                    ExpiresIn    = 1199
+                }
+            }
+            $session = New-TssSession -SecretServer 'http://alpha' -AccessToken (Get-Random)
+            $object = New-TssFolderPermission -TssSession $session -FolderId 999 -UserId 497 -FolderAccessRoleName Edit -SecretAccessRoleName None
+        }
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }

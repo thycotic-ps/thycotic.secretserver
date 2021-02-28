@@ -40,7 +40,7 @@ Describe "$commandName works" {
         $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
 
         $folderPermStub = Get-TssFolderPermissionsStub -TssSession $session -FolderId $tssSecretFolder.Id
-        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRole'
+        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRoleName'
 
         if (-not $tssTestUsingWindowsAuth) {
             $session.SessionExpire()

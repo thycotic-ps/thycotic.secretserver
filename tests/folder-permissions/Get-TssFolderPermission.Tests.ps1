@@ -37,7 +37,7 @@ Describe "$commandName works" {
         $searchFolderPerm = Search-TssFolderPermission -TssSession $session -FolderId $tssSecretFolder.id
         $object = Get-TssFolderPermission -TssSession $session -Id $searchFolderPerm.FolderPermissionId
         $session.SessionExpire()
-        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRole'
+        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRoleName'
     }
     Context "Checking" -Foreach @{object = $object} {
         It "Should not be empty" {

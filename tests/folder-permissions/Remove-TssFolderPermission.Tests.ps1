@@ -27,14 +27,14 @@ Describe "$commandName functions" {
     BeforeAll {
         . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssSession.class.ps1'))
         . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssDelete.class.ps1'))
-        Mock -CommandName Invoke-TssRestApi -MockWith {
+        Mock -ModuleName Thycotic.SecretServer -CommandName Invoke-TssRestApi -MockWith {
             return @{
                 Id            = $folderPermissionId
                 ObjectType    = $objectType
                 responseCodes = @{}
             }
         }
-        Mock New-TssSession -MockWith {
+        Mock -ModuleName Thycotic.SecretServer -Command New-TssSession -MockWith {
             return [TssSession]@{
                 ApiVersion   = 'api/v1'
                 Take         = 2147483647
