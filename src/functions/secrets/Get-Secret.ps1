@@ -127,7 +127,7 @@ function Get-Secret {
                     $uri = $uri, 'restricted' -join '/'
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
-                    $invokeParams.Body = $body
+                    $invokeParams.Body = $body | ConvertTo-Json
                 } else {
                     $uri = $uri
                     $invokeParams.Uri = $uri
