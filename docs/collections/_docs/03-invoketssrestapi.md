@@ -1,6 +1,6 @@
 ---
 title: "Invoke-TssRestApi"
-permalink: /docs/invoke-tssrestapi/
+permalink: /docs/invoketssrestapi/
 excerpt: "Thycotic.SecretServer raw API calls"
 last_modified_at: 2021-02-10T00:00:00-00:00
 ---

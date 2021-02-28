@@ -193,7 +193,7 @@ docs:
       - title: "Authentication"
         url: /docs/authentication/
       - title: "Invoke-TssRestApi"
-        url: /docs/invoke-tssrestapi
+        url: /docs/invoketssrestapi
       - title: "Compatibility"
         url: /docs/compatibility/
 
