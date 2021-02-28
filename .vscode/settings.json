@@ -21,7 +21,6 @@
     "powershell.codeFormatting.addWhitespaceAroundPipe": true,
     // GitHub PR extension
     "githubIssues.queries": [
-
         {
             "label": "Assigned Issues",
             "query": "default"
@@ -57,10 +56,10 @@
         {
             "label": "Feature Request",
             "query": "author:${user} state:open repo:${owner}/${repository} label:\"feature request\""
+        },
+        {
+            "label": "Created Issues",
+            "query": "state:open repo:${owner}/${repository} sort:created-desc"
         }
-        // {
-        //     "label": "Created Issues",
-        //     "query": "author:${user} state:open repo:${owner}/${repository} sort:created-desc"
-        // }
     ]
 }

@@ -16,43 +16,56 @@ Set various settings or fields for a given secret
 
 ### all (Default)
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Field <String>] [-Value <String>]
- [-Clear] [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
+ [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Field <String>] [-Value <String>] [-Clear]
+ [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
  [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
- [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-CheckIn] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### restricted
+```
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
+ [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### checkIn
+```
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-ForceCheckIn] [-CheckIn] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### field
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] -Field <String> [-Value <String>]
- [-Clear] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> -Field <String> [-Value <String>] [-Clear] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### email
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-EmailWhenChanged]
- [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-EmailWhenChanged] [-EmailWhenViewed]
+ [-EmailWhenHeartbeatFails] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### general
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-Active]
- [-EnableInheritSecretPolicy] [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync]
- [-SecretName <String>] [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy] [-Folder <Int32>]
+ [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>] [-SecretPolicy <Int32>]
+ [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### password
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-AutoChangeEnabled]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### folder
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-EnableInheritPermission] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-EnableInheritPermission] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -100,6 +113,14 @@ Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
 
 Sets secret 1455 disables emailing when changed
 
+### EXAMPLE 6
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Set-TssSecret -TssSession $session -Id 113 -ForceCheckIn
+```
+
+Sets secret 1455 disables emailing when changed
+
 ## PARAMETERS
 
 ### -TssSession
@@ -137,12 +158,57 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ForceCheckIn
+Force check-in of the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, restricted, checkIn
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TicketNumber
+Associated Ticket Number
+
+```yaml
+Type: Int32
+Parameter Sets: all, restricted
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TicketSystemId
+Associated Ticket System ID
+
+```yaml
+Type: Int32
+Parameter Sets: all, restricted
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -440,6 +506,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CheckIn
+Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secret in
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, checkIn
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

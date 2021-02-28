@@ -22,18 +22,22 @@ commands:
 
   - title: "Secrets"
     children:
+      - title: "Search-TssSecret"
+        url: /commands/Search-TssSecret
+      - title: "Find-TssSecret"
+        url: /commands/Find-TssSecret
       - title: "Get-TssSecret"
         url: /commands/Get-TssSecret
       - title: "Get-TssSecretField"
         url: /commands/Get-TssSecretField
-      - title: "Search-TssSecret"
-        url: /commands/Search-TssSecret
       - title: "Set-TssSecret"
         url: /commands/Set-TssSecret
+      - title: "Get-TssSecretStub"
+        url: /commands/Get-TssSecretStub
+      - title: "New-TssSecret"
+        url: /commands/New-TssSecret
       - title: "Remove-TssSecret"
         url: /commands/Remove-TssSecret
-      - title: "Find-TssSecret"
-        url: /commands/Find-TssSecret
       - title: "Stop-TssSecretPasswordChange"
         url: /commands/Stop-TssSecretPasswordChange
 
@@ -44,42 +48,52 @@ commands:
 
   - title: "Folders"
     children:
-      - title: "Get-TssFolder"
-        url: /commands/Get-TssFolder
       - title: "Search-TssFolder"
         url: /commands/Search-TssFolder
       - title: "Find-TssFolder"
         url: /commands/Find-TssFolder
+      - title: "Get-TssFolder"
+        url: /commands/Get-TssFolder
+      - title: "Get-TssFolderAudit"
+        url: /commands/Get-TssFolderAudit
+      - title: "Set-TssFolder"
+        url: /commands/Set-TssFolder
       - title: "Get-TssFolderStub"
         url: /commands/Get-TssFolderStub
       - title: "New-TssFolder"
         url: /commands/New-TssFolder
       - title: "Remove-TssFolder"
         url: /commands/Remove-TssFolder
-      - title: "Get-TssFolderAudit"
-        url: /commands/Get-TssFolderAudit
       - title: "Remove-TssFolderTemplate"
         url: /commands/Remove-TssFolderTemplate
-      - title: "Set-TssFolder"
-        url: /commands/Set-TssFolder
 
   - title: "Folder Permissions"
     children:
+      - title: "Search-TssFolderPermission"
+        url: /commands/Search-TssFolderpermission
+      - title: "Get-TssFolderPermission"
+        url: /commands/Get-TssFolderpermission
+      - title: "Set-TssFolderPermission"
+        url: /commands/Set-TssFolderpermission
       - title: "Get-TssFolderPermissionsStub"
         url: /commands/Get-TssFolderpermissionsStub
+      - title: "New-TssFolderPermission"
+        url: /commands/New-TssFolderpermission
+      - title: "Remove-TssFolderPermission"
+        url: /commands/Remove-TssFolderpermission
 
   - title: "Reports"
     children:
       - title: "Get-TssReport"
         url: /commands/Get-TssReport
-      - title: "New-TssReport"
-        url: /commands/New-TssReport
       - title: "Get-TssReportCategory"
         url: /commands/Get-TssReportCategory
-      - title: "Remove-TssReportCategory"
-        url: /commands/Remove-TssReportCategory
       - title: "Search-TssReportSchedule"
         url: /commands/Search-TssReportSchedule
+      - title: "New-TssReport"
+        url: /commands/New-TssReport
+      - title: "Remove-TssReportCategory"
+        url: /commands/Remove-TssReportCategory
 
   - title: "Groups"
     children:

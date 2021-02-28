@@ -13,7 +13,27 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* `Initialize-TssSdkClient` fixed issue with onboarding key being used [#84](https://github.com/thycotic-ps/thycotic.secretserver/issues/84)
+* None
+
+## [0.32.0] -- 2021-02-28
+
+### Added
+
+* `Set-TssSecret` additional parameters: `CheckIn', 'ForceCheckIn', 'TicketNumber', TicketSystemId' [73c96b9](https://github.com/thycotic-ps/thycotic.secretserver/commit/73c96b9e668e3a3697c4b944d90979542961779e)
+* `Get-TssFolderPermission` [#88](https://github.com/thycotic-ps/thycotic.secretserver/issues/88) [db137c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/db137c29c687a7bf9f8dfe31935a0481e13ba5c5)
+* `Search-TssFolderPermission` [#89](https://github.com/thycotic-ps/thycotic.secretserver/issues/89) [a128a5d](https://github.com/thycotic-ps/thycotic.secretserver/commit/a128a5d9c43600707e6f7b8b5c2b3777ee43359e)
+* `Remove-TssFolderPermission` [#85](https://github.com/thycotic-ps/thycotic.secretserver/issues/85) [be7b661](https://github.com/thycotic-ps/thycotic.secretserver/commit/be7b66104879d33010be56ef7788a4499968e8b3)
+* `Set-TssFolderPermission` [#87](https://github.com/thycotic-ps/thycotic.secretserver/issues/87) [93ba04f](https://github.com/thycotic-ps/thycotic.secretserver/commit/93ba04f7295244cbe8070da1d197954c0c395a24)
+* `New-TssFolderPermission` [#86](https://github.com/thycotic-ps/thycotic.secretserver/issues/86) [528d24d](https://github.com/thycotic-ps/thycotic.secretserver/commit/528d24d34c82eb5277329f4fffebc12219d5fc13)
+
+### Changed
+
+* `Initialize-TssSdkClient` fixed issue with onboarding key being used [#84](https://github.com/thycotic-ps/thycotic.secretserver/issues/84) [c39f797](https://github.com/thycotic-ps/thycotic.secretserver/commit/c39f7972043ca5c81d9d7902cc69afa10f60696b)
+* `Set-TssSecret` adjusting logic and workflow based on test failures [ad1cbd0](https://github.com/thycotic-ps/thycotic.secretserver/commit/ad1cbd0c6450dbcd33e91f081c7872224e8b7167)
+* `Set-TssSecret` fixed [#90](https://github.com/thycotic-ps/thycotic.secretserver/issues/90) [2cf1016](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf101654bbdc53d035ac673b18372739c79e40b)
+* `Get-TssFolderPermission` added part script [94de6e8](https://github.com/thycotic-ps/thycotic.secretserver/commit/94de6e85b5be3b89dd1c9ca88f707a886037c572)
+* `Get-TssFolderPermissionStub` moved to use part script [24b17ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/24b17ae082534f6ee4818baad5e380f9fb7fecd7)
+* `Get-TssSecret` fixed [#91](https://github.com/thycotic-ps/thycotic.secretserver/issues/91) [dc9a811](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc9a8111b335576c0ff89f2b7d6a186d86c27533)
 
 ## [0.31.2] -- 2021-02-18
 
