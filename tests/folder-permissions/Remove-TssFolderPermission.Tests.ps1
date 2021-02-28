@@ -40,20 +40,22 @@ Describe "$commandName functions" {
                 Take         = 2147483647
                 SecretServer = 'http://vault3/'
                 ApiUrl       = 'http://vault3/api/v1'
-                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_19C-Z8FQbgtID9xz9hHmm0BfL9DzEsDI1gVjG7Kltpq-K3SOa3WbYLIgIb9FGwW2vV6JYvcW4uEBqPBvcY9l4fHKIKJ5pyLp'
-                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv5 rten1Y_3_L2MQX7cflVy7iDbRIuj-ohkVnVfXbYdRQqQmrCTB 3j7VcSKlkLXF2FnUP4LnObcgucrBEUdgS1UN0bySXZ8RJh_ez'
+                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_'
+                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv416'
                 TokenType    = 'bearer'
                 ExpiresIn    = 1199
             }
         }
-        $folderPermissionId = 34
-        $objectType = 'FolderPermission'
 
         $session = New-TssSession -SecretServer 'http://vault3' -AccessToken (Get-Random)
+        $object = Remove-TssFolderPermission -TssSession $session -Id 34
     }
-    Context "Checking" {
+    Context "Checking" -Foreach {object = $object}{
         It "Should not be empty" {
-            { Remove-TssFolderPermission -Id 34 } | Should -Not -BeNullOrEmpty
+            $object | Should -Not -BeNullOrEmpty
+        }
+        It "Should have property <_>" -TestCases 'Id','ObjectType' {
+            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
