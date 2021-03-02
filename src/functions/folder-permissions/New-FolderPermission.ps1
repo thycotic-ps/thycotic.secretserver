@@ -60,6 +60,7 @@ function New-FolderPermission {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             if ($tssNewParams.ContainsKey('UserId') -or $tssNewParams.ContainsKey('GroupId')) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folder-permissions' -join '/'

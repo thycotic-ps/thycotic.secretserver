@@ -48,6 +48,7 @@ function Search-FolderPermission {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             if ($tssParams.ContainsKey('FolderId') -or $tssParams.ContainsKey('GroupId') -or $tssParams.ContainsKey('UserId')) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folder-permissions' -join '/'

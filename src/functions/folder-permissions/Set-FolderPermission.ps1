@@ -56,6 +56,7 @@ function Set-FolderPermission {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($folderPermission in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folder-permissions', $folderPermission -join '/'

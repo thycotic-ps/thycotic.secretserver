@@ -41,7 +41,6 @@ function Get-UserRoleAssigned {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
-
             foreach ($user in $UserId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'users', $user, 'roles-assigned' -join '/'
@@ -53,7 +52,7 @@ function Get-UserRoleAssigned {
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting ___ on [$]"
+                    Write-Warning "Issue getting User ID [$user]"
                     $err = $_
                     . $ErrorHandling $err
                 }

@@ -51,6 +51,7 @@ function Search-Group {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'groups' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 

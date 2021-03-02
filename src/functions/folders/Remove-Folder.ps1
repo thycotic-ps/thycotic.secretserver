@@ -41,6 +41,7 @@ function Remove-Folder {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folders', $folder.ToString() -join '/'

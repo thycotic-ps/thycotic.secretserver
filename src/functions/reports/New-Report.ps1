@@ -89,6 +89,7 @@ function New-Report {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssNewReportParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'reports' -join '/'
             $invokeParams.Uri = $uri

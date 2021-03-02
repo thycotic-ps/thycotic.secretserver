@@ -53,6 +53,7 @@ function Search-Folder {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'folders' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)&filter.folderTypeId=1" -join '?'

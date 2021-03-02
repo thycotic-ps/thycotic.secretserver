@@ -59,6 +59,7 @@ function New-Secret {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'secrets' -join '/'
             $invokeParams.Uri = $uri

@@ -49,6 +49,7 @@ function Remove-ReportCategory {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($id in $ReportCategoryId) {
                 $uri = $TssSession.ApiUrl, 'reports/categories', $id.ToString() -join '/'
                 $invokeParams.Uri = $uri

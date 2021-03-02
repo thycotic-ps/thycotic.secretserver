@@ -24,6 +24,6 @@ process {
     $currentVersion = (Get-TssVersion -TssSession $TssSession).Version
 
     if ($MinimumSupported -ge $currentVersion) {
-        throw "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
+        Write-Warning "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
     }
 }
