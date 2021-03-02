@@ -24,6 +24,24 @@ function Search-Secret {
 
     Return all secrets using Secret Template 6047 that are active **and** inactive.
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -SecretName 'Azure'
+
+    Return all secrets that have Azure in the name of the Secret (wildcard search)
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -SecretName 'Azure Test Account' -ExactMatch
+
+    Return all secret(s) that have the exact name "Azure Test Account"
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssSecret -TssSession $session -Field username -SearchText 'root'
+
+    Return all secret(s) that have the username "root"
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecret
 
@@ -61,10 +79,11 @@ function Search-Secret {
         # Text of the field to filter on
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "field")]
+        [Alias('SecretName')]
         [string]
-        $FieldText,
+        $SearchText,
 
-        # Match the exact text of the FieldText
+        # Match the exact text of the SearchText
         [Parameter(ParameterSetName = "filter")]
         [Parameter(ParameterSetName = "field")]
         [switch]
@@ -190,8 +209,8 @@ function Search-Secret {
                 'FieldSlug' {
                     $filters += "filter.searchFieldSlug=$($tssParams['FieldSlug'])"
                 }
-                'FieldText' {
-                    $filters += "filter.searchText=$($tssParams['FieldText'])"
+                'SearchText' {
+                    $filters += "filter.searchText=$($tssParams['SearchText'])"
                 }
                 'ExactMatch' {
                     $filters += "filter.isExactmatch=$($tssParams['ExactMatch'])"

@@ -8,7 +8,7 @@ Describe "$commandName verify parameters" {
         # Folder param set
         'FolderId', 'IncludeSubFolders',
         # field param set
-        'Field', 'FieldText', 'ExactMatch', 'FieldSlug', 'ExtendedField', 'ExtendedTypeId',
+        'Field', 'SearchText', 'ExactMatch', 'FieldSlug', 'ExtendedField', 'ExtendedTypeId',
         # secret param set
         'SecretTemplateId', 'SiteId', 'HeartbeatStatus', 'IncludeInactive', 'ExcludeActive', 'RpcEnabled', 'SharedWithMe', 'PasswordTypeIds', 'ExcludeDoubleLock', 'DoubleLockId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
