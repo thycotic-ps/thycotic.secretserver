@@ -20,6 +20,12 @@ function Set-Secret {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 345 -FolderId 3
+
+    Move Secret 345 to folder ID 3
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
 
     Sets secret 1455's field, "Notes", to an empty value
@@ -158,8 +164,9 @@ function Set-Secret {
         # Folder (ID)
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Alias('Folder')]
         [int]
-        $Folder,
+        $FolderId,
 
         # Generate new SSH Keys
         [Parameter(ParameterSetName = 'all')]
