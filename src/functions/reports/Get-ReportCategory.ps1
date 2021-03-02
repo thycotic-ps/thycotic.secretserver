@@ -69,9 +69,6 @@ function Get-ReportCategory {
                         . $ErrorHandling $err
                     }
 
-                    if ($tssReportCatParams['Raw']) {
-                        return $restResponse
-                    }
                     if ($restResponse) {
                         . $TssReportCategoryObject $restResponse
                     }
@@ -96,7 +93,6 @@ function Get-ReportCategory {
                 if ($restResponse) {
                     . $TssReportCategoryObject $restResponse.model -All:$All
                 }
-
             }
         } else {
             Write-Warning "No valid session found"
