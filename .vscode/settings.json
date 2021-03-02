@@ -26,24 +26,28 @@
             "query": "default"
         },
         {
-            "label": "Secret Issues",
+            "label": "Secrets Issues",
             "query": "author:${user} state:open repo:${owner}/${repository} label:secrets"
         },
         {
-            "label": "Folder Issues",
+            "label": "Folders Issues",
             "query": "author:${user} state:open repo:${owner}/${repository} label:folders"
         },
         {
-            "label": "Group Issues",
+            "label": "Groups Issues",
             "query": "author:${user} state:open repo:${owner}/${repository} label:groups"
         },
         {
-            "label": "Role Issues",
+            "label": "Roles Issues",
             "query": "author:${user} state:open repo:${owner}/${repository} label:roles"
         },
         {
-            "label": "User Issues",
+            "label": "Users Issues",
             "query": "author:${user} state:open repo:${owner}/${repository} label:users"
+        },
+        {
+            "label": "SecretTemplates Issues",
+            "query": "author:${user} state:open repo:${owner}/${repository} label:SecretTemplates"
         },
         {
             "label": "Bug Reports",

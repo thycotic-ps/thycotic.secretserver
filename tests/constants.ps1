@@ -5,10 +5,10 @@ if (Test-Path "$env:USERPROFILE\constants.ps1") {
         . "$env:HOME/constants.ps1"
     }
 } else {
-    $script:ss = 'http://vault3'
+    $script:ss = 'http://alpha'
     # $script:ss = 'https://tenant.secretservercloud.com'
 
-    $script:ssCred = $secretVault3Cred
+    $script:ssCred = $secretalphaCred
     # $script:ssCred = $secretCloudCred
 
     $tssTestUsingWindowsAuth = $false
