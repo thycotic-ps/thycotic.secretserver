@@ -28,10 +28,9 @@ function Search-ReportSchedule {
     [OutputType('TssReportScheduleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Include deleted reports
         [switch]
@@ -48,10 +47,6 @@ function Search-ReportSchedule {
     begin {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
-
-        $reportSchedParams = $PSBoundParameters
-        $reportSchedParams.Remove('TssSession')
-        $reportSchedParams.Remove('Raw')
     }
 
     process {
@@ -61,10 +56,10 @@ function Search-ReportSchedule {
             $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
 
             $filters = @()
-            if ($reportSchedParams.ContainsKey('IncludeDeleted')) {
-                $filters += "filter.includeDeleted=$IncludeDeleted"
+            if ($tssParams.ContainsKey('IncludeDeleted')) {
+                $filters += "filter.includeDeleted=$([boolean]$IncludeDeleted)"
             }
-            if ($reportSchedParams.ContainsKey('ReportId')) {
+            if ($tssParams.ContainsKey('ReportId')) {
                 $filters += "filter.reportId=$ReportId"
             }
 
@@ -75,7 +70,6 @@ function Search-ReportSchedule {
             }
 
             $invokeParams.Uri = $uri
-
             $invokeParams.Method = 'GET'
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
