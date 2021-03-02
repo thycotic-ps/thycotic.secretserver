@@ -6,6 +6,12 @@ function New-FolderPermission {
     .DESCRIPTION
     Create a new folder permission
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    New-TssFolderPermission -TssSession $session -FolderId 5 -UserId 21 -FolderAccessRoleName View -SecretAccessRoleName List
+
+    Creates a folder permission on Folder ID 5 for User ID 21 granting View on the Folder-level and List on the Secrets in the folder
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolderPermission
 
