@@ -1,37 +1,36 @@
-function Get-FolderAudit {
+function Get-UserRoleAssigned {
     <#
     .SYNOPSIS
-    Get a list of audits
+    Get roles assigned to User Id
 
     .DESCRIPTION
-    Get a list of audit for Folder ID
+    Get roles assigned to User Id
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssFolderAudit -TssSession $session -Id 42
+    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    PS> Get-TssUserRoleAssigned -TssSession $session -UserId 254
 
-    Gets the audit entries for Folder ID
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit
+    Returns roles assigned to the User ID 254
 
     .NOTES
     Requires TssSession object returned by New-TssSession
+    Only supported on 10.9.32 or higher of Secret Server
     #>
     [CmdletBinding()]
-    [OutputType('TssFolderAuditSummary')]
+    [OutputType('TssUserRoleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
+        [TssSession]
+       $TssSession,
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderAuditId")]
+        [Alias("Id")]
         [int[]]
-        $Id
+        $UserId
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -41,24 +40,26 @@ function Get-FolderAudit {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            foreach ($folder in $Id) {
+            . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
+
+            foreach ($user in $UserId) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'folders', $folder, 'audit' -join '/'
+                $uri = $TssSession.ApiUrl, 'users', $user, 'roles-assigned' -join '/'
+                $uri = $uri, "take=$($TssSession.Take)" -join '?'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
-
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting folder [$folder]"
+                    Write-Warning "Issue getting ___ on [$]"
                     $err = $_
                     . $ErrorHandling $err
                 }
 
                 if ($restResponse.records) {
-                    . $TssFolderAuditSummaryObject $restResponse.records
+                    . $TssUserRoleSummaryObject $restResponse.records
                 }
             }
         } else {

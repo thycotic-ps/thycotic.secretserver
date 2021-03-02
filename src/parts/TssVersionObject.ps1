@@ -24,7 +24,6 @@ process {
     $invokeParams.Uri = $Uri
     $invokeParams.Method = 'GET'
 
-
     try {
         $restResponse = Invoke-TssRestApi @invokeParams
     } catch {
