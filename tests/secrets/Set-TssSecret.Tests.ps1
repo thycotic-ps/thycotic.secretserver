@@ -18,7 +18,7 @@ Describe "$commandName verify parameters" {
         'EmailWhenChanged', 'EmailWhenViewed', 'EmailWhenHeartbeatFails',
 
         <# General settings #>
-        'Active', 'EnableInheritSecretPolicy', 'Folder', 'GenerateSshKeys', 'HeartbeatEnabled', 'SecretPolicy', 'Site', 'Template','IsOutOfSync', 'SecretName',
+        'Active', 'EnableInheritSecretPolicy', 'FolderId', 'GenerateSshKeys', 'HeartbeatEnabled', 'SecretPolicy', 'Site', 'Template','IsOutOfSync', 'SecretName',
 
         <# Other params for PUT /secrets/{id} endpoint #>
         'AutoChangeEnabled', 'AutoChangeNextPassword', 'EnableInheritPermission'
