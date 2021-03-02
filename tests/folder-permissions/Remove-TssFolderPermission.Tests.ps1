@@ -26,7 +26,6 @@ Describe "$commandName verify parameters" {
 Describe "$commandName functions" {
     BeforeAll {
         . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssSession.class.ps1'))
-        . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssDelete.class.ps1'))
         Mock -ModuleName Thycotic.SecretServer -CommandName Invoke-TssRestApi -MockWith {
             return @{
                 Id            = $folderPermissionId
@@ -38,8 +37,8 @@ Describe "$commandName functions" {
             return [TssSession]@{
                 ApiVersion   = 'api/v1'
                 Take         = 2147483647
-                SecretServer = 'http://vault3/'
-                ApiUrl       = 'http://vault3/api/v1'
+                SecretServer = 'http://alpha/'
+                ApiUrl       = 'http://alpha/api/v1'
                 AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_'
                 RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv416'
                 TokenType    = 'bearer'
@@ -47,7 +46,7 @@ Describe "$commandName functions" {
             }
         }
 
-        $session = New-TssSession -SecretServer 'http://vault3' -AccessToken (Get-Random)
+        $session = New-TssSession -SecretServer 'http://alpha' -AccessToken (Get-Random)
         $object = Remove-TssFolderPermission -TssSession $session -Id 34
     }
     Context "Checking" -Foreach {object = $object}{
