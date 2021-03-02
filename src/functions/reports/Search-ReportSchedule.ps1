@@ -24,7 +24,7 @@ function Search-ReportSchedule {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(DefaultParameterSetName = "filter")]
+    [cmdletbinding()]
     [OutputType('TssReportScheduleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
