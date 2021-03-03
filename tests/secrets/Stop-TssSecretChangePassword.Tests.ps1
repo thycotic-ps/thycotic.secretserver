@@ -41,7 +41,7 @@ Describe "$commandName works" -Skip {
             TssSession = $session
             Id = $getSecrets[0].id
         }
-        $secret = Get-TssSecret @params | Stop-TssSecretPasswordChange -TssSession $session
+        $secret = Get-TssSecret @params | Stop-TssSecretChangePassword -TssSession $session
         $props = 'SecretId','Status','Notes'
 
         if (-not $tssTestUsingWindowsAuth) {

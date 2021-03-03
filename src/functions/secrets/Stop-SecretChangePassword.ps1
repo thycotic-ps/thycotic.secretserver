@@ -1,4 +1,4 @@
-function Stop-SecretPasswordChange {
+function Stop-SecretChangePassword {
     <#
     .SYNOPSIS
     Stop a current password change
@@ -8,12 +8,12 @@ function Stop-SecretPasswordChange {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Stop-TssSecretPasswordChange -TssSession $session -Id 46
+    Stop-TssSecretChangePassword -TssSession $session -Id 46
 
     Stop a current password change operation on secret 46
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretPasswordChange
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword
 
     .NOTES
     Requires TssSession object returned by New-TssSession
