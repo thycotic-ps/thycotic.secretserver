@@ -1,0 +1,91 @@
+function Invoke-SecretGeneratePassword {
+    <#
+    .SYNOPSIS
+    Create a new Secret password
+
+    .DESCRIPTION
+    Create a new Secret password, based on password rules of the field
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
+    $newPassword = Invoke-TssSecretGeneratePassword -TssSession $session -Id 25 -Slug 'private-key-passphrase'
+    Set-TssSecret -TssSession $session -Id 25 -Field 'private-key-passphrase' -Value $newPassword
+
+    Generating password for Secret ID 25 based on password rules configured for the template, updating password field using Set-TssSecret
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretPassword
+
+    .NOTES
+    Requires TssSession object returned by New-TssSession
+    #>
+    [CmdletBinding()]
+    param (
+        # TssSession object created by New-TssSession for auth
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
+
+        # Secret Id
+        [Parameter(Mandatory,ValueFromPipeline)]
+        [Alias('SecretId')]
+        [int]
+        $Id,
+
+        # Field slug name
+        [Parameter(Mandatory,ValueFromPipeline)]
+        [Alias('FieldSlug')]
+        [string]
+        $Slug
+    )
+    begin {
+        $invokeGenerateParams = . $GetInvokeTssParams $TssSession
+
+        $invokeValidateParams = . $GetInvokeTssParams $TssSession
+    }
+    process {
+        . $InternalEndpointUsed $PSCmdlet.MyInvocation
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        if ($invokeGenerateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $Id, 'generate-password', $Slug -join '/'
+            $invokeGenerateParams.Uri = $uri
+            $invokeGenerateParams.Method = 'GET'
+
+            Write-Verbose "Performing the operation $($invokeGenerateParams.Method) $uri"
+            try {
+                $restGeneratedPassword = Invoke-TssRestApi @invokeGenerateParams
+            } catch {
+                Write-Warning "Issue getting generated password for Secret [$secret] and Field Slug [$Slug]"
+                $err = $_
+                . $ErrorHandling $err
+            }
+
+            if ($restGeneratedPassword) {
+                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $Id, 'validate-password', $Slug -join '/'
+                $invokeValidateParams.Uri = $uri
+                $invokeValidateParams.Method = 'POST'
+
+                $validateBody = @{ Password = $restGeneratedPassword } | ConvertTo-Json
+                $invokeValidateParams.Body = $validateBody
+
+                Write-Verbose "Performing the operation $($invokeValidateParams.Method) $uri"
+                try {
+                    $restValidateResponse = Invoke-TssRestApi @invokeValidateParams
+                } catch {
+                    Write-Warning "Issue validating generated password for Secret [$secret] and Field Slug [$Slug]"
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+
+                if ($restValidateResponse.isValid) {
+                    $restGeneratedPassword
+                } else {
+                    Write-Warning "Unable to validate generated password for Secret [$secret] and Field Slug [$Slug]"
+                }
+            }
+        } else {
+            Write-Warning "No valid session found"
+        }
+    }
+}
