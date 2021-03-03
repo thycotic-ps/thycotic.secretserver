@@ -52,7 +52,7 @@ function Get-UserRole {
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting ___ on [$]"
+                    Write-Warning "Issue getting roles on user [$user]"
                     $err = $_
                     . $ErrorHandling $err
                 }
