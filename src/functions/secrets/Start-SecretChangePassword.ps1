@@ -32,11 +32,13 @@ function Start-SecretChangePassword {
         [int[]]
         $Id,
 
+        # Next Password Type, allowed Manual or Random
         [Parameter(Mandatory)]
         [ValidateSet('Manual','Random')]
         [string]
         $Type,
 
+        # Manual Next Password to use
         [securestring]
         $NextPassword
     )
