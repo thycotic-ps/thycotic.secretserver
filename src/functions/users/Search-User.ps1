@@ -25,11 +25,9 @@ function Search-User {
     [OutputType('TssUserSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [TssSession]
-       $TssSession,
+        $TssSession,
 
         # Filter users by Active Directory Domain
         [Alias("Domain")]
@@ -60,7 +58,7 @@ function Search-User {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'users' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
