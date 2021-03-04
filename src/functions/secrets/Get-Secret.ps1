@@ -45,15 +45,12 @@ function Get-Secret {
     [OutputType('TssSecret')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,
-            ValueFromPipelineByPropertyName,
-            ParameterSetName = 'secret')]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName = 'secret')]
         [Parameter(ParameterSetName = 'restricted')]
         [Alias("SecretId")]
         [int[]]

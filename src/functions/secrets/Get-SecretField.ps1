@@ -22,15 +22,12 @@ function Get-SecretField {
     [OutputType('System.String')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,
-            ValueFromPipelineByPropertyName,
-            ParameterSetName = 'field')]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName = 'field')]
         [Parameter(Mandatory, ParameterSetName = 'restricted')]
         [Alias("SecretId")]
         [int[]]
