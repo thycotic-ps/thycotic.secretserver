@@ -32,6 +32,7 @@ function Get-User {
         [int[]]
         $Id,
 
+        # Include inactive users in results
         [switch]
         $IncludeInactive
     )
