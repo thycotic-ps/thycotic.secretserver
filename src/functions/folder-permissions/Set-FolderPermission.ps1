@@ -7,8 +7,8 @@ function Set-FolderPermission {
     Set various properties for a given FolderPermission
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Set-TssFolderPermission -TssSession $session -Id 34 -FolderId 5 -FolderAccessRoleName Edit -SecretAccessRoleName View
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssFolderPermission -TssSession $session -Id 34 -FolderId 5 -FolderAccessRoleName Edit -SecretAccessRoleName View
 
     Set Folder Permission ID 34 on Folder ID 5 to Edit folder permission and View secret permission
 

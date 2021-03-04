@@ -7,8 +7,8 @@ function Remove-FolderPermission {
     Delete a folder permissions
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Remove-TssFolderPermission -TssSession $session -Id 9
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Remove-TssFolderPermission -TssSession $session -Id 9
 
     Delete Folder Permission ID 9
 

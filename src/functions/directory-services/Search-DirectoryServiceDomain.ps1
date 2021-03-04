@@ -7,8 +7,8 @@ function Search-DirectoryServiceDomain {
     Search Directory Services domains
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Search-TssDirectoryServiceDomain -TssSession $session -DomainName lab.local
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssDirectoryServiceDomain -TssSession $session -DomainName lab.local
 
     Return the domain lab.local information
 

@@ -7,8 +7,8 @@ function Get-UserRoleAssigned {
     Get roles assigned to User Id
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Get-TssUserRoleAssigned -TssSession $session -UserId 254
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssUserRoleAssigned -TssSession $session -UserId 254
 
     Returns roles assigned to the User ID 254
 

@@ -7,14 +7,14 @@ function Find-User {
     Find for a Secret Server User
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Find-TssUser -TssSession $session -DomainId 2
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssUser -TssSession $session -DomainId 2
 
     Return a list of all users assigned to Domain ID 2
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Find-TssUser -TssSession $session -Field Username,Email -FindText demo
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssUser -TssSession $session -Field Username,Email -FindText demo
 
     Return a list of all users with "demo" in the username or email
 

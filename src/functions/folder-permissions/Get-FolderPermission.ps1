@@ -7,8 +7,8 @@ function Get-FolderPermission {
     Get a folder permission(s)
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Get-TssFolderPermission -TssSession $session -Id 36
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolderPermission -TssSession $session -Id 36
 
     Returns Folder Permission(s) for Folder ID
 

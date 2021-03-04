@@ -7,8 +7,8 @@ function Search-FolderPermission {
     Search folder permissions
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Search-TssFolderPermission -TssSession $session -FolderId 32
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssFolderPermission -TssSession $session -FolderId 32
 
     Return Folder Permissions for Folder ID 32
 

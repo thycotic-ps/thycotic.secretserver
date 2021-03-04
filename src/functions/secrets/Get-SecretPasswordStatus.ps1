@@ -7,8 +7,8 @@ function Get-SecretPasswordStatus {
     Get status of password change
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Get-TssSecretPasswordStatus -TssSession $session -Id 26
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretPasswordStatus -TssSession $session -Id 26
 
     Get password change status of Secret ID 26
 

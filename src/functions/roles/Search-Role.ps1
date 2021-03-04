@@ -7,8 +7,8 @@ function Search-Role {
     Search Roles
 
     .EXAMPLE
-    PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    PS> Search-TssRole -TssSession $session -UserId 43
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssRole -TssSession $session -UserId 43
 
     Returns roles assigned to User ID 43
 
