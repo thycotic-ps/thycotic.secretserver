@@ -65,5 +65,9 @@
             "label": "Created Issues",
             "query": "state:open repo:${owner}/${repository} sort:created-desc"
         }
-    ]
+    ],
+    "markdownlint.config": {
+        "MD022": false,
+        "MD047": false
+    }
 }
