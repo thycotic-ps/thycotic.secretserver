@@ -12,6 +12,9 @@ function Get-SecretPasswordStatus {
 
     Get password change status of Secret ID 26
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretPasswordStatus
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

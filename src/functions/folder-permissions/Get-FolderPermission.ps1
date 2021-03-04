@@ -12,6 +12,9 @@ function Get-FolderPermission {
 
     Returns Folder Permission(s) for Folder ID
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

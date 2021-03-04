@@ -12,6 +12,9 @@ function Search-FolderPermission {
 
     Return Folder Permissions for Folder ID 32
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

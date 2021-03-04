@@ -12,6 +12,9 @@ function Get-UserRole {
 
     Get assigned roles for User ID 2
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

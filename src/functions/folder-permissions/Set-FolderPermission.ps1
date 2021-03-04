@@ -12,6 +12,9 @@ function Set-FolderPermission {
 
     Set Folder Permission ID 34 on Folder ID 5 to Edit folder permission and View secret permission
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

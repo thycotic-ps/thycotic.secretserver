@@ -19,6 +19,9 @@ function Show-CurrentUser {
 
     Get the current user for the session and output a sorted list of Secret Server permissions assigned
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Show-TssCurrentUser
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

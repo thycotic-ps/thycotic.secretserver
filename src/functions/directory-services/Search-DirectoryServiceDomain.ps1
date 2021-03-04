@@ -12,6 +12,9 @@ function Search-DirectoryServiceDomain {
 
     Return the domain lab.local information
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

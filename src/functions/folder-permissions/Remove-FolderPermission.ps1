@@ -12,6 +12,9 @@ function Remove-FolderPermission {
 
     Delete Folder Permission ID 9
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

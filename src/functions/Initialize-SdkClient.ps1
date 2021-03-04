@@ -17,6 +17,9 @@ function Initialize-SdkClient {
 
     Initializes SDK Client saving the configuration files to c:\thycotic, with Force provided configuration will drop current configs (if exist) and recreate
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient
+
     .NOTES
     Secret Server docs cover configuring Application Account and SDK Client rule
     https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server

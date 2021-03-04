@@ -18,6 +18,9 @@ function Find-User {
 
     Return a list of all users with "demo" in the username or email
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssUser
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

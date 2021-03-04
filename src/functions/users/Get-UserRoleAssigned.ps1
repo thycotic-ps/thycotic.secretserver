@@ -12,6 +12,9 @@ function Get-UserRoleAssigned {
 
     Returns roles assigned to the User ID 254
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRoleAssigned
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     Only supported on 10.9.32 or higher of Secret Server
