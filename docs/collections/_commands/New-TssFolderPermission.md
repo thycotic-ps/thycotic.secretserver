@@ -24,12 +24,13 @@ Create a new folder permission
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+New-TssFolderPermission -TssSession $session -FolderId 5 -UserId 21 -FolderAccessRoleName View -SecretAccessRoleName List
 ```
 
-{{ Add example description here }}
+Creates a folder permission on Folder ID 5 for User ID 21 granting View on the Folder-level and List on the Secrets in the folder
 
 ## PARAMETERS
 

@@ -1,35 +1,35 @@
 ---
-category: folders
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole
 schema: 2.0.0
-title: Get-TssFolderPermission
+title: Get-TssUserRole
 ---
 
-# Get-TssFolderPermission
+# Get-TssUserRole
 
 ## SYNOPSIS
-Get a folder permission(s)
+Get roles for a user
 
 ## SYNTAX
 
 ```
-Get-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
+Get-TssUserRole [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get a folder permission(s)
+Get roles for a user
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderPermission -TssSession $session -Id 36
+Get-TssUserRole -TssSession $session -Id 2
 ```
 
-Returns Folder Permission(s) for Folder ID
+Get assigned roles for User ID 2
 
 ## PARAMETERS
 
@@ -49,32 +49,17 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Folder Permission ID
+Short description for parameter
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: FolderPermissionId
+Aliases: UserRoleId
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -IncludeInactive
-Include inactive Folder Permissions in results
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -85,11 +70,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermission
+### TssRoleSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole)
 

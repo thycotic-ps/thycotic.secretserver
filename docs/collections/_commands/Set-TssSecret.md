@@ -20,7 +20,7 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-For
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Field <String>] [-Value <String>] [-Clear]
  [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
- [-Folder <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
+ [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
  [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-CheckIn] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
@@ -51,21 +51,15 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-EmailWhenChanged] [-Ema
 
 ### general
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy] [-Folder <Int32>]
- [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>] [-SecretPolicy <Int32>]
- [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy]
+ [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
+ [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### password
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### folder
-```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-EnableInheritPermission] [-WhatIf] [-Confirm]
- [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -92,12 +86,20 @@ Sets secret 1455's field, "Notes", to the provided value providing required comm
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Set-TssSecret -TssSession $session -Id 345 -FolderId 3
+```
+
+Move Secret 345 to folder ID 3
+
+### EXAMPLE 4
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
 ```
 
 Sets secret 1455's field, "Notes", to an empty value
 
-### EXAMPLE 4
+### EXAMPLE 5
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
@@ -105,7 +107,7 @@ Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
 
 Sets secret 1455 email when viewed setting to true
 
-### EXAMPLE 5
+### EXAMPLE 6
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
@@ -113,7 +115,7 @@ Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
 
 Sets secret 1455 disables emailing when changed
 
-### EXAMPLE 6
+### EXAMPLE 7
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 113 -ForceCheckIn
@@ -365,7 +367,7 @@ Enable Folder inherit permissions
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: all, folder
+Parameter Sets: all
 Aliases: EnableInheritPermissions
 
 Required: False
@@ -390,13 +392,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Folder
+### -FolderId
 Folder (ID)
 
 ```yaml
 Type: Int32
 Parameter Sets: all, general
-Aliases:
+Aliases: Folder
 
 Required: False
 Position: Named

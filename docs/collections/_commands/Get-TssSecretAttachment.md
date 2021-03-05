@@ -1,37 +1,39 @@
 ---
-category: folders
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment
 schema: 2.0.0
-title: Set-TssFolderPermission
+title: Get-TssSecretAttachment
 ---
 
-# Set-TssFolderPermission
+# Get-TssSecretAttachment
 
 ## SYNOPSIS
-Set various properties for a given FolderPermission
+Get a Secret attachment
 
 ## SYNTAX
 
 ```
-Set-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> -FolderId <Int32>
- -FolderAccessRolename <String> [-SecretAccessRoleName <String>] [-BreakInheritance] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Get-TssSecretAttachment [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> -Path <String>
+ [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Set various properties for a given FolderPermission
+Get a Secret attachment with the filename in order to write it out to disk.
+Combining the use of two public functions to write the attachment out to the given filename in the Secret.
+The filename of an attachment is in Get-TssSecret output (items)
+The content of the file is in Get-TssSecretField.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssFolderPermission -TssSession $session -Id 34 -FolderId 5 -FolderAccessRoleName Edit -SecretAccessRoleName View
+Get-TssSecretAttachment -TssSession $session -Id 35 -Slug attached-file -Path 'c:\thycotic'
 ```
 
-Set Folder Permission ID 34 on Folder ID 5 to Edit folder permission and View secret permission
+Get the Secert ID 35's field Attached File (using slug name attached-file), writing the file to c:\thycotic directory using the filename stored on that Secret
 
 ## PARAMETERS
 
@@ -51,12 +53,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Folder Permission Id to modify
+Secret ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: FolderPermissionId
+Aliases: SecretId
 
 Required: True
 Position: Named
@@ -65,23 +67,23 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Folder ID
+### -Slug
+Field name
 
 ```yaml
-Type: Int32
+Type: String
 Parameter Sets: (All)
-Aliases:
+Aliases: FieldName
 
 Required: True
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -FolderAccessRolename
-Role to grant on the folder: View, Edit, Add Secret, Owner
+### -Path
+Write contents to a file (for file attachments and SSH public/private keys)
 
 ```yaml
 Type: String
@@ -91,12 +93,12 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SecretAccessRoleName
-Role to grant on the secret: View, Edit, List, Owner
+### -Comment
+Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
@@ -110,8 +112,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -BreakInheritance
-Allow updating of inherited permissions
+### -ForceCheckIn
+Check in the secret if it is checked out
 
 ```yaml
 Type: SwitchParameter
@@ -125,14 +127,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
+### -TicketNumber
+Associated ticket number (required for ticket integrations)
 
 ```yaml
-Type: SwitchParameter
+Type: String
 Parameter Sets: (All)
-Aliases: wi
+Aliases:
 
 Required: False
 Position: Named
@@ -141,17 +142,17 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -TicketSystemId
+Associated ticket system ID (required for ticket integrations)
 
 ```yaml
-Type: SwitchParameter
+Type: Int32
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -168,5 +169,5 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment)
 

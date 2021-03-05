@@ -28,8 +28,12 @@ commands:
         url: /commands/Find-TssSecret
       - title: "Get-TssSecret"
         url: /commands/Get-TssSecret
+      - title: "Get-TssSecretAudit"
+        url: /commands/Get-TssSecretAudit
       - title: "Get-TssSecretField"
         url: /commands/Get-TssSecretField
+      - title: "Get-TssSecretState"
+        url: /commands/Get-TssSecretState
       - title: "Set-TssSecret"
         url: /commands/Set-TssSecret
       - title: "Get-TssSecretStub"
@@ -38,8 +42,14 @@ commands:
         url: /commands/New-TssSecret
       - title: "Remove-TssSecret"
         url: /commands/Remove-TssSecret
-      - title: "Stop-TssSecretPasswordChange"
-        url: /commands/Stop-TssSecretPasswordChange
+      - title: "Stop-TssSecretChangePassword"
+        url: /commands/Stop-TssSecretChangePassword
+      - title: "Start-TssSecretChangePassword"
+        url: /commands/Start-TssSecretChangePassword
+      - title: "Get-TssSecretPasswordStatus"
+        url: /commands/Get-TssSecretPasswordStatus
+      - title: "Invoke-TssSecretGeneratePassword"
+        url: /commands/Invoke-TssSecretGeneratePassword
 
   - title: "Secrets-Templates"
     children:
@@ -100,6 +110,31 @@ commands:
       - title: "Search-TssUserGroup"
         url: /commands/Search-TssUserGroup
 
+  - title: "Roles"
+    children:
+      - title: "Search-TssRole"
+        url: /commands/Search-TssRole
+
+  - title: "Users"
+    children:
+      - title: "Get-TssUser"
+        url: /commands/Get-TssUser
+      - title: "Show-TssCurrentUser"
+        url: /commands/Show-TssCurrentUser
+      - title: "Get-TssUserRole"
+        url: /commands/Get-TssUserRole
+      - title: "Get-TssUserRoleAssigned"
+        url: /commands/Get-TssUserRoleAssigned
+      - title: "Search-TssUser"
+        url: /commands/Search-TssUser
+      - title: "Find-TssUser"
+        url: /commands/Find-TssUser
+
+  - title: "Directory Services"
+    children:
+      - title: "Search-TssDirectoryServiceDomain"
+        url: /commands/Search-TssDirectoryServiceDomain
+
   - title: "General"
     children:
       - title: "Invoke-TssRestApi"
@@ -129,12 +164,18 @@ abouttopics:
         url: /abouttopics/about_tsssecret
       - title: "TssSecretItem"
         url: /abouttopics/about_tsssecretitem
+      - title: "TssSecretAudit"
+        url: /abouttopics/about_tsssecretaudit
       - title: "TssSecretLookup"
         url: /abouttopics/about_tsssecretlookup
       - title: "TssSecretSummary"
         url: /abouttopics/about_tsssecretsummary
       - title: "TssSecretSummaryExtendedField"
         url: /abouttopics/about_tsssecretsummaryextendedfield
+      - title: "TssSecretPasswordStatus"
+        url: /abouttopics/about_tsssecretpasswordstatus
+      - title: "TssSecretDetailState"
+        url: /abouttopics/about_tsssecretdetailstate
 
   - title: "Secrets-Templates"
     children:
@@ -169,6 +210,30 @@ abouttopics:
     children:
       - title: "TssGroupSummary"
         url: /abouttopics/about_tssgroupsummary
+
+  - title: "Roles"
+    children:
+      - title: "TssRole"
+        url: /abouttopics/about_tssrole
+
+  - title: "Users"
+    children:
+      - title: "TssUser"
+        url: /abouttopics/about_tssuser
+      - title: "TssCurrentUser"
+        url: /abouttopics/about_tsscurrentuser
+      - title: "TssRoleSummary"
+        url: /abouttopics/about_tssrolesummary
+      - title: "TssUserRoleSummary"
+        url: /abouttopics/about_tssuserrolesummary
+      - title: "TssUserRoleLookup"
+        url: /abouttopics/about_tssuserrolelookup
+      - title: "TssCurrentUser"
+        url: /abouttopics/about_tsscurrentuser
+      - title: "TssRolePermission"
+        url: /abouttopics/about_tssrolepermission
+      - title: "TssMenuLink"
+        url: /abouttopics/about_tssmenulink
 
   - title: "General"
     children:

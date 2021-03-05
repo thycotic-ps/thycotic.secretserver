@@ -1,36 +1,36 @@
 ---
-category: folders
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain
 schema: 2.0.0
-title: Search-TssFolderPermission
+title: Search-TssDirectoryServiceDomain
 ---
 
-# Search-TssFolderPermission
+# Search-TssDirectoryServiceDomain
 
 ## SYNOPSIS
-Search folder permissions
+Search Directory Services domains
 
 ## SYNTAX
 
 ```
-Search-TssFolderPermission [-TssSession] <TssSession> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
+Search-TssDirectoryServiceDomain [-TssSession] <TssSession> [-DomainName <Int32>] [-IncludeInactive]
  [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search folder permissions
+Search Directory Services domains
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssFolderPermission -TssSession $session -FolderId 32
+Search-TssDirectoryServiceDomain -TssSession $session -DomainName lab.local
 ```
 
-Return Folder Permissions for Folder ID 32
+Return the domain lab.local information
 
 ## PARAMETERS
 
@@ -49,13 +49,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Folder ID
+### -DomainName
+Domain Name
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Domain
 
 Required: False
 Position: Named
@@ -64,38 +64,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -GroupId
-Group ID
+### -IncludeInactive
+Include inactive domains
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserId
-User ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -SortBy
-Sort by specific property, default Folder Permission ID
+Sort by specific property, default DomainName
 
 ```yaml
 Type: String
@@ -104,7 +89,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: Id
+Default value: DomainName
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,11 +101,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermissionSummary
+### TssDomainSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain)
 

@@ -2,7 +2,7 @@
 title: "Thycotic.SecretServer About topics"
 permalink: /abouttopics/
 excerpt: "About Topics"
-last_modified_at: 2021-02-11T00:00:00-00:00
+last_modified_at: 2021-03-03T00:00:00-00:00
 toc: false
 layout: single-mod
 classes: wide
@@ -18,55 +18,91 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssSession][TssSession] | [New-TssSession][New-TssSession]
+[TssSession] | [New-TssSession]
 
 ## Secrets
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssSecret][TssSecret] | [Get-TssSecret][Get-TssSecret] [Get-TssSecretStub][Get-TssSecretStub] [New-TssSecret][New-TssSecret]
-[TssSecretItem][TssSecretItem] | [Get-TssSecret][Get-TssSecret]
-[TssSecretLookup][TssSecretLookup] | [Find-TssSecret][Find-TssSecret]
-[TssSecretSummary][TssSecretSummary] | [Search-TssSecret][Search-TssSecret]
-[TssSecretSummaryExtendedField][TssSecretSummaryExtendedField] | [Search-TssSecret][Search-TssSecret]
+[TssSecret] | [Get-TssSecret] [Get-TssSecretStub] [New-TssSecret]
+[TssSecretItem] | [Get-TssSecret]
+[TssSecretAudit] | [Get-TssSecretAudit]
+[TssSecretLookup] | [Find-TssSecret]
+[TssSecretSummary] | [Search-TssSecret]
+[TssSecretSummaryExtendedField] | [Search-TssSecret]
+[TssSecretPasswordStatus] | [Get-TssSecretPasswordStatus]
+[TssSecretState] | [Get-TssSecretState]
 
-## Secret-Templates
+## Secret Templates
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssSecretTemplate][TssSecretTemplate] | [Get-TssSecretTemplate][Get-TssSecretTemplate]
-[TssSecretTemplateField][TssSecretTemplateField] | [Get-TssSecretTemplate][Get-TssSecretTemplate]
+[TssSecretTemplate] | [Get-TssSecretTemplate]
+[TssSecretTemplateField] | [Get-TssSecretTemplate]
 
 ## Folders
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssFolder][TssFolder] | [Get-TssFolder][Get-TssFolder] [Get-TssFolderStub][Get-TssFolderStub] [New-TssFolder][New-TssFolder]
-[TssFolderTemplate][TssFolderTemplate] | [Get-TssFolder][Get-TssFolder]
-[TssFolderLookup][TssFolderLookup] | [Find-TssFolder][Find-TssFolder]
-[TssFolderSummary][TssFolderSummary] | [Search-TssFolder][Search-TssFolder]
-[TssFolderAuditSummary][TssFolderAuditSummary] | [Get-TssFolderAudit][Get-TssFolderAudit]
+[TssFolder] | [Get-TssFolder] [Get-TssFolderStub] [New-TssFolder]
+[TssFolderTemplate] | [Get-TssFolder]
+[TssFolderLookup] | [Find-TssFolder]
+[TssFolderSummary] | [Search-TssFolder]
+[TssFolderAuditSummary] | [Get-TssFolderAudit]
+
+## Folder Permissions
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssFolderPermission] | [Get-TssFolderPermission] [Get-TssFolderPermissionStub] [New-TssFolderPermission]
+[TssFolderPermissionSummary] | [Search-TssFolderPermission]
 
 ## Reports
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssReport][TssReport] | [Get-TssReport][Get-TssReport]
-[TssReportCategory][TssReportCategory] | [Get-TssReportCategory][Get-TssReportCategory]
-[TssReportScheduleSummary][TssReportScheduleSummary] | [Search-TssReportScheduleSummary][Search-TssReportScheduleSummary]
+[TssReport] | [Get-TssReport]
+[TssReportCategory] | [Get-TssReportCategory]
+[TssReportScheduleSummary] | [Search-TssReportScheduleSummary]
 
 ## Groups
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssGroupSummary][TssGroupSummary] | [Search-TssGroup][Search-TssGroup]
+[TssGroupSummary] | [Search-TssGroup]
+
+## Roles
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssRole] | [Search-TssRole]
+
+## Users
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssUser] | [Get-TssUser]
+[TssRoleSummary] | [Get-TssUserRole]
+[TssUserRoleSummary] | [Get-TssUserRoleAssigned]
+[TssGroupAssignedRole] | [Get-TssUserRoleAssigned]
+[TssUserSummary] | [Search-TssUser]
+[TssUserLookup] | [Find-TssUser]
+[TssCurrentUser] | [Show-TssCurrentUser]
+[TssRolePermission] | [Show-TssCurrentUser]
+[TssMenuLink] | [Show-TssCurrentUser]
+
+## Directory Services
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssDomainSummary] | [Search-TssDirectoryServiceDomain]
 
 ## General
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssDelete][TssDelete] | [Remove-TssSecret][Remove-TssSecret] [Remove-TssFolder][Remove-TssFolder] [Remove-TssReportCategory][Remove-TssReportCategory]
-[TssVersion][TssVersion] | [Get-TssVersion][Get-TssVersion] [Test-TssVersion][Test-TssVersion]
+[TssDelete] | [Remove-TssSecret] [Remove-TssFolder] [Remove-TssReportCategory]
+[TssVersion] | [Get-TssVersion] [Test-TssVersion]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
@@ -91,7 +127,39 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssReportCategory]:/thycotic.secretserver/commands/Get-TssReportCategory
 [Search-TssReportScheduleSummary]:/thycotic.secretserver/commands/Search-TssReportScheduleSummary
 [Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
+[Search-TssFolderPermission]:/thycotic.secretserver/commands/Search-TssFolderPermission
+[Get-TssFolderPermission]:/thycotic.secretserver/commands/Get-TssFolderPermission
+[Get-TssFolderPermissionStub]:/thycotic.secretserver/commands/Get-TssFolderPermissionStub
+[New-TssFolderPermission]:/thycotic.secretserver/commands/New-TssFolderPermission
+[Search-TssRole]:/thycotic.secretserver/commands/Search-TssRole
+[Get-TssUserRole]:/thycotic.secretserver/commands/Get-TssUserRole
+[Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/Get-TssuserRoleAssigned
+[Get-TssSecretPasswordStatus]:/thycotic.secretserver/commands/Get-TssSecretPasswordStatus
+[Search-TssUser]:/thycotic.secretserver/commands/Search-TssUser
+[Find-TssUser]:/thycotic.secretserver/commands/Find-TssUser
+[Search-TssDirectoryServiceDomain]:/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain
+[Show-TssCurrentUser]:/thycotic.secretserver/commands/Show-TssCurrentUser
+[Get-TssUser]:/thycotic.secretserver/commands/Get-TssUser
+[Get-TssSecretAudit]:/thycotic.secretserver/commands/Get-TssSecretAudit
+[Get-TssSecretState]:/thycotic.secretserver/commands/Get-TssSecretState
 
+[TssSecretState]:/thycotic.secretserver/abouttopics/about_tsssecretstate
+[TssSecretAudit]:/thycotic.secretserver/abouttopics/about_tsssecretaudit
+[TssUser]:/thycotic.secretserver/abouttopics/about_tssuser
+[TssCurrentUser]:/thycotic.secretserver/abouttopics/about_tsscurrentlink
+[TssRolePermission]:/thycotic.secretserver/abouttopics/about_tssrolepermission
+[TssMenuLink]:/thycotic.secretserver/abouttopics/about_tssmenulink
+[TssCurrentUser]:/thycotic.secretserver/abouttopics/about_tsscurrentuser
+[TssDomainSummary]:/thycotic.secretserver/abouttopics/about_tssdomainsummary
+[TssUserLookup]:/thycotic.secretserver/abouttopics/about_tssuserlookup
+[TssUserSummary]:/thycotic.secretserver/abouttopics/about_tssusersummary
+[TssSecretPasswordStatus]:/thycotic.secretserver/abouttopics/about_tsssecretpasswordstatus
+[TssUserRoleSummary]:/thycotic.secretserver/abouttopics/about_tssuserrolesummary
+[TssGroupAssignedRole]:/thycotic.secretserver/abouttopics/about_tssgroupassignedrole
+[TssRoleSummary]:/thycotic.secretserver/abouttopics/about_tssrolesummary
+[TssRole]:/thycotic.secretserver/abouttopics/about_tssrole
+[TssFolderPermission]:/thycotic.secretserver/abouttopics/about_tssfolderpermission
+[TssFolderPermissionSummary]:/thycotic.secretserver/abouttopics/about_tssfolderpermissionsummary
 [TssFolderAuditSummary]:/thycotic.secretserver/abouttopics/about_tssfolderauditsummary
 [TssSession]:/thycotic.secretserver/abouttopics/about_tsssession
 [TssSecret]:/thycotic.secretserver/abouttopics/about_tsssecret

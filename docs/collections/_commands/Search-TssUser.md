@@ -1,36 +1,44 @@
 ---
-category: folders
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser
 schema: 2.0.0
-title: Search-TssFolderPermission
+title: Search-TssUser
 ---
 
-# Search-TssFolderPermission
+# Search-TssUser
 
 ## SYNOPSIS
-Search folder permissions
+Search for a Secret Server user
 
 ## SYNTAX
 
 ```
-Search-TssFolderPermission [-TssSession] <TssSession> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
- [-SortBy <String>] [<CommonParameters>]
+Search-TssUser [-TssSession] <TssSession> [-DomainId <Int32>] [-IncludeInactive] [-Field <String[]>]
+ [-SearchText <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search folder permissions
+Search for a Secret Server User
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssFolderPermission -TssSession $session -FolderId 32
+Search-TssUser -TssSession $session -DomainId 2
 ```
 
-Return Folder Permissions for Folder ID 32
+Return a list of all users assigned to Domain ID 2
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssUser -TssSession $session -Field Username,Email -SearchText demo
+```
+
+Return a list of all users with "demo" in the username or email
 
 ## PARAMETERS
 
@@ -49,13 +57,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Folder ID
+### -DomainId
+Filter users by Active Directory Domain
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases:
+Aliases: Domain
 
 Required: False
 Position: Named
@@ -64,38 +72,38 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -GroupId
-Group ID
+### -IncludeInactive
+Include inactive users in results
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -UserId
-User ID
+### -Field
+User field(s) to search
 
 ```yaml
-Type: Int32
+Type: String[]
 Parameter Sets: (All)
-Aliases:
+Aliases: SearchFields
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SortBy
-Sort by specific property, default Folder Permission ID
+### -SearchText
+Search text
 
 ```yaml
 Type: String
@@ -104,7 +112,22 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: Id
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SortBy
+Sort by specific property, default DisplayName
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: DisplayName
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,11 +139,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermissionSummary
+### TssUserSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser)
 

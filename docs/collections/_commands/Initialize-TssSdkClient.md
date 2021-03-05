@@ -2,7 +2,7 @@
 category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version:
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient
 schema: 2.0.0
 title: Initialize-TssSdkClient
 ---
@@ -128,3 +128,6 @@ Secret Server docs cover configuring Application Account and SDK Client rule
 https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient](https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient)
+

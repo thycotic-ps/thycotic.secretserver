@@ -1,36 +1,35 @@
 ---
-category: folders
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUser
 schema: 2.0.0
-title: Remove-TssFolderPermission
+title: Get-TssUser
 ---
 
-# Remove-TssFolderPermission
+# Get-TssUser
 
 ## SYNOPSIS
-Delete a folder permissions
+Get a Secret Server User
 
 ## SYNTAX
 
 ```
-Remove-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> [-BreakInheritance] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Get-TssUser [-TssSession] <TssSession> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Delete a folder permissions
+Get a Secret Server User
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssFolderPermission -TssSession $session -Id 9
+PS> Get-TssUser -TssSession $session -Id 2
 ```
 
-Delete Folder Permission ID 9
+Get the User ID 2
 
 ## PARAMETERS
 
@@ -50,12 +49,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Folder Permission ID
+User ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: FolderPermissionId
+Aliases: UserId
 
 Required: True
 Position: Named
@@ -64,8 +63,8 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -BreakInheritance
-Include to remove permission inheritance
+### -IncludeInactive
+Include inactive users in results
 
 ```yaml
 Type: SwitchParameter
@@ -79,37 +78,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -117,11 +85,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDelete
+### TssUser
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUser)
 

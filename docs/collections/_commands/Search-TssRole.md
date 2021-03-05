@@ -1,36 +1,43 @@
 ---
-category: folders
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRole
 schema: 2.0.0
-title: Search-TssFolderPermission
+title: Search-TssRole
 ---
 
-# Search-TssFolderPermission
+# Search-TssRole
 
 ## SYNOPSIS
-Search folder permissions
+Search Roles
 
 ## SYNTAX
 
+### user (Default)
 ```
-Search-TssFolderPermission [-TssSession] <TssSession> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
- [-SortBy <String>] [<CommonParameters>]
+Search-TssRole [-TssSession] <TssSession> [-UserId <Int32>] [-IncludeInactive] [-SortBy <String>]
+ [<CommonParameters>]
+```
+
+### group
+```
+Search-TssRole [-TssSession] <TssSession> [-GroupId <Int32>] [-IncludeInactive] [-SortBy <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search folder permissions
+Search Roles
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssFolderPermission -TssSession $session -FolderId 32
+Search-TssRole -TssSession $session -UserId 43
 ```
 
-Return Folder Permissions for Folder ID 32
+Returns roles assigned to User ID 43
 
 ## PARAMETERS
 
@@ -49,12 +56,12 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Folder ID
+### -UserId
+Only return roles assigned to this User ID
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: user
 Aliases:
 
 Required: False
@@ -65,11 +72,11 @@ Accept wildcard characters: False
 ```
 
 ### -GroupId
-Group ID
+Only return roles assigned to this Group ID
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: group
 Aliases:
 
 Required: False
@@ -79,23 +86,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -UserId
-User ID
+### -IncludeInactive
+Include inactive roles in the results
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: 0
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -SortBy
-Sort by specific property, default Folder Permission ID
+Sort by specific property, default Name
 
 ```yaml
 Type: String
@@ -104,7 +111,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: Id
+Default value: Name
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,11 +123,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermissionSummary
+### TssRole
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRole)
 

@@ -1,36 +1,43 @@
 ---
-category: folders
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretCheckOut
 schema: 2.0.0
-title: Remove-TssFolderPermission
+title: Enable-TssSecretCheckOut
 ---
 
-# Remove-TssFolderPermission
+# Enable-TssSecretCheckOut
 
 ## SYNOPSIS
-Delete a folder permissions
+Enable various properties for a given SecretCheckOut
 
 ## SYNTAX
 
+### all (Default)
 ```
-Remove-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> [-BreakInheritance] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Enable-TssSecretCheckOut [-TssSession] <TssSession> -Id <Int32[]> -CheckoutInterval <Int32>
+ [-ChangePasswordOnCheckIn] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### checkout
+```
+Enable-TssSecretCheckOut [-TssSession] <TssSession> -Id <Int32[]> -CheckoutInterval <Int32>
+ [-ChangePasswordOnCheckIn] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Delete a folder permissions
+Enable various properties for a given SecretCheckOut
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssFolderPermission -TssSession $session -Id 9
+Enable-TssSecretCheckOut -TssSession $session -Id 36
 ```
 
-Delete Folder Permission ID 9
+Enable checkout on Secret 36
 
 ## PARAMETERS
 
@@ -50,12 +57,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Folder Permission ID
+Secret Id to modify
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: FolderPermissionId
+Aliases: SecretId
 
 Required: True
 Position: Named
@@ -64,8 +71,23 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -BreakInheritance
-Include to remove permission inheritance
+### -CheckoutInterval
+Checkout Interval in Minutes (default 10 minutes)
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -ChangePasswordOnCheckIn
+Enable Change Password on Check In
 
 ```yaml
 Type: SwitchParameter
@@ -117,11 +139,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDelete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretCheckOut](https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretCheckOut)
 

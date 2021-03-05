@@ -17,7 +17,7 @@ Search for a secret
 ### filter (Default)
 ```
 Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
- [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
+ [-SearchText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
  [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
  [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
@@ -32,7 +32,7 @@ Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFold
 
 ### field
 ```
-Search-TssSecret [-TssSession] <TssSession> [-Field <String>] [-FieldText <String>] [-ExactMatch]
+Search-TssSecret [-TssSession] <TssSession> [-Field <String>] [-SearchText <String>] [-ExactMatch]
  [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
@@ -73,6 +73,30 @@ Search-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
 ```
 
 Return all secrets using Secret Template 6047 that are active **and** inactive.
+
+### EXAMPLE 4
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSecret -TssSession $session -SecretName 'Azure'
+```
+
+Return all secrets that have Azure in the name of the Secret (wildcard search)
+
+### EXAMPLE 5
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSecret -TssSession $session -SecretName 'Azure Test Account' -ExactMatch
+```
+
+Return all secret(s) that have the exact name "Azure Test Account"
+
+### EXAMPLE 6
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSecret -TssSession $session -Field username -SearchText 'root'
+```
+
+Return all secret(s) that have the username "root"
 
 ## PARAMETERS
 
@@ -136,13 +160,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FieldText
+### -SearchText
 Text of the field to filter on
 
 ```yaml
 Type: String
 Parameter Sets: filter, field
-Aliases:
+Aliases: SecretName
 
 Required: False
 Position: Named
@@ -152,7 +176,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExactMatch
-Match the exact text of the FieldText
+Match the exact text of the SearchText
 
 ```yaml
 Type: SwitchParameter

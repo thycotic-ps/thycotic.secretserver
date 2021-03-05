@@ -1,36 +1,35 @@
 ---
-category: folders
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword
 schema: 2.0.0
-title: Search-TssFolderPermission
+title: Stop-TssSecretChangePassword
 ---
 
-# Search-TssFolderPermission
+# Stop-TssSecretChangePassword
 
 ## SYNOPSIS
-Search folder permissions
+Stop a current password change
 
 ## SYNTAX
 
 ```
-Search-TssFolderPermission [-TssSession] <TssSession> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
- [-SortBy <String>] [<CommonParameters>]
+Stop-TssSecretChangePassword [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search folder permissions
+Stop a current password change
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssFolderPermission -TssSession $session -FolderId 32
+Stop-TssSecretChangePassword -TssSession $session -Id 46
 ```
 
-Return Folder Permissions for Folder ID 32
+Stop a current password change operation on secret 46
 
 ## PARAMETERS
 
@@ -49,62 +48,48 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Folder ID
+### -Id
+Secret Id
 
 ```yaml
-Type: Int32
+Type: Int32[]
 Parameter Sets: (All)
-Aliases:
+Aliases: SecretId
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -WhatIf
+Shows what would happen if the cmdlet runs.
+The cmdlet is not run.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases: wi
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -GroupId
-Group ID
+### -Confirm
+Prompts you for confirmation before running the cmdlet.
 
 ```yaml
-Type: Int32
+Type: SwitchParameter
 Parameter Sets: (All)
-Aliases:
+Aliases: cf
 
 Required: False
 Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserId
-User ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SortBy
-Sort by specific property, default Folder Permission ID
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: Id
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -116,11 +101,10 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermissionSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword)
 
