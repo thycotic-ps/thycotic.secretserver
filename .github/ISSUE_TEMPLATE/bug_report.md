@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help us improve
-title: ''
+title: "[Bug] "
 labels: bug
 assignees: ''
 
@@ -9,7 +9,8 @@ assignees: ''
 
 <!--
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
-The more detail you provide, the easier it is for us to help identify and fix the bug
+Please provide the details requested and **DO NOT** delete this template.
+Deletion of this template and not providing the details requested is cause for your issue to be closed.
 🚨🚨🚨🚨🚨🚨🚨🚨🚨🚨
 -->
 **Describe the bug**
@@ -29,13 +30,21 @@ copy/paste code
 # copy paste $error | select *
 ```
 
+1. Verbose output
+
+```powershell
+# copy paste -Verbose output of your script or command being used
+```
+
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
-
 **Environment (please complete the following information):**
+
+***Secret Server***
+Build/Version: 
+
+***PowerShell version***
 
 ```powershell
 <!-- paste output of $PSVersionTable -->
@@ -49,7 +58,7 @@ If applicable, add screenshots to help explain your problem.
 [ ] VS Code (Insiders/Stable)
 
 <!--
-VS Code, please provide output of the following:
+VS Code, please provide the output of the following:
 
 & {"### VSCode version: $(code -v)"; "`n### VSCode extensions:`n$(code --list-extensions --show-versions | Out-String)"; "`n### PSES version: $($pseditor.EditorServicesVersion)"; "`n### PowerShell version:`n$($PSVersionTable | Out-String)"}
 
