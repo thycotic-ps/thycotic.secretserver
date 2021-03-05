@@ -4,8 +4,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession',
-        'FolderId', 'GroupId', 'UserId', 'FolderAccessRoleName', 'SecretAccessRoleName'
+        [object[]]$knownParameters = 'TssSession', 'FolderId', 'GroupId', 'UserId', 'FolderAccessRoleName', 'SecretAccessRoleName'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -24,7 +23,7 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-Describe "$commandName functions" {
+Describe "$commandName functions" -Skip {
 
     Context "Checking" {
         BeforeAll {
