@@ -15,6 +15,33 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * None
 
+## [0.33.0] -- 2021-03-05
+
+### Added
+
+* **Module** Added warning message on detected Secret Server version [more details](https://thycotic-ps.github.io/thycotic.secretserver/docs/compatibility/) [a97a8c5](https://github.com/thycotic-ps/thycotic.secretserver/commit/a97a8c5f880c5f2ae7a760af8843daa2e7967ccf)
+* `Search-TssRole` **New Command** [#105](https://github.com/thycotic-ps/thycotic.secretserver/issues/105) [baca549](https://github.com/thycotic-ps/thycotic.secretserver/commit/baca54911d176565ee3fbd97d31dfbd4b15c3323)
+* `Get-TssUserRoleAssigned` **New Command** [#92](https://github.com/thycotic-ps/thycotic.secretserver/issues/92) [5868714](https://github.com/thycotic-ps/thycotic.secretserver/commit/5868714be05ef4d661ba07d68170b7375ae2aea9)
+* `Search-TssSecret` additional examples [5c1fc4b](https://github.com/thycotic-ps/thycotic.secretserver/commit/5c1fc4bfb123cb23a7dc50e3899a2bd4a804d936)
+* `New-TssFolderPermission` added example [84f234c](https://github.com/thycotic-ps/thycotic.secretserver/commit/84f234ca3dc72312c849041fc0cb3304bc8fb72f)
+* `Start-TssSecretChangePassword` **New Command** [#71](https://github.com/thycotic-ps/thycotic.secretserver/issues/71) [3f4e6a9](https://github.com/thycotic-ps/thycotic.secretserver/commit/3f4e6a9bcb33005ccef205072132479ad9bdb56e)
+* `Get-TssSecretPasswordStatus` **New Command** [#71](https://github.com/thycotic-ps/thycotic.secretserver/issues/71) [3f4e6a9](https://github.com/thycotic-ps/thycotic.secretserver/commit/3f4e6a9bcb33005ccef205072132479ad9bdb56e)
+* `Invoke-TssSecretGeneratePassword` **New Command** [#106](https://github.com/thycotic-ps/thycotic.secretserver/issues/106) [b3c4ad7](https://github.com/thycotic-ps/thycotic.secretserver/commit/b3c4ad782627ce0d43da6cd5618f8367947fe20a)
+* `Search-TssUser` **New Command** [#99](https://github.com/thycotic-ps/thycotic.secretserver/issues/99) [173bd41](https://github.com/thycotic-ps/thycotic.secretserver/commit/173bd417441e11fa362053589113cf8133483275)
+* `Search-TssDirectoryServiceDomain` **New Command** [ccb93f4](https://github.com/thycotic-ps/thycotic.secretserver/commit/ccb93f472d9317ca416ee20d71d5a326e5351a75)
+* `Find-TssUser` **New Command** [#98](https://github.com/thycotic-ps/thycotic.secretserver/issues/98) [195b34a](https://github.com/thycotic-ps/thycotic.secretserver/commit/195b34af77b61483fc5cbc49639242bedbd67fe4)
+* `Show-TssCurrentUser` **New Command** [#100](https://github.com/thycotic-ps/thycotic.secretserver/issues/100) [40f40c9](https://github.com/thycotic-ps/thycotic.secretserver/commit/40f40c9ef61045b50ebc1ca97b1d0130a5c8b2f6)
+* `Get-TssUser` **New Command** [#101](https://github.com/thycotic-ps/thycotic.secretserver/issues/101) [9fa3a0b](https://github.com/thycotic-ps/thycotic.secretserver/commit/9fa3a0b41f5b75136b8dc65c87e6642f8a5d9db6)
+* `Get-TssSecretAudit` **New Command** [#13](https://github.com/thycotic-ps/thycotic.secretserver/issues/13) [af9e621](https://github.com/thycotic-ps/thycotic.secretserver/commit/af9e621ebb76bc593d286b848a0a92d04efd6f19)
+* `Get-TssSecretState` **New Command** [#17](https://github.com/thycotic-ps/thycotic.secretserver/issues/17) [357df13](https://github.com/thycotic-ps/thycotic.secretserver/commit/357df13fba08bd3db472d06f9ed06fd77f7dd9ac)
+* `Get-TssSecretAttachment` **New Command** [#44](https://github.com/thycotic-ps/thycotic.secretserver/issues/44) [47a7b45](https://github.com/thycotic-ps/thycotic.secretserver/commit/47a7b45384b2b1bdd0fb01d35cb225ffd7ec627f)
+
+### Changed
+
+* `Set-TssSecret` - renamed `Folder` to be alias of `FolderId` [a1b56dc](https://github.com/thycotic-ps/thycotic.secretserver/commit/a1b56dca5f3bb670f2840b22711e8cb2ed9e4ef8)
+* `Search-TssReportSchedule` - cleaning up output [2839f3a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2839f3a9faad918987b71f24b01725d9792569f3)
+* `Search-TssSecret` **breaking** - Renamed `FieldText` to `SearchText` with alias `SecretName` [#102](https://github.com/thycotic-ps/thycotic.secretserver/issues/102) [5c1fc4b](https://github.com/thycotic-ps/thycotic.secretserver/commit/5c1fc4bfb123cb23a7dc50e3899a2bd4a804d936)
+
 ## [0.32.0] -- 2021-02-28
 
 ### Added
