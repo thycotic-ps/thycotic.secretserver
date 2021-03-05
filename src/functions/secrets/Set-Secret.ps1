@@ -150,7 +150,6 @@ function Set-Secret {
 
         # Enable Folder inherit permissions
         [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'folder')]
         [Alias('EnableInheritPermissions')]
         [switch]
         $EnableInheritPermission,
@@ -500,10 +499,10 @@ function Set-Secret {
                         }
                         $generalBody.data.Add('enableInheritSecretPolicy',$setInheritance)
                     }
-                    if ($setSecretParams.ContainsKey('Folder')) {
+                    if ($setSecretParams.ContainsKey('FolderId')) {
                         $setFolder = @{
                             dirty = $true
-                            value = $Folder
+                            value = $FolderId
                         }
                         $generalBody.data.Add('folder',$setFolder)
                     }
