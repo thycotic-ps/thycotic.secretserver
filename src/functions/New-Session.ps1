@@ -115,7 +115,7 @@ function New-Session {
         if ($outputTssSession.SecretServer) {
             Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
             if ($newTssParams.ContainsKey('Credential')) {
-                $invokeParams.Uri = $outputTssSession.SecretServer + 'oauth2/token'
+                $invokeParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
 
                 $oauth2Body = [Ordered]@{ }
                 if ($newTssParams.ContainsKey('Credential')) {
