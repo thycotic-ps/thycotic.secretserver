@@ -15,6 +15,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * None
 
+## [0.33.1] -- 2021-03-05
+
+### Added
+
+* None
+
+### Changed
+
+* `New-TssSession` adjust logic on URL for OAuth2 request [#109](https://github.com/thycotic-ps/thycotic.secretserver/issues/109) [f4061e5](https://github.com/thycotic-ps/thycotic.secretserver/commit/f4061e57906e127465f1c949e51eaec77da527a4)
+
 ## [0.33.0] -- 2021-03-05
 
 ### Added
