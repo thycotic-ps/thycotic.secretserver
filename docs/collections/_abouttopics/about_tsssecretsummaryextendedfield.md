@@ -14,7 +14,7 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     None
 
 # DESCRIPTION
-    The TssSecretSummaryExtendedField class represents the ISecretSummaryExtendedField object returned by Secret Server endpoint /secrets
+    The TssSecretSummaryExtendedField class represents the ISecretSummaryExtendedField object returned by Secret Server endpoint GET /secrets and GET /secrets/{id}/summary
 
 # CONSTRUCTORS
     new()
@@ -31,3 +31,4 @@ last_modified_at: 2021-02-10T00:00:00-00:00
 # RELATED LINKS:
     TssSecretSummary
     Search-TssSecret
+    Get-TssSecretSummary
