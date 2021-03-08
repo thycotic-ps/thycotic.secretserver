@@ -20,9 +20,20 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see ISecretTemplateSummary definition
+    Active
+        Active
+
+    Id
+        Id
+
+    Name
+        Name
+
+    SecretCount
+        Secret count
 
 # METHODS
 
 # RELATED LINKS:
+    TssFolder
     Get-TssFolder

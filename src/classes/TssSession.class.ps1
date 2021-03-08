@@ -1,17 +1,42 @@
 class TssSession {
-    [string]$SecretServer
-    [string]$ApiVersion = 'api/v1'
-    hidden [string]$WindowsAuth = 'winauthwebservices'
-    [string]$ApiUrl
-    [string]$AccessToken
-    [string]$RefreshToken
-    [string]$TokenType
-    hidden [datetime]$StartTime
-    [int]$ExpiresIn
-    hidden [datetime]$TimeOfDeath
-    [int]$Take = [int]::MaxValue
+    [string]
+    $SecretServer
 
-    [boolean]IsValidSession() {
+    [string]
+    $ApiVersion = 'api/v1'
+
+    hidden
+    [string]
+    $WindowsAuth = 'winauthwebservices'
+
+    [string]
+    $ApiUrl
+
+    [string]
+    $AccessToken
+
+    [string]
+    $RefreshToken
+
+    [string]
+    $TokenType
+
+    hidden
+    [datetime]
+    $StartTime
+
+    [int]
+    $ExpiresIn
+
+    hidden
+    [datetime]
+    $TimeOfDeath
+
+    [int]
+    $Take = [int]::MaxValue
+
+    [boolean]
+    IsValidSession() {
         if ([string]::IsNullOrEmpty($this.AccessToken) -and $this.StartTime -eq '0001-01-01 00:00:00') {
             return $false
         } elseif ($this.TokenType -in ('WindowsAuth','SdkClient')) {
@@ -21,7 +46,8 @@ class TssSession {
         }
     }
 
-    [boolean]IsValidToken() {
+    [boolean]
+    IsValidToken() {
         if ([string]::IsNullOrEmpty($this.AccessToken)) {
             Write-Warning 'No valid token found for current TssSession object'
             return $false
@@ -41,7 +67,8 @@ class TssSession {
         }
     }
 
-    [boolean]SessionExpire() {
+    [boolean]
+    SessionExpire() {
         $url = $this.ApiUrl, 'oauth-expiration' -join '/'
         try {
             if ($this.TokenType -notin ('WindowsAuth','SdkClient')) {
@@ -56,7 +83,8 @@ class TssSession {
         }
     }
 
-    [boolean]SessionRefresh() {
+    [boolean]
+    SessionRefresh() {
         if ($this.TokenType -eq 'ExternalToken') {
             Write-Warning 'Token was provided through external source, SessionRefresh is not supported'
             return $false

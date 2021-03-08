@@ -20,9 +20,38 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see FolderModel definition
+    ChildFolders [TssFolder[]]
+        List of folders within this folder
+
+    FolderName
+        Folder name
+
+    FolderPath
+        Path of this folder
+
+    FolderTypeId
+        Folder type ID
+
+    Id
+        Folder ID
+
+    InheritPermissions
+        Whether the folder inherits permissions from its parent
+
+    InheritSecretPolicy
+        Whether the folder inherits the secret policy
+
+    ParentFolderId
+        Parent folder ID
+
+    SecretPolicyId
+        Secret policy ID
+
+    SecretTemplates [TssFolderTemplate[]]
+        List of templates that may be used to create secrets in this folder
 
 # METHODS
 
 # RELATED LINKS:
+    TssFolderTemplate
     Get-TssFolder

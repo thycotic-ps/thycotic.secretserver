@@ -20,7 +20,38 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see ReportScheduleSummaryModel /reports/schedules
+    ChangeType
+        Schedule Change Type (Daily, Weekly, Monthly)
+
+    Deleted
+        Deleted
+
+    Description
+        Description
+
+    LastRun
+        DateTime of Last Run
+
+    LastRunHistoryId
+        HistoryId of Last Run
+
+    Name
+        Name
+
+    ReportId
+        Report Id
+
+    ReportName
+        Report Name
+
+    ScheduleReportId
+        Schedule Report Id
+
+    SendEmail
+        Send Report via Email
+
+    StoredReportCount
+        Number of reports stored for this schedule
 
 # METHODS
 

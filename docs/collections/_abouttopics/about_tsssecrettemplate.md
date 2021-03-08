@@ -10,22 +10,32 @@ last_modified_at: 2021-02-10T00:00:00-00:00
 # CLASS
     TssSecretTemplate
 
-#INHERITANCE
+# INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretTemplate class represents the SecretTemplateModel object returned by Secret Server endpoint /secret-tempaltes/{id}.
+    The TssSecretTemplate class represents the SecretTemplateModel object returned by Secret Server endpoint /secret-templates/{id}.
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see SecretTemplateModel definition
+    Id
+        Secret Template Id
+
+    Name
+        Secret Template name
+
+    PasswordTypeId
+        Password Type ID
+
+    Fields [TssSecretTemplateField[]]
 
 # METHODS
 
-    [System.String] GetSlugName(string DisplayName)
+    [System.String] GetSlugName([string] DisplayName)
         Pulls the FieldSlugName from the fields object based on the Display Name
 
 # RELATED LINKS:
+    TssSecretTemplateField
     Get-TssSecretTemplate

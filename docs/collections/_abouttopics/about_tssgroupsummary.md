@@ -20,7 +20,35 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see GroupSummary definition
+    Created
+        Created Date
+
+    DomainGuid
+        If this a synchronized group and the user requesting access has access this will be populated with the unique guid for the directory with a group search.
+
+    DomainId
+        Active Directory domain ID
+
+    DomainName
+        Active Directory domain name
+
+    Enabled
+        Whether the group is active
+
+    Id
+        Group ID
+
+    MemberCount
+        Number of members in group
+
+    Name
+        Group name
+
+    Synchronized
+        Whether the group is synchronized with Active Directory
+
+    SynchronizeNow
+        Active Directory Sync will only pull in members for domain groups that have this set to true.
 
 # METHODS
 

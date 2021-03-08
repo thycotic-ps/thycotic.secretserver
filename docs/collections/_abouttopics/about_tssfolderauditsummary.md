@@ -20,7 +20,20 @@ last_modified_at: 2021-02-11T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see FolderAuditSummary definition
+    Action
+        Action
+
+    AuditFolderId
+        Audit Folder Id
+
+    DateRecorded
+        Date Recorded
+
+    DisplayName
+        Display Name
+
+    Notes
+        Notes
 
 # METHODS
 

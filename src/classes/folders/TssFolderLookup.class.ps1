@@ -1,4 +1,7 @@
 class TssFolderLookup {
-    [int]$Id
-    [string]$FolderName
+    [int]
+    $Id
+
+    [string]
+    $FolderName
 }

@@ -45,7 +45,8 @@ class TssSecretDetailState {
     [string]
     $SecretState
 
-    [System.String[]] GetActions() {
+    [System.String[]]
+    GetActions() {
         if ($this.Actions) {
             $sortedActions = $this.Actions | Sort-Object
             return $sortedActions

@@ -20,7 +20,29 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see FolderSummary definition
+    FolderName
+        Folder name
+
+    FolderPath
+        Folder path
+
+    FolderTypeId
+        Folder type ID
+
+    Id
+        Folder ID
+
+    InheritPermissions
+        Whether the folder inherits permissions from its parent
+
+    InheritSecretPolicy
+        Whether the folder inherits the secret policy
+
+    ParentFolderId
+        Parent folder ID
+
+    SecretPolicyId
+        Secret policy ID
 
 # METHODS
 

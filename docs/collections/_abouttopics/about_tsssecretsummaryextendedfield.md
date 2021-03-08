@@ -20,9 +20,14 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see ISecretSummaryExtendedField definition
+    Name
+        Name
+
+    Value
+        Value
 
 # METHODS
 
 # RELATED LINKS:
+    TssSecretSummary
     Search-TssSecret

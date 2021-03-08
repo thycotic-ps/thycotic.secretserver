@@ -1,4 +1,7 @@
 class TssDelete {
-    [int]$Id
-    [string]$ObjectType
+    [int]
+    $Id
+
+    [string]
+    $ObjectType
 }

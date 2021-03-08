@@ -14,7 +14,11 @@ CONSTRUCTORS
     new()
 
 PROPERTIES
-    Documented in the REST API doc for Secret Server, see FolderLookup definition
+    Id
+        Folder ID
+
+    FolderName
+        Folder name
 
 METHODS
 

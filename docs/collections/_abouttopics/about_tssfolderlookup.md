@@ -20,7 +20,11 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see FolderLookup definition
+    Id
+        Folder ID
+
+    FolderName
+        Folder name
 
 # METHODS
 

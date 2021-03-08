@@ -1,0 +1,4 @@
+class TssRolePermission {
+    [string]
+    $Name
+}

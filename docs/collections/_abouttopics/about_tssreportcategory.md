@@ -14,13 +14,23 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     None
 
 # DESCRIPTION
-    The TssReportCategory class represents the ReportCategory object returned by Secret Server endpoint /reports/categories
+    The TssReportCategory class represents the ReportCategory object returned by Secret Server endpoint GET /reports/categories
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see ReportCategory definition
+    ReportCategoryDescription
+        Report Category description
+
+    ReportCategoryId
+        Report Category ID
+
+    ReportCategoryName
+        Report Category name
+
+    SortOrder
+        Sort Order in which the category should appear
 
 # METHODS
 

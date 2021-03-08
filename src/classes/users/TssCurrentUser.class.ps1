@@ -1,16 +1,3 @@
-class TssMenuLink {
-    [string]
-    $Link
-
-    [string]
-    $Name
-}
-
-class TssRolePermission {
-    [string]
-    $Name
-}
-
 class TssCurrentUser {
     [TssMenuLink[]]
     $AdminLinks
@@ -45,7 +32,8 @@ class TssCurrentUser {
     [string]
     $UserTheme
 
-    [TssRolePermission[]] GetPermissions() {
+    [TssRolePermission[]]
+    GetPermissions() {
         if ($this.Permissions) {
             $sortedPerms = $this.Permissions | Sort-Object Name
             return $sortedPerms

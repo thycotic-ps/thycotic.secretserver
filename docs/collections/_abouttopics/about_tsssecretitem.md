@@ -20,7 +20,38 @@ last_modified_at: 2021-02-15T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see RestSecretItem definition
+    FieldDescription
+        Field description
+
+    FieldId
+        Field ID
+
+    FieldName
+        Field name
+
+    FileAttachmentId
+        File attachment ID (used for file attachments)
+
+    Filename
+        File name (used for file attachments)
+
+    IsFile
+        Whether the field is a file attachment
+
+    IsNotes
+        Whether the field is notes
+
+    IsPassword
+        Whether the field is a password
+
+    ItemId
+        Item ID
+
+    ItemValue
+        Item value
+
+    Slug
+        Field Name Slug
 
 # METHODS
 

@@ -1,5 +1,12 @@
 class TssVersion {
-    hidden [boolean]$IsLatest
-    hidden [string]$LatestVersion
-    [string]$Version
+    hidden
+    [boolean]
+    $IsLatest
+
+    hidden
+    [string]
+    $LatestVersion
+
+    [string]
+    $Version
 }
