@@ -72,6 +72,10 @@ Describe "$commandName works" {
         It "Should output <_> property" -TestCases $props {
             $objectMultiple[0].PSObject.Properties.Name | Should -Contain $_
         }
+        It "Should output Secret Name with special characters" {
+            $secret = $objectMultiple.Where{$_.SecretName -eq 'Test - Secret With ! Special: Characters'}
+            $secret.SecretName | Should -Be 'Test - Secret With ! Special: Characters'
+        }
         It "Should output <_> property" -TestCases $props2 {
             $object[0].PSObject.Properties.Name | Should -Contain $_
         }

@@ -24,7 +24,7 @@ process {
             $outLookup = [TssSecretLookup]::new()
             $outLookup.Id = $f.Id
 
-            $itemParse = $f.value.Split('-').Trim()
+            $itemParse = $f.value.Split('-',3).Trim()
             $outLookup.FolderId = $itemParse[0]
             $outLookup.SecretTemplateId = $itemParse[1]
             $outLookup.SecretName = $itemParse[2]
