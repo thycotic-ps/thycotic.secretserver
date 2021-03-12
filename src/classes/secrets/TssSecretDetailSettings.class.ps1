@@ -12,10 +12,10 @@ class TssSecretDetailSettings {
     [string]
     $ExpirationType
 
-    [TssOneTimePasswordSettings[]]
+    [TssOneTimePasswordSettings]
     $OneTimePasswordSettings
 
-    [TssRdpLauncherSettings[]]
+    [TssRdpLauncherSettings]
     $RdpLauncherSettings
 
     [boolean]
@@ -27,6 +27,6 @@ class TssSecretDetailSettings {
     [boolean]
     $SendEmailWhenViewed
 
-    [TssSshLauncherSettings[]]
+    [TssSshLauncherSettings]
     $SshLauncherSettings
 }
