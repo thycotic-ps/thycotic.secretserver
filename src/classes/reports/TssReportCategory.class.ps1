@@ -1,13 +1,10 @@
-class TssReportCategoryDetail {
+class TssReportCategory {
     [int]
-    $ReportCategoryId = -1
+    $Id
 
     [string]
-    $ReportCategoryName
+    $Name
 
     [string]
-    $ReportCategoryDescription
-
-    [int]
-    $SortOrder
+    $Description
 }

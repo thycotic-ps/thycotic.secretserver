@@ -30,10 +30,9 @@ function Remove-ReportCategory {
     [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Category ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -67,10 +66,7 @@ function Remove-ReportCategory {
                 }
 
                 if ($restResponse) {
-                    [TssDelete]@{
-                        Id         = $id
-                        ObjectType = 'ReportCategory'
-                    }
+                    [TssDelete]$restResponse
                 }
             }
         } else {

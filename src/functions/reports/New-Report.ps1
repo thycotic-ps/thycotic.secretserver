@@ -34,10 +34,9 @@ function New-Report {
     [OutputType('TssReport')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Name of the report
         [Parameter(Mandatory,
@@ -48,9 +47,7 @@ function New-Report {
         $ReportName,
 
         # Category for the report
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 2)]
+        [Parameter(Mandatory,ValueFromPipeline,Position = 2)]
         [int]
         $CategoryId,
 
@@ -85,7 +82,6 @@ function New-Report {
         $tssNewReportParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
     }
-
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssNewReportParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -126,7 +122,7 @@ function New-Report {
             }
 
             if ($restResponse) {
-                . $TssReportObject $restResponse
+                [TssReport]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

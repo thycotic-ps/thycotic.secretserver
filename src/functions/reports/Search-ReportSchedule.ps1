@@ -85,7 +85,7 @@ function Search-ReportSchedule {
                 Write-Warning "No report schedules found"
             }
             if ($restResponse.records) {
-                . $TssReportScheduleSummaryObject $restResponse.records
+                [TssReportScheduleSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

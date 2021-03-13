@@ -28,10 +28,9 @@ function Get-ReportCategory {
     [OutputType('TssReportCategory')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Report Category Id, returns all if not provided
         [Parameter(ValueFromPipelineByPropertyName)]
@@ -48,7 +47,6 @@ function Get-ReportCategory {
         $tssReportCatParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
     }
-
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssReportCatParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -60,7 +58,6 @@ function Get-ReportCategory {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
 
-
                     Write-Verbose "$($invokeParams.Method) $uri"
                     try {
                         $restResponse = Invoke-TssRestApi @invokeParams
@@ -71,7 +68,7 @@ function Get-ReportCategory {
                     }
 
                     if ($restResponse) {
-                        . $TssReportCategoryObject $restResponse
+                        [TssReportCategoryDetail]$restResponse
                     }
                 }
             }
@@ -80,7 +77,6 @@ function Get-ReportCategory {
                 $uri = $TssSession.ApiUrl, 'reports/categories' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
-
 
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
@@ -92,7 +88,7 @@ function Get-ReportCategory {
                 }
 
                 if ($restResponse) {
-                    . $TssReportCategoryObject $restResponse.model -All:$All
+                    [TssReportCategory[]]$restResponse.model
                 }
             }
         } else {
