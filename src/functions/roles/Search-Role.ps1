@@ -94,7 +94,7 @@ function Search-Role {
                 Write-Warning "No Roles found"
             }
             if ($restResponse.records) {
-                . $TssRoleObject $restResponse.records
+                [TssRole[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
