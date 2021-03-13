@@ -80,7 +80,7 @@ function Search-DirectoryServiceDomain {
                 Write-Warning "No Directory Domain found"
             }
             if ($restResponse.records) {
-                . $TssDomainSummaryObject $restResponse.records
+                [TssDomainSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
