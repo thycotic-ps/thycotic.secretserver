@@ -72,7 +72,7 @@ function Get-Configuration {
             }
 
             if ($restResponse) {
-                . $TssConfigurationGeneralObject $restResponse
+                [TssConfigurationGeneral]$restResponse
             }
         } else {
             Write-Warning "No valid session found"
