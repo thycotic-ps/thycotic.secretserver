@@ -22,10 +22,9 @@ function Search-Group {
     [OutputType('TssGroupSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Active Directory Domain Id
         [int]
@@ -87,7 +86,7 @@ function Search-Group {
                 Write-Warning "No groups found"
             }
             if ($restResponse.records) {
-                . $TssGroupSummaryObject $restResponse.records
+                [TssGroupSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
