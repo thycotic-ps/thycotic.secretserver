@@ -2,7 +2,8 @@ BeforeDiscovery {
     $moduleRoot = (Resolve-Path "$PSScriptRoot\..\src").Path
     $allFiles = Get-ChildItem -Path $moduleRoot -Recurse -Filter "*.ps1" |
     Where-Object FullName -NotLike "$moduleRoot\tests\*" |
-    Where-Object FullName -NotLike "$moduleRoot\Build.ps1"
+    Where-Object FullName -NotLike "$moduleRoot\Build.ps1" |
+    Where-Object FullName -NotLike "*class.ps1"
 }
 Describe "Verifying module PS1 files" -Foreach $allFiles {
     BeforeAll {
