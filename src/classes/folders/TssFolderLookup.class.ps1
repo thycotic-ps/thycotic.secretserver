@@ -3,5 +3,5 @@ class TssFolderLookup {
     $Id
 
     [string]
-    $FolderName
+    $Value
 }

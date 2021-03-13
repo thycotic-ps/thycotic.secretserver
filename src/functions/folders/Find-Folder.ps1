@@ -22,10 +22,9 @@ function Find-Folder {
     [OutputType('TssFolderLookup')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Parent Folder Id
         [Alias("FolderId")]
@@ -98,7 +97,7 @@ function Find-Folder {
                 Write-Warning "No Folder found"
             }
             if ($restResponse.records) {
-                . $TssFolderLookupObject $restResponse.records
+                [TssFolderLookup[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

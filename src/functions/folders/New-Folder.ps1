@@ -9,22 +9,31 @@ function New-Folder {
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $folderStub = Get-TssFolderStub -TssSession $session
-    New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
+    $folderStub.FolderName = 'tssNewFolder'
+    $folderStub.ParentFolderId = -1
+    New-TssFolder -TssSession $session -FolderStub $folderStub
 
-    Creates a folder named "tssNewFolder" at the root of Secret Server application
+    Creates a new root folder, named "tssNewFolder"
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $folderStub = Get-TssFolderStub -TssSession $session
-    New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
+    $folderStub.FolderName 'IT Dept'
+    $folderStub.ParentFolderId = 27
+    $folderStub.InheritPermissions = $false
+    New-TssFolder -TssSession $session -FolderStub $folderStub
 
-    Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
+    Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
+    $folderStub.FolderName 'Marketing Dept'
+    $folderStub.ParentFolderId = 27
+    $folderStub.InheritPermissions = $true
+    $folderStub.InheritSecretPolicy = $true
+    New-TssFolder -TssSession $session -FolderStub $folderStub
 
-    Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
+    Creates a folder named "Marketing Dept" under parent folder 27 with Inheritance enabled for Permissions and Secret Policy
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
@@ -36,39 +45,14 @@ function New-Folder {
     [OutputType('TssFolder')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Input object obtained via Get-TssFolderStub
         [Parameter(Mandatory, Position = 1, ValueFromPipeline)]
         [TssFolder]
-        $FolderStub,
-
-        # Folder Name
-        [Parameter(Mandatory)]
-        [string]
-        $FolderName,
-
-        # Parent Folder ID, use -1 to create root folder
-        [Parameter(Mandatory)]
-        [Alias('ParentFolder')]
-        [int]
-        $ParentFolderId,
-
-        # Secret Policy ID
-        [Alias('SecretPolicy')]
-        [int]
-        $SecretPolicyId,
-
-        # Inherit Permissions
-        [switch]
-        $InheritPermissions,
-
-        # Inherit Secret Policy
-        [switch]
-        $InheritSecretPolicy
+        $FolderStub
     )
 
     begin {
@@ -85,19 +69,6 @@ function New-Folder {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
 
-            $FolderStub.FolderName = $FolderName
-            $FolderStub.ParentFolderId = $ParentFolderId
-
-            if ($tssParams.ContainsKey('SecretPolicyId')) {
-                $FolderStub.SecretPolicyId = $SecretPolicyId
-            }
-            if ($tssParams.ContainsKey('InheritPermissions')) {
-                $FolderStub.InheritPermissions = $InheritPermissions
-            }
-            if ($tssParams.ContainsKey('InheritSecretPolicy')) {
-                $FolderStub.InheritSecretPolicy = $InheritSecretPolicy
-            }
-
             $invokeParams.Body = ($FolderStub | ConvertTo-Json)
 
             Write-Verbose "$($invokeParams.Method) $uri with:`n $FolderStub"
@@ -110,7 +81,7 @@ function New-Folder {
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                . $TssFolderObject $restResponse
+                [TssFolder]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

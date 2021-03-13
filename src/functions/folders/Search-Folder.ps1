@@ -22,10 +22,9 @@ function Search-Folder {
     [OutputType('TssFolderSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Parent Folder Id
         [Alias("FolderId")]
@@ -77,7 +76,6 @@ function Search-Folder {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
-
             Write-Verbose "$($invokeParams.Method) $uri with $body"
             try {
                 $restResponse = Invoke-TssRestApi @invokeParams
@@ -91,7 +89,7 @@ function Search-Folder {
                 Write-Warning "No Folder found"
             }
             if ($restResponse.records) {
-                . $TssFolderSummaryObject $restResponse.records
+                [TssFolderSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

@@ -34,10 +34,9 @@ function Get-Folder {
     [OutputType('TssFolder')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Folder ID to retrieve
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -83,7 +82,7 @@ function Get-Folder {
                 }
 
                 if ($restResponse) {
-                    . $TssFolderObject $restResponse
+                    [TssFolder[]]$restResponse
                 }
             }
         } else {

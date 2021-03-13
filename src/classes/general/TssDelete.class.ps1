@@ -4,4 +4,8 @@ class TssDelete {
 
     [string]
     $ObjectType
+
+    hidden
+    [string[]]
+    $ResponseCodes
 }

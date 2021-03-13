@@ -22,10 +22,9 @@ function Get-FolderAudit {
     [OutputType('TssFolderAuditSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -59,7 +58,7 @@ function Get-FolderAudit {
                 }
 
                 if ($restResponse.records) {
-                    . $TssFolderAuditSummaryObject $restResponse.records
+                    [TssFolderAuditSummary[]]$restResponse.records
                 }
             }
         } else {

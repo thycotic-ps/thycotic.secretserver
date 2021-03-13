@@ -22,10 +22,9 @@ function Get-FolderStub {
     [OutputType('TssFolder')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -52,7 +51,7 @@ function Get-FolderStub {
             }
 
             if ($restResponse) {
-                . $TssFolderObject $restResponse
+                [TssFolder]$restResponse
             }
         } else {
             Write-Warning "No valid session found"
