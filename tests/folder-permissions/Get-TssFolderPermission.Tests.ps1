@@ -23,28 +23,49 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
-            PersonalAccessToken = $session.AccessToken
+Describe "$commandName functions" {
+    BeforeAll {
+        $session = [pscustomobject]@{
+            ApiVersion   = 'api/v1'
+            Take         = 2147483647
+            SecretServer = 'http://alpha/'
+            ApiUrl       = 'http://alpha/api/v1'
+            AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZ'
+            RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51Qplj'
+            TokenType    = 'bearer'
+            ExpiresIn    = 1199
         }
-        $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
+        Mock -Verifiable -CommandName Get-TssVersion -MockWith {
+            return @{
+                Version = '10.9.000033'
+            }
+        }
 
-        $searchFolderPerm = Search-TssFolderPermission -TssSession $session -FolderId $tssSecretFolder.id
-        $object = Get-TssFolderPermission -TssSession $session -Id $searchFolderPerm.FolderPermissionId
-        $session.SessionExpire()
-        $props = 'FolderAccessRoleId', 'GroupId', 'SecretAccessRoleName'
+        Mock -Verifiable -CommandName Invoke-TssRestApi -ParameterFilter { $Uri -eq "$($session.ApiUrl)/folder-permissions/888" } -MockWith {
+            return [pscustomobject]@{
+                folderAccessRoleId   = 10
+                folderAccessRoleName = 'Edit'
+                folderId             = 999
+                groupId              = 0
+                groupName            = ""
+                id                   = 888
+                knownAs              = $null
+                secretAccessRoleId   = 11
+                secretAccessRoleName = ""
+                userId               = 497
+                userName             = 'Something'
+            }
+        }
+
+        $object = Get-TssFolderPermission -TssSession $session -Id 888
+        Assert-VerifiableMock
     }
     Context "Checking" -Foreach @{object = $object} {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
-        It "Should output <_> property" -TestCases $props {
-            $object[0].PSObject.Properties.Name | Should -Contain $_
+        It "Should output <_> property" -TestCases 'FolderAccessRoleId', 'GroupId', 'SecretAccessRoleName' {
+            $object.PSObject.Properties.Name | Should -Contain $_
         }
     }
 }

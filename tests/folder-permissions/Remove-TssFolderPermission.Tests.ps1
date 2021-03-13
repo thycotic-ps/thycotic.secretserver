@@ -25,29 +25,32 @@ Describe "$commandName verify parameters" {
 }
 Describe "$commandName functions" {
     BeforeAll {
-        . ([IO.Path]::Combine([string]$PSScriptRoot,'..','..', 'src', 'classes', 'TssSession.class.ps1'))
-        Mock -ModuleName Thycotic.SecretServer -CommandName Invoke-TssRestApi -MockWith {
-            return @{
-                Id            = $folderPermissionId
-                ObjectType    = $objectType
-                responseCodes = @{}
-            }
+        $session = [pscustomobject]@{
+            ApiVersion   = 'api/v1'
+            Take         = 2147483647
+            SecretServer = 'http://alpha/'
+            ApiUrl       = 'http://alpha/api/v1'
+            AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZ'
+            RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51Qplj'
+            TokenType    = 'bearer'
+            ExpiresIn    = 1199
         }
-        Mock -ModuleName Thycotic.SecretServer -Command New-TssSession -MockWith {
-            return [TssSession]@{
-                ApiVersion   = 'api/v1'
-                Take         = 2147483647
-                SecretServer = 'http://alpha/'
-                ApiUrl       = 'http://alpha/api/v1'
-                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZeRE3-sYkrTRt5zp_'
-                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51QpljgpuZRVkse4xnv416'
-                TokenType    = 'bearer'
-                ExpiresIn    = 1199
+        Mock -Verifiable -CommandName Get-TssVersion -MockWith {
+            return @{
+                Version = '10.9.000033'
             }
         }
 
-        $session = New-TssSession -SecretServer 'http://alpha' -AccessToken (Get-Random)
+        Mock -Verifiable -CommandName Invoke-TssRestApi -MockWith {
+            return [pscustomobject]@{
+                Id            = 999
+                ObjectType    = 'FolderPermission'
+                responseCodes = @{}
+            }
+        }
+
         $object = Remove-TssFolderPermission -TssSession $session -Id 34
+        Assert-VerifiableMock
     }
     Context "Checking" -Foreach {object = $object}{
         It "Should not be empty" {
@@ -55,6 +58,9 @@ Describe "$commandName functions" {
         }
         It "Should have property <_>" -TestCases 'Id','ObjectType' {
             $object[0].PSObject.Properties.Name | Should -Contain $_
+        }
+        It "Should have ID of 999" {
+            $object.Id | Should -Be 999
         }
     }
 }

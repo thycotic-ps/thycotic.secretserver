@@ -9,7 +9,7 @@ Describe "$commandName verify parameters" {
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -27,18 +27,18 @@ Describe "$commandName works" {
     BeforeDiscovery {
         $session = New-TssSession -SecretServer $ss -Credential $ssCred
         $invokeParams = @{
-            Uri = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty = 'records'
+            Uri                 = "$ss/api/v1/folders?take=$($session.take)"
+            ExpandProperty      = 'records'
             PersonalAccessToken = $session.AccessToken
         }
         $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderPath -eq '\tss_module_testing'})
+        $tssSecretFolder = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing' })
 
         $object = Search-TssFolderPermission -TssSession $session -FolderId $tssSecretFolder.id
         $session.SessionExpire()
         $props = 'FolderPermissionId', 'FolderId', 'UserName'
     }
-    Context "Checking" -Foreach @{object = $object} {
+    Context "Checking" -ForEach @{object = $object } {
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
