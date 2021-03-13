@@ -21,10 +21,9 @@ function Stop-SecretChangePassword {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret Id
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -60,8 +59,8 @@ function Stop-SecretChangePassword {
                 if ($restResponse.success) {
                     [PSCustomObject]@{
                         SecretId = $secret
-                        Status = $true
-                        Notes = $null
+                        Status   = $true
+                        Notes    = $null
                     }
                 }
             }

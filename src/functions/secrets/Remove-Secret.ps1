@@ -22,10 +22,9 @@ function Remove-Secret {
     [OutputType('TssDelete')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret ID to disable (mark inactive)
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -60,10 +59,7 @@ function Remove-Secret {
                 }
 
                 if ($restResponse) {
-                    [TssDelete]@{
-                        Id         = $restResponse.id
-                        ObjectType = $restResponse.objectType
-                    }
+                    [TssDelete]$restResponse
                 }
             }
         } else {

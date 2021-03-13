@@ -40,10 +40,9 @@ function New-Secret {
     [OutputType('TssSecret')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Input object obtained via Get-TssSecretStub
         [Parameter(Mandatory, Position = 1)]
@@ -81,7 +80,7 @@ function New-Secret {
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                . $TssSecretObject $restResponse
+                [TssSecret]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

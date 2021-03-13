@@ -69,7 +69,7 @@ function Get-SecretAudit {
                 }
 
                 if ($restResponse) {
-                    . $TssSecretAuditObject $restResponse.records
+                    [TssSecretAudit[]]$restResponse.records
                 }
             }
         } else {

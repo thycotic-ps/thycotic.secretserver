@@ -118,6 +118,10 @@ class TssSecret {
     [boolean]
     $WebLauncherRequiresIncognitoMode
 
+    hidden
+    [string[]]
+    $ResponseCodes
+
     [System.Management.Automation.PSCredential]
     GetCredential() {
         $username = ($this.Items | Where-Object FieldName -EQ 'username').ItemValue

@@ -4,6 +4,7 @@ class TssSecretItem {
 
     [int]
     $FieldId
+
     [string]
     $FieldName
 

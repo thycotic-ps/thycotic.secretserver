@@ -142,7 +142,7 @@ function Get-Secret {
                 }
 
                 if ($restResponse) {
-                    . $TssSecretObject $restResponse
+                    [TssSecret]$restResponse
                 }
             }
         } else {

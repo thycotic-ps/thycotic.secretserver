@@ -22,10 +22,9 @@ function Find-Secret {
     [OutputType('TssSecretLookup')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret ID to retrieve
         [Parameter(ParameterSetName = "filter")]
@@ -252,14 +251,25 @@ function Find-Secret {
                 . $ErrorHandling $err
             }
 
-            if ($tssParams['Id']) {
-                . $TssSecretLookupObject $restResponse -IsId
+            if ($tssParams.ContainsKey('Id') -and $restResponse) {
+                [TssSecretLookup]@{
+                    Id = $restResponse.Id
+                    SecretName = $restResponse.value
+                }
             } else {
                 if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                     Write-Warning "No secrets found"
                 }
                 if ($restResponse) {
-                    . $TssSecretLookupObject $restResponse.records
+                    foreach ($secret in $restResponse.records) {
+                        $parsedValue = $secret.value.Split('-',3).Trim()
+                        [TssSecretLookup]@{
+                            Id = $secret.id
+                            FolderId = $parsedValue[0]
+                            SecretTemplateId = $parsedValue[1]
+                            SecretName = $parsedValue[2]
+                        }
+                    }
                 }
             }
         } else {

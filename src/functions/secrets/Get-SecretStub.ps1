@@ -22,10 +22,9 @@ function Get-SecretStub {
     [OutputType('TssSecret')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret Template ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -69,7 +68,7 @@ function Get-SecretStub {
             }
 
             if ($restResponse) {
-                . $TssSecretObject $restResponse
+                [TssSecret]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

@@ -57,10 +57,9 @@ function Set-Secret {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret Id to modify
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -266,7 +265,6 @@ function Set-Secret {
                 $restrictedParams += $r
             }
         }
-
 
         $invokeParamsField = . $GetInvokeTssParams $TssSession
         $invokeParamsEmail = . $GetInvokeTssParams $TssSession

@@ -38,6 +38,9 @@ class TssSecretSummary {
     [boolean]
     $IsOutOfSync
 
+    [string]
+    $OutOfSyncReason
+
     [boolean]
     $IsRestricted
 
@@ -54,9 +57,6 @@ class TssSecretSummary {
     [string]
     $Name
 
-    [string]
-    $OutOfSyncReason
-
     [boolean]
     $RequiresApproval
 
@@ -71,4 +71,8 @@ class TssSecretSummary {
 
     [int]
     $SiteId
+
+    hidden
+    [string[]]
+    $ResponseCodes
 }

@@ -52,10 +52,9 @@ function Search-Secret {
     [OutputType('TssSecretSummary')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Return only secrets within a certain folder
         [Parameter(ParameterSetName = "filter")]
@@ -282,7 +281,7 @@ function Search-Secret {
                 Write-Warning "No secrets found"
             }
             if ($restResponse.records) {
-                . $TssSecretSummaryObject $restResponse.records
+                [TssSecretSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

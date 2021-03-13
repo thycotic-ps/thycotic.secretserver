@@ -40,7 +40,7 @@ function Get-SecretSummary {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'summary' -join '/'
@@ -56,8 +56,18 @@ function Get-SecretSummary {
                     . $ErrorHandling $err
                 }
 
+                if (-not $restResponse.lastPasswordChangeAttempt) {
+                    $restResponse.lastPasswordChangeAttempt = [datetime]::MinValue
+                }
+                if (-not $restResponse.lastAccessed) {
+                    $restResponse.lastAccessed = [datetime]::MinValue
+                }
+                if (-not $restResponse.createDate) {
+                    $restResponse.createDate = [datetime]::MinValue
+                }
+
                 if ($restResponse) {
-                    . $TssSecretSummaryObject $restResponse
+                    [TssSecretSummary]$restResponse
                 }
             }
         } else {

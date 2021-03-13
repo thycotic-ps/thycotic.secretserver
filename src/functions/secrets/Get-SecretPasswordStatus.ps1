@@ -22,11 +22,9 @@ function Get-SecretPasswordStatus {
     [OutputType('TssSecretPasswordStatus')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [TssSession]
-       $TssSession,
+        $TssSession,
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -42,7 +40,7 @@ function Get-SecretPasswordStatus {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $secret, 'password-status' -join '/'
@@ -58,8 +56,10 @@ function Get-SecretPasswordStatus {
                     . $ErrorHandling $err
                 }
 
-                if ($restResponse) {
-                    . $TssSecretPasswordStatusObject $restResponse
+                if ($restResponse.status -ne 'None') {
+                    [TssSecretPasswordStatus]$restResponse
+                } else {
+                    Write-Host "No active password change found on Secret [$secret]"
                 }
             }
         } else {

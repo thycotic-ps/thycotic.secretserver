@@ -124,8 +124,6 @@ function Get-SecretField {
                     $invokeParams.Method = 'GET'
                 }
 
-
-
                 if ($tssParams['OutFile']) {
                     if (Test-Path -Path $OutFile -PathType Container) {
                         Write-Error "OutFile [$OutFile] provided is a directory, please provide full file path"

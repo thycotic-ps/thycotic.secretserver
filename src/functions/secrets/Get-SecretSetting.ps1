@@ -40,7 +40,7 @@ function Get-SecretSetting {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'settings' -join '/'
@@ -56,8 +56,12 @@ function Get-SecretSetting {
                     . $ErrorHandling $err
                 }
 
+                if (-not $restResponse.ExpirationDate) {
+                    $restResponse.ExpirationDate = [datetime]::MinValue
+                }
+
                 if ($restResponse) {
-                    . $TssSecretDetailSettingObject $restResponse
+                    [TssSecretDetailSettings]$restResponse
                 }
             }
         } else {
