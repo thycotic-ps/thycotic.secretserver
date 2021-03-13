@@ -22,10 +22,9 @@ function Get-SecretTemplate {
     [OutputType('TssSecretTemplate')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [TssSession]$TssSession,
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
 
         # Secret template ID to retrieve
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -59,7 +58,7 @@ function Get-SecretTemplate {
                 }
 
                 if ($restResponse) {
-                    . $TssSecretTemplateObject $restResponse
+                    [TssSecretTemplate]$restResponse
                 }
             }
         } else {
