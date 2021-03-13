@@ -62,7 +62,7 @@ function Get-FolderPermission {
                 }
 
                 if ($restResponse) {
-                    . $TssFolderPermissionObject $restResponse
+                    [TssFolderPermissionSummary]$restResponse
                 }
             }
         } else {

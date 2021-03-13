@@ -89,7 +89,7 @@ function New-FolderPermission {
                 }
 
                 if ($restResponse) {
-                    . $TssFolderPermissionObject $restResponse
+                    [TssFolderPermissionSummary]$restResponse
                 }
             } else {
                 Write-Error "Please provide one of the following parameters: -GroupId or -UserId"

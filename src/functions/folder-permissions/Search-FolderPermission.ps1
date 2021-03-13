@@ -89,7 +89,7 @@ function Search-FolderPermission {
                     Write-Warning "No Folder Permissions found"
                 }
                 if ($restResponse.records) {
-                    . $TssFolderPermissionSummaryObject $restResponse.records
+                    [TssFolderPermissionSummary[]]$restResponse.records
                 }
             } else {
                 Write-Error "Please provide one of the following parameters: -FolderId, -GroupId or -UserId"

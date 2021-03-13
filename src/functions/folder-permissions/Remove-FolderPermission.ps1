@@ -67,10 +67,7 @@ function Remove-FolderPermission {
                 }
 
                 if ($restResponse) {
-                    [TssDelete]@{
-                        Id = $restResponse.id
-                        ObjectType = $restResponse.objectType
-                    }
+                    [TssDelete]$restResponse
                 }
             }
         } else {
