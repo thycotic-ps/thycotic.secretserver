@@ -4,7 +4,4 @@ class TssRoleSummary {
 
     [int]
     $RoleId
-
-    [int]
-    $UserId
 }

@@ -100,6 +100,14 @@ function Find-User {
                 Write-Warning "No Users found"
             }
             if ($restResponse.records) {
+                foreach ($user in $restResponse.records) {
+                    $parsedValue = $user.value.Split('-',2).Trim()
+                    [TssUserLookup]@{
+                        Id = $user.id
+                        Username = $parsedValue[0]
+                        Email = $parsedValue[1]
+                    }
+                }
                 . $TssUserLookupObject $restResponse.records
             }
         } else {

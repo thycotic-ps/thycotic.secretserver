@@ -41,24 +41,24 @@ function Show-CurrentUser {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-                $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'users', 'current' -join '/'
-                $invokeParams.Uri = $uri
-                $invokeParams.Method = 'GET'
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            $restResponse = $null
+            $uri = $TssSession.ApiUrl, 'users', 'current' -join '/'
+            $invokeParams.Uri = $uri
+            $invokeParams.Method = 'GET'
 
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
-                try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
-                } catch {
-                    Write-Warning "Issue getting current user"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            try {
+                $restResponse = Invoke-TssRestApi @invokeParams
+            } catch {
+                Write-Warning "Issue getting current user"
+                $err = $_
+                . $ErrorHandling $err
+            }
 
-                if ($restResponse) {
-                    . $TssCurrentUserObject $restResponse
-                }
+            if ($restResponse) {
+                [TssCurrentUser]$restResponse
+            }
         } else {
             Write-Warning "No valid session found"
         }

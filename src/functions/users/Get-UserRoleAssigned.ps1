@@ -23,11 +23,9 @@ function Get-UserRoleAssigned {
     [OutputType('TssUserRoleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [TssSession]
-       $TssSession,
+        $TssSession,
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -61,7 +59,7 @@ function Get-UserRoleAssigned {
                 }
 
                 if ($restResponse.records) {
-                    . $TssUserRoleSummaryObject $restResponse.records
+                    [TssUserRoleSummary[]]$restResponse.records
                 }
             }
         } else {

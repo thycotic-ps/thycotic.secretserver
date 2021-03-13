@@ -22,11 +22,9 @@ function Get-UserRole {
     [OutputType('TssRoleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [TssSession]
-       $TssSession,
+        $TssSession,
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
@@ -61,7 +59,7 @@ function Get-UserRole {
                 }
 
                 if ($restResponse.records.Count -gt 0) {
-                    . $TssRoleSummaryObject $restResponse.records $user
+                    [TssRoleSummary[]]$restResponse.records
                 } else {
                     Write-Warning "User ID [$user] not found"
                 }

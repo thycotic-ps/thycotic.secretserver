@@ -100,7 +100,7 @@ function Search-User {
                 Write-Warning "No Users found"
             }
             if ($restResponse.records) {
-                . $TssUserSummaryObject $restResponse.records
+                [TssUserSummary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
