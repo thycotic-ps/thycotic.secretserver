@@ -147,7 +147,7 @@ function Set-Secret {
         [securestring]
         $AutoChangeNextPassword,
 
-        # Enable Folder inherit permissions
+        # Whether the Secret inherits permissions from the containing folder
         [Parameter(ParameterSetName = 'all')]
         [Alias('EnableInheritPermissions')]
         [switch]
@@ -205,6 +205,7 @@ function Set-Secret {
         # Secret Template (ID)
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Alias('TemplateId')]
         [int]
         $Template,
 
