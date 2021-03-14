@@ -60,10 +60,6 @@ Describe "$commandName functions" {
             $object = New-TssFolderPermission -TssSession $session -FolderId 999 -UserId 497 -FolderAccessRoleName Edit -SecretAccessRoleName None
             Assert-VerifiableMock
         }
-        BeforeEach {
-            # $session = New-TssSession -SecretServer 'http://alpha' -AccessToken (Get-Random)
-
-        }
         It "Should not be empty" {
             $object | Should -Not -BeNullOrEmpty
         }
