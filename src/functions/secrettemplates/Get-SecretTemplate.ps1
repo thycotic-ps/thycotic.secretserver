@@ -43,7 +43,7 @@ function Get-SecretTemplate {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($template in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secret-templates', $template.ToString() -join '/'
+                $uri = $TssSession.ApiUrl, 'secret-templates', $template -join '/'
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
 

@@ -43,7 +43,7 @@ function Remove-Folder {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($folder in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'folders', $folder.ToString() -join '/'
+                $uri = $TssSession.ApiUrl, 'folders', $folder -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 

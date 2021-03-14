@@ -42,7 +42,7 @@ function Stop-SecretChangePassword {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString(), 'stop-password-change' -join '/'
+                $uri = $TssSession.ApiUrl, 'secrets', $secret, 'stop-password-change' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 

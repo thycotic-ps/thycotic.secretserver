@@ -88,7 +88,7 @@ function Get-SecretField {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
-                $uri = $TssSession.ApiUrl, 'secrets', $secret.ToString() -join '/'
+                $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
                 $restResponse = $null
 
                 $body = @{}

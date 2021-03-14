@@ -47,7 +47,7 @@ process {
             $returnProps = 'Version'
         }
         'Test-TssVersion' {
-            $getLatestUrl = "https://updates.thycotic.net/secretserver/LatestVersion.aspx?v=$($outVersion.Version.ToString())"
+            $getLatestUrl = "https://updates.thycotic.net/secretserver/LatestVersion.aspx?v=$($outVersion.Version)"
             Write-Verbose "Accessing $getLatestUrl to validate latest version"
             try {
                 $latest = Invoke-RestMethod -Uri $getLatestUrl -UseBasicParsing

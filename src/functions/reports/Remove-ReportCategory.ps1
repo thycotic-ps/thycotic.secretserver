@@ -49,18 +49,18 @@ function Remove-ReportCategory {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            foreach ($id in $ReportCategoryId) {
-                $uri = $TssSession.ApiUrl, 'reports/categories', $id.ToString() -join '/'
+            foreach ($category in $ReportCategoryId) {
+                $uri = $TssSession.ApiUrl, 'reports/categories', $category -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
 
                 Write-Verbose "$($invokeParams.Method) $uri"
-                if (-not $PSCmdlet.ShouldProcess("RemoteCategoryId: $id", "$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("RemoteCategoryId: $category", "$($invokeParams.Method) $uri")) { return }
                 try {
                     $restResponse = Invoke-TssRestApi @invokeParams
                 } catch {
-                    Write-Warning "Issue removing [$id]"
+                    Write-Warning "Issue removing [$category]"
                     $err = $_
                     . $ErrorHandling $err
                 }

@@ -43,7 +43,7 @@ function Get-Report {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($report in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'reports', $report.ToString() -join '/'
+                $uri = $TssSession.ApiUrl, 'reports', $report -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 

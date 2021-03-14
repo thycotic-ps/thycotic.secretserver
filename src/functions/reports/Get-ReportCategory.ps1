@@ -54,7 +54,7 @@ function Get-ReportCategory {
             if ($tssReportCatParams['Id']) {
                 foreach ($reportCategory in $Id) {
                     $restResponse = $null
-                    $uri = $TssSession.ApiUrl, 'reports/categories', $reportCategory.ToString() -join '/'
+                    $uri = $TssSession.ApiUrl, 'reports/categories', $reportCategory -join '/'
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
 
