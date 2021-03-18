@@ -280,8 +280,22 @@ function Search-Secret {
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
                 Write-Warning "No secrets found"
             }
+
             if ($restResponse.records) {
-                [TssSecretSummary[]]$restResponse.records
+                foreach ($secret in $restResponse.records) {
+
+                    if (-not $restResponse.lastPasswordChangeAttempt) {
+                        $secret.lastPasswordChangeAttempt = [datetime]::MinValue
+                    }
+                    if (-not $restResponse.lastAccessed) {
+                        $secret.lastAccessed = [datetime]::MinValue
+                    }
+                    if (-not $restResponse.createDate) {
+                        $secret.createDate = [datetime]::MinValue
+                    }
+
+                    [TssSecretSummary]$secret
+                }
             }
         } else {
             Write-Warning "No valid session found"
