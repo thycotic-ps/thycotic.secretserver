@@ -9,11 +9,11 @@ Describe "$commandName verify parameters" {
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
-        It "$commandName should not contain parameter: <_>" -TestCases $unknownParameters {
+        It "$commandName should not contain parameter= <_>" -TestCases $unknownParameters {
             $_ | Should -BeNullOrEmpty
         }
     }
@@ -23,50 +23,86 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $invokeParams = @{}
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-            $invokeParams.UseDefaultCredentials = $true
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            $invokeParams.PersonalAccessToken = $session.AccessToken
+Describe "$commandName functions" {
+    Context "Checking" {
+        BeforeAll {
+            $session = [pscustomobject]@{
+                ApiVersion   = 'api/v1'
+                Take         = 2147483647
+                SecretServer = 'http://alpha/'
+                ApiUrl       = 'http://alpha/api/v1'
+                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZ'
+                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51Qplj'
+                TokenType    = 'bearer'
+                ExpiresIn    = 1199
+            }
+            Mock -Verifiable -CommandName Get-TssVersion -MockWith {
+                return @{
+                    Version = '10.9.000033'
+                }
+            }
+
+            $SecretTemplateId = 6001
+            $folderId = 42
+            Mock -Verifiable -CommandName Invoke-TssRestApi -ParameterFilter { $Uri -eq "$($session.ApiUrl)/secrets/stub?secretTemplateId=$SecretTemplateId"; $Method -eq 'GET' } -MockWith {
+                return [pscustomobject]@{
+                    id                                 = 0
+                    name                               = ""
+                    secretTemplateId                   = $SecretTemplateId
+                    folderId                           = $folderId
+                    active                             = $true
+                    items                              = @( @{fileAttachmentId = ""; filename = ""; itemValue = ""; fieldId = 87; fieldName = 'Domain'; slug = 'domain'; fieldDescription = 'The Server or Location of the Active Directory Domain.'; isFile = $false; isNotes = $false; isPassword = $false }, @{fileAttachmentId = ""; filename = ""; itemValue = ""; fieldId = 90; fieldName = 'Username'; slug = 'username'; fieldDescription = 'The Domain Username.'; isFile = $false; isNotes = $false; isPassword = $false }, @{fileAttachmentId = ""; filename = ""; itemValue = ""; fieldId = 89; fieldName = 'Password'; slug = 'password'; fieldDescription = 'The password of the Domain User.'; isFile = $false; isNotes = $false; isPassword = $true }, @{fileAttachmentId = ""; filename = ""; itemValue = ""; fieldId = 88; fieldName = 'Notes'; slug = 'notes'; fieldDescription = 'Any additional notes.'; isFile = $false; isNotes = $true; isPassword = $false } )
+                    launcherConnectAsSecretId          = -1
+                    checkOutMinutesRemaining           = -1
+                    checkedOut                         = $false
+                    checkOutUserDisplayName            = ""
+                    checkOutUserId                     = 0
+                    isRestricted                       = $false
+                    isOutOfSync                        = $false
+                    outOfSyncReason                    = ""
+                    autoChangeEnabled                  = $false
+                    autoChangeNextPassword             = ""
+                    requiresApprovalForAccess          = $false
+                    requiresComment                    = $false
+                    checkOutEnabled                    = $false
+                    checkOutIntervalMinutes            = -1
+                    checkOutChangePasswordEnabled      = $false
+                    accessRequestWorkflowMapId         = ""
+                    proxyEnabled                       = $false
+                    sessionRecordingEnabled            = $false
+                    restrictSshCommands                = $false
+                    allowOwnersUnrestrictedSshCommands = $false
+                    isDoubleLock                       = $false
+                    doubleLockId                       = 0
+                    enableInheritPermissions           = $true
+                    passwordTypeWebScriptId            = -1
+                    siteId                             = -1
+                    enableInheritSecretPolicy          = $false
+                    secretPolicyId                     = -1
+                    lastHeartBeatStatus                = 'Pending'
+                    lastHeartBeatCheck                 = '1/1/0001 12:00:00 AM'
+                    failedPasswordChangeAttempts       = 0
+                    lastPasswordChangeAttempt          = '1/1/0001 12:00:00 AM'
+                    secretTemplateName                 = 'Active Directory Account'
+                    responseCodes                      = @{}
+                    webLauncherRequiresIncognitoMode   = $false
+                }
+            }
+            $object = Get-TssSecretStub -TssSession $session -SecretTemplateId $SecretTemplateId -FolderId $folderId
+            Assert-VerifiableMock
         }
-
-        $invokeParams.Uri = $session.ApiUrl, "secret-templates?take=$($session.take)&filter.searchText=tssFileTemplate" -join '/'
-        $invokeParams.ExpandProperty = 'records'
-
-        $getTemplates = Invoke-TssRestApi @invokeParams
-
-        $invokeParams.Uri = $session.ApiUrl, "folders?take=$($session.take)" -join '/'
-        $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing' })
-
-        $tssFileTemplateId = $getTemplates.id
-        $tssFolderId = $tssSecretFolder.Id
-
-        $stub = Get-TssSecretStub -TssSession $session -SecretTemplateId $tssFileTemplateId
-        $stubWithFolder = Get-TssSecretStub -TssSession $session -SecretTemplateId $tssFileTemplateId -FolderId $tssFolderId
-
-        $props = 'Name', 'Active', 'SecretTemplateId', 'FolderId'
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-    }
-    Context "Checking" -Foreach @{stub = $stub;stubWithFolder = $stubWithFolder} {
         It "Should not be empty" {
-            $stub | Should -Not -BeNullOrEmpty
+            $object | Should -Not -BeNullOrEmpty
         }
-        It "Should output <_> property" -TestCases $props {
-            $stub.PSObject.Properties.Name | Should -Contain $_
+        It "Should have property <_>" -TestCases 'Name', 'Active', 'SecretTemplateId', 'FolderId' {
+            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
-        It "Should have SecretTemplateID of <_>" -TestCases $tssFileTemplateId {
-            $stub.SecretTemplateId | Should -Be $_
+        It "Should have property FolderId set to 42" {
+            $object.FolderId | Should -Be 42
         }
-        It "Should have FolderId of <_>" -TestCases $tssFolderId {
-            $stubWithFolder.FolderId | Should -Be $_
+        It "Should update ItemValue using SetFieldValue() method" {
+            $object.SetFieldValue('notes','If I do do this update')
+            $object.GetFieldValue('notes') | Should -Be 'If I do do this update'
         }
     }
 }

@@ -1,16 +1,22 @@
-TOPIC
+---
+category: secrets
+title: "TssSecretItem"
+last_modified_at: 2021-03-17T00:00:00-00:00
+---
+
+# TOPIC
     This help topic describes the TssSecret class in the Thycotic.SecretServer module.
 
-CLASS
+# CLASS
     TssSecret
 
-INHERITANCE
+# INHERITANCE
     None
 
-DESCRIPTION
+# DESCRIPTION
     The TssSecret class represents the SecretModel object returned by Secret Server endpoint /secrets{id}.
 
-CONSTRUCTORS
+# CONSTRUCTORS
     new()
 
 # PROPERTIES
@@ -140,7 +146,7 @@ CONSTRUCTORS
     [System.String] GetFieldValue(string Slug)
         Pulls the ItemValue of the field based on the slug name
 
-    [Boolean] SetFieldValue(string Slug, Value)
+    [Void] SetFieldValue(string Slug, Value)
         Sets the ItemValue value of a Field item
 
 # RELATED LINKS:

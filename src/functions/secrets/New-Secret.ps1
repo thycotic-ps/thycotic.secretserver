@@ -18,9 +18,9 @@ function New-Secret {
         $user = $item.Username
         $currentTemplate.Name = "$machine $user"
         $currentTemplate.FolderId = 9
-        $currentTemplate.Items.SetFieldValue('Machine',$item.Machine) > $null
-        $currentTemplate.Items.SetFieldValue('Username',$item.Username) > $null
-        $currentTemplate.Items.SetFieldValue('Password',$item.Password) > $null
+        $currentTemplate.SetFieldValue('Machine',$item.Machine)
+        $currentTemplate.SetFieldValue('Username',$item.Username)
+        $currentTemplate.SetFieldValue('Password',$item.Password)
         $created = New-TssSecret -TssSession $session -SecretStub $currentTemplate -Verbose
         $createdSecrets += $created
         Remove-Variable currentTemplate,machine,user -Force

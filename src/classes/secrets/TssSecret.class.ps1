@@ -134,4 +134,13 @@ class TssSecret {
         $value = $this.Items.Where( { $_.Slug -eq $Slug }).ItemValue
         return $value
     }
+
+    [void]
+    SetFieldValue([string]$Slug,$NewValue) {
+        foreach ($i in $this.Items) {
+            if ($i.Slug -eq $Slug) {
+                $i.ItemValue = $NewValue
+            }
+        }
+    }
 }

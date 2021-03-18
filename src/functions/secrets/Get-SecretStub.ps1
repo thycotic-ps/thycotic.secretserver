@@ -12,6 +12,14 @@ function Get-SecretStub {
 
     Return the Active Directory template as an object
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $newSecret = Get-TssSecretStub -TssSession $session -SecretTemplateId 6001
+    $newSecret.Name = 'IT Dept Domain Admin'
+    $newSecret.SetFieldValue('username','therealboss')
+
+    Getting the Active Directory template stub object, setting the Name and Username on the Secret stub.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub
 
@@ -53,10 +61,8 @@ function Get-SecretStub {
             if ($tssParams['FolderId']) {
                 $uri = $uri, "folderId=$FolderId" -join '&'
             }
-
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
-
 
             Write-Verbose "$($invokeParams.Method) $uri"
             try {

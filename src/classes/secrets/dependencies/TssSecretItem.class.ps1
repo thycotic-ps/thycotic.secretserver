@@ -31,12 +31,4 @@ class TssSecretItem {
 
     [string]
     $Slug
-
-    [boolean]
-    SetFieldValue([string]$Slug,$Value) {
-        if ($this.Slug -eq $Slug) {
-            $this.ItemValue = $Value
-        }
-        return $true
-    }
 }
