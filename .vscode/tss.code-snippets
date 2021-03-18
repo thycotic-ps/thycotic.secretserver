@@ -612,5 +612,26 @@
             "    ${4:Function name utilizing it, list multiple if it applies}"
         ],
         "description": "template for the about_classname_help.txt files"
+    },
+    "Generic API call": {
+        "prefix": "tssapi",
+        "body": [
+            "\\$SecretServerHost = '${1:SS URL}'",
+            "\\$apiUrl = \"${1}/api/v1\"",
+            "",
+            "\\$Body = @{",
+            "    \"grant_type\" = \"password\"",
+            "    \"username\"   = '${2:Username}'",
+            "    \"password\"   = '${3:Password}'",
+            "}",
+            "\\$token = Invoke-RestMethod -Method Post -Uri \"\\$SecretServerHost/oauth2/token\" -Body \\$Body",
+            "\\$headers = New-Object \"System.Collections.Generic.Dictionary[[String],[String]]\"",
+            "\\$headers.Add(\"Authorization\", \"Bearer \\$(\\$token.access_token)\")",
+            "",
+            "\\$url = \"\\$apiUrl/${4:endpoint and params}\"",
+            "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers",
+            ""
+        ],
+        "description": "Generic API call"
     }
 }
