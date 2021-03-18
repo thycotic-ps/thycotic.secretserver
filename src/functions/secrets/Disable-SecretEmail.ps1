@@ -8,13 +8,13 @@ function Disable-SecretEmail {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Disable-TssSecretEmail -TssSession $session -Id 28 -When Viewed
+    Disable-TssSecretEmail -TssSession $session -Id 28 -WhenViewed
 
     Disable Secret 28's Email When Viewed setting
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Disable-TssSecretEmail -TssSession $session -Id 42,43,45 -When Viewed
+    Disable-TssSecretEmail -TssSession $session -Id 42,43,45 -WhenViewed
 
     Disable Email When Viewed setting on Secret IDs 42, 43, and 45
 
