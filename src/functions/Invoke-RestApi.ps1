@@ -143,7 +143,7 @@ function Invoke-RestApi {
                     if ($in.$ExpandProperty) {
                         $in.$ExpandProperty
                     }
-                } elseif ($in.Value -and $in.Count) {
+                } elseif ($in.PSObject.Properties['Value'] -and $in.Count) {
                     # If that's what we're dealing with
                     $_.Value # pass value down the pipe.
                 } elseif ($in.code -like '*API_*') {
