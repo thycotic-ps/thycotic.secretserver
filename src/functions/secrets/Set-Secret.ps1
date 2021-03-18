@@ -111,24 +111,6 @@ function Set-Secret {
         [switch]
         $Clear,
 
-        # Email when changed to true
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'email')]
-        [switch]
-        $EmailWhenChanged,
-
-        # Email when viewed to true
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'email')]
-        [switch]
-        $EmailWhenViewed,
-
-        # Email when HB fails to true
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'email')]
-        [switch]
-        $EmailWhenHeartbeatFails,
-
         # Set the secret active secret is active
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
@@ -219,7 +201,6 @@ function Set-Secret {
         $setSecretParams = $PSBoundParameters
 
         $fieldParamSet = . $ParameterSetParams 'Set-TssSecret' 'field'
-        $emailParamSet = . $ParameterSetParams 'Set-TssSecret' 'email'
         $generalParamSet = . $ParameterSetParams 'Set-TssSecret' 'general'
 
         # Need to know if any of the params provided are in the specific parameter sets
@@ -228,12 +209,6 @@ function Set-Secret {
         foreach ($f in $fieldParamSet) {
             if ($setSecretParams.ContainsKey($f)) {
                 $fieldParams += $f
-            }
-        }
-        $emailParams = @()
-        foreach ($e in $emailParamSet) {
-            if ($setSecretParams.ContainsKey($e)) {
-                $emailParams += $e
             }
         }
         $generalParams = @()
@@ -268,7 +243,6 @@ function Set-Secret {
         }
 
         $invokeParamsField = . $GetInvokeTssParams $TssSession
-        $invokeParamsEmail = . $GetInvokeTssParams $TssSession
         $invokeParamsGenearl = . $GetInvokeTssParams $TssSession
         $invokeParamsOther = . $GetInvokeTssParams $TssSession
         $invokeParamsCheckIn = . $GetInvokeTssParams $TssSession
@@ -412,67 +386,6 @@ function Set-Secret {
                             Write-Verbose "Secret [$secret] field $Field cleared successfully"
                         } else {
                             Write-Verbose "Response for secret [$secret]: $fieldResponse"
-                        }
-                    }
-                }
-                if ($emailParams.Count -gt 0) {
-                    Write-Verbose "Working on email parameter set values"
-
-                    # data object for Email Settings
-                    $emailBody = @{
-                        data = @{ }
-                    }
-
-                    if ($setSecretParams.ContainsKey('EmailWhenChanged')) {
-                        $sendEmailWhenChanged = @{
-                            dirty = $true
-                            value = [boolean]$EmailWhenChanged
-                        }
-                        $emailBody.data.Add('sendEmailWhenChanged',$sendEmailWhenChanged)
-                    }
-                    if ($setSecretParams.ContainsKey('EmailWhenViewed')) {
-                        $sendEmailWhenViewed = @{
-                            dirty = $true
-                            value = [boolean]$EmailWhenViewed
-                        }
-                        $emailBody.data.Add('sendEmailWhenViewed',$sendEmailWhenViewed)
-                    }
-                    if ($setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
-                        $sendEmailWhenHeartbeatFails = @{
-                            dirty = $true
-                            value = [boolean]$EmailWhenHeartbeatFails
-                        }
-                        $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
-                    }
-
-                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'email' -join '/'
-                    $invokeParamsEmail.Uri = $uri
-                    $invokeParamsEmail.Method = 'PATCH'
-                    $invokeParamsEmail.Body = $emailBody | ConvertTo-Json -Depth 5
-
-                    if ($restrictedParams.Count -gt 0) {
-                        if ($PSCmdlet.ShouldProcess("SecretId: $secret", "Pre-check out secret for setting email settings")) {
-                            . $CheckOutSecret $TssSession $setSecretParams $secret
-                        }
-                    }
-                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n")) {
-                        Write-Verbose "$($invokeParamsEmail.Method) $uri with:`n$($invokeParamsEmail.Body)`n"
-                        try {
-                            $emailResponse = Invoke-TssRestApi @invokeParamsEmail
-                        } catch {
-                            Write-Warning "Issue configuring [$secret] email settings, verify Email Server is configured in Secret Server"
-                            $err = $_
-                            . $ErrorHandling $err
-                        }
-
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $setSecretParams.ContainsKey('EmailWhenChanged')) {
-                            Write-Verbose "Secret [$secret] email setting [Send Email When Changed] updated to $EmailWhenChanged"
-                        }
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenViewed' -and $setSecretParams.ContainsKey('EmailWhenViewed')) {
-                            Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] updated to $EmailWhenViewed"
-                        }
-                        if ($emailResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $setSecretParams.ContainsKey('EmailWhenHeartbeatFails')) {
-                            Write-Verbose "Secret [$secret] email setting [Send Email When Heartbeat Fails] updated to $EmailWhenHeartbeatFails"
                         }
                     }
                 }
