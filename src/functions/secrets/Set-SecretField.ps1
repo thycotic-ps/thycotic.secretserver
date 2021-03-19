@@ -12,6 +12,30 @@ function Set-SecretField {
 
     Set Notes field on Secret 42 to the value "Test test test"
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 93 -Slug Machine -Value "server2"
+
+    Sets secret 93's field, "Machine", to "server2"
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 1455 -Slug Notes -Value "to be decommissioned" -Comment "updating notes field"
+
+    Sets secret 1455's field, "Notes", to the provided value providing required comment
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 113 -Slug Notes -Clear
+
+    Sets secret 1455's field, "Notes", to an empty value
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssSecret -TssSession $session -Id 42 -Slug attached-file c:\files\attachment.txt
+
+    Sets the attached-file field on Secret 42 to the attachment.txt (uploads the file to Secret Server)
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretField
 
@@ -46,13 +70,13 @@ function Set-SecretField {
         $Clear,
 
         # Path of file to attach
-        [ValidateScript({
-            if (Test-Path $_ -PathType Container) {
-                throw "Path [$_] is a directory, provide full file path"
-            } else {
-                $true
-            }
-        })]
+        [ValidateScript( {
+                if (Test-Path $_ -PathType Container) {
+                    throw "Path [$_] is a directory, provide full file path"
+                } else {
+                    $true
+                }
+            })]
         $Path,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
