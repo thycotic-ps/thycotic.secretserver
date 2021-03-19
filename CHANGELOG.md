@@ -9,40 +9,63 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Set-TssSecret - remove email setting params closes [#125](https://github.com/thycotic-ps/thycotic.secretserver/issues/125) [6e98382](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e9838232eae4ce68de5e576e1db2601393d72fc)
+* Set-TssSecret - remove field params closes [#118](https://github.com/thycotic-ps/thycotic.secretserver/issues/118) [8a90145](https://github.com/thycotic-ps/thycotic.secretserver/commit/8a901450880a0acc93cb7142d2f57eb50c4cdabb)
 
 ### New Functions
 
-* Get-TssConfiguration - closes #112 | [02555a6](https://github.com/thycotic-ps/thycotic.secretserver/commit/02555a6dfc42211997c3f2da966060a3205c44ab)
-* Get-TssSecretSetting - closes #15 | [d73252f](https://github.com/thycotic-ps/thycotic.secretserver/commit/d73252f010380a92e0cdb775061728f53942bd31)
-* Get-TssSecretSummary - closes #110 | [28e71d5](https://github.com/thycotic-ps/thycotic.secretserver/commit/28e71d58786d39f5bdd99ba2088b1e2bde1be785)
+* Get-TssConfiguration - closes [#112](https://github.com/thycotic-ps/thycotic.secretserver/issues/112) [02555a6](https://github.com/thycotic-ps/thycotic.secretserver/commit/02555a6dfc42211997c3f2da966060a3205c44ab)
+* Get-TssSecretSetting - closes [#15](https://github.com/thycotic-ps/thycotic.secretserver/issues/15) [d73252f](https://github.com/thycotic-ps/thycotic.secretserver/commit/d73252f010380a92e0cdb775061728f53942bd31)
+* Get-TssSecretSummary - closes [#110](https://github.com/thycotic-ps/thycotic.secretserver/issues/110) [28e71d5](https://github.com/thycotic-ps/thycotic.secretserver/commit/28e71d58786d39f5bdd99ba2088b1e2bde1be785)
+* Restore-TssSecret - closes [#123](https://github.com/thycotic-ps/thycotic.secretserver/issues/123) [6e73fa1](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e73fa12c67d131c0d2bc96a4ec0d92a9162b7f7)
+* Get-TssSecretPasswordStatus - added internal endpoint verbose [3755224](https://github.com/thycotic-ps/thycotic.secretserver/commit/37552242892275e9cfe6462850f7e4aa892d838c)
+* Get-TssSecretHeartbeatStatus - closes [#121](https://github.com/thycotic-ps/thycotic.secretserver/issues/121) [9e35d28](https://github.com/thycotic-ps/thycotic.secretserver/commit/9e35d28a6e8b490e37257dfc0579043f42d8834c)
+* Enable-TssSecretEmail - closes [#115](https://github.com/thycotic-ps/thycotic.secretserver/issues/115) [073d1b2](https://github.com/thycotic-ps/thycotic.secretserver/commit/073d1b2d1d1cc6bfc9e27840d0c58d7ce3013d6b)
+* Disable-TssSecretEmail - closes [#120](https://github.com/thycotic-ps/thycotic.secretserver/issues/120) [1d944cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/1d944cf53e61be4760d97a496f2ca7ed35fd6bc7)
+* Enable-TssSecretCheckout - closes [#107](https://github.com/thycotic-ps/thycotic.secretserver/issues/107) [2c31bd9](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c31bd9bd9d5df23f7d5c21acf4bf209325bf4f9)
+* Disable-TssSecretCheckout - closes [#119](https://github.com/thycotic-ps/thycotic.secretserver/issues/119) [0d74290](https://github.com/thycotic-ps/thycotic.secretserver/commit/0d742907924a30bee933f4d1309dd0f7995f941b)
+* Get-TssUserAudit - closes [#93](https://github.com/thycotic-ps/thycotic.secretserver/issues/93) [d436f65](https://github.com/thycotic-ps/thycotic.secretserver/commit/d436f65f951d06a7d3ba18ee7cc3bf169f2e0046)
+* Set-TssSecretField - closes [#117](https://github.com/thycotic-ps/thycotic.secretserver/issues/117) [9ed4091](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ed4091402844859607b48c23e8057788e224f5e)
+* Search-TssSecretTemplate - closes [#81](https://github.com/thycotic-ps/thycotic.secretserver/issues/81) [f96c4bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/f96c4bf2b661dc2adb5e1fa5968e3dcdb67c255c)
 
 ### Genearl Updates
 
-* Search-TssGroup - code cleanup | [1c796b8](https://github.com/thycotic-ps/thycotic.secretserver/commit/1c796b8b4fcde6dfa29d98f720d1720156f7de03)
-* Search-TssRole - code cleanup | [7f036f8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7f036f8b64e268373575ca1f48b2a084733f2d9f)
-* User Functions - code cleanup | [f713a10](https://github.com/thycotic-ps/thycotic.secretserver/commit/f713a10bb8c278bbcf9bdd94356fcdf4e702c2c9)
-* Report Functions - code cleanup | [c40d571](https://github.com/thycotic-ps/thycotic.secretserver/commit/c40d57170cccab3495459534587948e7d748d32c)
-* Get-TssSecretTemplate - code cleanup | [cd6d21c](https://github.com/thycotic-ps/thycotic.secretserver/commit/cd6d21c76548463c4af97605a1c9972ff994af7e)
-* Secret Functions - code cleanup | [a8b63bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/a8b63bf009ed1f20fb592edcbfd3d56ef01e9418)
-* github action - updated branch reference | [04a2aae](https://github.com/thycotic-ps/thycotic.secretserver/commit/04a2aae5583e093203c19f37e2152e5ca1d2b103)
-* Module - file tests - exclude class files | [6f983be](https://github.com/thycotic-ps/thycotic.secretserver/commit/6f983be8c1449f53c4010ab4c65b25a53494619a)
-* Folder Functions - code cleanup | [b98dc96](https://github.com/thycotic-ps/thycotic.secretserver/commit/b98dc963950bab659309aea9ac75d110fec97fba)
-* Get-TssConfiguration - code cleanup | [dc88291](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc882911c9bbe3c71b4b554a233558b8b8df3e80)
-* Search-TssDirectoryServiceDomain - code cleanup | [2ec5ece](https://github.com/thycotic-ps/thycotic.secretserver/commit/2ec5ecead9e16859d144ec473f73da08bcfc651d)
-* Folder Permission functions - code cleanup | [0194279](https://github.com/thycotic-ps/thycotic.secretserver/commit/01942795ddb43f6464d8265742fc2933de2347eb)
-* parts - simplify code for class objects | [04f03fa](https://github.com/thycotic-ps/thycotic.secretserver/commit/04f03fa0f6aa4726f3a7215b59cfbb77373e9946)
-* removing unnecessary code | [a691b34](https://github.com/thycotic-ps/thycotic.secretserver/commit/a691b34f3f7855747cd3e48f51458a86c8456ac1)
-* classes - import process adjustments for classes | [8c8328e](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c8328e1a4034d644dc269a1a14cbfe66a7a9de1)
-* class - reformat and add properties to about topics | [e1618b6](https://github.com/thycotic-ps/thycotic.secretserver/commit/e1618b626f7ecb5689d116f49c92083b35cf95f4)
+* Search-TssGroup - code cleanup [1c796b8](https://github.com/thycotic-ps/thycotic.secretserver/commit/1c796b8b4fcde6dfa29d98f720d1720156f7de03)
+* Search-TssRole - code cleanup [7f036f8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7f036f8b64e268373575ca1f48b2a084733f2d9f)
+* User Functions - code cleanup [f713a10](https://github.com/thycotic-ps/thycotic.secretserver/commit/f713a10bb8c278bbcf9bdd94356fcdf4e702c2c9)
+* Report Functions - code cleanup [c40d571](https://github.com/thycotic-ps/thycotic.secretserver/commit/c40d57170cccab3495459534587948e7d748d32c)
+* Get-TssSecretTemplate - code cleanup [cd6d21c](https://github.com/thycotic-ps/thycotic.secretserver/commit/cd6d21c76548463c4af97605a1c9972ff994af7e)
+* Secret Functions - code cleanup [a8b63bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/a8b63bf009ed1f20fb592edcbfd3d56ef01e9418)
+* github action - updated branch reference [04a2aae](https://github.com/thycotic-ps/thycotic.secretserver/commit/04a2aae5583e093203c19f37e2152e5ca1d2b103)
+* Module - file tests - exclude class files [6f983be](https://github.com/thycotic-ps/thycotic.secretserver/commit/6f983be8c1449f53c4010ab4c65b25a53494619a)
+* Folder Functions - code cleanup [b98dc96](https://github.com/thycotic-ps/thycotic.secretserver/commit/b98dc963950bab659309aea9ac75d110fec97fba)
+* Get-TssConfiguration - code cleanup [dc88291](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc882911c9bbe3c71b4b554a233558b8b8df3e80)
+* Search-TssDirectoryServiceDomain - code cleanup [2ec5ece](https://github.com/thycotic-ps/thycotic.secretserver/commit/2ec5ecead9e16859d144ec473f73da08bcfc651d)
+* Folder Permission functions - code cleanup [0194279](https://github.com/thycotic-ps/thycotic.secretserver/commit/01942795ddb43f6464d8265742fc2933de2347eb)
+* parts - simplify code for class objects [04f03fa](https://github.com/thycotic-ps/thycotic.secretserver/commit/04f03fa0f6aa4726f3a7215b59cfbb77373e9946)
+* removing unnecessary code [a691b34](https://github.com/thycotic-ps/thycotic.secretserver/commit/a691b34f3f7855747cd3e48f51458a86c8456ac1)
+* classes - import process adjustments for classes [8c8328e](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c8328e1a4034d644dc269a1a14cbfe66a7a9de1)
+* class - reformat and add properties to about topics [e1618b6](https://github.com/thycotic-ps/thycotic.secretserver/commit/e1618b626f7ecb5689d116f49c92083b35cf95f4)
+* TssUserLookup - correct about file name [4138f18](https://github.com/thycotic-ps/thycotic.secretserver/commit/4138f1800669f417d8452dca66a053cf935bef11)
+* vs code snippet - update tests [50ec291](https://github.com/thycotic-ps/thycotic.secretserver/commit/50ec291ad7364e8691a3efb6bd6515265bb5d165)
+* Set-TssSecret - parameter update (help, alias) [5bebc09](https://github.com/thycotic-ps/thycotic.secretserver/commit/5bebc093e36d7b2f50f20c5ad523cab1db7d276a)
+* Code Cleanup - removing use of ToString() [db3bf67](https://github.com/thycotic-ps/thycotic.secretserver/commit/db3bf67de155da44e944c7e43f519d8505ef6f3d)
+* Search-TssSecret - output correction [3708042](https://github.com/thycotic-ps/thycotic.secretserver/commit/3708042a141be42e02b7beb47f81866e5f59b196)
+* Snippet - adding tssapi for a generic oauth2 token and API call [7e0e0f5](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e0e0f5d1ae99885d4069860291961d4190bbfae)
+* Secret Email - Correct examples [9758aa8](https://github.com/thycotic-ps/thycotic.secretserver/commit/9758aa8a4cbf8807db619a71c514013d308bd732)
+* Enable-TssSecretEmail - added restricted params [3436c86](https://github.com/thycotic-ps/thycotic.secretserver/commit/3436c86c97c393a102f2d663b5c9ec840d2dd4c4)
+* Disable-TssSecretEmail - added restricted params [be6dbe9](https://github.com/thycotic-ps/thycotic.secretserver/commit/be6dbe91afa45f625ea4f1312bbaa5457d80fa47)
 
 ### Bug Fixes
 
-* Find-TssSecret - closes #111 | [4f9d2c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f9d2c7be971dcb1506cc569832712ef4e513336)
+* Find-TssSecret - closes #111 [4f9d2c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f9d2c7be971dcb1506cc569832712ef4e513336)
+* TssSecret - SetFieldValue - closes [#124](https://github.com/thycotic-ps/thycotic.secretserver/issues/124) [aa75be9](https://github.com/thycotic-ps/thycotic.secretserver/commit/aa75be996d863c3d2c498ba38fd8cee704d4b8e9)
+* Invoke-TssRestApi - correct issue with processing [1688c7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/1688c7d25a68e5c1a6896c36c0961775b41127f4)
 
 ### Tests
 
-* Folder Permission - Tests - update mocking | [457fe7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/457fe7ddd3c25756ffecd2190f02e0bd736852cf)
+* Folder Permission - Tests - update mocking [457fe7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/457fe7ddd3c25756ffecd2190f02e0bd736852cf)
+* New-TssFolderPermission Test - remove unused code [09981c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/09981c88d775ef199d506295a2f10447db60a0a7)
 
 ## [0.33.1] -- 2021-03-05
 
