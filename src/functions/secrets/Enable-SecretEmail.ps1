@@ -24,7 +24,7 @@ function Enable-SecretEmail {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -47,11 +47,34 @@ function Enable-SecretEmail {
 
         # Email when HB fails to true
         [switch]
-        $WhenHeartbeatFails
+        $WhenHeartbeatFails,
+
+        # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'restricted')]
+        [string]
+        $Comment,
+
+        # Associated Ticket Number
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketNumber,
+
+        #Associated Ticket System ID
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketSystemId
     )
     begin {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
+
+        $restrictedParamSet = . $ParameterSetParams 'Enable-TssSecretEmail' 'restricted'
+        $restrictedParams = @()
+        foreach ($r in $restrictedParamSet) {
+            if ($tssParams.ContainsKey($r)) {
+                $restrictedParams += $r
+            }
+        }
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -88,7 +111,6 @@ function Enable-SecretEmail {
                     $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
                 }
 
-
                 $invokeParams.Method = 'PATCH'
                 $invokeParams.Body = $emailBody | ConvertTo-Json -Depth 5
 
@@ -108,13 +130,13 @@ function Enable-SecretEmail {
                     }
 
                     if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenChanged' -and $tssParams.ContainsKey('WhenChanged')) {
-                        Write-Verbose "Secret [$secret] email setting [Send Email When Changed] disabled"
+                        Write-Verbose "Secret [$secret] email setting [Send Email When Changed] enabled"
                     }
                     if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenViewed' -and $tssParams.ContainsKey('WhenViewed')) {
-                        Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] disabled"
+                        Write-Verbose "Secret [$secret] email setting [Send Email When Viewed] enabled"
                     }
                     if ($restResponse.PSObject.Properties.Name -contains 'sendEmailWhenHeartbeatFails' -and $tssParams.ContainsKey('WhenHeartbeatFails')) {
-                        Write-Verbose "Secret [$secret] email setting [Send Email When Heartbeat Fails] disabled"
+                        Write-Verbose "Secret [$secret] email setting [Send Email When Heartbeat Fails] enabled"
                     }
                 }
             }

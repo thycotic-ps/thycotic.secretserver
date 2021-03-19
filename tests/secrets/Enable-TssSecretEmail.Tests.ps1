@@ -4,7 +4,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id', 'WhenHeartbeatFails', 'WhenViewed', 'WhenChanged'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'WhenHeartbeatFails', 'WhenViewed', 'WhenChanged', 'Comment', 'TicketNumber', 'TicketSystemId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -55,7 +55,7 @@ Describe "$commandName functions" {
             $object = Enable-TssSecretEmail -TssSession $session -Id $secretId -WhenChanged
             Assert-VerifiableMock
         }
-        It "Should not be empty" {
+        It "Should be empty" {
             $object | Should -BeNullOrEmpty
         }
     }
