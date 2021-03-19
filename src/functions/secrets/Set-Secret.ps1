@@ -92,25 +92,6 @@ function Set-Secret {
         [int]
         $TicketSystemId,
 
-        # Field name (slug) of the secret
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(Mandatory, ParameterSetName = 'field')]
-        [Alias('FieldName')]
-        [string]
-        $Field,
-
-        # Value to set for the provided field
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'field')]
-        [string]
-        $Value,
-
-        # Clear/blank out the field value
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'field')]
-        [switch]
-        $Clear,
-
         # Set the secret active secret is active
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
@@ -200,17 +181,10 @@ function Set-Secret {
     begin {
         $setSecretParams = $PSBoundParameters
 
-        $fieldParamSet = . $ParameterSetParams 'Set-TssSecret' 'field'
         $generalParamSet = . $ParameterSetParams 'Set-TssSecret' 'general'
 
         # Need to know if any of the params provided are in the specific parameter sets
         # if they are not we will null out the variable so the code below is not triggered
-        $fieldParams = @()
-        foreach ($f in $fieldParamSet) {
-            if ($setSecretParams.ContainsKey($f)) {
-                $fieldParams += $f
-            }
-        }
         $generalParams = @()
         foreach ($g in $generalParamSet) {
             if ($setSecretParams.ContainsKey($g)) {
@@ -337,55 +311,6 @@ function Set-Secret {
                                     Write-Verbose "Secret [$secret] EnableInheritPermissions was set to $EnableInheritPermission"
                                 }
                             }
-                        }
-                    }
-                }
-                if ($fieldParams.Count -gt 0) {
-                    Write-Verbose "Working on field parameter set values"
-
-                    if ($setSecretParams.ContainsKey('Clear') -and $setSecretParams.ContainsKey('Value')) {
-                        Write-Warning "Clear and Value provided, only one is supported"
-                        return
-                    }
-
-                    $fieldBody = @{}
-                    if ($setSecretParams.ContainsKey('Clear')) {
-                        $fieldBody.Add('value',"")
-                    }
-                    if ($setSecretParams.ContainsKey('Value')) {
-                        $fieldBody.Add('value',$Value)
-                    }
-
-                    if ($restrictedParams.Count -gt 0) {
-                        switch ($restrictedParams) {
-                            'Comment' { $fieldBody.Add('comment', $Comment) }
-                            'ForceCheckIn' { $fieldBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
-                            'TicketNumber' { $fieldBody.Add('ticketNumber', $TicketNumber) }
-                            'TicketSystemId' { $fieldBody.Add('ticketSystemId', $TicketSystemId) }
-                        }
-                    }
-
-                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Field -join '/'
-                    $invokeParamsField.Uri = $uri
-                    $invokeParamsField.Method = 'PUT'
-                    $invokeParamsField.Body = $fieldBody | ConvertTo-Json -Depth 5
-
-                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsField.Method) $uri with:`n$($invokeParamsField.Body)`n")) {
-                        Write-Verbose "$($invokeParamsField.Method) $uri with:`n$fieldBody`n"
-                        try {
-                            $fieldResponse = Invoke-TssRestApi @invokeParamsField
-                        } catch {
-                            Write-Warning "Issue setting field $Field on secret [$secret]"
-                            $err = $_
-                            . $ErrorHandling $err
-                        }
-
-                        if ($fieldResponse -eq $Value) {
-                            Write-Verbose "Secret [$secret] field $Field updated successfully"
-                        } elseif ($setSecretParams.ContainsKey('Clear') -and ($null -eq $fieldResponse)) {
-                            Write-Verbose "Secret [$secret] field $Field cleared successfully"
-                        } else {
-                            Write-Verbose "Response for secret [$secret]: $fieldResponse"
                         }
                     }
                 }

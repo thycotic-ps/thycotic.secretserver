@@ -11,9 +11,6 @@ Describe "$commandName verify parameters" {
         <# CheckIn #>
         'CheckIn',
 
-        <# Fields Params #>
-        'Field', 'Value', 'Clear',
-
         <# General settings #>
         'Active', 'EnableInheritSecretPolicy', 'FolderId', 'GenerateSshKeys', 'HeartbeatEnabled', 'SecretPolicy', 'Site', 'Template','IsOutOfSync', 'SecretName',
 
@@ -54,9 +51,6 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
 
         $getSecrets = Find-TssSecret -TssSession $session -FolderId $getFolder.id -IncludeInactive:$false
 
-        $secretId = $getSecrets.Where( { $_.SecretName -eq 'Test Setting Field' }).SecretId
-        $setField = Get-TssSecret -TssSession $session -Id $secretId
-
         $secretId = $getSecrets.Where( { $_.SecretName -match 'Test Setting General Settings' }).SecretId
         $setGeneral = Get-TssSecret -TssSession $session -Id $secretId
         $secretId = $getSecrets.Where( { $_.SecretName -match 'Test Setting Restricted General Settings' }).SecretId
@@ -64,15 +58,6 @@ Describe "$commandName works" -Skip:$tssTestUsingWindowsAuth {
 
         $secretId = $getSecrets.Where( { $_.SecretName -eq 'Test Setting AutoChangeEnabled AutoChangeNextPassword EnableInheritPermissions' }).SecretId
         $setOther = Get-TssSecret -TssSession $session -Id $secretId
-    }
-    Context "Set a secret field" -ForEach @{setField = $setField;session = $session } {
-        It "Should set the value on the Notes field" {
-            $valueField = "your friendly local PowerShell Module"
-            Set-TssSecret -TssSession $session -Id $setField.Id -Field Notes -Value $valueField | Should -BeNullOrEmpty
-        }
-        It "Should Clear the Notes field" {
-            Set-TssSecret -TssSession $session -Id $setField.Id -Field Notes -Clear | Should -BeNullOrEmpty
-        }
     }
     Context "Sets general settings of a secret" -ForEach @{setGeneral = $setGeneral;setRestrictedGeneral = $setRestrictedGeneral; session = $session } {
         AfterAll {
