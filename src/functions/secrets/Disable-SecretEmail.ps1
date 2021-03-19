@@ -47,11 +47,34 @@ function Disable-SecretEmail {
 
         # Email when HB fails to true
         [switch]
-        $WhenHeartbeatFails
+        $WhenHeartbeatFails,
+
+        # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'restricted')]
+        [string]
+        $Comment,
+
+        # Associated Ticket Number
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketNumber,
+
+        #Associated Ticket System ID
+        [Parameter(ParameterSetName = 'restricted')]
+        [int]
+        $TicketSystemId
     )
     begin {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
+
+        $restrictedParamSet = . $ParameterSetParams 'Enable-TssSecretEmail' 'restricted'
+        $restrictedParams = @()
+        foreach ($r in $restrictedParamSet) {
+            if ($tssParams.ContainsKey($r)) {
+                $restrictedParams += $r
+            }
+        }
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -87,7 +110,6 @@ function Disable-SecretEmail {
                     }
                     $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
                 }
-
 
                 $invokeParams.Method = 'PATCH'
                 $invokeParams.Body = $emailBody | ConvertTo-Json -Depth 5
