@@ -30,32 +30,34 @@ begin {
 }
 
 process {
-    # secret view comment
-    $uri = $TssSession.ApiUrl, 'secret-access-requests', 'secrets', $SecretId, 'view-comment' -join '/'
-
     $restrictedBody = @{}
     if ($FunctionParameters.ContainsKey('Comment')) {
         $restrictedBody.Add('comment', $FunctionParameters['Comment'])
     }
     if ($FunctionParameters.ContainsKey('TicketNumber')) {
-        $restrictedBody.Add('comment', $FunctionParameters['TicketNumber'])
+        $restrictedBody.Add('ticketNumber', $FunctionParameters['TicketNumber'])
     }
     if ($FunctionParameters.ContainsKey('TicketSystemId')) {
-        $restrictedBody.Add('comment', $FunctionParameters['TicketSystemId'])
+        $restrictedBody.Add('ticketSystemId', $FunctionParameters['TicketSystemId'])
     }
 
-    $invokeViewCommentParams.Uri = $uri
-    $invokeViewCommentParams.Body = $restrictedBody | ConvertTo-Json
-    $invokeViewCommentParams.Method = 'POST'
+    if ($restrictedBody.Count -gt 0) {
+        # secret view comment
+        $uri = $TssSession.ApiUrl, 'secret-access-requests', 'secrets', $SecretId, 'view-comment' -join '/'
 
-    if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeViewCommentParams.Method) $uri with: `n$($invokeViewCommentParams.Body)`n")) {
-        Write-Verbose "$($invokeViewCommentParams.Method) $uri with:`n$($invokeViewCommentParams.Body)`n"
-        try {
-            $viewCommentResponse = Invoke-TssRestApi @invokeViewCommentParams
-        } catch {
-            Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
-            $err = $_
-            . $ErrorHandling $err
+        $invokeViewCommentParams.Body = $restrictedBody | ConvertTo-Json
+        $invokeViewCommentParams.Uri = $uri
+        $invokeViewCommentParams.Method = 'POST'
+
+        if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeViewCommentParams.Method) $uri with: `n$($invokeViewCommentParams.Body)`n")) {
+            Write-Verbose "$($invokeViewCommentParams.Method) $uri with:`n$($invokeViewCommentParams.Body)`n"
+            try {
+                $viewCommentResponse = Invoke-TssRestApi @invokeViewCommentParams
+            } catch {
+                Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
+                $err = $_
+                . $ErrorHandling $err
+            }
         }
     }
 
@@ -64,16 +66,15 @@ process {
     $invokeCheckOutParams.Uri = $uri
     $invokeCheckOutParams.Method = 'POST'
     if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeCheckOutParams.Method) $uri")) {
-        if ($viewCommentResponse) {
-            Write-Verbose "$($invokeCheckOutParams.Method) $uri"
-            try {
-                $checkOutResponse = Invoke-TssRestApi @invokeCheckOutParams
-            } catch {
-                Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
-                $err = $_
-                . $ErrorHandling $err
-            }
+        Write-Verbose "$($invokeCheckOutParams.Method) $uri"
+        try {
+            $checkOutResponse = Invoke-TssRestApi @invokeCheckOutParams
+        } catch {
+            Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
+            $err = $_
+            . $ErrorHandling $err
         }
+
         if ($checkOutResponse) {
             Write-Verbose "Secret [$secretId] checked out successfully"
         }

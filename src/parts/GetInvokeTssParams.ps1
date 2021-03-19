@@ -11,14 +11,14 @@ param(
 )
 
 process {
-    $invokeParams = @{}
+    $getInvokeParams = @{}
     switch ($TssSession.TokenType) {
         'WindowsAuth' {
-            $invokeParams.UseDefaultCredentials = $true
+            $getInvokeParams.UseDefaultCredentials = $true
         }
         default {
-            $invokeParams.PersonalAccessToken = $TssSession.AccessToken
+            $getInvokeParams.PersonalAccessToken = $TssSession.AccessToken
         }
     }
-    return $invokeParams
+    return $getInvokeParams
 }
