@@ -28,7 +28,7 @@ function Get-FolderAudit {
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderAuditId")]
+        [Alias("FolderId")]
         [int[]]
         $Id
     )
