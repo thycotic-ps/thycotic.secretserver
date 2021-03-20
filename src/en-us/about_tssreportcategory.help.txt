@@ -14,17 +14,14 @@ CONSTRUCTORS
     new()
 
 PROPERTIES
-    ReportCategoryDescription
+    Description
         Report Category description
 
-    ReportCategoryId
+    Id
         Report Category ID
 
-    ReportCategoryName
+    Name
         Report Category name
-
-    SortOrder
-        Sort Order in which the category should appear
 
 METHODS
 
