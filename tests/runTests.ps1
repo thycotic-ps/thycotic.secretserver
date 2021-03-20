@@ -9,10 +9,10 @@ $module = Import-Module $modulePsd1 -Force -PassThru
 Write-Host "Testing module version $($module.Version)" -BackgroundColor DarkGreen -ForegroundColor Black
 try {
     if (-not (Get-Module Pester)) {
-        Import-Module Pester -RequiredVersion 5.1.0
+        Import-Module Pester -RequiredVersion 5.1.1
     }
 } catch {
-    Write-Error "Pester 5.1.0 was not imported, please correct"
+    Write-Error "Pester 5.1.1 was not imported, please correct"
     return
 }
 
