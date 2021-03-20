@@ -15,6 +15,9 @@ function Start-SecretChangePassword {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretChangePassword
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretChangePassword.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

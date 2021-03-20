@@ -15,6 +15,9 @@ function Search-Role {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRole
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/roles/Search-Role.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

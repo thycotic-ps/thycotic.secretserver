@@ -21,6 +21,9 @@ function Enable-SecretEmail {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretEmail.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

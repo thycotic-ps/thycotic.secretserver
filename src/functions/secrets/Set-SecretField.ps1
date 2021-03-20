@@ -39,6 +39,9 @@ function Set-SecretField {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretField
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretField.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

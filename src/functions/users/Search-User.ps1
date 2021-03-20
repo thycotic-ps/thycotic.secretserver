@@ -21,6 +21,9 @@ function Search-User {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Search-User.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Get-UserRole {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRole.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Get-SecretSummary {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSummary
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSummary.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

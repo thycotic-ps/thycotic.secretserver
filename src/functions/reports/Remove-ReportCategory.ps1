@@ -23,6 +23,9 @@ function Remove-ReportCategory {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReportCategory
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-ReportCategory.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

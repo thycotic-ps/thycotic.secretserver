@@ -17,6 +17,9 @@ function Get-SecretAttachment {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAttachment.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

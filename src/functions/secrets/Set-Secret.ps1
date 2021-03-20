@@ -21,6 +21,9 @@ function Set-Secret {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-Secret.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

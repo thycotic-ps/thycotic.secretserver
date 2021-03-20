@@ -15,6 +15,9 @@ function Get-FolderStub {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderStub
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderStub.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

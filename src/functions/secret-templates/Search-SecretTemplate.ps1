@@ -6,14 +6,17 @@ function Search-SecretTemplate {
     .DESCRIPTION
     Search for Secret Templates
 
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretTemplate
-
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Search-TssSecretTemplate -TssSession $session -SearchText key
 
     Return all Secret Templates where "key" is in the template name
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretTemplate
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Search-SecretTemplate.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

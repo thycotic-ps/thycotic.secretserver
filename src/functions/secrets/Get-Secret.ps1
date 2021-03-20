@@ -38,6 +38,9 @@ function Get-Secret {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-Secret.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

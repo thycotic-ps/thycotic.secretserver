@@ -16,6 +16,9 @@ function Invoke-SecretGeneratePassword {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssSecretGeneratePassword
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Invoke-SecretGeneratePassword.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

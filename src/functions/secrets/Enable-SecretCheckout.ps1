@@ -21,6 +21,9 @@ function Enable-SecretCheckout {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretCheckout
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretCheckout.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Get-SecretPasswordStatus {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretPasswordStatus
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretPasswordStatus.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

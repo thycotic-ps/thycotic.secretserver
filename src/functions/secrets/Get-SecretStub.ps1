@@ -23,6 +23,9 @@ function Get-SecretStub {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretStub.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
@@ -55,7 +58,7 @@ function Get-SecretStub {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
-            $uri = $TssSession.ApiUrl, 'secrets/stub' -join '/'
+            $uri = $TssSession.ApiUrl, 'secrets', 'stub' -join '/'
             $uri = $uri, "secretTemplateId=$SecretTemplateId" -join '?'
 
             if ($tssParams['FolderId']) {

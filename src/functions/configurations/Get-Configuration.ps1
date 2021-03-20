@@ -15,6 +15,9 @@ function Get-Configuration {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssConfiguration
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-Configuration.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

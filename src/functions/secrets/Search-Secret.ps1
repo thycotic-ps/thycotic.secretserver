@@ -45,6 +45,9 @@ function Search-Secret {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecret
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-Secret.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

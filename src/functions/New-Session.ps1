@@ -47,6 +47,9 @@ function New-Session {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/New-Session.ps1
+
     .OUTPUTS
     TssSession
     #>

@@ -21,6 +21,9 @@ function Search-ReportSchedule {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssReportSchedule
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-ReportSchedule.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

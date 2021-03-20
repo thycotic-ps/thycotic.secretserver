@@ -27,6 +27,9 @@ function Get-Folder {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolder
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-Folder.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

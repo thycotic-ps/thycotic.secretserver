@@ -21,6 +21,9 @@ function Get-Version {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Get-Version.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Search-DirectoryServiceDomain {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-DirectoryServiceDomain.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

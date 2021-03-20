@@ -15,6 +15,9 @@ function Get-SecretTemplate {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretTemplate
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Get-SecretTemplate.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

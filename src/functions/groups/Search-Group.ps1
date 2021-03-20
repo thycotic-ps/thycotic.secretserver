@@ -15,6 +15,9 @@ function Search-Group {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Search-Group.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

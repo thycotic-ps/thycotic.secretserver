@@ -15,6 +15,9 @@ function Get-UserRoleAssigned {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRoleAssigned
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRoleAssigned.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     Only supported on 10.9.32 or higher of Secret Server

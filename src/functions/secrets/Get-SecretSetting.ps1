@@ -15,6 +15,9 @@ function Get-SecretSetting {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSetting
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSetting.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

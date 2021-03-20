@@ -15,6 +15,9 @@ function Get-Report {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReport
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-Report.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Invoke-RestApi {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Invoke-RestApi.ps1
+
     .NOTES
     More detailed examples: https://thycotic-ps.github.io/thycotic.secretserver/docs/invoke-tssrestapi/
     #>

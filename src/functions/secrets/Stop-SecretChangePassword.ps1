@@ -15,6 +15,9 @@ function Stop-SecretChangePassword {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-SecretChangePassword.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

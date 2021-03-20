@@ -15,6 +15,9 @@ function Remove-Folder {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-Folder.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

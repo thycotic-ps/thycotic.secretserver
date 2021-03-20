@@ -15,6 +15,9 @@ function Search-Folder {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolder
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-Folder.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

@@ -15,6 +15,9 @@ function Get-User {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUser
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-User.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

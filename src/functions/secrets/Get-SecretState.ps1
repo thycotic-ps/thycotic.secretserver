@@ -15,6 +15,9 @@ function Get-SecretState {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretState
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretState.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

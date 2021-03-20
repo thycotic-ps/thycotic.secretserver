@@ -38,6 +38,9 @@ function New-Folder {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

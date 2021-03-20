@@ -15,6 +15,9 @@ function Get-UserAudit {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserAudit
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserAudit.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

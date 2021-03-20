@@ -15,6 +15,9 @@ function Set-FolderPermission {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Set-FolderPermission.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>

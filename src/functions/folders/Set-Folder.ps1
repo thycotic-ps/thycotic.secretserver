@@ -15,6 +15,9 @@ function Set-Folder {
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolder
 
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Set-Folder.ps1
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
