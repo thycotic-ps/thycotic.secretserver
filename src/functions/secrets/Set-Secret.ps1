@@ -189,7 +189,6 @@ function Set-Secret {
             }
         }
 
-        $invokeParamsField = . $GetInvokeTssParams $TssSession
         $invokeParamsGenearl = . $GetInvokeTssParams $TssSession
         $invokeParamsOther = . $GetInvokeTssParams $TssSession
         $invokeParamsCheckIn = . $GetInvokeTssParams $TssSession
