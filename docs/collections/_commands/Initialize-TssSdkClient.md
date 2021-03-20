@@ -131,3 +131,5 @@ https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__confi
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient](https://thycotic-ps.github.io/thycotic.secretserver/commands/Initialize-TssSdkClient)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Initialize-SdkClient.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Initialize-SdkClient.ps1)
+

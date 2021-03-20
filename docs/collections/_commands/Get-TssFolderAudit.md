@@ -54,7 +54,7 @@ Short description for parameter
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: FolderAuditId
+Aliases: FolderId
 
 Required: True
 Position: Named
@@ -77,4 +77,6 @@ Requires TssSession object returned by New-TssSession
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1)
 

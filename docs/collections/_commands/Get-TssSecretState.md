@@ -78,3 +78,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretState](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretState)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretState.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretState.ps1)
+

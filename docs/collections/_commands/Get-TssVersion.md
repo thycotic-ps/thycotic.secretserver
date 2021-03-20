@@ -63,3 +63,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Get-Version.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Get-Version.ps1)
+

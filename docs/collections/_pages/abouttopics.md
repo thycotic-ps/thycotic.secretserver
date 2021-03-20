@@ -31,7 +31,12 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssSecretSummary] | [Search-TssSecret]
 [TssSecretSummaryExtendedField] | [Search-TssSecret]
 [TssSecretPasswordStatus] | [Get-TssSecretPasswordStatus]
-[TssSecretState] | [Get-TssSecretState]
+[TssSecretDetailState] | [Get-TssSecretState]
+[TssSecretDetailSettings] | [Get-TssSecretState]
+[TssOneTimePasswordSettings] | [Get-TssSecretState]
+[TssRdpLauncherSettings] | [Get-TssSecretState]
+[TssSshLauncherSettings] | [Get-TssSecretState]
+[TssSecretHeartbeatStatus] | [Get-TssSecretHeartbeatStatus]
 
 ## Secret Templates
 
@@ -39,6 +44,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 --------------------------------- | -------------------------------------------------- |
 [TssSecretTemplate] | [Get-TssSecretTemplate]
 [TssSecretTemplateField] | [Get-TssSecretTemplate]
+[TssSecretTemplateSummary] | [Search-TssSecretTemplate]
 
 ## Folders
 
@@ -62,6 +68,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
 [TssReport] | [Get-TssReport]
+[TssReportCategoryDetail] | [Get-TssReportCategory]
 [TssReportCategory] | [Get-TssReportCategory]
 [TssReportScheduleSummary] | [Search-TssReportScheduleSummary]
 
@@ -82,6 +89,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
 [TssUser] | [Get-TssUser]
+[TssUserAuditSummary] | [Get-TssUserAudit]
 [TssRoleSummary] | [Get-TssUserRole]
 [TssUserRoleSummary] | [Get-TssUserRoleAssigned]
 [TssGroupAssignedRole] | [Get-TssUserRoleAssigned]
@@ -142,7 +150,19 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssUser]:/thycotic.secretserver/commands/Get-TssUser
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/Get-TssSecretAudit
 [Get-TssSecretState]:/thycotic.secretserver/commands/Get-TssSecretState
+[Search-TssSecretTemplate]:/thycotic.secretserver/commands/Search-TssSecretTemplate
+[Get-TssSecretState]:/thycotic.secretserver/commands/Get-TssSecretState
+[Get-TssSecretHeartbeatStatus]:/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus
+[Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
 
+[TssUserAuditSummary]:/thycotic.secretserver/abouttopics/about_tssuserauditsummary
+[TssSecretHeartbeatStatus]:/thycotic.secretserver/abouttopics/about_tsssecretheartbeatstatus
+[TssSecretDetailState]:/thycotic.secretserver/abouttopics/about_tsssecretdetailstate
+[TssSecretDetailSettings]:/thycotic.secretserver/abouttopics/about_tsssecretdetailsettings
+[TssOneTimePasswordSettings]:/thycotic.secretserver/abouttopics/about_tssonetimepasswordsettings
+[TssRdpLauncherSettings]:/thycotic.secretserver/abouttopics/about_tssrdplaunchersettings
+[TssSshLauncherSettings]:/thycotic.secretserver/abouttopics/about_tsssshlaunchersettings
+[TssSecretTemplateSummary]:/thycotic.secretserver/abouttopics/about_tsssecrettemplatesummary
 [TssSecretState]:/thycotic.secretserver/abouttopics/about_tsssecretstate
 [TssSecretAudit]:/thycotic.secretserver/abouttopics/about_tsssecretaudit
 [TssUser]:/thycotic.secretserver/abouttopics/about_tssuser
@@ -177,5 +197,6 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssFolderSummary]:/thycotic.secretserver/abouttopics/about_tssfoldersummary
 [TssGroupSummary]:/thycotic.secretserver/abouttopics/about_tssgroupsummary
 [TssReport]:/thycotic.secretserver/abouttopics/about_tssreport
+[TssReportCategoryDetail]:/thycotic.secretserver/abouttopics/about_tssreportcategory
 [TssReportCategory]:/thycotic.secretserver/abouttopics/about_tssreportcategory
 [TssReportScheduleSummary]:/thycotic.secretserver/abouttopics/about_tssreportschedulesummary

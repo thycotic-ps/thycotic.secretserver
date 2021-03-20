@@ -15,9 +15,7 @@ Create a new folder
 ## SYNTAX
 
 ```
-New-TssFolder [-TssSession] <TssSession> [-FolderStub] <TssFolder> -FolderName <String> -ParentFolderId <Int32>
- [-SecretPolicyId <Int32>] [-InheritPermissions] [-InheritSecretPolicy] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssFolder [-TssSession] <TssSession> [-FolderStub] <TssFolder> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,27 +27,36 @@ Create a new folder
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 $folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
+$folderStub.FolderName = 'tssNewFolder'
+$folderStub.ParentFolderId = -1
+New-TssFolder -TssSession $session -FolderStub $folderStub
 ```
 
-Creates a folder named "tssNewFolder" at the root of Secret Server application
+Creates a new root folder, named "tssNewFolder"
 
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 $folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
+$folderStub.FolderName 'IT Dept'
+$folderStub.ParentFolderId = 27
+$folderStub.InheritPermissions = $false
+New-TssFolder -TssSession $session -FolderStub $folderStub
 ```
 
-Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
+Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled
 
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
+$folderStub.FolderName 'Marketing Dept'
+$folderStub.ParentFolderId = 27
+$folderStub.InheritPermissions = $true
+$folderStub.InheritSecretPolicy = $true
+New-TssFolder -TssSession $session -FolderStub $folderStub
 ```
 
-Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
+Creates a folder named "Marketing Dept" under parent folder 27 with Inheritance enabled for Permissions and Secret Policy
 
 ## PARAMETERS
 
@@ -80,81 +87,6 @@ Required: True
 Position: 2
 Default value: None
 Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -FolderName
-Folder Name
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ParentFolderId
-Parent Folder ID, use -1 to create root folder
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: ParentFolder
-
-Required: True
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SecretPolicyId
-Secret Policy ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: SecretPolicy
-
-Required: False
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InheritPermissions
-Inherit Permissions
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -InheritSecretPolicy
-Inherit Secret Policy
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -203,4 +135,6 @@ Requires TssSession object returned by New-TssSession
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1)
 

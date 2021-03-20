@@ -125,3 +125,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolder)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-Folder.ps1)
+

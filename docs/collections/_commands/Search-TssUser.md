@@ -147,3 +147,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssUser)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Search-User.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Search-User.ps1)
+

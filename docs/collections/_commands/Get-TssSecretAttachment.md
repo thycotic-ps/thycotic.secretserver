@@ -171,3 +171,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAttachment.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAttachment.ps1)
+

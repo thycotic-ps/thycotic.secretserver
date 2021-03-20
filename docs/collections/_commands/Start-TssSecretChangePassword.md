@@ -139,3 +139,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretChangePassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretChangePassword)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretChangePassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretChangePassword.ps1)
+

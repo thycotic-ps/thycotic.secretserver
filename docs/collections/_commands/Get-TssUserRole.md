@@ -78,3 +78,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRole.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRole.ps1)
+

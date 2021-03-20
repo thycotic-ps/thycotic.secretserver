@@ -2,7 +2,7 @@
 category: folders
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolderPermission
 schema: 2.0.0
 title: Search-TssFolderPermission
 ---
@@ -122,5 +122,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search_TssFolderPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolderPermission)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-FolderPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-FolderPermission.ps1)
 

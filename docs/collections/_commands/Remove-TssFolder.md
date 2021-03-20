@@ -109,3 +109,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-Folder.ps1)
+

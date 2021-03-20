@@ -72,3 +72,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Show-TssCurrentUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Show-TssCurrentUser)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Show-CurrentUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Show-CurrentUser.ps1)
+

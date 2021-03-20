@@ -50,6 +50,8 @@ commands:
         url: /commands/Get-TssSecretPasswordStatus
       - title: "Invoke-TssSecretGeneratePassword"
         url: /commands/Invoke-TssSecretGeneratePassword
+      - title: "Get-TssSecretHeartbeatStatus"
+        url: /commands/Get-TssSecretHeartbeatStatus
 
   - title: "Secrets-Templates"
     children:
@@ -130,6 +132,11 @@ commands:
       - title: "Find-TssUser"
         url: /commands/Find-TssUser
 
+  - title: "Configurations"
+    children:
+      - title: "Get-TssConfiguration"
+        url: /commands/Get-TssConfiguration
+
   - title: "Directory Services"
     children:
       - title: "Search-TssDirectoryServiceDomain"
@@ -176,6 +183,16 @@ abouttopics:
         url: /abouttopics/about_tsssecretpasswordstatus
       - title: "TssSecretDetailState"
         url: /abouttopics/about_tsssecretdetailstate
+      - title: "TssSecretDetailSetting"
+        url: /abouttopics/about_tsssecretdetailsetting
+      - title: "TssRdpLauncherSettings"
+        url: /abouttopics/about_tssrdplaunchersettings
+      - title: "TssSshLauncherSettings"
+        url: /abouttopics/about_tsssshlaunchersettings
+      - title: "TssOneTimePasswordSettings"
+        url: /abouttopics/about_tssonetimepasswordsettings
+      - title: "TssSecretHeartbeatStatus"
+        url: /abouttopics/about_tsssecretheartbeatstatus
 
   - title: "Secrets-Templates"
     children:
@@ -183,6 +200,8 @@ abouttopics:
         url: /abouttopics/about_tsssecrettemplate
       - title: "TssSecretTemplateField"
         url: /abouttopics/about_tsssecrettemplatefield
+      - title: "TssSecretTemplateSummary"
+        url: /abouttopics/about_tsssecrettemplatesummary
 
   - title: "Folders"
     children:
@@ -197,12 +216,21 @@ abouttopics:
       - title: "TssFolderTemplate"
         url: /abouttopics/about_tssfoldertemplate
 
+  - title: "Folder Permissions"
+    children:
+      - title: "TssFolderPermission"
+        url: /abouttopics/about_tssfolderpermission
+      - title: "TssFolderPermissionSummary"
+        url: /abouttopics/about_tssfolderpermissionsummary
+
   - title: "Reports"
     children:
       - title: "TssReport"
         url: /abouttopics/about_tssreport
       - title: "TssReportCategory"
         url: /abouttopics/about_tssreportcategory
+      - title: "TssReportCategoryDetail"
+        url: /abouttopics/about_tssreportcategorydetail
       - title: "TssReportScheduleSummary"
         url: /abouttopics/about_tssreportschedulesummary
 
@@ -220,6 +248,10 @@ abouttopics:
     children:
       - title: "TssUser"
         url: /abouttopics/about_tssuser
+      - title: "TssUserLookup"
+        url: /abouttopics/about_tssuserlookup
+      - title: "TssUserAuditSummary"
+        url: /abouttopics/about_tssuserauditsummary
       - title: "TssCurrentUser"
         url: /abouttopics/about_tsscurrentuser
       - title: "TssRoleSummary"
@@ -234,6 +266,8 @@ abouttopics:
         url: /abouttopics/about_tssrolepermission
       - title: "TssMenuLink"
         url: /abouttopics/about_tssmenulink
+      - title: "TssGroupAssignedRole"
+        url: /abouttopics/about_tssgroupassignedrole
 
   - title: "General"
     children:

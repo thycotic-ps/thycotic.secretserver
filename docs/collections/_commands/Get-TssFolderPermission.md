@@ -93,3 +93,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Get-FolderPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Get-FolderPermission.ps1)
+

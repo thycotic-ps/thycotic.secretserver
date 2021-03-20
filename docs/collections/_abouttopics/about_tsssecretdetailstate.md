@@ -8,13 +8,13 @@ last_modified_at: 2021-03-03T00:00:00-00:00
     This help topic describes the TssSecretDetailState class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDetailActionType
+    TssSecretDetailState
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDetailActionType class represents the SecretDetailViewModel returned by Secret Server endpoint GET /secrets/{id}/state
+    The TssSecretDetailState class represents the SecretDetailViewModel returned by Secret Server endpoint GET /secrets/{id}/state
 
 # CONSTRUCTORS
     new()

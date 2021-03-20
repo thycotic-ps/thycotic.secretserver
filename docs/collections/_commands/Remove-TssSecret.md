@@ -109,3 +109,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Remove-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Remove-Secret.ps1)
+

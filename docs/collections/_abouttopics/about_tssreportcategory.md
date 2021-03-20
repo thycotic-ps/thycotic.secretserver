@@ -1,7 +1,7 @@
 ---
 category: reports
 title: "TssReportCategory"
-last_modified_at: 2021-02-10T00:00:00-00:00
+last_modified_at: 2021-03-18T00:00:00-00:00
 ---
 
 # TOPIC
@@ -20,17 +20,14 @@ last_modified_at: 2021-02-10T00:00:00-00:00
     new()
 
 # PROPERTIES
-    ReportCategoryDescription
+    Description
         Report Category description
 
-    ReportCategoryId
+    Id
         Report Category ID
 
-    ReportCategoryName
+    Name
         Report Category name
-
-    SortOrder
-        Sort Order in which the category should appear
 
 # METHODS
 

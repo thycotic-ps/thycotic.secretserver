@@ -31,6 +31,16 @@ Get-TssSecretStub -TssSession $session -SecretTemplateId 6001
 
 Return the Active Directory template as an object
 
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$newSecret = Get-TssSecretStub -TssSession $session -SecretTemplateId 6001
+$newSecret.Name = 'IT Dept Domain Admin'
+$newSecret.SetFieldValue('username','therealboss')
+```
+
+Getting the Active Directory template stub object, setting the Name and Username on the Secret stub.
+
 ## PARAMETERS
 
 ### -TssSession
@@ -92,4 +102,6 @@ Requires TssSession object returned by New-TssSession
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretStub.ps1)
 

@@ -1,35 +1,35 @@
 ---
-category: folders
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus
 schema: 2.0.0
-title: Get-TssFolderPermissionsStub
+title: Get-TssSecretHeartbeatStatus
 ---
 
-# Get-TssFolderPermissionsStub
+# Get-TssSecretHeartbeatStatus
 
 ## SYNOPSIS
-Get default values for a new folder permission
+Get a Secret's Heartbeat status
 
 ## SYNTAX
 
 ```
-Get-TssFolderPermissionsStub [-TssSession] <TssSession> -FolderId <Int32> [<CommonParameters>]
+Get-TssSecretHeartbeatStatus [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get default values for a new folder permission, a template object
+Get a Secret's Heartbeat status
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderPermissionsStub -TssSession $session -FolderId 36
+Get-TssSecretHeartbeatStatus -TssSession $session -Id 42
 ```
 
-Return template object of a new folder permission
+Returns heartbeat status of Secret 42
 
 ## PARAMETERS
 
@@ -48,17 +48,17 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderId
-Short description for parameter
+### -Id
+Secret Id
 
 ```yaml
-Type: Int32
+Type: Int32[]
 Parameter Sets: (All)
-Aliases: Id
+Aliases: SecretId
 
 Required: True
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
@@ -70,11 +70,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermission
+### TssSecretHeartbeatStatus
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermissionStub)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretHeartbeatStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretHeartbeatStatus.ps1)
 

@@ -101,3 +101,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportCategory](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportCategory)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-ReportCategory.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-ReportCategory.ps1)
+

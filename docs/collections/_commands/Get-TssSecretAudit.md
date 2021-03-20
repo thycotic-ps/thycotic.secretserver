@@ -109,3 +109,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAudit)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAudit.ps1)
+

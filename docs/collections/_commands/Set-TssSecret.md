@@ -17,8 +17,7 @@ Set various settings or fields for a given secret
 ### all (Default)
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
- [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Field <String>] [-Value <String>] [-Clear]
- [-EmailWhenChanged] [-EmailWhenViewed] [-EmailWhenHeartbeatFails] [-Active] [-AutoChangeEnabled]
+ [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Active] [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
  [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
  [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-CheckIn] [-WhatIf] [-Confirm]
@@ -35,18 +34,6 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-For
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-ForceCheckIn] [-CheckIn] [-WhatIf] [-Confirm]
  [<CommonParameters>]
-```
-
-### field
-```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> -Field <String> [-Value <String>] [-Clear] [-WhatIf]
- [-Confirm] [<CommonParameters>]
-```
-
-### email
-```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-EmailWhenChanged] [-EmailWhenViewed]
- [-EmailWhenHeartbeatFails] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### general
@@ -70,52 +57,12 @@ Set various settings or fields for a given secret.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecret -TssSession $session -Id 93 -Field Machine -Value "server2"
-```
-
-Sets secret 93's field, "Machine", to "server2"
-
-### EXAMPLE 2
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecret -TssSession $session -Id 1455 -Field Notes -Value "to be decommissioned" -Comment "updating notes field"
-```
-
-Sets secret 1455's field, "Notes", to the provided value providing required comment
-
-### EXAMPLE 3
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 345 -FolderId 3
 ```
 
 Move Secret 345 to folder ID 3
 
-### EXAMPLE 4
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecret -TssSession $session -Id 113 -Field Notes -Clear
-```
-
-Sets secret 1455's field, "Notes", to an empty value
-
-### EXAMPLE 5
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecret -TssSession $session -Id 113 -EmailWhenViewed
-```
-
-Sets secret 1455 email when viewed setting to true
-
-### EXAMPLE 6
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecret -TssSession $session -Id 113 -EmailWhenChanged:$false
-```
-
-Sets secret 1455 disables emailing when changed
-
-### EXAMPLE 7
+### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Set-TssSecret -TssSession $session -Id 113 -ForceCheckIn
@@ -215,108 +162,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Field
-Field name (slug) of the secret
-
-```yaml
-Type: String
-Parameter Sets: all
-Aliases: FieldName
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-```yaml
-Type: String
-Parameter Sets: field
-Aliases: FieldName
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Value
-Value to set for the provided field
-
-```yaml
-Type: String
-Parameter Sets: all, field
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Clear
-Clear/blank out the field value
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all, field
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -EmailWhenChanged
-Email when changed to true
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all, email
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -EmailWhenViewed
-Email when viewed to true
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all, email
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -EmailWhenHeartbeatFails
-Email when HB fails to true
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all, email
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Active
 Set the secret active secret is active
 
@@ -363,7 +208,7 @@ Accept wildcard characters: False
 ```
 
 ### -EnableInheritPermission
-Enable Folder inherit permissions
+Whether the Secret inherits permissions from the containing folder
 
 ```yaml
 Type: SwitchParameter
@@ -503,7 +348,7 @@ Secret Template (ID)
 ```yaml
 Type: Int32
 Parameter Sets: all, general
-Aliases:
+Aliases: TemplateId
 
 Required: False
 Position: Named
@@ -571,4 +416,6 @@ Requires TssSession object returned by New-TssSession
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-Secret.ps1)
 

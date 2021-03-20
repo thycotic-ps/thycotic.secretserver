@@ -36,9 +36,9 @@ foreach ($item in $data) {
     $user = $item.Username
     $currentTemplate.Name = "$machine $user"
     $currentTemplate.FolderId = 9
-    $currentTemplate.Items.SetFieldValue('Machine',$item.Machine) > $null
-    $currentTemplate.Items.SetFieldValue('Username',$item.Username) > $null
-    $currentTemplate.Items.SetFieldValue('Password',$item.Password) > $null
+    $currentTemplate.SetFieldValue('Machine',$item.Machine)
+    $currentTemplate.SetFieldValue('Username',$item.Username)
+    $currentTemplate.SetFieldValue('Password',$item.Password)
     $created = New-TssSecret -TssSession $session -SecretStub $currentTemplate -Verbose
     $createdSecrets += $created
     Remove-Variable currentTemplate,machine,user -Force
@@ -127,4 +127,6 @@ Requires TssSession object returned by New-TssSession
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/New-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/New-Secret.ps1)
 

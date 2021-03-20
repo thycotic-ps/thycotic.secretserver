@@ -285,3 +285,5 @@ More detailed examples: https://thycotic-ps.github.io/thycotic.secretserver/docs
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi](https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi)
 
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Invoke-RestApi.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Invoke-RestApi.ps1)
+
