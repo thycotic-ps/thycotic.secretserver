@@ -71,7 +71,7 @@ function Disable-SecretEmail {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
 
-        $restrictedParamSet = . $ParameterSetParams 'Enable-TssSecretEmail' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams 'Disable-TssSecretEmail' 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($tssParams.ContainsKey($r)) {

@@ -92,6 +92,14 @@ function Get-Secret {
     begin {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
+
+        $restrictedParamSet = . $ParameterSetParams 'Get-TssSecret' 'restricted'
+        $restrictedParams = @()
+        foreach ($r in $restrictedParamSet) {
+            if ($tssParams.ContainsKey($r)) {
+                $restrictedParams += $r
+            }
+        }
     }
 
     process {
@@ -102,34 +110,24 @@ function Get-Secret {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
-                $body = @{}
-                if ($PSCmdlet.ParameterSetName -eq 'restricted') {
+                $getBody = @{}
+                if ($restrictedParams.Count -gt 0) {
                     switch ($tssParams.Keys) {
-                        'Comment' {
-                            $body.Add('comment',$Comment)
-                        }
+                        'Comment' { $getBody.Add('comment', $Comment) }
+                        'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
+                        'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
+                        'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
                         'DoublelockPassword' {
                             $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
-                            $body.Add('doubleLockPassword',$passwd)
-                        }
-                        'ForceCheckIn' {
-                            $body.Add('forceCheckIn',$ForceCheckIn)
-                        }
-                        'IncludeInactive' {
-                            $body.Add('includeInactive',$IncludeInactive)
-                        }
-                        'TicketNumber' {
-                            $body.Add('ticketNumber',$TicketNumber)
-                        }
-                        'TicketSystemId' {
-                            $body.Add('ticketSystemId',$TicketSystemId)
+                            $getBody.Add('doubleLockPassword',$passwd)
                         }
                     }
+
                     $uri = $uri, 'restricted' -join '/'
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
-                    $invokeParams.Body = $body | ConvertTo-Json
-                } else {
+                    $invokeParams.Body = $getBody | ConvertTo-Json
+                }else {
                     $uri = $uri
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'

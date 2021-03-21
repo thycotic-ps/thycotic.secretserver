@@ -97,7 +97,7 @@ function Set-SecretField {
         [int]
         $TicketNumber,
 
-        #Associated Ticket System ID
+        # Associated Ticket System ID
         [Parameter(ParameterSetName = 'restricted')]
         [int]
         $TicketSystemId
@@ -105,6 +105,14 @@ function Set-SecretField {
     begin {
         $setParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
+
+        $restrictedParamSet = . $ParameterSetParams 'Set-TssSecretField' 'restricted'
+        $restrictedParams = @()
+        foreach ($r in $restrictedParamSet) {
+            if ($tssParams.ContainsKey($r)) {
+                $restrictedParams += $r
+            }
+        }
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -133,7 +141,7 @@ function Set-SecretField {
                 }
 
                 if ($restrictedParams.Count -gt 0) {
-                    switch ($restrictedParams) {
+                    switch ($setParams.Keys) {
                         'Comment' { $fieldBody.Add('comment', $Comment) }
                         'ForceCheckIn' { $fieldBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                         'TicketNumber' { $fieldBody.Add('ticketNumber', $TicketNumber) }

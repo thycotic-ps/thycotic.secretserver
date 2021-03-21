@@ -68,7 +68,7 @@ function Enable-SecretCheckout {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
 
-        $restrictedParamSet = . $ParameterSetParams 'Enable-TssSecretEmail' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams 'Enable-TssSecretCheckout' 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($tssParams.ContainsKey($r)) {
