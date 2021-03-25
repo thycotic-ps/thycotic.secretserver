@@ -98,3 +98,4 @@ last_modified_at: 2021-03-07T00:00:00-00:00
     TssSecretSummaryExtendedField
     Search-TssSecret
     Get-TssSecretSummary
+    Protect-TssSecret

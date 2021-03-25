@@ -52,6 +52,8 @@ commands:
         url: /commands/Invoke-TssSecretGeneratePassword
       - title: "Get-TssSecretHeartbeatStatus"
         url: /commands/Get-TssSecretHeartbeatStatus
+      - title: "Protect-TssSecret"
+        url: /commands/Protect-TssSecret
 
   - title: "Secrets-Templates"
     children:

@@ -58,6 +58,7 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Set-TssSecretField] | [PUT /secrets/{id}/fields/{slug}]
 [Start-TssSecretChangePassword] | `POST /internals/secret-detail/{id}/change-password-now`
 [Stop-TssSecretChangePassword] | [POST /secrets/{id}/stop-password-change]
+[Protect-TssSecret] | [POST /secrets/{id}/check-in]
 
 ## Secret Access Requests
 
@@ -201,7 +202,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Set-TssSecretField]:/thycotic.secretserver/commands/Set-TssSecretField
 [Search-TssSecretTemplate]:/thycotic.secretserver/commands/Search-TssSecretTemplate
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
+[Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
 
+[POST /secrets/{id}/check-in]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--check-in-post
 [GET /users/{userId}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users--userId--audit-get
 [GET /secret-templates]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secret-templates-get
 [PUT /secrets/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--put
