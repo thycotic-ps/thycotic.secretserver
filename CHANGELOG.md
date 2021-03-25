@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssUserAudit - closes [#93](https://github.com/thycotic-ps/thycotic.secretserver/issues/93) [d436f65](https://github.com/thycotic-ps/thycotic.secretserver/commit/d436f65f951d06a7d3ba18ee7cc3bf169f2e0046)
 * Set-TssSecretField - closes [#117](https://github.com/thycotic-ps/thycotic.secretserver/issues/117) [9ed4091](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ed4091402844859607b48c23e8057788e224f5e)
 * Search-TssSecretTemplate - closes [#81](https://github.com/thycotic-ps/thycotic.secretserver/issues/81) [f96c4bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/f96c4bf2b661dc2adb5e1fa5968e3dcdb67c255c)
+* Protect-TssSecret - closes [#131](https://github.com/thycotic-ps/thycotic.secretserver/issues/131) [cb8e53d](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb8e53dc98682bcdb84a2631cc52f31f46582fb8)
 
 ### Genearl Updates
 
@@ -59,6 +60,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - example updates [fac30c3](https://github.com/thycotic-ps/thycotic.secretserver/commit/fac30c399323a110b047075309d5141275f16c8b)
 * module - about files added [1b07f60](https://github.com/thycotic-ps/thycotic.secretserver/commit/1b07f60ab6ee6257176f6685c037236989fd720f)
 * module - help adding source code link [67e06e3](https://github.com/thycotic-ps/thycotic.secretserver/commit/67e06e3def1da78daa0482649e7dc28b7596f83b)
+* module - adjust TssSecretState format [da1f699](https://github.com/thycotic-ps/thycotic.secretserver/commit/da1f6991242e8707285c2afe8f39b9bef69de02e)
+* module - adjusting pattern for restricted params [1ea709b](https://github.com/thycotic-ps/thycotic.secretserver/commit/1ea709bba013e5d0bd4d706b8aee0e45036c3a64)
 
 ### Bug Fixes
 
@@ -70,6 +73,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Folder Permission - Tests - update mocking [457fe7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/457fe7ddd3c25756ffecd2190f02e0bd736852cf)
 * New-TssFolderPermission Test - remove unused code [09981c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/09981c88d775ef199d506295a2f10447db60a0a7)
+* New-TssFolder - removed integration test ToDo - replace with mocking [3ac59d8](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ac59d8574a1f17d6612b86431d94123e7eb2aef)
 
 ## [0.33.1] -- 2021-03-05
 
