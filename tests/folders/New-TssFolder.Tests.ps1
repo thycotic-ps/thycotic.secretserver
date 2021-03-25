@@ -4,7 +4,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','FolderStub', 'FolderName', 'ParentFolderId', 'SecretPolicyId', 'InheritPermissions', 'InheritSecretPolicy'
+        [object[]]$knownParameters = 'TssSession','FolderStub'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -23,7 +23,7 @@ Describe "$commandName verify parameters" {
         }
     }
 }
-Describe "$commandName works" {
+Describe "$commandName works" -Skip {
     BeforeDiscovery {
         $invokeParams = @{}
         if ($tssTestUsingWindowsAuth) {
