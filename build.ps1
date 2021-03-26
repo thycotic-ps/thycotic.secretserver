@@ -99,9 +99,6 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
-    Write-Host "Module Files:"
-    Get-ChildItem $moduleTempPath -Recurse | Select-Object Directory, Name
-
     if ($PSBoundParameters['GalleryKey']) {
         try {
             Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
