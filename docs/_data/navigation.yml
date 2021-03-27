@@ -133,6 +133,8 @@ commands:
         url: /commands/Search-TssUser
       - title: "Find-TssUser"
         url: /commands/Find-TssUser
+      - title: "Get-TssUserStub"
+        url: /commands/Get-TssUserStub
 
   - title: "Configurations"
     children:

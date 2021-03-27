@@ -88,7 +88,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
-[TssUser] | [Get-TssUser]
+[TssUser] | [Get-TssUser] [Get-TssUserStub]
 [TssUserAuditSummary] | [Get-TssUserAudit]
 [TssRoleSummary] | [Get-TssUserRole]
 [TssUserRoleSummary] | [Get-TssUserRoleAssigned]
@@ -154,6 +154,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssSecretState]:/thycotic.secretserver/commands/Get-TssSecretState
 [Get-TssSecretHeartbeatStatus]:/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
+[Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
 
 [TssUserAuditSummary]:/thycotic.secretserver/abouttopics/about_tssuserauditsummary
 [TssSecretHeartbeatStatus]:/thycotic.secretserver/abouttopics/about_tsssecretheartbeatstatus

@@ -131,6 +131,7 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Get-TssUserRoleAssigned] | [GET /users/{userId}/roles-assigned]
 [Search-TssUser] | [GET /users]
 [Show-TssCurrentUser] | [GET /users/current]
+[Get-TssUserStub] | [GET /users/stub]
 
 ## Directory Services
 
@@ -203,7 +204,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Search-TssSecretTemplate]:/thycotic.secretserver/commands/Search-TssSecretTemplate
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
 [Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
+[Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
 
+[GET /users/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-stub-get
 [POST /secrets/{id}/check-in]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--check-in-post
 [GET /users/{userId}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users--userId--audit-get
 [GET /secret-templates]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secret-templates-get

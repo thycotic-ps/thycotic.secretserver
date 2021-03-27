@@ -117,3 +117,4 @@ METHODS
 
 RELATED LINKS:
     Get-TssUser
+    Get-TssUserStub
