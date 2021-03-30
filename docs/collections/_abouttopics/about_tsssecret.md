@@ -139,9 +139,10 @@ last_modified_at: 2021-03-17T00:00:00-00:00
 
 # METHODS
 
-    [PSCredential] GetCredential()
-        Pulls the username field and the field flagged as the password (IsPassword = true)
-        Creates and will output a System.Management.Automation.PSCredential object
+    [PSCredential] GetCredential(string DomainField, string UserField, string PwdField)
+        Provide the desired slug names
+        Outputs a System.Management.Automation.PSCredential object
+        If DomainField is not required, provide $null or an empty string and it will be ignored
 
     [System.String] GetFieldValue(string Slug)
         Pulls the ItemValue of the field based on the slug name
