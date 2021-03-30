@@ -123,10 +123,11 @@ class TssSecret {
     $ResponseCodes
 
     [System.Management.Automation.PSCredential]
-    GetCredential() {
-        $username = ($this.Items | Where-Object FieldName -EQ 'username').ItemValue
-        $passwd = ($this.Items | Where-Object IsPassword).ItemValue
-        return [pscredential]::new($username,(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
+    GetCredential([string]$DomainField, [string]$UserField, [string]$PwdField) {
+        $domain = ($this.Items.Where( { $_.FieldName -eq $DomainField })).ItemValue
+        $username = ($this.Items.Where( { $_.FieldName -eq $UserField })).ItemValue
+        $passwd = ($this.Items.Where( { $_.FieldName -eq $PwdField })).ItemValue
+        return [pscredential]::new((($domain,$username -join '\').Trim('\')),(ConvertTo-SecureString -AsPlainText -Force -String $passwd))
     }
 
     [System.String]
