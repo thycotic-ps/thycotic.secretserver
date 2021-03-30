@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* TssSecret - GetCredential method update closes [#133](https://github.com/thycotic-ps/thycotic.secretserver/issues/133) [92e8a1e](https://github.com/thycotic-ps/thycotic.secretserver/commit/92e8a1ed56c9b4fb730bef16286ec32551632808)
 
 </details>
 
@@ -41,6 +41,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * build - remove outputing file list [87929d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/87929d6659551091bbfd7bfa9ffdf9f781e8d38c)
 * Get-UserStub - moving to correct directory [2a23010](https://github.com/thycotic-ps/thycotic.secretserver/commit/2a23010dcacc8b8f1490a0d164f7686783e989ac)
+* module - change API call method to internal script [92f32e0](https://github.com/thycotic-ps/thycotic.secretserver/commit/92f32e09707578264a771ff2c44b5e2df412409b)
+* module - CheckVersion correct logic, remove function call [a4799d8](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4799d841b861fa72c6d3edf4bea65721e712b6d)
 
 </details>
 
