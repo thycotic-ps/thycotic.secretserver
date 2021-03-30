@@ -57,7 +57,7 @@ function Get-UserStub {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue getting user stub"
                 $err = $_

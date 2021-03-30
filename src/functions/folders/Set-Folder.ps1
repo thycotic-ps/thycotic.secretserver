@@ -141,7 +141,7 @@ function Set-Folder {
                 if ($PSCmdlet.ShouldProcess("FolderID: $folder", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue setting property on folder [$folder]"
                         $err = $_

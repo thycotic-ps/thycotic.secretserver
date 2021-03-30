@@ -261,7 +261,7 @@ function Set-Secret {
 
                             Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
                             try {
-                                $otherResponse = Invoke-TssRestApi @invokeParamsOther
+                                $otherResponse = . $InvokeApi @invokeParamsOther
                             } catch {
                                 Write-Warning "Issue setting property on secret [$secret]"
                                 $err = $_
@@ -370,7 +370,7 @@ function Set-Secret {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n")) {
                         Write-Verbose "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n"
                         try {
-                            $generalResponse = Invoke-TssRestApi @invokeParamsGenearl
+                            $generalResponse = . $InvokeApi @invokeParamsGenearl
                         } catch {
                             Write-Warning "Issue configuring general settings on [$secret]"
                             $err = $_
@@ -409,7 +409,7 @@ function Set-Secret {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsCheckIn.Method) $uri with:`n$($invokeParamsCheckIn.Body)`n")) {
                         Write-Verbose "$($invokeParamsCheckIn.Method) $uri with:`n$checkInBody`n"
                         try {
-                            $checkInResponse = Invoke-TssRestApi @invokeParamsCheckIn
+                            $checkInResponse = . $InvokeApi @invokeParamsCheckIn
                         } catch {
                             Write-Warning "Issue performing check-in on secret [$secret]"
                             $err = $_

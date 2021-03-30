@@ -69,7 +69,7 @@ function Get-SecretStub {
 
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue getting secret stub template [$SecretTemplateId]"
                 $err = $_

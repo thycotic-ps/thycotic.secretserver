@@ -104,7 +104,7 @@ function Protect-Secret {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue checking in Secret [$secret]"
                     $err = $_

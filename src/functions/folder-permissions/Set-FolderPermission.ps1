@@ -85,7 +85,7 @@ function Set-FolderPermission {
                 if ($PSCmdlet.ShouldProcess("FolderPermissionID: ${5}", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue setting property on  [$]"
                         $err = $_

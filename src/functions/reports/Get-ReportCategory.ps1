@@ -63,7 +63,7 @@ function Get-ReportCategory {
 
                     Write-Verbose "$($invokeParams.Method) $uri"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue getting details on [$reportCategory]"
                         $err = $_
@@ -83,7 +83,7 @@ function Get-ReportCategory {
 
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting details on [$reportCategory]"
                     $err = $_

@@ -78,7 +78,7 @@ function Search-Group {
             $invokeParams.Method = 'GET'
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue on search request"
                 $err = $_

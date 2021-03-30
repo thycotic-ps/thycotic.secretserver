@@ -64,7 +64,7 @@ function Get-SecretAudit {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting audits for [$secret]"
                     $err = $_

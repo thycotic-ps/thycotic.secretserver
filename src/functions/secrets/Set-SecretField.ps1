@@ -157,7 +157,7 @@ function Set-SecretField {
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $fieldResponse = Invoke-TssRestApi @invokeParams
+                        $fieldResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue setting field $Field on secret [$secret]"
                         $err = $_

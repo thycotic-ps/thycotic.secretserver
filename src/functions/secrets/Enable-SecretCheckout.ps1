@@ -110,7 +110,7 @@ function Enable-SecretCheckout {
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue configuring [$secret] Checkout settings"
                         $err = $_

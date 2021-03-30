@@ -77,7 +77,7 @@ function New-Folder {
             Write-Verbose "$($invokeParams.Method) $uri with:`n $FolderStub"
             if (-not $PSCmdlet.ShouldProcess($FolderStub.FolderName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue creating folder [$ReportName]"
                 $err = $_

@@ -53,7 +53,7 @@ function Stop-SecretChangePassword {
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     $err = $_
                     . $ErrorHandling $err

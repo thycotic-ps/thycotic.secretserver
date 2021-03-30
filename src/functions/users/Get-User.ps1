@@ -55,7 +55,7 @@ function Get-User {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting user [$user]"
                     $err = $_

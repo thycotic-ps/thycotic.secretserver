@@ -133,7 +133,7 @@ function New-Session {
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($invokeParams.Uri)]")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue authenticating to [$SecretServer]"
                     $err = $_.ErrorDetails.Message

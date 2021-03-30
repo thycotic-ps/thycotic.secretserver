@@ -86,7 +86,7 @@ function Start-SecretChangePassword {
                 if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret","$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n")) { return }
                 Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     $err = $_
                     . $ErrorHandling $err

@@ -46,7 +46,7 @@ function Get-FolderStub {
 
             Write-Verbose "$($invokeParams.Method) $uri with $body"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue getting folder stub"
                 $err = $_

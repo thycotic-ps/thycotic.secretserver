@@ -84,7 +84,7 @@ function New-FolderPermission {
                 Write-Verbose "$($invokeParams.Method) $uri with:`n $newBody"
                 if (-not $PSCmdlet.ShouldProcess("FolderID: $FolderId", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue creating Folder Permission on Folder [$FolderId]"
                     $err = $_

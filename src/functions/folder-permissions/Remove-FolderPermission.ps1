@@ -62,7 +62,7 @@ function Remove-FolderPermission {
                 if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission","$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue removing [$folderPermission]"
                     $err = $_

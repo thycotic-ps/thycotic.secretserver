@@ -52,7 +52,7 @@ function Show-CurrentUser {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue getting current user"
                 $err = $_

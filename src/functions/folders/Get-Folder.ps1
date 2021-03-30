@@ -77,7 +77,7 @@ function Get-Folder {
 
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting folder [$folder]"
                     $err = $_

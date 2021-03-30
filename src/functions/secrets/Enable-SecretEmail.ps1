@@ -125,7 +125,7 @@ function Enable-SecretEmail {
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue configuring [$secret] email settings, verify Email Server is configured in Secret Server"
                         $err = $_

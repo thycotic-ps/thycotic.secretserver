@@ -76,7 +76,7 @@ function New-Secret {
             Write-Verbose "$($invokeParams.Method) $uri with:`n $SecretStub"
             if (-not $PSCmdlet.ShouldProcess($SecretStub.Name, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue creating secret [$($SecretStub.Name)]"
                 $err = $_

@@ -53,7 +53,7 @@ function Get-SecretTemplate {
 
                 Write-Verbose "$($invokeParas.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting template [$template]"
                     $err = $_

@@ -25,7 +25,7 @@ process {
     $invokeParams.Method = 'GET'
 
     try {
-        $restResponse = Invoke-TssRestApi @invokeParams
+        $restResponse = . $InvokeApi @invokeParams
     } catch {
         Write-Warning "Issue reading version, verify Hide Secret Server Version Numbers is disabled in Secret Server"
         $err = $_

@@ -51,7 +51,7 @@ function Restore-Secret {
                 if ($PSCmdlet.ShouldProcess("Secret Id: $secret", "$($invokeParams.Method) $uri")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
-                        $restResponse = Invoke-TssRestApi @invokeParams
+                        $restResponse = . $InvokeApi @invokeParams
                     } catch {
                         Write-Warning "Issue with Secret [$secret]"
                         $err = $_

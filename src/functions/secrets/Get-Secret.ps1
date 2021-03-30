@@ -135,7 +135,7 @@ function Get-Secret {
 
                 Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting secret [$secret]"
                     $err = $_

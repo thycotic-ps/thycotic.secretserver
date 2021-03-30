@@ -89,7 +89,7 @@ function Find-Folder {
 
             Write-Verbose "$($invokeParams.Method) $uri with $body"
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue on search request"
                 $err = $_

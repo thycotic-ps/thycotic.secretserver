@@ -54,7 +54,7 @@ function Remove-Folder {
                 if (-not $PSCmdlet.ShouldProcess("FolderId: $folder", "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue removing [$]"
                     $err = $_

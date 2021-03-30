@@ -117,7 +117,7 @@ function New-Report {
             Write-Verbose "$($invokeParams.Method) $uri with:`n $newReportBody"
             if (-not $PSCmdlet.ShouldProcess($ReportName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = Invoke-TssRestApi @invokeParams
+                $restResponse = . $InvokeApi @invokeParams
             } catch {
                 Write-Warning "Issue creating report [$ReportName]"
                 $err = $_

@@ -54,7 +54,7 @@ function Get-UserRole {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting roles on user [$user]"
                     $err = $_

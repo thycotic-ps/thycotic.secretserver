@@ -52,7 +52,7 @@ function Get-Report {
 
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting report [$report]"
                     $err = $_

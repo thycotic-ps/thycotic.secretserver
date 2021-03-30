@@ -53,7 +53,7 @@ function Get-SecretPasswordStatus {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting password status on Secret [$secret]"
                     $err = $_

@@ -140,7 +140,7 @@ function Get-SecretField {
                 }
                 Write-Verbose "$($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
                     $err = $_

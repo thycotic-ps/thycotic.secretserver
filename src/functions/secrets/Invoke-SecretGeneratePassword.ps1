@@ -57,7 +57,7 @@ function Invoke-SecretGeneratePassword {
 
             Write-Verbose "Performing the operation $($invokeGenerateParams.Method) $uri"
             try {
-                $restGeneratedPassword = Invoke-TssRestApi @invokeGenerateParams
+                $restGeneratedPassword = . $InvokeApi @invokeGenerateParams
             } catch {
                 Write-Warning "Issue getting generated password for Secret [$secret] and Field Slug [$Slug]"
                 $err = $_
@@ -74,7 +74,7 @@ function Invoke-SecretGeneratePassword {
 
                 Write-Verbose "Performing the operation $($invokeValidateParams.Method) $uri"
                 try {
-                    $restValidateResponse = Invoke-TssRestApi @invokeValidateParams
+                    $restValidateResponse = . $InvokeApi @invokeValidateParams
                 } catch {
                     Write-Warning "Issue validating generated password for Secret [$secret] and Field Slug [$Slug]"
                     $err = $_

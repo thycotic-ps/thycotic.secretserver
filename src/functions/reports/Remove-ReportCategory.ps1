@@ -61,7 +61,7 @@ function Remove-ReportCategory {
                 Write-Verbose "$($invokeParams.Method) $uri"
                 if (-not $PSCmdlet.ShouldProcess("RemoteCategoryId: $category", "$($invokeParams.Method) $uri")) { return }
                 try {
-                    $restResponse = Invoke-TssRestApi @invokeParams
+                    $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue removing [$category]"
                     $err = $_
