@@ -31,7 +31,7 @@ function Get-UserRole {
 
         # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("UserRoleId")]
+        [Alias("UserId")]
         [int[]]
         $Id
     )
