@@ -26,8 +26,8 @@ Describe "$commandName functions" {
                 Take         = 2147483647
                 SecretServer = 'http://alpha/'
                 ApiUrl       = 'http://alpha/api/v1'
-                AccessToken  = 'AgJf5YLFWtzw2UcBrM1s1KB2BGZ5Ufc4qLZ'
-                RefreshToken = '9oacYFZZ0YqgBNg0L7VNIF6-Z9ITE51Qplj'
+                AccessToken  = 'AgJf5YLChrisPine312UcBrM1s1KB2BGZ5Ufc4qLZ'
+                RefreshToken = '9oacYeah0YqgBNg0L7VinDiesel6-Z9ITE51Humus'
                 TokenType    = 'bearer'
                 ExpiresIn    = 1199
             }
