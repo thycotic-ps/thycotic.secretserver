@@ -526,7 +526,7 @@
             "                }",
             "            }",
             "",
-            "            Mock -Verifiable -CommandName Invoke-RestMethod -ParameterFilter { \\$Uri -match '/${2:Endpoint}' } -MockWith {",
+            "            Mock -Verifiable -CommandName Invoke-RestMethod -ParameterFilter { \\$Uri -match '/${1:Endpoint}' } -MockWith {",
             "                return [pscustomobject]@{",
             "                    # Object expected by REST API call",
             "                }",
@@ -542,6 +542,9 @@
             "        }",
             "        It \"Should have property ${5:Property} equal ${6:value}\" {",
             "            \\$object.${5} | Should -Be ${6}",
+            "        }",
+            "        It \"Should have called Invoke-RestMethod 2 times\" {",
+            "            Assert-MockCalled -CommandName Invoke-RestMethod -Times 2 -Scope Describe",
             "        }",
             "    }",
             "}"
@@ -580,7 +583,7 @@
         "prefix": "tssapi",
         "body": [
             "\\$SecretServerHost = '${1:SS URL}'",
-            "\\$apiUrl = \"${1}/api/v1\"",
+            "\\$apiUrl = \"\\$SecretServerHost/api/v1\"",
             "",
             "\\$Body = @{",
             "    \"grant_type\" = \"password\"",
@@ -598,7 +601,7 @@
             "           value = \\$true",
             "       }",
             "   }",
-            "} ConvertTo-Json",
+            "} | ConvertTo-Json",
             "\\$url = \"\\$apiUrl/${4:endpoint and params}\"",
             "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers -Body \\$body",
             ""
