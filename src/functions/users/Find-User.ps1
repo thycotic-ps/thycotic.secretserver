@@ -111,7 +111,6 @@ function Find-User {
                         Email = $parsedValue[1]
                     }
                 }
-                . $TssUserLookupObject $restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
