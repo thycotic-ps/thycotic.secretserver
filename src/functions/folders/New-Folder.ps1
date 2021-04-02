@@ -9,31 +9,22 @@ function New-Folder {
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $folderStub = Get-TssFolderStub -TssSession $session
-    $folderStub.FolderName = 'tssNewFolder'
-    $folderStub.ParentFolderId = -1
-    New-TssFolder -TssSession $session -FolderStub $folderStub
+    New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
 
-    Creates a new root folder, named "tssNewFolder"
+    Creates a folder named "tssNewFolder" at the root of Secret Server application
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $folderStub = Get-TssFolderStub -TssSession $session
-    $folderStub.FolderName 'IT Dept'
-    $folderStub.ParentFolderId = 27
-    $folderStub.InheritPermissions = $false
-    New-TssFolder -TssSession $session -FolderStub $folderStub
+    New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
 
-    Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled
+    Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    $folderStub.FolderName 'Marketing Dept'
-    $folderStub.ParentFolderId = 27
-    $folderStub.InheritPermissions = $true
-    $folderStub.InheritSecretPolicy = $true
-    New-TssFolder -TssSession $session -FolderStub $folderStub
+    Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
 
-    Creates a folder named "Marketing Dept" under parent folder 27 with Inheritance enabled for Permissions and Secret Policy
+    Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
@@ -52,10 +43,28 @@ function New-Folder {
         [TssSession]
         $TssSession,
 
-        # Input object obtained via Get-TssFolderStub
-        [Parameter(Mandatory, Position = 1, ValueFromPipeline)]
-        [TssFolder]
-        $FolderStub
+        # Folder Name
+        [Parameter(Mandatory)]
+        [string]
+        $FolderName,
+
+        # Parent Folder ID, default to root folder (-1)
+        [Alias('ParentFolder')]
+        [int]
+        $ParentFolderId = -1,
+
+        # Secret Policy ID
+        [Alias('SecretPolicy')]
+        [int]
+        $SecretPolicyId,
+
+        # Inherit Permissions
+        [switch]
+        $InheritPermissions,
+
+        # Inherit Secret Policy
+        [switch]
+        $InheritSecretPolicy
     )
 
     begin {
@@ -72,7 +81,23 @@ function New-Folder {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
 
-            $invokeParams.Body = ($FolderStub | ConvertTo-Json)
+            $newFolderStub = @{
+                folderName          = $FolderName
+                parentFolderId      = $ParentFolderId
+                folderTypeId        = 1
+            }
+
+            if ($tssParams.ContainsKey('SecretPolicyId')) {
+                $newFolderStub.SecretPolicyId = $SecretPolicyId
+            }
+            if ($tssParams.ContainsKey('InheritPermissions')) {
+                $newFolderStub.InheritPermissions = $InheritPermissions
+            }
+            if ($tssParams.ContainsKey('InheritSecretPolicy')) {
+                $newFolderStub.InheritSecretPolicy = $InheritSecretPolicy
+            }
+
+            $invokeParams.Body = ($newFolderStub | ConvertTo-Json)
 
             Write-Verbose "$($invokeParams.Method) $uri with:`n $FolderStub"
             if (-not $PSCmdlet.ShouldProcess($FolderStub.FolderName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
