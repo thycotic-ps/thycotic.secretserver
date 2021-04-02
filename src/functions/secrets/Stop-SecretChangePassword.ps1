@@ -63,7 +63,6 @@ function Stop-SecretChangePassword {
                     [PSCustomObject]@{
                         SecretId = $secret
                         Status   = $true
-                        Notes    = $null
                     }
                 }
             }
