@@ -71,7 +71,7 @@ More: [How to Secure Your Passwords with PowerShell](https://www.sqlshack.com/ho
 
 ### SecretManagement Module
 
-Microsoft's PowerShell Team has released a module that offers an efficient, secure, and easily managed option to the other methods commonly used for securely storing your OAuth2 username and password in PowerShell.
+Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the OAuth2 credential needed for authenticating with Secret Server's.
 
 More:
 

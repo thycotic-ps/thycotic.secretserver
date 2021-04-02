@@ -39,17 +39,18 @@ last_modified_at: 2021-02-15T00:00:00-00:00
     TokenType:
         Based on the authentication method (possible values: bearer, ExternalToken, or WindowsAuth)
 
-    StartTime:
-        Current date and time when session was created
-        Hidden property
-
     ExpiresIn:
         Authentication token expiration time, in seconds
+
+    StartTime:
+        Current date and time when session was created
 
     TimeOfDeath:
         Expiration date and time based on ExpiresIn value.
         Provides the time when the authentication token will no longer be valid.
-        Hidden property
+
+    Take:
+        Endpoints that allow paging, defaults to max value allowed
 
 # METHODS
 

@@ -21,14 +21,12 @@ class TssSession {
     [string]
     $TokenType
 
-    hidden
-    [datetime]
-    $StartTime
-
     [int]
     $ExpiresIn
 
-    hidden
+    [datetime]
+    $StartTime
+
     [datetime]
     $TimeOfDeath
 
@@ -94,7 +92,7 @@ class TssSession {
             return $false
         }
         try {
-            $url = $this.SecretServer + 'oauth2/token' -join '/'
+            $url = $this.SecretServer, 'oauth2', 'token' -join '/'
             $body = @{
                 refresh_token = $this.RefreshToken
                 grant_type    = 'refresh_token'
