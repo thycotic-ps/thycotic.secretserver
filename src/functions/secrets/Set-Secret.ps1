@@ -138,13 +138,6 @@ function Set-Secret {
         [int]
         $Site,
 
-        # Secret Template (ID)
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'general')]
-        [Alias('TemplateId')]
-        [int]
-        $Template,
-
         # Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secret in
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'checkIn')]
@@ -154,7 +147,7 @@ function Set-Secret {
     begin {
         $setSecretParams = $PSBoundParameters
 
-        $generalParamSet = . $ParameterSetParams 'Set-TssSecret' 'general'
+        $generalParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'general'
 
         # Need to know if any of the params provided are in the specific parameter sets
         # if they are not we will null out the variable so the code below is not triggered
@@ -166,8 +159,8 @@ function Set-Secret {
         }
 
         # Require Get-TssSecret and PUT /secrets/{id} endpoint
-        $passwordParamSet = . $ParameterSetParams 'Set-TssSecret' 'password'
-        $folderParamSet = . $ParameterSetParams 'Set-TssSecret' 'folder'
+        $passwordParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'password'
+        $folderParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'folder'
         $otherParams = @()
         foreach ($p in $passwordParamSet) {
             if ($setSecretParams.ContainsKey($p)) {
@@ -181,7 +174,7 @@ function Set-Secret {
         }
 
         # restricted params
-        $restrictedParamSet = . $ParameterSetParams 'Set-TssSecret' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($setSecretParams.ContainsKey($r)) {
@@ -339,13 +332,6 @@ function Set-Secret {
                             value = $Site
                         }
                         $generalBody.data.Add('enableInheritSecretPolicy',$setSite)
-                    }
-                    if ($setSecretParams.ContainsKey('Template')) {
-                        $setTemplate = @{
-                            dirty = $true
-                            value = $Template
-                        }
-                        $generalBody.data.Add('template',$setTemplate)
                     }
                     if ($setSecretParams.ContainsKey('IsOutOfSync')) {
                         $setOutOfSync = @{
