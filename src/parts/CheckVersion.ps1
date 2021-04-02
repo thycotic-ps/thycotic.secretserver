@@ -18,10 +18,13 @@ param(
     [System.Management.Automation.InvocationInfo]
     $Invocation
 )
-
+begin {
+    $invokeParams = . $GetInvokeTssParams $TssSession
+}
 process {
     $source = $Invocation.MyCommand
     $uri = $TssSession.ApiUrl, 'version' -join '/'
+
     $invokeParams.Uri = $Uri
     $invokeParams.Method = 'GET'
 
