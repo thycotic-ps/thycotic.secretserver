@@ -1,55 +1,37 @@
 ---
-category: folders
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity
 schema: 2.0.0
-title: New-TssFolder
+title: Set-TssSecretSecurity
 ---
 
-# New-TssFolder
+# Set-TssSecretSecurity
 
 ## SYNOPSIS
-Create a new folder
+Set Secret general security options
 
 ## SYNTAX
 
 ```
-New-TssFolder [-TssSession] <TssSession> -FolderName <String> [-ParentFolderId <Int32>]
- [-SecretPolicyId <Int32>] [-InheritPermissions] [-InheritSecretPolicy] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TssSecretSecurity [-TssSession] <TssSession> -Id <Int32[]> [-DoubleLockId <Int32>] [-HideLauncherPassword]
+ [-ProxyEnabled] [-RequiresComment] [-SessionRecordingEnabled] [-WebLauncherRequiresIncognitoMode] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Create a new folder
+Set Secret general security options
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
+Set-TssSecretSecurity -TssSession $session -Id 42
 ```
 
-Creates a folder named "tssNewFolder" at the root of Secret Server application
-
-### EXAMPLE 2
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
-```
-
-Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
-
-### EXAMPLE 3
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
-```
-
-Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
+DOING something
 
 ## PARAMETERS
 
@@ -68,43 +50,28 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -FolderName
-Folder Name
+### -Id
+Folder Id to modify
 
 ```yaml
-Type: String
+Type: Int32[]
 Parameter Sets: (All)
-Aliases:
+Aliases: SecretId
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -ParentFolderId
-Parent Folder ID, default to root folder (-1)
+### -DoubleLockId
+DoubleLock to associate to the secret
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: ParentFolder
-
-Required: False
-Position: Named
-Default value: -1
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -SecretPolicyId
-Secret Policy ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: SecretPolicy
+Aliases:
 
 Required: False
 Position: Named
@@ -113,8 +80,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InheritPermissions
-Inherit Permissions
+### -HideLauncherPassword
+Hide the launcher password from non-owners (Viewing Password Requires Edit in UI)
 
 ```yaml
 Type: SwitchParameter
@@ -128,8 +95,53 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -InheritSecretPolicy
-Inherit Secret Policy
+### -ProxyEnabled
+Enable proxy on the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -RequiresComment
+Require comment to view the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SessionRecordingEnabled
+Enable Session Recording for the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -WebLauncherRequiresIncognitoMode
+Require Web Launcher to be incognito mode for the Secret
 
 ```yaml
 Type: SwitchParameter
@@ -181,13 +193,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolder
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretSecurity.ps1)
 

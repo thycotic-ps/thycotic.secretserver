@@ -54,7 +54,7 @@ Short description for parameter
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: UserRoleId
+Aliases: UserId
 
 Required: True
 Position: Named

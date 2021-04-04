@@ -20,8 +20,7 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-For
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Active] [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
  [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
- [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-CheckIn] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-SecretPolicy <Int32>] [-Site <Int32>] [-CheckIn] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### restricted
@@ -40,7 +39,7 @@ Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-ForceCheckIn] [-CheckIn
 ```
 Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy]
  [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
- [-SecretPolicy <Int32>] [-Site <Int32>] [-Template <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-SecretPolicy <Int32>] [-Site <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### password
@@ -334,21 +333,6 @@ Secret Site
 Type: Int32
 Parameter Sets: all, general
 Aliases:
-
-Required: False
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Template
-Secret Template (ID)
-
-```yaml
-Type: Int32
-Parameter Sets: all, general
-Aliases: TemplateId
 
 Required: False
 Position: Named
