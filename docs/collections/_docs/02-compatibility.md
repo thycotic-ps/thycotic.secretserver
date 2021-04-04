@@ -21,6 +21,7 @@ The Secret Server version listed is the minimum required to use the function.
 
 **Function Name**                   | **Secret Server Version**     |
 ----------------------------------- | ----------------------------- |
+[Get-TssConfiguration]              | 10.9.000032
 [Get-TssUserRoleAssigned]           | 10.9.000032
 [Get-TssSecretAudit]                | 10.9.000032
 [Get-TssSecretState]                | 10.9.000032
