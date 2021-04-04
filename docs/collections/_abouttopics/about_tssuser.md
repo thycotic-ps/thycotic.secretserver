@@ -1,20 +1,20 @@
---
+---
 category: users
 title: "TssUser"
 last_modified_at: 2021-03-03T00:00:00-00:00
 ---
 
 # TOPIC
-    This help topic describes the TssUserModel class in the Thycotic.SecretServer module
+    This help topic describes the TssUser class in the Thycotic.SecretServer module
 
 # CLASS
-    TssUserModel
+    TssUser
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssUserModel class represents the UserModel object returned by Secret Server endpoint GET /users/{id}
+    The TssUser class represents the UserModel object returned by Secret Server endpoint GET /users/{id}
 
 # CONSTRUCTORS
     new()

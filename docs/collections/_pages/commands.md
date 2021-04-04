@@ -49,6 +49,7 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Invoke-TssSecretGeneratePassword] | `GET /internals/secret-detail/{id}/generate-password`
 [Invoke-TssSecretGeneratePassword] | `POST /internals/secret-detail/{id}/validate-password`
 [New-TssSecret] | [POST /secrets]
+[Protect-TssSecret] | [POST /secrets/{id}/check-in]
 [Remove-TssSecret] | [DELETE /secrets/{id}]
 [Restore-TssSecret] | [PUT /secrets/{id}/undelete]
 [Search-TssSecret] | [GET /secrets]
@@ -56,9 +57,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Set-TssSecret] | [POST /secrets/{id}/check-in]
 [Set-TssSecret] | [PUT /secrets/{id}]
 [Set-TssSecretField] | [PUT /secrets/{id}/fields/{slug}]
+[Set-TssSecretSecurity] | [PATCH /secrets/{id}/security-general]
 [Start-TssSecretChangePassword] | `POST /internals/secret-detail/{id}/change-password-now`
 [Stop-TssSecretChangePassword] | [POST /secrets/{id}/stop-password-change]
-[Protect-TssSecret] | [POST /secrets/{id}/check-in]
 
 ## Secret Access Requests
 
@@ -205,7 +206,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
 [Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
 [Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
+[Set-TssSecretSecurity]:/thycotic.secretserver/commands/Set-TssSecretSecurity
 
+[PATCH /secrets/{id}/security-general]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--security-general-patch
 [GET /users/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-stub-get
 [POST /secrets/{id}/check-in]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--check-in-post
 [GET /users/{userId}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users--userId--audit-get

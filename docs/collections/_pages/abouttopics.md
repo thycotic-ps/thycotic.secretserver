@@ -20,6 +20,65 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 --------------------------------- | -------------------------------------------------- |
 [TssSession] | [New-TssSession]
 
+## Directory Services
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssDomainSummary] | [Search-TssDirectoryServiceDomain]
+
+## Folder Permissions
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssFolderPermission] | [Get-TssFolderPermission] [Get-TssFolderPermissionStub] [New-TssFolderPermission]
+[TssFolderPermissionSummary] | [Search-TssFolderPermission]
+
+## Folders
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssFolder] | [Get-TssFolder] [Get-TssFolderStub] [New-TssFolder]
+[TssFolderTemplate] | [Get-TssFolder]
+[TssFolderLookup] | [Find-TssFolder]
+[TssFolderSummary] | [Search-TssFolder]
+[TssFolderAuditSummary] | [Get-TssFolderAudit]
+
+## General
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssDelete] | [Remove-TssSecret] [Remove-TssFolder] [Remove-TssReportCategory]
+[TssVersion] | [Get-TssVersion] [Test-TssVersion]
+
+## Groups
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssGroupSummary] | [Search-TssGroup]
+
+## Reports
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssReport] | [Get-TssReport]
+[TssReportCategoryDetail] | [Get-TssReportCategory]
+[TssReportCategory] | [Get-TssReportCategory]
+[TssReportScheduleSummary] | [Search-TssReportScheduleSummary]
+
+## Roles
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssRole] | [Search-TssRole]
+
+## Secret Templates
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretTemplate] | [Get-TssSecretTemplate]
+[TssSecretTemplateField] | [Get-TssSecretTemplate]
+[TssSecretTemplateSummary] | [Search-TssSecretTemplate]
+
 ## Secrets
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -38,52 +97,6 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssSshLauncherSettings] | [Get-TssSecretState]
 [TssSecretHeartbeatStatus] | [Get-TssSecretHeartbeatStatus]
 
-## Secret Templates
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssSecretTemplate] | [Get-TssSecretTemplate]
-[TssSecretTemplateField] | [Get-TssSecretTemplate]
-[TssSecretTemplateSummary] | [Search-TssSecretTemplate]
-
-## Folders
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssFolder] | [Get-TssFolder] [Get-TssFolderStub] [New-TssFolder]
-[TssFolderTemplate] | [Get-TssFolder]
-[TssFolderLookup] | [Find-TssFolder]
-[TssFolderSummary] | [Search-TssFolder]
-[TssFolderAuditSummary] | [Get-TssFolderAudit]
-
-## Folder Permissions
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssFolderPermission] | [Get-TssFolderPermission] [Get-TssFolderPermissionStub] [New-TssFolderPermission]
-[TssFolderPermissionSummary] | [Search-TssFolderPermission]
-
-## Reports
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssReport] | [Get-TssReport]
-[TssReportCategoryDetail] | [Get-TssReportCategory]
-[TssReportCategory] | [Get-TssReportCategory]
-[TssReportScheduleSummary] | [Search-TssReportScheduleSummary]
-
-## Groups
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssGroupSummary] | [Search-TssGroup]
-
-## Roles
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssRole] | [Search-TssRole]
-
 ## Users
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -98,19 +111,6 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssCurrentUser] | [Show-TssCurrentUser]
 [TssRolePermission] | [Show-TssCurrentUser]
 [TssMenuLink] | [Show-TssCurrentUser]
-
-## Directory Services
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssDomainSummary] | [Search-TssDirectoryServiceDomain]
-
-## General
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssDelete] | [Remove-TssSecret] [Remove-TssFolder] [Remove-TssReportCategory]
-[TssVersion] | [Get-TssVersion] [Test-TssVersion]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
