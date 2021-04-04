@@ -217,14 +217,14 @@ function Set-Secret {
                         $getParams.Add('TicketSystemId', $TicketSystemId)
                         $getParams.Add('Comment', $Comment)
                     }
-                    if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "Calling Get-TssSecret with keys:`n $($getParams.Keys)`n and values: $($getParams.Values)")) {
+                    if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "Getting Secret")) {
                         $whatIfProcessing++
                     }
 
                     if ($whatIfProcessing -eq 0) {
                         try {
-                            Write-Verbose "Calling Get-TssSecret with:`t$($getParams)`n"
-                            $getSecret = Get-TssSecret @getParams
+                            Write-Verbose "Getting SecretID: [$secret]"
+                            $getSecret = . $GetSecret $TssSession $secret $restrictedParams
                         } catch {
                             Write-Error "Issue getting Secret [$secret] details: $_"
                         }
@@ -238,7 +238,7 @@ function Set-Secret {
                             }
 
                             if ($setSecretParams.ContainsKey('AutoChangeEnabled')) {
-                                $getSecret.AutoChangeEnabled = $AutoChangeEnabled
+                                $getSecret.AutoChangeEnabled = [boolean]$AutoChangeEnabled
                             }
                             if ($setSecretParams.ContainsKey('AutoChangeNextPassword')) {
                                 if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $AutoChangeEnabled) {
