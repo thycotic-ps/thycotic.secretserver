@@ -4,12 +4,12 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Id', 'Slug', 'Value', 'Clear', 'Path', 'Comment', 'ForceCheckIn', 'TicketNumber', 'TicketSystemId'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'Type', 'NextPassword'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
+    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -31,22 +31,37 @@ Describe "$commandName functions" {
                 TokenType    = 'bearer'
                 ExpiresIn    = 1199
             }
-            Mock -Verifiable -CommandName Get-TssVersion -MockWith {
+            Mock -Verifiable -CommandName Invoke-RestMethod -ParameterFilter { $Uri -match '/version' } -MockWith {
                 return @{
-                    Version = '10.9.000033'
+                   model = [pscustomobject]@{
+                       Version = '10.9.000033'
+                   }
                 }
             }
 
-            $secretId = Get-Random -Maximum 12
-            $notes = (New-Guid).Guid
-            Mock -Verifiable -CommandName Invoke-TssRestApi -ParameterFilter { $Uri -eq "$($session.ApiUrl)/secrets/$secretId/fields/notes" } -MockWith {
-                return $notes
+            $secretIdRandom = 42
+            Mock -Verifiable -CommandName Invoke-RestMethod -ParameterFilter { $Uri -match "/internals/secret-detail/$secretIdRandom/change-password-now" } -MockWith {
+                return [pscustomobject]@{
+                    success = $true
+                }
             }
-            $object = Set-TssSecretField -TssSession $session -Id $secretId -Slug notes -Value $notes
+
+            $secretIdManual = 43
+            Mock -Verifiable -CommandName Invoke-RestMethod -ParameterFilter { $Uri -match "/internals/secret-detail/$secretIdManual/change-password-now" } -MockWith {
+                return [pscustomobject]@{
+                    success = $true
+                }
+            }
+
+            $objectRandom = Start-SecretChangePassword -TssSession $session -Id $secretIdRandom -Type Random
+            $objectManual = Start-SecretChangePassword -TssSession $session -Id $secretIdManual -Type Manual -NextPassword (ConvertTo-SecureString 'password' -AsPlainText -Force)
             Assert-VerifiableMock
         }
         It "Should be empty" {
-            $object | Should -BeNullOrEmpty
+            $objectRandom | Should -BeNullOrEmpty
+        }
+        It "Should have called Invoke-RestMethod 3 times" {
+            Assert-MockCalled -CommandName Invoke-RestMethod -Times 3 -Scope Describe
         }
     }
 }
