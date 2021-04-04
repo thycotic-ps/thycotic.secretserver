@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * TssSecret - GetCredential method update closes [#133](https://github.com/thycotic-ps/thycotic.secretserver/issues/133) [92e8a1e](https://github.com/thycotic-ps/thycotic.secretserver/commit/92e8a1ed56c9b4fb730bef16286ec32551632808)
+* New-TssFolder - Revert param changes [78638ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/78638ed6b0ea05af977f99ba8caa65ce86eecc07)
 
 </details>
 
@@ -23,6 +24,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * module - correct import closes [#132](https://github.com/thycotic-ps/thycotic.secretserver/issues/132) [47ec7ce](https://github.com/thycotic-ps/thycotic.secretserver/commit/47ec7cebc86dc6be4594d7395b88198c37f973fc)
 * Find-User - fixed output issue identified by test [3bee92b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3bee92bfdd93be5d4ce4171247603b4933bd719b)
+* CheckVersion - correct invoke param [57dfb6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57dfb6d03b1b450c874aa18ec7e913e7f77c3dad)
+* Set-TssSecret - fixing bug identified during testing Removing Template param as this is not usable on the endpoint [9fc876b](https://github.com/thycotic-ps/thycotic.secretserver/commit/9fc876bc2beed32cf14fa7b1501c50f9dd65984f)
+* CheckVersion - correct invoke param [57dfb6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57dfb6d03b1b450c874aa18ec7e913e7f77c3dad)
+* TssSession - Correct issue found on SessionRefresh [83d6533](https://github.com/thycotic-ps/thycotic.secretserver/commit/83d65333a248154194dda25ab85743ece0aeb77c)
 
 </details>
 
@@ -47,6 +52,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * docs - TssSecret class updates [eef7af7](https://github.com/thycotic-ps/thycotic.secretserver/commit/eef7af7dfe761af9afe95101a86975c71121b1a9)
 * Get-Secret - update examples [2cd81d8](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cd81d89a5d1acc6853decc044d631b694dc3f4b)
 * Get-UserRole - renamed parameter alias [1c482f5](https://github.com/thycotic-ps/thycotic.secretserver/commit/1c482f59e1360583237a5408f5722ce347768784)
+* Stop-SecretChangePassword - remove Status property from output [97e9b78](https://github.com/thycotic-ps/thycotic.secretserver/commit/97e9b7866bdfbc82b24df39c13b3e5c5934ca111)
+* docs - remove SDK setup section No longer applies [62ff8c6](https://github.com/thycotic-ps/thycotic.secretserver/commit/62ff8c6650e8af44fc0375e1a1d71b8ddc367d5e)
+* Secret functions - corrected paramet set reference [bc849aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/bc849aaddea2ccf9bec8eb77981009935b736dfc)
+* Set-Secret - removed call to public function [dab8048](https://github.com/thycotic-ps/thycotic.secretserver/commit/dab80486d9ce68ec90d2750222e391c42e7c3527)
 
 </details>
 
@@ -59,6 +68,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * tests - add random string generator [8e1500d](https://github.com/thycotic-ps/thycotic.secretserver/commit/8e1500da6bdaf666ffc7555ada38a92e6107bb2e)
 * Tests - Users tests reworked [738098f](https://github.com/thycotic-ps/thycotic.secretserver/commit/738098f5a24753dd458ae754b5c7a58d1a533cec)
 * tests - removed test data (no longer needed) [f68c137](https://github.com/thycotic-ps/thycotic.secretserver/commit/f68c137e95be82807f526720c3d309301667ab6e)
+* Secret Tests - reworked [ee188be](https://github.com/thycotic-ps/thycotic.secretserver/commit/ee188beab18438a64cb46e5f98ef2356341c6546)
+* Set-Secret - Tests rework Still work to do [cb39262](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb39262473c730c9a6b4debc4560a1a60553ecb1)
 
 </details>
 
