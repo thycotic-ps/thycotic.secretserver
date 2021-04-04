@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-04-xx
+## [0.35.0] -- 2021-04-04
 
 ### Breaking Changes
 
@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Get-TssUserStub - closes #97 [5650be7](https://github.com/thycotic-ps/thycotic.secretserver/commit/5650be73b21ce742d0a7e00d59bec4838462b3f8)
+* Set-TssSecretSecurity - fixes #137 [9e3b22e](https://github.com/thycotic-ps/thycotic.secretserver/commit/9e3b22e331bec9a967782b86147173d21c8e0b78)
 
 </details>
 
@@ -56,6 +57,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * docs - remove SDK setup section No longer applies [62ff8c6](https://github.com/thycotic-ps/thycotic.secretserver/commit/62ff8c6650e8af44fc0375e1a1d71b8ddc367d5e)
 * Secret functions - corrected paramet set reference [bc849aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/bc849aaddea2ccf9bec8eb77981009935b736dfc)
 * Set-Secret - removed call to public function [dab8048](https://github.com/thycotic-ps/thycotic.secretserver/commit/dab80486d9ce68ec90d2750222e391c42e7c3527)
+* Get-TssConfiguration - add about files for classes [42da615](https://github.com/thycotic-ps/thycotic.secretserver/commit/42da615c0a87096a16b34638044175086cf77bf6)
+* doc - update commands [4a11a5d](https://github.com/thycotic-ps/thycotic.secretserver/commit/4a11a5d3da1dddad3476a1fc36521a0f25c33de1)
 
 </details>
 
