@@ -12,7 +12,6 @@
     PowerShellVersion ='5.1'
     PrivateData = @{
         PSData = @{
-            PreRelease = 'beta'
             Tags = 'SecretServer', 'Thycotic', 'DevOps', 'Security'
             IconUri = 'https://updates.thycotic.net/proservices/powershell/tss_module/thycotic.secretserver_logo.png'
             ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
