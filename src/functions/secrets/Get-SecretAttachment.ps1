@@ -71,7 +71,7 @@ function Get-SecretAttachment {
     begin {
         $tssParams = $PSBoundParameters
 
-        $restrictedParamSet = . $ParameterSetParams 'Get-TssSecretAttachment' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($tssParams.ContainsKey($r)) {

@@ -59,7 +59,7 @@ function Disable-SecretCheckout {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
 
-        $restrictedParamSet = . $ParameterSetParams 'Disable-TssSecretCheckout' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($tssParams.ContainsKey($r)) {

@@ -94,7 +94,7 @@ function Get-Secret {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
 
-        $restrictedParamSet = . $ParameterSetParams 'Get-TssSecret' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
             if ($tssParams.ContainsKey($r)) {

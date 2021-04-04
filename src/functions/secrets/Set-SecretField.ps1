@@ -106,10 +106,10 @@ function Set-SecretField {
         $setParams = $PSBoundParameters
         $invokeParams = . $GetInvokeTssParams $TssSession
 
-        $restrictedParamSet = . $ParameterSetParams 'Set-TssSecretField' 'restricted'
+        $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
         foreach ($r in $restrictedParamSet) {
-            if ($tssParams.ContainsKey($r)) {
+            if ($setParams.ContainsKey($r)) {
                 $restrictedParams += $r
             }
         }
