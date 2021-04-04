@@ -1,0 +1,39 @@
+TOPIC
+    This help topic describes the TssConfigurationFolders class in the Thycotic.SecretServer module
+
+CLASS
+    TssConfigurationFolders
+
+INHERITANCE
+    None
+
+DESCRIPTION
+    The TssConfigurationFolders class represents the ConfigurationFoldersModel returned by Secret Server endpoint GET /configuration/general
+
+CONSTRUCTORS
+    new()
+
+PROPERTIES
+    EnablePersonalFolders
+        Each user will have a personal folder created and assigned to them
+
+    PersonalFolderName
+        The name of the root personal folder. Each user's personal folder will be named based on the user
+
+    PersonalFolderNameOption
+        The format for the personal folder name for each user (DisplayName, UsernameAndDomain)
+
+    PersonalFolderWarning
+        Warning to be shown when creating Secrets if ShowPersonalFolderWarning is true
+
+    RequireViewFolderPermission
+        Users will only see folders they have View permissions on
+
+    ShowPersonalFolderWarning
+        When true the PersonalFolderWarning will be shown when creating Secrets
+
+METHODS
+
+RELATED LINKS:
+    TssConfiguration
+    Get-TssConfiguration

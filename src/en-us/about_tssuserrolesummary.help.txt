@@ -2,7 +2,7 @@ TOPIC
     This help topic describes the TssUserRoleSummary class in the Thycotic.SecretServer module
 
 CLASS
-    TssUserRole
+    TssUserRoleSummary
 
 INHERITANCE
     None
