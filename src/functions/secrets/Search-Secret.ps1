@@ -286,7 +286,6 @@ function Search-Secret {
 
             if ($restResponse.records) {
                 foreach ($secret in $restResponse.records) {
-
                     if (-not $restResponse.lastPasswordChangeAttempt) {
                         $secret.lastPasswordChangeAttempt = [datetime]::MinValue
                     }

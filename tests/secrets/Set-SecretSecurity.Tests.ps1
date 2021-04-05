@@ -51,5 +51,8 @@ Describe "$commandName functions" {
         It "Should be empty" {
             $object | Should -BeNullOrEmpty
         }
+        It "Should have called Invoke-RestMethod 2 times" {
+            Assert-MockCalled -CommandName Invoke-RestMethod -Times 2 -Scope Describe
+        }
     }
 }
