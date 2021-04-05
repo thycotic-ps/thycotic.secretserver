@@ -82,19 +82,26 @@ function New-Folder {
             $invokeParams.Method = 'POST'
 
             $newFolderStub = @{
-                folderName          = $FolderName
-                parentFolderId      = $ParentFolderId
-                folderTypeId        = 1
+                folderName     = $FolderName
+                parentFolderId = $ParentFolderId
+                folderTypeId   = 1
             }
 
             if ($tssParams.ContainsKey('SecretPolicyId')) {
                 $newFolderStub.SecretPolicyId = $SecretPolicyId
             }
             if ($tssParams.ContainsKey('InheritPermissions')) {
-                $newFolderStub.InheritPermissions = $InheritPermissions
+                if ($ParentFolderId -eq -1 -and $InheritPermissions -eq $true) {
+                    Write-Warning "InheritPermission cannot be used in conjunction with creating a root folder [ParentFolderId = -1], please provide another FolderId"
+                    return
+                } else {
+                    $newFolderStub.InheritPermissions = [boolean]$InheritPermissions
+                }
+            } else {
+                $newFolderStub.InheritPermissions = $false
             }
             if ($tssParams.ContainsKey('InheritSecretPolicy')) {
-                $newFolderStub.InheritSecretPolicy = $InheritSecretPolicy
+                $newFolderStub.InheritSecretPolicy = [boolean]$InheritSecretPolicy
             }
 
             $invokeParams.Body = ($newFolderStub | ConvertTo-Json)
