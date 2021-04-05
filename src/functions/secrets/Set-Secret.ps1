@@ -135,8 +135,9 @@ function Set-Secret {
         # Secret Site
         [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Alias('Site')]
         [int]
-        $Site,
+        $SiteId,
 
         # Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secret in
         [Parameter(ParameterSetName = 'all')]
@@ -326,12 +327,12 @@ function Set-Secret {
                         }
                         $generalBody.data.Add('secretPolicy',$setSecretPolicy)
                     }
-                    if ($setSecretParams.ContainsKey('Site')) {
+                    if ($setSecretParams.ContainsKey('SiteId')) {
                         $setSite = @{
                             dirty = $true
-                            value = $Site
+                            value = $SiteId
                         }
-                        $generalBody.data.Add('enableInheritSecretPolicy',$setSite)
+                        $generalBody.data.Add('site',$setSite)
                     }
                     if ($setSecretParams.ContainsKey('IsOutOfSync')) {
                         $setOutOfSync = @{
