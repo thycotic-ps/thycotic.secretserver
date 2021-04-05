@@ -344,12 +344,12 @@ docs:
       - title: "Compatibility"
         url: /docs/compatibility/
 
-  # - title: "Working With"
-  #   children:
-  #     - title: "Creating Secrets"
-  #       url: /docs/secret-examples/
-  #     - title: "Finding Secrets"
-  #       url: /docs/finding-secrets/
+  - title: "Working With"
+    children:
+      - title: "Creating Folders"
+        url: /docs/workingwith-folders/
+      # - title: "Creating Secrets"
+      #   url: /docs/workingwith-secrets/
 
   - title: External Links
     children:
