@@ -20,28 +20,34 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    FromEmailAddress
+    FromEmailAddress: string
         All emails will be sent from this address
 
-    SmtpDomain
+    SmtpCheckCertificateRevocation: boolean
+        Check Certificate Revocation when in Implicit SSL Connection Mode
+
+    SmtpDomain: string
         SMTP user domain
 
-    SmtpPassword
+    SmtpPassword: string
         SMTP user password
 
-    SmtpPort
+    SmtpPort: integer (int32)
         Custom port, otherwise the default
 
-    SmtpServer
+    SmtpServer: string
         The resolvable and reachable host name for the outgoing SMTP server
 
-    SmtpUseCredentials
+    SmtpUseCredentials: boolean
         True if credentials are set, false if anonymous
 
-    SmtpUserName
+    SmtpUseImplicitSSL: boolean
+        Implicit SSL Connection Mode
+
+    SmtpUserName: string
         SMTP user name
 
-    smtpUseSSL
+    SmtpUseSSL: boolean
         Use SSL to connect
 
 # METHODS

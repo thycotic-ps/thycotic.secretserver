@@ -1,4 +1,4 @@
----
+'---
 category: configurations
 title: "TssConfigurationUserInterface"
 last_modified_at: 2021-04-04T00:00:00-00:00
@@ -20,19 +20,19 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    AllowUserToSelectTheme
+    AllowUserToSelectTheme: boolean
         Allow users to pick their theme when in classic mode
 
-    CustomLogoCollapsed
+    CustomLogoCollapsed: string
         Custom logo when left nav is collapsed
 
-    CustomLogoFullSize
+    CustomLogoFullSize: string
         Custom logo full size
 
-    DefaultClassicTheme
+    DefaultClassicTheme: string
         Default classic theme
 
-    NewUiDefault
+    NewUiDefault: boolean
         New users will use the new ui by default
 
 # METHODS

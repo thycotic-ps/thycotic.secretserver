@@ -20,40 +20,40 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    ApplicationLanguage
+    ApplicationLanguage: integer (int32)
         The default application language for users and the language for non-user specific tasks like logging when applicable
 
-    DefaultDateFormat
+    DefaultDateFormat: integer (int32)
         The default date format that everyone sees unless they override with a user preference
 
-    DefaultNewUserRoleId
+    DefaultNewUserRoleId: integer (int32)
         The role that should be assigned when a new user is created
 
-    DefaultTimeFormat
+    DefaultTimeFormat: integer (int32)
         The default time format that everyone sees unless they override with a user preference
 
-    ForceInactivityTimeout
+    ForceInactivityTimeout: boolean
         Logout users that are inactive
 
-    ForceInactivityTimeoutMinutes
+    ForceInactivityTimeoutMinutes: integer (int32)
         Logout users that are inactive for this many minutes
 
-    RequireFolderForSecret
+    RequireFolderForSecret: boolean
         Secrets must be created within a folder
 
-    SecretPasswordHistoryRestrictionAll
+    SecretPasswordHistoryRestrictionAll: boolean
         No duplicate passwords on a Secret
 
-    SecretPasswordHistoryRestrictionCount
+    SecretPasswordHistoryRestrictionCount: integer (int32)
         How many passwords must be unique on a Secret
 
-    SecretViewIntervalMinutes
+    SecretViewIntervalMinutes: integer (int32)
         How long entering comments to view a Secret last before being required again
 
-    ServerTimeZoneId
+    ServerTimeZoneId: string
         The timezone that the server shows by default and when job scheduling runs
 
-    UiInactivitySleepMinutes
+    UiInactivitySleepMinutes: integer (int32)
         How long until the UI will go inactive and stop polling for updates
 
 # METHODS

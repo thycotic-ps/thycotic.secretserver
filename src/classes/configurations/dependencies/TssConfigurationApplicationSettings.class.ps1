@@ -20,8 +20,14 @@ class TssConfigurationApplicationSettings {
     [boolean]
     $ApiSessionTimeoutUnlimited
 
+    [boolean]
+    $ConfigurationEarlyAdopterEnabled
+
     [string]
     $CustomUrl
+
+    [boolean]
+    $DisplayDowntimeMessageToAdminsOnly
 
     [boolean]
     $EnableCredSsp

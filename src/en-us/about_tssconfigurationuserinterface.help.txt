@@ -14,19 +14,19 @@ CONSTRUCTORS
     new()
 
 PROPERTIES
-    AllowUserToSelectTheme
+    AllowUserToSelectTheme: boolean
         Allow users to pick their theme when in classic mode
 
-    CustomLogoCollapsed
+    CustomLogoCollapsed: string
         Custom logo when left nav is collapsed
 
-    CustomLogoFullSize
+    CustomLogoFullSize: string
         Custom logo full size
 
-    DefaultClassicTheme
+    DefaultClassicTheme: string
         Default classic theme
 
-    NewUiDefault
+    NewUiDefault: boolean
         New users will use the new ui by default
 
 METHODS

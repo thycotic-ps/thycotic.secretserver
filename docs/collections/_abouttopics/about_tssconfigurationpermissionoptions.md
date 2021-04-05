@@ -20,19 +20,19 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    AllowDuplicateSecretNames
+    AllowDuplicateSecretNames: boolean
         Allow Secrets to have the same name in the same folder
 
-    AllowViewUserToRetrieveAutoChangeNextPassword
+    AllowViewUserToRetrieveAutoChangeNextPassword: boolean
         Users that only have secret view can see the next password
 
-    DefaultSecretPermissions
+    DefaultSecretPermissions: string
         Default permissions to be applied when a Secret is created (InheritsPermissions, CopyFromFolder, OnlyAllowCreator)
 
-    EnableApprovalFromEmail
+    EnableApprovalFromEmail: boolean
         Allow approval from email
 
-    ForceSecretApproval
+    ForceSecretApproval: string
         Require approval for secrets (None, RequireApprovalForOwnersAndEditors, RequireApprovalForEditors)
 
 # METHODS

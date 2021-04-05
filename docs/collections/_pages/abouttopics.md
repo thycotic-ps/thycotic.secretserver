@@ -20,6 +20,21 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 --------------------------------- | -------------------------------------------------- |
 [TssSession] | [New-TssSession]
 
+## Configurations
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssConfigurationGeneral]                 | [Get-TssConfiguration]
+[TssConfigurationApplicationSettings]     | [Get-TssConfiguration]
+[TssConfigurationEmailSettings]           | [Get-TssConfiguration]
+[TssConfigurationFolders]                 | [Get-TssConfiguration]
+[TssConfigurationLauncherSettings]        | [Get-TssConfiguration]
+[TssConfigurationLocalUserPasswords]      | [Get-TssConfiguration]
+[TssConfigurationPermissionOptions]       | [Get-TssConfiguration]
+[TssConfigurationProtocolHandlerSettings] | [Get-TssConfiguration]
+[TssConfigurationUserExperience]          | [Get-TssConfiguration]
+[TssConfigurationUserInterface]           | [Get-TssConfiguration]
+
 ## Directory Services
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -155,7 +170,18 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssSecretHeartbeatStatus]:/thycotic.secretserver/commands/Get-TssSecretHeartbeatStatus
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
 [Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
+[Get-TssConfiguration]:/thycotic.secretserver/commands/Get-TssConfiguration
 
+[TssConfigurationGeneral]:/thycotic.secretserver/abouttopcis/about_tssconfigurationgeneral
+[TssConfigurationApplicationSettings]:/thycotic.secretserver/abouttopcis/about_tssconfigurationapplicationsettings
+[TssConfigurationEmailSettings]:/thycotic.secretserver/abouttopcis/about_tssconfigurationemailsettings
+[TssConfigurationFolders]:/thycotic.secretserver/abouttopcis/about_tssconfigurationfolders
+[TssConfigurationLauncherSettings]:/thycotic.secretserver/abouttopcis/about_tssconfigurationlaunchersettings
+[TssConfigurationLocalUserPasswords]:/thycotic.secretserver/abouttopcis/about_tssconfigurationlocaluserpasswords
+[TssConfigurationPermissionOptions]:/thycotic.secretserver/abouttopcis/about_tssconfigurationpermissionoptions
+[TssConfigurationProtocolHandlerSettings]:/thycotic.secretserver/abouttopcis/about_tssconfigurationprotocolhandlersettings
+[TssConfigurationUserExperience]:/thycotic.secretserver/abouttopcis/about_tssconfigurationuserexperience
+[TssConfigurationUserInterface]:/thycotic.secretserver/abouttopcis/about_tssconfigurationuserinterface
 [TssUserAuditSummary]:/thycotic.secretserver/abouttopics/about_tssuserauditsummary
 [TssSecretHeartbeatStatus]:/thycotic.secretserver/abouttopics/about_tsssecretheartbeatstatus
 [TssSecretDetailState]:/thycotic.secretserver/abouttopics/about_tsssecretdetailstate

@@ -8,11 +8,17 @@ class TssConfigurationGeneral {
     [TssConfigurationFolders]
     $Folders
 
+    [TssConfigurationLauncherSettings]
+    $LauncherSettings
+
     [TssConfigurationLocalUserPasswords]
     $LocalUserPasswords
 
     [TssConfigurationPermissionOptions]
     $PermissionOptions
+
+    [TssConfigurationProtocolHandlerSettings]
+    $ProtocolHandlerSettings
 
     [TssConfigurationUserExperience]
     $UserExperience

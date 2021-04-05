@@ -2,6 +2,9 @@ class TssConfigurationEmail {
     [string]
     $FromEmailAddress
 
+    [boolean]
+    $SmtpCheckCertificateRevocation
+
     [string]
     $SmtpDomain
 
@@ -16,6 +19,9 @@ class TssConfigurationEmail {
 
     [boolean]
     $SmtpUseCredentials
+
+    [boolean]
+    $SmtpUseImplicitSSL
 
     [string]
     $SmtpUserName

@@ -41,8 +41,10 @@ RELATED LINKS:
     TssConfigurationApplicationSettings
     TssConfigurationEmailSettings
     TssConfigurationFolders
+    TssConfigurationLauncherSettings
     TssConfigurationLocalUserPasswords
     TssConfigurationPermissionOptions
+    TssConfigurationProtocolHandlerSettings
     TssConfigurationUserExperience
     TssConfigurationUserInterface
     Get-TssConfiguration

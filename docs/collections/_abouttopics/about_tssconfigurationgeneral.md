@@ -19,7 +19,7 @@ last_modified_at: 2021-04-04T00:00:00-00:00
 # CONSTRUCTORS
     new()
 
-#PROPERTIES
+# PROPERTIES
     ApplicationSettings
         General Application Configuration Settings
 
@@ -29,11 +29,17 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     Folders
         Folders Configuration
 
+    LauncherSettings
+        Launcher Settings Configuration
+
     LocalUserPasswords
         Local User Passwords configuration
 
     PermissionOptions
         Permission Options Configuration
+
+    ProtocolHandlerSettings
+        Protocol Handler Settings Configuration
 
     UserExperience
         User Experience Configuration
@@ -47,8 +53,10 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     TssConfigurationApplicationSettings
     TssConfigurationEmailSettings
     TssConfigurationFolders
+    TssConfigurationLauncherSettings
     TssConfigurationLocalUserPasswords
     TssConfigurationPermissionOptions
+    TssConfigurationProtocolHandlerSettings
     TssConfigurationUserExperience
     TssConfigurationUserInterface
     Get-TssConfiguration

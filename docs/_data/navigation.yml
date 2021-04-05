@@ -201,9 +201,13 @@ abouttopics:
         url: /abouttopics/about_tssconfigurationgeneral
       - title: "TssConfigurationFolders"
         url: /abouttopics/about_tssconfigurationfolders
+      - title: "TssConfigurationLauncherSettings"
+        url: /abouttopics/about_tssconfigurationlaunchersettings
       - title: "TssConfigurationLocalUserPasswords"
         url: /abouttopics/about_tssconfigurationlocaluserpasswords
       - title: "TssConfigurationPermissionOptions"
+        url: /abouttopics/about_tssconfigurationpermissionoptions
+      - title: "TssConfigurationProtocolHandlerSettings"
         url: /abouttopics/about_tssconfigurationpermissionoptions
       - title: "TssConfigurationUserExperience"
         url: /abouttopics/about_tssconfigurationuserexperience

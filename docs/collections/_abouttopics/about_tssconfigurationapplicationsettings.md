@@ -20,77 +20,83 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    AllowSendTelemetry
+    AllowSendTelemetry: boolean
         Send Anonymized System Metrics Information
 
-    AllowSoftwareUpdateChecks
-        Allow software update checks
+    AllowSoftwareUpdateChecks: boolean
+        Allow software update checks. This setting is ignored in cloud environments.
 
-    ApiRefreshTokensEnabled
+    ApiRefreshTokensEnabled: boolean
         API Refresh Tokens Enabled
 
-    ApiSessionTimeoutDays
+    ApiSessionTimeoutDays: integer (int32)
         API session timeout days
 
-    ApiSessionTimeoutHours
+    ApiSessionTimeoutHours: integer (int32)
         API session timeout hours
 
-    ApiSessionTimeoutMinutes
+    ApiSessionTimeoutMinutes: integer (int32)
         API session timeout minutes
 
-    ApiSessionTimeoutUnlimited
+    ApiSessionTimeoutUnlimited: boolean
         API session timeout unlimited
 
-    CustomUrl
-        Outward accessible url to get to application
+    ConfigurationEarlyAdopterEnabled: boolean
+        Notify when preview releases are available. False by default
 
-    EnableCredSsp
+    CustomUrl: string
+        Outward accessible url to get to application. This setting is ignored in cloud environments.
+
+    DisplayDowntimeMessageToAdminsOnly: boolean
+        Display Downtime Message To Admins Only
+
+    EnableCredSsp: boolean
         Enable Cred SSP for win RM
 
-    EnableSyslogCefLogging
+    EnableSyslogCefLogging: boolean
         Enable Syslog/CEF Logging
 
-    EnableWebServices
+    EnableWebServices: boolean
         Enable Web services
 
-    MaximumTokenRefreshesAllowed
+    MaximumTokenRefreshesAllowed: integer (int32)
         Maximum Token Refreshes Allowed
 
-    MaxSecretLogLength
+    MaxSecretLogLength: integer (int32)
         Maximum number of entries in secret log
 
-    MobileMaxOfflineDays
+    MobileMaxOfflineDays: integer (int32)
         The Maximum Time for Offline Access on Mobile Devices setting in Secret Server determines how long to cache secret data on the mobile device
 
-    MobileMaxOfflineHours
+    MobileMaxOfflineHours: integer (int32)
         The Maximum Time for Offline Access on Mobile Devices setting in Secret Server determines how long to cache secret data on the mobile device
 
-    PreventApplicationFromSleeping
-        A keep alive thread will run in the background pinging the web URL to make sure IIS does not stop running due to inactivity
+    PreventApplicationFromSleeping: boolean
+        A keep alive thread will run in the background pinging the web URL to make sure IIS does not stop running due to inactivity. This setting is ignored in cloud environments.
 
-    SyslogCefLogSite
+    SyslogCefLogSite: integer (int32)
         This is the site that the CEF/Syslogs will run on
 
-    SyslogCefPort
+    SyslogCefPort: integer (int32)
         Syslog/CEF Protocol
 
-    SyslogCefProtocol
-        Syslog/CEF Protocol to use when sending logs (UPD, TCP, SECURE_TCP)
+    SyslogCefProtocol: string
+        Syslog/CEF Protocol to use when sending logs
 
-    SyslogCefServer
+    SyslogCefServer: string
         Syslog/CEF Server Address
 
-    SyslogCefTimeZone
-        Time Zone to use when sending Syslog/CEF Protocol log entries (ServerTime, UtcTime)
+    SyslogCefTimeZone: string
+        Time Zone to use when sending Syslog/CEF Protocol log entries
 
-    TmsInstallationPath
-        If TMS is installed, the file location
+    TmsInstallationPath: string
+        If TMS is installed, the file location. This setting is ignored in cloud environments.
 
-    WinRmEndpointUrl
+    WinRmEndpointUrl: string
         Win RM endpoint url
 
-    WriteSyslogToEventLog
-        Enable syslog events to the windows event log
+    WriteSyslogToEventLog: boolean
+        Enable syslog events to the windows event log. This setting is ignored in cloud environments.
 
 # METHODS
 

@@ -20,22 +20,22 @@ last_modified_at: 2021-04-04T00:00:00-00:00
     new()
 
 # PROPERTIES
-    EnablePersonalFolders
+    EnablePersonalFolders: boolean
         Each user will have a personal folder created and assigned to them
 
-    PersonalFolderName
-        The name of the root personal folder. Each user's personal folder will be named based on the user
+    PersonalFolderName: string
+        The name of the root personal folder. Each user's personal folder will be named based on the user (DisplayName , UsernameAndDomain)
 
-    PersonalFolderNameOption
+    PersonalFolderNameOption: string
         The format for the personal folder name for each user (DisplayName, UsernameAndDomain)
 
-    PersonalFolderWarning
+    PersonalFolderWarning: boolean
         Warning to be shown when creating Secrets if ShowPersonalFolderWarning is true
 
-    RequireViewFolderPermission
+    RequireViewFolderPermission: boolean
         Users will only see folders they have View permissions on
 
-    ShowPersonalFolderWarning
+    ShowPersonalFolderWarning: boolean
         When true the PersonalFolderWarning will be shown when creating Secrets
 
 # METHODS

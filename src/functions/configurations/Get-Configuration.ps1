@@ -47,7 +47,7 @@ function Get-Configuration {
             $uri = $TssSession.ApiUrl, 'configuration', 'general' -join '/'
 
             $uriParams = @()
-            if ($tssParams.ContainsKey('Type') -and $Type -eq 'All') {
+            if ($Type -eq 'All') {
                 $params = "loadAll=true"
             } else {
                 switch ($Type) {
@@ -69,7 +69,7 @@ function Get-Configuration {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue getting ___ on [$]"
+                Write-Warning "Issue getting configuration for [$($TssSession.SecretServer)]"
                 $err = $_
                 . $ErrorHandling $err
             }
