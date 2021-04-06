@@ -28,7 +28,7 @@ function Set-SecretExpiration {
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretExpiration
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretExpiration.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretExpiration.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
