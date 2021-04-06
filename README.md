@@ -7,7 +7,7 @@
 
 Welcome to the Thycotic Secret Server PowerShell module. This module utilizes the REST API to allow you to manage things in Secret Server. This module is managed and maintained by Thycotic Professional Services.
 
-The goal of the module is to be able to have a similar workflow as the UI, but also to make things easier for users to interact and write automation scripts that utilize the REST API of Secert Server.
+The goal of the module is to be able to have a similar workflow as the UI, but also to make things easier for users to interact and write automation scripts that utilize the REST API of Secret Server.
 
 A [quick start guide](https://github.com/thycotic-ps/thycotic.secretserver/wiki) can be found in the Wiki of this repository to provide some context around the basic use of the module.
 
