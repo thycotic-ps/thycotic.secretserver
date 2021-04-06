@@ -75,14 +75,14 @@ function Set-SecretExpiration {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'PUT'
 
-                $setBody = @{ data = @{ } }
+                $setExpirationBody = @{ data = @{ } }
 
                 if ($setParams.ContainsKey('Template')) {
                     $type = @{
                         dirty = $true
                         value = 'Template'
                     }
-                    $setBody.data.Add('expirationType',$type)
+                    $setExpirationBody.data.Add('expirationType',$type)
                 }
                 if ($setParams.ContainsKey('Interval')) {
                     $type = @{
@@ -93,8 +93,8 @@ function Set-SecretExpiration {
                         dirty = $true
                         value = $Interval
                     }
-                    $setBody.data.Add('expirationType',$type)
-                    $setBody.data.Add('expirationDayInterval',$dayInterval)
+                    $setExpirationBody.data.Add('expirationType',$type)
+                    $setExpirationBody.data.Add('expirationDayInterval',$dayInterval)
                 }
                 if ($setParams.ContainsKey('DateExpiration')) {
                     $type = @{
@@ -105,18 +105,18 @@ function Set-SecretExpiration {
                         dirty = $true
                         value = $DateExpiration.ToShortDateString()
                     }
-                    $setBody.data.Add('expirationType',$type)
-                    $setBody.data.Add('expirationDate',$expDate)
+                    $setExpirationBody.data.Add('expirationType',$type)
+                    $setExpirationBody.data.Add('expirationDate',$expDate)
                 }
 
-                $invokeParams.Body = $setBody | ConvertTo-Json
+                $invokeParams.Body = $setExpirationBody | ConvertTo-Json
 
                 if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning "Issue setting property on [$secret]"
+                        Write-Warning "Issue setting expiration on [$secret]"
                         $err = $_
                         . $ErrorHandling $err
                     }
