@@ -606,6 +606,28 @@
             "\\$headers = New-Object \"System.Collections.Generic.Dictionary[[String],[String]]\"",
             "\\$headers.Add(\"Authorization\", \"Bearer \\$(\\$token.access_token)\")",
             "",
+            "\\$url = \"\\$apiUrl/${4:endpoint and params}\"",
+            "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers -ContentType 'application/json'",
+            ""
+        ],
+        "description": "Generic API call"
+    },
+    "Generic API call w/ request body": {
+        "scope": "powershell",
+        "prefix": "tssapibody",
+        "body": [
+            "\\$SecretServerHost = '${1:SS URL}'",
+            "\\$apiUrl = \"\\$SecretServerHost/api/v1\"",
+            "",
+            "\\$Body = @{",
+            "    \"grant_type\" = \"password\"",
+            "    \"username\"   = '${2:Username}'",
+            "    \"password\"   = '${3:password}'",
+            "}",
+            "\\$token = Invoke-RestMethod -Method Post -Uri \"\\$SecretServerHost/oauth2/token\" -Body \\$Body",
+            "\\$headers = New-Object \"System.Collections.Generic.Dictionary[[String],[String]]\"",
+            "\\$headers.Add(\"Authorization\", \"Bearer \\$(\\$token.access_token)\")",
+            "",
             "\\$body = @{",
             "   data = @{",
             "       somepropety = @{",
@@ -615,7 +637,7 @@
             "   }",
             "} | ConvertTo-Json",
             "\\$url = \"\\$apiUrl/${4:endpoint and params}\"",
-            "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers -Body \\$body",
+            "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers -Body \\$body -ContentType 'application/json'",
             ""
         ],
         "description": "Generic API call"
