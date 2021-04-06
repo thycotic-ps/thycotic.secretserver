@@ -5,6 +5,60 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.36.0] -- 2021-04-05
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* New-TssFolder - fixes [#145](https://github.com/thycotic-ps/thycotic.secretserver/issues/145) [ba94c17](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba94c17255c9494999e2d55998e31d5289df2489)
+* docs - Working With content [#82](https://github.com/thycotic-ps/thycotic.secretserver/issues/82) [650ae1e](https://github.com/thycotic-ps/thycotic.secretserver/commit/650ae1e39c3bf26883307e216ef1362c2e6272a5)
+* Set-TssSecret - fixes [#147](https://github.com/thycotic-ps/thycotic.secretserver/issues/147) [a9dd25f](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9dd25f2d87ff0138692ab2dee018d7e8c6e33ae)
+* Get-TssConfiguration - fixes [#148](https://github.com/thycotic-ps/thycotic.secretserver/issues/148) April release adds additional properties [8c5d6a8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c5d6a8d5c9ec94ee64af3f1fcd18f9ae6cfe568)
+
+</details>
+
+### New Functions
+
+<details>
+    <summary>Click to view </summary>
+
+* Revoke-Secret - fixes [#134](https://github.com/thycotic-ps/thycotic.secretserver/issues/134) [64d14e2](https://github.com/thycotic-ps/thycotic.secretserver/commit/64d14e223a687275b5e886a48ceeefd610fb05fa)
+* Start-SecretHeartbeat - fixes [#135](https://github.com/thycotic-ps/thycotic.secretserver/issues/135) [34dfd79](https://github.com/thycotic-ps/thycotic.secretserver/commit/34dfd79af17c8e210787ab2737e7eb6f7c0e7693)
+* Set-SecretExpiration - fixes [#136](https://github.com/thycotic-ps/thycotic.secretserver/issues/136) [48db3bc](https://github.com/thycotic-ps/thycotic.secretserver/commit/48db3bc35dee031ce098e41dbad04df976379c32)
+* Set-SecretRpcPrivileged - fixes [#139](https://github.com/thycotic-ps/thycotic.secretserver/issues/139) [91a4851](https://github.com/thycotic-ps/thycotic.secretserver/commit/91a485165a40bc662cca70d779d8d04479f06247)
+* Search-DistributedEngineSite - fixes [#146](https://github.com/thycotic-ps/thycotic.secretserver/issues/146) [c9165c9](https://github.com/thycotic-ps/thycotic.secretserver/commit/c9165c9c6ac2f17720cf5735681884848899216a)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* Set-SecretExpiration - update variable name [941b21c](https://github.com/thycotic-ps/thycotic.secretserver/commit/941b21c14d0453624dcc7812d64bc169ebad5344)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* Tests - added assert calls [4dbe545](https://github.com/thycotic-ps/thycotic.secretserver/commit/4dbe5455fbcdfb92ecb5b92d2b893ed52fc3d147)
+
+</details>
+
 ## [0.35.0] -- 2021-04-04
 
 ### Breaking Changes
