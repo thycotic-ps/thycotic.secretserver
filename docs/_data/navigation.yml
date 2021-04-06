@@ -30,6 +30,11 @@ commands:
       - title: "Search-TssDirectoryServiceDomain"
         url: /commands/Search-TssDirectoryServiceDomain
 
+  - title: "Distributed Engines"
+    children:
+      - title: "Search-TssDistributedEngineSite"
+        url: /commands/Search-TssDistributedEngineSite
+
   - title: "Folder Permissions"
     children:
       - title: "Get-TssFolderPermission"
@@ -136,12 +141,18 @@ commands:
         url: /commands/Remove-TssSecret
       - title: "Restore-TssSecret"
         url: /commands/Restore-TssSecret
+      - title: "Revoke-TssSecret"
+        url: /commands/Revoke-TssSecret
       - title: "Search-TssSecret"
         url: /commands/Search-TssSecret
       - title: "Set-TssSecret"
         url: /commands/Set-TssSecret
+      - title: "Set-TssSecretExpiration"
+        url: /commands/Set-TssSecretExpiration
       - title: "Set-TssSecretField"
         url: /commands/Set-TssSecretField
+      - title: "Set-TssSecretRpcPrivileged"
+        url: /commands/Set-TssSecretRpcPrivileged
       - title: "Set-TssSecretSecurity"
         url: /commands/Set-TssSecretSecurity
       - title: "Start-TssSecretChangePassword"
@@ -213,6 +224,13 @@ abouttopics:
         url: /abouttopics/about_tssconfigurationuserexperience
       - title: "TssConfigurationUserInterface"
         url: /abouttopics/about_tssconfigurationuserinterface
+
+  - title: "Distributed Engines"
+    children:
+      - title: "TssSiteMetrics"
+        url: /abouttopics/about_tsssitemetrics
+      - title: "TssSiteSummary"
+        url: /abouttopics/about_tsssitesummary
 
   - title: "Directory Services"
     children:

@@ -40,10 +40,12 @@ function Set-SecretRpcPrivileged {
         [int[]]
         $Id,
 
+        # Set Privileged Account to Use Credential on Secret
         [Parameter(ParameterSetName = 'secret')]
         [switch]
         $CredentialOnSecret,
 
+        # Set Privileged Account to specific Secret ID
         [Parameter(ParameterSetName = 'privileged')]
         [Alias('PrivilegedSecret')]
         [int]

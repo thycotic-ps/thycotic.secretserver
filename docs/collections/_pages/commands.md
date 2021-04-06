@@ -26,6 +26,71 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 ---------------- | --------------------------------- |
 [New-TssSession] | [POST /oauth2/token]
 
+## Directory Services
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Search-TssDirectoryServiceDomain] | [GET /directory-services/domains]
+
+## Distributed Engines
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Search-TssDistributedEngineSite] | [GET /distributed-engine/sites]
+
+## Folders
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Find-TssFolder] | [GET /folders/lookup]
+[Get-TssFolder] | [GET /folders/{id}]
+[Get-TssFolderAudit] | [GET /folders/{id}/audit]
+[Get-TssFolderStub] | [GET /folders/stub]
+[New-TssFolder] | [POST /folders]
+[Remove-TssFolder] | [DELETE /folders/{id}]
+[Remove-TssFolderTemplate] | [DELETE /folders/{id}/templates/{templateId}]
+[Search-TssFolder] | [GET /folders]
+[Set-TssFolder] | [PATCH /folders/{id}]
+
+## Folder Permissions
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Get-TssFolderPermission] | [GET /folder-permissions/{id}]
+[New-TssFolderPermission] | [POST /folder-permissions/{id}]
+[Remove-TssFolderPermission] | [DELETE /folder-permissions/{id}]
+[Search-TssFolderPermission] | [GET /folder-permissions]
+[Set-TssFolderPermission] | [PUT /folder-permissions/{id}]
+
+## General
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Get-TssVersion] | [GET /version]
+
+## Groups
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Search-TssGroup] | [GET /groups]
+
+## Reports
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Get-TssReport] | [GET /reports/{id}]
+[Get-TssReportCategory] | [GET /reports/categories/{reportCategoryId}]
+[Get-TssReportCategory] | [GET /reports/categories]
+[New-TssReport] | [POST /reports]
+[Remove-TssReportCategory] | [DELETE /reports/categories/{reportCategoryId}]
+[Search-TssReportSchedule] | [GET /reports/schedules]
+
+## Roles
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Search-TssRole] | [GET /roles]
+
 ## Secrets
 
 **Command** | **API Endpoint** |
@@ -52,11 +117,14 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Protect-TssSecret] | [POST /secrets/{id}/check-in]
 [Remove-TssSecret] | [DELETE /secrets/{id}]
 [Restore-TssSecret] | [PUT /secrets/{id}/undelete]
+[Revoke-TssSecret] | [POST /secrets/{id}/expire]
 [Search-TssSecret] | [GET /secrets]
 [Set-TssSecret] | [PATCH /secrets/{id}/general]
 [Set-TssSecret] | [POST /secrets/{id}/check-in]
 [Set-TssSecret] | [PUT /secrets/{id}]
+[Set-TssSecretExpiration] | [PUT /secrets/{id}/expiration]
 [Set-TssSecretField] | [PUT /secrets/{id}/fields/{slug}]
+[Set-TssSecretRpcPrivileged] | `PUT /internals/secret-detail/{id}/rpc`
 [Set-TssSecretSecurity] | [PATCH /secrets/{id}/security-general]
 [Start-TssSecretChangePassword] | `POST /internals/secret-detail/{id}/change-password-now`
 [Stop-TssSecretChangePassword] | [POST /secrets/{id}/stop-password-change]
@@ -74,53 +142,6 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Get-TssSecretTemplate] | [GET /secret-templates/{id}]
 [Search-TssSecretTemplate] | [GET /secret-templates]
 
-## Folders
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Find-TssFolder] | [GET /folders/lookup]
-[Get-TssFolder] | [GET /folders/{id}]
-[Get-TssFolderAudit] | [GET /folders/{id}/audit]
-[Get-TssFolderStub] | [GET /folders/stub]
-[New-TssFolder] | [POST /folders]
-[Remove-TssFolder] | [DELETE /folders/{id}]
-[Remove-TssFolderTemplate] | [DELETE /folders/{id}/templates/{templateId}]
-[Search-TssFolder] | [GET /folders]
-[Set-TssFolder] | [PATCH /folders/{id}]
-
-## Folder Permissions
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Get-TssFolderPermission] | [GET /folder-permissions/{id}]
-[New-TssFolderPermission] | [POST /folder-permissions/{id}]
-[Remove-TssFolderPermission] | [DELETE /folder-permissions/{id}]
-[Search-TssFolderPermission] | [GET /folder-permissions]
-[Set-TssFolderPermission] | [PUT /folder-permissions/{id}]
-
-## Reports
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Get-TssReport] | [GET /reports/{id}]
-[Get-TssReportCategory] | [GET /reports/categories/{reportCategoryId}]
-[Get-TssReportCategory] | [GET /reports/categories]
-[New-TssReport] | [POST /reports]
-[Remove-TssReportCategory] | [DELETE /reports/categories/{reportCategoryId}]
-[Search-TssReportSchedule] | [GET /reports/schedules]
-
-## Groups
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Search-TssGroup] | [GET /groups]
-
-## Roles
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Search-TssRole] | [GET /roles]
-
 ## Users
 
 **Command** | **API Endpoint** |
@@ -133,18 +154,6 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Search-TssUser] | [GET /users]
 [Show-TssCurrentUser] | [GET /users/current]
 [Get-TssUserStub] | [GET /users/stub]
-
-## Directory Services
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Search-TssDirectoryServiceDomain] | [GET /directory-services/domains]
-
-## General
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Get-TssVersion] | [GET /version]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssFolder]:/thycotic.secretserver/commands/Get-TssFolder
@@ -207,7 +216,14 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
 [Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
 [Set-TssSecretSecurity]:/thycotic.secretserver/commands/Set-TssSecretSecurity
+[Revoke-TssSecret]:/thycotic.secretserver/commands/Revoke-TssSecret
+[Set-TssSecretExpiration]:/thycotic.secretserver/commands/Set-TssExpiration
+[Set-TssSecretRpcPrivileged]:/thycotic.secretserver/commands/Set-TssSecretRpcPrivileged
+[Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/Search-TssDistributedEngineSite
 
+[GET /distributed-engine/sites]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--distributed-engine-sites-get
+[PUT /secrets/{id}/expiration]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--secrets--id--expiration-put
+[POST /secrets/{id}/expire]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--secrets--id--expire-post
 [PATCH /secrets/{id}/security-general]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--security-general-patch
 [GET /users/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-stub-get
 [POST /secrets/{id}/check-in]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--check-in-post

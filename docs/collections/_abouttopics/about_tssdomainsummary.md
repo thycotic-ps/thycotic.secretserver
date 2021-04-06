@@ -1,3 +1,9 @@
+---
+category: directory-services
+title: "TssDomainSummary"
+last_modified_at: 2021-04-05T00:00:00-00:00
+---
+
 # TOPIC
     This help topic describes the TssDomainSummary class in the Thycotic.SecretServer module
 
