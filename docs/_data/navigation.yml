@@ -1,5 +1,7 @@
 # main links
 main:
+  - title: "Home"
+    url: /
   - title: "Docs"
     url: /docs/authentication/
   - title: "Commands"

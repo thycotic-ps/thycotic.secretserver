@@ -6,7 +6,7 @@ Thycotic.SecretServer is an open-source project and welcomes contributions from 
 
 Suppose you have found a bug in Thycotic.SecretServer, first ensure you are testing against the [latest release](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest) - your issue may have already been fixed. If not, **search** our [issues list](https://github.com/thycotic-ps/thycotic.secretserver/issues) on GitHub in case a similar issue has already been opened.
 
-If you can include a reproduction of the bug and details on your environment (e.g., Secret Server version, configurations, environment information) will be very helpful. A small test case which we can run to confirm the bug, if possible, will aid in finding and fixing the problem.
+If you can include a reproduction of the bug and details on your environment (e.g., Secret Server version, configurations, environment information) will be very helpful. A small test case which we can run to confirm the bug, if possible, will aid in finding and fixing the problem (e.g., export of a secret template and secret).
 
 Provide as much detail as you can.
 
@@ -32,9 +32,9 @@ Once your changes and tests are ready to submit for review:
 
 1. Test your changes
 
-    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. Run the test for the module or the specific function to make sure nothing is broken.
+    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. Run the test for the specific function to make sure nothing is broken.
 
-    Since the module's testing framework cannot be run (at this time) in an automated manner with each PR, we request that you run the tests locally and provide an indication (screenshot or output content) in the PR.
+    The module's testing framework is progressing to all unit tests to make the tests more mobile. Please consider adding a screenshot or console output in the PR to provide references for the reviewer.
 
     > If your change is altering the module's functionality or function, this requires explicit approval from maintainer(s) before being submitted as a PR.
 
@@ -52,49 +52,15 @@ Once your changes and tests are ready to submit for review:
 
 Then sit back and wait. There will probably be a discussion about the pull request and, if any changes are needed, we would love to work with you to get your pull request merged into Thycotic.SecretServer.
 
-Please adhere to the general guideline that you should never force push to a publicly shared branch. Once you have opened your pull request, you should consider your branch publicly shared. Instead of force pushing, you can add incremental commits; this is generally easier on your reviewers. If you need to pick up changes from master, you can merge master into your branch. A reviewer might ask you to rebase a long-running pull request, in which case force pushing is okay for that request. Note that squashing at the end of the review process should also not be done, that can be done when the pull request is [integrated via GitHub](https://github.com/blog/2141-squash-your-commits).
+Please adhere to the general guideline that you should never force push to a publicly shared branch. Once you have opened your pull request, you should consider your branch publicly shared. Instead of force pushing, you can add incremental commits; this is generally easier on your reviewers. If you need to pick up changes from master, you can merge master into your branch. A reviewer might ask you to rebase a long-running pull request, in which case force pushing is okay for that request. Note that squash at the end of the review process should also not be done, which can be done when the pull request is [integrated via GitHub](https://github.com/blog/2141-squash-your-commits).
 
-## Test Environment Setup
+### Testing Framework - Pester
 
-The test framework for this module utilizes Pester 5.1+ and includes both unit and integration tests. The integration tests require a properly licensed Secret Server.
-
-🚨
-**Tests about folders and secrets _will be_ restricted to work against a specific parent folder (`tss_module_testing`). Function tests that affect or create objects outside of this will be restricted to mocking (where feasible). It is recommended to test against a test environment.**
-
-🚨
-**You accept the risk of running these tests against your production environment.**
-
-### Prerequisites
-
-Test about secrets and folders require a specific secret folder to exists: `tss_module_testing`.
-
-An export XML file is provided and can be found under [tests/test_data](/tests/test_data). There is an included test template that needs to be added to Secret Server ** before importing the XML of secrets**. An attachment test file is also included to attach to the secret referenced in the test **after secret import**.
-
-It is recommended to create a local Secret Server user as an application account, granting it `tss_module'_testing` for folder and secrets. Utilize this new account for running the Pester tests.
-
-<img src="https://user-images.githubusercontent.com/11204251/103263755-64b8e080-496e-11eb-8e63-2c02c225f504.png" width="188" height="125" alt="test folder structure">
-
-### Pester
-
-The test is written for Pester 5.1, minimum, version and will not run on a lower version due to syntax and framework changes made to that module. Documentation for Pester can be found [here](https://pester.dev).
+Each function is written with a Pester test that performs unit testing. The tests are compatible with Pester 5.1 and above. Documentation for Pester can be found [here](https://pester.dev).
 
 ### Limitations
 
-**To run the full gauntlet of tests for the module will require Administrator role permissions to Secret Server.** At a future time, a large portion of tests will include mocking instead of direct integration tests to make this easier.
-
-Some tests do not have direct integration tests because of external systems or resources required to use them (e.g., Distributed Engines). In some cases, where feasible, mocking is used to expand the unit test coverage as much as possible. Mocking will be a large focus on tests that can potentially break an installation.
-
-### `Constants.ps1` File
-
-The `constants` file is utilized by the test to indicate the following:
-
-- Secret Server URL
-- Secret Server User credential
-- Utilize Windows Authentication (setting `$tssTestUsingWindowsAuth = $true`)
-
-If you save this file to your profile directly (`$env:USERPROFILE` or `$env:HOME` on Linux), you can include setting the needed variables directly.
-
-The file will check if `$env:USERPROFILE\constants.ps1` or `$env:HOME\constants.ps1` exists, and if it does, will dot-source the file instead of using the values from the repository's version.
+Test at this time is in flux and being migrated to all unit tests.
 
 ## Contribution Help
 

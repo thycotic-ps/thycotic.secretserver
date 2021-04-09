@@ -116,9 +116,6 @@ author:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/thycotic-ps"
-    - label: "@wsmelton"
-      icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/wsmelton"
     # - label: "wsmelton.github.io"
     #   icon: "fas fa-fw fa-link"
     #   url: "https://wsmelton.github.io"
@@ -131,7 +128,7 @@ footer:
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"
-      url: "https://twitter.com/wsmelton"
+      url: "https://media.giphy.com/media/WJudITk3NIcsU/giphy.gif"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
       url: "https://github.com/thycotic-ps/Thycotic.SecretServer"
