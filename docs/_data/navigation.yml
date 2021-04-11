@@ -372,8 +372,8 @@ docs:
     children:
       - title: "Creating Folders"
         url: /docs/workingwith-folders/
-      # - title: "Creating Secrets"
-      #   url: /docs/workingwith-secrets/
+      - title: "Creating Secrets"
+        url: /docs/workingwith-secrets/
 
   - title: External Links
     children:

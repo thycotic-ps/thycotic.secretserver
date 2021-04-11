@@ -5,13 +5,13 @@ excerpt: "Working with Secret Server Folders"
 last_modified_at: 2021-04-04T00:00:00-00:00
 ---
 
-## Introduction
+# Introduction
 
 These are example scripts that can be used individually or combined into building a full workflow automation using the Thycotic.SecretServer module.
 
-## Examples
+# Examples
 
-### Create a single, root Folder
+## Create a single, root Folder
 
 This will create a new folder under All Secrets folder (-1):
 
@@ -20,7 +20,7 @@ $session = New-TssSession -SecretServer 'http://argos/SecretServer' -Credential 
 New-TssFolder -TssSession $session -FolderName 'NewRootFolder' -Verbose
 ```
 
-#### Output
+### Output
 
 ```console
 VERBOSE: Provided command parameters: New-TssFolder -FolderName:'NewRootFolder' -Verbose:$True -TssSession:TssSessionObject
@@ -44,7 +44,7 @@ FolderId FolderName    FolderPath     InheritSecretPolicy InheritPermissions Par
 16       NewRootFolder \NewRootFolder False               False              -1
 ```
 
-### Create a Child Folder
+## Create a Child Folder
 
 This example will create a child folder under a current folder called "Demo":
 
@@ -63,11 +63,11 @@ $newFolderParams = @{
 New-TssFolder @newFolderParams
 ```
 
-#### Output
+### Output
 
 ```console
-VERBOSE: Provided command parameters: New-TssFolder -TssSession:TssSessionObject -FolderName:'NewChildFo
-lder' -ParentFolderId:4 -InheritPermissions:$True -Verbose:$True
+VERBOSE: Provided command parameters: New-TssFolder -TssSession:TssSessionObject -FolderName:'NewChildFolder'
+-ParentFolderId:4 -InheritPermissions:$True -Verbose:$True
 VERBOSE: GET http://argos/SecretServer/api/v1/version with 0-byte payload
 VERBOSE: received 190-byte response of content type application/json
 VERBOSE: Content encoding: utf-8
@@ -88,11 +88,11 @@ FolderId FolderName     FolderPath           InheritSecretPolicy InheritPermissi
 19       NewChildFolder \Demo\NewChildFolder True                True               4
 ```
 
-### Create a Full Folder Structure
+## Create a Full Folder Structure
 
 This example will create a folder structure loosly based on the content documented under [Secret Server Best Practices - Folder Structure](https://docs.thycotic.com/ss/10.9.0/best-practices#folder_structure).
 
-#### Folder Structure
+### Folder Structure
 
 ```bash
 |-- ABC Company
@@ -110,9 +110,10 @@ This example will create a folder structure loosly based on the content document
 |   |   |   |   |-- Unix
 |   |   |   |   |-- Windows
 |   |-- Vendors
+|   |-- Security
 ```
 
-#### CSV Representation
+### CSV Representation
 
 A CSV representation of the above structure that will be utilized in the example code to dynamically create the folder structure.
 
@@ -122,6 +123,7 @@ ABC Company, Customers
 ABC Company, Human Resources
 ABC Company, Information Technology
 ABC Company, Vendors
+ABC Company, Security
 Information Technology, Development Services
 Information Technology, Technical Services
 Development Services, Programmers
@@ -133,6 +135,8 @@ Systems, Network Infrastructure
 Systems, Unix
 Systems, Windows
 ```
+
+### Script
 
 ```powershell
 Import-Module C:\git\thycotic.secretserver\src\Thycotic.SecretServer.psd1
@@ -193,7 +197,7 @@ foreach ($parent in $rootFolders) {
 Search-TssFolder -TssSession $session -ParentFolderId $root.FolderId
 ```
 
-#### Output
+### Output
 
 ```console
 FolderId FolderName             FolderPath                                                                            Inheri
