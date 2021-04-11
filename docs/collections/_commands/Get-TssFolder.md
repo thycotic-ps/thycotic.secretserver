@@ -14,8 +14,19 @@ Get a folder from Secret Server
 
 ## SYNTAX
 
+### id
 ```
-Get-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
+Get-TssFolder [-TssSession] <TssSession> [-Id <Int32[]>] [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
+```
+
+### filter
+```
+Get-TssFolder [-TssSession] <TssSession> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
+```
+
+### path
+```
+Get-TssFolder [-TssSession] <TssSession> [-FolderPath <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,6 +58,14 @@ Get-TssFolder -TssSession $session -Id 93 -IncludeTemplate
 
 Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
 
+### EXAMPLE 4
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssFolder -TssSession $session -FolderPath '\ABC Company\Security'
+```
+
+Returns folder that has a path of ABC Company\Security
+
 ## PARAMETERS
 
 ### -TssSession
@@ -69,10 +88,10 @@ Folder ID to retrieve
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: id
 Aliases: FolderId
 
-Required: True
+Required: False
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -84,7 +103,7 @@ Retrieve all child folders within the requested folder
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: id, filter
 Aliases: GetAllChildren
 
 Required: False
@@ -99,12 +118,28 @@ Include allowable Secret Templates of the requested folder
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: id, filter
 Aliases: IncludeAssociatedTemplates, IncludeTemplates
 
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -FolderPath
+Get folder based on path (e.g.
+\Parent\child1\child2)
+
+```yaml
+Type: String
+Parameter Sets: path
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

@@ -105,7 +105,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: FolderPath
+Default value: Id
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
