@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### New
+
+<details>
+    <summary>Click to view </summary>
+
+* Get-TssFolder - Add FolderPath parameter [05dd198](https://github.com/thycotic-ps/thycotic.secretserver/commit/05dd198a5470d2e3d157879c50294dfac0ce07aa)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* Search-TssFolder - perf improvement [233744d](https://github.com/thycotic-ps/thycotic.secretserver/commit/233744d745179a3da8c2ce47866dcc40bdecd9f6)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.36.0] -- 2021-04-05
 
 ### Breaking Changes
