@@ -45,7 +45,7 @@ function Search-Folder {
 
         # Sort by specific property, default FolderPath
         [string]
-        $SortBy = 'FolderPath'
+        $SortBy = 'Id'
     )
     begin {
         $tssParams = $PSBoundParameters
