@@ -45,7 +45,6 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Find-TssFolder] | [GET /folders/lookup]
 [Get-TssFolder] | [GET /folders/{id}]
 [Get-TssFolderAudit] | [GET /folders/{id}/audit]
-[Get-TssFolderStub] | [GET /folders/stub]
 [New-TssFolder] | [POST /folders]
 [Remove-TssFolder] | [DELETE /folders/{id}]
 [Remove-TssFolderTemplate] | [DELETE /folders/{id}/templates/{templateId}]
@@ -151,9 +150,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Get-TssUserAudit] | [GET /users/{userId}/audit]
 [Get-TssUserRole] | [GET /users/{id}/roles]
 [Get-TssUserRoleAssigned] | [GET /users/{userId}/roles-assigned]
+[New-TssUser] | [POST /users]
 [Search-TssUser] | [GET /users]
 [Show-TssCurrentUser] | [GET /users/current]
-[Get-TssUserStub] | [GET /users/stub]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssFolder]:/thycotic.secretserver/commands/Get-TssFolder
@@ -177,7 +176,6 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Search-TssFolder]:/thycotic.secretserver/commands/Search-TssFolder
 [Find-TssFolder]:/thycotic.secretserver/commands/Find-TssFolder
 [New-TssFolder]:/thycotic.secretserver/commands/New-TssFolder
-[Get-TssFolderStub]:/thycotic.secretserver/commands/Get-TssFolderStub
 [Remove-TssFolder]:/thycotic.secretserver/commands/Remove-TssFolder
 [Get-TssFolderAudit]:/thycotic.secretserver/commands/Get-TssFolderAudit
 [Set-TssFolder]:/thycotic.secretserver/commands/Set-TssFolder
@@ -214,18 +212,18 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Search-TssSecretTemplate]:/thycotic.secretserver/commands/Search-TssSecretTemplate
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
 [Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
-[Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
 [Set-TssSecretSecurity]:/thycotic.secretserver/commands/Set-TssSecretSecurity
 [Revoke-TssSecret]:/thycotic.secretserver/commands/Revoke-TssSecret
 [Set-TssSecretExpiration]:/thycotic.secretserver/commands/Set-TssExpiration
 [Set-TssSecretRpcPrivileged]:/thycotic.secretserver/commands/Set-TssSecretRpcPrivileged
 [Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/Search-TssDistributedEngineSite
+[New-TssUser]:/thycotic.secretserver/commands/New-TssUser
 
+[POST /users]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-post
 [GET /distributed-engine/sites]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--distributed-engine-sites-get
 [PUT /secrets/{id}/expiration]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--secrets--id--expiration-put
 [POST /secrets/{id}/expire]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--secrets--id--expire-post
 [PATCH /secrets/{id}/security-general]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--security-general-patch
-[GET /users/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-stub-get
 [POST /secrets/{id}/check-in]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--check-in-post
 [GET /users/{userId}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users--userId--audit-get
 [GET /secret-templates]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secret-templates-get
@@ -257,7 +255,6 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [GET /folders/{id}/audit]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--audit-get
 [PATCH /folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folder--id--patch
 [DELETE /folders/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders--id--delete
-[GET /folders/stub]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-stub-get
 [POST /folders]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-post
 [GET /folders/lookup]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-lookup-get
 [GET /folders]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--folders-get
@@ -283,6 +280,5 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [GET /secret-templates/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secret-templates--id--get
 [GET /secrets/{id}/stop-password-change]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--stop-password-change-post
 [GET /version]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--version-get
-[GET /secrets/stubs]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-stub-get
 [POST /secrets]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets-post
 [POST /secrets/{id}/stop-password-change]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--secrets--id--stop-password-change-post

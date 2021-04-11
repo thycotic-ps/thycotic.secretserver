@@ -58,8 +58,6 @@ commands:
         url: /commands/Get-TssFolder
       - title: "Get-TssFolderAudit"
         url: /commands/Get-TssFolderAudit
-      - title: "Get-TssFolderStub"
-        url: /commands/Get-TssFolderStub
       - title: "New-TssFolder"
         url: /commands/New-TssFolder
       - title: "Remove-TssFolder"
@@ -174,8 +172,8 @@ commands:
         url: /commands/Get-TssUserRole
       - title: "Get-TssUserRoleAssigned"
         url: /commands/Get-TssUserRoleAssigned
-      - title: "Get-TssUserStub"
-        url: /commands/Get-TssUserStub
+      - title: "New-TssUser"
+        url: /commands/New-TssUser
       - title: "Search-TssUser"
         url: /commands/Search-TssUser
       - title: "Show-TssCurrentUser"
