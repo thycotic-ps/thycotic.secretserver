@@ -93,6 +93,12 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 --------------------------------- | -------------------------------------------------- |
 [TssRole] | [Search-TssRole]
 
+## RPC
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretRpcAssociated] | [Get-TssSecretRpcAssociated]
+
 ## Secret Templates
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -179,7 +185,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssUserStub]:/thycotic.secretserver/commands/Get-TssUserStub
 [Get-TssConfiguration]:/thycotic.secretserver/commands/Get-TssConfiguration
 [Get-TssDistributedEngineSite]:/thycotic.secretserver/commands/Get-TssDistributedEngineSite
+[Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
 
+[TssSecretRpcAssociated]:/thycotic.secretserver/abouttopics/about_tsssecretrpcassociated
 [TssSiteSummary]:/thycotic.secretserver/abouttopics/about_tsssitesummary
 [TssSiteMetrics]:/thycotic.secretserver/abouttopics/about_tsssitemetrics
 [TssConfigurationGeneral]:/thycotic.secretserver/abouttopics/about_tssconfigurationgeneral

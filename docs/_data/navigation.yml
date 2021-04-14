@@ -92,6 +92,10 @@ commands:
       - title: "Search-TssRole"
         url: /commands/Search-TssRole
 
+  - title: "RPC"
+    children:
+      - title: "Get-TssSecretRpcAssociated"
+
   - title: "Secrets-Templates"
     children:
       - title: "Get-TssSecretTemplate"
@@ -284,6 +288,11 @@ abouttopics:
     children:
       - title: "TssRole"
         url: /abouttopics/about_tssrole
+
+  - title: "RPC"
+    children:
+      - title: "TssSecretRpcAssociated"
+        url: /abouttopics/about_tsssecretrpcassociated
 
   - title: "Secrets-Templates"
     children:

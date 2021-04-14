@@ -90,6 +90,12 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 ---------------- | --------------------------------- |
 [Search-TssRole] | [GET /roles]
 
+## RPC
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Get-TssSecretRpcAssociated] | `/internals/secret-detail/{id}/rpc`
+
 ## Secrets
 
 **Command** | **API Endpoint** |
@@ -218,6 +224,7 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Set-TssSecretRpcPrivileged]:/thycotic.secretserver/commands/Set-TssSecretRpcPrivileged
 [Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/Search-TssDistributedEngineSite
 [New-TssUser]:/thycotic.secretserver/commands/New-TssUser
+[Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
 
 [POST /users]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-post
 [GET /distributed-engine/sites]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--distributed-engine-sites-get
