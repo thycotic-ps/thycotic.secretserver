@@ -182,6 +182,8 @@ commands:
         url: /commands/Search-TssUser
       - title: "Show-TssCurrentUser"
         url: /commands/Show-TssCurrentUser
+      - title: "Update-TssUserPassword"
+        url: /commands/Update-TssUserPassword
 
   - title: "General"
     children:

@@ -159,6 +159,7 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [New-TssUser] | [POST /users]
 [Search-TssUser] | [GET /users]
 [Show-TssCurrentUser] | [GET /users/current]
+[Update-TssUserPassword] | [POST /users/change-password]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssFolder]:/thycotic.secretserver/commands/Get-TssFolder
@@ -225,7 +226,9 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/Search-TssDistributedEngineSite
 [New-TssUser]:/thycotic.secretserver/commands/New-TssUser
 [Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
+[Update-TssUserPassword]:/thycotic.secretserver/commands/Update-TssUserPassword
 
+[POST /users/change-password]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-change-password-post
 [POST /users]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-post
 [GET /distributed-engine/sites]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--distributed-engine-sites-get
 [PUT /secrets/{id}/expiration]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--secrets--id--expiration-put
