@@ -96,9 +96,6 @@ function Protect-Secret {
                 if ($protectParams.ContainsKey('IncludeInactive')) {
                     $protectBody.Add('includeInactive',[boolean]$IncludeInactive)
                 }
-                if ($protectParams.ContainsKey('NewPassword')) {
-                    $protectBody.Add('newPassword',$NewPassword)
-                }
 
                 $invokeParams.Body = $protectBody | ConvertTo-Json
 
