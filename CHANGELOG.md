@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.37.0] -- 2021-04-16
 
 ### Breaking Changes
 
@@ -33,6 +33,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssFolder - Add FolderPath parameter [05dd198](https://github.com/thycotic-ps/thycotic.secretserver/commit/05dd198a5470d2e3d157879c50294dfac0ce07aa)
 * New-TssUser - closes [#127](https://github.com/thycotic-ps/thycotic.secretserver/issues/127) [27b69a7](https://github.com/thycotic-ps/thycotic.secretserver/commit/27b69a7a3c86ae6d5572539ccce815d380206f65)
 * Get-TssSecretRpcAssociated - closes [#154](https://github.com/thycotic-ps/thycotic.secretserver/issues/154) [5bb28d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/5bb28d079665d890d83ace9b6aa381bf5594a7e5)
+* Update-UserPassword - closes [#155](https://github.com/thycotic-ps/thycotic.secretserver/issues/155) [cd6dc87](https://github.com/thycotic-ps/thycotic.secretserver/commit/cd6dc87ef76759cddadd06442f2066d793c91320)
+* Set-SecretRpcAssociated - closes #153 [1da9eab](https://github.com/thycotic-ps/thycotic.secretserver/commit/1da9eab708b4da09c085c580eb94722ff87e7521)
+* Reset-UserPassword - fixes [#129](https://github.com/thycotic-ps/thycotic.secretserver/issues/129) [315c28d](https://github.com/thycotic-ps/thycotic.secretserver/commit/315c28d9bd578854db9eea015c24e08d3027a858)
+* Unlock-User - closes [#159](https://github.com/thycotic-ps/thycotic.secretserver/issues/159) [5cf2157](https://github.com/thycotic-ps/thycotic.secretserver/commit/5cf2157f3335e05d507d5b5eb075ea85c5f90c15)
+* Lock-User - closes [#158](https://github.com/thycotic-ps/thycotic.secretserver/issues/158) [b76de38](https://github.com/thycotic-ps/thycotic.secretserver/commit/b76de38d756a5e97276727dd52714250ae66bf0a)
+* Enable-TssUser - closes [#156](https://github.com/thycotic-ps/thycotic.secretserver/issues/156) [b9fa4bd](https://github.com/thycotic-ps/thycotic.secretserver/commit/b9fa4bd3975884cd63b31b0503688fe5870086e6)
+* Disable-User - closes [#157](https://github.com/thycotic-ps/thycotic.secretserver/issues/157) [51fedf8](https://github.com/thycotic-ps/thycotic.secretserver/commit/51fedf88c8988383f08ecdde73a51d36354d9f60)
+* Start-Discovery - closes [#151](https://github.com/thycotic-ps/thycotic.secretserver/issues/151) [05501de](https://github.com/thycotic-ps/thycotic.secretserver/commit/05501de057970265229ab49e99a8ae63035c7c14)
 
 </details>
 
@@ -44,6 +52,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssFolder - perf improvement [233744d](https://github.com/thycotic-ps/thycotic.secretserver/commit/233744d745179a3da8c2ce47866dcc40bdecd9f6)
 * docs - add New-TssUser help [738584d](https://github.com/thycotic-ps/thycotic.secretserver/commit/738584d38b8077d0606b4e61028899e72b0ebe73)
 * docs - removed command old command help [371d137](https://github.com/thycotic-ps/thycotic.secretserver/commit/371d137f96c50adfaf0251b278f8382ddc49dcab)
+* Get-SecretRpcAssociated - adjust output to support Set function [e6e3523](https://github.com/thycotic-ps/thycotic.secretserver/commit/e6e3523c93625819c37f48a5ab1b3a0c96442611)
+* Protect-Secret - remove unused code [2922f21](https://github.com/thycotic-ps/thycotic.secretserver/commit/2922f211fb668f3729c3b587c98db1f6399dead0)
+* Enable-SecretEmail - correct link in cbh [4ded087](https://github.com/thycotic-ps/thycotic.secretserver/commit/4ded087c6b5b2cd8da771fae4ef1210af7b9b0f4)
+* functions - correcting parameter help [a1fc3df](https://github.com/thycotic-ps/thycotic.secretserver/commit/a1fc3dfedc2b0d04da96cf252a8cc7710eb1a8f9)
 
 </details>
 
