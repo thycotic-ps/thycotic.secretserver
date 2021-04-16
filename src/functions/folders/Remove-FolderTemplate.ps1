@@ -29,7 +29,7 @@ function Remove-FolderTemplate {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Folder ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("FolderId")]
         [int]

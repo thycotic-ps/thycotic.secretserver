@@ -51,7 +51,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Short description for parameter
+Folder ID
 
 ```yaml
 Type: Int32

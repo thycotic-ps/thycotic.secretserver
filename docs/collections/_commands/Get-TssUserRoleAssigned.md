@@ -49,7 +49,7 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-Short description for parameter
+User ID
 
 ```yaml
 Type: Int32[]

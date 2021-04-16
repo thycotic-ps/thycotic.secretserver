@@ -29,7 +29,7 @@ function Get-SecretSetting {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Secret ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretSettingId")]
         [int[]]

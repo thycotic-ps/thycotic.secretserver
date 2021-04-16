@@ -29,7 +29,7 @@ function Revoke-Secret {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Secret ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretId")]
         [int[]]

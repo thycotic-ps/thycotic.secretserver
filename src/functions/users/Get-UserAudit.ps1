@@ -29,7 +29,7 @@ function Get-UserAudit {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Secret ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("Id")]
         [int[]]

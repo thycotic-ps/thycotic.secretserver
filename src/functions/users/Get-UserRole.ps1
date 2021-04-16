@@ -29,7 +29,7 @@ function Get-UserRole {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Secret ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("UserId")]
         [int[]]

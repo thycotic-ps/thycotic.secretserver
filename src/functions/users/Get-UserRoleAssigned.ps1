@@ -30,7 +30,7 @@ function Get-UserRoleAssigned {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # User ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("Id")]
         [int[]]

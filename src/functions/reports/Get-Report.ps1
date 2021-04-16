@@ -29,7 +29,7 @@ function Get-Report {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Report ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("ReportId")]
         [int[]]

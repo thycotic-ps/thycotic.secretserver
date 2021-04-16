@@ -29,7 +29,7 @@ function Get-FolderAudit {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Folder ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("FolderId")]
         [int[]]
