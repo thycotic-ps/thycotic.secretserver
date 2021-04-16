@@ -2,7 +2,7 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretEmail
 schema: 2.0.0
 title: Enable-TssSecretEmail
 ---
@@ -213,7 +213,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail](https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretEmail](https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretEmail)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretEmail.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretEmail.ps1)
 
