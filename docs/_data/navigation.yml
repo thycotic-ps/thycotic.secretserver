@@ -166,6 +166,10 @@ commands:
 
   - title: "Users"
     children:
+      - title: "Disable-TssUser"
+        url: /commands/Disable-TssUser
+      - title: "Enable-TssUser"
+        url: /commands/Enable-TssUser
       - title: "Find-TssUser"
         url: /commands/Find-TssUser
       - title: "Get-TssUser"
@@ -176,12 +180,18 @@ commands:
         url: /commands/Get-TssUserRole
       - title: "Get-TssUserRoleAssigned"
         url: /commands/Get-TssUserRoleAssigned
+      - title: "Lock-TssUser"
+        url: /commands/Lock-TssUser
       - title: "New-TssUser"
         url: /commands/New-TssUser
+      - title: "Reset-TssUserPassword"
+        url: /commands/Reset-TssUserPassword
       - title: "Search-TssUser"
         url: /commands/Search-TssUser
       - title: "Show-TssCurrentUser"
         url: /commands/Show-TssCurrentUser
+      - title: "Unlock-TssUser"
+        url: /commands/Unlock-TssUser
       - title: "Update-TssUserPassword"
         url: /commands/Update-TssUserPassword
 

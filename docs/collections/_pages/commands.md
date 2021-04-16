@@ -32,6 +32,12 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 ---------------- | --------------------------------- |
 [Search-TssDirectoryServiceDomain] | [GET /directory-services/domains]
 
+## Discovery
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Start-TssDiscovery] | [POST /discovery/run]
+
 ## Distributed Engines
 
 **Command** | **API Endpoint** |
@@ -151,14 +157,18 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
+[Disable-TssUser] | [PATCH /users/{id}]
+[Enable-TssUser] | [PATCH /users/{id}]
 [Find-TssUser] | [GET /users/lookup]
 [Get-TssUser] | [GET /users/{id}]
 [Get-TssUserAudit] | [GET /users/{userId}/audit]
 [Get-TssUserRole] | [GET /users/{id}/roles]
 [Get-TssUserRoleAssigned] | [GET /users/{userId}/roles-assigned]
+[Lock-TssUser] | [PATCH /users/{id}]
 [New-TssUser] | [POST /users]
 [Search-TssUser] | [GET /users]
 [Show-TssCurrentUser] | [GET /users/current]
+[Unlock-TssUser] | [PATCH /users/{id}]
 [Update-TssUserPassword] | [POST /users/change-password]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
@@ -227,7 +237,14 @@ A Thycotic.SecretServer command may not appear in the below list because it is n
 [New-TssUser]:/thycotic.secretserver/commands/New-TssUser
 [Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
 [Update-TssUserPassword]:/thycotic.secretserver/commands/Update-TssUserPassword
+[Disable-TssUserPassword]:/thycotic.secretserver/commands/Disable-TssUser
+[Enable-TssUserPassword]:/thycotic.secretserver/commands/Enable-TssUser
+[Lock-TssUserPassword]:/thycotic.secretserver/commands/Lock-TssUser
+[Unlock-TssUserPassword]:/thycotic.secretserver/commands/Unlock-TssUser
+[Start-TssDiscovery]:/thycotic.secretserver/commands/Start-TssDiscovery
 
+[POST /discovery/run]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--discovery-run-post
+[PATCH /users/{id}]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users--id--patch
 [POST /users/change-password]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-change-password-post
 [POST /users]:https://updates.thycotic.net/secretserver/restapiguide/10.9.33/TokenAuth/#operation--users-post
 [GET /distributed-engine/sites]:http://argos/SecretServer/documents/restapi/TokenAuth/#operation--distributed-engine-sites-get
