@@ -63,10 +63,10 @@ function Get-SecretRpcAssociated {
                 if ($restResponse.resetSecrets.value) {
                     foreach ($as in $restResponse.resetSecrets.value) {
                         [TssSecretRpcAssociated]@{
-                            ParentId = $secret
+                            ParentSecretId = $secret
                             Order = $as.order
-                            Id = $as.secretId
-                            Name = $as.secretName
+                            AssociatedSecretId = $as.secretId
+                            SecretName = $as.secretName
                             SecretTemplateName = $as.secretTemplateName
                             FolderName = $as.folderName
                         }

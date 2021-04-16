@@ -1,15 +1,15 @@
 class TssSecretRpcAssociated {
     [int]
-    $ParentId
+    $ParentSecretId
 
     [int]
     $Order
 
     [int]
-    $Id
+    $AssociatedSecretId
 
     [string]
-    $Name
+    $SecretName
 
     [string]
     $SecretTemplateName
