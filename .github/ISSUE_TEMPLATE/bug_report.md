@@ -2,8 +2,8 @@
 name: Bug report
 about: Create a report to help us improve
 title: "[Bug] "
-labels: bug
-assignees: ''
+labels: bug, triage-needed
+assignees: wsmelton
 
 ---
 
@@ -52,8 +52,8 @@ Build/Version:
 
 ***Host information:***
 
-[ ] Powershell.exe
-[ ] pwsh.exe
+[ ] Windows PowerShell 5.1
+[ ] PowerShell 7+
 [ ] PowerShell ISE
 [ ] VS Code (Insiders/Stable)
 
