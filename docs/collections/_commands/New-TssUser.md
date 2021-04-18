@@ -25,12 +25,21 @@ Create a new Secret Server User
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+$session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
+New-TssUser -TssSession $session -Username 'testuser' -DisplayName 'My Test User' -Password (ConvertTo-SecureString 'pass!' -AsPlainText -Force) -Active
 ```
 
-{{ Add example description here }}
+Create testuser with a DisplayName of "My Test User", and enable on creation.
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
+New-TssUser -TssSession $session -Username 'apiuser' -DisplayName 'Dev Test App User' -Password (ConvertTo-SecureString 'pass$' -AsPlainText -Force) -IsApplicationAccount -Active
+```
+
+Create apiuser as an Application Account and enable on creation.
 
 ## PARAMETERS
 
@@ -185,7 +194,7 @@ Accept wildcard characters: False
 ```
 
 ### -RadiusUsername
-{{ Fill RadiusUsername Description }}
+Username for RADIUS
 
 ```yaml
 Type: String
