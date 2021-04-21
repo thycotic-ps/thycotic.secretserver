@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* New-TssUser - add examples fixes [#160](https://github.com/thycotic-ps/thycotic.secretserver/issues/160) [400ac84](https://github.com/thycotic-ps/thycotic.secretserver/commit/400ac84cfc307b63e0f4e412c5d52a8878031172)
+
+</details>
+
+### New Functions
+
+<details>
+    <summary>Click to view </summary>
+
+* Update-TssSecret - fixes [#169](https://github.com/thycotic-ps/thycotic.secretserver/issues/169) [3587c61](https://github.com/thycotic-ps/thycotic.secretserver/commit/3587c61b2f991da8fc518d33cfeca0c20dfb5437)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* docs - commands page - remove links to spec file New API doc site: https://thycotic-ps.github.io/secretserver-apidoc [3f16fee](https://github.com/thycotic-ps/thycotic.secretserver/commit/3f16fee904af3b2eb13312c8564967a09a6e2a23)
+* Set-SecretField - Correcting examples [6f89ba2](https://github.com/thycotic-ps/thycotic.secretserver/commit/6f89ba298f3f8efe2a391a245307cbc5a83c593b)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.37.0] -- 2021-04-16
 
 ### Breaking Changes
