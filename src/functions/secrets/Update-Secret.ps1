@@ -8,33 +8,11 @@ function Update-Secret {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Update-TssSecret -TssSession $session Id 42 -Slug notes -Value "Test test test"
+    $secret = Get-TssSecret -TssSession $session -Id 42
+    $secret.SiteId = 2
+    Update-TssSecret -TssSession $session $secret
 
-    Set Notes field on Secret 42 to the value "Test test test"
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Update-TssSecret -TssSession $session -Id 93 -Slug Machine -Value "server2"
-
-    Sets secret 93's field, "Machine", to "server2"
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Update-TssSecret -TssSession $session -Id 1455 -Slug Notes -Value "to be decommissioned" -Comment "updating notes field"
-
-    Sets secret 1455's field, "Notes", to the provided value providing required comment
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Update-TssSecret -TssSession $session -Id 113 -Slug Notes -Clear
-
-    Sets secret 1455's field, "Notes", to an empty value
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Update-TssSecret -TssSession $session -Id 42 -Slug attached-file c:\files\attachment.txt
-
-    Sets the attached-file field on Secret 42 to the attachment.txt (uploads the file to Secret Server)
+    Update Secret ID 42, setting SiteID to Site 2
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecret
