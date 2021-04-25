@@ -31,9 +31,7 @@ process {
     try {
         $restResponse = . $InvokeApi @invokeParams
     } catch {
-        Write-Warning "Issue reading version, verify Hide Secret Server Version Numbers is disabled in Secret Server"
-        $err = $_
-        . $ErrorHandling $err
+        Write-Warning "Issue reading version of [$source], verify Hide Secret Server Version Numbers is disabled in Secret Server"
     }
 
     $currentVersion = $restResponse.model.version
