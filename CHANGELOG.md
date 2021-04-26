@@ -22,6 +22,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * New-TssUser - add examples fixes [#160](https://github.com/thycotic-ps/thycotic.secretserver/issues/160) [400ac84](https://github.com/thycotic-ps/thycotic.secretserver/commit/400ac84cfc307b63e0f4e412c5d52a8878031172)
+* Update-TssSecret - fix issue with uri found during testing [b7e96f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b7e96f17e897d102ef2cb01ea9fb63c7caaf4f68)
 
 </details>
 
@@ -31,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Update-TssSecret - fixes [#169](https://github.com/thycotic-ps/thycotic.secretserver/issues/169) [3587c61](https://github.com/thycotic-ps/thycotic.secretserver/commit/3587c61b2f991da8fc518d33cfeca0c20dfb5437)
+* Search-TssRpcPasswordType - closes [#149](https://github.com/thycotic-ps/thycotic.secretserver/issues/149) [5f99639](https://github.com/thycotic-ps/thycotic.secretserver/commit/5f996396084919fb68417fc27df664d60fc6d8ff)
+* Get-RpcPasswordType - closes [#34](https://github.com/thycotic-ps/thycotic.secretserver/issues/34) [dacde70](https://github.com/thycotic-ps/thycotic.secretserver/commit/dacde70e070c998e83a7461b864450298676635e)
+* Get-GroupMember - closes [#55](https://github.com/thycotic-ps/thycotic.secretserver/issues/55) [66a203d](https://github.com/thycotic-ps/thycotic.secretserver/commit/66a203d8d46be56059890e9e0d2eba978b7e13f8)
 
 </details>
 
