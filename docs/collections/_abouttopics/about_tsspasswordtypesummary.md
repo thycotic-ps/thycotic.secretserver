@@ -45,7 +45,7 @@ last_modified_at: 2021-04-25T00:00:00-00:00
         Password Type Id
 
     RequiredEdition: string
-        Required Edition (Standard, Legacy)
+        Required Edition (Standard, Legacy, Null)
 
     RpcScriptId: integer (int32)
         RPC Script Id

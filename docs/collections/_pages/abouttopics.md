@@ -97,6 +97,8 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
+[TssPasswordType] | [Get-TssRpcPasswordType]
+[TssPasswordTypeField] | [Get-TssRpcPasswordType]
 [TssPasswordTypeSummary] | [Search-TssRpcPasswordType]
 [TssSecretRpcAssociated] | [Get-TssSecretRpcAssociated]
 
@@ -188,8 +190,11 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssDistributedEngineSite]:/thycotic.secretserver/commands/Get-TssDistributedEngineSite
 [Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
 [Search-TssRpcPasswordType]:/thycotic.secretserver/commands/Search-TssRpcPasswordType
+[Get-TssRpcPasswordType]:/thycotic.secretserver/commands/Get-TssRpcPasswordType
 
-[TssPasswordTypeSummary]:/thycotic.secretserver/abouttopics/about_tsspasswordtypesumamry
+[TssPasswordTypeField]:/thycotic.secretserver/abouttopics/about_tsspasswordtypefield
+[TssPasswordType]:/thycotic.secretserver/abouttopics/about_tsspasswordtype
+[TssPasswordTypeSummary]:/thycotic.secretserver/abouttopics/about_tsspasswordtypesummary
 [TssSecretRpcAssociated]:/thycotic.secretserver/abouttopics/about_tsssecretrpcassociated
 [TssSiteSummary]:/thycotic.secretserver/abouttopics/about_tsssitesummary
 [TssSiteMetrics]:/thycotic.secretserver/abouttopics/about_tsssitemetrics
