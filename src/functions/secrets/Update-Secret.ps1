@@ -72,11 +72,11 @@ function Update-Secret {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($updateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
+
+            $secretId = $Secret.Id
             $uri = $TssSession.ApiUrl, 'secrets', $secretId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PUT'
-
-            $secretId = $Secret.Id
             $updateBody = $Secret
 
             if ($restrictedParams.Count -gt 0) {
