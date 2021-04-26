@@ -1,0 +1,96 @@
+function Get-GroupMember {
+    <#
+    .SYNOPSIS
+    Get a Group's membership
+
+    .DESCRIPTION
+    Get a Group's membership
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssGroupMember -TssSession $session -Id 2
+
+    Get users that are members of Group 2
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupMember
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-GroupMember.ps1
+
+    .NOTES
+    Requires TssSession object returned by New-TssSession
+    #>
+    [CmdletBinding()]
+    [OutputType('TssGroupUserSummary')]
+    param (
+        # TssSession object created by New-TssSession for auth
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
+
+        # Group ID
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Alias("GroupId")]
+        [int[]]
+        $Id,
+
+        # Include inactive Users in Group
+        [switch]
+        $IncludeInactive,
+
+        # Members that are in a specific domain
+        [int]
+        $UserDomainId,
+
+        # Sort by specific property, default DisplayName
+        [string]
+        $SortBy = 'DisplayName'
+    )
+    begin {
+        $tssParams = $PSBoundParameters
+        $invokeParams = . $GetInvokeTssParams $TssSession
+    }
+
+    process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            foreach ($group in $Id) {
+                $restResponse = $null
+                $uri = $TssSession.ApiUrl, 'groups', $group, 'users' -join '/'
+                $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
+                $invokeParams.Method = 'GET'
+
+                $filters = @()
+                if ($tssParams.ContainsKey('IncludeInactive')) {
+                    $filters += "filter.includeInactiveUsersForGroup=$([boolean]$IncludeInactive)"
+                }
+                if ($tssParams.ContainsKey('UserDomainId')) {
+                    $filters += "filter.userDomainId=$UserDomainId"
+                }
+                if ($filters) {
+                    $uriFilters = $filters -join '&'
+                    Write-Verbose "Filters: $uriFilters"
+                    $uri = $uri, $uriFilters -join '&'
+                }
+
+                $invokeParams.Uri = $uri
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                try {
+                    $restResponse = . $InvokeApi @invokeParams
+                } catch {
+                    Write-Warning "Issue getting Group [$group]"
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+
+                if ($restResponse.records) {
+                    [TssGroupUserSummary[]]$restResponse.records
+                }
+            }
+        } else {
+            Write-Warning "No valid session found"
+        }
+    }
+}
