@@ -303,6 +303,8 @@ abouttopics:
 
   - title: "RPC"
     children:
+      - title: "TssPasswordTypeSummary"
+        url: /abouttopics/about_tsspasswordtypesummary
       - title: "TssSecretRpcAssociated"
         url: /abouttopics/about_tsssecretrpcassociated
 

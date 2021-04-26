@@ -97,6 +97,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
+[TssPasswordTypeSummary] | [Search-TssRpcPasswordType]
 [TssSecretRpcAssociated] | [Get-TssSecretRpcAssociated]
 
 ## Secret Templates
@@ -186,7 +187,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssConfiguration]:/thycotic.secretserver/commands/Get-TssConfiguration
 [Get-TssDistributedEngineSite]:/thycotic.secretserver/commands/Get-TssDistributedEngineSite
 [Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
+[Search-TssRpcPasswordType]:/thycotic.secretserver/commands/Search-TssRpcPasswordType
 
+[TssPasswordTypeSummary]:/thycotic.secretserver/abouttopics/about_tsspasswordtypesumamry
 [TssSecretRpcAssociated]:/thycotic.secretserver/abouttopics/about_tsssecretrpcassociated
 [TssSiteSummary]:/thycotic.secretserver/abouttopics/about_tsssitesummary
 [TssSiteMetrics]:/thycotic.secretserver/abouttopics/about_tsssitemetrics
