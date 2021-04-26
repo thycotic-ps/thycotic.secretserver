@@ -71,6 +71,8 @@ commands:
 
   - title: "Groups"
     children:
+      - title: "Get-TssGroupMember"
+        url: /commands/Get-TssGroupMember
       - title: "Search-TssUserGroup"
         url: /commands/Search-TssUserGroup
 
@@ -94,7 +96,12 @@ commands:
 
   - title: "RPC"
     children:
+      - title: "Get-TssRpcPasswordType"
+        url: /commands/Get-TssRpcPasswordType
       - title: "Get-TssSecretRpcAssociated"
+        url: /commands/Get-TssSecretRpcAssociated
+      - title: "Search-RpcPasswordType"
+        url: /commands/Search-RpcPasswordType
 
   - title: "Secrets-Templates"
     children:
@@ -163,6 +170,8 @@ commands:
         url: /commands/Start-TssSecretChangePassword
       - title: "Stop-TssSecretChangePassword"
         url: /commands/Stop-TssSecretChangePassword
+      - title: "Update-TssSecret"
+        url: /commands/Update-TssSecret
 
   - title: "Users"
     children:

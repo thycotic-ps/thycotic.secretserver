@@ -74,6 +74,7 @@ The table below lists the API endpoints matched up to the function that directly
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
+[Get-TssGroupMember] | GET /groups/{id}/users
 [Search-TssGroup] | GET /groups
 
 ## Reports
@@ -97,7 +98,9 @@ The table below lists the API endpoints matched up to the function that directly
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
-[Get-TssSecretRpcAssociated] | /internals/secret-detail/{id}/rpc
+[Get-TssRpcPasswordType] | GET /remote-password-changing/password-type/{id}
+[Get-TssSecretRpcAssociated] | GET /internals/secret-detail/{id}/rpc
+[Search-TssRpcPasswordType] | GET /remote-password-changing/password-type
 
 ## Secrets
 
@@ -136,6 +139,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Set-TssSecretSecurity] | PATCH /secrets/{id}/security-general
 [Start-TssSecretChangePassword] | POST /internals/secret-detail/{id}/change-password-now
 [Stop-TssSecretChangePassword] | POST /secrets/{id}/stop-password-change
+[Update-TssSecret] | POST /secrets/{id}
 
 ## Secret Access Requests
 
@@ -239,3 +243,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Lock-TssUser]:/thycotic.secretserver/commands/Lock-TssUser
 [Unlock-TssUser]:/thycotic.secretserver/commands/Unlock-TssUser
 [Start-TssDiscovery]:/thycotic.secretserver/commands/Start-TssDiscovery
+[Update-TssSecret]:/thycotic.secretserver/commands/Update-TssSecret
+[Get-TssRpcPasswordType]:/thycotic.secretserver/commands/Get-TssRpcPasswordType
+[Search-TssRpcPasswordType]:/thycotic.secretserver/commands/Search-TssRpcPasswordType
+[Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
