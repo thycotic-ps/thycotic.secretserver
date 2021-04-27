@@ -5,6 +5,7 @@ class TssSecretTemplateField {
     [string]
     $DisplayName
 
+    # -1 = NotEditable, 2 = Edit, 3 = Owner
     [int]
     $EditablePermission
 
