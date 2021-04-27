@@ -27,7 +27,7 @@ last_modified_at: 2021-02-10T00:00:00-00:00
         Display Name
 
     EditablePermission
-        Editable Permission
+        Editable Permission (-1 = NotEditable, 2 = Edit, 3 = Owner)
 
     EditRequires
         Edit Requires (Edit, Owner, NotEditable)
