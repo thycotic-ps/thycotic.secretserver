@@ -105,8 +105,14 @@ commands:
 
   - title: "Secrets-Templates"
     children:
+      - title: "Add-TssSecretTemplateField"
+        url: /commands/Add-TssSecretTemplateField
       - title: "Get-TssSecretTemplate"
         url: /commands/Get-TssSecretTemplate
+      - title: "New-TssSecretTemplate"
+        url: /commands/New-TssSecretTemplate
+      - title: "New-TssSecretTemplateField"
+        url: /commands/New-TssSecretTemplateField
       - title: "Search-TssSecretTemplate"
         url: /commands/Search-TssSecretTemplate
 
