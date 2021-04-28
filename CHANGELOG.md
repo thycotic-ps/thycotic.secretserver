@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.38.0] -- 2021-04-28
 
 ### Breaking Changes
 
@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * New-TssUser - add examples fixes [#160](https://github.com/thycotic-ps/thycotic.secretserver/issues/160) [400ac84](https://github.com/thycotic-ps/thycotic.secretserver/commit/400ac84cfc307b63e0f4e412c5d52a8878031172)
 * Update-TssSecret - fix issue with uri found during testing [b7e96f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b7e96f17e897d102ef2cb01ea9fb63c7caaf4f68)
+* Docs - correcting links for CBH [8347663](https://github.com/thycotic-ps/thycotic.secretserver/commit/834766305ae6c82de43c11a1008286e098647cba)
 
 </details>
 
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssRpcPasswordType - closes [#149](https://github.com/thycotic-ps/thycotic.secretserver/issues/149) [5f99639](https://github.com/thycotic-ps/thycotic.secretserver/commit/5f996396084919fb68417fc27df664d60fc6d8ff)
 * Get-RpcPasswordType - closes [#34](https://github.com/thycotic-ps/thycotic.secretserver/issues/34) [dacde70](https://github.com/thycotic-ps/thycotic.secretserver/commit/dacde70e070c998e83a7461b864450298676635e)
 * Get-GroupMember - closes [#55](https://github.com/thycotic-ps/thycotic.secretserver/issues/55) [66a203d](https://github.com/thycotic-ps/thycotic.secretserver/commit/66a203d8d46be56059890e9e0d2eba978b7e13f8)
+* Secret Template - Added New-SecretTemplateField and Add-SecretTemplateField [7fdd18b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7fdd18bab2fc68b2e4793db8b56ebbc487da1fb6)
 
 </details>
 
