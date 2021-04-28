@@ -151,7 +151,9 @@ The table below lists the API endpoints matched up to the function that directly
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
+[Add-TssSecretTemplateField] | POST /secret-templates/{id}
 [Get-TssSecretTemplate] | GET /secret-templates/{id}
+[New-TssSecretTemplate] | POST /secret-templates/{id}
 [Search-TssSecretTemplate] | GET /secret-templates
 
 ## Users
@@ -247,3 +249,5 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssRpcPasswordType]:/thycotic.secretserver/commands/Get-TssRpcPasswordType
 [Search-TssRpcPasswordType]:/thycotic.secretserver/commands/Search-TssRpcPasswordType
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
+[Add-TssSecretTemplateField]:/thycotic.secretserver/commands/Add-TssSecretTemplateField
+[New-TssSecretTemplateField]:/thycotic.secretserver/commands/New-TssSecretTemplate
