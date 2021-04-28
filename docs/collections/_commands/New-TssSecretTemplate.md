@@ -14,9 +14,16 @@ Create a new Secret Template
 
 ## SYNTAX
 
+### newcopy
 ```
-New-TssSecretTemplate [-TssSession] <TssSession> [-Template] <TssSecretTemplate> [-WhatIf] [-Confirm]
+New-TssSecretTemplate [-TssSession] <TssSession> -Template <TssSecretTemplate> [-WhatIf] [-Confirm]
  [<CommonParameters>]
+```
+
+### new
+```
+New-TssSecretTemplate [-TssSession] <TssSession> -TemplateName <String>
+ -TemplateField <TssSecretTemplateField[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -24,12 +31,27 @@ Create a new Secret Template
 
 ## EXAMPLES
 
-### Example 1
-```powershell
-PS C:\> {{ Add example code here }}
+### EXAMPLE 1
+```
+$session = New-TssSession 'https://alpha/SecretServer' $ssCred
+$copyTemplate = Get-TssSecretTemplate -TssSession $session -Id 6042
+$copyTemplate.Name = 'Test Template - copy of 6042'
+New-TssSecretTemplate -TssSession $session -Template $copyTemplate
 ```
 
-{{ Add example description here }}
+Gets the Secret Template 6042, changing the name of the Template and then creating it
+
+### EXAMPLE 2
+```
+$session = New-TssSession 'https://alpha/SecretServer' $ssCred
+$fields = @()
+$fields += New-TssSecretTemplateField -FieldName 'Field 1 Username' -Searchable
+$fields += New-TssSecretTemplateField -FieldName 'Field 2 Password' -Type Password
+$fields += New-TssSecretTemplateField -FieldName 'Field 3 URL' -Type Url -Searchable
+New-TssSecretTemplate -TssSession $session -TemplateName 'Test Template 42' -TemplateField $fields
+```
+
+Creates a new template named "Test Template 42" with 3 fields
 
 ## PARAMETERS
 
@@ -53,13 +75,43 @@ Template Stub object
 
 ```yaml
 Type: TssSecretTemplate
-Parameter Sets: (All)
+Parameter Sets: newcopy
 Aliases: TemplateStub
 
 Required: True
-Position: 2
+Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -TemplateName
+Template Name
+
+```yaml
+Type: String
+Parameter Sets: new
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -TemplateField
+Fields, use New-TssSecretTemplateField to build this object
+
+```yaml
+Type: TssSecretTemplateField[]
+Parameter Sets: new
+Aliases: Fields
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -109,5 +161,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretTemplate)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/New-SecretTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/New-SecretTemplate.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-SecretTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-SecretTemplate.ps1)
 
