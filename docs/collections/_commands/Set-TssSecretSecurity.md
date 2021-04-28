@@ -200,5 +200,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretSecurity.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretSecurity.ps1)
 
