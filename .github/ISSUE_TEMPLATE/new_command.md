@@ -6,20 +6,16 @@ labels: [feature-request]
 assignees: wsmelton
 ---
 
-## Endpoint
+### Endpoint
 
 ```powershell
 METHOD <endpoint>
 ```
 
-## Version Specific?
+### Version Specific?
 
-<!--
 Minimum Version supported
--->
 
-## Link
+### Link
 
-<!--
 https://thycotic-ps.github.io/secretservere-apidoc/#method-/endpoint
--->
