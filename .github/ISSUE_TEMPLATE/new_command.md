@@ -12,10 +12,13 @@ assignees: wsmelton
 METHOD <endpoint>
 ```
 
+### Additional Details?
+
+
 ### Version Specific?
 
 Minimum Version supported
 
 ### Link
 
-https://thycotic-ps.github.io/secretservere-apidoc/#method-/endpoint
+https://thycotic-ps.github.io/secretserver-apidoc/#method-/endpoint
