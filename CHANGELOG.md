@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### New Functions
+
+<details>
+    <summary>Click to view </summary>
+
+* Search-SecretDependency - fixes [#173](https://github.com/thycotic-ps/thycotic.secretserver/issues/173) [3ad064b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ad064b39b00b5d55a58164ff7c61144c9a43ee1)
+* New-SecretDependencyGroup - fixes [#178](https://github.com/thycotic-ps/thycotic.secretserver/issues/178) [26a2c80](https://github.com/thycotic-ps/thycotic.secretserver/commit/26a2c80e10db2e3ce9e6569a47b81902b4fa8c58)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* module - add format for dependency classes [51ae103](https://github.com/thycotic-ps/thycotic.secretserver/commit/51ae10387ef6d2d0e9add56f05ede7ccfd7c0288)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.38.0] -- 2021-04-28
 
 ### Breaking Changes
