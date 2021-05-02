@@ -102,6 +102,13 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssPasswordTypeSummary] | [Search-TssRpcPasswordType]
 [TssSecretRpcAssociated] | [Get-TssSecretRpcAssociated]
 
+## Secret Dependencies
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretDependencyGroup] | [New-TssSecretDependencyGroup]
+[TssSecretDependencySummary] | [Search-TssSecretDependency]
+
 ## Secret Templates
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -191,7 +198,11 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssSecretRpcAssociated]:/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
 [Search-TssRpcPasswordType]:/thycotic.secretserver/commands/Search-TssRpcPasswordType
 [Get-TssRpcPasswordType]:/thycotic.secretserver/commands/Get-TssRpcPasswordType
+[New-TssSecretDependencyGroup]:/thycotic.secretserver/commands/New-TssSecretDependencyGroup
+[Search-TssSecretDependency]:/thycotic.secretserver/commands/Search-TssSecretDependency
 
+[TssSecretDependencyGroup]:/thycotic.secretserver/abouttopics/about_tsssecretdependencygroup
+[TssSecretDependencySummary]:/thycotic.secretserver/abouttopics/about_tsssecretdependencysummary
 [TssPasswordTypeField]:/thycotic.secretserver/abouttopics/about_tsspasswordtypefield
 [TssPasswordType]:/thycotic.secretserver/abouttopics/about_tsspasswordtype
 [TssPasswordTypeSummary]:/thycotic.secretserver/abouttopics/about_tsspasswordtypesummary

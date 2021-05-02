@@ -102,6 +102,13 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssSecretRpcAssociated] | GET /internals/secret-detail/{id}/rpc
 [Search-TssRpcPasswordType] | GET /remote-password-changing/password-type
 
+## Secret Dependencies
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[New-TssSecretDependencyGroup] | POST /secret-dependencies/groups
+[Search-TssSecretDependency] | GET /secret-dependencies
+
 ## Secrets
 
 **Command** | **API Endpoint** |
@@ -251,3 +258,5 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
 [Add-TssSecretTemplateField]:/thycotic.secretserver/commands/Add-TssSecretTemplateField
 [New-TssSecretTemplateField]:/thycotic.secretserver/commands/New-TssSecretTemplate
+[New-TssSecretDependencyGroup]:/thycotic.secretserver/commands/New-TssSecretDependencyGroup
+[Search-TssSecretDependency]:/thycotic.secretserver/commands/Search-TssSecretDependency

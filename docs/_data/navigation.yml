@@ -103,7 +103,14 @@ commands:
       - title: "Search-RpcPasswordType"
         url: /commands/Search-RpcPasswordType
 
-  - title: "Secrets-Templates"
+  - title: "Secret Dependencies"
+    children:
+      - title: "New-TssSecretDependencyGroup"
+        url: /commands/New-TssSecretDependencyGroup
+      - title: "Search-TssSecretDependency"
+        url: /commands/Search-TssSecretDependency
+
+  - title: "Secrets Templates"
     children:
       - title: "Add-TssSecretTemplateField"
         url: /commands/Add-TssSecretTemplateField
@@ -327,7 +334,14 @@ abouttopics:
       - title: "TssSecretRpcAssociated"
         url: /abouttopics/about_tsssecretrpcassociated
 
-  - title: "Secrets-Templates"
+  - title: "Secrets Dependencies"
+    children:
+      - title: "TssSecretDependencyGroup"
+        url: /abouttopics/about_tsssecretdependencygroup
+      - title: "TssSecretDependencyGroupSummary"
+        url: /abouttopics/about_tsssecretdependencygroupsummary
+
+  - title: "Secrets Templates"
     children:
       - title: "TssSecretTemplate"
         url: /abouttopics/about_tsssecrettemplate
