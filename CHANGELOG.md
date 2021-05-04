@@ -25,13 +25,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 </details>
 
-### New Functions
+### New Stuff
 
 <details>
     <summary>Click to view </summary>
 
 * Search-SecretDependency - fixes [#173](https://github.com/thycotic-ps/thycotic.secretserver/issues/173) [3ad064b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ad064b39b00b5d55a58164ff7c61144c9a43ee1)
 * New-SecretDependencyGroup - fixes [#178](https://github.com/thycotic-ps/thycotic.secretserver/issues/178) [26a2c80](https://github.com/thycotic-ps/thycotic.secretserver/commit/26a2c80e10db2e3ce9e6569a47b81902b4fa8c58)
+* Get-Secret - Add Path support fixes #174 [e3fcf0e](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3fcf0e1f6b35a9f7c418a1be75212d1dbb317c1)
 
 </details>
 
