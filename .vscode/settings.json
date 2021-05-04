@@ -26,44 +26,8 @@
             "query": "default"
         },
         {
-            "label": "Secrets Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:secrets"
-        },
-        {
-            "label": "Folders Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:folders"
-        },
-        {
-            "label": "Groups Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:groups"
-        },
-        {
-            "label": "Roles Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:roles"
-        },
-        {
-            "label": "Users Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:users"
-        },
-        {
-            "label": "SecretTemplates Issues",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:SecretTemplates"
-        },
-        {
             "label": "Bug Reports",
             "query": "author:${user} state:open repo:${owner}/${repository} label:bug"
-        },
-        {
-            "label": "Module Reports",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:module"
-        },
-        {
-            "label": "Feature Request",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:\"feature request\""
-        },
-        {
-            "label": "Created Issues",
-            "query": "state:open repo:${owner}/${repository} sort:created-desc"
         }
     ],
     "markdownlint.config": {
