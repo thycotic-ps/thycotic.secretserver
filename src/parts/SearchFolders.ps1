@@ -21,7 +21,7 @@ begin {
 process {
     $restResponse = $null
     $uri = $TssSession.ApiUrl, 'folders' -join '/'
-    $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=FolderPath&take=$($TssSession.Take)&filter.folderTypeId=1" -join '?'
+    $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=FolderPath&take=$($TssSession.Take)&filter.folderTypeId=1&filter.searchText=$SearchText" -join '?'
 
     $invokeParams.Uri = $uri
     $invokeParams.Method = 'GET'

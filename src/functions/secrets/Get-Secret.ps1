@@ -36,6 +36,12 @@ function Get-Secret {
     Call GetCredential() method, only needing the username and password values for the PSCredential object.
     Call GetValue() method to get the 'server' value.
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecret -TssSession $session -Path '\ABC Company\Vendors\Temp Secret - 32.178.249.171'
+
+    Get Secret via absolute path.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
 
@@ -45,47 +51,59 @@ function Get-Secret {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(DefaultParameterSetName = 'secret')]
+    [cmdletbinding(DefaultParameterSetName = 'all')]
     [OutputType('TssSecret')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory,Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName = 'secret')]
-        [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(ParameterSetName = 'secret')]
+        [Parameter(ParameterSetName = 'all')]
         [Alias("SecretId")]
         [int[]]
         $Id,
 
+        # Secret ID to retrieve
+        [Parameter(ParameterSetName = 'path')]
+        [Parameter(ParameterSetName = 'all')]
+        [string]
+        $Path,
+
         # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
 
         # Double lock password, provie as a secure string
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [securestring]
         $DoublelockPassword,
 
         # Check in the secret if it is checked out
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $ForceCheckIn,
 
         # Include secrets that are inactive/disabled
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $IncludeInactive,
 
         # Associated ticket number (required for ticket integrations)
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $TicketNumber,
 
         # Associated ticket system ID (required for ticket integrations)
+        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
         [int]
         $TicketSystemId
@@ -102,11 +120,24 @@ function Get-Secret {
             }
         }
     }
-
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+
+            if ($tssParams.ContainsKey('Path')) {
+                $secretName = Split-Path $Path -Leaf
+                $pathLeaf = Split-Path (Split-Path $Path -Parent) -Leaf
+                $folderFound = . $SearchFolders $TssSession $pathLeaf | Where-Object FolderPath -EQ $Path
+                $folderId = $folderFound.Id
+                $Id = (. $SearchSecrets $TssSession $folderId $secretName | Where-Object Name -EQ $secretName).Id
+
+                if (-not $Id) {
+                    Write-Verbose "No secret found at path [$Path]"
+                    return
+                }
+            }
+
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
@@ -128,7 +159,7 @@ function Get-Secret {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
                     $invokeParams.Body = $getBody | ConvertTo-Json
-                }else {
+                } else {
                     $uri = $uri
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
