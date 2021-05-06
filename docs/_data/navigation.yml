@@ -111,6 +111,8 @@ commands:
         url: /commands/Get-TssSecretDependencyGroup
       - title: "New-TssSecretDependencyGroup"
         url: /commands/New-TssSecretDependencyGroup
+      - title: "Remove-TssSecretDependency"
+        url: /commands/Remove-TssSecretDependency
       - title: "Search-TssSecretDependency"
         url: /commands/Search-TssSecretDependency
 

@@ -1,0 +1,74 @@
+function Remove-SecretDependency {
+    <#
+    .SYNOPSIS
+    Remove a Secret Dependency
+
+    .DESCRIPTION
+    Remove a Secret Dependency, this is permanent and not reversable
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Remove-TssSecretDependency -TssSession $session -Id 24
+
+    Remove Secret Dependency 24
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretDependency
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-SecretDependency.ps1
+
+    .NOTES
+    Requires TssSession object returned by New-TssSession
+    #>
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
+    [OutputType('TssDelete')]
+    param (
+        # TssSession object created by New-TssSession for auth
+        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [TssSession]
+        $TssSession,
+
+        # Short description for parameter
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Alias("SecretDependencyId")]
+        [int[]]
+        $Id
+    )
+    begin {
+        $tssParams = $PSBoundParameters
+        $invokeParams = . $GetInvokeTssParams $TssSession
+    }
+
+    process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            foreach ($dependency in $Id) {
+                $restResponse = $null
+                $uri = $TssSession.ApiUrl, 'secret-dependencies', $dependency -join '/'
+                $invokeParams.Uri = $uri
+                $invokeParams.Method = 'DELETE'
+
+                if (-not $PSCmdlet.ShouldProcess($dependency,"$($invokeParams.Method) $uri")) { return }
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                try {
+                    $restResponse = . $InvokeApi @invokeParams
+                } catch {
+                    Write-Warning "Issue removing Secret Dependency [$dependency]"
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+
+                if ($restResponse) {
+                    [TssDelete]@{
+                        Id = $restResponse.id
+                        ObjectType = $restResponse.objectType
+                    }
+                }
+            }
+        } else {
+            Write-Warning "No valid session found"
+        }
+    }
+}
