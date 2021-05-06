@@ -105,6 +105,8 @@ commands:
 
   - title: "Secret Dependencies"
     children:
+      - title: "Get-TssSecretDependency"
+        url: /commands/Get-TssSecretDependency
       - title: "New-TssSecretDependencyGroup"
         url: /commands/New-TssSecretDependencyGroup
       - title: "Search-TssSecretDependency"
@@ -336,6 +338,8 @@ abouttopics:
 
   - title: "Secrets Dependencies"
     children:
+      - title: "TssSecretDependency"
+        url: /abouttopics/about_tsssecretdependency
       - title: "TssSecretDependencyGroup"
         url: /abouttopics/about_tsssecretdependencygroup
       - title: "TssSecretDependencyGroupSummary"

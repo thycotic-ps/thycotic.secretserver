@@ -106,6 +106,7 @@ The table below lists the API endpoints matched up to the function that directly
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
+[Get-TssSecretDependency] | GET /secret-dependencies/{id}
 [New-TssSecretDependencyGroup] | POST /secret-dependencies/groups
 [Search-TssSecretDependency] | GET /secret-dependencies
 
@@ -260,3 +261,4 @@ The table below lists the API endpoints matched up to the function that directly
 [New-TssSecretTemplateField]:/thycotic.secretserver/commands/New-TssSecretTemplate
 [New-TssSecretDependencyGroup]:/thycotic.secretserver/commands/New-TssSecretDependencyGroup
 [Search-TssSecretDependency]:/thycotic.secretserver/commands/Search-TssSecretDependency
+[Get-TssSecretDependency]:/thycotic.secretserver/commands/Get-TssSecretDependency
