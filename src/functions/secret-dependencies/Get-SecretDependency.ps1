@@ -29,7 +29,7 @@ function Get-SecretDependency {
         [TssSession]
         $TssSession,
 
-        # Short description for parameter
+        # Secret Dependency ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SecretDependencyId")]
         [int[]]
