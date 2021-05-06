@@ -107,6 +107,8 @@ commands:
     children:
       - title: "Get-TssSecretDependency"
         url: /commands/Get-TssSecretDependency
+      - title: "Get-TssSecretDependencyGroup"
+        url: /commands/Get-TssSecretDependencyGroup
       - title: "New-TssSecretDependencyGroup"
         url: /commands/New-TssSecretDependencyGroup
       - title: "Search-TssSecretDependency"

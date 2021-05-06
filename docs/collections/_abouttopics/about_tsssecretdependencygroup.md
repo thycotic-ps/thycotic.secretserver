@@ -48,3 +48,4 @@ last_modified_at: 2021-05-02T00:00:00-00:00
 
 # RELATED LINKS:
     New-TssSecretDependencyGroup
+    Get-TssSecretDependencyGroup

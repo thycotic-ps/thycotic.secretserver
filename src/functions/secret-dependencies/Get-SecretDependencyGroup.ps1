@@ -1,37 +1,37 @@
-function Get-SecretDependency {
+function Get-SecretDependencyGroup {
     <#
     .SYNOPSIS
-    Get a Secret Dependency
+    Get Secret Dependency Group for a Secret
 
     .DESCRIPTION
-    Get a Secret Dependency
+    Get Secret Dependency Group for a Secret
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssSecretDependency -TssSession $session -Id 24
+    Get-TssSecretDependencyGroup -TssSession $session -Id 42
 
-    Return the Secret Dependency 24
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependency
+    Return Secret Dependency Group(s) for Secret ID 42
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependency.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyGroup
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependencyGroup.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDependency')]
+    [OutputType('TssSecretDependencyGroup')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [TssSession]
         $TssSession,
 
-        # Secret Dependency ID
+        # Short description for parameter
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretDependencyId")]
+        [Alias("SecretId")]
         [int[]]
         $Id
     )
@@ -44,9 +44,9 @@ function Get-SecretDependency {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            foreach ($dependency in $Id) {
+            foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secret-dependencies', $dependency -join '/'
+                $uri = $TssSession.ApiUrl, 'secret-dependencies', 'groups', $secret -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
@@ -54,13 +54,13 @@ function Get-SecretDependency {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting Secret Dependency [$dependency]"
+                    Write-Warning "Issue getting Secret Dependency Group(s) on [$secret]"
                     $err = $_
                     . $ErrorHandling $err
                 }
 
-                if ($restResponse) {
-                    [TssSecretDependency]$restResponse
+                if ($restResponse.model) {
+                    [TssSecretDependencyGroup[]]$restResponse.model
                 }
             }
         } else {
