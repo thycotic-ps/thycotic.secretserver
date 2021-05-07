@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.39.0] -- 2021-05-07
 
 ### Breaking Changes
 
@@ -33,6 +33,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-SecretDependency - fixes [#173](https://github.com/thycotic-ps/thycotic.secretserver/issues/173) [3ad064b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ad064b39b00b5d55a58164ff7c61144c9a43ee1)
 * New-SecretDependencyGroup - fixes [#178](https://github.com/thycotic-ps/thycotic.secretserver/issues/178) [26a2c80](https://github.com/thycotic-ps/thycotic.secretserver/commit/26a2c80e10db2e3ce9e6569a47b81902b4fa8c58)
 * Get-Secret - Add Path support fixes #174 [e3fcf0e](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3fcf0e1f6b35a9f7c418a1be75212d1dbb317c1)
+* Get-SecretDependency - fixes [#175](https://github.com/thycotic-ps/thycotic.secretserver/issues/175) [2be0039](https://github.com/thycotic-ps/thycotic.secretserver/commit/2be00397e07036d60225eaae5e32dc9a24758688)
+* Get-SecretDependencyGroup - fixes [#177](https://github.com/thycotic-ps/thycotic.secretserver/issues/177) [e4740a5](https://github.com/thycotic-ps/thycotic.secretserver/commit/e4740a563b43e621549e3d348502e00a461d22c9)
+* Remove-SecretDependency - closes #176 [c6173c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/c6173c81f50d60bbcd0b936e8fa9adff0c4a089c)
+* Set-SecretField - support files via value If content of file provided via value, include FileName [94f0654](https://github.com/thycotic-ps/thycotic.secretserver/commit/94f0654b4c8a26279be080a3d0b63e622114d062)
+* Start-SecretDependency - fixes [#179](https://github.com/thycotic-ps/thycotic.secretserver/issues/179) [2565995](https://github.com/thycotic-ps/thycotic.secretserver/commit/25659956127826ef05db97e948dcaf4ec0caf559)
+* Get-SecretDependencyRunStatus - fixes [#180](https://github.com/thycotic-ps/thycotic.secretserver/issues/180) [c062da2](https://github.com/thycotic-ps/thycotic.secretserver/commit/c062da298a7c30bdb3acf8a2305f51033bbbddee)
 
 </details>
 
@@ -42,6 +48,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * module - add format for dependency classes [51ae103](https://github.com/thycotic-ps/thycotic.secretserver/commit/51ae10387ef6d2d0e9add56f05ede7ccfd7c0288)
+* Get-SecretDependency - adding param description [bf97d39](https://github.com/thycotic-ps/thycotic.secretserver/commit/bf97d39e883c9702e7bbfb2e0440cb21f070707f)
+* Start-SecretHeartbeat - correcting help links [e4d9c95](https://github.com/thycotic-ps/thycotic.secretserver/commit/e4d9c95a82fc0d168ba28d80e3c7539949162ae4)
 
 </details>
 
