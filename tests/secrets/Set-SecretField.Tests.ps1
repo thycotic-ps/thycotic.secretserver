@@ -4,7 +4,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Id', 'Slug', 'Value', 'Clear', 'Path', 'Comment', 'ForceCheckIn', 'TicketNumber', 'TicketSystemId'
+        [object[]]$knownParameters = 'TssSession','Id', 'Slug', 'Value', 'Clear', 'Filename', 'Path', 'Comment', 'ForceCheckIn', 'TicketNumber', 'TicketSystemId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru

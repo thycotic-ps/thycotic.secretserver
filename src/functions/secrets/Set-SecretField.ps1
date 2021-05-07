@@ -32,9 +32,16 @@ function Set-SecretField {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file c:\files\attachment.txt
+    Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file -Path c:\files\attachment.txt
 
     Sets the attached-file field on Secret 42 to the attachment.txt (uploads the file to Secret Server)
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $content = Get-Content c:\files\attachment.txt
+    Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file -Value $content -Filename 'attachment.txt'
+
+    Sets the attached-file field on Secret 42 to the contents of the attachment.txt file, providing the appropriate filename desired
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretField
@@ -45,7 +52,7 @@ function Set-SecretField {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
+    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'default')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -72,7 +79,11 @@ function Set-SecretField {
         [switch]
         $Clear,
 
-        # Path of file to attach
+        # Filename to assign file contents provided from Value param to the field
+        [string]
+        $Filename,
+
+        # Path of file to attach to field
         [ValidateScript( {
                 if (Test-Path $_ -PathType Container) {
                     throw "Path [$_] is a directory, provide full file path"
@@ -118,25 +129,41 @@ function Set-SecretField {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
-            foreach ($secret in $Id) {
-                if ($setParams.ContainsKey('Clear') -and $setParams.ContainsKey('Value')) {
-                    Write-Warning "Clear and Value provided, only one is supported"
-                    return
-                }
 
+            if ($setParams.ContainsKey('Clear') -and $setParams.ContainsKey('Value')) {
+                Write-Warning "Clear and Value provided, only one is supported"
+                return
+            }
+            if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Path')) {
+                Write-Warning "Filename and Path provided, only one is supported"
+                return
+            }
+            if ($setParams.ContainsKey('Filename') -and -not $setParams.ContainsKey('Value')) {
+                Write-Warning "Value must be provided when using Filename"
+                return
+            }
+
+            foreach ($secret in $Id) {
                 $fieldBody = @{}
                 if ($setParams.ContainsKey('Clear')) {
                     $fieldBody.Add('value',"")
                 }
-                if ($setParams.ContainsKey('Value')) {
+                if ($setParams.ContainsKey('Value') -and -not $setParams.ContainsKey('Filename')) {
                     $fieldBody.Add('value',$Value)
                 }
 
                 if ($setParams.ContainsKey('Path')) {
-                    $fileName = Split-Path $Path -Leaf
-                    $fieldBody.Add('fileName',$fileName)
+                    $pathFilename = Split-Path $Path -Leaf
+                    $fieldBody.Add('fileName',$pathFilename)
 
                     $fileBinary = [IO.File]::ReadAllBytes($Path)
+                    $fieldBody.Add('fileAttachment',$fileBinary)
+                }
+
+                if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Value')) {
+                    $fieldBody.Add('fileName',$Filename)
+
+                    $fileBinary = [System.Text.Encoding]::UTF8.GetBytes($Value)
                     $fieldBody.Add('fileAttachment',$fileBinary)
                 }
 
