@@ -8,15 +8,15 @@ function Start-SecretHeartbeat {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Start-TssSecretHearbeat -TssSession $session -Id 46
+    Start-TssSecretHeartbeat -TssSession $session -Id 46
 
     Start a heartbeat operation on Secret 46
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHearbeat
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHearbeat.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
