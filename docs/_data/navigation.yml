@@ -109,12 +109,16 @@ commands:
         url: /commands/Get-TssSecretDependency
       - title: "Get-TssSecretDependencyGroup"
         url: /commands/Get-TssSecretDependencyGroup
+      - title: "Get-TssSecretDependencyRunStatus"
+        url: /commands/Get-TssSecretDependencyRunStatus
       - title: "New-TssSecretDependencyGroup"
         url: /commands/New-TssSecretDependencyGroup
       - title: "Remove-TssSecretDependency"
         url: /commands/Remove-TssSecretDependency
       - title: "Search-TssSecretDependency"
         url: /commands/Search-TssSecretDependency
+      - title: "Start-TssSecretDependency"
+        url: /commands/Start-TssSecretDependency
 
   - title: "Secrets Templates"
     children:
@@ -348,6 +352,10 @@ abouttopics:
         url: /abouttopics/about_tsssecretdependencygroup
       - title: "TssSecretDependencyGroupSummary"
         url: /abouttopics/about_tsssecretdependencygroupsummary
+      - title: "TssSecretDependencyTaskError"
+        url: /abouttopics/about_tsssecretdependencytaskerror
+      - title: "TssSecretDependencyTaskProgress"
+        url: /abouttopics/about_tsssecretdependencytaskprogress
 
   - title: "Secrets Templates"
     children:

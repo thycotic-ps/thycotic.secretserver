@@ -14,17 +14,17 @@ Set value for a Secret Field
 
 ## SYNTAX
 
-### all (Default)
+### default (Default)
 ```
 Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <String>] [-Clear]
- [-Path <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Filename <String>] [-Path <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### restricted
 ```
 Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <String>] [-Clear]
- [-Path <Object>] [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Filename <String>] [-Path <Object>] [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
+ [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -67,10 +67,19 @@ Sets secret 1455's field, "Notes", to an empty value
 ### EXAMPLE 5
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file c:\files\attachment.txt
+Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file -Path c:\files\attachment.txt
 ```
 
 Sets the attached-file field on Secret 42 to the attachment.txt (uploads the file to Secret Server)
+
+### EXAMPLE 6
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$content = Get-Content c:\files\attachment.txt
+Set-TssSecretField -TssSession $session -Id 42 -Slug attached-file -Value $content -Filename 'attachment.txt'
+```
+
+Sets the attached-file field on Secret 42 to the contents of the attachment.txt file, providing the appropriate filename desired
 
 ## PARAMETERS
 
@@ -149,8 +158,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Filename
+Filename to assign file contents provided from Value param to the field
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -Path
-Path of file to attach
+Path of file to attach to field
 
 ```yaml
 Type: Object

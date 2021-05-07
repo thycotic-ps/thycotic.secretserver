@@ -2,34 +2,35 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretDependency
 schema: 2.0.0
-title: Start-TssSecretHeartbeat
+title: Start-TssSecretDependency
 ---
 
-# Start-TssSecretHeartbeat
+# Start-TssSecretDependency
 
 ## SYNOPSIS
-Start a current password change
+Start Secret Dependency
 
 ## SYNTAX
 
 ```
-Start-TssSecretHeartbeat [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-TssSecretDependency [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Start a current password change
+Start Secret Dependency, output must be captured to check run status
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Start-TssSecretHeartbeat -TssSession $session -Id 46
+$ident = Start-TssSecretDependency -TssSession $session -Id 46
+Get-TssSecretDependencyRunStatus -TssSession $session -Identifier $run
 ```
 
-Start a heartbeat operation on Secret 46
+After starting a Secret's Dependency 46, get the status of that run
 
 ## PARAMETERS
 
@@ -49,12 +50,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Secret Id
+Secret Dependency ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: SecretId
+Aliases: DependencyId
 
 Required: True
 Position: Named
@@ -106,7 +107,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretDependency](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretDependency)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Start-SecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Start-SecretDependency.ps1)
 

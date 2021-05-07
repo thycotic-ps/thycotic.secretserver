@@ -108,9 +108,11 @@ The table below lists the API endpoints matched up to the function that directly
 ---------------- | --------------------------------- |
 [Get-TssSecretDependency] | GET /secret-dependencies/{id}
 [Get-TssSecretDependencyGroup] | GET /secret-dependencies/groups/{secretId}
+[Get-TssSecretDependencyRunStatus] | GET /secret-dependencies/run/{identifier}
 [New-TssSecretDependencyGroup] | POST /secret-dependencies/groups
 [Remove-TssSecretDependency] | DELETE /secret-dependencies/{id}
 [Search-TssSecretDependency] | GET /secret-dependencies
+[Start-TssSecretDependency] | GET /secret-dependencies/run
 
 ## Secrets
 
@@ -266,3 +268,5 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssSecretDependency]:/thycotic.secretserver/commands/Get-TssSecretDependency
 [Get-TssSecretDependencyGroup]:/thycotic.secretserver/commands/Get-TssSecretDependencyGroup
 [Remove-TssSecretDependency]:/thycotic.secretserver/commands/Remove-TssSecretDependency
+[Start-TssSecretDependency]:/thycotic.secretserver/commands/Start-TssSecretDependency
+[Get-TssSecretDependencyRunStatus]:/thycotic.secretserver/commands/Get-TssSecretDependencyRunStatus

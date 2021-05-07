@@ -109,6 +109,8 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssSecretDependency] | [Get-TssSecretDependency]
 [TssSecretDependencyGroup] | [New-TssSecretDependencyGroup]
 [TssSecretDependencySummary] | [Search-TssSecretDependency]
+[TssSecretDependencyTaskError] | [Get-TssSecretDependencyRunStatus]
+[TssSecretDependencyTaskProgress] | [Get-TssSecretDependencyRunStatus]
 
 ## Secret Templates
 
@@ -202,7 +204,10 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [New-TssSecretDependencyGroup]:/thycotic.secretserver/commands/New-TssSecretDependencyGroup
 [Search-TssSecretDependency]:/thycotic.secretserver/commands/Search-TssSecretDependency
 [Get-TssSecretDependency]:/thycotic.secretserver/commands/Get-TssSecretDependency
+[Get-TssSecretDependencyRunStatus]:/thycotic.secretserver/commands/Get-TssSecretDependencyRunStatus
 
+[TssSecretDependencyTaskError]:/thycotic.secretserver/abouttopics/about_tsssecretdependencytaskerror
+[TssSecretDependencyTaskProgress]:/thycotic.secretserver/abouttopics/about_tsssecretdependencytaskprogress
 [TssSecretDependency]:/thycotic.secretserver/abouttopics/about_tsssecretdependency
 [TssSecretDependencyGroup]:/thycotic.secretserver/abouttopics/about_tsssecretdependencygroup
 [TssSecretDependencySummary]:/thycotic.secretserver/abouttopics/about_tsssecretdependencysummary

@@ -14,16 +14,27 @@ Get a secret from Secret Server
 
 ## SYNTAX
 
-### secret (Default)
+### all (Default)
 ```
-Get-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Path <String>] [-Comment <String>]
+ [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
+ [-TicketSystemId <Int32>] [<CommonParameters>]
+```
+
+### secret
+```
+Get-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [<CommonParameters>]
+```
+
+### path
+```
+Get-TssSecret [-TssSession] <TssSession> [-Path <String>] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Comment <String>]
- [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
- [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <TssSession> [-Comment <String>] [-DoublelockPassword <SecureString>]
+ [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -69,6 +80,14 @@ Search for the secret with server value of sql1 and pull the secret details.
 Call GetCredential() method, only needing the username and password values for the PSCredential object.
 Call GetValue() method to get the 'server' value.
 
+### EXAMPLE 5
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssSecret -TssSession $session -Path '\ABC Company\Vendors\Temp Secret - 32.178.249.171'
+```
+
+Get Secret via absolute path.
+
 ## PARAMETERS
 
 ### -TssSession
@@ -82,7 +101,7 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -91,25 +110,28 @@ Secret ID to retrieve
 
 ```yaml
 Type: Int32[]
-Parameter Sets: secret
-Aliases: SecretId
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-```yaml
-Type: Int32[]
-Parameter Sets: restricted
+Parameter Sets: all, secret
 Aliases: SecretId
 
 Required: False
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Path
+Secret ID to retrieve
+
+```yaml
+Type: String
+Parameter Sets: all, path
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -118,7 +140,7 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -133,7 +155,7 @@ Double lock password, provie as a secure string
 
 ```yaml
 Type: SecureString
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -148,7 +170,7 @@ Check in the secret if it is checked out
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -163,7 +185,7 @@ Include secrets that are inactive/disabled
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -178,7 +200,7 @@ Associated ticket number (required for ticket integrations)
 
 ```yaml
 Type: String
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -193,7 +215,7 @@ Associated ticket system ID (required for ticket integrations)
 
 ```yaml
 Type: Int32
-Parameter Sets: restricted
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False

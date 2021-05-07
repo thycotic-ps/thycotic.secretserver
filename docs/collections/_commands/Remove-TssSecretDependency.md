@@ -2,34 +2,34 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretDependency
 schema: 2.0.0
-title: Start-TssSecretHeartbeat
+title: Remove-TssSecretDependency
 ---
 
-# Start-TssSecretHeartbeat
+# Remove-TssSecretDependency
 
 ## SYNOPSIS
-Start a current password change
+Remove a Secret Dependency
 
 ## SYNTAX
 
 ```
-Start-TssSecretHeartbeat [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-TssSecretDependency [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Start a current password change
+Remove a Secret Dependency, this is permanent and not reversable
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Start-TssSecretHeartbeat -TssSession $session -Id 46
+Remove-TssSecretDependency -TssSession $session -Id 24
 ```
 
-Start a heartbeat operation on Secret 46
+Remove Secret Dependency 24
 
 ## PARAMETERS
 
@@ -49,12 +49,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Secret Id
+Short description for parameter
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: SecretId
+Aliases: SecretDependencyId
 
 Required: True
 Position: Named
@@ -101,12 +101,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssDelete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretDependency](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretDependency)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-SecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-SecretDependency.ps1)
 
