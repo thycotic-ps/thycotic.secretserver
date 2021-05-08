@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Get-SecretDependencyTemplate [d28cf62](https://github.com/thycotic-ps/thycotic.secretserver/commit/d28cf623d5b47bd21af6ebcb84b0f7f9466f0ce7)
 
 </details>
 
