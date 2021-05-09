@@ -9,7 +9,7 @@ last_modified_at: 2021-05-08T00:00:00-00:00
 
 These are example scripts that can work with Secret Dependencies individually or combined into building full workflow automation using the Thycotic.SecretServer module.
 
-# Examples - Searching for a Dependencies
+# Examples - Searching for Dependencies
 
 You can search for the dependencies found on a given Secret to return all of them or pipe a list of Secrets to return the dependencies on all of them.
 
