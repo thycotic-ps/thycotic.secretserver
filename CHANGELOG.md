@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Search-SecretDependency - adjust output [c2aa919](https://github.com/thycotic-ps/thycotic.secretserver/commit/c2aa919f127f3998494aeec94ad016aac082d9af)
 
 </details>
 
