@@ -440,10 +440,12 @@ docs:
 
   - title: "Working With"
     children:
-      - title: "Creating Folders"
+      - title: "Folders"
         url: /docs/workingwith-folders/
-      - title: "Creating Secrets"
+      - title: "Secrets"
         url: /docs/workingwith-secrets/
+      - title: "Secret Dependencies"
+        url: /docs/workingwith-secretdependencies/
 
   - title: External Links
     children:
