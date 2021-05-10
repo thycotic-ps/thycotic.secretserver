@@ -11,7 +11,7 @@ class TssSecretDependency {
     [string]
     $ConditionMode
 
-    [pscustomobject]
+    [TssSecretDependencyTemplate]
     $DependencyTemplate
 
     [string]
@@ -29,7 +29,7 @@ class TssSecretDependency {
     [int]
     $PrivilegedAccountSecretId
 
-    [pscustomobject]
+    [TssSecretDependencyRunScript]
     $RunScript
 
     [boolean]
