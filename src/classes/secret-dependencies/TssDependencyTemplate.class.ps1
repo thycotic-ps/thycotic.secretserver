@@ -1,4 +1,4 @@
-class TssSecretDependencyTemplate {
+class TssDependencyTemplate {
     [boolean]
     $Active
 

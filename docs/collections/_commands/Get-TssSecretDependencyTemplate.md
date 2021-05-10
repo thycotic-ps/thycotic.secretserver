@@ -102,7 +102,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretDependencyTemplate
+### TssDependencyTemplate
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

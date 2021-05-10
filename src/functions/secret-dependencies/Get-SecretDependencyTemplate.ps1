@@ -34,7 +34,7 @@ function Get-SecretDependencyTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDependencyTemplate')]
+    [OutputType('TssDependencyTemplate')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -72,7 +72,7 @@ function Get-SecretDependencyTemplate {
             }
 
             if ($restResponse.model) {
-                $depTemplates = [TssSecretDependencyTemplate[]]$restResponse.model
+                $depTemplates = [TssDependencyTemplate[]]$restResponse.model
                 if ($tssParams.ContainsKey('Template')) {
                     $depTemplates.Where( { $_.Name -eq $Template })
                 } elseif ($tssParams.ContainsKey('Id')) {
