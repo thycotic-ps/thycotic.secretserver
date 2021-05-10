@@ -1,20 +1,20 @@
 ---
 category: secrets,dependencies
-title: "TssSecretDependencyTemplate"
+title: "TssDependencyTemplate"
 last_modified_at: 2021-05-08T00:00:00-00:00
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyTemplate class in the Thycotic.SecretServer module
+    This help topic describes the TssDependencyTemplate class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyTemplate
+    TssDependencyTemplate
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyTemplate class represents the DependencyTemplate object returned by Secret Server endpoint GET /secret-dependencies/templates
+    The TssDependencyTemplate class represents the DependencyTemplate object returned by Secret Server endpoint GET /secret-dependencies/templates
 
 # CONSTRUCTORS
     new()
