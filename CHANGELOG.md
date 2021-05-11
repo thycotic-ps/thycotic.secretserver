@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Get-SecretDependencyTemplate [d28cf62](https://github.com/thycotic-ps/thycotic.secretserver/commit/d28cf623d5b47bd21af6ebcb84b0f7f9466f0ce7)
+* Get-SecretDependencyStub [7a750fe](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a750fe6cf3fbb162bb3a69ae163719ad3c7e7c2)
 
 </details>
 
@@ -40,6 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Search-SecretDependency - adjust output [c2aa919](https://github.com/thycotic-ps/thycotic.secretserver/commit/c2aa919f127f3998494aeec94ad016aac082d9af)
+* Get-SecretDependencyTemplate - rename class type [855ab2e](https://github.com/thycotic-ps/thycotic.secretserver/commit/855ab2ee64ec5cfc3fc8b477cdba6b919d13657c)
 
 </details>
 
