@@ -109,5 +109,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRpcPasswordType](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRpcPasswordType)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-RpcPasswordType.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-RpcPasswordType.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1)
 

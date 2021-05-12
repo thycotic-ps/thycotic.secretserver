@@ -10,7 +10,7 @@ function Search-RpcPasswordType {
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRpcPasswordType
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-RpcPasswordType.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
