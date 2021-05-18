@@ -47,6 +47,9 @@ PROPERTIES
     LoginFailures
         Number of login failures
 
+    TwoFactorMethod
+        Name of the method used for two factor authentication
+
     Username
         Username
 

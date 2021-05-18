@@ -62,6 +62,7 @@ Describe "$commandName functions" {
                             lastLogin            = '1970-01-01T00:00:00.000Z'
                             loginFailures        = 0
                             userName             = 'string'
+                            twoFactorMethod      = 'None'
                         }
                     )
                 }

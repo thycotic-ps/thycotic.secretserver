@@ -53,6 +53,9 @@ last_modified_at: 2021-03-03T00:00:00-00:00
     LoginFailures
         Number of login failures
 
+    TwoFactorMethod
+        Name of the method used for two factor authentication
+
     Username
         Username
 
