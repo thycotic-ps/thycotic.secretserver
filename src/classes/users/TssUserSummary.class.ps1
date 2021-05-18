@@ -34,4 +34,8 @@ class TssUserSummary {
 
     [string]
     $Username
+    
+    [ValidateSet('None', 'Radius', 'TOTPAuthenticator', 'Duo', 'Fido2', 'Email')]
+    [string]
+    $TwoFactorMethod
 }
