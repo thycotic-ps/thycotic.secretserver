@@ -14,9 +14,9 @@
         PSData = @{
             Tags = 'SecretServer', 'Thycotic', 'DevOps', 'Security'
             IconUri = 'https://updates.thycotic.net/proservices/powershell/tss_module/thycotic.secretserver_logo.png'
-            ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
-            LicenseURI = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/master/LICENSE'
-            ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/master/CHANGELOG.md'
+                ProjectURI = 'https://github.com/thycotic-ps/thycotic.secretserver'
+                LicenseURI = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/main/LICENSE'
+                ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/main/CHANGELOG.md'
         }
     }
     DefaultCommandPrefix = 'Tss'
