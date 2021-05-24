@@ -62,9 +62,9 @@ $script:PSModuleRoot = $PSScriptRoot
 $shortcuts = @{
     'gts' = 'Get-TssSecret'
     'nts' = 'New-TssSession'
-    'itra' = 'Invoke-TssRestApi'
+    'ira' = 'Invoke-TssRestApi'
 }
 foreach ($_ in $shortcuts.GetEnumerator()) {
-    New-Alias -Name $_.Key -Value $_.Value
+    New-Alias -Name $_.Key -Value $_.Value -Force
 }
 Export-ModuleMember -Alias * -Function * -Cmdlet *
