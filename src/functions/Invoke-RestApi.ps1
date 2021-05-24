@@ -12,6 +12,12 @@ function Invoke-RestApi {
 
     Performs request to the URI specified, returning all secrets the current credential has access to view (minimum).
 
+    .EXAMPLE
+    $session = tssnts https://alpha $ssCred
+    tssira "$($session.ApiUrl)/secrets" $session.AccessToken
+
+    Performs request to the URI specified, returning all secrets the current credential has access to view (minimum) using alias names for each function.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi
 
@@ -24,13 +30,13 @@ function Invoke-RestApi {
     [Cmdletbinding()]
     param(
         # Secret Server REST API URL
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName, Position = 0)]
         [Alias('Url')]
         [uri]
         $Uri,
 
         # Valid Access Token issued by Secret Server
-        [Parameter(ValueFromPipelineByPropertyName)]
+        [Parameter(ValueFromPipelineByPropertyName, Position = 1)]
         [Alias('PAT')]
         [string]
         $PersonalAccessToken,

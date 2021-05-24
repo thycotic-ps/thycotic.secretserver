@@ -42,6 +42,12 @@ function Get-Secret {
 
     Get Secret via absolute path.
 
+    .EXAMPLE
+    $session = tssnts https://alpha $ssCred
+    (tssgts $session 330).GetCredential($null,'username','password')
+
+    Get PSCredential object for Secret ID 330, using alias for the function names
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
 
@@ -60,8 +66,7 @@ function Get-Secret {
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(ParameterSetName = 'secret')]
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(Mandatory,Position = 0)]
         [Alias("SecretId")]
         [int[]]
         $Id,
