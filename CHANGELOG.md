@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* TssUserSummary - add property TwoFactorMethod [880672b](https://github.com/thycotic-ps/thycotic.secretserver/commit/880672b71f3a7643cd2f17ef00bb11f5b54fe263)
 
 </details>
 
@@ -42,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Search-SecretDependency - adjust output [c2aa919](https://github.com/thycotic-ps/thycotic.secretserver/commit/c2aa919f127f3998494aeec94ad016aac082d9af)
 * Get-SecretDependencyTemplate - rename class type [855ab2e](https://github.com/thycotic-ps/thycotic.secretserver/commit/855ab2ee64ec5cfc3fc8b477cdba6b919d13657c)
+* module - correct command alias reference and examples [95f4656](https://github.com/thycotic-ps/thycotic.secretserver/commit/95f46566dd37787d56281e50f369c0374452c6ea)
+* module - correct links in manifest [a898187](https://github.com/thycotic-ps/thycotic.secretserver/commit/a89818717c4ea7ddbea2d436fff95afe72f7365d)
 
 </details>
 
