@@ -14,7 +14,11 @@ CONSTRUCTORS
     new()
 
 PROPERTIES
-    Documented in the REST API doc for Secret Server, see GroupLookup definition
+    Id: integer (int32)
+        Group ID
+
+    Value: string
+        Group name
 
 METHODS
 

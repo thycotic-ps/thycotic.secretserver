@@ -20,7 +20,11 @@ last_modified_at: 2021-05-26T00:00:00-00:00
     new()
 
 # PROPERTIES
-    Documented in the REST API doc for Secret Server, see GroupLookup definition
+    Id: integer (int32)
+        Group ID
+
+    Value: string
+        Group name
 
 # METHODS
 
