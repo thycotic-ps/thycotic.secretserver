@@ -19,5 +19,6 @@
                 ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/main/CHANGELOG.md'
         }
     }
+    NestedModules = @('Thycotic.Logging.psm1')
     DefaultCommandPrefix = 'Tss'
 }
