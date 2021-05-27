@@ -76,7 +76,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
+[TssGroupLookup] | [Find-TssGroup]
 [TssGroupSummary] | [Search-TssGroup]
+[TssGroupUserSummary] | [Get-TssGroupMember]
 
 ## Reports
 
@@ -207,7 +209,11 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssSecretDependency]:/thycotic.secretserver/commands/Get-TssSecretDependency
 [Get-TssSecretDependencyRunStatus]:/thycotic.secretserver/commands/Get-TssSecretDependencyRunStatus
 [Get-TssSecretDependencyTemplate]:/thycotic.secretserver/commands/Get-TssSecretDependencyTemplate
+[Find-TssGroup]:/thycotic.secretserver/commands/Find-TssGroup
+[Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
 
+[TssGroupUserSummary]:/thycotic.secretserver/abouttopics/about_tssgroupusersummary
+[TssGroupLookup]:/thycotic.secretserver/abouttopics/about_tssgrouplookup
 [TssDependencyTemplate]:/thycotic.secretserver/abouttopics/about_tssdependencytemplate
 [TssSecretDependencyTaskError]:/thycotic.secretserver/abouttopics/about_tsssecretdependencytaskerror
 [TssSecretDependencyTaskProgress]:/thycotic.secretserver/abouttopics/about_tsssecretdependencytaskprogress

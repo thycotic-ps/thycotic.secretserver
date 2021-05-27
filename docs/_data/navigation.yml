@@ -71,6 +71,8 @@ commands:
 
   - title: "Groups"
     children:
+      - title: "Find-TssGroup"
+        url: /commands/Find-TssGroup
       - title: "Get-TssGroupMember"
         url: /commands/Get-TssGroupMember
       - title: "Search-TssUserGroup"
@@ -316,8 +318,12 @@ abouttopics:
 
   - title: "Groups"
     children:
+      - title: "TssGroupLookup"
+        url: /abouttopics/about_tssgrouplookup
       - title: "TssGroupSummary"
         url: /abouttopics/about_tssgroupsummary
+      - title: "TssGroupUserSummary"
+        url: /abouttopics/about_tssgroupusersummary
 
   - title: "Reports"
     children:
