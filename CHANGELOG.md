@@ -32,6 +32,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Get-SecretDependencyTemplate [d28cf62](https://github.com/thycotic-ps/thycotic.secretserver/commit/d28cf623d5b47bd21af6ebcb84b0f7f9466f0ce7)
 * Get-SecretDependencyStub [7a750fe](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a750fe6cf3fbb162bb3a69ae163719ad3c7e7c2)
+* Thycotic.Logging nested module added [77a0971](https://github.com/thycotic-ps/thycotic.secretserver/commit/77a09710612815caba533377d6975f5562a837f6)
+* Find-Group - closes [#57](https://github.com/thycotic-ps/thycotic.secretserver/issues/57) [7fdb96b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7fdb96b9ef9ed7bf4baa324cba8e717c7bc3f4b1)
+* Get-Group - closes [#56](https://github.com/thycotic-ps/thycotic.secretserver/issues/56) [763f23b](https://github.com/thycotic-ps/thycotic.secretserver/commit/763f23b2a35ea35c9ce885a88a0b93ef4e0d6af5)
 
 </details>
 
