@@ -76,7 +76,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
+[TssGroup] | [Get-TssGroup]
 [TssGroupLookup] | [Find-TssGroup]
+[TssGroupOwner] | [Get-TssGroup]
 [TssGroupSummary] | [Search-TssGroup]
 [TssGroupUserSummary] | [Get-TssGroupMember]
 
@@ -211,7 +213,11 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssSecretDependencyTemplate]:/thycotic.secretserver/commands/Get-TssSecretDependencyTemplate
 [Find-TssGroup]:/thycotic.secretserver/commands/Find-TssGroup
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
+[Get-TssGroup]:/thycotic.secretserver/commands/Get-TssGroup
 
+[TssGroup]:/thycotic.secretserver/abouttopics/about_tssgroup
+[TssGroupOwner]:/thycotic.secretserver/abouttopics/about_tssgroupowner
+[TssGroupSummary]:/thycotic.secretserver/abouttopics/about_tssgroupsummary
 [TssGroupUserSummary]:/thycotic.secretserver/abouttopics/about_tssgroupusersummary
 [TssGroupLookup]:/thycotic.secretserver/abouttopics/about_tssgrouplookup
 [TssDependencyTemplate]:/thycotic.secretserver/abouttopics/about_tssdependencytemplate
