@@ -23,18 +23,7 @@ begin {
 }
 process {
     $source = $Invocation.MyCommand
-    $uri = $TssSession.ApiUrl, 'version' -join '/'
-
-    $invokeParams.Uri = $Uri
-    $invokeParams.Method = 'GET'
-
-    try {
-        $restResponse = . $InvokeApi @invokeParams
-    } catch {
-        Write-Warning "Issue reading version of [$source], verify Hide Secret Server Version Numbers is disabled in Secret Server"
-    }
-
-    $currentVersion = $restResponse.model.version
+    $currentVersion = $TssSession.SecretServerVersion
 
     if ($currentVersion -lt $MinimumSupported) {
         Write-Warning "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"

@@ -3,6 +3,9 @@ class TssSession {
     $SecretServer
 
     [string]
+    $SecretServerVersion
+
+    [string]
     $ApiVersion = 'api/v1'
 
     hidden
