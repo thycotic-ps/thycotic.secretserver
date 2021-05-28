@@ -35,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Thycotic.Logging nested module added [77a0971](https://github.com/thycotic-ps/thycotic.secretserver/commit/77a09710612815caba533377d6975f5562a837f6)
 * Find-Group - closes [#57](https://github.com/thycotic-ps/thycotic.secretserver/issues/57) [7fdb96b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7fdb96b9ef9ed7bf4baa324cba8e717c7bc3f4b1)
 * Get-Group - closes [#56](https://github.com/thycotic-ps/thycotic.secretserver/issues/56) [763f23b](https://github.com/thycotic-ps/thycotic.secretserver/commit/763f23b2a35ea35c9ce885a88a0b93ef4e0d6af5)
+* Remove-GroupMember - closes [#52](https://github.com/thycotic-ps/thycotic.secretserver/issues/52) [b7d8494](https://github.com/thycotic-ps/thycotic.secretserver/commit/b7d8494391e3ca50aaff3f3dc2f72d23b64d4b46)
+* Get-GroupRole - closes [#54](https://github.com/thycotic-ps/thycotic.secretserver/issues/54) [f4e3099](https://github.com/thycotic-ps/thycotic.secretserver/commit/f4e309958ab54daf706d4032a6b4c531cbb5e2f7)
 
 </details>
 
@@ -58,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Tests - renaming [9cb0867](https://github.com/thycotic-ps/thycotic.secretserver/commit/9cb0867e456c2efcc20d6af8f279516d8374ca48)
+* Tests - Removed integration and unit testing [ddc96c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/ddc96c22efe387038bc3414875cd2e06f2109d3f)
 
 </details>
 
