@@ -4,12 +4,12 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession'
+        [object[]]$knownParameters = 'SecretServer', 'Credential', 'AccessToken', 'UseWindowsAuth', 'UseSdkClient', 'ConfigPath'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -18,30 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssVersion" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssVersion'
-        }
-    }
-}
-Describe "$commandName works" {
-    BeforeDiscovery {
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        }
-        $object = Test-TssVersion $session
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-    }
-    Context "Checking" -Foreach @{object = $object} {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should contain property <_>" -TestCases 'Version','LatestVersion','IsLatest' {
-            $object.PSObject.Properties.Name | Should -Contain $_
+        It "$commandName should set OutputType to TssSession" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssSession'
         }
     }
 }

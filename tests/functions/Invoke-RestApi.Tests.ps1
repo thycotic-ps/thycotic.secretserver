@@ -17,30 +17,3 @@ Describe "$commandName Unit Tests" {
         }
     }
 }
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $invokeParams = @{}
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-            $invokeParams.UseDefaultCredentials = $true
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            $invokeParams.PersonalAccessToken = $session.AccessToken
-        }
-
-        $invokeParams.Uri = $session.ApiUrl, "version" -join '/'
-        $restResponse = Invoke-TssRestApi @invokeParams
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-    }
-    Context "Checking" -Foreach @{restResponse = $restResponse} {
-        It "Should not be empty" {
-            $restResponse | Should -Not -BeNullOrEmpty
-        }
-        It "Should be successful" {
-            $restResponse.success | Should -BeTrue
-        }
-    }
-}
