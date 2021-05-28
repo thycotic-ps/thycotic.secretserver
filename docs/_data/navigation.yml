@@ -73,10 +73,14 @@ commands:
     children:
       - title: "Find-TssGroup"
         url: /commands/Find-TssGroup
+      - title: "Get-TssGroup"
+        url: /commands/Get-TssGroup
       - title: "Get-TssGroupMember"
         url: /commands/Get-TssGroupMember
-      - title: "Search-TssUserGroup"
-        url: /commands/Search-TssUserGroup
+      - title: "Remove-TssGroupMember"
+        url: /commands/Remove-TssGroupMember
+      - title: "Search-TssGroup"
+        url: /commands/Search-TssGroup
 
   - title: "Reports"
     children:
@@ -318,8 +322,12 @@ abouttopics:
 
   - title: "Groups"
     children:
+      - title: "TssGroup"
+        url: /abouttopics/about_tssgroup
       - title: "TssGroupLookup"
         url: /abouttopics/about_tssgrouplookup
+      - title: "TssGroupOwner"
+        url: /abouttopics/about_tssgroupowner
       - title: "TssGroupSummary"
         url: /abouttopics/about_tssgroupsummary
       - title: "TssGroupUserSummary"

@@ -75,7 +75,10 @@ The table below lists the API endpoints matched up to the function that directly
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
 [Find-TssGroup] | GET /groups/lookups
+[Get-TssGroup] | GET /groups/{id}
 [Get-TssGroupMember] | GET /groups/{id}/users
+[Get-TssGroupRole] | GET /groups/{id}/roles
+[Remove-TssGroupMember] | DELETE /groups/{id}/users
 [Search-TssGroup] | GET /groups
 
 ## Reports
@@ -274,3 +277,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssSecretDependencyRunStatus]:/thycotic.secretserver/commands/Get-TssSecretDependencyRunStatus
 [Get-TssSecretDependencyTemplate]:/thycotic.secretserver/commands/Get-TssSecretDependencyTemplate
 [Find-TssGroup]:/thycotic.secretserver/commands/Find-TssGroup
+[Get-TssGroup]:/thycotic.secretserver/commands/Get-TssGroup
+[Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
+[Get-TssGroupRole]:/thycotic.secretserver/commands/Get-TssGroupRole
+[Remove-TssGroupMember]:/thycotic.secretserver/commands/Remove-TssGroupMember

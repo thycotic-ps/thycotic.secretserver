@@ -15,10 +15,10 @@ Invokes the Secret Server Rest API
 ## SYNTAX
 
 ```
-Invoke-TssRestApi [-Uri] <Uri> [[-PersonalAccessToken] <String>] [[-Method] <String>] [[-Body] <Object>]
- [[-OutFile] <String>] [[-ContentType] <String>] [[-Headers] <IDictionary>] [-UseDefaultCredentials]
- [[-Proxy] <Uri>] [[-ProxyCredential] <PSCredential>] [-ProxyUseDefaultCredentials] [[-PSTypeName] <String[]>]
- [[-Property] <IDictionary>] [[-RemoveProperty] <String[]>] [[-ExpandProperty] <String>] [<CommonParameters>]
+Invoke-TssRestApi [-Uri] <Uri> [[-PersonalAccessToken] <String>] [-Method <String>] [-Body <Object>]
+ [-OutFile <String>] [-ContentType <String>] [-Headers <IDictionary>] [-UseDefaultCredentials] [-Proxy <Uri>]
+ [-ProxyCredential <PSCredential>] [-ProxyUseDefaultCredentials] [-PSTypeName <String[]>]
+ [-Property <IDictionary>] [-RemoveProperty <String[]>] [-ExpandProperty <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -33,6 +33,14 @@ Invoke-TssRestApi -Uri 'https://vault.company.com/SecretServer/api/v1/secrets -P
 ```
 
 Performs request to the URI specified, returning all secrets the current credential has access to view (minimum).
+
+### EXAMPLE 2
+```
+$session = tssnts https://alpha $ssCred
+tssira "$($session.ApiUrl)/secrets" $session.AccessToken
+```
+
+Performs request to the URI specified, returning all secrets the current credential has access to view (minimum) using alias names for each function.
 
 ## PARAMETERS
 
@@ -75,7 +83,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 3
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -90,7 +98,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 4
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -105,7 +113,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 5
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -122,7 +130,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 6
+Position: Named
 Default value: Application/json
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -138,7 +146,7 @@ Parameter Sets: (All)
 Aliases: Header
 
 Required: False
-Position: 7
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -169,7 +177,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 8
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -188,7 +196,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 9
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -220,7 +228,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 10
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -235,7 +243,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 11
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -250,7 +258,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 12
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -265,7 +273,7 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 13
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
