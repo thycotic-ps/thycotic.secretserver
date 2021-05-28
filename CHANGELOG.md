@@ -47,6 +47,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-SecretDependencyTemplate - rename class type [855ab2e](https://github.com/thycotic-ps/thycotic.secretserver/commit/855ab2ee64ec5cfc3fc8b477cdba6b919d13657c)
 * module - correct command alias reference and examples [95f4656](https://github.com/thycotic-ps/thycotic.secretserver/commit/95f46566dd37787d56281e50f369c0374452c6ea)
 * module - correct links in manifest [a898187](https://github.com/thycotic-ps/thycotic.secretserver/commit/a89818717c4ea7ddbea2d436fff95afe72f7365d)
+* Set-Secret - formatting [4795cf3](https://github.com/thycotic-ps/thycotic.secretserver/commit/4795cf36922213aeb69a72eb585070706ca037f3)
+* Module - adjust how version check is performed This removes calling the version endpoint in every command, only called once now. [fb317ba](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb317ba0a2aa697027535552a535e2e299a6f96c)
 
 </details>
 
@@ -55,7 +57,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Tests - renaming [9cb0867](https://github.com/thycotic-ps/thycotic.secretserver/commit/9cb0867e456c2efcc20d6af8f279516d8374ca48)
 
 </details>
 
