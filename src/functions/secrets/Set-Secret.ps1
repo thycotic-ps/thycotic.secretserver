@@ -30,13 +30,13 @@ function Set-Secret {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -218,7 +218,7 @@ function Set-Secret {
                         $getParams.Add('TicketSystemId', $TicketSystemId)
                         $getParams.Add('Comment', $Comment)
                     }
-                    if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "Getting Secret")) {
+                    if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", 'Getting Secret')) {
                         $whatIfProcessing++
                     }
 
@@ -250,7 +250,9 @@ function Set-Secret {
                                     $getSecret.AutoChangeNextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($AutoChangeNextPassword))
                                 }
                             }
-                            if ($setSecretParams.ContainsKey('EnableInheritPermission')) { $getSecret.EnableInheritPermissions = $EnableInheritPermission }
+                            if ($setSecretParams.ContainsKey('EnableInheritPermission')) {
+                                $getSecret.EnableInheritPermissions = $EnableInheritPermission
+                            }
                             $invokeParamsOther.Body = $getSecret | ConvertTo-Json -Depth 5
 
                             Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
@@ -281,7 +283,7 @@ function Set-Secret {
                     }
                 }
                 if ($generalParams.Count -gt 0) {
-                    Write-Verbose "Working on general parameter set values"
+                    Write-Verbose 'Working on general parameter set values'
                     # data object for General Settings
                     # Each object added to data requires dirty (true) and value property
                     $generalBody = @{
@@ -293,21 +295,21 @@ function Set-Secret {
                             dirty = $true
                             value = [boolean]$Active
                         }
-                        $generalBody.data.Add('active',$setActive)
+                        $generalBody.data.Add('active', $setActive)
                     }
                     if ($setSecretParams.ContainsKey('EnableInheritSecretPolicy')) {
                         $setInheritance = @{
                             dirty = $true
                             value = [boolean]$EnableInheritSecretPolicy
                         }
-                        $generalBody.data.Add('enableInheritSecretPolicy',$setInheritance)
+                        $generalBody.data.Add('enableInheritSecretPolicy', $setInheritance)
                     }
                     if ($setSecretParams.ContainsKey('FolderId')) {
                         $setFolder = @{
                             dirty = $true
                             value = $FolderId
                         }
-                        $generalBody.data.Add('folder',$setFolder)
+                        $generalBody.data.Add('folder', $setFolder)
                     }
                     if ($setSecretParams.ContainsKey('GenerateSshKeys')) {
                         #does not require dirty and value properties
@@ -318,35 +320,35 @@ function Set-Secret {
                             dirty = $true
                             value = "$HeartbeatEnabled"
                         }
-                        $generalBody.data.Add('heartbeatEnabled',$setHb)
+                        $generalBody.data.Add('heartbeatEnabled', $setHb)
                     }
                     if ($setSecretParams.ContainsKey('SecretPolicy')) {
                         $setSecretPolicy = @{
                             dirty = $true
                             value = $SecretPolicy
                         }
-                        $generalBody.data.Add('secretPolicy',$setSecretPolicy)
+                        $generalBody.data.Add('secretPolicy', $setSecretPolicy)
                     }
                     if ($setSecretParams.ContainsKey('SiteId')) {
                         $setSite = @{
                             dirty = $true
                             value = $SiteId
                         }
-                        $generalBody.data.Add('site',$setSite)
+                        $generalBody.data.Add('site', $setSite)
                     }
                     if ($setSecretParams.ContainsKey('IsOutOfSync')) {
                         $setOutOfSync = @{
                             dirty = $true
                             value = [boolean]$IsOutOfSync
                         }
-                        $generalBody.data.Add('isOutOfSync',$setOutOfSync)
+                        $generalBody.data.Add('isOutOfSync', $setOutOfSync)
                     }
                     if ($setSecretParams.ContainsKey('SecretName')) {
                         $setName = @{
                             dirty = $true
                             value = $SecretName
                         }
-                        $generalBody.data.Add('name',$setName)
+                        $generalBody.data.Add('name', $setName)
                     }
 
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'general' -join '/'
@@ -373,7 +375,7 @@ function Set-Secret {
                     }
                 }
                 if ($setSecretParams.ContainsKey('CheckIn')) {
-                    Write-Verbose "Working on check-in"
+                    Write-Verbose 'Working on check-in'
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
                     $invokeParamsCheckIn.Uri = $uri
                     $invokeParamsCheckIn.Method = 'POST'
@@ -412,7 +414,7 @@ function Set-Secret {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }
