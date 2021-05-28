@@ -1,10 +1,9 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id', 'Path'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'Path',
         # restricted
         'Comment', 'DoublelockPassword', 'ForceCheckIn', 'IncludeInactive', 'TicketNumber', 'TicketSystemId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName, 'Function')).Parameters.Keys

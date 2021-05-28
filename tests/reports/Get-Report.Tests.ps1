@@ -1,6 +1,5 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -20,30 +19,6 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to TssReport" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'TssReport'
-        }
-    }
-}
-Describe "$commandName works" {
-    BeforeDiscovery {
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        }
-
-        $object = Get-TssReport -TssSession $session -Id 1
-        $props = 'ReportId', 'Id', 'CategoryId', 'Name', 'ReportSql'
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-    }
-    Context "Checking" -Foreach @{object = $object} {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should output <_> property" -TestCases $props {
-            $object.PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
