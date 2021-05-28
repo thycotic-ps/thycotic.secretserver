@@ -222,6 +222,14 @@ function New-Session {
                 }
             }
             $outputTssSession.StartTime = [datetime]::Now
+            try {
+                $uri = $outputTssSession.ApiUrl, 'version' -join '/'
+                $versionResponse = . $InvokeApi -Uri $uri -Method GET -PersonalAccessToken $outputTssSession.AccessToken
+
+                $outputTssSession.SecretServerVersion = $versionResponse.model.version
+            } catch {
+                Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
+            }
             return $outputTssSession
         } else {
             Write-Warning "SecretServer argument not found"
