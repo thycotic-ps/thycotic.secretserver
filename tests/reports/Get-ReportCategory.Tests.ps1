@@ -1,6 +1,5 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -20,42 +19,6 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to TssReportCategory" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'TssReportCategory'
-        }
-    }
-}
-Describe "$commandName works" {
-    BeforeDiscovery {
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        }
-
-        $objectId = Get-TssReportCategory -TssSession $session -Id 4
-        $objectAll = Get-TssReportCategory -TssSession $session -All
-        $props = 'CategoryId', 'Name', 'Description'
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-    }
-    Context "Checking Id" -Foreach @{object = $objectId} {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should output <_> property" -TestCases $props {
-            $object.PSObject.Properties.Name | Should -Contain $_
-        }
-    }
-    Context "Checking All" -Foreach @{object = $objectAll} {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should contain more than one object" {
-            $object.Count | Should -BeGreaterThan 1
-        }
-        It "Should output <_> property" -TestCases $props {
-            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
     }
 }

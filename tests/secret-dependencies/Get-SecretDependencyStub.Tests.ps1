@@ -1,6 +1,5 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -18,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssSecretDependency" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssSecretDependency'
+        It "$commandName should set OutputType to TssSecretDependencyStub" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssSecretDependencyStub'
         }
     }
 }

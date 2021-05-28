@@ -3,16 +3,16 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id', 'ChangePasswordOnCheckIn', 'Interval', 'Comment', 'TicketNumber', 'TicketSystemId'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'Slug'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
+    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
-        It "$commandName should not contain parameter= <_>" -TestCases $unknownParameters {
+        It "$commandName should not contain parameter: <_>" -TestCases $unknownParameters {
             $_ | Should -BeNullOrEmpty
         }
     }

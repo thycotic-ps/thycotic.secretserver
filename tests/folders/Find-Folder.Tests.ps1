@@ -1,6 +1,5 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -20,49 +19,6 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to TssFolderLookup" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'TssFolderLookup'
-        }
-    }
-}
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $invokeParams = @{}
-        if ($tssTestUsingWindowsAuth) {
-            $session = New-TssSession -SecretServer $ss -UseWindowsAuth
-            $invokeParams.UseDefaultCredentials = $true
-        } else {
-            $session = New-TssSession -SecretServer $ss -Credential $ssCred
-            $invokeParams.PersonalAccessToken = $session.AccessToken
-        }
-
-        $invokeParams.Uri = $($session.ApiUrl), "folders?take=$($session.take)" -join '/'
-        $invokeParams.ExpandProperty = 'records'
-
-        $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where({$_.folderName -eq 'tss_module_testing'})
-
-        $searchText = 'SearchTssSecret'
-        # Prep work
-        $findObject = Find-TssFolder -TssSession $session -ParentFolderId $tssSecretFolder.Id
-        $findTextObject = Find-TssFolder -TssSession $session -SearchText $searchText
-
-        if (-not $tssTestUsingWindowsAuth) {
-            $session.SessionExpire()
-        }
-        $props = 'FolderId', 'Id', 'FolderId'
-    }
-    Context "Checking" -Foreach @{findObject = $findObject; findTextObject = $findTextObject} {
-        It "Should not be empty" {
-            $findObject | Should -Not -BeNullOrEmpty
-            $findTextObject | Should -Not -BeNullOrEmpty
-        }
-        It "Should output <_> property" -TestCases $props {
-            $findObject[0].PSObject.Properties.Name | Should -Contain $_
-        }
-        It "Should have <_> in FolderName" -TestCases $searchText {
-            $findObject.FolderName | Should -Contain $_
-        }
-        It "Should have only pulled <_> Folder" -TestCases $searchText {
-            $findTextObject.FolderName | Should -Be $_
         }
     }
 }

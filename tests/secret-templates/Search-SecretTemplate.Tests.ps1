@@ -1,15 +1,14 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'DomainId', 'IncludeInactive', 'SearchText', 'SortBy'
+        [object[]]$knownParameters = 'TssSession', 'SearchText', 'IncludeSecretCount', 'IncludeInactive', 'SortBy'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
     }
-    Context "Verify parameters" -Foreach @{currentParams = $currentParams} {
+    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -18,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssGroupSummary" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssGroupSummary'
+        It "$commandName should set OutputType to TssSecretTemplateSummary" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssSecretTemplateSummary'
         }
     }
 }

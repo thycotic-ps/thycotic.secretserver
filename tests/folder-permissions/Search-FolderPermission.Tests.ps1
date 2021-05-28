@@ -1,6 +1,5 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
-    . ([IO.Path]::Combine([string]$PSScriptRoot, '..', 'constants.ps1'))
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
@@ -20,30 +19,6 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to TssFolderPermissionSummary" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'TssFolderPermissionSummary'
-        }
-    }
-}
-Describe "$commandName works" {
-    BeforeDiscovery {
-        $session = New-TssSession -SecretServer $ss -Credential $ssCred
-        $invokeParams = @{
-            Uri                 = "$ss/api/v1/folders?take=$($session.take)"
-            ExpandProperty      = 'records'
-            PersonalAccessToken = $session.AccessToken
-        }
-        $getFolders = Invoke-TssRestApi @invokeParams
-        $tssSecretFolder = $getFolders.Where( { $_.folderPath -eq '\tss_module_testing' })
-
-        $object = Search-TssFolderPermission -TssSession $session -FolderId $tssSecretFolder.id
-        $session.SessionExpire()
-        $props = 'FolderPermissionId', 'FolderId', 'UserName'
-    }
-    Context "Checking" -ForEach @{object = $object } {
-        It "Should not be empty" {
-            $object | Should -Not -BeNullOrEmpty
-        }
-        It "Should output <_> property" -TestCases $props {
-            $object[0].PSObject.Properties.Name | Should -Contain $_
         }
     }
 }
