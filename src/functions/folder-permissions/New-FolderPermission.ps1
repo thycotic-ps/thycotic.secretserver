@@ -25,12 +25,12 @@ function New-FolderPermission {
     [OutputType('TssFolderPermission')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [int]
         $FolderId,
 
@@ -45,14 +45,14 @@ function New-FolderPermission {
         $UserId,
 
         # Folder Access Role Name
-        [Parameter(Mandatory,ValueFromPipeline)]
-        [ValidateSet('View','Edit','Add Secret','Owner')]
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [ValidateSet('View', 'Edit', 'Add Secret', 'Owner')]
         [string]
         $FolderAccessRoleName,
 
         # Secret Access Role Name
-        [Parameter(Mandatory,ValueFromPipeline)]
-        [ValidateSet('View','Edit','List','Owner','None')]
+        [Parameter(Mandatory, ValueFromPipeline)]
+        [ValidateSet('View', 'Edit', 'List', 'Owner', 'None')]
         [string]
         $SecretAccessRoleName
     )
@@ -72,11 +72,11 @@ function New-FolderPermission {
 
                 $newBody = [ordered]@{}
                 switch ($tssNewParams.Keys) {
-                    'FolderId' { $newBody.Add('folderId',$FolderId) }
-                    'GroupId' { $newBody.Add('groupId',$GroupId) }
-                    'FolderAccessRoleName' { $newBody.Add('folderAccessRoleName',$FolderAccessRoleName) }
-                    'UserId' { $newBody.Add('userId',$UserId) }
-                    'SecretAccessRoleName' { $newBody.Add('secretAccessRoleName',$SecretAccessRoleName) }
+                    'FolderId' { $newBody.Add('folderId', $FolderId) }
+                    'GroupId' { $newBody.Add('groupId', $GroupId) }
+                    'FolderAccessRoleName' { $newBody.Add('folderAccessRoleName', $FolderAccessRoleName) }
+                    'UserId' { $newBody.Add('userId', $UserId) }
+                    'SecretAccessRoleName' { $newBody.Add('secretAccessRoleName', $SecretAccessRoleName) }
                 }
 
                 $invokeParams.Body = $newBody | ConvertTo-Json
@@ -95,10 +95,10 @@ function New-FolderPermission {
                     [TssFolderPermissionSummary]$restResponse
                 }
             } else {
-                Write-Error "Please provide one of the following parameters: -GroupId or -UserId"
+                Write-Error 'Please provide one of the following parameters: -GroupId or -UserId'
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

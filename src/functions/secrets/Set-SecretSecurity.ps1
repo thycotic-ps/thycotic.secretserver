@@ -24,13 +24,13 @@ function Set-SecretSecurity {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -170,7 +170,7 @@ function Set-SecretSecurity {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

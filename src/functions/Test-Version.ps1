@@ -39,7 +39,7 @@ function Test-Version {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

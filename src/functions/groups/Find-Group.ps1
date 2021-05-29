@@ -86,19 +86,19 @@ function Find-Group {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on find request"
+                Write-Warning 'Issue on find request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Group found"
+                Write-Warning 'No Group found'
             }
             if ($restResponse.records) {
                 [TssGroupLookup[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

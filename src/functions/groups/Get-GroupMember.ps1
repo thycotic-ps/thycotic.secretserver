@@ -25,13 +25,13 @@ function Get-GroupMember {
     [OutputType('TssGroupUserSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Group ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("GroupId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('GroupId')]
         [int[]]
         $Id,
 
@@ -90,7 +90,7 @@ function Get-GroupMember {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

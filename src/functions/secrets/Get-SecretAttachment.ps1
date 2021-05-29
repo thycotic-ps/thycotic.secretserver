@@ -26,25 +26,25 @@ function Get-SecretAttachment {
     [CmdletBinding()]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
         # Field name
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('FieldName')]
         [string]
         $Slug,
 
         # Write contents to a file (for file attachments and SSH public/private keys)
         [Parameter(Mandatory)]
-        [ValidateScript({Test-Path $_ -PathType Container})]
+        [ValidateScript( { Test-Path $_ -PathType Container })]
         [string]
         $Path,
 
@@ -83,22 +83,22 @@ function Get-SecretAttachment {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-           . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $currentSecret = $null
 
                 $getSecretParams = @{
                     TssSession = $TssSession
-                    Id = $secret
+                    Id         = $secret
                 }
                 if ($restrictedParams.Count -gt 0) {
-                    $getSecretParams.Add('Comment',$Comment)
-                    $getSecretParams.Add('ForceCheckIn',$ForceCheckIn)
-                    $getSecretParams.Add('TicketNumber',$TicketNumber)
-                    $getSecretParams.Add('TicketSystemId',$TicketSystemId)
+                    $getSecretParams.Add('Comment', $Comment)
+                    $getSecretParams.Add('ForceCheckIn', $ForceCheckIn)
+                    $getSecretParams.Add('TicketNumber', $TicketNumber)
+                    $getSecretParams.Add('TicketSystemId', $TicketSystemId)
                 }
                 $currentSecret = Get-TssSecret @getSecretParams
-                $currentSecretFileItem = $currentSecret.Items.Where({$_.Slug -eq $Slug})
+                $currentSecretFileItem = $currentSecret.Items.Where( { $_.Slug -eq $Slug })
 
                 if ($currentSecretFileItem.IsFile) {
                     $attachmentFilename = $currentSecretFileItem.Filename
@@ -110,15 +110,15 @@ function Get-SecretAttachment {
                 $fileAttachment = [IO.Path]::Combine($Path, $attachmentFilename)
                 $getSecretFieldParams = @{
                     TssSession = $TssSession
-                    Id = $secret
-                    Slug = $Slug
-                    OutFile = $fileAttachment
+                    Id         = $secret
+                    Slug       = $Slug
+                    OutFile    = $fileAttachment
                 }
                 if ($restrictedParams.Count -gt 0) {
-                    $getSecretFieldParams.Add('Comment',$Comment)
-                    $getSecretFieldParams.Add('ForceCheckIn',$ForceCheckIn)
-                    $getSecretFieldParams.Add('TicketNumber',$TicketNumber)
-                    $getSecretFieldParams.Add('TicketSystemId',$TicketSystemId)
+                    $getSecretFieldParams.Add('Comment', $Comment)
+                    $getSecretFieldParams.Add('ForceCheckIn', $ForceCheckIn)
+                    $getSecretFieldParams.Add('TicketNumber', $TicketNumber)
+                    $getSecretFieldParams.Add('TicketSystemId', $TicketSystemId)
                 }
                 Get-TssSecretField @getSecretFieldParams
 
@@ -128,7 +128,7 @@ function Get-SecretAttachment {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

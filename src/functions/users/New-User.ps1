@@ -31,17 +31,17 @@ function New-User {
     [OutputType('TssUser')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Username
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [string]
         $Username,
 
         # Display Name
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [string]
         $DisplayName,
 
@@ -63,12 +63,12 @@ function New-User {
         $EmailAddress,
 
         # Active Directory Domain ID
-        [ValidateRange(-1,[int]::MaxValue)]
+        [ValidateRange(-1, [int]::MaxValue)]
         [int]
         $DomainId,
 
         # Active Directory GUID
-        [ValidateLength(36,50)]
+        [ValidateLength(36, 50)]
         [string]
         $AdGuid,
 
@@ -96,35 +96,35 @@ function New-User {
 
             $newBody = [ordered]@{}
             switch ($tssNewParams.Keys) {
-                'Username' { $newBody.Add('userName',$Username) }
-                'DisplayName' { $newBody.Add('displayName',$DisplayName) }
+                'Username' { $newBody.Add('userName', $Username) }
+                'DisplayName' { $newBody.Add('displayName', $DisplayName) }
                 'Password' {
                     $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($Password))
-                    $newBody.Add('password',$passwd)
+                    $newBody.Add('password', $passwd)
                 }
-                'Active' { $newBody.Add('enabled',[boolean]$Active) }
-                'IsApplicationAccount' { $newBody.Add('isApplicationAccount',[boolean]$IsApplicationAccount) }
-                'EmailAddress' { $newBody.Add('emailAddress',$EmailAddress) }
-                'DomainId' { $newBody.Add('domainId',$DomainId) }
-                'AdGuid' { $newBody.Add('adGuid',$AdGuid) }
+                'Active' { $newBody.Add('enabled', [boolean]$Active) }
+                'IsApplicationAccount' { $newBody.Add('isApplicationAccount', [boolean]$IsApplicationAccount) }
+                'EmailAddress' { $newBody.Add('emailAddress', $EmailAddress) }
+                'DomainId' { $newBody.Add('domainId', $DomainId) }
+                'AdGuid' { $newBody.Add('adGuid', $AdGuid) }
                 'TwoFactorType' {
                     if ($TwoFactorType -eq 'RADIUS' -and -not $tssNewParams.ContainsKey('RadiusUsername')) {
                         Write-Warning 'Radius Username is required to create a user with RADIUS 2FA'
                         return
                     }
-                    $newBody.Add('radiusTwoFactor',$true)
-                    $newBody.Add('radiusUserName',$RadiusUsername)
+                    $newBody.Add('radiusTwoFactor', $true)
+                    $newBody.Add('radiusUserName', $RadiusUsername)
                 }
             }
 
             $invokeParams.Body = ($newBody | ConvertTo-Json)
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
-            if (-not $PSCmdlet.ShouldProcess("", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+            if (-not $PSCmdlet.ShouldProcess('', "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue creating report [User]"
+                Write-Warning 'Issue creating report [User]'
                 $err = $_
                 . $ErrorHandling $err
             }
@@ -133,7 +133,7 @@ function New-User {
                 [TssUser]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

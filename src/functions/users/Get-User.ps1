@@ -25,13 +25,13 @@ function Get-User {
     [OutputType('TssUser')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # User ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("UserId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('UserId')]
         [int[]]
         $Id,
 
@@ -85,7 +85,7 @@ function Get-User {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

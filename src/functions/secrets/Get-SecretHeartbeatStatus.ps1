@@ -25,13 +25,13 @@ function Get-SecretHeartbeatStatus {
     [OutputType('TssSecretHeartbeatStatus')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id
     )
@@ -46,7 +46,7 @@ function Get-SecretHeartbeatStatus {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $secret, 'heartbeat-status' -join '/'
+                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'heartbeat-status' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
@@ -68,7 +68,7 @@ function Get-SecretHeartbeatStatus {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

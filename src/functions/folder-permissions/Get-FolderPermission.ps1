@@ -31,8 +31,8 @@ function Get-FolderPermission {
         [TssSession]$TssSession,
 
         # Folder Permission ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderPermissionId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderPermissionId')]
         [int[]]
         $Id,
 
@@ -69,7 +69,7 @@ function Get-FolderPermission {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

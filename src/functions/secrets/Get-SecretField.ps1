@@ -25,14 +25,14 @@ function Get-SecretField {
     [OutputType('System.String')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName,ParameterSetName = 'field')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'field')]
         [Parameter(Mandatory, ParameterSetName = 'restricted')]
-        [Alias("SecretId")]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -41,7 +41,7 @@ function Get-SecretField {
             ValueFromPipelineByPropertyName,
             ParameterSetName = 'field')]
         [Parameter(Mandatory, ParameterSetName = 'restricted')]
-        [Alias("FieldName")]
+        [Alias('FieldName')]
         [string]
         $Slug,
 
@@ -98,23 +98,23 @@ function Get-SecretField {
                 if ($PSCmdlet.ParameterSetName -eq 'restricted') {
                     switch ($tssParams.Keys) {
                         'Comment' {
-                            $body.Add('comment',$Comment)
+                            $body.Add('comment', $Comment)
                         }
                         'DoublelockPassword' {
                             $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
-                            $body.Add('doubleLockPassword',$passwd)
+                            $body.Add('doubleLockPassword', $passwd)
                         }
                         'ForceCheckIn' {
-                            $body.Add('forceCheckIn',$ForceCheckIn)
+                            $body.Add('forceCheckIn', $ForceCheckIn)
                         }
                         'IncludeInactive' {
-                            $body.Add('includeInactive',[boolean]$IncludeInactive)
+                            $body.Add('includeInactive', [boolean]$IncludeInactive)
                         }
                         'TicketNumber' {
-                            $body.Add('ticketNumber',$TicketNumber)
+                            $body.Add('ticketNumber', $TicketNumber)
                         }
                         'TicketSystemId' {
-                            $body.Add('ticketSystemId',$TicketSystemId)
+                            $body.Add('ticketSystemId', $TicketSystemId)
                         }
                     }
                     $uri = $uri, 'restricted/fields', $Slug -join '/'
@@ -150,7 +150,7 @@ function Get-SecretField {
                 $restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

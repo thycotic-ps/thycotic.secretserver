@@ -25,10 +25,10 @@ function Search-Role {
     [OutputType('TssRole')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
 
         [TssSession]
-       $TssSession,
+        $TssSession,
 
         # Only return roles assigned to this User ID
         [Parameter(ParameterSetName = 'user')]
@@ -88,19 +88,19 @@ function Search-Role {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Roles found"
+                Write-Warning 'No Roles found'
             }
             if ($restResponse.records) {
                 [TssRole[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

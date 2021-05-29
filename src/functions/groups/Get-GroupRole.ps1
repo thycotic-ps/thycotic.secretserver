@@ -25,13 +25,13 @@ function Get-GroupRole {
     [OutputType('TssRoleSummary ')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Short description for parameter
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("GroupRoleId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('GroupRoleId')]
         [int[]]
         $Id
     )
@@ -63,7 +63,7 @@ function Get-GroupRole {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

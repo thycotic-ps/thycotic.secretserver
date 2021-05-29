@@ -36,13 +36,13 @@ function Set-SecretExpiration {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -82,7 +82,7 @@ function Set-SecretExpiration {
                         dirty = $true
                         value = 'Template'
                     }
-                    $setExpirationBody.data.Add('expirationType',$type)
+                    $setExpirationBody.data.Add('expirationType', $type)
                 }
                 if ($setParams.ContainsKey('Interval')) {
                     $type = @{
@@ -93,8 +93,8 @@ function Set-SecretExpiration {
                         dirty = $true
                         value = $Interval
                     }
-                    $setExpirationBody.data.Add('expirationType',$type)
-                    $setExpirationBody.data.Add('expirationDayInterval',$dayInterval)
+                    $setExpirationBody.data.Add('expirationType', $type)
+                    $setExpirationBody.data.Add('expirationDayInterval', $dayInterval)
                 }
                 if ($setParams.ContainsKey('DateExpiration')) {
                     $type = @{
@@ -105,8 +105,8 @@ function Set-SecretExpiration {
                         dirty = $true
                         value = $DateExpiration.ToShortDateString()
                     }
-                    $setExpirationBody.data.Add('expirationType',$type)
-                    $setExpirationBody.data.Add('expirationDate',$expDate)
+                    $setExpirationBody.data.Add('expirationType', $type)
+                    $setExpirationBody.data.Add('expirationDate', $expDate)
                 }
 
                 $invokeParams.Body = $setExpirationBody | ConvertTo-Json
@@ -134,7 +134,7 @@ function Set-SecretExpiration {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

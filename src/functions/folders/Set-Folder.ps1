@@ -24,13 +24,13 @@ function Set-Folder {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderId')]
         [int[]]
         $Id,
 
@@ -165,7 +165,7 @@ function Set-Folder {
                         Write-Verbose "Folder [$folder] set Inherit Permission to $($EnableInheritPermission)"
                     }
                     if ($setFolderParams.ContainsKey('EnableInheritSecretPolicy') -and $restResponse.EnableInheritSecretPolicy) {
-                        Write-Verbose "Folder [$folder] set Secret Policy to $(if ($EnableInheritPermission) {"Inherit Secret Policy"} else {"No Secret Policy"})"
+                        Write-Verbose "Folder [$folder] set Secret Policy to $(if ($EnableInheritPermission) {'Inherit Secret Policy'} else {'No Secret Policy'})"
                     }
                     if ($setFolderParams.ContainsKey('FolderName') -and $restResponse.FolderName) {
                         if ($restResponse.folderName -eq $FolderName) {
@@ -180,7 +180,7 @@ function Set-Folder {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

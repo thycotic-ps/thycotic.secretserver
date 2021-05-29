@@ -25,13 +25,13 @@ function Get-SecretRpcAssociated {
     [OutputType('TssSecretRpcAssociated')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id
     )
@@ -47,7 +47,7 @@ function Get-SecretRpcAssociated {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $secret, 'rpc' -join '/'
+                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'rpc' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
@@ -63,18 +63,18 @@ function Get-SecretRpcAssociated {
                 if ($restResponse.resetSecrets.value) {
                     foreach ($as in $restResponse.resetSecrets.value) {
                         [TssSecretRpcAssociated]@{
-                            ParentSecretId = $secret
-                            Order = $as.order
+                            ParentSecretId     = $secret
+                            Order              = $as.order
                             AssociatedSecretId = $as.secretId
-                            SecretName = $as.secretName
+                            SecretName         = $as.secretName
                             SecretTemplateName = $as.secretTemplateName
-                            FolderName = $as.folderName
+                            FolderName         = $as.folderName
                         }
                     }
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

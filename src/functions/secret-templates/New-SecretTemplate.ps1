@@ -93,10 +93,10 @@ function New-SecretTemplate {
             }
             if ($fieldParams.Count -gt 0) {
                 $Template = [TssSecretTemplate]@{
-                    Id = 0
-                    Name = $TemplateName
+                    Id             = 0
+                    Name           = $TemplateName
                     PasswordTypeId = 0
-                    Fields = $TemplateField
+                    Fields         = $TemplateField
                 }
                 $invokeParams.Body = ($Template | ConvertTo-Json -Depth 6)
             }
@@ -114,7 +114,7 @@ function New-SecretTemplate {
                 [TssSecretTemplate]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

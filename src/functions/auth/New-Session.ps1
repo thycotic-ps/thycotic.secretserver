@@ -57,35 +57,35 @@ function New-Session {
     [OutputType('TssSession')]
     param(
         # Secret Server URL
-        [Parameter(Mandatory,ParameterSetName = 'new', Position = 0)]
-        [Parameter(Mandatory,ParameterSetName = 'sdk', Position = 0)]
-        [Parameter(Mandatory,ParameterSetName = 'winauth', Position = 0)]
-        [Parameter(Mandatory,ParameterSetName = 'clientSdk')]
+        [Parameter(Mandatory, ParameterSetName = 'new', Position = 0)]
+        [Parameter(Mandatory, ParameterSetName = 'sdk', Position = 0)]
+        [Parameter(Mandatory, ParameterSetName = 'winauth', Position = 0)]
+        [Parameter(Mandatory, ParameterSetName = 'clientSdk')]
         [uri]
         $SecretServer,
 
         # Specify a Secret Server user account.
-        [Parameter(Mandatory,ParameterSetName = 'new', Position = 1)]
+        [Parameter(Mandatory, ParameterSetName = 'new', Position = 1)]
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
 
         # Specify Access Token
-        [Parameter(Mandatory,ParameterSetName = 'sdk')]
+        [Parameter(Mandatory, ParameterSetName = 'sdk')]
         $AccessToken,
 
         # Utilize Windows Authentication (IWA)
-        [Parameter(Mandatory,ParameterSetName = 'winauth')]
+        [Parameter(Mandatory, ParameterSetName = 'winauth')]
         [switch]
         $UseWindowsAuth,
 
         # Utilize SDK Client
-        [Parameter(Mandatory,ParameterSetName = 'clientSdk')]
+        [Parameter(Mandatory, ParameterSetName = 'clientSdk')]
         [switch]
         $UseSdkClient,
 
         # Config path for the key/config files
-        [Parameter(ParameterSetName = 'clientSdk',Mandatory)]
+        [Parameter(ParameterSetName = 'clientSdk', Mandatory)]
         [ValidateScript( { Test-Path $_ -PathType Container })]
         [string]
         $ConfigPath
@@ -96,8 +96,8 @@ function New-Session {
 
         $outputTssSession = [TssSession]::new()
 
-        if ($SecretServer -match "(?:\/api\/v1)|(?:\/oauth2\/token)") {
-            throw "Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided"
+        if ($SecretServer -match '(?:\/api\/v1)|(?:\/oauth2\/token)') {
+            throw 'Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided'
             return
         } else {
             $outputTssSession.SecretServer = $SecretServer
@@ -140,7 +140,7 @@ function New-Session {
                     if ($err.Length -gt 0) {
                         throw $err
                     } elseif ($_ -like '*<html*') {
-                        $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new("Response was HTML, Request Failed."),"ResultWasHTML", "NotSpecified", $invokeParams.Uri))
+                        $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new('Response was HTML, Request Failed.'), 'ResultWasHTML', 'NotSpecified', $invokeParams.Uri))
                     } else {
                         throw $_.Exception
                     }
@@ -177,7 +177,7 @@ function New-Session {
                         $tssStatusOutput += $tssProcess.StandardError.ReadToEnd()
 
                         Write-Verbose "SDK Client raw response: $tssStatusOutput"
-                        $sdkEndpoint = $tssStatusOutput.Trim("Connected to endpoint ")
+                        $sdkEndpoint = $tssStatusOutput.Trim('Connected to endpoint ')
                     } catch {
                         Write-Warning "Issue capturing status of current SDK Client (tss) config for [$SecretServer]"
                         $err = $_
@@ -207,7 +207,7 @@ function New-Session {
                         $sdkToken = $tssTokenOutput
                         Write-Verbose "SDK Client token value: $sdkToken"
                     } catch {
-                        Write-Warning "Issue obtaining token via SDK Client (tss) config"
+                        Write-Warning 'Issue obtaining token via SDK Client (tss) config'
                         $err = $_
                         . $ErrorHandling $err
                     }
@@ -232,7 +232,7 @@ function New-Session {
             }
             return $outputTssSession
         } else {
-            Write-Warning "SecretServer argument not found"
+            Write-Warning 'SecretServer argument not found'
         }
     }
 }

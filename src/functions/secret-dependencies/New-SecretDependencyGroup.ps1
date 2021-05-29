@@ -31,7 +31,7 @@ function New-SecretDependencyGroup {
     [OutputType('TssSecretDependencyGroup')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -66,13 +66,13 @@ function New-SecretDependencyGroup {
 
                 $newBody = [ordered]@{}
                 switch ($tssNewParams.Keys) {
-                    'GroupName' { $newBody.Add('secretDependencyGroupName',$GroupName) }
+                    'GroupName' { $newBody.Add('secretDependencyGroupName', $GroupName) }
                     'SiteId' { $newBody.Add('siteId', $SiteId) }
                 }
                 $invokeParams.Body = ($newBody | ConvertTo-Json)
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
-                if (-not $PSCmdlet.ShouldProcess("", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+                if (-not $PSCmdlet.ShouldProcess('', "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
@@ -86,7 +86,7 @@ function New-SecretDependencyGroup {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

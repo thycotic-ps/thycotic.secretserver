@@ -25,13 +25,13 @@ function Get-FolderAudit {
     [OutputType('TssFolderAuditSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderId')]
         [int[]]
         $Id
     )
@@ -65,7 +65,7 @@ function Get-FolderAudit {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

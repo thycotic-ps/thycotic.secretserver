@@ -25,13 +25,13 @@ function Get-RpcPasswordType {
     [OutputType('TssPasswordType')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Short description for parameter
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("PasswordTypeId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('PasswordTypeId')]
         [int[]]
         $Id
     )
@@ -64,7 +64,7 @@ function Get-RpcPasswordType {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

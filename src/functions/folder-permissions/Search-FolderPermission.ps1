@@ -83,22 +83,22 @@ function Search-FolderPermission {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue on search request"
+                    Write-Warning 'Issue on search request'
                     $err = $_
                     . $ErrorHandling $err
                 }
 
                 if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                    Write-Warning "No Folder Permissions found"
+                    Write-Warning 'No Folder Permissions found'
                 }
                 if ($restResponse.records) {
                     [TssFolderPermissionSummary[]]$restResponse.records
                 }
             } else {
-                Write-Error "Please provide one of the following parameters: -FolderId, -GroupId or -UserId"
+                Write-Error 'Please provide one of the following parameters: -FolderId, -GroupId or -UserId'
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

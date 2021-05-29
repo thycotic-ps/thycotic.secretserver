@@ -33,18 +33,18 @@ function Set-SecretRpcAssociated {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("ParentSecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('ParentSecretId')]
         [int[]]
         $Id,
 
         # Secret IDs to Associate
-        [Parameter(Mandatory,ValueFromRemainingArguments)]
+        [Parameter(Mandatory, ValueFromRemainingArguments)]
         [int[]]
         $AssociatedSecretId
     )
@@ -92,7 +92,7 @@ function Set-SecretRpcAssociated {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

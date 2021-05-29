@@ -39,7 +39,7 @@ function New-Folder {
     [OutputType('TssFolder')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -92,7 +92,7 @@ function New-Folder {
             }
             if ($tssParams.ContainsKey('InheritPermissions')) {
                 if ($ParentFolderId -eq -1 -and $InheritPermissions -eq $true) {
-                    Write-Warning "InheritPermission cannot be used in conjunction with creating a root folder [ParentFolderId = -1], please provide another FolderId"
+                    Write-Warning 'InheritPermission cannot be used in conjunction with creating a root folder [ParentFolderId = -1], please provide another FolderId'
                     return
                 } else {
                     $newFolderStub.InheritPermissions = [boolean]$InheritPermissions
@@ -119,7 +119,7 @@ function New-Folder {
                 [TssFolder]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

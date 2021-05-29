@@ -37,7 +37,7 @@ function Get-SecretDependencyTemplate {
     [OutputType('TssDependencyTemplate')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -66,7 +66,7 @@ function Get-SecretDependencyTemplate {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue getting Dependency Templates"
+                Write-Warning 'Issue getting Dependency Templates'
                 $err = $_
                 . $ErrorHandling $err
             }
@@ -82,7 +82,7 @@ function Get-SecretDependencyTemplate {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

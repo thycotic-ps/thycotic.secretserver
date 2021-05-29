@@ -25,13 +25,13 @@ function Remove-Folder {
     [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderId')]
         [int[]]
         $Id
     )
@@ -56,7 +56,7 @@ function Remove-Folder {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue removing [$]"
+                    Write-Warning 'Issue removing [$]'
                     $err = $_
                     . $ErrorHandling $err
                 }
@@ -66,7 +66,7 @@ function Remove-Folder {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

@@ -30,13 +30,13 @@ function Set-SecretRpcPrivileged {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -62,7 +62,7 @@ function Set-SecretRpcPrivileged {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $secret, 'rpc' -join '/'
+                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'rpc' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'PUT'
 
@@ -77,8 +77,8 @@ function Set-SecretRpcPrivileged {
                         dirty = $true
                         value = $null
                     }
-                    $setRpcPrivBody.data.Add('changePasswordUsing',$changeUsing)
-                    $setRpcPrivBody.data.Add('privilegedAccountSecretId',$privilegedAccount)
+                    $setRpcPrivBody.data.Add('changePasswordUsing', $changeUsing)
+                    $setRpcPrivBody.data.Add('privilegedAccountSecretId', $privilegedAccount)
                 }
                 if ($setParams.ContainsKey('PrivilegedSecretId')) {
                     $changeUsing = @{
@@ -89,8 +89,8 @@ function Set-SecretRpcPrivileged {
                         dirty = $true
                         value = $PrivilegedSecretId
                     }
-                    $setRpcPrivBody.data.Add('changePasswordUsing',$changeUsing)
-                    $setRpcPrivBody.data.Add('privilegedAccountSecretId',$privilegedAccount)
+                    $setRpcPrivBody.data.Add('changePasswordUsing', $changeUsing)
+                    $setRpcPrivBody.data.Add('privilegedAccountSecretId', $privilegedAccount)
                 }
 
                 $invokeParams.Body = $setRpcPrivBody | ConvertTo-Json
@@ -115,7 +115,7 @@ function Set-SecretRpcPrivileged {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

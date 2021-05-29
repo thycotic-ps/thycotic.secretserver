@@ -31,7 +31,7 @@ function Search-SecretDependency {
 
         # Secret ID
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -44,7 +44,7 @@ function Search-SecretDependency {
         $IncludeInactive,
 
         # Filter on last run status, allowed Success, Failed, NotRun
-        [ValidateSet('Success','Failed','NotRun')]
+        [ValidateSet('Success', 'Failed', 'NotRun')]
         [string]
         $LastRunStatus,
 
@@ -96,7 +96,7 @@ function Search-SecretDependency {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue on search request"
+                    Write-Warning 'Issue on search request'
                     $err = $_
                     . $ErrorHandling $err
                 }
@@ -109,7 +109,7 @@ function Search-SecretDependency {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

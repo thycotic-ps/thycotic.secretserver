@@ -30,13 +30,13 @@ function Disable-SecretCheckout {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -84,7 +84,7 @@ function Disable-SecretCheckout {
                 $invokeParams.Method = 'PATCH'
                 $invokeParams.Body = $CheckoutBody | ConvertTo-Json
 
-                if ($PSCmdlet.ShouldProcess("SecretId: $secret", "Pre-check out secret for setting Checkout settings")) {
+                if ($PSCmdlet.ShouldProcess("SecretId: $secret", 'Pre-check out secret for setting Checkout settings')) {
                     . $CheckOutSecret $TssSession $tssParams $secret
                 }
 
@@ -104,7 +104,7 @@ function Disable-SecretCheckout {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

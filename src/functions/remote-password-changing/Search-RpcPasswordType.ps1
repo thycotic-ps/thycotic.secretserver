@@ -25,12 +25,12 @@ function Search-RpcPasswordType {
     [OutputType('TssPasswordTypeSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Search based on text in Name
-        [Alias("SearchTerm")]
+        [Alias('SearchTerm')]
         [string]
         $SearchText,
 
@@ -74,19 +74,19 @@ function Search-RpcPasswordType {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No RpcPasswordType found"
+                Write-Warning 'No RpcPasswordType found'
             }
             if ($restResponse.records) {
                 [TssPasswordTypeSummary[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }
