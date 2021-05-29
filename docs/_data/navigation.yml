@@ -330,6 +330,8 @@ abouttopics:
         url: /abouttopics/about_tssgroupowner
       - title: "TssGroupSummary"
         url: /abouttopics/about_tssgroupsummary
+      - title: "TssGroupUser"
+        url: /abouttopics/about_tssgroupuser
       - title: "TssGroupUserSummary"
         url: /abouttopics/about_tssgroupusersummary
 

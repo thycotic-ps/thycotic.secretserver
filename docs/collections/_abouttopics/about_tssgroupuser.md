@@ -1,0 +1,44 @@
+---
+category: groups
+title: "TssGroupUser"
+last_modified_at: 2021-05-28T00:00:00-00:00
+---
+
+# TOPIC
+    This help topic describes the TssGroupUser class in the Thycotic.SecretServer module
+
+# CLASS
+    TssGroupUser
+
+# INHERITANCE
+    None
+
+# DESCRIPTION
+    The TssGroupUser class represents the GroupUserModel object returned by Secret Server endpoint GET /groups/{id}/users/{userId}
+
+# CONSTRUCTORS
+    new()
+
+# PROPERTIES
+    GroupDomainId: integer (int32)
+        Group Active Directory domain ID
+
+    GroupId: integer (int32)
+        Group ID
+
+    GroupName: string
+        Group name
+
+    UserDomainId: integer (int32)
+        User Active Directory domain ID
+
+    UserId: integer (int32)
+        User ID
+
+    UserName: string
+        User name
+
+# METHODS
+
+# RELATED LINKS:
+    Add-TssGroupMember
