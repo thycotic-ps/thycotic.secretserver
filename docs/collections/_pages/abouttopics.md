@@ -80,6 +80,7 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssGroupLookup] | [Find-TssGroup]
 [TssGroupOwner] | [Get-TssGroup]
 [TssGroupSummary] | [Search-TssGroup]
+[TssGroupUser] | [Add-TssGroupMember]
 [TssGroupUserSummary] | [Get-TssGroupMember]
 
 ## Reports
@@ -214,7 +215,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Find-TssGroup]:/thycotic.secretserver/commands/Find-TssGroup
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
 [Get-TssGroup]:/thycotic.secretserver/commands/Get-TssGroup
+[Add-TssGroupMember]:/thycotic.secretserver/commands/Add-TssGroupMember
 
+[TssGroupUser]:/thycotic.secretserver/abouttopics/about_tssgroupuser
 [TssGroup]:/thycotic.secretserver/abouttopics/about_tssgroup
 [TssGroupOwner]:/thycotic.secretserver/abouttopics/about_tssgroupowner
 [TssGroupSummary]:/thycotic.secretserver/abouttopics/about_tssgroupsummary
