@@ -16,7 +16,7 @@ function Update-SecretPermission {
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretPermission
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-SecretPermission.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permission/Set-SecretPermission.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
