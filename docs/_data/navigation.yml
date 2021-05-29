@@ -24,6 +24,10 @@ commands:
 
   - title: "Configurations"
     children:
+      - title: "Disable-TssUnlimitedAdmin"
+        url: /commands/Disable-TssUnlimitedAdmin
+      - title: "Enable-TssUnlimitedAdmin"
+        url: /commands/Get-Enable-TssUnlimitedAdmin
       - title: "Get-TssConfiguration"
         url: /commands/Get-TssConfiguration
 

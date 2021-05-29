@@ -23,6 +23,14 @@ The table below lists the API endpoints matched up to the function that directly
 ---------------- | --------------------------------- |
 [New-TssSession] | POST /oauth2/token
 
+## Configurations
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Disable-TssUnlimitedAdmin] | PATCH /configurations/unlimited-admin
+[Enable-TssUnlimitedAdmin] | PATCH /configurations/unlimited-admin
+[Get-TssConfiguration] | GET /configuration/general
+
 ## Directory Services
 
 **Command** | **API Endpoint** |
@@ -285,3 +293,6 @@ The table below lists the API endpoints matched up to the function that directly
 [Remove-TssGroupMember]:/thycotic.secretserver/commands/Remove-TssGroupMember
 [Get-TssUserGroup]:/thycotic.secretserver/commands/Get-TssUserGroup
 [Get-TssUserOwner]:/thycotic.secretserver/commands/Get-TssUserOwner
+[Disable-TssUnlimitedAdmin]:/thycotic.secretserver/commands/Disable-TssUnlimitedAdmin
+[Enable-TssUnlimitedAdmin]:/thycotic.secretserver/commands/Enable-TssUnlimitedAdmin
+[Get-TssConfiguration]:/thycotic.secretserver/commands/Get-TssConfiguration
