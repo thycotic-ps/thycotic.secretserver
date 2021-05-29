@@ -48,3 +48,4 @@ METHODS
 
 RELATED LINKS:
     Get-TssGroupMember
+    Get-TssUserGroup
