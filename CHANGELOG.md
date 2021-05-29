@@ -39,6 +39,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-GroupRole - closes [#54](https://github.com/thycotic-ps/thycotic.secretserver/issues/54) [f4e3099](https://github.com/thycotic-ps/thycotic.secretserver/commit/f4e309958ab54daf706d4032a6b4c531cbb5e2f7)
 * Get-GroupUser - closes [#53](https://github.com/thycotic-ps/thycotic.secretserver/issues/53) [f9cf8c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/f9cf8c277c5ccb0dd26a959acfdb167cc167957c)
 * Add-GroupMember - closes [#51](https://github.com/thycotic-ps/thycotic.secretserver/issues/51) [d57c131](https://github.com/thycotic-ps/thycotic.secretserver/commit/d57c13124f078d69c5e1c53d069b9f2db398aeef)
+* Get-UserGroup - closes [#96](https://github.com/thycotic-ps/thycotic.secretserver/issues/96) [083c498](https://github.com/thycotic-ps/thycotic.secretserver/commit/083c49889bd08edd506299b2b7ee23fb3b5bd3bc)
+* Get-UserOwner - closes [#95](https://github.com/thycotic-ps/thycotic.secretserver/issues/95) [9292857](https://github.com/thycotic-ps/thycotic.secretserver/commit/9292857fc177c6054e2eec0a72dc3cdda96169e7)
 
 </details>
 
@@ -53,6 +55,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - correct links in manifest [a898187](https://github.com/thycotic-ps/thycotic.secretserver/commit/a89818717c4ea7ddbea2d436fff95afe72f7365d)
 * Set-Secret - formatting [4795cf3](https://github.com/thycotic-ps/thycotic.secretserver/commit/4795cf36922213aeb69a72eb585070706ca037f3)
 * Module - adjust how version check is performed This removes calling the version endpoint in every command, only called once now. [fb317ba](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb317ba0a2aa697027535552a535e2e299a6f96c)
+* module - applying formatting changes [71fa1f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/71fa1f714dfbf8ce203d607f8d966921f775ef0e)
+* Get-UserAudit - fixing warning message [99dd43e](https://github.com/thycotic-ps/thycotic.secretserver/commit/99dd43e3465888efe7feb3383e1d62cb93364aa5)
 
 </details>
 
@@ -348,6 +352,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-Secret - removed call to public function [dab8048](https://github.com/thycotic-ps/thycotic.secretserver/commit/dab80486d9ce68ec90d2750222e391c42e7c3527)
 * Get-TssConfiguration - add about files for classes [42da615](https://github.com/thycotic-ps/thycotic.secretserver/commit/42da615c0a87096a16b34638044175086cf77bf6)
 * doc - update commands [4a11a5d](https://github.com/thycotic-ps/thycotic.secretserver/commit/4a11a5d3da1dddad3476a1fc36521a0f25c33de1)
+* module - applying formatting changes [71fa1f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/71fa1f714dfbf8ce203d607f8d966921f775ef0e)
 
 </details>
 
