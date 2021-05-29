@@ -182,6 +182,8 @@ The table below lists the API endpoints matched up to the function that directly
 [Find-TssUser] | GET /users/lookup
 [Get-TssUser] | GET /users/{id}
 [Get-TssUserAudit] | GET /users/{userId}/audit
+[Get-TssUserGroup] | GET /users/{userId}/groups
+[Get-TssUserOwner] | GET /users/{userId}/owners
 [Get-TssUserRole] | GET /users/{id}/roles
 [Get-TssUserRoleAssigned] | GET /users/{userId}/roles-assigned
 [Lock-TssUser] | PATCH /users/{id}
@@ -281,3 +283,5 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
 [Get-TssGroupRole]:/thycotic.secretserver/commands/Get-TssGroupRole
 [Remove-TssGroupMember]:/thycotic.secretserver/commands/Remove-TssGroupMember
+[Get-TssUserGroup]:/thycotic.secretserver/commands/Get-TssUserGroup
+[Get-TssUserOwner]:/thycotic.secretserver/commands/Get-TssUserOwner
