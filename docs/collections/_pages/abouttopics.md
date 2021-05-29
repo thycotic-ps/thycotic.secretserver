@@ -107,25 +107,6 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssPasswordTypeSummary] | [Search-TssRpcPasswordType]
 [TssSecretRpcAssociated] | [Get-TssSecretRpcAssociated]
 
-## Secret Dependencies
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssSecretDependency] | [Get-TssSecretDependency]
-[TssSecretDependencyGroup] | [New-TssSecretDependencyGroup]
-[TssSecretDependencySummary] | [Search-TssSecretDependency]
-[TssSecretDependencyTaskError] | [Get-TssSecretDependencyRunStatus]
-[TssSecretDependencyTaskProgress] | [Get-TssSecretDependencyRunStatus]
-[TssDependencyTemplate] | [Get-TssSecretDependencyTemplate]
-
-## Secret Templates
-
-**Class** | **Thycotic.SecretServer Command** |
---------------------------------- | -------------------------------------------------- |
-[TssSecretTemplate] | [Get-TssSecretTemplate]
-[TssSecretTemplateField] | [Get-TssSecretTemplate]
-[TssSecretTemplateSummary] | [Search-TssSecretTemplate]
-
 ## Secrets
 
 **Class** | **Thycotic.SecretServer Command** |
@@ -143,6 +124,31 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [TssRdpLauncherSettings] | [Get-TssSecretState]
 [TssSshLauncherSettings] | [Get-TssSecretState]
 [TssSecretHeartbeatStatus] | [Get-TssSecretHeartbeatStatus]
+
+## Secret Dependencies
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretDependency] | [Get-TssSecretDependency]
+[TssSecretDependencyGroup] | [New-TssSecretDependencyGroup]
+[TssSecretDependencySummary] | [Search-TssSecretDependency]
+[TssSecretDependencyTaskError] | [Get-TssSecretDependencyRunStatus]
+[TssSecretDependencyTaskProgress] | [Get-TssSecretDependencyRunStatus]
+[TssDependencyTemplate] | [Get-TssSecretDependencyTemplate]
+
+## Secret Templates
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretPermission] | [Search-TssSecretPermission] [Get-TssSecretPermission] [New-TssSecretPermission]
+
+## Secret Templates
+
+**Class** | **Thycotic.SecretServer Command** |
+--------------------------------- | -------------------------------------------------- |
+[TssSecretTemplate] | [Get-TssSecretTemplate]
+[TssSecretTemplateField] | [Get-TssSecretTemplate]
+[TssSecretTemplateSummary] | [Search-TssSecretTemplate]
 
 ## Users
 
@@ -218,7 +224,11 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssGroup]:/thycotic.secretserver/commands/Get-TssGroup
 [Add-TssGroupMember]:/thycotic.secretserver/commands/Add-TssGroupMember
 [Get-TssUserOwner]:/thycotic.secretserver/commands/Get-TssUserOwner
+[Search-TssSecretPermission]:/thycotic.secretserver/commands/Search-TssSecretPermission
+[Get-TssSecretPermission]:/thycotic.secretserver/commands/Get-TssSecretPermission
+[New-TssSecretPermission]:/thycotic.secretserver/commands/New-TssSecretPermission
 
+[TssSecretPermission]:/thycotic.secretserver/abouttopics/about_tsssecretperimssion
 [TssUserOwnerSummary]:/thycotic.secretserver/abouttopics/about_tssuserownersummary
 [TssGroupUser]:/thycotic.secretserver/abouttopics/about_tssgroupuser
 [TssGroup]:/thycotic.secretserver/abouttopics/about_tssgroup

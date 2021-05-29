@@ -112,39 +112,6 @@ commands:
         url: /commands/Get-TssSecretRpcAssociated
       - title: "Search-RpcPasswordType"
         url: /commands/Search-RpcPasswordType
-
-  - title: "Secret Dependencies"
-    children:
-      - title: "Get-TssSecretDependency"
-        url: /commands/Get-TssSecretDependency
-      - title: "Get-TssSecretDependencyGroup"
-        url: /commands/Get-TssSecretDependencyGroup
-      - title: "Get-TssSecretDependencyRunStatus"
-        url: /commands/Get-TssSecretDependencyRunStatus
-      - title: "Get-TssSecretDependencyTemplate"
-        url: /commands/Get-TssSecretDependencyTemplate
-      - title: "New-TssSecretDependencyGroup"
-        url: /commands/New-TssSecretDependencyGroup
-      - title: "Remove-TssSecretDependency"
-        url: /commands/Remove-TssSecretDependency
-      - title: "Search-TssSecretDependency"
-        url: /commands/Search-TssSecretDependency
-      - title: "Start-TssSecretDependency"
-        url: /commands/Start-TssSecretDependency
-
-  - title: "Secrets Templates"
-    children:
-      - title: "Add-TssSecretTemplateField"
-        url: /commands/Add-TssSecretTemplateField
-      - title: "Get-TssSecretTemplate"
-        url: /commands/Get-TssSecretTemplate
-      - title: "New-TssSecretTemplate"
-        url: /commands/New-TssSecretTemplate
-      - title: "New-TssSecretTemplateField"
-        url: /commands/New-TssSecretTemplateField
-      - title: "Search-TssSecretTemplate"
-        url: /commands/Search-TssSecretTemplate
-
   - title: "Secrets"
     children:
       - title: "Disable-TssSecretCheckout"
@@ -207,6 +174,49 @@ commands:
         url: /commands/Stop-TssSecretChangePassword
       - title: "Update-TssSecret"
         url: /commands/Update-TssSecret
+
+  - title: "Secret Dependencies"
+    children:
+      - title: "Get-TssSecretDependency"
+        url: /commands/Get-TssSecretDependency
+      - title: "Get-TssSecretDependencyGroup"
+        url: /commands/Get-TssSecretDependencyGroup
+      - title: "Get-TssSecretDependencyRunStatus"
+        url: /commands/Get-TssSecretDependencyRunStatus
+      - title: "Get-TssSecretDependencyTemplate"
+        url: /commands/Get-TssSecretDependencyTemplate
+      - title: "New-TssSecretDependencyGroup"
+        url: /commands/New-TssSecretDependencyGroup
+      - title: "Remove-TssSecretDependency"
+        url: /commands/Remove-TssSecretDependency
+      - title: "Search-TssSecretDependency"
+        url: /commands/Search-TssSecretDependency
+      - title: "Start-TssSecretDependency"
+        url: /commands/Start-TssSecretDependency
+
+  - title: "Secrets Permissions"
+    children:
+      - title: "New-TssSecretPermission"
+        url: /commands/New-TssSecretPermission
+      - title: "Search-TssSecretPermission"
+        url: /commands/Search-TssSecretPermission
+      - title: "Remove-TssSecretPermission"
+        url: /commands/Remove-TssSecretPermission
+      - title: "Update-TssSecretPermission"
+        url: /commands/Update-TssSecretPermission
+
+  - title: "Secrets Templates"
+    children:
+      - title: "Add-TssSecretTemplateField"
+        url: /commands/Add-TssSecretTemplateField
+      - title: "Get-TssSecretTemplate"
+        url: /commands/Get-TssSecretTemplate
+      - title: "New-TssSecretTemplate"
+        url: /commands/New-TssSecretTemplate
+      - title: "New-TssSecretTemplateField"
+        url: /commands/New-TssSecretTemplateField
+      - title: "Search-TssSecretTemplate"
+        url: /commands/Search-TssSecretTemplate
 
   - title: "Users"
     children:
@@ -384,6 +394,11 @@ abouttopics:
         url: /abouttopics/about_tsssecretdependencytaskprogress
       - title: "TssSecretDependencyTemplate"
         url: /abouttopics/about_tsssecretdependencytemplate
+
+  - title: "Secrets Permissions"
+    children:
+      - title: "TssSecretPerimssion"
+        url: /abouttopics/about_tsssecretpermission
 
   - title: "Secrets Templates"
     children:

@@ -114,19 +114,6 @@ The table below lists the API endpoints matched up to the function that directly
 [Get-TssSecretRpcAssociated] | GET /internals/secret-detail/{id}/rpc
 [Search-TssRpcPasswordType] | GET /remote-password-changing/password-type
 
-## Secret Dependencies
-
-**Command** | **API Endpoint** |
----------------- | --------------------------------- |
-[Get-TssSecretDependency] | GET /secret-dependencies/{id}
-[Get-TssSecretDependencyGroup] | GET /secret-dependencies/groups/{secretId}
-[Get-TssSecretDependencyRunStatus] | GET /secret-dependencies/run/{identifier}
-[Get-TssSecretDependencyTemplate] | GET /secret-dependencies/templates
-[New-TssSecretDependencyGroup] | POST /secret-dependencies/groups
-[Remove-TssSecretDependency] | DELETE /secret-dependencies/{id}
-[Search-TssSecretDependency] | GET /secret-dependencies
-[Start-TssSecretDependency] | GET /secret-dependencies/run
-
 ## Secrets
 
 **Command** | **API Endpoint** |
@@ -171,6 +158,28 @@ The table below lists the API endpoints matched up to the function that directly
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
 [Set-TssSecret] | POST /secret-access-requests/secrets/{id}/view-comment
+
+## Secret Dependencies
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[Get-TssSecretDependency] | GET /secret-dependencies/{id}
+[Get-TssSecretDependencyGroup] | GET /secret-dependencies/groups/{secretId}
+[Get-TssSecretDependencyRunStatus] | GET /secret-dependencies/run/{identifier}
+[Get-TssSecretDependencyTemplate] | GET /secret-dependencies/templates
+[New-TssSecretDependencyGroup] | POST /secret-dependencies/groups
+[Remove-TssSecretDependency] | DELETE /secret-dependencies/{id}
+[Search-TssSecretDependency] | GET /secret-dependencies
+[Start-TssSecretDependency] | GET /secret-dependencies/run
+
+## Secrets Permissions
+
+**Command** | **API Endpoint** |
+---------------- | --------------------------------- |
+[New-TssSecretPerimssion] | POST /secret-permissions
+[Search-TssSecretPerimssion] | GET /secret-permissions
+[Remove-TssSecretPerimssion] | DELETE /secret-permissions
+[Update-TssSecretPerimssion] | PUT /secret-permissions
 
 ## Secrets Templates
 
@@ -296,3 +305,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Disable-TssUnlimitedAdmin]:/thycotic.secretserver/commands/Disable-TssUnlimitedAdmin
 [Enable-TssUnlimitedAdmin]:/thycotic.secretserver/commands/Enable-TssUnlimitedAdmin
 [Get-TssConfiguration]:/thycotic.secretserver/commands/Get-TssConfiguration
+[Remove-TssSecretPerimssion]:/thycotic.secretserver/commands/Remove-TssSecretPermission
+[Search-TssSecretPerimssion]:/thycotic.secretserver/commands/Search-TssSecretPermission
+[Update-TssSecretPerimssion]:/thycotic.secretserver/commands/Update-TssSecretPermission
+[New-TssSecretPerimssion]:/thycotic.secretserver/commands/New-TssSecretPermission
