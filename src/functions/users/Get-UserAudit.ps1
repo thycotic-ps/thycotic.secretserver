@@ -56,7 +56,7 @@ function Get-UserAudit {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue getting ___ on [$user]"
+                    Write-Warning "Issue getting audit data on user [$user]"
                     $err = $_
                     . $ErrorHandling $err
                 }
