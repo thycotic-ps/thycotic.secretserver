@@ -25,13 +25,13 @@ function Revoke-Secret {
     [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -98,13 +98,13 @@ function Revoke-Secret {
                         'TicketSystemId' { $expireBody.Add('ticketSystemId', $TicketSystemId) }
                         'DoublelockPassword' {
                             $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
-                            $expireBody.Add('doubleLockPassword',$passwd)
+                            $expireBody.Add('doubleLockPassword', $passwd)
                         }
                     }
                 }
                 $invokeParams.Body = $expireBody | ConvertTo-Json
 
-                if (-not $PSCmdlet.ShouldProcess($secret,"$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n")) { return }
+                if (-not $PSCmdlet.ShouldProcess($secret, "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -119,7 +119,7 @@ function Revoke-Secret {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

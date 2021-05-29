@@ -30,13 +30,13 @@ function Enable-SecretCheckout {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -45,7 +45,7 @@ function Enable-SecretCheckout {
         $ChangePasswordOnCheckIn,
 
         # Checkout intervale in Minutes
-        [ValidateRange(0,43200)]
+        [ValidateRange(0, 43200)]
         [int]
         $Interval,
 
@@ -95,14 +95,14 @@ function Enable-SecretCheckout {
                         dirty = $true
                         value = $Interval
                     }
-                    $CheckoutBody.data.Add('checkOutIntervalMinutes',$intervalMinutes)
+                    $CheckoutBody.data.Add('checkOutIntervalMinutes', $intervalMinutes)
                 }
                 if ($tssParams.ContainsKey('ChangePasswordOnCheckIn')) {
                     $intervalMinutes = @{
                         dirty = $true
                         value = $true
                     }
-                    $CheckoutBody.data.Add('checkOutChangePasswordEnabled',$intervalMinutes)
+                    $CheckoutBody.data.Add('checkOutChangePasswordEnabled', $intervalMinutes)
                 }
                 $invokeParams.Method = 'PATCH'
                 $invokeParams.Body = $CheckoutBody | ConvertTo-Json
@@ -123,7 +123,7 @@ function Enable-SecretCheckout {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

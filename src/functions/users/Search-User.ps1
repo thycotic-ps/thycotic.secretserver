@@ -31,12 +31,12 @@ function Search-User {
     [OutputType('TssUserSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Filter users by Active Directory Domain
-        [Alias("Domain")]
+        [Alias('Domain')]
         [int]
         $DomainId,
 
@@ -94,19 +94,19 @@ function Search-User {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Users found"
+                Write-Warning 'No Users found'
             }
             if ($restResponse.records) {
                 [TssUserSummary[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

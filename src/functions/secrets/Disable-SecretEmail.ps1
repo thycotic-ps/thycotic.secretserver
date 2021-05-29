@@ -30,13 +30,13 @@ function Disable-SecretEmail {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -97,28 +97,28 @@ function Disable-SecretEmail {
                         dirty = $true
                         value = $false
                     }
-                    $emailBody.data.Add('sendEmailWhenChanged',$sendEmailWhenChanged)
+                    $emailBody.data.Add('sendEmailWhenChanged', $sendEmailWhenChanged)
                 }
                 if ($tssParams.ContainsKey('WhenViewed')) {
                     $sendEmailWhenViewed = @{
                         dirty = $true
                         value = $false
                     }
-                    $emailBody.data.Add('sendEmailWhenViewed',$sendEmailWhenViewed)
+                    $emailBody.data.Add('sendEmailWhenViewed', $sendEmailWhenViewed)
                 }
                 if ($tssParams.ContainsKey('WhenHeartbeatFails')) {
                     $sendEmailWhenHeartbeatFails = @{
                         dirty = $true
                         value = $false
                     }
-                    $emailBody.data.Add('sendEmailWhenHeartbeatFails',$sendEmailWhenHeartbeatFails)
+                    $emailBody.data.Add('sendEmailWhenHeartbeatFails', $sendEmailWhenHeartbeatFails)
                 }
 
                 $invokeParams.Method = 'PATCH'
                 $invokeParams.Body = $emailBody | ConvertTo-Json -Depth 5
 
                 if ($restrictedParams.Count -gt 0) {
-                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "Pre-check out secret for setting email settings")) {
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", 'Pre-check out secret for setting email settings')) {
                         . $CheckOutSecret $TssSession $tssParams $secret
                     }
                 }
@@ -144,7 +144,7 @@ function Disable-SecretEmail {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

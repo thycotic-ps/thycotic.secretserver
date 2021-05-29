@@ -30,19 +30,19 @@ function Set-FolderPermission {
         [TssSession]$TssSession,
 
         # Folder Permission Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderPermissionId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderPermissionId')]
         [int[]]
         $Id,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [int]
         $FolderId,
 
         # Role to grant on the folder: View, Edit, Add Secret, Owner
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [ValidateSet('View','Edit','Add Secret', 'Owner')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [ValidateSet('View', 'Edit', 'Add Secret', 'Owner')]
         [string]
         $FolderAccessRolename,
 
@@ -70,15 +70,15 @@ function Set-FolderPermission {
                 $invokeParams.Method = 'PUT'
 
                 $setBody = @{
-                    id = $Id
-                    folderId = $FolderId
+                    id                   = $Id
+                    folderId             = $FolderId
                     folderAccessRoleName = $FolderAccessRoleName
                 }
                 if ($setParams.ContainsKey('SecretAccessRoleName')) {
-                    $setBody.Add('secretAccessRoleName',$SecretAccessRoleName)
+                    $setBody.Add('secretAccessRoleName', $SecretAccessRoleName)
                 }
                 if ($setParams.ContainsKey('BreakInheritance')) {
-                    $setBody.Add('breakInheritance',[boolean]$BreakInheritance)
+                    $setBody.Add('breakInheritance', [boolean]$BreakInheritance)
                 }
                 $invokeParams.Body = $setBody | ConvertTo-Json
 
@@ -87,7 +87,7 @@ function Set-FolderPermission {
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning "Issue setting property on  [$]"
+                        Write-Warning 'Issue setting property on  [$]'
                         $err = $_
                         . $ErrorHandling $err
                     }
@@ -97,7 +97,7 @@ function Set-FolderPermission {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

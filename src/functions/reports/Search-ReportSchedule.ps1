@@ -31,7 +31,7 @@ function Search-ReportSchedule {
     [OutputType('TssReportScheduleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -79,19 +79,19 @@ function Search-ReportSchedule {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No report schedules found"
+                Write-Warning 'No report schedules found'
             }
             if ($restResponse.records) {
                 [TssReportScheduleSummary[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

@@ -60,7 +60,7 @@ function Initialize-SdkClient {
         $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
 
         if ($IsLinux) {
-            Write-Verbose "SDK Client, tss utility, has some dependencies required on certain Linux distributions, more details: https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#task_2__installing_the_sdk_client"
+            Write-Verbose 'SDK Client, tss utility, has some dependencies required on certain Linux distributions, more details: https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#task_2__installing_the_sdk_client'
         }
     }
     process {
@@ -85,7 +85,7 @@ function Initialize-SdkClient {
 
                 Write-Verbose "SDK Client raw output: $tssRmOutput"
                 if ($tssRmOutput -match 'Your configuration settings have been removed.') {
-                    Write-Verbose "SDK Client configuration has been removed"
+                    Write-Verbose 'SDK Client configuration has been removed'
                 } else {
                     Write-Waring "Issue removing configuration files for [$SecretServer]: $tssRmProcessOutput"
                     return
@@ -126,7 +126,7 @@ function Initialize-SdkClient {
                 Write-Host 'SDK Client initialization completed successfully'
             }
             if ($tssInitOutput -match 'This machine is already initialized. Remove the configuration settings.') {
-                Write-Warning "Initialization has already been run for this host, include -Force parameter if you want to drop and reinitialize"
+                Write-Warning 'Initialization has already been run for this host, include -Force parameter if you want to drop and reinitialize'
             }
         } catch {
             Write-Warning "Issue initializing SDK Client (tss) for [$SecretServer]"

@@ -21,145 +21,145 @@ function Find-Secret {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(DefaultParameterSetName = "filter")]
+    [cmdletbinding(DefaultParameterSetName = 'filter')]
     [OutputType('TssSecretLookup')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
-        [Alias("SecretId")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
+        [Alias('SecretId')]
         [int]
         $Id,
 
         # Return only secrets within a certain folder
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "folder")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'folder')]
         [int]
         $FolderId,
 
         # Include secrets in subfolders of the specified FolderId
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "folder")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'folder')]
         [Alias('IncludeSubFolder')]
         [switch]
         $IncludeSubFolders,
 
         # Field to filter on
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [string]
         $Field,
 
         # Text of the field to filter on
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [string]
         $FieldText,
 
         # Match the exact text of the FieldText
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [switch]
         $ExactMatch,
 
         # Field-slug to search
         # This overrides the Field filter
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [string]
         $FieldSlug,
 
         # Secret Template fields to return
         # Only exposed fields can be returned
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [Alias('ExtendedFields')]
         [string[]]
         $ExtendedField,
 
         # Return only secrets matching a certain extended type
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "field")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'field')]
         [int]
         $ExtendedTypeId,
 
         # Return only secrets matching a certain template
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [Alias('TemplateId')]
         [int]
         $SecretTemplateId,
 
         # Return only secrets within a certain site
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [int]
         $SiteId,
 
         # Return only secrets with a certain heartbeat status
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
-        [ValidateSet('Failed','Success','Pending','Disabled','UnableToConnect','UnknownError','IncompatibleHost','AccountLockedOut','DnsMismatch','UnableToValidateServerPublicKey','Processing','ArgumentError','AccessDenied')]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
+        [ValidateSet('Failed', 'Success', 'Pending', 'Disabled', 'UnableToConnect', 'UnknownError', 'IncompatibleHost', 'AccountLockedOut', 'DnsMismatch', 'UnableToValidateServerPublicKey', 'Processing', 'ArgumentError', 'AccessDenied')]
         [string]
         $HeartbeatStatus,
 
         # Include inactive/disabled secrets
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [switch]
         $IncludeInactive,
 
         # Exclude active secrets
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [switch]
         $ExcludeActive,
 
         # Secrets where template has RPC Enabled
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [switch]
         $RpcEnabled,
 
         # Secrets where you are not the owner and secret is explicitly shared with your user
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [switch]
         $SharedWithMe,
 
         # Secrets matching certain password types
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [int[]]
         $PasswordTypeIds,
 
         # Filter based on permission (List, View, Edit or Owner)
-        [Parameter(ParameterSetName = "filter")]
-        [ValidateSet('List','View','Edit','Owner')]
+        [Parameter(ParameterSetName = 'filter')]
+        [ValidateSet('List', 'View', 'Edit', 'Owner')]
         [string]
         $Permission,
 
         # Filter All Secrets, Recent or Favorites
-        [Parameter(ParameterSetName = "filter")]
-        [ValidateSet('All','Recent','Favorites')]
+        [Parameter(ParameterSetName = 'filter')]
+        [ValidateSet('All', 'Recent', 'Favorites')]
         [string]
         $Scope,
 
         # Exclude DoubleLocks from search results
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [Alias('ExcludeDoubleLocks')]
         [switch]
         $ExcludeDoubleLock,
 
         # Include only secrets with a specific DoubleLock ID assigned
-        [Parameter(ParameterSetName = "filter")]
-        [Parameter(ParameterSetName = "secret")]
+        [Parameter(ParameterSetName = 'filter')]
+        [Parameter(ParameterSetName = 'secret')]
         [int]
         $DoubleLockId
     )
@@ -173,11 +173,11 @@ function Find-Secret {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             if ($tssParams['Id']) {
-                $uri = $TssSession.ApiUrl , "secrets/lookup", $Id -join '/'
+                $uri = $TssSession.ApiUrl , 'secrets/lookup', $Id -join '/'
             } else {
-                $uri = $TssSession.ApiUrl, "secrets/lookup" -join '/'
+                $uri = $TssSession.ApiUrl, 'secrets/lookup' -join '/'
                 $uri += "?take=$($TssSession.Take)"
-                $uri += "&filter.includeRestricted=true"
+                $uri += '&filter.includeRestricted=true'
 
                 $filters = @()
                 switch ($tssParams.Keys) {
@@ -205,17 +205,17 @@ function Find-Secret {
                     }
                     'Permission' {
                         $filters += switch ($tssParams['Permission']) {
-                            'List' { "filter.permissionRequired=1" }
-                            'View' { "filter.permissionRequired=2" }
-                            'Edit' { "filter.permissionRequired=3" }
-                            'Owner' { "filter.permissionRequired=4" }
+                            'List' { 'filter.permissionRequired=1' }
+                            'View' { 'filter.permissionRequired=2' }
+                            'Edit' { 'filter.permissionRequired=3' }
+                            'Owner' { 'filter.permissionRequired=4' }
                         }
                     }
                     'Scope' {
                         $filters += switch ($tssParams['Scope']) {
-                            'All' { "filter.scope=1" }
-                            'Recent' { "filter.scope=2" }
-                            'Favorite' { "filter.scope=3" }
+                            'All' { 'filter.scope=1' }
+                            'Recent' { 'filter.scope=2' }
+                            'Favorite' { 'filter.scope=3' }
                         }
                     }
                     'RpcEnabled' {
@@ -231,7 +231,7 @@ function Find-Secret {
                         $filters += "filter.includeActive=$($tssParams['ExcludeActive'])"
                     }
                     default {
-                        if ($_ -in 'Verbose','TssSession','Raw') { continue } else {
+                        if ($_ -in 'Verbose', 'TssSession', 'Raw') { continue } else {
                             $filters += "filter.$($_)=$($tssParams[$_])"
                         }
                     }
@@ -249,34 +249,34 @@ function Find-Secret {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($tssParams.ContainsKey('Id') -and $restResponse) {
                 [TssSecretLookup]@{
-                    Id = $restResponse.Id
+                    Id         = $restResponse.Id
                     SecretName = $restResponse.value
                 }
             } else {
                 if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                    Write-Warning "No secrets found"
+                    Write-Warning 'No secrets found'
                 }
                 if ($restResponse) {
                     foreach ($secret in $restResponse.records) {
-                        $parsedValue = $secret.value.Split('-',3).Trim()
+                        $parsedValue = $secret.value.Split('-', 3).Trim()
                         [TssSecretLookup]@{
-                            Id = $secret.id
-                            FolderId = $parsedValue[0]
+                            Id               = $secret.id
+                            FolderId         = $parsedValue[0]
                             SecretTemplateId = $parsedValue[1]
-                            SecretName = $parsedValue[2]
+                            SecretName       = $parsedValue[2]
                         }
                     }
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

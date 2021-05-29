@@ -31,12 +31,12 @@ function Find-User {
     [OutputType('TssUserLookup')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Filter users by Active Directory Domain
-        [Alias("Domain")]
+        [Alias('Domain')]
         [int]
         $DomainId,
 
@@ -94,26 +94,26 @@ function Find-User {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on Find request"
+                Write-Warning 'Issue on Find request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Users found"
+                Write-Warning 'No Users found'
             }
             if ($restResponse.records) {
                 foreach ($user in $restResponse.records) {
-                    $parsedValue = $user.value.Split('-',2).Trim()
+                    $parsedValue = $user.value.Split('-', 2).Trim()
                     [TssUserLookup]@{
-                        Id = $user.id
+                        Id       = $user.id
                         Username = $parsedValue[0]
-                        Email = $parsedValue[1]
+                        Email    = $parsedValue[1]
                     }
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

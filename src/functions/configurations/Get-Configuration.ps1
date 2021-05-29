@@ -25,12 +25,12 @@ function Get-Configuration {
     [OutputType('TssConfigurationGeneral')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Configuration type (Application, Email, Folders, Launcher, LocalUserPasswords, PermissionOptions, UserExperience, UserInterface)
-        [ValidateSet('All','Application', 'Email', 'Folders', 'Launcher', 'LocalUserPasswords', 'PermissionOptions', 'UserExperience', 'UserInterface')]
+        [ValidateSet('All', 'Application', 'Email', 'Folders', 'Launcher', 'LocalUserPasswords', 'PermissionOptions', 'UserExperience', 'UserInterface')]
         [string]
         $Type = 'All'
     )
@@ -48,17 +48,17 @@ function Get-Configuration {
 
             $uriParams = @()
             if ($Type -eq 'All') {
-                $params = "loadAll=true"
+                $params = 'loadAll=true'
             } else {
                 switch ($Type) {
-                    'Application' { $uriParams += "loadApplicationSettings=true" }
-                    'Email' { $uriParams += "loadEmail=true" }
-                    'Folders' { $uriParams += "loadFolders=true" }
-                    'Launcher' { $uriParams += "loadLauncherSettings=true" }
-                    'LocalUserPasswords' { $uriParams += "loadLocalUserPasswords=true" }
-                    'PermissionOptions' { $uriParams += "loadPermissionOptions=true" }
-                    'UserExperience' { $uriParams += "loadUserExperience=true" }
-                    'UserInterface' { $uriParams += "loadUserInterface=true" }
+                    'Application' { $uriParams += 'loadApplicationSettings=true' }
+                    'Email' { $uriParams += 'loadEmail=true' }
+                    'Folders' { $uriParams += 'loadFolders=true' }
+                    'Launcher' { $uriParams += 'loadLauncherSettings=true' }
+                    'LocalUserPasswords' { $uriParams += 'loadLocalUserPasswords=true' }
+                    'PermissionOptions' { $uriParams += 'loadPermissionOptions=true' }
+                    'UserExperience' { $uriParams += 'loadUserExperience=true' }
+                    'UserInterface' { $uriParams += 'loadUserInterface=true' }
                 }
                 $params = $uriParams -join '&'
             }
@@ -78,7 +78,7 @@ function Get-Configuration {
                 [TssConfigurationGeneral]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

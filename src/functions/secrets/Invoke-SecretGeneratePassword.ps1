@@ -25,18 +25,18 @@ function Invoke-SecretGeneratePassword {
     [CmdletBinding()]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [Alias('SecretId')]
         [int]
         $Id,
 
         # Field slug name
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [Alias('FieldSlug')]
         [string]
         $Slug
@@ -51,7 +51,7 @@ function Invoke-SecretGeneratePassword {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($invokeGenerateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $Id, 'generate-password', $Slug -join '/'
+            $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $Id, 'generate-password', $Slug -join '/'
             $invokeGenerateParams.Uri = $uri
             $invokeGenerateParams.Method = 'GET'
 
@@ -65,7 +65,7 @@ function Invoke-SecretGeneratePassword {
             }
 
             if ($restGeneratedPassword) {
-                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $Id, 'validate-password', $Slug -join '/'
+                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $Id, 'validate-password', $Slug -join '/'
                 $invokeValidateParams.Uri = $uri
                 $invokeValidateParams.Method = 'POST'
 
@@ -88,7 +88,7 @@ function Invoke-SecretGeneratePassword {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

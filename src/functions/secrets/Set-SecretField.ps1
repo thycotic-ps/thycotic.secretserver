@@ -55,13 +55,13 @@ function Set-SecretField {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'default')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder Id to modify
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -131,40 +131,40 @@ function Set-SecretField {
             . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
 
             if ($setParams.ContainsKey('Clear') -and $setParams.ContainsKey('Value')) {
-                Write-Warning "Clear and Value provided, only one is supported"
+                Write-Warning 'Clear and Value provided, only one is supported'
                 return
             }
             if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Path')) {
-                Write-Warning "Filename and Path provided, only one is supported"
+                Write-Warning 'Filename and Path provided, only one is supported'
                 return
             }
             if ($setParams.ContainsKey('Filename') -and -not $setParams.ContainsKey('Value')) {
-                Write-Warning "Value must be provided when using Filename"
+                Write-Warning 'Value must be provided when using Filename'
                 return
             }
 
             foreach ($secret in $Id) {
                 $fieldBody = @{}
                 if ($setParams.ContainsKey('Clear')) {
-                    $fieldBody.Add('value',"")
+                    $fieldBody.Add('value', '')
                 }
                 if ($setParams.ContainsKey('Value') -and -not $setParams.ContainsKey('Filename')) {
-                    $fieldBody.Add('value',$Value)
+                    $fieldBody.Add('value', $Value)
                 }
 
                 if ($setParams.ContainsKey('Path')) {
                     $pathFilename = Split-Path $Path -Leaf
-                    $fieldBody.Add('fileName',$pathFilename)
+                    $fieldBody.Add('fileName', $pathFilename)
 
                     $fileBinary = [IO.File]::ReadAllBytes($Path)
-                    $fieldBody.Add('fileAttachment',$fileBinary)
+                    $fieldBody.Add('fileAttachment', $fileBinary)
                 }
 
                 if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Value')) {
-                    $fieldBody.Add('fileName',$Filename)
+                    $fieldBody.Add('fileName', $Filename)
 
                     $fileBinary = [System.Text.Encoding]::UTF8.GetBytes($Value)
-                    $fieldBody.Add('fileAttachment',$fileBinary)
+                    $fieldBody.Add('fileAttachment', $fileBinary)
                 }
 
                 if ($restrictedParams.Count -gt 0) {
@@ -201,7 +201,7 @@ function Set-SecretField {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

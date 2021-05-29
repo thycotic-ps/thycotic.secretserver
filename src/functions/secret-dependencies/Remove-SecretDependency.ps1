@@ -25,13 +25,13 @@ function Remove-SecretDependency {
     [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Short description for parameter
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretDependencyId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretDependencyId')]
         [int[]]
         $Id
     )
@@ -50,7 +50,7 @@ function Remove-SecretDependency {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess($dependency,"$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess($dependency, "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -62,13 +62,13 @@ function Remove-SecretDependency {
 
                 if ($restResponse) {
                     [TssDelete]@{
-                        Id = $restResponse.id
+                        Id         = $restResponse.id
                         ObjectType = $restResponse.objectType
                     }
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

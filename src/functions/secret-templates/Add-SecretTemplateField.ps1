@@ -76,7 +76,7 @@ function Add-SecretTemplateField {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

@@ -61,13 +61,13 @@ function Get-Secret {
     [OutputType('TssSecret')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,Position = 0)]
+        [Parameter(Mandatory, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,Position = 0)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, Position = 0)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
@@ -156,7 +156,7 @@ function Get-Secret {
                         'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
                         'DoublelockPassword' {
                             $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
-                            $getBody.Add('doubleLockPassword',$passwd)
+                            $getBody.Add('doubleLockPassword', $passwd)
                         }
                     }
 
@@ -184,7 +184,7 @@ function Get-Secret {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

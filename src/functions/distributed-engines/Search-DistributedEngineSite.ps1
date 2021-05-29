@@ -25,7 +25,7 @@ function Search-DistributedEngineSite {
     [OutputType('TssSiteSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -74,9 +74,9 @@ function Search-DistributedEngineSite {
                 'IncludeSiteMetrics' { $filters += "filter.includeSiteMetrics=$([boolean]$IncludeSiteMetrics)" }
                 'IncludeSitesAddNewEngines' { $filters += "filter.onlyIncludeSitesThatCanAddNewEngines=$([boolean]$IncludeSitesAddNewEngines)" }
                 default {
-                    $filters += "filter.includeInactive=false"
-                    $filters += "filter.includeSiteMetrics=false"
-                    $filters += "filter.onlyIncludeSitesThatCanAddNewEngines=false"
+                    $filters += 'filter.includeInactive=false'
+                    $filters += 'filter.includeSiteMetrics=false'
+                    $filters += 'filter.onlyIncludeSitesThatCanAddNewEngines=false'
                 }
             }
 
@@ -93,13 +93,13 @@ function Search-DistributedEngineSite {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Distributed Engine Sites found"
+                Write-Warning 'No Distributed Engine Sites found'
             }
             if ($restResponse.records) {
                 foreach ($record in $restResponse.records) {
@@ -110,7 +110,7 @@ function Search-DistributedEngineSite {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

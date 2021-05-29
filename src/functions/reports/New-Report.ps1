@@ -37,7 +37,7 @@ function New-Report {
     [OutputType('TssReport')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
@@ -50,12 +50,12 @@ function New-Report {
         $ReportName,
 
         # Category for the report
-        [Parameter(Mandatory,ValueFromPipeline,Position = 2)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 2)]
         [int]
         $CategoryId,
 
         # Description of the report
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [string]
         $Description,
 
@@ -72,12 +72,12 @@ function New-Report {
         $PageSize,
 
         # Perform paging in the database (default) or application server
-        [ValidateSet('Database','Application')]
+        [ValidateSet('Database', 'Application')]
         [string]
         $Paging = 'Database',
 
         # T-SQL for the report to run
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [string]
         $ReportSql
     )
@@ -96,13 +96,13 @@ function New-Report {
 
             $newReportBody = [ordered]@{}
             switch ($tssNewReportParams.Keys) {
-                'CategoryId' { $newReportBody.Add('categoryId',$CategoryId) }
+                'CategoryId' { $newReportBody.Add('categoryId', $CategoryId) }
                 'ChartType' { $newReportBody.Add('chartType', $ChartType) }
                 'Description' { $newReportBody.Add('description', $Description) }
                 'Is3DReport' { $newReportBody.Add('is3DReport', $Is3DReport) }
-                'ReportName' { $newReportBody.Add('name',$ReportName) }
+                'ReportName' { $newReportBody.Add('name', $ReportName) }
                 'PageSize' { $newReportBody.Add('pageSize', $PageSize) }
-                'ReportSql' { $newReportBody.Add('reportSql',$ReportSql) }
+                'ReportSql' { $newReportBody.Add('reportSql', $ReportSql) }
                 'Paging' {
                     if ($_ -eq 'Application') {
                         $newReportBody.Add('useDatabasePaging', $false)
@@ -128,7 +128,7 @@ function New-Report {
                 [TssReport]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

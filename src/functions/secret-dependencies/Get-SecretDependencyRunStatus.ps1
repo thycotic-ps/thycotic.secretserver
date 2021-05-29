@@ -26,12 +26,12 @@ function Get-SecretDependencyRunStatus {
     [OutputType('TssSecretDependencyTaskProgress')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Identifier, output from Start-TssSecretDependency
-        [Parameter(Mandatory,ValueFromPipeline)]
+        [Parameter(Mandatory, ValueFromPipeline)]
         [string[]]
         $Identifier
     )
@@ -64,7 +64,7 @@ function Get-SecretDependencyRunStatus {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

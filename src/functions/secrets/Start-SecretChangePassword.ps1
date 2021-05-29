@@ -24,19 +24,19 @@ function Start-SecretChangePassword {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id,
 
         # Next Password Type, allowed Manual or Random
         [Parameter(Mandatory)]
-        [ValidateSet('Manual','Random')]
+        [ValidateSet('Manual', 'Random')]
         [string]
         $Type,
 
@@ -56,7 +56,7 @@ function Start-SecretChangePassword {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl.Replace('api/v1','internals'), 'secret-detail', $secret, 'change-password-now' -join '/'
+                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'change-password-now' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
@@ -64,26 +64,26 @@ function Start-SecretChangePassword {
                 switch ($Type) {
                     'Manual' {
                         if ($tssParams.ContainsKey('NextPassword')) {
-                            $rpcBody.data.Add('NextPassword',[Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($NextPassword)))
-                            $rpcBody.data.Add('PasswordType',1)
+                            $rpcBody.data.Add('NextPassword', [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($NextPassword)))
+                            $rpcBody.data.Add('PasswordType', 1)
                         } else {
-                            Write-Error "-NextPassword parameter must be provided when using PasswordType of [Manual]"
+                            Write-Error '-NextPassword parameter must be provided when using PasswordType of [Manual]'
                             return
                         }
                     }
                     'Random' {
                         if ($tssParams.ContainsKey('NextPassword')) {
-                            Write-Error "-NextPassword parameter cannot be used with PasswordType of [Random]"
+                            Write-Error '-NextPassword parameter cannot be used with PasswordType of [Random]'
                             return
                         } else {
-                            $rpcBody.data.Add('NextPassword',$null)
-                            $rpcBody.data.Add('PasswordType',0)
+                            $rpcBody.data.Add('NextPassword', $null)
+                            $rpcBody.data.Add('PasswordType', 0)
                         }
                     }
                 }
                 $invokeParams.Body = $rpcBody | ConvertTo-Json
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret","$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n")) { return }
+                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n")) { return }
                 Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -99,7 +99,7 @@ function Start-SecretChangePassword {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

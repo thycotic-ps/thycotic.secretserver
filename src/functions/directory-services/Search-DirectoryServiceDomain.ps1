@@ -25,12 +25,12 @@ function Search-DirectoryServiceDomain {
     [OutputType('TssDomainSummary')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Domain Name
-        [Alias("Domain")]
+        [Alias('Domain')]
         [int]
         $DomainName,
 
@@ -74,19 +74,19 @@ function Search-DirectoryServiceDomain {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Directory Domain found"
+                Write-Warning 'No Directory Domain found'
             }
             if ($restResponse.records) {
                 [TssDomainSummary[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

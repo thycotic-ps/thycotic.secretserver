@@ -31,8 +31,8 @@ function Remove-FolderPermission {
         [TssSession]$TssSession,
 
         # Folder Permission ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderPermissionId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderPermissionId')]
         [int[]]
         $Id,
 
@@ -59,7 +59,7 @@ function Remove-FolderPermission {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission","$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission", "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -74,7 +74,7 @@ function Remove-FolderPermission {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

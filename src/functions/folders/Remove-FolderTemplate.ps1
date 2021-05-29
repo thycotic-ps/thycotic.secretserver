@@ -25,13 +25,13 @@ function Remove-FolderTemplate {
     [OutputType('TssDelete')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("FolderId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('FolderId')]
         [int]
         $Id,
 
@@ -56,7 +56,7 @@ function Remove-FolderTemplate {
                 $invokeParams.Method = 'DELETE'
 
 
-                if (-not $PSCmdlet.ShouldProcess("FolderId: $folder","$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("FolderId: $folder", "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -71,7 +71,7 @@ function Remove-FolderTemplate {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

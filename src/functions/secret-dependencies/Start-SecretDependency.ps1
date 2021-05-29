@@ -25,13 +25,13 @@ function Start-SecretDependency {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Dependency ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("DependencyId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('DependencyId')]
         [int[]]
         $Id
     )
@@ -50,7 +50,7 @@ function Start-SecretDependency {
             $invokeParams.Method = 'POST'
 
             $invokeParams.Body = ConvertTo-Json @($Id)
-            if (-not $PSCmdlet.ShouldProcess("Dependency ID: $dependency","$($invokeParamsOther.Method) $uri with:`n$($invokeParams.Body)`n")) { return }
+            if (-not $PSCmdlet.ShouldProcess("Dependency ID: $dependency", "$($invokeParamsOther.Method) $uri with:`n$($invokeParams.Body)`n")) { return }
             Write-Verbose "$($invokeParamsOther.Method) $uri with:`n$($invokeParams.Body)`n"
             try {
                 $restResponse = . $InvokeApi @invokeParams
@@ -63,7 +63,7 @@ function Start-SecretDependency {
                 [string]$restResponse
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

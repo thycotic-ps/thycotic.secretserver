@@ -25,12 +25,12 @@ function Find-Folder {
     [OutputType('TssFolderLookup')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Parent Folder Id
-        [Alias("FolderId")]
+        [Alias('FolderId')]
         [int]
         $ParentFolderId,
 
@@ -39,12 +39,12 @@ function Find-Folder {
         $SearchText,
 
         # Filter based on folder permission (Owner, Edit, AddSecret, View). Default: View
-        [ValidateSet('Owner','Edit','AddSecret','View')]
+        [ValidateSet('Owner', 'Edit', 'AddSecret', 'View')]
         [string]
         $PermissionRequired,
 
         # Sort by specific property (Id, FolderName). Default: FolderName
-        [ValidateSet('FolderId','FolderName')]
+        [ValidateSet('FolderId', 'FolderName')]
         [string]
         $SortBy = 'FolderName'
     )
@@ -91,19 +91,19 @@ function Find-Folder {
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
-                Write-Warning "Issue on search request"
+                Write-Warning 'Issue on search request'
                 $err = $_
                 . $ErrorHandling $err
             }
 
             if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
-                Write-Warning "No Folder found"
+                Write-Warning 'No Folder found'
             }
             if ($restResponse.records) {
                 [TssFolderLookup[]]$restResponse.records
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

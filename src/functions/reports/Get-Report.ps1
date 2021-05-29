@@ -25,13 +25,13 @@ function Get-Report {
     [OutputType('TssReport')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Report ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("ReportId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('ReportId')]
         [int[]]
         $Id
     )
@@ -64,7 +64,7 @@ function Get-Report {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

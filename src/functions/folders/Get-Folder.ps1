@@ -43,27 +43,27 @@ function Get-Folder {
     [OutputType('TssFolder')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Folder ID to retrieve
         [Parameter(ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
-        [Alias("FolderId")]
+        [Alias('FolderId')]
         [int[]]
         $Id,
 
         # Retrieve all child folders within the requested folder
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'id')]
-        [Alias("GetAllChildren")]
+        [Alias('GetAllChildren')]
         [switch]
         $GetChildren,
 
         # Include allowable Secret Templates of the requested folder
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'id')]
-        [Alias('IncludeAssociatedTemplates','IncludeTemplates')]
+        [Alias('IncludeAssociatedTemplates', 'IncludeTemplates')]
         [switch]
         $IncludeTemplate,
 
@@ -90,7 +90,7 @@ function Get-Folder {
                 foreach ($folder in $Id) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'folders', $folder -join '/'
-                    $uri = $uri + '?' + "getAllChildren=$GetChildren" + "&" + "includeAssociatedTemplates=$IncludeTemplate"
+                    $uri = $uri + '?' + "getAllChildren=$GetChildren" + '&' + "includeAssociatedTemplates=$IncludeTemplate"
 
                     $invokeParams.Uri = $Uri
                     $invokeParams.Method = 'GET'
@@ -110,7 +110,7 @@ function Get-Folder {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

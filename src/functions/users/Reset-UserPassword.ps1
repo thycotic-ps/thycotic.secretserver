@@ -24,13 +24,13 @@ function Reset-UserPassword {
     [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # User ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("UserId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('UserId')]
         [int[]]
         $Id,
 
@@ -78,7 +78,7 @@ function Reset-UserPassword {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

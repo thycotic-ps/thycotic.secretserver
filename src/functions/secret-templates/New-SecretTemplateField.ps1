@@ -47,12 +47,12 @@ function New-SecretTemplateField {
     param(
         # Field Name - value used for DisplayName, Name, and Slug Name
         [Parameter(Mandatory, Position = 0)]
-        [Alias("Field")]
+        [Alias('Field')]
         [string]
         $FieldName,
 
         # Field Type: Notes, Text, File, Url, or Password
-        [ValidateSet('Notes','Text','File','Url','Password')]
+        [ValidateSet('Notes', 'Text', 'File', 'Url', 'Password')]
         [string]
         $Type = 'Text',
 

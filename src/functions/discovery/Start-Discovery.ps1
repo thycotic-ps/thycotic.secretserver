@@ -30,13 +30,13 @@ function Start-Discovery {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,Position = 1)]
-        [ValidateSet('Discovery','ComputerScan')]
+        [Parameter(Mandatory, Position = 1)]
+        [ValidateSet('Discovery', 'ComputerScan')]
         [string]
         $Type
     )
@@ -71,7 +71,7 @@ function Start-Discovery {
                 Write-Verbose "Discovery type [$Type] started"
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

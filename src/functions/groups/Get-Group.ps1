@@ -64,14 +64,14 @@ function Get-Group {
                             $oGroups = @()
                             foreach ($prop in $g.ownerGroups.PSObject.Properties.Name) {
                                 $oGroups += [pscustomobject]@{
-                                    GroupId = $prop
+                                    GroupId   = $prop
                                     GroupName = $g.ownerGroups.$prop
                                 }
                             }
                             $oUsers = @()
                             foreach ($prop in $g.ownerUsers.PSObject.Properties.Name) {
                                 $oUsers += [pscustomobject]@{
-                                    UserId = $prop
+                                    UserId   = $prop
                                     Username = $g.ownerUsers.$prop
                                 }
                             }

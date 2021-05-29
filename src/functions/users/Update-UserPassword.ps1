@@ -24,16 +24,16 @@ function Update-UserPassword {
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Current password
-        [Parameter(Mandatory,Position = 1)]
+        [Parameter(Mandatory, Position = 1)]
         [securestring]
         $Current,
 
-        [Parameter(Mandatory,Position = 2)]
+        [Parameter(Mandatory, Position = 2)]
         # New password to update
         [securestring]
         $New
@@ -53,28 +53,28 @@ function Update-UserPassword {
 
             $changePwdBody = @{
                 currentPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($Current))
-                newPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($New))
+                newPassword     = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($New))
             }
             $invokeParams.Body = $changePwdBody | ConvertTo-Json
 
-            if ($PSCmdlet.ShouldProcess("Updating Password", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
+            if ($PSCmdlet.ShouldProcess('Updating Password', "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue updating password for current user"
+                    Write-Warning 'Issue updating password for current user'
                     $err = $_
                     . $ErrorHandling $err
                 }
             }
             if ($restResponse) {
-                Write-Verbose "Password updated successfully"
+                Write-Verbose 'Password updated successfully'
                 $TssSession.SessionExpire() >$null
             } else {
-                Write-Warning "Password was not updated successfully, see previous errors"
+                Write-Warning 'Password was not updated successfully, see previous errors'
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

@@ -24,13 +24,13 @@ function Start-SecretHeartbeat {
     [CmdletBinding(SupportsShouldProcess)]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id
     )
@@ -49,7 +49,7 @@ function Start-SecretHeartbeat {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret","$($invokeParamsOther.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $uri")) { return }
                 Write-Verbose "$($invokeParamsOther.Method) $uri"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
@@ -63,7 +63,7 @@ function Start-SecretHeartbeat {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

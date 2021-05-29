@@ -25,13 +25,13 @@ function Get-SecretTemplate {
     [OutputType('TssSecretTemplate')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret template ID to retrieve
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("TemplateId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('TemplateId')]
         [int[]]
         $Id
     )
@@ -65,7 +65,7 @@ function Get-SecretTemplate {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

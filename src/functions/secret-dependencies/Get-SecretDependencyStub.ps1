@@ -74,9 +74,9 @@ function Get-SecretDependencyStub {
             }
             if ($tssParams.ContainsKey('Type')) {
                 switch ($Type) {
-                    'PowerShell' { $uri = $uri, "typeId=7" -join '&' }
-                    'SSH' { $uri = $uri, "typeId=8" -join '&' }
-                    'SQL' { $uri = $uri, "typeId=9" -join '&' }
+                    'PowerShell' { $uri = $uri, 'typeId=7' -join '&' }
+                    'SSH' { $uri = $uri, 'typeId=8' -join '&' }
+                    'SQL' { $uri = $uri, 'typeId=9' -join '&' }
                 }
             }
             $invokeParams.Uri = $uri
@@ -95,7 +95,7 @@ function Get-SecretDependencyStub {
             }
 
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }

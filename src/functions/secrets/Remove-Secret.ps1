@@ -25,13 +25,13 @@ function Remove-Secret {
     [OutputType('TssDelete')]
     param(
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [TssSession]
         $TssSession,
 
         # Secret ID to disable (mark inactive)
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("SecretId")]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretId')]
         [int[]]
         $Id
     )
@@ -45,7 +45,7 @@ function Remove-Secret {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
-                $uri = $TssSession.ApiUrl, "secrets", $secret -join '/'
+                $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
                 $invokeParams.Uri = $Uri
 
@@ -66,7 +66,7 @@ function Remove-Secret {
                 }
             }
         } else {
-            Write-Warning "No valid session found"
+            Write-Warning 'No valid session found'
         }
     }
 }
