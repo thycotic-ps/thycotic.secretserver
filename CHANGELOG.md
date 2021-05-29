@@ -5,6 +5,56 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Disable/Enable Unlimited Admin - correcting validation [2c32f8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c32f8fab3fd7a62eb07d8c9b6919b516b8041d3)
+* Search-SecretPermission - correct issue from test [3af9359](https://github.com/thycotic-ps/thycotic.secretserver/commit/3af93592fd550814103013adcdfb3c0d8fe742fb)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* Search-SecretPermission - closes [#186](https://github.com/thycotic-ps/thycotic.secretserver/issues/186) [7731fab](https://github.com/thycotic-ps/thycotic.secretserver/commit/7731fabecea4f4d8e2008bb12469d3b929fa8f81)
+* Remove-SecretPermission - closes [#187](https://github.com/thycotic-ps/thycotic.secretserver/issues/187) [d020a14](https://github.com/thycotic-ps/thycotic.secretserver/commit/d020a14844cc558b4ff2cd32cd78f1add43fb76e)
+* Update-SecretPermission - closes #189 [2cf1104](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf1104999b4762801c1282faf7e2e164ac26bb4)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.40.0] -- 2021-05-28
 
 ### Breaking Changes
@@ -42,6 +92,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-UserGroup - closes [#96](https://github.com/thycotic-ps/thycotic.secretserver/issues/96) [083c498](https://github.com/thycotic-ps/thycotic.secretserver/commit/083c49889bd08edd506299b2b7ee23fb3b5bd3bc)
 * Get-UserOwner - closes [#95](https://github.com/thycotic-ps/thycotic.secretserver/issues/95) [9292857](https://github.com/thycotic-ps/thycotic.secretserver/commit/9292857fc177c6054e2eec0a72dc3cdda96169e7)
 * Enable/Disable Unlimited Admin Mode [8b64a58](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b64a58a1e16957e5bc2b8bc36892b4fbe461216)
+* New-SecretPermission - closes #188 [eac25ad](https://github.com/thycotic-ps/thycotic.secretserver/commit/eac25ad87b37ab7043bcadc5ea0ae46f89107700)
 
 </details>
 
