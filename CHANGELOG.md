@@ -37,6 +37,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-Group - closes [#56](https://github.com/thycotic-ps/thycotic.secretserver/issues/56) [763f23b](https://github.com/thycotic-ps/thycotic.secretserver/commit/763f23b2a35ea35c9ce885a88a0b93ef4e0d6af5)
 * Remove-GroupMember - closes [#52](https://github.com/thycotic-ps/thycotic.secretserver/issues/52) [b7d8494](https://github.com/thycotic-ps/thycotic.secretserver/commit/b7d8494391e3ca50aaff3f3dc2f72d23b64d4b46)
 * Get-GroupRole - closes [#54](https://github.com/thycotic-ps/thycotic.secretserver/issues/54) [f4e3099](https://github.com/thycotic-ps/thycotic.secretserver/commit/f4e309958ab54daf706d4032a6b4c531cbb5e2f7)
+* Get-GroupUser - closes [#53](https://github.com/thycotic-ps/thycotic.secretserver/issues/53) [f9cf8c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/f9cf8c277c5ccb0dd26a959acfdb167cc167957c)
+* Add-GroupMember - closes [#51](https://github.com/thycotic-ps/thycotic.secretserver/issues/51) [d57c131](https://github.com/thycotic-ps/thycotic.secretserver/commit/d57c13124f078d69c5e1c53d069b9f2db398aeef)
 
 </details>
 
