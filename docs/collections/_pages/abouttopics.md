@@ -148,16 +148,17 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 
 **Class** | **Thycotic.SecretServer Command** |
 --------------------------------- | -------------------------------------------------- |
+[TssCurrentUser] | [Show-TssCurrentUser]
+[TssGroupAssignedRole] | [Get-TssUserRoleAssigned]
+[TssMenuLink] | [Show-TssCurrentUser]
+[TssRolePermission] | [Show-TssCurrentUser]
+[TssRoleSummary] | [Get-TssUserRole]
 [TssUser] | [Get-TssUser] [Get-TssUserStub]
 [TssUserAuditSummary] | [Get-TssUserAudit]
-[TssRoleSummary] | [Get-TssUserRole]
-[TssUserRoleSummary] | [Get-TssUserRoleAssigned]
-[TssGroupAssignedRole] | [Get-TssUserRoleAssigned]
-[TssUserSummary] | [Search-TssUser]
 [TssUserLookup] | [Find-TssUser]
-[TssCurrentUser] | [Show-TssCurrentUser]
-[TssRolePermission] | [Show-TssCurrentUser]
-[TssMenuLink] | [Show-TssCurrentUser]
+[TssUserOwnerSummary] | [Get-TssUserOwner]
+[TssUserRoleSummary] | [Get-TssUserRoleAssigned]
+[TssUserSummary] | [Search-TssUser]
 
 [New-TssSession]:/thycotic.secretserver/commands/New-TssSession
 [Get-TssSecret]:/thycotic.secretserver/commands/Get-TssSecret
@@ -216,7 +217,9 @@ About topics cover the [PowerShell classes](https://docs.microsoft.com/en-us/pow
 [Get-TssGroupMember]:/thycotic.secretserver/commands/Get-TssGroupMember
 [Get-TssGroup]:/thycotic.secretserver/commands/Get-TssGroup
 [Add-TssGroupMember]:/thycotic.secretserver/commands/Add-TssGroupMember
+[Get-TssUserOwner]:/thycotic.secretserver/commands/Get-TssUserOwner
 
+[TssUserOwnerSummary]:/thycotic.secretserver/abouttopics/about_tssuserownersummary
 [TssGroupUser]:/thycotic.secretserver/abouttopics/about_tssgroupuser
 [TssGroup]:/thycotic.secretserver/abouttopics/about_tssgroup
 [TssGroupOwner]:/thycotic.secretserver/abouttopics/about_tssgroupowner

@@ -216,6 +216,10 @@ commands:
         url: /commands/Get-TssUser
       - title: "Get-TssUserAudit"
         url: /commands/Get-TssUserAudit
+      - title: "Get-TssUserGroup"
+        url: /commands/Get-TssUserGroup
+      - title: "Get-TssUserOwner"
+        url: /commands/Get-TssUserOwner
       - title: "Get-TssUserRole"
         url: /commands/Get-TssUserRole
       - title: "Get-TssUserRoleAssigned"
@@ -433,6 +437,8 @@ abouttopics:
         url: /abouttopics/about_tssuserauditsummary
       - title: "TssUserLookup"
         url: /abouttopics/about_tssuserlookup
+      - title: "TssUserOwnerSummary"
+        url: /abouttopics/about_tssuserownersummary
       - title: "TssUserRoleSummary"
         url: /abouttopics/about_tssuserrolesummary
       - title: "TssUserSummary"
