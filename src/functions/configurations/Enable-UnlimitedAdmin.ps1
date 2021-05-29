@@ -57,16 +57,11 @@ function Enable-UnlimitedAdmin {
                 Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
+                    Write-Verbose 'Unlimited Admin mode enabled'
                 } catch {
                     Write-Warning 'Issue enabling Unlimited Admin Mode'
                     $err = $_
                     . $ErrorHandling $err
-                }
-
-                if ($restResponse) {
-                    Write-Verbose 'Unlimited Admin mode enabled'
-                } else {
-                    Write-Warning 'Unlimited Admin mode has not been enabled'
                 }
             }
         } else {
