@@ -1,0 +1,28 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.180.0/containers/powershell
+{
+  "name": "tss",
+  "image": "mcr.microsoft.com/powershell:latest",
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.profiles.linux": {
+      "pwsh": {
+        "path": "pwsh",
+        "icon": "terminal-powershell"
+      }
+    },
+    "terminal.integrated.defaultProfile.linux": "pwsh"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "ms-vscode.powershell",
+    "usernamehw.errorlens",
+    "streetsidesoftware.code-spell-checker",
+    "github.vscode-pull-request-github",
+    "oderwat.indent-rainbow",
+    "2gua.rainbow-brackets",
+    "vscode-icons-team.vscode-icons"
+  ],
+  // Uncomment the next line to run commands after the container is created. This gets run in bash which is why we call `pwsh`.
+  "postCreateCommand": "apt-get update && apt-get install -y git && /opt/microsoft/powershell/7/pwsh -c Install-Module Pester,PSScriptAnalyzer -Force"
+}
