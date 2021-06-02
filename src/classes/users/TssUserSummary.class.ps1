@@ -17,6 +17,10 @@ class TssUserSummary {
     [boolean]
     $Enabled
 
+    [string]
+    [ValidateSet('None','ThycoticOne','Azure')]
+    $ExternalUserSource
+
     [int]
     $Id
 
@@ -34,7 +38,7 @@ class TssUserSummary {
 
     [string]
     $Username
-    
+
     [ValidateSet('None', 'Radius', 'TOTPAuthenticator', 'Duo', 'Fido2', 'Email')]
     [string]
     $TwoFactorMethod
