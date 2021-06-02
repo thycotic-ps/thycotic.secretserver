@@ -59,12 +59,14 @@ $script:PSModuleRoot = $PSScriptRoot
     Remove is a common term though and one used by SecretManagement module from Microsoft.
     Creating an alias to map to Disable function of the module to keep things simplified.
 #>
-$shortcuts = @{
-    'gts' = 'Get-TssSecret'
-    'nts' = 'New-TssSession'
-    'ira' = 'Invoke-TssRestApi'
+$aliases = @{
+    'gts' = 'Get-Secret'
+    'nts' = 'New-Session'
+    'ira' = 'Invoke-RestApi'
+    'Checkout-Secret' = 'Open-Secret'
+    'CheckIn-Secret' = 'Close-Secret'
 }
-foreach ($_ in $shortcuts.GetEnumerator()) {
+foreach ($_ in $aliases.GetEnumerator()) {
     New-Alias -Name $_.Key -Value $_.Value -Force
 }
 Export-ModuleMember -Alias * -Function * -Cmdlet *
