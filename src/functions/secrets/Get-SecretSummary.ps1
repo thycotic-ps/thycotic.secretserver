@@ -60,15 +60,6 @@ function Get-SecretSummary {
                 }
 
                 if ($restResponse) {
-                    if (-not $restResponse.lastPasswordChangeAttempt) {
-                        $restResponse.lastPasswordChangeAttempt = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.lastAccessed) {
-                        $restResponse.lastAccessed = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.createDate) {
-                        $restResponse.createDate = [datetime]::MinValue
-                    }
                     [TssSecretSummary]$restResponse
                 }
             }

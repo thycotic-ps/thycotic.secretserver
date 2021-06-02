@@ -1,11 +1,11 @@
 class TssUser {
-    [datetime]
+    [Nullable[datetime]]
     $AdAccountExpires
 
     [string]
     $AdGuid
 
-    [datetime]
+    [Nullable[datetime]]
     $Created
 
     [int]
@@ -44,10 +44,10 @@ class TssUser {
     [boolean]
     $IsLockedOut
 
-    [datetime]
+    [Nullable[datetime]]
     $LastLogin
 
-    [datetime]
+    [Nullable[datetime]]
     $LastSessionActivity
 
     [string]
@@ -68,7 +68,7 @@ class TssUser {
     [boolean]
     $OathVerified
 
-    [datetime]
+    [Nullable[datetime]]
     $PasswordLastChanged
 
     [boolean]
@@ -77,7 +77,7 @@ class TssUser {
     [string]
     $RadiusUserName
 
-    [datetime]
+    [Nullable[datetime]]
     $ResetSessionStarted
 
     [int]
@@ -96,6 +96,6 @@ class TssUser {
     [string]
     $Username
 
-    [datetime]
+    [Nullable[datetime]]
     $VerifyEmailSentDate
 }

@@ -102,12 +102,7 @@ function Search-DistributedEngineSite {
                 Write-Warning 'No Distributed Engine Sites found'
             }
             if ($restResponse.records) {
-                foreach ($record in $restResponse.records) {
-                    if (-not $record.lastActivity) {
-                        $record.lastActivity = [datetime]::MinValue
-                    }
-                    [TssSiteSummary]$record
-                }
+                [TssSiteSummary[]]$record
             }
         } else {
             Write-Warning 'No valid session found'

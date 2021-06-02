@@ -59,10 +59,6 @@ function Get-SecretSetting {
                     . $ErrorHandling $err
                 }
 
-                if (-not $restResponse.ExpirationDate) {
-                    $restResponse.ExpirationDate = [datetime]::MinValue
-                }
-
                 if ($restResponse) {
                     [TssSecretDetailSettings]$restResponse
                 }

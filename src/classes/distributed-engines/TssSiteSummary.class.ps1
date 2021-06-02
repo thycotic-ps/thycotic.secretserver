@@ -5,7 +5,7 @@ class TssSiteSummary {
     [boolean]
     $IsLocal
 
-    [datetime]
+    [Nullable[datetime]]
     $LastActivity
 
     [int]

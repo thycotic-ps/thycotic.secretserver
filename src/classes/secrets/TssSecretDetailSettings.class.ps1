@@ -1,5 +1,5 @@
 class TssSecretDetailSettings {
-    [datetime]
+    [Nullable[datetime]]
     $ExpirationDate
 
     [int]

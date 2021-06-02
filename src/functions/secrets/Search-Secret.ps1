@@ -285,19 +285,7 @@ function Search-Secret {
             }
 
             if ($restResponse.records) {
-                foreach ($secret in $restResponse.records) {
-                    if (-not $restResponse.lastPasswordChangeAttempt) {
-                        $secret.lastPasswordChangeAttempt = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.lastAccessed) {
-                        $secret.lastAccessed = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.createDate) {
-                        $secret.createDate = [datetime]::MinValue
-                    }
-
-                    [TssSecretSummary]$secret
-                }
+                [TssSecretSummary[]]$secret
             }
         } else {
             Write-Warning 'No valid session found'

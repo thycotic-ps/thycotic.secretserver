@@ -5,8 +5,8 @@ class TssGroup {
     [boolean]
     $CanEditMembers
 
-    [datetime]
-    $Created = [datetime]::MinValue
+    [Nullable[datetime]]
+    $Created
 
     [int]
     $DomainId

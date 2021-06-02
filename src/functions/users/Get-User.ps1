@@ -62,24 +62,6 @@ function Get-User {
                     . $ErrorHandling $err
                 }
 
-                if (-not $restResponse.verifyEmailSentDate) {
-                    $restResponse.verifyEmailSentDate = [datetime]::MinValue
-                }
-                if (-not $restResponse.passwordLastChanged) {
-                    $restResponse.passwordLastChanged = [datetime]::MinValue
-                }
-                if (-not $restResponse.adAccountExpires) {
-                    $restResponse.adAccountExpires = [datetime]::MinValue
-                }
-                if (-not $restResponse.resetSessionStarted) {
-                    $restResponse.resetSessionStarted = [datetime]::MinValue
-                }
-                if (-not $restResponse.LastSessionActivity) {
-                    $restResponse.LastSessionActivity = [datetime]::MinValue
-                }
-                if (-not $restResponse.lastLogin) {
-                    $restResponse.LastLogin = [datetime]::MinValue
-                }
                 if ($restResponse) {
                     [TssUser]$restResponse
                 }

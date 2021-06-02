@@ -3,6 +3,6 @@ class TssSecretHeartbeatStatus {
     [string]
     $Status
 
-    [datetime]
+    [Nullable[datetime]]
     $LastHeartbeatCheck
 }

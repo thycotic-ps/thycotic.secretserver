@@ -117,10 +117,10 @@ function New-User {
                 }
             }
 
-            $invokeParams.Body = ($newBody | ConvertTo-Json)
+            $invokeParams.Body = ($newBody | ConvertTo-Json -Depth 100)
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
-            if (-not $PSCmdlet.ShouldProcess('', "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+            if (-not $PSCmdlet.ShouldProcess("User: $Username", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {

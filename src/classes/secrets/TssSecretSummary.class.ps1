@@ -11,7 +11,7 @@ class TssSecretSummary {
     [boolean]
     $CheckOutEnabled
 
-    [datetime]
+    [Nullable[datetime]]
     $CreateDate
 
     [int]
@@ -44,14 +44,14 @@ class TssSecretSummary {
     [boolean]
     $IsRestricted
 
-    [datetime]
+    [Nullable[datetime]]
     $LastAccessed
 
     [ValidateSet('Failed','Success','Pending','Disabled','UnableToConnect','UnknownError','IncompatibleHost','AccountLockedOut','DnsMismatch','UnableToValidateServerPublicKey','Processing','ArgumentError','AccessDenied')]
     [string]
     $LastHeartbeatStatus
 
-    [datetime]
+    [Nullable[datetime]]
     $LastPasswordChangeAttempt
 
     [string]

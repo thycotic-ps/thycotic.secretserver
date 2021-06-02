@@ -59,10 +59,6 @@ function Get-SecretHeartbeatStatus {
                     . $ErrorHandling $err
                 }
 
-                if ($null -eq $restResponse.LastHeartbeatCheck) {
-                    $restResponse.lastHeartbeatCheck = [datetime]::MinValue
-                }
-
                 if ($restResponse) {
                     [TssSecretHeartbeatStatus]$restResponse
                 }
