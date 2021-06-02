@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Protect-Secret - Renamed to Close-Secret Removed output as well. Will return no output if successful. [ab774f0](https://github.com/thycotic-ps/thycotic.secretserver/commit/ab774f089854722c0bece134b9454226f1b3c100)
 
 </details>
 
@@ -35,6 +35,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-SecretPermission - closes [#186](https://github.com/thycotic-ps/thycotic.secretserver/issues/186) [7731fab](https://github.com/thycotic-ps/thycotic.secretserver/commit/7731fabecea4f4d8e2008bb12469d3b929fa8f81)
 * Remove-SecretPermission - closes [#187](https://github.com/thycotic-ps/thycotic.secretserver/issues/187) [d020a14](https://github.com/thycotic-ps/thycotic.secretserver/commit/d020a14844cc558b4ff2cd32cd78f1add43fb76e)
 * Update-SecretPermission - closes #189 [2cf1104](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf1104999b4762801c1282faf7e2e164ac26bb4)
+* Search-SecretHook - closes [#191](https://github.com/thycotic-ps/thycotic.secretserver/issues/191) [fb3a7ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb3a7eded3da0f46bdc74756afff0f75e30e5e89)
+* Open-Secret - allows for checking out a secret [dc23ab3](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc23ab3ea48aaef7e3a91ff4e4cc3f06445ab4df)
+* module - Add aliases Checkout-Secret / CheckIn-Secret Compliments use of the Open/Close-Secret [5ee8224](https://github.com/thycotic-ps/thycotic.secretserver/commit/5ee822490fc08f506f5c6d2b7f61f04433c2e6fc)
+* Get-SecretHook - closes [#192](https://github.com/thycotic-ps/thycotic.secretserver/issues/192) [87f6a6e](https://github.com/thycotic-ps/thycotic.secretserver/commit/87f6a6e1a89d8288184d6506ecd4ceb5d7fdccfb)
 
 </details>
 
