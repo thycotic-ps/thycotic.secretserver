@@ -8,15 +8,15 @@ function Add-GroupMember {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssNoun -TssSession $session -Id 8 -UserId 54
+    Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
 
     Add User ID 54 to Group ID 8
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssNoun
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Set-Noun.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -46,7 +46,7 @@ function Add-GroupMember {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($user in $UserId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'groups', $Id, 'users' -join '/'
