@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
+* module - fix issue with import on unix OS [c73537f](https://github.com/thycotic-ps/thycotic.secretserver/commit/c73537f9c8e879c73b78ae853f9f1859373a459a)
 * Disable/Enable Unlimited Admin - correcting validation [2c32f8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c32f8fab3fd7a62eb07d8c9b6919b516b8041d3)
 * Search-SecretPermission - correct issue from test [3af9359](https://github.com/thycotic-ps/thycotic.secretserver/commit/3af93592fd550814103013adcdfb3c0d8fe742fb)
 
@@ -35,6 +36,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-SecretPermission - closes [#186](https://github.com/thycotic-ps/thycotic.secretserver/issues/186) [7731fab](https://github.com/thycotic-ps/thycotic.secretserver/commit/7731fabecea4f4d8e2008bb12469d3b929fa8f81)
 * Remove-SecretPermission - closes [#187](https://github.com/thycotic-ps/thycotic.secretserver/issues/187) [d020a14](https://github.com/thycotic-ps/thycotic.secretserver/commit/d020a14844cc558b4ff2cd32cd78f1add43fb76e)
 * Update-SecretPermission - closes #189 [2cf1104](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf1104999b4762801c1282faf7e2e164ac26bb4)
+* Search-SecretPolicy [b980a3d](https://github.com/thycotic-ps/thycotic.secretserver/commit/b980a3d7c47cade3820d09cd253054a5ba7c6dfa)
 * Search-SecretHook - closes [#191](https://github.com/thycotic-ps/thycotic.secretserver/issues/191) [fb3a7ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb3a7eded3da0f46bdc74756afff0f75e30e5e89)
 * Open-Secret - allows for checking out a secret [dc23ab3](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc23ab3ea48aaef7e3a91ff4e4cc3f06445ab4df)
 * module - Add aliases Checkout-Secret / CheckIn-Secret Compliments use of the Open/Close-Secret [5ee8224](https://github.com/thycotic-ps/thycotic.secretserver/commit/5ee822490fc08f506f5c6d2b7f61f04433c2e6fc)
