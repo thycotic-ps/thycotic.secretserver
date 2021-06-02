@@ -128,7 +128,7 @@ function Set-SecretField {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
 
             if ($setParams.ContainsKey('Clear') -and $setParams.ContainsKey('Value')) {
                 Write-Warning 'Clear and Value provided, only one is supported'

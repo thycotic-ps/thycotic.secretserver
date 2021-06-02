@@ -46,7 +46,7 @@ function Reset-UserPassword {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($resetParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($user in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'users', $user, 'password-reset' -join '/'
