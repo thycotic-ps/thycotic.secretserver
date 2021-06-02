@@ -118,6 +118,7 @@ The table below lists the API endpoints matched up to the function that directly
 
 **Command** | **API Endpoint** |
 ---------------- | --------------------------------- |
+[Close-TssSecret] | POST /secrets/{id}/check-in
 [Disable-TssSecretCheckout] | PATCH /secrets/{id}/security-checkout
 [Disable-TssSecretEmail] | PATCH /secrets/{id}/email
 [Enable-TssSecretCheckout] | PATCH /secrets/{id}/security-checkout
@@ -137,7 +138,8 @@ The table below lists the API endpoints matched up to the function that directly
 [Invoke-TssSecretGeneratePassword] | GET /internals/secret-detail/{id}/generate-password
 [Invoke-TssSecretGeneratePassword] | POST /internals/secret-detail/{id}/validate-password
 [New-TssSecret] | POST /secrets
-[Close-TssSecret] | POST /secrets/{id}/check-in
+[Open-TssSecret] | POST /secret-access-requests/secrets/{id}/view-comment
+[Open-TssSecret] | POST /secrets/{id}/check-out
 [Remove-TssSecret] | DELETE /secrets/{id}
 [Restore-TssSecret] | PUT /secrets/{id}/undelete
 [Revoke-TssSecret] | POST /secrets/{id}/expire
@@ -309,3 +311,4 @@ The table below lists the API endpoints matched up to the function that directly
 [Search-TssSecretPerimssion]:/thycotic.secretserver/commands/Search-TssSecretPermission
 [Update-TssSecretPerimssion]:/thycotic.secretserver/commands/Update-TssSecretPermission
 [New-TssSecretPerimssion]:/thycotic.secretserver/commands/New-TssSecretPermission
+[Open-TssSecret]:/thycotic.secretserver/commands/Open-TssSecret

@@ -150,6 +150,8 @@ commands:
         url: /commands/Invoke-TssSecretGeneratePassword
       - title: "New-TssSecret"
         url: /commands/New-TssSecret
+      - title: "Open-TssSecret"
+        url: /commands/Open-TssSecret
       - title: "Remove-TssSecret"
         url: /commands/Remove-TssSecret
       - title: "Restore-TssSecret"
