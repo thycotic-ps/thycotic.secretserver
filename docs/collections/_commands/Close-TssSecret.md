@@ -2,12 +2,12 @@
 category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Protect-TssSecret
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Close-TssSecret
 schema: 2.0.0
-title: Protect-TssSecret
+title: Close-TssSecret
 ---
 
-# Protect-TssSecret
+# Close-TssSecret
 
 ## SYNOPSIS
 Check-In a Secret
@@ -15,7 +15,7 @@ Check-In a Secret
 ## SYNTAX
 
 ```
-Protect-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
+Close-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-IncludeInactive] [<CommonParameters>]
 ```
 
@@ -27,9 +27,25 @@ Check-In a Secret
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+CheckIn-TssSecret -TssSession $session -Id 86
+```
+
+Check-In Secret 86
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+CheckIn-TssSecret -TssSession $session -Id 98 -ForceCheckIn
+```
+
+Check-In Secret 98 applying ForceCheckIn
+
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 $secret = Get-TssSecret -TssSession $session -Id 42
 $scriptCred = $secret.GetCredential()
-Protect-TssSecret -TssSession $session -Id 42
+Close-TssSecret -TssSession $session -Id 42
 ```
 
 Check-In Secret 42 after using it to get the username/password credential
@@ -154,7 +170,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Protect-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Protect-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Close-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Close-TssSecret)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Protect-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Protect-Secret.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-Secret.ps1)
 
