@@ -52,7 +52,7 @@ function Update-GroupMember {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PUT'
 
-            $addBody = @{ userId = $UserId }
+            $addBody = @{ userIds = $UserId }
             $invokeParams.Body = $addBody | ConvertTo-Json
             if ($PSCmdlet.ShouldProcess("Group ID: $Id", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
                 Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
