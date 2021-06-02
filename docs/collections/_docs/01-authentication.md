@@ -71,7 +71,45 @@ More: [How to Secure Your Passwords with PowerShell](https://www.sqlshack.com/ho
 
 ### SecretManagement Module
 
-Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the OAuth2 credential needed for authenticating with Secret Server's.
+Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the credential needed for authenticating to Secret Server.
+
+#### Example Usage
+
+```powershell
+# Install-Module Microsoft.PowerShell.SecretManagement -Scope AllUsers -Force
+Import-Module Microsoft.PowerShell.SecretStore, Microsoft.PowerShell.SecretManagement
+
+<# First time register the SecretStore vault as the default #>
+Register-SecretVault -Name SecretStore -ModuleName Microsoft.PowerShell.SecretStore -DefaultVault
+Register-SecretVault -Name scripts -ModuleName Microsoft.PowerShell.SecretStore -DefaultVault
+
+<# See two vaults are created #>
+Get-SecretVault
+
+Set-SecretVaultDefault -Name scripts
+
+<# Unregistered/remove a vault #>
+UnRegister-SecretVault SecretStore
+
+# Store a password
+Set-Secret -Name apidemoPwd -SecureStringSecret (ConvertTo-SecureString 'P@ssword$01' -AsPlainText -Force)
+
+# Store a full Credential object
+$cred = [pscredential]::new('apidemo',(ConvertTo-SecureString 'P@ssword$01' -AsPlainText -Force))
+Set-Secret -Name apidemoCred -Secret $cred
+
+# use stored password for authentication
+
+# Get the SecureString created for apidemo account
+$apiCred = [pscredential]::new('apidemo',(Get-Secret apidemoPwd))
+# Use in API call
+$SecretServerHost = 'http://argos/secretserver'
+$session = New-TssSession -SecretServer $SecretServerHost -Credential $apiCred
+
+# vs full credential being stored
+$SecretServerHost = 'http://argos/secretserver'
+$session = New-TssSession -SecretServer $SecretServerHost -Credential (Get-Secret apidemo)
+```
 
 More:
 
