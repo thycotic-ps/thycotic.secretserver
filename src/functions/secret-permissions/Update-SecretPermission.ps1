@@ -21,7 +21,7 @@ function Update-SecretPermission {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
+    [cmdletbinding(SupportsShouldProcess)]
     [OutputType('TssSecretPermission')]
     param(
         # TssSession object created by New-TssSession for auth
