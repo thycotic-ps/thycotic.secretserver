@@ -227,3 +227,25 @@ try {
 
 Search-TssSecret -FieldSlug Notes -SearchText 'Purple' | Start-TssSecretHeartbeat -Verbose
 ```
+
+## Modify Fields on Secrets
+
+Updates the Domain field on all secrets that have the value `lab.local` to `newdomain.local`
+
+```powershell
+$params = @{
+    SecretServer = 'http://argos/SecretServer'
+    Credential = Get-Secret apidemo
+}
+$session = New-TssSession @params
+
+# Setting TssSession Default parameter (set once and forget)
+try {
+    $PSDefaultParameterValues.Add("*:TssSession",$session)
+} catch {
+    $PSDefaultParameterValues.Remove("*:TssSession")
+    $PSDefaultParameterValues.Add("*:TssSession",$session)
+}
+
+Set-TssSecretField -FieldSlug Domain -SearchText 'lab.local' | Set-TssSecretField -TssSession $session -Slug domain -Value 'newdomain.local'
+```
