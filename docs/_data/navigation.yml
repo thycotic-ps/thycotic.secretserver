@@ -114,6 +114,8 @@ commands:
         url: /commands/Search-RpcPasswordType
   - title: "Secrets"
     children:
+      - title: "Close-TssSecret"
+        url: /commands/Close-TssSecret
       - title: "Disable-TssSecretCheckout"
         url: /commands/Disable-TssSecretCheckout
       - title: "Disable-TssSecretEmail"
@@ -148,8 +150,6 @@ commands:
         url: /commands/Invoke-TssSecretGeneratePassword
       - title: "New-TssSecret"
         url: /commands/New-TssSecret
-      - title: "Protect-TssSecret"
-        url: /commands/Protect-TssSecret
       - title: "Remove-TssSecret"
         url: /commands/Remove-TssSecret
       - title: "Restore-TssSecret"

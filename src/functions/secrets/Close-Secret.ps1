@@ -1,4 +1,4 @@
-function Protect-Secret {
+function Close-Secret {
     <#
     .SYNOPSIS
     Check-In a Secret
@@ -8,17 +8,29 @@ function Protect-Secret {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    CheckIn-TssSecret -TssSession $session -Id 86
+
+    Check-In Secret 86
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    CheckIn-TssSecret -TssSession $session -Id 98 -ForceCheckIn
+
+    Check-In Secret 98 applying ForceCheckIn
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $secret = Get-TssSecret -TssSession $session -Id 42
     $scriptCred = $secret.GetCredential()
-    Protect-TssSecret -TssSession $session -Id 42
+    Close-TssSecret -TssSession $session -Id 42
 
     Check-In Secret 42 after using it to get the username/password credential
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Protect-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Close-TssSecret
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Protect-Secret.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-Secret.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -83,43 +95,29 @@ function Protect-Secret {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
-                $protectBody = @{}
+                $checkInBody = @{}
                 if ($restrictedParams.Count -gt 0) {
                     switch ($tssParams.Keys) {
-                        'Comment' { $protectBody.Add('comment', $Comment) }
-                        'ForceCheckIn' { $protectBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
-                        'TicketNumber' { $protectBody.Add('ticketNumber', $TicketNumber) }
-                        'TicketSystemId' { $protectBody.Add('ticketSystemId', $TicketSystemId) }
+                        'Comment' { $checkInBody.Add('comment', $Comment) }
+                        'ForceCheckIn' { $checkInBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
+                        'TicketNumber' { $checkInBody.Add('ticketNumber', $TicketNumber) }
+                        'TicketSystemId' { $checkInBody.Add('ticketSystemId', $TicketSystemId) }
                     }
                 }
 
                 if ($protectParams.ContainsKey('IncludeInactive')) {
-                    $protectBody.Add('includeInactive', [boolean]$IncludeInactive)
+                    $checkInBody.Add('includeInactive', [boolean]$IncludeInactive)
                 }
 
-                $invokeParams.Body = $protectBody | ConvertTo-Json
+                $invokeParams.Body = $checkInBody | ConvertTo-Json
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    . $InvokeApi @invokeParams >$null
                 } catch {
                     Write-Warning "Issue checking in Secret [$secret]"
                     $err = $_
                     . $ErrorHandling $err
-                }
-
-                if ($restResponse) {
-                    if (-not $restResponse.lastPasswordChangeAttempt) {
-                        $restResponse.lastPasswordChangeAttempt = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.lastAccessed) {
-                        $restResponse.lastAccessed = [datetime]::MinValue
-                    }
-                    if (-not $restResponse.createDate) {
-                        $restResponse.createDate = [datetime]::MinValue
-                    }
-
-                    [TssSecretSummary]$restResponse
                 }
             }
         } else {

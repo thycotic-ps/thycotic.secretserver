@@ -137,7 +137,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Invoke-TssSecretGeneratePassword] | GET /internals/secret-detail/{id}/generate-password
 [Invoke-TssSecretGeneratePassword] | POST /internals/secret-detail/{id}/validate-password
 [New-TssSecret] | POST /secrets
-[Protect-TssSecret] | POST /secrets/{id}/check-in
+[Close-TssSecret] | POST /secrets/{id}/check-in
 [Remove-TssSecret] | DELETE /secrets/{id}
 [Restore-TssSecret] | PUT /secrets/{id}/undelete
 [Revoke-TssSecret] | POST /secrets/{id}/expire
@@ -267,7 +267,7 @@ The table below lists the API endpoints matched up to the function that directly
 [Set-TssSecretField]:/thycotic.secretserver/commands/Set-TssSecretField
 [Search-TssSecretTemplate]:/thycotic.secretserver/commands/Search-TssSecretTemplate
 [Get-TssUserAudit]:/thycotic.secretserver/commands/Get-TssUserAudit
-[Protect-TssSecret]:/thycotic.secretserver/commands/Protect-TssSecret
+[Close-TssSecret]:/thycotic.secretserver/commands/Close-TssSecret
 [Set-TssSecretSecurity]:/thycotic.secretserver/commands/Set-TssSecretSecurity
 [Revoke-TssSecret]:/thycotic.secretserver/commands/Revoke-TssSecret
 [Set-TssSecretExpiration]:/thycotic.secretserver/commands/Set-TssExpiration
