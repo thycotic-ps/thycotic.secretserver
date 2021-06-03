@@ -53,7 +53,7 @@ function Get-User {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
