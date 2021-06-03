@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - fix issue with import on unix OS [c73537f](https://github.com/thycotic-ps/thycotic.secretserver/commit/c73537f9c8e879c73b78ae853f9f1859373a459a)
 * Disable/Enable Unlimited Admin - correcting validation [2c32f8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c32f8fab3fd7a62eb07d8c9b6919b516b8041d3)
 * Search-SecretPermission - correct issue from test [3af9359](https://github.com/thycotic-ps/thycotic.secretserver/commit/3af93592fd550814103013adcdfb3c0d8fe742fb)
+* Update-GroupMember - corrected error Functions as expected now [b9fda39](https://github.com/thycotic-ps/thycotic.secretserver/commit/b9fda39cd850ef49f295ad1766bcdbd6fb84e7a9)
 
 </details>
 
@@ -54,6 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Module - implemented [Nullable[datetime]] Handles endpoints that return null for datetime properties [20a41e7](https://github.com/thycotic-ps/thycotic.secretserver/commit/20a41e7a079f28d7b6c60960797409c944686237)
 * module - correct version check [458e56f](https://github.com/thycotic-ps/thycotic.secretserver/commit/458e56fc2f307e628321679d81823e6d0f903d38)
 * Add-GroupMember - correct help info [1ffbb64](https://github.com/thycotic-ps/thycotic.secretserver/commit/1ffbb6496ab2db85255f638ccae59c3900758d0f)
+* module - correcting variable reference [ce12ea8](https://github.com/thycotic-ps/thycotic.secretserver/commit/ce12ea87c778f726ed305f69572b86e1c20b4fc2)
 
 </details>
 
