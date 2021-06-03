@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-SecretHook - closes [#192](https://github.com/thycotic-ps/thycotic.secretserver/issues/192) [87f6a6e](https://github.com/thycotic-ps/thycotic.secretserver/commit/87f6a6e1a89d8288184d6506ecd4ceb5d7fdccfb)
 * Update-GroupMember - usage pending correction of endpoint There is a null exception being thrown in 10.9.64 for the endpoint. [b4f63b4](https://github.com/thycotic-ps/thycotic.secretserver/commit/b4f63b4b312602e8b1694f8120c703c84e4a64ef)
 * Remove-SecretHook - closes [#193](https://github.com/thycotic-ps/thycotic.secretserver/issues/193) [8d2aa75](https://github.com/thycotic-ps/thycotic.secretserver/commit/8d2aa7537f2fe892f6a3924a4f5f91040680f666)
+* Update-SecretHook - closes #194 [235ee5f](https://github.com/thycotic-ps/thycotic.secretserver/commit/235ee5f31ecd1b162ab11b3ef9032c2f2693928f)
 
 </details>
 
