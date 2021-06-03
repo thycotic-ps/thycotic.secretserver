@@ -44,6 +44,6 @@ process {
     }
 
     if ($restResponse.records) {
-        [TssSecretSummary[]]$secret
+        [TssSecretSummary[]]$restResponse.records
     }
 }

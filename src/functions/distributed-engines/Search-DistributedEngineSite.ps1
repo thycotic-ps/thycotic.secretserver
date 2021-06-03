@@ -102,7 +102,7 @@ function Search-DistributedEngineSite {
                 Write-Warning 'No Distributed Engine Sites found'
             }
             if ($restResponse.records) {
-                [TssSiteSummary[]]$record
+                [TssSiteSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

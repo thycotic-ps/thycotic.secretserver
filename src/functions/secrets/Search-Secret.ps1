@@ -285,7 +285,7 @@ function Search-Secret {
             }
 
             if ($restResponse.records) {
-                [TssSecretSummary[]]$secret
+                [TssSecretSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
