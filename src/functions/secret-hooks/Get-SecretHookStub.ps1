@@ -8,9 +8,9 @@ function Get-SecretHookStub {
 
     .EXAMPLE
     session = New-TssSession -SecretServer https://alpha -Credential ssCred
-    Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6
+    Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
 
-    Get stub for Secret ID 391 and Script 6
+    Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, PrePostOption and Event Action.
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHookStub
@@ -36,9 +36,25 @@ function Get-SecretHookStub {
         $SecretId,
 
         # Script ID
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory)]
         [int]
-        $ScriptId
+        $ScriptId,
+
+        # Name of Secret Hook
+        [Parameter(Mandatory)]
+        [string]
+        $Name,
+
+        # PRE/POST Option
+        [Parameter(Mandatory)]
+        [ValidateSet('PRE','POST')]
+        [string]
+        $PrePostOption,
+
+        # Event Action, allowed: CheckIn, Checkout
+        [ValidateSet('CheckIn','Checkout')]
+        [string]
+        $EventAction
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -62,15 +78,19 @@ function Get-SecretHookStub {
                     . $ErrorHandling $err
                 }
 
+                switch ($EventAction) {
+                    'Checkout' { $EventActionId = 10026 }
+                    'CheckIn' { $EventActionId = 10025 }
+                }
                 if ($restResponse) {
                     [TssSecretHook]@{
                         SecretHookId = $restResponse.SecretHookId
                         HookId = $restResponse.HookId
-                        Name = $restResponse.name.value
+                        Name = $Name
                         Description = $restResponse.description.value
                         SortOrder = $restResponse.sortOrder.value
-                        PrePostOption = $restResponse.prePostOption.value
-                        EventActionId = $restResponse.eventActionId.value
+                        PrePostOption = $PrePostOption
+                        EventActionId = $EventActionId
                         ScriptTypeId = $restResponse.scriptTypeId.value
                         ScriptId = $restResponse.scriptId.value
                         Status = $restResponse.status.value
