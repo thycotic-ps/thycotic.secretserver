@@ -73,6 +73,7 @@ function Get-SecretHook {
                         PrePostOption = $restResponse.prePostOption.value
                         EventActionId = $restResponse.eventActionId.value
                         ScriptTypeId = $restResponse.scriptTypeId.value
+                        ScriptId = $restResponse.scriptId.value
                         Status = $restResponse.status.value
                         StopOnFailure = $restResponse.stopOnFailure.value
                         ServerName = $restResponse.serverName.value
