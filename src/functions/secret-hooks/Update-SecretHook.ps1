@@ -68,7 +68,7 @@ function Update-SecretHook {
         [string]
         $Port,
 
-        # Pre Post Option, allowed: Pre, Post
+        # PRE/POST Option
         [ValidateSet('PRE','POST')]
         [string]
         $PrePostOption,
