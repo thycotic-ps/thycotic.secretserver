@@ -63,7 +63,28 @@ function Get-SecretHookStub {
                 }
 
                 if ($restResponse) {
-                    [TssSecretHook]$restResponse
+                    [TssSecretHook]@{
+                        SecretHookId = $restResponse.SecretHookId
+                        HookId = $restResponse.HookId
+                        Name = $restResponse.name.value
+                        Description = $restResponse.description.value
+                        SortOrder = $restResponse.sortOrder.value
+                        PrePostOption = $restResponse.prePostOption.value
+                        EventActionId = $restResponse.eventActionId.value
+                        ScriptTypeId = $restResponse.scriptTypeId.value
+                        ScriptId = $restResponse.scriptId.value
+                        Status = $restResponse.status.value
+                        StopOnFailure = $restResponse.stopOnFailure.value
+                        ServerName = $restResponse.serverName.value
+                        ServerKeyDigest = $restResponse.serverKeyDigest.value
+                        Port = $restResponse.port.value
+                        Database = $restResponse.database.value
+                        Arguments = $restResponse.arguments.value
+                        SshKeySecretId = $restResponse.sshKeySecretId.value
+                        PrivilegeSecretId = $restResponse.privilegeSecretId.value
+                        Parameters = $restResponse.parameters
+                        FailureMessage = $restResponse.failureMessage.value
+                    }
                 }
             }
         } else {
