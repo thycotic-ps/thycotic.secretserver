@@ -8,9 +8,9 @@ function Update-SecretHook {
 
     .EXAMPLE
     session = New-TssSession -SecretServer https://alpha -Credential ssCred
-    Update-TssSecretHook -TssSession $session -SecretHookId 2 -SecretId 76
+    Update-TssSecretHook -TssSession $session -SecretHookId 2 -SecretId 76 -Arguments '$USERNAME $PASSWORD $DOMAIN'
 
-    Update Secret Hook 2's __ property on Secret ID 76
+    Update Secret Hook 2's Arguments property on Secret ID 76
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecretHook
@@ -22,6 +22,7 @@ function Update-SecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType('TssSecretHook')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -34,7 +35,7 @@ function Update-SecretHook {
         $SecretId,
 
         # Secret Hook ID
-        [Parameter(Manadatory)]
+        [Parameter(Mandatory)]
         [int]
         $SecretHookId,
 
@@ -50,9 +51,10 @@ function Update-SecretHook {
         [string]
         $Description,
 
-        # Event Action ID
-        [int]
-        $EventActionId,
+        # Event Action, allowed: CheckIn, Checkout
+        [ValidateSet('CheckIn','Checkout')]
+        [string]
+        $EventAction,
 
         # Failure Message
         [string]
@@ -66,10 +68,61 @@ function Update-SecretHook {
         [string]
         $Port,
 
-        # Pre Post Option
+        # Pre Post Option, allowed: Pre, Post
         [ValidateSet('PRE','POST')]
         [string]
-        $PrePostOption
+        $PrePostOption,
+
+        # Privilege Secret ID
+        [int]
+        $PrivilegedSecretId,
+
+        # Script ID
+        [int]
+        $ScriptId,
+
+        # Script Type ID
+        [int]
+        $ScriptTypeId,
+
+        # Server Key Digest
+        [string]
+        $ServerKeyDigest,
+
+        # Server Name
+        [string]
+        $ServerName,
+
+        # Sort Order
+        [int]
+        $SortOrder,
+
+        # SSH Key Secret ID
+        [int]
+        $SshKeySecretId,
+
+        # Status
+        [boolean]
+        $Status,
+
+        # Stop On Failure
+        [boolean]
+        $StopOnFailure,
+
+        # Parameter Name
+        [Parameter(Mandatory, ParameterSetName = 'parameters')]
+        [string]
+        $ParameterName,
+
+        # Parameter Value
+        [Parameter(Mandatory, ParameterSetName = 'parameters')]
+        [string]
+        $ParameterValue,
+
+        # Parameter Type, default 'Literal'
+        [Parameter(ParameterSetName = 'parameters')]
+        [string]
+        $ParameterType = 'Literal'
     )
     begin {
         $updateParams = $PSBoundParameters
@@ -77,10 +130,9 @@ function Update-SecretHook {
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if (setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+        if ($updateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $restResponse = null
-            $uri = $TssSession.ApiUrl, 'endpoint' -join '/'
+            $uri = $TssSession.ApiUrl, 'secret-detail', $SecretId, 'hook', $SecretHookId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PUT'
 
@@ -91,66 +143,147 @@ function Update-SecretHook {
                         dirty = $true
                         value = $Arguments
                     }
-                    $updateBody.Add('arguments',$argumentValue)
+                    $updateBody.data.Add('arguments',$argumentValue)
                 }
                 'Database' {
                     $dbValue = @{
                         dirty = $true
                         value = $Database
                     }
-                    $updateBody.Add('database',$dbValue)
+                    $updateBody.data.Add('database',$dbValue)
                 }
                 'Description' {
                     $descValue = @{
                         dirty = $true
                         value = $Description
                     }
-                    $updateBody.Add('description',$descValue)
+                    $updateBody.data.Add('description',$descValue)
                 }
-                'EventActionId' {
+                'EventAction' {
+                    switch ($EventAction) {
+                        'Checkout' { $EventActionId = 10026 }
+                        'CheckIn' { $EventActionId = 10025 }
+                    }
                     $eventValue = @{
                         dirty = $true
                         value = $EventActionId
                     }
-                    $updateBody.Add('eventActionId',$eventValue)
+                    $updateBody.data.Add('eventActionId',$eventValue)
                 }
                 'FailureMessage' {
                     $failureMsgValue = @{
                         dirty = $true
                         value = $FailureMessage
                     }
-                    $updateBody.Add('failureMessage',$failureMsgValue)
+                    $updateBody.data.Add('failureMessage',$failureMsgValue)
                 }
                 'Name' {
                     $nameValue = @{
                         dirty = $true
                         value = $Name
                     }
-                    $updateBody.Add('name',$nameValue)
+                    $updateBody.data.Add('name',$nameValue)
                 }
                 'Port' {
                     $portValue = @{
                         dirty = $true
                         value = $Port
                     }
-                    $updateBody.Add('port',$portValue)
+                    $updateBody.data.Add('port',$portValue)
+                }
+                'PrePostOption' {
+                    $prePostValue = @{
+                        dirty = $true
+                        value = $PrePostOption
+                    }
+                    $updateBody.data.Add('prePostOption',$prePostValue)
+                }
+                'PrivilegedSecretId' {
+                    $privSecretValue = @{
+                        dirty = $true
+                        value = $PrivilegedSecretId
+                    }
+                    $updateBody.data.Add('privilegedSecretId',$privSecretValue)
+                }
+                'ScriptId' {
+                    $scriptIdValue = @{
+                        dirty = $true
+                        value = $ScriptId
+                    }
+                    $updateBody.data.Add('scriptId',$scriptIdValue)
+                }
+                'ScriptTypeId' {
+                    $scriptTypeIdValue = @{
+                        dirty = $true
+                        value = $ScriptTypeId
+                    }
+                    $updateBody.data.Add('scriptTypeId',$scriptTypeIdValue)
+                }
+                'ServerKeyDigest' {
+                    $serverKeyValue = @{
+                        dirty = $true
+                        value = $ServerKeyDigest
+                    }
+                    $updateBody.data.Add('serverKeyDigest',$serverKeyValue)
+                }
+                'ServerName' {
+                    $serverNameValue = @{
+                        dirty = $true
+                        value = $ServerName
+                    }
+                    $updateBody.data.Add('serverName',$serverNameValue)
+                }
+                'SortOrder' {
+                    $sortValue = @{
+                        dirty = $true
+                        value = $SortOrder
+                    }
+                    $updateBody.data.Add('serverName',$sortValue)
+                }
+                'SshKeySecretId' {
+                    $sshSecretIdValue = @{
+                        dirty = $true
+                        value = $SshKeySecretId
+                    }
+                    $updateBody.data.Add('sshKeySecretId',$sshSecretIdValue)
+                }
+                'Status' {
+                    $statusValue = @{
+                        dirty = $true
+                        value = [boolean]$Status
+                    }
+                    $updateBody.data.Add('status',$statusValue)
+                }
+                'Status' {
+                    $stopFailureValue = @{
+                        dirty = $true
+                        value = [boolean]$StopOnFailure
+                    }
+                    $updateBody.data.Add('stopOnFailure',$stopFailureValue)
+                }
+                'ParameterName' {
+                    # if one is provided all 3 are based on parameter set requirements
+                    $parameterValues = [pscustomobject]@{
+                        ParameterName = $ParameterName
+                        ParameterType = $ParameterType
+                        ParameterValue = $ParameterValue
+                    }
+                    $updateBody.data.Add('parameters',$parameterValues)
                 }
             }
-            $invokeParams.Body = $addBody | ConvertTo-Json
+            $invokeParams.Body = $updateBody | ConvertTo-Json -Depth 100
             if ($PSCmdlet.ShouldProcess("description: $", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
                 Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning 'Issue updating  [$]'
+                    Write-Warning 'Issue updating Secret Hook [$SecretHookId] on Secret [$SecretId]'
                     $err = $_
                     . $ErrorHandling $err
                 }
 
                 if ($restResponse) {
-                    Write-Verbose " $ updated successfully"
-                } else {
-                    Write-Warning " $ was not updated, see previous output for errors"
+                    [TssSecretHook]$restResponse
                 }
             }
         } else {
