@@ -54,4 +54,22 @@ class TssSecretDetailState {
             return "No Actions found"
         }
     }
+
+    [System.Boolean]
+    TestAction([string]$Action) {
+        if ($this.Actions -contains $Action) {
+            return $true
+        } else {
+            return $false
+        }
+    }
+
+    [System.Boolean]
+    TestState([string]$State) {
+        if ($this.SecretState -eq $State) {
+            return $true
+        } else {
+            return $false
+        }
+    }
 }
