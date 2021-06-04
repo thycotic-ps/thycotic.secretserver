@@ -14,14 +14,6 @@ Set various properties for a given secret folder
 
 ## SYNTAX
 
-### all (Default)
-```
-Set-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-AllowRemoveOwner] [-EnableInheritPermission]
- [-EnableInheritSecretPolicy] [-FolderName <String>] [-SecretPolicy <Int32>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
-```
-
-### templates
 ```
 Set-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-AllowedTemplate <Int32[]>] [-AllowRemoveOwner]
  [-EnableInheritPermission] [-EnableInheritSecretPolicy] [-FolderName <String>] [-SecretPolicy <Int32>]
@@ -78,7 +70,7 @@ Allowed templates
 
 ```yaml
 Type: Int32[]
-Parameter Sets: templates
+Parameter Sets: (All)
 Aliases: AllowedTemplates
 
 Required: False

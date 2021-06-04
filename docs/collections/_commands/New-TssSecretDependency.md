@@ -1,36 +1,35 @@
 ---
-category: groups
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependency
 schema: 2.0.0
-title: Add-TssGroupMember
+title: New-TssSecretDependency
 ---
 
-# Add-TssGroupMember
+# New-TssSecretDependency
 
 ## SYNOPSIS
-Add a user to a group
+Create a new Secret Dependency
 
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+New-TssSecretDependency [-TssSession] <TssSession> -DependencyStub <TssSecretDependency> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a user to a group
+Create a new Secret Dependency
 
 ## EXAMPLES
 
-### EXAMPLE 1
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
+### Example 1
+```powershell
+PS C:\> {{ Add example code here }}
 ```
 
-Add User ID 54 to Group ID 8
+{{ Add example description here }}
 
 ## PARAMETERS
 
@@ -49,33 +48,18 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Group ID
+### -DependencyStub
+Secret Dependency Stub object
 
 ```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: GroupId
-
-Required: True
-Position: Named
-Default value: 0
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -UserId
-User Ids to add to the Group
-
-```yaml
-Type: Int32[]
+Type: TssSecretDependency
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
@@ -117,12 +101,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssSecretDependency
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependency](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependency)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-SecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-SecretDependency.ps1)
 

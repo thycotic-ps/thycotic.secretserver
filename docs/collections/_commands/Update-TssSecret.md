@@ -14,12 +14,6 @@ Update a Secret
 
 ## SYNTAX
 
-### all (Default)
-```
-Update-TssSecret [-TssSession] <TssSession> [-Secret] <TssSecret> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### restricted
 ```
 Update-TssSecret [-TssSession] <TssSession> [-Secret] <TssSecret> [-Comment <String>] [-ForceCheckIn]
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -77,7 +71,7 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -92,7 +86,7 @@ Force check-in of the Secret
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -107,7 +101,7 @@ Associated Ticket Number
 
 ```yaml
 Type: Int32
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -122,7 +116,7 @@ Associated Ticket System ID
 
 ```yaml
 Type: Int32
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False

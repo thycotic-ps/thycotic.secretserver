@@ -14,11 +14,6 @@ Set Secret expiration
 
 ## SYNTAX
 
-### all (Default)
-```
-Set-TssSecretExpiration [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
 ### SpecificDate
 ```
 Set-TssSecretExpiration [-TssSession] <TssSession> -Id <Int32[]> [-DateExpiration <DateTime>] [-WhatIf]

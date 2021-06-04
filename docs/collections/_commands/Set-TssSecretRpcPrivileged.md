@@ -14,11 +14,6 @@ Set the Privileged Account for the RPC configuration on a Secret
 
 ## SYNTAX
 
-### all (Default)
-```
-Set-TssSecretRpcPrivileged [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
 ### secret
 ```
 Set-TssSecretRpcPrivileged [-TssSession] <TssSession> -Id <Int32[]> [-CredentialOnSecret] [-WhatIf] [-Confirm]

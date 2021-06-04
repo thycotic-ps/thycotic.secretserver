@@ -2,35 +2,35 @@
 category: groups
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember
 schema: 2.0.0
-title: Add-TssGroupMember
+title: Update-TssGroupMember
 ---
 
-# Add-TssGroupMember
+# Update-TssGroupMember
 
 ## SYNOPSIS
-Add a user to a group
+Update all members of a group
 
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+Update-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a user to a group
+Update all members of a group
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
+Update-TssGroupMember -TssSession $session -Id 8 -UserId 54, 35, 97, 345
 ```
 
-Add User ID 54 to Group ID 8
+Update Group 8 to have users 54, 35, 97, and 345 as members
 
 ## PARAMETERS
 
@@ -122,7 +122,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-GroupMember.ps1)
 

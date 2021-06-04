@@ -1,36 +1,36 @@
 ---
-category: groups
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretHook
 schema: 2.0.0
-title: Add-TssGroupMember
+title: New-TssSecretHook
 ---
 
-# Add-TssGroupMember
+# New-TssSecretHook
 
 ## SYNOPSIS
-Add a user to a group
+Create a Secret Hook
 
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32[]> -SecretHookStub <TssSecretHook> [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a user to a group
+Create a Secret Hook
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
+session = New-TssSession -SecretServer https://alpha -Credential ssCred
+Update-TssSecretHook -TssSession $session -SecretHookId 2 -SecretId 76 -Arguments '$USERNAME $PASSWORD $DOMAIN'
 ```
 
-Add User ID 54 to Group ID 8
+Update Secret Hook 2's Arguments property on Secret ID 76
 
 ## PARAMETERS
 
@@ -49,33 +49,33 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Group ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: GroupId
-
-Required: True
-Position: Named
-Default value: 0
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -UserId
-User Ids to add to the Group
+### -SecretId
+Secret ID
 
 ```yaml
 Type: Int32[]
+Parameter Sets: (All)
+Aliases: Id
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -SecretHookStub
+Secret Hook Stub object
+
+```yaml
+Type: TssSecretHook
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -117,12 +117,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssSecretHook
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretHook](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretHook)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-SecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-SecretHook.ps1)
 

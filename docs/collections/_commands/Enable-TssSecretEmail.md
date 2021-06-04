@@ -14,13 +14,6 @@ Enables the email setting for a Secret
 
 ## SYNTAX
 
-### all (Default)
-```
-Enable-TssSecretEmail [-TssSession] <TssSession> -Id <Int32[]> [-WhenChanged] [-WhenViewed]
- [-WhenHeartbeatFails] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### restricted
 ```
 Enable-TssSecretEmail [-TssSession] <TssSession> -Id <Int32[]> [-WhenChanged] [-WhenViewed]
  [-WhenHeartbeatFails] [-Comment <String>] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf]
@@ -130,7 +123,7 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -145,7 +138,7 @@ Associated Ticket Number
 
 ```yaml
 Type: Int32
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -160,7 +153,7 @@ Associated Ticket System ID
 
 ```yaml
 Type: Int32
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False

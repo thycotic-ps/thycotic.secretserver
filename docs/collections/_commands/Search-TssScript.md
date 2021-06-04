@@ -1,36 +1,36 @@
 ---
-category: groups
+category: general
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssScript
 schema: 2.0.0
-title: Add-TssGroupMember
+title: Search-TssScript
 ---
 
-# Add-TssGroupMember
+# Search-TssScript
 
 ## SYNOPSIS
-Add a user to a group
+Search Secret Server scripts
 
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+Search-TssScript [-TssSession] <TssSession> [-SearchText <String>] [-IncludeInactive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a user to a group
+Search Secret Server scripts (Admin \> Scripts)
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
+Search-TssScript -TssSession $session -SearchText admin
 ```
 
-Add User ID 54 to Group ID 8
+Return list of Scripts that have the text "admin" in the name
 
 ## PARAMETERS
 
@@ -49,44 +49,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Group ID
+### -SearchText
+Search Text
 
 ```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: GroupId
-
-Required: True
-Position: Named
-Default value: 0
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -UserId
-User Ids to add to the Group
-
-```yaml
-Type: Int32[]
+Type: String
 Parameter Sets: (All)
 Aliases:
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
 
 Required: False
 Position: Named
@@ -95,17 +64,32 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
+### -IncludeInactive
+Include inactive scripts
 
 ```yaml
 Type: SwitchParameter
 Parameter Sets: (All)
-Aliases: cf
+Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SortBy
+Sort by specific property, default ScriptId
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: ScriptId
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -117,12 +101,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssScriptSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssScript](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssScript)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Search-Script.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Search-Script.ps1)
 

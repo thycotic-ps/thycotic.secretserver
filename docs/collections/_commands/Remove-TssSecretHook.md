@@ -1,36 +1,36 @@
 ---
-category: groups
+category: secrets
 external help file: Thycotic.SecretServer-help.xml
 Module Name: Thycotic.SecretServer
-online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+online version: https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretHook
 schema: 2.0.0
-title: Add-TssGroupMember
+title: Remove-TssSecretHook
 ---
 
-# Add-TssGroupMember
+# Remove-TssSecretHook
 
 ## SYNOPSIS
-Add a user to a group
+Delete a Secret Hook
 
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+Remove-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32> -SecretHookId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Add a user to a group
+Delete a Secret Hook
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssGroupMember -TssSession $session -Id 8 -UserId 54
+Remove-TssSecretHook -TssSession $session -SecretId 385 -SecretHookId 2
 ```
 
-Add User ID 54 to Group ID 8
+Delete the Hook ID 2 on Secret ID 385
 
 ## PARAMETERS
 
@@ -49,13 +49,13 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -Id
-Group ID
+### -SecretId
+Secret ID
 
 ```yaml
 Type: Int32
 Parameter Sets: (All)
-Aliases: GroupId
+Aliases:
 
 Required: True
 Position: Named
@@ -64,13 +64,13 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -UserId
-User Ids to add to the Group
+### -SecretHookId
+Secret Hook ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases:
+Aliases: HookId
 
 Required: True
 Position: Named
@@ -117,12 +117,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssDelete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretHook](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretHook)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Remove-SecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Remove-SecretHook.ps1)
 
