@@ -11,6 +11,14 @@ Welcome to the Thycotic Secret Server PowerShell module. This module utilizes th
 
 The module's goal is to give users a more accessible starting point working with the Secret Server's REST API. The best effort is made to have a similar workflow with the UI to plan out the functions and tasks you need to perform.
 
+# Install Options
+
+- [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
+- [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest) (latest)
+- [Direct Download](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer.zip) (if above are blocked)
+
+More on the installation of the module can be found on our documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
+
 # Changelog
 
 A formal changelog is provided in the repository ([CHANGELOG](CHANGELOG.md)) and will be included with each GitHub release.
