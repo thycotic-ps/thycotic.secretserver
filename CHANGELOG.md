@@ -49,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-Script - enhanced TssScript class/output Additional child classes, Added method GetScriptParams() [712e528](https://github.com/thycotic-ps/thycotic.secretserver/commit/712e5283d0896587ac888cdf5ef9082357714ff9)
 * Get-SecretHookStub - add Name, PrePostOption and EventAction params [68beed4](https://github.com/thycotic-ps/thycotic.secretserver/commit/68beed4222d788d78690e7a408449e73dceca4f6)
 * New-SecretHook - closes [#196](https://github.com/thycotic-ps/thycotic.secretserver/issues/196) [942ae0a](https://github.com/thycotic-ps/thycotic.secretserver/commit/942ae0a7efe2dd1d0a3a053b3b4bf5c716a9185e)
+* New-SecretDependency - closes [#182](https://github.com/thycotic-ps/thycotic.secretserver/issues/182) [26b343f](https://github.com/thycotic-ps/thycotic.secretserver/commit/26b343f5cec5882fda9f1c96eafe9ed8118b0e0c)
 
 </details>
 
