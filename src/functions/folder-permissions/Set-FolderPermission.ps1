@@ -87,7 +87,7 @@ function Set-FolderPermission {
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning 'Issue setting property on  [$]'
+                        Write-Warning 'Issue setting property on folder permission [$folderPermission]'
                         $err = $_
                         . $ErrorHandling $err
                     }
