@@ -1,0 +1,22 @@
+TOPIC
+    This help topic describes the TssFolderDetailTemplateView class in the Thycotic.SecretServer module
+
+CLASS
+    TssFolderDetailTemplateView
+
+INHERITANCE
+    None
+
+DESCRIPTION
+    The TssFolderDetailTemplateView class represents the TemplateViewModel object returned by Secret Server endpoint GET /folder-details/{id}
+
+CONSTRUCTORS
+    new()
+
+PROPERTIES
+    Documented in the REST API doc for Secret Server, see TemplteViewModel definition
+
+METHODS
+
+RELATED LINKS:
+    Get-TssFolderState
