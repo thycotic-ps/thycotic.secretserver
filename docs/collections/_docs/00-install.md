@@ -18,9 +18,9 @@ last_modified_at: 2021-02-10T00:00:00-00:00
 
 `Thycotic.SecretServer` is available to download from the following locations:
 
-- [PowerShell Gallery](https://powershellgallery.com)
+- [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/)
 - [GitHub Releases](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest)
-- [Direct download](https://updates.thycotic.com/proservices/powershell/tss_module/Thycotic.SecretServer.zip)
+- [Direct download](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer.zip)
 
 Choose one of the following methods to obtain & install the module:
 
