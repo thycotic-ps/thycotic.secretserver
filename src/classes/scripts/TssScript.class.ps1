@@ -1,8 +1,31 @@
+class TssScriptAdditionalDataParams {
+    [string]
+    $Name
+
+    [int]
+    $SshType
+}
+class TssScriptAdditionalData {
+    [int]
+    $Port
+
+    [int]
+    $LineEnding
+
+    [TssScriptAdditionalDataParams[]]
+    $Params
+
+    [boolean]
+    $DoNotUseEnvironment
+
+    [int]
+    $Version
+}
 class TssScript {
     [boolean]
     $Active
 
-    [string]
+    [TssScriptAdditionalData]
     $AdditionalData
 
     [string]
@@ -35,4 +58,9 @@ class TssScript {
 
     [int]
     $UsageCount
+
+    [TssScriptAdditionalDataParams[]]
+    GetScriptParams() {
+        return $this.AdditionalData.Params
+    }
 }

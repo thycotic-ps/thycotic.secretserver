@@ -59,7 +59,7 @@ function Get-Script {
                 }
 
                 if ($restResponse) {
-                    [TssScript]$restResponse
+                    . $TssScriptObject $restResponse
                 }
             }
         } else {
