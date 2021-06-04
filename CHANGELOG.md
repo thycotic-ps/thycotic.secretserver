@@ -42,7 +42,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-SecretHook - closes [#192](https://github.com/thycotic-ps/thycotic.secretserver/issues/192) [87f6a6e](https://github.com/thycotic-ps/thycotic.secretserver/commit/87f6a6e1a89d8288184d6506ecd4ceb5d7fdccfb)
 * Update-GroupMember - usage pending correction of endpoint There is a null exception being thrown in 10.9.64 for the endpoint. [b4f63b4](https://github.com/thycotic-ps/thycotic.secretserver/commit/b4f63b4b312602e8b1694f8120c703c84e4a64ef)
 * Remove-SecretHook - closes [#193](https://github.com/thycotic-ps/thycotic.secretserver/issues/193) [8d2aa75](https://github.com/thycotic-ps/thycotic.secretserver/commit/8d2aa7537f2fe892f6a3924a4f5f91040680f666)
-* Update-SecretHook - closes #194 [235ee5f](https://github.com/thycotic-ps/thycotic.secretserver/commit/235ee5f31ecd1b162ab11b3ef9032c2f2693928f)
+* Update-SecretHook - closes [#194](https://github.com/thycotic-ps/thycotic.secretserver/issues/194) [235ee5f](https://github.com/thycotic-ps/thycotic.secretserver/commit/235ee5f31ecd1b162ab11b3ef9032c2f2693928f)
+* Get-SecretHookStub - closes [#195](https://github.com/thycotic-ps/thycotic.secretserver/issues/195) [34d4683](https://github.com/thycotic-ps/thycotic.secretserver/commit/34d468346025f2a7f21ca11c9771c544330575a0)
+* Get-Script command [56891f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/56891f7e75d5e1d242b23b325ca65e2e1a3434bc)
+* Search-Script command [efc8d24](https://github.com/thycotic-ps/thycotic.secretserver/commit/efc8d24f37ddd0a6e1fda8c47f7bfebeabaf2ffa)
+* Get-Script - enhanced TssScript class/output Additional child classes, Added method GetScriptParams() [712e528](https://github.com/thycotic-ps/thycotic.secretserver/commit/712e5283d0896587ac888cdf5ef9082357714ff9)
+* Get-SecretHookStub - add Name, PrePostOption and EventAction params [68beed4](https://github.com/thycotic-ps/thycotic.secretserver/commit/68beed4222d788d78690e7a408449e73dceca4f6)
+* New-SecretHook - closes [#196](https://github.com/thycotic-ps/thycotic.secretserver/issues/196) [942ae0a](https://github.com/thycotic-ps/thycotic.secretserver/commit/942ae0a7efe2dd1d0a3a053b3b4bf5c716a9185e)
 
 </details>
 
@@ -57,6 +63,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - correct version check [458e56f](https://github.com/thycotic-ps/thycotic.secretserver/commit/458e56fc2f307e628321679d81823e6d0f903d38)
 * Add-GroupMember - correct help info [1ffbb64](https://github.com/thycotic-ps/thycotic.secretserver/commit/1ffbb6496ab2db85255f638ccae59c3900758d0f)
 * module - correcting variable reference [ce12ea8](https://github.com/thycotic-ps/thycotic.secretserver/commit/ce12ea87c778f726ed305f69572b86e1c20b4fc2)
+* snippet update [9dd1fad](https://github.com/thycotic-ps/thycotic.secretserver/commit/9dd1fad4c24df400deddcd18356c2968adb17fb0)
+* Get-SecretHookStub - correcting output object [49e5512](https://github.com/thycotic-ps/thycotic.secretserver/commit/49e5512a0ef0cc4789760368cd89408e5c0f2f09)
+* Get-User - updating verbose output [10e7862](https://github.com/thycotic-ps/thycotic.secretserver/commit/10e7862735f3ee99355bd9315ee25ce4baf49e25)
+* Update-SecretHook - updated PrePostOption help [e089053](https://github.com/thycotic-ps/thycotic.secretserver/commit/e0890537ccb599ec618c4ab9256745b61dc1b411)
 
 </details>
 
@@ -65,7 +75,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Get-SecretHook correct test filename [74444c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/74444c712e75aa95576556244e2cc75e4c3562a7)
+* Update-SecretHook - update tests Added params parameters [e16cbc3](https://github.com/thycotic-ps/thycotic.secretserver/commit/e16cbc337cdb2f7ec4adcb001a53f29715431daf)
 
 </details>
 
