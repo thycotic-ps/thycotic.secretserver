@@ -1,7 +1,6 @@
-[![banner][]][Docs]
-
-[banner]:/docs/assets/images/banner_symbol_title.png
-[Docs]:https://thycotic-ps.github.io/thycotic.secretserver
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/thycotic-ps/thycotic.secretserver?style=flat-square)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/thycotic-ps/thycotic.secretserver?style=flat-square)
+![GitHub issues by-label](https://img.shields.io/github/issues/thycotic-ps/thycotic.secretserver/bugs?style=flat-square)
 
 # Introduction
 
