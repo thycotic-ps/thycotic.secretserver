@@ -60,7 +60,7 @@ function Add-GroupMember {
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning 'Issue removing [$]'
+                        Write-Warning 'Issue adding user [$User] to Group [$Id]'
                         $err = $_
                         . $ErrorHandling $err
                     }
