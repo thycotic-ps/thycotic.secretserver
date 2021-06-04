@@ -5,6 +5,55 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Add-GroupMember - correct warning message [34cb4d5](https://github.com/thycotic-ps/thycotic.secretserver/commit/34cb4d51b341d4ae4a8f43349c5d391b38cb1739)
+* Remove-Folder - correct warning message [ade562f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ade562f03fa4ec8dd73874acaa201ac615f550e5)
+* Set-FolderPermission - correct warning message [4f65edd](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f65edd9c619ac56be90c269025db5f1864e8af8)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.41.0] -- 2021-06-03
 
 ### Breaking Changes
