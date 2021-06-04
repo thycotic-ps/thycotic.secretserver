@@ -6,9 +6,8 @@ class TssSecretHookParameter {
     $ParameterValue
 
     [string]
-    $ParameterType
+    $ParameterType = 'Literal'
 }
-
 class TssSecretHook {
     [int]
     $SecretHookId
@@ -69,4 +68,13 @@ class TssSecretHook {
 
     [string]
     $FailureMessage
+
+    [void]
+    SetHookParameter([string]$Name, [string]$Value) {
+        foreach ($i in $this.Parameters) {
+            if ($i.ParameterName -eq $Name) {
+                $i.ParameterValue = $Value
+            }
+        }
+    }
 }
