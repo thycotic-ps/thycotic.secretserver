@@ -5,7 +5,7 @@ Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'TssSession', 'SecretId', 'SecretHookId', 'Arguments', 'Database', 'Description', 'EventAction', 'FailureMessage',
             'Name', 'Port', 'PrePostOption', 'PrivilegedSecretId', 'ScriptId', 'ScriptTypeId', 'ServerKeyDigest', 'ServerName', 'SortOrder', 'SshKeySecretId',
-            'Status', 'StopOnFailure'
+            'Status', 'StopOnFailure', 'ParameterName', 'ParameterValue', 'ParameterType'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
