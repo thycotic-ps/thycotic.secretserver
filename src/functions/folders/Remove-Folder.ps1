@@ -56,7 +56,7 @@ function Remove-Folder {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning 'Issue removing [$]'
+                    Write-Warning 'Issue removing folder [$folder]'
                     $err = $_
                     . $ErrorHandling $err
                 }
