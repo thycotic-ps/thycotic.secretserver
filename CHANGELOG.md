@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.42.0] -- 2021-06-04
 
 ### Breaking Changes
 
@@ -32,7 +32,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Get-FolderState -allows to see actions allowed [a4091c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4091c1106b6cf3447654a4e609b96964d53d459)
+* Test-FolderAction - test for allowed action [946c35e](https://github.com/thycotic-ps/thycotic.secretserver/commit/946c35e6f86a99b2f8127ebe0a54ae2d591f4476)
+* Test-SecretAction - allows test for given action on secret [4c21a43](https://github.com/thycotic-ps/thycotic.secretserver/commit/4c21a434f5d9b1d71ac9e8cf304c01b52adba931)
+* Test-SecretState - test for a given state on a secret [942452d](https://github.com/thycotic-ps/thycotic.secretserver/commit/942452d0724c5b26e85e0ae4f26098c04c32a061)
 
 </details>
 
