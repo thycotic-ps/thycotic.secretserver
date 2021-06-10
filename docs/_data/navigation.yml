@@ -112,6 +112,7 @@ commands:
         url: /commands/Get-TssSecretRpcAssociated
       - title: "Search-RpcPasswordType"
         url: /commands/Search-RpcPasswordType
+
   - title: "Secrets"
     children:
       - title: "Close-TssSecret"
@@ -252,6 +253,8 @@ commands:
         url: /commands/Show-TssCurrentUser
       - title: "Unlock-TssUser"
         url: /commands/Unlock-TssUser
+      - title: "Update-TssUser"
+        url: /commands/Update-TssUser"
       - title: "Update-TssUserPassword"
         url: /commands/Update-TssUserPassword
 
