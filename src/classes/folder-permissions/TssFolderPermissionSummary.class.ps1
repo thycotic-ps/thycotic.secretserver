@@ -30,5 +30,5 @@ class TssFolderPermissionSummary {
     $UserId
 
     [string]
-    $UserName
+    $Username
 }

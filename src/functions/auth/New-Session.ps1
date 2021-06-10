@@ -122,7 +122,7 @@ function New-Session {
 
                 $oauth2Body = [Ordered]@{ }
                 if ($newTssParams.ContainsKey('Credential')) {
-                    $oauth2Body.username = $Credential.UserName
+                    $oauth2Body.username = $Credential.Username
                     $oauth2Body.password = $Credential.GetNetworkCredential().Password
                     $oauth2Body.grant_type = 'password'
                 }
