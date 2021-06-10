@@ -4,7 +4,7 @@ function Get-SecretAudit {
     Get audits for a Secret(s)
 
     .DESCRIPTION
-    Get audits for a Secret(s)
+    Get audits for a Secret(s), data is sorted (server-side) in descending order (latest record comes first)
 
     .EXAMPLE
     PS> $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -54,7 +54,7 @@ function Get-SecretAudit {
             foreach ($secret in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'audits' -join '/'
-                $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
+                $uri = $uri, "sortBy[0].direction=desc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
                 if ($tssParams.ContainsKey('IncludePasswordChangeLog')) {
                     $uri = $uri, "filter.includePasswordChangeLog=$([boolean]$IncludePasswordChangeLog)" -join '&'
