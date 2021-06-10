@@ -492,6 +492,8 @@ docs:
     children:
       - title: "Folders"
         url: /docs/workingwith-folders/
+      - title: "Logging"
+        url: /docs/workingwith-logging/
       - title: "Secrets"
         url: /docs/workingwith-secrets/
       - title: "Secret Dependencies"
