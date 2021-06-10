@@ -21,7 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Search-SecretTemplate - IncludeInactive fix param type [73d5217](https://github.com/thycotic-ps/thycotic.secretserver/commit/73d52175df5047bb4ce5a475bfc14058580de093)
 
 </details>
 
@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Update-User - new command [b88ba6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/b88ba6d69c78c29f285c679d984ddf2093246491)
+* Set-SecretTemplate - new command [0dbee8e](https://github.com/thycotic-ps/thycotic.secretserver/commit/0dbee8e33387c25b1d153002920f8af0a101ead2)
 
 </details>
 
