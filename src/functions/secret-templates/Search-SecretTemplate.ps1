@@ -38,7 +38,7 @@ function Search-SecretTemplate {
         $IncludeSecretCount,
 
         # Include inactive Secret Templates
-        [boolean]
+        [switch]
         $IncludeInactive,
 
         # Sort by specific property, default Name
