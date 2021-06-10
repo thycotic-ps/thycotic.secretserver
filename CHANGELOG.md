@@ -9,12 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
-* None
-
-</details>
+* Get-SecretAudit - changed to sort desc Since Audit data can be large, have it sort on server-side to spit latest out first [30ff8a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/30ff8a0e6076e483861c81de1b60c6019c7b7ae3)
 
 ### Bug Fixes
 
@@ -27,13 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Stuff
 
-<details>
-    <summary>Click to view </summary>
-
 * Update-User - new command [b88ba6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/b88ba6d69c78c29f285c679d984ddf2093246491)
 * Set-SecretTemplate - new command [0dbee8e](https://github.com/thycotic-ps/thycotic.secretserver/commit/0dbee8e33387c25b1d153002920f8af0a101ead2)
-
-</details>
 
 ### General Updates
 
