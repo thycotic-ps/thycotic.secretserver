@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Update-User - new command [b88ba6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/b88ba6d69c78c29f285c679d984ddf2093246491)
 
 </details>
 
