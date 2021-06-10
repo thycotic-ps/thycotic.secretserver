@@ -939,5 +939,34 @@
             ""
         ],
         "description": "tss basic rest call 2"
+    },
+    "Format ps1xml snippet": {
+        "prefix": "tssformat",
+        "body": [
+            "",
+            "    <!-- ${1:Class Name} -->",
+            "    <View>",
+            "      <Name>${1}</Name>",
+            "      <ViewSelectedBy>",
+            "        <TypeName>${1}</TypeName>",
+            "      </ViewSelectedBy>",
+            "      <TableControl>",
+            "        <TableHeaders>",
+            "          <TableColumnHeader />",
+            "        </TableHeaders>",
+            "        <TableRowEntries>",
+            "          <TableRowEntry>",
+            "            <TableColumnItems>",
+            "              <TableColumnItem>",
+            "                <PropertyName>${2:Column}</PropertyName>",
+            "              </TableColumnItem>",
+            "            </TableColumnItems>",
+            "          </TableRowEntry>",
+            "        </TableRowEntries>",
+            "      </TableControl>",
+            "    </View>",
+            ""
+        ],
+        "description": "Format ps1xml snippet"
     }
 }
