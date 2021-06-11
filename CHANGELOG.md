@@ -28,6 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-Site - new command [a7e390e](https://github.com/thycotic-ps/thycotic.secretserver/commit/a7e390ee4dd61472c7500cfb3591eff019ffc858)
 * Remove-UserPii - new command [535eb9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/535eb9d640c4f4f1b93791f2e3f64be0bef669be)
 * Search-WorkflowTemplate - new command [7a510d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a510d0f05e4abd346d2a58d4cdacfae46ad6746)
+* Get-Secret - add GetFileFields method see about_ file for TssSecret for more details [8b838af](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b838af584c75e85002e8e2171fba5b3e6d906b3)
 
 ### General Updates
 
