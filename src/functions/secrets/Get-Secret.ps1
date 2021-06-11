@@ -48,6 +48,13 @@ function Get-Secret {
 
     Get PSCredential object for Secret ID 330, using alias for the function names
 
+    .EXAMPLE
+    $session = tssnts https://alpha $ssCred
+    $secret = Get-TssSecret $session 330
+    $secret.GetFileFields().Foreach({Get-TssSecretField -Id $secret.Id -Slug $_.SlugName})
+
+    Get the Secert 330, pulling the fields on that Secret that are files and output contents of each file to the console.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
 

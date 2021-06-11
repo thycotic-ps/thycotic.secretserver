@@ -144,4 +144,20 @@ class TssSecret {
             }
         }
     }
+
+    [pscustomobject]
+    GetFileFields() {
+        $files = @()
+        foreach ($i in $this.Items) {
+            if ($i.IsFile) {
+                $fileInfo = [pscustomobject]@{
+                    SecretId = $this.Id
+                    SlugName = $i.Slug
+                    Filename = $i.Filename
+                }
+                $files += $fileInfo
+            }
+        }
+        return $files
+    }
 }
