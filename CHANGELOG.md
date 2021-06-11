@@ -25,6 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Update-User - new command [b88ba6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/b88ba6d69c78c29f285c679d984ddf2093246491)
 * Set-SecretTemplate - new command [0dbee8e](https://github.com/thycotic-ps/thycotic.secretserver/commit/0dbee8e33387c25b1d153002920f8af0a101ead2)
 * Get-SecretAccessRequestOption - new command [de809d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/de809d171d5a0515c151a6c6fbc17db48bdbdea2)
+* Get-Site - new command [a7e390e](https://github.com/thycotic-ps/thycotic.secretserver/commit/a7e390ee4dd61472c7500cfb3591eff019ffc858)
 
 ### General Updates
 
