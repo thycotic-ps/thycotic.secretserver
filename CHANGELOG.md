@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-SecretTemplate - new command [0dbee8e](https://github.com/thycotic-ps/thycotic.secretserver/commit/0dbee8e33387c25b1d153002920f8af0a101ead2)
 * Get-SecretAccessRequestOption - new command [de809d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/de809d171d5a0515c151a6c6fbc17db48bdbdea2)
 * Get-Site - new command [a7e390e](https://github.com/thycotic-ps/thycotic.secretserver/commit/a7e390ee4dd61472c7500cfb3591eff019ffc858)
+* Remove-UserPii - new command [535eb9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/535eb9d640c4f4f1b93791f2e3f64be0bef669be)
+* Search-WorkflowTemplate - new command [7a510d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a510d0f05e4abd346d2a58d4cdacfae46ad6746)
 
 ### General Updates
 
