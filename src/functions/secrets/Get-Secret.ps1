@@ -157,6 +157,7 @@ function Get-Secret {
                 $getBody = @{}
                 if ($restrictedParams.Count -gt 0) {
                     switch ($tssParams.Keys) {
+                        'IncludeInactive' { $getBody.Add('includeInactive', [boolean]$IncludeInactive) }
                         'Comment' { $getBody.Add('comment', $Comment) }
                         'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                         'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
