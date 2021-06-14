@@ -55,7 +55,7 @@ function Update-Folder {
                 try {
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning 'Issue updating folder [$folderId]'
+                    Write-Warning "Issue updating folder [$folderId]"
                     $err = $_
                     . $ErrorHandling $err
                 }
