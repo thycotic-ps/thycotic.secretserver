@@ -8,12 +8,12 @@ function Initialize-SdkClient {
     See help for New-TssSession using the associated UseSdkClient/ConfigPath parameters
 
     .EXAMPLE
-    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath $env:HOME
+    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tss_module -ConfigPath $env:HOME
 
     On Ubuntu 20.04 client, initialize SDK Client saving the configuration files in the user's HOME path
 
     .EXAMPLE
-    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tssmodule -ConfigPath c:\thycotic -Force
+    Initialize-TssSdkClient -SecretServer 'http://alpha.local/SecretServer' -RuleName tss_module -ConfigPath c:\thycotic -Force
 
     Initializes SDK Client saving the configuration files to c:\thycotic, with Force provided configuration will drop current configs (if exist) and recreate
 
