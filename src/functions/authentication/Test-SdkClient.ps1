@@ -80,9 +80,12 @@ function Test-SdkClient {
                 } else {
                     return $false
                 }
-            }
-            if ($tssInitOutput -eq 'Not connected') {
-                return $false
+            } else {
+                if ($tssStatusOutput -eq 'Not connected') {
+                    return $false
+                } else {
+                    return $false
+                }
             }
         } catch {
             Write-Warning "Issue checking status of SDK Client (tss) for [$SecretServer]"
