@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-SecretTemplate - IncludeInactive fix param type [73d5217](https://github.com/thycotic-ps/thycotic.secretserver/commit/73d52175df5047bb4ce5a475bfc14058580de093)
 * Get-Secret - fixe issue with IncludeInactive Parameter was not applied to the API call being made [19f3920](https://github.com/thycotic-ps/thycotic.secretserver/commit/19f3920334e9e5237696efe674c01c1708acaccf)
 * Update-Folder - fix issue with warning string [3243797](https://github.com/thycotic-ps/thycotic.secretserver/commit/3243797a76283679f6bd312256dae4fee468fa7f)
+* Test-SdkClient - adjust return false logic [8d0cd20](https://github.com/thycotic-ps/thycotic.secretserver/commit/8d0cd20801e04232901dcecf6213099b499e6311)
 
 </details>
 
