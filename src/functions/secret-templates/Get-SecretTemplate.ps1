@@ -31,6 +31,7 @@ function Get-SecretTemplate {
 
         # Secret template ID to retrieve
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretTemplateId')]
         [Alias('TemplateId')]
         [int[]]
         $Id
