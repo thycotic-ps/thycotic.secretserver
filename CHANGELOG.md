@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-Secret - add GetFileFields method see about_ file for TssSecret for more details [8b838af](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b838af584c75e85002e8e2171fba5b3e6d906b3)
 * Update-Folder - new command [a4a59a8](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4a59a8625fefe0bc313344ae2f713e765daeb36)
 * Test-SdkClient - new command Lets you test the config and checks to match SS host [9074773](https://github.com/thycotic-ps/thycotic.secretserver/commit/9074773df69582caf7f1319fbd7020dc1b992a30)
+* Get-SecreTemplate - additional parameter alias SecretTemplateId [27e0afa](https://github.com/thycotic-ps/thycotic.secretserver/commit/27e0afaf29c56a81193a782fb0f3e2508a48260a)
 
 ### General Updates
 
