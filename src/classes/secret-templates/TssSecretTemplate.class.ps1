@@ -16,4 +16,10 @@ class TssSecretTemplate {
         $slugName = $this.Fields.Where( { $_.DisplayName -eq $DisplayName }).FieldSlugName
         return $slugName
     }
+
+    [TssSecretTemplateField]
+    GetField([string]$SlugName) {
+        $field = $this.Fields | Where-Object FieldSlugName -eq $SlugName
+        return [TssSecretTemplateField]$field
+    }
 }
