@@ -23,6 +23,7 @@ function Update-Folder {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
+    [OutputType('TssFolder')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for auth
