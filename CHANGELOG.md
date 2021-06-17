@@ -35,6 +35,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Update-Folder - new command [a4a59a8](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4a59a8625fefe0bc313344ae2f713e765daeb36)
 * Test-SdkClient - new command Lets you test the config and checks to match SS host [9074773](https://github.com/thycotic-ps/thycotic.secretserver/commit/9074773df69582caf7f1319fbd7020dc1b992a30)
 * Get-SecreTemplate - additional parameter alias SecretTemplateId [27e0afa](https://github.com/thycotic-ps/thycotic.secretserver/commit/27e0afaf29c56a81193a782fb0f3e2508a48260a)
+* Get-SecretTemplateFolder - new command Allows to get list of Allowed Templates configured on a Folder [a9ba308](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9ba308d14d45f829e3bbd1bf770e04e64407559)
+* TssSecretTemplate - add GetField method For use with Update-SecretTemplateField [e5c0cbb](https://github.com/thycotic-ps/thycotic.secretserver/commit/e5c0cbb05b4d523372b52009d6693a5675a79742)
+* Update-SecretTemplateField - new command [548426b](https://github.com/thycotic-ps/thycotic.secretserver/commit/548426b63d62035d16a0f18e93ea61447671e00f)
 
 ### General Updates
 
@@ -43,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * module - correcting casing on username [c4b1b34](https://github.com/thycotic-ps/thycotic.secretserver/commit/c4b1b34eb0c3904f14d8c47eaac0fc627896fe3b)
 * Invoke-RestApi - removing unneeded code [fce5152](https://github.com/thycotic-ps/thycotic.secretserver/commit/fce5152bbcbdb33509116c38e9336f689b2ba918)
+* Update-Folder - add type output [d42a3ce](https://github.com/thycotic-ps/thycotic.secretserver/commit/d42a3ce267690c1c46d1f28fc6c117ce71132f6c)
 
 </details>
 
