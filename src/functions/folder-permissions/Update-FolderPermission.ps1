@@ -1,27 +1,34 @@
-function Set-FolderPermission {
+function Update-FolderPermission {
     <#
     .SYNOPSIS
-    Set various properties for a given FolderPermission
+    Update properties for a given FolderPermission
 
     .DESCRIPTION
-    Set various properties for a given FolderPermission
+    Update properties for a given FolderPermission
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssFolderPermission -TssSession $session -Id 34 -FolderId 5 -FolderAccessRoleName Edit -SecretAccessRoleName View
+    Update-TssFolderPermission -TssSession $session -Id 34 -FolderId 5 -FolderAccessRoleName Edit -SecretAccessRoleName View
 
-    Set Folder Permission ID 34 on Folder ID 5 to Edit folder permission and View secret permission
+    Update Folder Permission ID 34 on Folder ID 5 to Edit folder permission and View secret permission
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Update-TssFolderPermission -TssSession $session -Id 45 -FolderId 72 -FolderAccessRoleName Owner
+
+    Update Folder Permission ID 45 on Folder ID 72 to Owner folder permission
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolderPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssFolderPermission
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Set-FolderPermission.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Update-FolderPermission.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType()]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,
@@ -47,7 +54,7 @@ function Set-FolderPermission {
         $FolderAccessRolename,
 
         # Role to grant on the secret: View, Edit, List, Owner
-        [ValidateSet('View', 'Edit', 'List', 'Owner')]
+        [ValidateSet('View', 'Edit', 'List', 'Owner','None')]
         [string]
         $SecretAccessRoleName,
 
@@ -70,7 +77,7 @@ function Set-FolderPermission {
                 $invokeParams.Method = 'PUT'
 
                 $setBody = @{
-                    id                   = $Id
+                    id                   = $folderPermission
                     folderId             = $FolderId
                     folderAccessRoleName = $FolderAccessRoleName
                 }
@@ -93,7 +100,7 @@ function Set-FolderPermission {
                     }
                 }
                 if ($restResponse) {
-                    Write-Verbose "FolderPermissionId [$FolderPermissionId] set"
+                    [TssFolderPermissionSummary]$restResponse
                 }
             }
         } else {
