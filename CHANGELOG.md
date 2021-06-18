@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Breaking Changes
 
 * Get-SecretAudit - changed to sort desc Since Audit data can be large, have it sort on server-side to spit latest out first [30ff8a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/30ff8a0e6076e483861c81de1b60c6019c7b7ae3)
+* Update-FolderPermission - rename from Set-FolderPermission [f562dea](https://github.com/thycotic-ps/thycotic.secretserver/commit/f562deaa20031e5710c5dcc479ce3e776ed9e401)
 
 ### Bug Fixes
 
