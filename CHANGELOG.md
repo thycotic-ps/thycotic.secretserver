@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - correcting casing on username [c4b1b34](https://github.com/thycotic-ps/thycotic.secretserver/commit/c4b1b34eb0c3904f14d8c47eaac0fc627896fe3b)
 * Invoke-RestApi - removing unneeded code [fce5152](https://github.com/thycotic-ps/thycotic.secretserver/commit/fce5152bbcbdb33509116c38e9336f689b2ba918)
 * Update-Folder - add type output [d42a3ce](https://github.com/thycotic-ps/thycotic.secretserver/commit/d42a3ce267690c1c46d1f28fc6c117ce71132f6c)
+* Search-TssFolder - PermissionRequired param allow multiple Can filter on multiple permissions for a folder [876ba0f](https://github.com/thycotic-ps/thycotic.secretserver/commit/876ba0f49bf0419e3757ed590000c5dc2783e530)
 
 </details>
 
