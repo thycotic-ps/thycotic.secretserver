@@ -40,7 +40,7 @@ function Search-Folder {
 
         # Filter based on folder permission (Owner, Edit, AddSecret, View). Default: View
         [ValidateSet('Owner', 'Edit', 'AddSecret', 'View')]
-        [string]
+        [string[]]
         $PermissionRequired,
 
         # Sort by specific property, default FolderPath
@@ -67,8 +67,10 @@ function Search-Folder {
             if ($tssParams.ContainsKey('SearchText')) {
                 $filters += "filter.searchText=$SearchText"
             }
-            if ($tssParams.ContainsKey('Permission')) {
-                $filters += "filter.permissionRequired=$PermissionRequired"
+            if ($tssParams.ContainsKey('PermissionRequired')) {
+                foreach ($perm in $PermissionRequired) {
+                    $filters += "filter.permissionRequired=$perm"
+                }
             }
             if ($filters) {
                 $uriFilter = $filters -join '&'
