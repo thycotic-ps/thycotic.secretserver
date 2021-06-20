@@ -49,9 +49,9 @@ if ($PSBoundParameters['PublishDocs']) {
         Write-Warning "Doc processing has to run under PowerShell Core"
         return
     }
-    $docCommandPath = "$PSScriptRoot\docs\collections\_commands\"
-    Write-Host "Removing old command docs [$docCommandPath]" -ForegroundColor Black -BackgroundColor DarkCyan
-    Remove-Item $docCommandPath -Filter *.md -Recurse -Force -Confirm:$false -ErrorAction SilentlyContinue -Verbose
+    $docRoot = "$PSScriptRoot\docs\commands"
+    $functionsRoot = "$PSScriptRoot\src\functions"
+    $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
 
     Import-Module platyPS
     $cmdParams = @{
@@ -60,22 +60,21 @@ if ($PSBoundParameters['PublishDocs']) {
     }
     $commands = Get-Command @cmdParams
 
-    Write-Host "Generating new command docs [$docCommandPath]" -ForegroundColor Black -BackgroundColor DarkCyan
-    foreach ($cmd in $commands) {
-        switch ($cmd.Name) {
-            { $_ -match 'Secret' } { $category = 'secrets' }
-            { $_ -match 'Report' } { $category = 'reports' }
-            { $_ -match 'Group' } { $category = 'groups' }
-            { $_ -match 'Folder' } { $category = 'folders' }
-            default { $category = 'general' }
-        }
-        $metadata = @{
-            'category' = $category
-            'title'    = $cmd.Name
-        }
+    $functionDirectories.foreach({
+            $categoryFolder = Split-Path $_ -Leaf
+            $categoryFolderName = $categoryFolder -replace '-', '_'
+            $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
 
-        New-MarkdownHelp -OutputFolder $docCommandPath -Command $cmd.Name -Metadata $metadata -Force
-    }
+            if (Test-Path $docCommandPath) {
+                $helpNames = Get-ChildItem $_ -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
+                $helpCommands = $commands.Where({ $_.Name -in $helpNames })
+                $helpCommands.foreach({
+                        New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force
+                    })
+            } else {
+                Write-Error "Doc path does not exist: $docCommandPath"
+            }
+        })
     return
 }
 

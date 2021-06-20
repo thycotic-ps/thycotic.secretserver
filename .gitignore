@@ -6,6 +6,7 @@ release.md
 
 # ignoring doc works for now
 /docs/_site
+/docs2/_site
 
 # PowerShell Studio
 *.TempPoint.*

@@ -1,0 +1,60 @@
+---
+title: "TssConfigurationGeneral"
+---
+
+# TOPIC
+    This help topic describes the TssConfigurationGeneral class in the Thycotic.SecretServer module
+
+# CLASS
+    TssConfigurationGeneral
+
+# INHERITANCE
+    None
+
+# DESCRIPTION
+    The TssConfigurationGeneral class represents the ConfigurationGeneral object returned by Secret Server endpoint GET /configuration/general
+
+# CONSTRUCTORS
+    new()
+
+# PROPERTIES
+    ApplicationSettings
+        General Application Configuration Settings
+
+    Email
+        Email server configuration
+
+    Folders
+        Folders Configuration
+
+    LauncherSettings
+        Launcher Settings Configuration
+
+    LocalUserPasswords
+        Local User Passwords configuration
+
+    PermissionOptions
+        Permission Options Configuration
+
+    ProtocolHandlerSettings
+        Protocol Handler Settings Configuration
+
+    UserExperience
+        User Experience Configuration
+
+    UserInterface
+        User Interface Configuration Settings
+
+# METHODS
+
+# RELATED LINKS:
+    TssConfigurationApplicationSettings
+    TssConfigurationEmailSettings
+    TssConfigurationFolders
+    TssConfigurationLauncherSettings
+    TssConfigurationLocalUserPasswords
+    TssConfigurationPermissionOptions
+    TssConfigurationProtocolHandlerSettings
+    TssConfigurationUserExperience
+    TssConfigurationUserInterface
+    Get-TssConfiguration
