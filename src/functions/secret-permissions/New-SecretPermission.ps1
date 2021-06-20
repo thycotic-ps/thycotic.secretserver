@@ -6,6 +6,12 @@ function New-SecretPermission {
     .DESCRIPTION
     Create a new Secret Permission
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    New-TssSecretPermission -TssSession $session -SecretId 76 -AccessRole View -UserId 98
+
+    Adding permission for User ID 98 to Secret 76, granting View rights to the Secret.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretPermission
 

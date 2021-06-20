@@ -8,9 +8,9 @@ function Get-SecretDependencyStub {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssSecretDependencyStub -TssSession $session -SecretId 42
+    Get-TssSecretDependencyStub -TssSession $session -SecretId 42 -TemplateId 6
 
-    Return Secret Dependency template for Secret 42,
+    Return Secret Dependency Stub for Secret 42 and Template ID 6
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyStub

@@ -6,6 +6,13 @@ function New-SecretDependency {
     .DESCRIPTION
     Create a new Secret Dependency
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $dependentStub = Get-TssSecretDependencyStub -TssSession $session -SecretId 42 -TemplateId 4
+    New-TssSecretDependency -TssSession $session -DependencyStub $dependentStub
+
+    Create new dependency on Secret 42
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependency
 
