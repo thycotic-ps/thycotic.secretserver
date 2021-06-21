@@ -1,8 +1,7 @@
 ---
+title: "Logging"
 sort: 1
 ---
-
-# Working With Logging
 
 In release [0.40.0](https://github.com/thycotic-ps/thycotic.secretserver/releases/tag/v0.40.0) a nested module was added to the Thycotic.SecretServer module called `Thycotic.Logging`.
 The nested module includes the following commands:

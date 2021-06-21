@@ -1,8 +1,7 @@
 ---
+title: "Secret Dependencies"
 sort: 3
 ---
-
-# Working with Secret Dependencies
 
 These are example scripts that can work with Secret Dependencies individually or combined into building full workflow automation using the Thycotic.SecretServer module.
 

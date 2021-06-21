@@ -1,8 +1,7 @@
 ---
+title: "Secrets"
 sort: 5
 ---
-
-# Working with Secrets
 
 ## Examples - Creating
 

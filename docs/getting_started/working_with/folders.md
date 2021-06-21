@@ -1,8 +1,7 @@
 ---
+title: "Folders"
 sort: 2
 ---
-
-# Working with Folders
 
 These are example scripts that can be used individually or combined into building a full workflow automation using the Thycotic.SecretServer module.
 
