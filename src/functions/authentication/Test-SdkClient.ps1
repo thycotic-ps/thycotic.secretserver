@@ -30,6 +30,7 @@ function Test-SdkClient {
     https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
     #>
     [cmdletbinding()]
+    [OutputType('System.Boolean')]
     param(
         # Secret Server
         [Parameter(Mandatory)]
@@ -44,7 +45,6 @@ function Test-SdkClient {
         $ConfigPath
     )
     begin {
-        $tssParams = $PSBoundParameters
         $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
 
         if ($IsLinux) {
