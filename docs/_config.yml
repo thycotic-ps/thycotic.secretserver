@@ -3,6 +3,7 @@ lang: en
 description: Thycotic Secret Server PowerShell Module
 
 remote_theme: rundocs/jekyll-rtd-theme
+baseurl: "/thycotic.secretserver"
 
 readme_index:
   with_frontmatter: true
