@@ -1,11 +1,11 @@
 BeforeDiscovery {
     $moduleRoot = (Resolve-Path "$PSScriptRoot\..\src").Path
     $allFiles = Get-ChildItem -Path $moduleRoot -Recurse -Filter "*.ps1" |
-    Where-Object FullName -NotLike "$moduleRoot\tests\*" |
-    Where-Object FullName -NotLike "$moduleRoot\Build.ps1" |
-    Where-Object FullName -NotLike "*class.ps1"
+        Where-Object FullName -NotLike "$moduleRoot\tests\*" |
+        Where-Object FullName -NotLike "$moduleRoot\Build.ps1" |
+        Where-Object FullName -NotLike "*class.ps1"
 }
-Describe "Verifying module PS1 files" -Foreach $allFiles {
+Describe "Verifying module PS1 files" -ForEach $allFiles {
     BeforeAll {
         $name = $_.Name
         $fullName = $_.FullName
@@ -21,9 +21,9 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
             )
 
             $params = @{
-                ReadCount = 4
+                ReadCount  = 4
                 TotalCount = 4
-                Path = $Path
+                Path       = $Path
             }
             if ($PSVersionTable.PSEdition -ne 'Desktop') {
                 $params.Add('AsByteStream',$true)
@@ -88,7 +88,8 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
         }
 
         It "<_> Should have no trailing space" {
-            ($file | Select-String "\s$" | Where-Object { $_.Line.Trim().Length -gt 0 } | Measure-Object).Count | Should -BeExactly 0
+            $count = ($file | Select-String "\s$" | Where-Object { $_.Line.Trim().Length -gt 0 } | Measure-Object).Count
+            $count | Should -BeExactly 0
         }
 
         It "<_> Should have no syntax errors" {
@@ -98,10 +99,12 @@ Describe "Verifying module PS1 files" -Foreach $allFiles {
 
     Context "Verify <_> does not contain unapproved code" {
         It "<_> should not contain any aliases" {
-            $tokens | Where-Object TokenFlags -eq CommandName | Where-Object { Test-Path "alias:\$($_.Text)" } | Measure-Object | Select-Object -ExpandProperty Count | Should -BeExactly 0
+            $count = ($tokens | Where-Object TokenFlags -EQ CommandName | Where-Object { Test-Path "alias:\$($_.Text)" } | Measure-Object).Count
+            $count | Should -BeExactly 0
         }
         It "<_> should not contain special character aliases" {
-            $tokens | Where-Object TokenFlags -eq 'BinaryPrecedenceMultiply, BinaryOperator, CommandName, CanConstantFold' | Where-Object { Test-Path "alias:\$($_.Text)" } | Measure-Object | Select-Object -ExpandProperty Count | Should -BeExactly 0
+            $count = ($tokens | Where-Object TokenFlags -EQ 'BinaryPrecedenceMultiply, BinaryOperator, CommandName, CanConstantFold' | Where-Object { Test-Path "alias:\$($_.Text)" } | Measure-Object).Count
+            $count | Should -BeExactly 0
         }
     }
 }
