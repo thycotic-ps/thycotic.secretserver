@@ -190,7 +190,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Revoke-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Revoke-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Revoke-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Revoke-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Revoke-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Revoke-Secret.ps1)
 

@@ -136,7 +136,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssUser)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Find-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Find-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Find-User.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Find-User.ps1)
 

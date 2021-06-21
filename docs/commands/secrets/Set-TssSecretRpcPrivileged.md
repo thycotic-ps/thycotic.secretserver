@@ -143,7 +143,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretRpcPrivilegedAccount](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretRpcPrivilegedAccount)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcPrivilegedAccount](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcPrivilegedAccount)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretRpcPrivilegedAccount.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretRpcPrivilegedAccount.ps1)
 

@@ -197,7 +197,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail](https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Disable-TssSecretEmail](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Disable-TssSecretEmail)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Disable-SecretEmail.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Disable-SecretEmail.ps1)
 

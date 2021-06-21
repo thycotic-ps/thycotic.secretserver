@@ -82,7 +82,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserGroup)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserGroup)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-UserGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-UserGroup.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserGroup.ps1)
 

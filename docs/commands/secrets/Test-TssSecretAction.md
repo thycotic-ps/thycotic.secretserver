@@ -85,7 +85,7 @@ Possible Secret Actions:
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssSecretAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssSecretAction)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretAction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretAction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretAction.ps1)
 

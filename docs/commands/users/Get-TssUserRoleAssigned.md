@@ -68,7 +68,7 @@ Only supported on 10.9.32 or higher of Secret Server
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRoleAssigned](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRoleAssigned)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRoleAssigned.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRoleAssigned.ps1)
 

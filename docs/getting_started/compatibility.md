@@ -25,8 +25,8 @@ The Secret Server version listed is the minimum required to use the function.
 [Get-TssSecretState]                | 10.9.000032
 [Get-TssUserRoleAssigned]           | 10.9.000032
 
-[Get-TssSecretAudit]:/commands/secrets/Get-TssSecretAudit
-[Get-TssUserRoleAssigned]:/commands/users/Get-TssUserRoleAssigned
-[Get-TssSecretState]:/commands/secrets/Get-TssSecretState
-[Get-TssConfiguration]:/commands/configurations/Get-TssConfiguration
-[Search-TssDistributedEngineSite]:/commands/distributed_engine/Search-TssDistributedEngineSite
+[Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
+[Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
+[Get-TssSecretState]:/thycotic.secretserver/commands/secrets/Get-TssSecretState
+[Get-TssConfiguration]:/thycotic.secretserver/commands/configurations/Get-TssConfiguration
+[Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/distributed_engine/Search-TssDistributedEngineSite

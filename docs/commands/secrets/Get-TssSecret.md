@@ -242,7 +242,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-Secret.ps1)
 

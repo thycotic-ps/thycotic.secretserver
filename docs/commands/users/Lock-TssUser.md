@@ -97,7 +97,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Lock-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/Lock-TssUser)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Lock-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Lock-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Lock-User.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Lock-User.ps1)
 

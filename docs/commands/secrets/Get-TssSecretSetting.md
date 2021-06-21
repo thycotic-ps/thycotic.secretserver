@@ -67,7 +67,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSetting](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSetting)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSetting](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSetting)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSetting.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSetting.ps1)
 

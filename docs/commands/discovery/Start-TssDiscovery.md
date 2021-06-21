@@ -105,7 +105,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHearbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHearbeat)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Start-TssSecretHearbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Start-TssSecretHearbeat)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Start-SecretHearbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Start-SecretHearbeat.ps1)
 

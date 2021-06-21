@@ -136,7 +136,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssGroup)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Find-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Find-TssGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Find-Group.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Find-Group.ps1)
 

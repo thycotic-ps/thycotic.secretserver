@@ -97,7 +97,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretHeartbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretHeartbeat)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1)
 

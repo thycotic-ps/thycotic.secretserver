@@ -67,7 +67,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupRole)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupRole)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-GroupRole.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-GroupRole.ps1)
 

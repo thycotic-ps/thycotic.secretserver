@@ -113,7 +113,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Update-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Update-TssGroupMember)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-GroupMember.ps1)
 

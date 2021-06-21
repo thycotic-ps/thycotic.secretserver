@@ -67,7 +67,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderAudit)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1)
 

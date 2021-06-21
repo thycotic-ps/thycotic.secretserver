@@ -90,7 +90,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderState](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderState)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderState](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderState)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderState.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderState.ps1)
 

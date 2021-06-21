@@ -82,7 +82,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssFolderAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssFolderAction)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Test-TssFolderAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Test-TssFolderAction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Test-FolderAction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Test-FolderAction.ps1)
 

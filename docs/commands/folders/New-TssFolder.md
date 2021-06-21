@@ -178,7 +178,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/New-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/New-TssFolder)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1)
 

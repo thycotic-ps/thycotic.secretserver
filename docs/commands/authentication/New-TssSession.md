@@ -218,7 +218,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/New-Session.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/New-Session.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/New-Session.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/New-Session.ps1)
 

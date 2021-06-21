@@ -172,7 +172,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretExpiration](https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretExpiration)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretExpiration](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretExpiration)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretExpiration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretExpiration.ps1)
 
