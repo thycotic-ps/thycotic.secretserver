@@ -61,8 +61,7 @@ if ($PSBoundParameters['PublishDocs']) {
     $commands = Get-Command @cmdParams
 
     $functionDirectories.foreach({
-            $categoryFolder = Split-Path $_ -Leaf
-            $categoryFolderName = $categoryFolder -replace '-', '_'
+            $categoryFolderName = Split-Path $_ -Leaf
             $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
 
             if (Test-Path $docCommandPath) {
