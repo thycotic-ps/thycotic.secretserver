@@ -29,4 +29,4 @@ The Secret Server version listed is the minimum required to use the function.
 [Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
 [Get-TssSecretState]:/thycotic.secretserver/commands/secrets/Get-TssSecretState
 [Get-TssConfiguration]:/thycotic.secretserver/commands/configurations/Get-TssConfiguration
-[Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/distributed_engine/Search-TssDistributedEngineSite
+[Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/distributed-engine/Search-TssDistributedEngineSite
