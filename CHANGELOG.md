@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.43.1] -- 2021-06-20
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* None
+
+### General Updates
+
+* module - correcting cbh online links [28ea95b](https://github.com/thycotic-ps/thycotic.secretserver/commit/28ea95b2d56236e9dfdb3ead3cc52692cfb76d56)
+
+### Tests
+
+* None
+
 ## [0.43.0] -- 2021-06-20
 
 ### Breaking Changes
