@@ -22,7 +22,7 @@ function Get-GroupRole {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssRoleSummary ')]
+    [OutputType('TssRoleSummary')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
