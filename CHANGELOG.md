@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Get-TssSecretAccessRequestSecret - new command [d89394b](https://github.com/thycotic-ps/thycotic.secretserver/commit/d89394b109e2418f5e6d48b0947b2c0e55558c08)
 
 </details>
 
