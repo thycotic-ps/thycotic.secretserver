@@ -7,6 +7,9 @@ remote_theme: rundocs/jekyll-rtd-theme
 readme_index:
   with_frontmatter: true
 
+google:
+  gtag: "UA-189117162-1"
+
 exclude:
   - Makefile
   - Gemfile
