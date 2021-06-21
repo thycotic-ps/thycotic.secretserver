@@ -1,5 +1,5 @@
 ---
-title: "TssSecretItem"
+title: "TssSecret"
 ---
 
 # TOPIC
