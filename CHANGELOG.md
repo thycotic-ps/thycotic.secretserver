@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.43.0] -- 2021-06-20
 
 ### Breaking Changes
 
@@ -51,6 +51,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssFolder - PermissionRequired param allow multiple Can filter on multiple permissions for a folder [876ba0f](https://github.com/thycotic-ps/thycotic.secretserver/commit/876ba0f49bf0419e3757ed590000c5dc2783e530)
 * doc site rebuild [f7e9b2d](https://github.com/thycotic-ps/thycotic.secretserver/commit/f7e9b2dd6c87aa119502319b6c0018d21acdcca2)
 * module - rename folder for doc changes [cbb4aa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/cbb4aa766ca8c2aa942f57afada32338e5e20f27)
+* Add-GroupMember - update based on test [6cf9310](https://github.com/thycotic-ps/thycotic.secretserver/commit/6cf9310836cc26239ad405eae80ae94bfba0765b)
+* Get-GroupRole - update based on test [9232481](https://github.com/thycotic-ps/thycotic.secretserver/commit/92324815b2793f9c776feb015e64051726dc53f4)
+* Test-SecretState - set output to full type name [4cb9f28](https://github.com/thycotic-ps/thycotic.secretserver/commit/4cb9f2841e86548855af1e91b84d3fe6b66944b7)
 
 </details>
 
@@ -59,7 +62,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Test-SdkClient - test update [0758191](https://github.com/thycotic-ps/thycotic.secretserver/commit/075819159e7421979ed50e4b808815069eebccd1)
+* Module file integrity test - update performance [83d2c19](https://github.com/thycotic-ps/thycotic.secretserver/commit/83d2c19c4a4c31746a6e70f1f43cd4128328c969)
+* Get-GroupUser - fix test [4144f87](https://github.com/thycotic-ps/thycotic.secretserver/commit/4144f87a15cb20cb13d61461c57ca4d569f39a21)
 
 </details>
 
