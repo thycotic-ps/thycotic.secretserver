@@ -19,10 +19,10 @@ function Get-Version {
     Returns version of Secret Server alpha
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssVersion
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/version/Get-TssVersion
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Get-Version.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Get-Version.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

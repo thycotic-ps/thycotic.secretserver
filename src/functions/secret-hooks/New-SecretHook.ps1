@@ -13,7 +13,7 @@ function New-SecretHook {
     Update Secret Hook 2's Arguments property on Secret ID 76
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretHook
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/New-TssSecretHook
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-SecretHook.ps1

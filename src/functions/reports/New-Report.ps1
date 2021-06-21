@@ -25,7 +25,7 @@ function New-Report {
     Create a new report where the T-SQL is stored in a SQL script file
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/New-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/New-Report.ps1

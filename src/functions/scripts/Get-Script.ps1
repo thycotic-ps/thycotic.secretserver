@@ -13,7 +13,7 @@ function Get-Script {
     Return Script ID 10
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssScript
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/Get-TssScript
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Get-Script.ps1

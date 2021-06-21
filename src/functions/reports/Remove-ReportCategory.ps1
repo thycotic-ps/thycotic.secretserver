@@ -21,7 +21,7 @@ function Remove-ReportCategory {
     Removes report category 21
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReportCategory
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReportCategory
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-ReportCategory.ps1

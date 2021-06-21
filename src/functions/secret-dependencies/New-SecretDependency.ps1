@@ -14,7 +14,7 @@ function New-SecretDependency {
     Create new dependency on Secret 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependency
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/New-TssSecretDependency
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-SecretDependency.ps1

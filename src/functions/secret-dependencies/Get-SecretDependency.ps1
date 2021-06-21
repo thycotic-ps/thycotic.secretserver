@@ -13,7 +13,7 @@ function Get-SecretDependency {
     Return the Secret Dependency 24
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependency
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependency
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependency.ps1

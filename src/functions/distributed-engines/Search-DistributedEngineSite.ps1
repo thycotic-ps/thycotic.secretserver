@@ -7,7 +7,7 @@ function Search-DistributedEngineSite {
     Search Distributed Engine Sites in Secret Server
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDistributedEngineSite
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Search-TssDistributedEngineSite
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Search-DistributedEngineSite.ps1

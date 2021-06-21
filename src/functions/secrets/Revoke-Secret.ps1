@@ -13,7 +13,7 @@ function Revoke-Secret {
     Expire Secret ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Revoke-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Revoke-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Revoke-Secret.ps1

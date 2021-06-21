@@ -19,7 +19,7 @@ function Set-SecretRpcPrivileged {
     Set the RPC Privileged Account on Secret 56 to use the Secret itself (Credentials on Secret)
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretRpcPrivilegedAccount
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcPrivilegedAccount
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretRpcPrivilegedAccount.ps1

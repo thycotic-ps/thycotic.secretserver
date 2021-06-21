@@ -13,7 +13,7 @@ function Get-SecretAccessRequestOption {
     Get the Secret Access Request options for Secret ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAccessRequestOption
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-access-requests/Get-TssSecretAccessRequestOption
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Get-SecretAccessRequestOption.ps1

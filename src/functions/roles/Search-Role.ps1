@@ -13,7 +13,7 @@ function Search-Role {
     Returns roles assigned to User ID 43
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRole
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/roles/Search-TssRole
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/roles/Search-Role.ps1

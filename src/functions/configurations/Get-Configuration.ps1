@@ -13,7 +13,7 @@ function Get-Configuration {
     Return all configuration objects
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssConfiguration
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfiguration
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-Configuration.ps1

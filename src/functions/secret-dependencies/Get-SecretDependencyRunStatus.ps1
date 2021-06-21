@@ -14,7 +14,7 @@ function Get-SecretDependencyRunStatus {
     After starting a Secret's Dependency 46, get the status of that run
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyRunStatus
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyRunStatus
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependencyRunStatus.ps1

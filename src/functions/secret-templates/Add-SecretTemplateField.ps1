@@ -16,7 +16,7 @@ function Add-SecretTemplateField {
     Output the current fields for Secret Template 6042, create a new field named "Additional Field" that is searchable and add to the Secret Template 6042
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssSecretTemplateField
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Add-TssSecretTemplateField
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Add-SecretTemplateField

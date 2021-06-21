@@ -13,7 +13,7 @@ function Reset-UserPassword {
     Add minimum example for each parameter
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Reset-TssUserPassword
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Reset-TssUserPassword
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Reset-UserPassword.ps1

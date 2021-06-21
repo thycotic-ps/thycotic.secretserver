@@ -13,7 +13,7 @@ function Update-SecretPermission {
     Update Secret Permission 242, setting access role to View
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Set-TssSecretPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permission/Set-SecretPermission.ps1

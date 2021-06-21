@@ -13,7 +13,7 @@ function Get-SecretSummary {
     Returns the summary information of Secret ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSummary
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSummary
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSummary.ps1

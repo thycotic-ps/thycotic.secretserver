@@ -13,7 +13,7 @@ function Find-Folder {
     Return folders with Parent Folder ID of 56
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Find-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Find-Folder.ps1

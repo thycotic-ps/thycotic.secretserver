@@ -19,7 +19,7 @@ function Disable-SecretEmail {
     Disable Email When Viewed setting on Secret IDs 42, 43, and 45
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssSecretEmail
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Disable-TssSecretEmail
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Disable-SecretEmail.ps1

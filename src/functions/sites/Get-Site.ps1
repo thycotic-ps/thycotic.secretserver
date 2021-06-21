@@ -13,10 +13,10 @@ function Get-Site {
     Get a list of Sites, including those disabled in the results
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSite
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/sites/Get-TssSite
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Get-Site.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/sites/Get-Site.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

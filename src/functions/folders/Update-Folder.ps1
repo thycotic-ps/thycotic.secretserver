@@ -15,7 +15,7 @@ function Update-Folder {
     Updates Folder ID 77 setting Secret Policy ID 15
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-Folder.ps1

@@ -13,7 +13,7 @@ function Get-FolderAudit {
     Gets the audit entries for Folder ID
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderAudit
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderAudit
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1

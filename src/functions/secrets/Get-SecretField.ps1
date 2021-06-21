@@ -13,7 +13,7 @@ function Get-SecretField {
     Get the username value of secret ID 14
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretField
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretField
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretField.ps1

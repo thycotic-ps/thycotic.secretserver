@@ -13,7 +13,7 @@ function Get-SecretHook {
     Get details of Secret Hook ID 1 of Secret ID 376
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHook
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Get-TssSecretHook
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Get-SecretHook.ps1

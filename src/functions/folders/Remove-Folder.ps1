@@ -13,7 +13,7 @@ function Remove-Folder {
     Delete Folder ID 28
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Remove-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-Folder.ps1

@@ -13,7 +13,7 @@ function Get-SecretTemplateFolder {
     Returns a list of Secret Templates allowed for Folder ID 64
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretTemplateFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Get-TssSecretTemplateFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Get-SecretTemplateFolder.ps1

@@ -13,7 +13,7 @@ function Get-SecretDependencyGroup {
     Return Secret Dependency Group(s) for Secret ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyGroup
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependencyGroup.ps1

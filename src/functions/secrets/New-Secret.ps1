@@ -31,7 +31,7 @@ function New-Secret {
     Output will show the FolderId, Name, SecretTemplateName, and Active properties.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/New-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/New-Secret.ps1

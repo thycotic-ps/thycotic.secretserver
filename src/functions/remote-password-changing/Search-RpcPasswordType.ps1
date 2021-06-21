@@ -7,7 +7,7 @@ function Search-RpcPasswordType {
     List available Password Types
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssRpcPasswordType
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Search-TssRpcPasswordType
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1

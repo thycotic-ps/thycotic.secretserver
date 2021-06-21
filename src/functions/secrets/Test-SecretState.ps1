@@ -13,7 +13,7 @@ function Test-SecretState {
     Test for state RequiresCheckout on Secret ID 75, returning true if exists and false if not
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssSecretState
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretState
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretState.ps1

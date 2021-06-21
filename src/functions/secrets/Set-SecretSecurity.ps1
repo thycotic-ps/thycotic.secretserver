@@ -13,7 +13,7 @@ function Set-SecretSecurity {
     DOING something
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretSecurity
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretSecurity
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretSecurity.ps1

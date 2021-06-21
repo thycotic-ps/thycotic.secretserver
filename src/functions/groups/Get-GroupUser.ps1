@@ -13,7 +13,7 @@ function Get-GroupUser {
     Get User Id 43 details in Group ID 8
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-GroupUser.ps1

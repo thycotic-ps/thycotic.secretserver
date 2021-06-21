@@ -19,9 +19,6 @@ function Invoke-RestApi {
     Performs request to the URI specified, returning all secrets the current credential has access to view (minimum) using alias names for each function.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssRestApi
-
-    .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Invoke-RestApi.ps1
 
     .NOTES

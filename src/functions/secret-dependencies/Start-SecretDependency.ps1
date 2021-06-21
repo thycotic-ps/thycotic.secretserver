@@ -14,7 +14,7 @@ function Start-SecretDependency {
     After starting a Secret's Dependency 46, get the status of that run
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretDependency
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Start-TssSecretDependency
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Start-SecretDependency.ps1

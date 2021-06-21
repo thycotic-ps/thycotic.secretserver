@@ -56,7 +56,7 @@ function Get-Secret {
     Get the Secert 330, pulling the fields on that Secret that are files and output contents of each file to the console.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-Secret.ps1

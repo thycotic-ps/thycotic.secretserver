@@ -19,7 +19,7 @@ function New-User {
     Create apiuser as an Application Account and enable on creation.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/New-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/New-User.ps1

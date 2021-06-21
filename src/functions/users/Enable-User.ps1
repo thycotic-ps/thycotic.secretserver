@@ -13,7 +13,7 @@ function Enable-User {
     Enable User 28
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Enable-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Enable-User.ps1

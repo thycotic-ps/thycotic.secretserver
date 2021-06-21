@@ -7,7 +7,7 @@ function Search-SecretPermission {
     Search Secret Permissions
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Search-TssSecretPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Search-SecretPermission.ps1

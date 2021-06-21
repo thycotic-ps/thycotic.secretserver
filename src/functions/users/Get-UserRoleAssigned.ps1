@@ -13,7 +13,7 @@ function Get-UserRoleAssigned {
     Returns roles assigned to the User ID 254
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRoleAssigned
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRoleAssigned.ps1

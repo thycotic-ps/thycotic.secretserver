@@ -43,7 +43,7 @@ function Search-Secret {
     Return all secret(s) that have the username "root"
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Search-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-Secret.ps1

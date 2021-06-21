@@ -19,7 +19,7 @@ function Get-FolderState {
     Returns details on Folder ID 482, if no access to folder will return no results
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderState
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderState
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderState.ps1

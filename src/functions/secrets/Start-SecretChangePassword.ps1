@@ -13,7 +13,7 @@ function Start-SecretChangePassword {
     Start a current password change operation on secret 46
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretChangePassword
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretChangePassword
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretChangePassword.ps1

@@ -13,7 +13,7 @@ function Remove-SecretPermission {
     Delete the Secert Permissions 231
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Remove-TssSecretPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Remove-SecretPermission.ps1

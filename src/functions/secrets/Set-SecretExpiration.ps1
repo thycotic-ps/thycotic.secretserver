@@ -25,7 +25,7 @@ function Set-SecretExpiration {
     Set Secret expiration on Secret 23 to interval of 21 days
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretExpiration
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretExpiration
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretExpiration.ps1

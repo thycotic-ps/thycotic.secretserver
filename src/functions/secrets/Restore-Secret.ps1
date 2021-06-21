@@ -13,7 +13,7 @@ function Restore-Secret {
     Un-delete Secrets 34 and 56
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Restore-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Restore-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Restore-Secret.ps1

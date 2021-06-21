@@ -19,7 +19,7 @@ function Find-User {
     Return a list of all users with "demo" in the username or email
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Find-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Find-User.ps1

@@ -13,7 +13,7 @@ function Find-Secret {
     Return secrets found in folder 50 where RPC is enabled on the secret templates
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Find-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Find-Secret.ps1

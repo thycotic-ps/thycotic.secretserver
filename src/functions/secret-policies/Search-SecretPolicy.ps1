@@ -7,10 +7,10 @@ function Search-SecretPolicy {
     Search Secret Policies
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretPolicy
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Search-TssSecretPolicy
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policy/Search-SecretPolicy.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Search-SecretPolicy.ps1
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred

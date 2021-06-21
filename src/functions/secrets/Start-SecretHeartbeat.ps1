@@ -13,7 +13,7 @@ function Start-SecretHeartbeat {
     Start a heartbeat operation on Secret 46
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssSecretHeartbeat
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretHeartbeat
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1

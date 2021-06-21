@@ -13,7 +13,7 @@ function Remove-UserPii {
     Secret Server will go through and delete identified PII data for user 56
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssUserPii
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Remove-TssUserPii
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Remove-UserPii.ps1

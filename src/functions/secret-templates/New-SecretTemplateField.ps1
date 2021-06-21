@@ -34,7 +34,7 @@ function New-SecretTemplateField {
     Creates a new template named "Test Template 42" with 3 fields
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretTemplateStubField
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Set-TssSecretTemplateStubField
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Set-SecretTemplateStubField.ps1

@@ -19,7 +19,7 @@ function Get-ReportCategory {
     Returns a list of all categories
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportCategory
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportCategory
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-ReportCategory.ps1

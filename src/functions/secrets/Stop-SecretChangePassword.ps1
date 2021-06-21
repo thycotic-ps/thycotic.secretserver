@@ -13,7 +13,7 @@ function Stop-SecretChangePassword {
     Stop a current password change operation on secret 46
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssSecretChangePassword
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Stop-TssSecretChangePassword
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-SecretChangePassword.ps1

@@ -13,7 +13,7 @@ function Get-GroupRole {
     Return list of roles assigned to Group ID 8
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupRole
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupRole
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-GroupRole.ps1

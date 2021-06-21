@@ -15,7 +15,7 @@ function Update-Secret {
     Update Secret ID 42, setting SiteID to Site 2
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Update-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-Secret.ps1

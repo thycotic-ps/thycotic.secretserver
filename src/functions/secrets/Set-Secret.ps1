@@ -19,7 +19,7 @@ function Set-Secret {
     Sets secret 1455 disables emailing when changed
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-Secret.ps1

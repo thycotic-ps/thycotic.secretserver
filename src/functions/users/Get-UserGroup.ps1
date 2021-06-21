@@ -13,10 +13,10 @@ function Get-UserGroup {
     Get group the User ID 42 is a member of
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserGroup
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-UserGroup.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserGroup.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

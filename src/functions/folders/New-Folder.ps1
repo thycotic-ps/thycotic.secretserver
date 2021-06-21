@@ -27,7 +27,7 @@ function New-Folder {
     Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/New-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/New-Folder.ps1

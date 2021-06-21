@@ -13,7 +13,7 @@ function Disable-UnlimitedAdmin {
     Disables Unlimited Admin Mode providing the required note
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssUnlimitedAdmin
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Disable-TssUnlimitedAdmin
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Disable-UnlimitedAdmin.ps1

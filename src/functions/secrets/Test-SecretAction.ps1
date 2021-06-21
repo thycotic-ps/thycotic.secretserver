@@ -13,7 +13,7 @@ function Test-SecretAction {
     Test for action Edit on Secret ID 75, returning true if exists and false if not
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssSecretAction
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretAction
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretAction.ps1

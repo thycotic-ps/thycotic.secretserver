@@ -44,7 +44,7 @@ function Set-SecretField {
     Sets the attached-file field on Secret 42 to the contents of the attachment.txt file, providing the appropriate filename desired
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretField
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretField
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretField.ps1

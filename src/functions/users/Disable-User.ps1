@@ -13,7 +13,7 @@ function Disable-User {
     Disable User 28
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Disable-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Disable-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Disable-User.ps1

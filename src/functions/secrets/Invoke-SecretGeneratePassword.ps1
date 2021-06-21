@@ -14,7 +14,7 @@ function Invoke-SecretGeneratePassword {
     Generating password for Secret ID 25 based on password rules configured for the template, updating password field using Set-TssSecret
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssSecretGeneratePassword
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Invoke-TssSecretGeneratePassword
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Invoke-SecretGeneratePassword.ps1

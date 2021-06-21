@@ -13,10 +13,10 @@ function Get-SecretDependencyStub {
     Return Secret Dependency Stub for Secret 42 and Template ID 6
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyStub
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyStub
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-SecretDependencyStub.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependencyStub.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

@@ -6,12 +6,6 @@ function Open-Secret {
     .DESCRIPTION
     Checkout a Secret
 
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Open-TssSecret
-
-    .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Open-Secret.ps1
-
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Checkout-TssSecret -TssSession $session -Id 72 -TicketId 'N000354'
@@ -29,6 +23,12 @@ function Open-Secret {
     Open-TssSecret -TssSession $session -Id 42 -Comment "CI process"
 
     Checkout Secret ID 42 providing a comment (Secret configured to checkout and require comment)
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Open-TssSecret
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Open-Secret.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

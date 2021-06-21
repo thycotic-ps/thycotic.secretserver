@@ -13,7 +13,7 @@ function Remove-SecretDependency {
     Remove Secret Dependency 24
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretDependency
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Remove-TssSecretDependency
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-SecretDependency.ps1

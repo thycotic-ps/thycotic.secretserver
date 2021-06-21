@@ -7,7 +7,7 @@ function Find-Group {
     Find for a Secret Server Group (domain or local)
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Find-TssGroup
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Find-Group.ps1

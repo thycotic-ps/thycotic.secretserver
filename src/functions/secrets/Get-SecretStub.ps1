@@ -21,7 +21,7 @@ function Get-SecretStub {
     Getting the Active Directory template stub object, setting the Name and Username on the Secret stub.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretStub
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretStub
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretStub.ps1

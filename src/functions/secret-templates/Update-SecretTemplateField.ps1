@@ -16,7 +16,7 @@ function Update-SecretTemplateField {
     Gets current Password field on Template 6025 and updates IsRequired to be true
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecretTemplateField
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Update-TssSecretTemplateField
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Update-SecretTemplateField.ps1

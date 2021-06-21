@@ -13,7 +13,7 @@ function Lock-User {
     Lock User 28
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Lock-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Lock-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Lock-User.ps1

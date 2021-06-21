@@ -7,7 +7,7 @@ function Search-Script {
     Search Secret Server scripts (Admin > Scripts)
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssScript
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/Search-TssScript
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Search-Script.ps1

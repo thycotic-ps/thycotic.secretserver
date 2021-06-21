@@ -13,7 +13,7 @@ function Get-User {
     Get the User ID 2
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-User.ps1

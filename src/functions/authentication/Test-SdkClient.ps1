@@ -20,10 +20,10 @@ function Test-SdkClient {
     Tests SDK Client configuration and return true if connected
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssSdkClient
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSdkClient
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Test-SdkClient.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-SdkClient.ps1
 
     .NOTES
     Secret Server docs cover configuring Application Account and SDK Client rule

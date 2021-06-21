@@ -13,7 +13,7 @@ function Get-UserRole {
     Get assigned roles for User ID 2
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserRole
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRole
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserRole.ps1

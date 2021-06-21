@@ -19,7 +19,7 @@ function Search-ReportSchedule {
     Returns list of all report schedules, including those that were deleted
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssReportSchedule
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Search-TssReportSchedule
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-ReportSchedule.ps1

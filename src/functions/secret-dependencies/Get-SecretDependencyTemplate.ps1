@@ -25,7 +25,7 @@ function Get-SecretDependencyTemplate {
     Return Dependency Template named Window Service
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretDependencyTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-SecretDependencyTemplate.ps1

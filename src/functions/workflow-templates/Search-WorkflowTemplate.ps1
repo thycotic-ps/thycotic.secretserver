@@ -7,7 +7,7 @@ function Search-WorkflowTemplate {
     Search Workflow Templates
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssWorkflowTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/workflows/Search-TssWorkflowTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/workflows/Search-WorkflowTemplate.ps1

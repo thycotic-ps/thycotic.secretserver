@@ -19,7 +19,7 @@ function Enable-SecretCheckout {
     Enable Checkout When Viewed setting on Secret IDs 42, 43, and 45
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretCheckout
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Enable-TssSecretCheckout
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretCheckout.ps1

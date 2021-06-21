@@ -13,7 +13,7 @@ function Unlock-User {
     Unlock User 28
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Unlock-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Unlock-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Unlock-User.ps1

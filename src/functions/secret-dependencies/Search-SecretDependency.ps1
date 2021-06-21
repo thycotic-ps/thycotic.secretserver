@@ -7,7 +7,7 @@ function Search-SecretDependency {
     Return a list of Secret Dependencies for a Secret
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretDependency
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Search-TssSecretDependency
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Search-SecretDependency.ps1

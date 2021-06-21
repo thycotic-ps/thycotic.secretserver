@@ -13,7 +13,7 @@ function Search-SecretTemplate {
     Return all Secret Templates where "key" is in the template name
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Search-TssSecretTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Search-SecretTemplate.ps1

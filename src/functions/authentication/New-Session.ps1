@@ -45,10 +45,10 @@ function New-Session {
     Token request performed via SDK Client meaning that token is good for life of the configuration
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSession
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/New-Session.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/New-Session.ps1
 
     .OUTPUTS
     TssSession

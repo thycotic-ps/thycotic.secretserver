@@ -13,7 +13,7 @@ function Remove-GroupMember {
     Remove User ID 34 from Group ID 8
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssGroupMember
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Remove-TssGroupMember
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Remove-GroupMember.ps1

@@ -19,7 +19,7 @@ function New-SecretDependencyGroup {
     Create the Dependency Group "Test Env" on all Secrets found under Folder ID 50, that the apiacct has access
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretDependencyGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/New-TssSecretDependencyGroup
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-SecretDependencyGroup.ps1

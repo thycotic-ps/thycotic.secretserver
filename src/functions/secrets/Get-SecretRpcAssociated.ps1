@@ -13,7 +13,7 @@ function Get-SecretRpcAssociated {
     Add minimum example for each parameter
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretRpcAssociated
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretRpcAssociated
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretRpcAssociated.ps1

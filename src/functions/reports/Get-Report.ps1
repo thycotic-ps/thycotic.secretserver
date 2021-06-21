@@ -13,7 +13,7 @@ function Get-Report {
     Gets the details on report ID 6
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-Report.ps1

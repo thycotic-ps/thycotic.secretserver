@@ -13,7 +13,7 @@ function Remove-Secret {
     Delete Secret ID 93
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Remove-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Remove-Secret.ps1

@@ -27,7 +27,7 @@ function Close-Secret {
     Check-In Secret 42 after using it to get the username/password credential
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Close-TssSecret
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Close-TssSecret
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-Secret.ps1

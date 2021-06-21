@@ -13,7 +13,7 @@ function Remove-FolderTemplate {
     Removes Template 6001 from Folder ID 23
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssFolderTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Remove-TssFolderTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-FolderTemplate.ps1

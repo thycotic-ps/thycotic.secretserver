@@ -13,7 +13,7 @@ function Enable-UnlimitedAdmin {
     Enables Unlimited Admin Mode providing the required note
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssUnlimitedAdmin
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Enable-TssUnlimitedAdmin
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Enable-UnlimitedAdmin.ps1

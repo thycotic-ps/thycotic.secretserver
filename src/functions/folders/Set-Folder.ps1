@@ -13,7 +13,7 @@ function Set-Folder {
     Renames Folder ID 93 to 'Security Admins'
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Set-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Set-Folder.ps1

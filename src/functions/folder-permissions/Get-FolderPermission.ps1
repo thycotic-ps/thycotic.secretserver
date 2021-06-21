@@ -13,7 +13,7 @@ function Get-FolderPermission {
     Returns Folder Permission(s) for Folder ID
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolderPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Get-TssFolderPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Get-FolderPermission.ps1

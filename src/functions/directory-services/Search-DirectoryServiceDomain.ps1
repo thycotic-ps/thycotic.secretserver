@@ -13,7 +13,7 @@ function Search-DirectoryServiceDomain {
     Return the domain lab.local information
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssDirectoryServiceDomain
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceDomain
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-DirectoryServiceDomain.ps1

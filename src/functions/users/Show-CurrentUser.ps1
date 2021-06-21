@@ -20,7 +20,7 @@ function Show-CurrentUser {
     Get the current user for the session and output a sorted list of Secret Server permissions assigned
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Show-TssCurrentUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Show-TssCurrentUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Show-CurrentUser.ps1

@@ -15,7 +15,7 @@ function Get-SecretAttachment {
     Get the Secert ID 35's field Attached File (using slug name attached-file), writing the file to c:\thycotic directory using the filename stored on that Secret
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAttachment
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretAttachment
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretAttachment.ps1

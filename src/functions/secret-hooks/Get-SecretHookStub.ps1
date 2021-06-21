@@ -13,7 +13,7 @@ function Get-SecretHookStub {
     Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, PrePostOption and Event Action.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretHookStub
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Get-TssSecretHookStub
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Get-SecretHookStub.ps1

@@ -13,10 +13,10 @@ function Get-UserOwner {
     Get Owners of the User ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserOwner
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserOwner
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/<folder>/Get-UserOwner.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserOwner.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

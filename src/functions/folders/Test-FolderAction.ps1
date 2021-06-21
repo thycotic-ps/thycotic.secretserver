@@ -13,7 +13,7 @@ function Test-FolderAction {
     Test for action AddSecret on Folder ID 75, returning true if exists and false if not
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssFolderAction
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Test-TssFolderAction
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Test-FolderAction.ps1

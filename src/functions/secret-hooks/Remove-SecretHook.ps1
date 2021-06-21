@@ -13,7 +13,7 @@ function Remove-SecretHook {
     Delete the Hook ID 2 on Secret ID 385
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssSecretHook
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Remove-TssSecretHook
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Remove-SecretHook.ps1

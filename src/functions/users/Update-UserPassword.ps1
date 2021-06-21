@@ -13,7 +13,7 @@ function Update-UserPassword {
     Updates the user's password for the current session
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssUserPassword
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Update-TssUserPassword
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Update-UserPassword.ps1

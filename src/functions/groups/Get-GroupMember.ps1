@@ -13,7 +13,7 @@ function Get-GroupMember {
     Get users that are members of Group 2
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssGroupMember
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-GroupMember.ps1

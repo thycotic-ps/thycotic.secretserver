@@ -13,7 +13,7 @@ function Get-UserAudit {
     Get all of the audits for UserId 2
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssUserAudit
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserAudit
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserAudit.ps1

@@ -13,7 +13,7 @@ function Search-Folder {
     Return all child folders found under root folder 54
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Search-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-Folder.ps1

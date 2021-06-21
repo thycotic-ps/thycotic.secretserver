@@ -13,7 +13,7 @@ function Get-SecretSetting {
     Get settings details for Secret ID 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretSetting
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSetting
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretSetting.ps1

@@ -13,7 +13,7 @@ function Get-RpcPasswordType {
     Get Password Type 52
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssRpcPasswordType
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Get-TssRpcPasswordType
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Get-RpcPasswordType.ps1

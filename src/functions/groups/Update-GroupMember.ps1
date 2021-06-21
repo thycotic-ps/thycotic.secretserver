@@ -13,7 +13,7 @@ function Update-GroupMember {
     Update Group 8 to have users 54, 35, 97, and 345 as members
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssGroupMember
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Update-TssGroupMember
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-GroupMember.ps1

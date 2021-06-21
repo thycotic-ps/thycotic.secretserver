@@ -13,7 +13,7 @@ function New-FolderPermission {
     Creates a folder permission on Folder ID 5 for User ID 21 granting View on the Folder-level and List on the Secrets in the folder
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssFolderPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/New-TssFolderPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/New-FolderPermission.ps1

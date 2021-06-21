@@ -13,7 +13,7 @@ function Add-GroupMember {
     Add User ID 54 to Group ID 8
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Add-TssGroupMember
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Add-TssGroupMember
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-GroupMember.ps1

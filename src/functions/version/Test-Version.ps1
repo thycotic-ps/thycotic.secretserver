@@ -13,10 +13,10 @@ function Test-Version {
     Pulls version of Secret Server and queries for latest version, returning object with details
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Test-TssVersion
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/version/Test-TssVersion
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Test-Version.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Test-Version.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

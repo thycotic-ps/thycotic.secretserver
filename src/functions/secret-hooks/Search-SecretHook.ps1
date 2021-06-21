@@ -13,7 +13,7 @@ function Search-SecretHook {
     Return all secret hooks associated with Secret ID 82
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssSecretHook
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Search-TssSecretHook
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Search-SecretHook.ps1

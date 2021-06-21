@@ -13,7 +13,7 @@ function Get-SecretState {
     Add minimum example for each parameter
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretState
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretState
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretState.ps1

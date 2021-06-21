@@ -13,7 +13,7 @@ function New-SecretPermission {
     Adding permission for User ID 98 to Secret 76, granting View rights to the Secret.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/New-TssSecretPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/New-SecretPermission.ps1

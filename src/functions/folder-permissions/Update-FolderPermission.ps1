@@ -19,7 +19,7 @@ function Update-FolderPermission {
     Update Folder Permission ID 45 on Folder ID 72 to Owner folder permission
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssFolderPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Update-TssFolderPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Update-FolderPermission.ps1

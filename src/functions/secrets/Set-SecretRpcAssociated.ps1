@@ -22,7 +22,7 @@ function Set-SecretRpcAssociated {
     Pull the current Associated Secrets on Secret ID 330, add the Secret ID 42 to the end of that list (order 3), and then update Secret ID 330
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretRpcAssociated
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcAssociated
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-SecretRpcAssociated.ps1

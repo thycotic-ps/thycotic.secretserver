@@ -25,7 +25,7 @@ function New-SecretTemplate {
     Creates a new template named "Test Template 42" with 3 fields
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssSecretTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/New-TssSecretTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-SecretTemplate.ps1

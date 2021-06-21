@@ -15,7 +15,7 @@ function Update-User {
     Get the TssUser object via Get-TssUser, updating the display name on User 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssUser
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Update-TssUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Update-User.ps1

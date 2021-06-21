@@ -13,7 +13,7 @@ function Search-Group {
     Return list of all groups found in Secret Server that account has access to manage
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssGroup
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Search-TssGroup
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Search-Group.ps1

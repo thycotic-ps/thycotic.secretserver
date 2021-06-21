@@ -13,7 +13,7 @@ function Search-FolderPermission {
     Return Folder Permissions for Folder ID 32
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssFolderPermission
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Search-TssFolderPermission
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-FolderPermission.ps1

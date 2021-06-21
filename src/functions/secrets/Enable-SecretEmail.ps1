@@ -19,7 +19,7 @@ function Enable-SecretEmail {
     Enable Email When Viewed setting on Secret IDs 42, 43, and 45
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Enable-TssSecretEmail
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Enable-TssSecretEmail
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-SecretEmail.ps1

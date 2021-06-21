@@ -13,7 +13,7 @@ function Set-SecretTemplate {
     Sets Secret Template 6093 Active to false or90
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Set-TssSecretTemplate
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Set-TssSecretTemplate
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-SecretTemplate.ps1

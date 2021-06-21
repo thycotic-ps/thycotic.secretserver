@@ -31,7 +31,7 @@ function Get-Folder {
     Returns folder that has a path of ABC Company\Security
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssFolder
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolder
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-Folder.ps1
