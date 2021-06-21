@@ -6,13 +6,13 @@ sort: 2
 
 ## TssSession Object
 
-The [TssSession](/thycotic.secretserver/abouttopics/about_tsssession) is utilized by the functions to authenticate to Secret Server when making an call to the endpoints used in each function. `New-TssSession` creates an instance of this object in your PowerShell session.
+The [TssSession](/about_topics/authentication/about_tsssession) is utilized by the functions to authenticate to Secret Server when making an call to the endpoints used in each function. `New-TssSession` creates an instance of this object in your PowerShell session.
 
 ## Windows Integrated Authentication (IWA)
 
 To utilize Windows Authentication with Secret Server, your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/ss/10.9.0/api-scripting/webservice-iwa-powershell/index.md).
 
-As of **version `0.30.0`**, Windows Authentication is supported with the module. A parameter, `-UseWindowsAuth` is available in `New-TssSession`. See examples of this use via the command help [New-TssSession](/thycotic.secretserver/commands/New-TssSession).
+As of **version `0.30.0`**, Windows Authentication is supported with the module. A parameter, `-UseWindowsAuth` is available in `New-TssSession`. See examples of this use via the command help [New-TssSession](/commands/authentication/New-TssSession).
 
 ## OAuth2 Authentication
 
@@ -66,8 +66,6 @@ $cred = [pscredential]::new($username,$password)
 
 $session = New-TssSession -SecretServer https://vault.company/SecretServer -Credential $session
 ```
-
-More: [How to Secure Your Passwords with PowerShell](https://www.sqlshack.com/how-to-secure-your-passwords-with-powershell/).
 
 #### SecretManagement Module
 
