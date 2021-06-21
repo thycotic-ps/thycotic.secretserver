@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Update-FolderPermission - correct output type [2318c8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2318c8f85aa012581b52a95d9dc552ecd0bb99ae)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.43.1] -- 2021-06-20
 
 ### Breaking Changes
