@@ -162,6 +162,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### TssFolderPermissionSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

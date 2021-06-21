@@ -28,7 +28,7 @@ function Update-FolderPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType()]
+    [OutputType('TssFolderPermissionSummary')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,

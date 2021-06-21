@@ -16,4 +16,9 @@ Describe "$commandName verify parameters" {
             $_ | Should -BeNullOrEmpty
         }
     }
+    Context "Command specific details" {
+        It "$commandName should set OutputType to TssFolderPermissionSummary" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'TssFolderPermissionSummary'
+        }
+    }
 }
