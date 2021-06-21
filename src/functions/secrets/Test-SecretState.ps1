@@ -25,7 +25,7 @@ function Test-SecretState {
     'None','RequiresApproval','RequiresCheckout','RequiresComment','RequiresDoubleLockPassword','CreateDoubleLockPassword','DoubleLockNoAccess','CannotView','RequiresUndelete','RequiresCheckoutPendingRPC','RequiresCheckoutAndComment'
     #>
     [CmdletBinding()]
-    [OutputType('boolean')]
+    [OutputType('System.Boolean')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
