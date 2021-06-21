@@ -70,6 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### System.Boolean
 ## NOTES
 Secret Server docs cover configuring Application Account and SDK Client rule
 https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
