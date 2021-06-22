@@ -39,7 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Set-SecretField - correct output messages [b09f147](https://github.com/thycotic-ps/thycotic.secretserver/commit/b09f147ff53f27e0bc130de0fed3cce71983af41)
 
 </details>
 
