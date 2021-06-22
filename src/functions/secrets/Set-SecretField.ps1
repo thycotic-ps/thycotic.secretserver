@@ -186,15 +186,15 @@ function Set-SecretField {
                     try {
                         $fieldResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning "Issue setting field $Field on secret [$secret]"
+                        Write-Warning "Issue setting field $Slug on secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
                     }
 
                     if ($fieldResponse -eq $Value) {
-                        Write-Verbose "Secret [$secret] field $Field updated successfully"
+                        Write-Verbose "Secret [$secret] field $Slug updated successfully"
                     } elseif ($setParams.ContainsKey('Clear') -and ($null -eq $fieldResponse)) {
-                        Write-Verbose "Secret [$secret] field $Field cleared successfully"
+                        Write-Verbose "Secret [$secret] field $Slug cleared successfully"
                     } else {
                         Write-Verbose "Response for secret [$secret]: $fieldResponse"
                     }
