@@ -186,7 +186,7 @@ function Set-SecretField {
                     try {
                         $fieldResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning "Issue setting field $Slug on secret [$secret]"
+                        Write-Warning "Issue setting field [$Slug] on secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
                     }
