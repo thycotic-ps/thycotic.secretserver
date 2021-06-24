@@ -31,10 +31,14 @@ function Update-Secret {
         [TssSession]
         $TssSession,
 
-        # Input object obtained via Get-TssSecretStub
+        # Input object obtained via Get-TssSecretStub or Get-TssSecret
         [Parameter(Mandatory, Position = 1)]
         [TssSecret]
         $Secret,
+
+        # Include inactive Secrets
+        [switch]
+        $IncludeInactive,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
         [Parameter(ParameterSetName = 'restricted')]
@@ -77,14 +81,17 @@ function Update-Secret {
             $uri = $TssSession.ApiUrl, 'secrets', $secretId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PUT'
-            $updateBody = $Secret
 
+            $updateBody = $Secret | ConvertTo-Json | ConvertFrom-Json
+            if ($updateParams.ContainsKey('IncludeInactive')) {
+                $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('includeInactive',[boolean]$IncludeInactive))
+            }
             if ($restrictedParams.Count -gt 0) {
                 switch ($updateParams.Keys) {
-                    'Comment' { $updateBody.Add('comment', $Comment) }
-                    'ForceCheckIn' { $updateBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
-                    'TicketNumber' { $updateBody.Add('ticketNumber', $TicketNumber) }
-                    'TicketSystemId' { $updateBody.Add('ticketSystemId', $TicketSystemId) }
+                    'Comment' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('comment', $Comment)) }
+                    'ForceCheckIn' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('forceCheckIn', [boolean]$ForceCheckIn)) }
+                    'TicketNumber' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketNumber', $TicketNumber)) }
+                    'TicketSystemId' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketSystemId', $TicketSystemId)) }
                 }
             }
             $invokeParams.Body = $updateBody | ConvertTo-Json -Depth 5
@@ -94,7 +101,7 @@ function Update-Secret {
                 try {
                     $updateResponse = . $InvokeApi @invokeParams
                 } catch {
-                    Write-Warning "Issue setting field $Field on secret [$secretId ]"
+                    Write-Warning "Issue updating secret [$secretId]"
                     $err = $_
                     . $ErrorHandling $err
                 }
