@@ -1,24 +1,28 @@
-TOPIC
+---
+Title: "TssDependencyTemplate"
+---
+
+# TOPIC
     This help topic describes the TssDependencyTemplate class in the Thycotic.SecretServer module
 
-CLASS
+# CLASS
     TssDependencyTemplate
 
-INHERITANCE
+# INHERITANCE
     None
 
-DESCRIPTION
+# DESCRIPTION
     The TssDependencyTemplate class represents the DependencyTemplate object returned by Secret Server endpoint GET /secret-dependencies/templates
 
-CONSTRUCTORS
+# CONSTRUCTORS
     new()
 
-PROPERTIES
+# PROPERTIES
     Active: boolean
         Whether or not the Dependency Template is Active
 
     DependencyChangerId: integer (int32)
-        The Dependency Template Changer Id
+    The Dependency Template Changer Id
 
     DependencyTypeId: integer (int32)
         The Dependency Template Type Id
@@ -29,7 +33,7 @@ PROPERTIES
     Name: string
         The Dependency Template Name
 
-METHODS
+# METHODS
 
-RELATED LINKS:
+# RELATED LINKS:
     Get-TssSecretDependencyTemplate

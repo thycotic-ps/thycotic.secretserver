@@ -29,7 +29,15 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Get-TssSecretField -TssSession $session -Id 14 -Slug username
 ```
 
-Get the username value of secret ID 14
+Get the username value of secret ID 14, output is in Byte\[\] format
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssSecretField -TssSession $session -Id 432 -Slug json-private-key -OutFile C:\temp\private-key.json
+```
+
+Get the private key from Secret 432, writing to the file private-key.json
 
 ## PARAMETERS
 

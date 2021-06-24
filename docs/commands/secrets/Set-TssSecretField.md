@@ -7,15 +7,32 @@ Set value for a Secret Field
 
 ### default (Default)
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <String>] [-Clear]
- [-Filename <String>] [-Path <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### raw
+```
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>]
+ [-Filename <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### reg
+```
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Clear] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
+```
+
+### io
+```
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Path <Object>] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <String>] [-Clear]
- [-Filename <String>] [-Path <Object>] [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
- [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Comment <String>] [-ForceCheckIn]
+ [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -123,8 +140,8 @@ Accept wildcard characters: False
 Value to set for the provided field
 
 ```yaml
-Type: String
-Parameter Sets: (All)
+Type: Object
+Parameter Sets: raw, reg
 Aliases:
 
 Required: False
@@ -139,7 +156,7 @@ Clear/blank out the field value
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: reg
 Aliases:
 
 Required: False
@@ -154,7 +171,7 @@ Filename to assign file contents provided from Value param to the field
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: raw
 Aliases:
 
 Required: False
@@ -169,7 +186,7 @@ Path of file to attach to field
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: io
 Aliases:
 
 Required: False

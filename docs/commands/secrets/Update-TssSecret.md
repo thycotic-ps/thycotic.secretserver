@@ -6,8 +6,8 @@ Update a Secret
 ## SYNTAX
 
 ```
-Update-TssSecret [-TssSession] <TssSession> [-Secret] <TssSecret> [-Comment <String>] [-ForceCheckIn]
- [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssSecret [-TssSession] <TssSession> [-Secret] <TssSecret> [-IncludeInactive] [-Comment <String>]
+ [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,7 +43,7 @@ Accept wildcard characters: False
 ```
 
 ### -Secret
-Input object obtained via Get-TssSecretStub
+Input object obtained via Get-TssSecretStub or Get-TssSecret
 
 ```yaml
 Type: TssSecret
@@ -53,6 +53,21 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeInactive
+Include inactive Secrets
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

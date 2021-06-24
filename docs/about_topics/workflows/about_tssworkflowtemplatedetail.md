@@ -1,0 +1,51 @@
+---
+title: "TssWorkflowTemplateDetail"
+---
+
+# TOPIC
+    This help topic describes the TssWorkflowTemplateDetail class in the Thycotic.SecretServer module
+
+# CLASS
+    TssWorkflowTemplateDetail
+
+# INHERITANCE
+    None
+
+# DESCRIPTION
+    The TssWorkflowTemplateDetail class represents the WorkflowTemplateDetailModel object returned by Secret Server endpoint GET /workflows/templates
+
+# CONSTRUCTORS
+    new()
+
+# PROPERTIES
+    Active: boolean
+        Active
+
+    ConfigurationJson: string
+        ConfigurationJson
+
+    Description: string
+        Description
+
+    ExpirationMinutes: integer (int32)
+        ExpirationMinutes
+
+    Name: string
+        Name
+
+    Reusable: boolean
+        Reusable
+
+    TypeName: string
+        TypeName
+
+    WorkflowTemplateId: integer (int32)
+        WorkflowTemplateId
+
+    WorkflowType: string
+        WorkflowType (AccessRequest)
+
+# METHODS
+
+# RELATED LINKS:
+    Search-TssWorkflowTemplate
