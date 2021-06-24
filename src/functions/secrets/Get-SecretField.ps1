@@ -10,7 +10,13 @@ function Get-SecretField {
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecretField -TssSession $session -Id 14 -Slug username
 
-    Get the username value of secret ID 14
+    Get the username value of secret ID 14, output is in Byte[] format
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretField -TssSession $session -Id 432 -Slug json-private-key -OutFile C:\temp\private-key.json
+
+    Get the private key from Secret 432, writing to the file private-key.json
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretField
@@ -140,6 +146,7 @@ function Get-SecretField {
                 }
                 Write-Verbose "$($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
+                    $script:noIrm = $true
                     $restResponse = . $InvokeApi @invokeParams
                 } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"

@@ -115,73 +115,88 @@ process {
     }
     #endregion Prepare Parameters
 
-    #region Call Invoke-RestMethod
+    if ($NoIrm) {
+        Invoke-WebRequest @irmSplat |
+            & {
+                process {
+                    $content = $_.Content
 
-    # We call Invoke-RestMethod with the parameters we've passed in.
-    # It will take care of converting the results from JSON.
-    Invoke-RestMethod @irmSplat |
-        & { process {
-                $in = $_
-                # What it will not do is "unroll" them.
-                if ($in -eq 'null') {
-                    return
-                }
-                if ($inParams.ContainsKey('ExpandProperty')) {
-                    if ($in.$ExpandProperty) {
-                        $in.$ExpandProperty
-                    }
-                } elseif ($in.code -like '*API_*') {
-                    $PSCmdlet.WriteError(
-                        [Management.Automation.ErrorRecord]::new(
-                            [Exception]::new("$($in.message)"),"$($in.code)","InvalidOperation",$in))
-                    $PSCmdlet.WriteVerbose("$in")
-                    return
-                } elseif ($in -notlike '*<html*') {
-                    # Otherwise, As long as the value doesn't look like HTML,
-                    $_ # pass it down the pipe.
-                } else {
-                    # If it happened to look like HTML, write an error
-                    $PSCmdlet.WriteError(
-                        [Management.Automation.ErrorRecord]::new(
-                            [Exception]::new("Response was HTML, Request Failed."),
-                            "ResultWasHTML", "NotSpecified", $in))
-                    $PSCmdlet.WriteVerbose("$in") # and write the full content to verbose.
-                    return
-                }
-                # Redirect standard error (2) to same place as standard output (1)
-            } } 2>&1 |
-        & { process {
-                # One more step of the pipeline will unroll each of the values.
-                if ($_ -is [string]) { return $_ }
-                if ($null -ne $_.Count -and $_.Count -eq 0) { return }
-                if ($PSTypeName -and # If we have a PSTypeName (to apply formatting)
-                    $_ -isnot [Management.Automation.ErrorRecord] # and it is not an error (which we do not want to format)
-                ) {
-                    $_.PSTypeNames.Clear() # then clear the existing typenames and decorate the object.
-                    foreach ($t in $PSTypeName) {
-                        $_.PSTypeNames.add($T)
+                    if ($null -eq $content) {
+                        return
+                    } else {
+                        return $content
                     }
                 }
+            }
+    } else {
 
-                if ($Property) {
-                    foreach ($propKeyValue in $Property.GetEnumerator()) {
-                        if ($_.PSObject.Properties[$propKeyValue.Key]) {
-                            $_.PSObject.Properties.Remove($propKeyValue.Key)
+        #region Call Invoke-RestMethod
+        # We call Invoke-RestMethod with the parameters we've passed in.
+        # It will take care of converting the results from JSON.
+        Invoke-RestMethod @irmSplat |
+            & { process {
+                    $in = $_
+                    # What it will not do is "unroll" them.
+                    if ($in -eq 'null') {
+                        return
+                    }
+                    if ($inParams.ContainsKey('ExpandProperty')) {
+                        if ($in.$ExpandProperty) {
+                            $in.$ExpandProperty
                         }
-                        $_.PSObject.Properties.Add($(
-                                if ($propKeyValue.Value -as [ScriptBlock[]]) {
-                                    [PSScriptProperty]::new.Invoke(@($propKeyValue.Key) + $propKeyValue.Value)
-                                } else {
-                                    [PSNoteProperty]::new($propKeyValue.Key, $propKeyValue.Value)
-                                }))
+                    } elseif ($in.code -like '*API_*') {
+                        $PSCmdlet.WriteError(
+                            [Management.Automation.ErrorRecord]::new(
+                                [Exception]::new("$($in.message)"),"$($in.code)","InvalidOperation",$in))
+                        $PSCmdlet.WriteVerbose("$in")
+                        return
+                    } elseif ($in -notlike '*<html*') {
+                        # Otherwise, As long as the value doesn't look like HTML,
+                        $_ # pass it down the pipe.
+                    } else {
+                        # If it happened to look like HTML, write an error
+                        $PSCmdlet.WriteError(
+                            [Management.Automation.ErrorRecord]::new(
+                                [Exception]::new("Response was HTML, Request Failed."),
+                                "ResultWasHTML", "NotSpecified", $in))
+                        $PSCmdlet.WriteVerbose("$in") # and write the full content to verbose.
+                        return
                     }
-                }
-                if ($RemoveProperty) {
-                    foreach ($propToRemove in $RemoveProperty) {
-                        $_.PSObject.Properties.Remove($propToRemove)
+                    # Redirect standard error (2) to same place as standard output (1)
+                } } 2>&1 |
+            & { process {
+                    # One more step of the pipeline will unroll each of the values.
+                    if ($_ -is [string]) { return $_ }
+                    if ($null -ne $_.Count -and $_.Count -eq 0) { return }
+                    if ($PSTypeName -and # If we have a PSTypeName (to apply formatting)
+                        $_ -isnot [Management.Automation.ErrorRecord] # and it is not an error (which we do not want to format)
+                    ) {
+                        $_.PSTypeNames.Clear() # then clear the existing typenames and decorate the object.
+                        foreach ($t in $PSTypeName) {
+                            $_.PSTypeNames.add($T)
+                        }
                     }
-                }
-                return $_ # output the object and we're done.
-            } }
-    #endregion Call Invoke-RestMethod
+
+                    if ($Property) {
+                        foreach ($propKeyValue in $Property.GetEnumerator()) {
+                            if ($_.PSObject.Properties[$propKeyValue.Key]) {
+                                $_.PSObject.Properties.Remove($propKeyValue.Key)
+                            }
+                            $_.PSObject.Properties.Add($(
+                                    if ($propKeyValue.Value -as [ScriptBlock[]]) {
+                                        [PSScriptProperty]::new.Invoke(@($propKeyValue.Key) + $propKeyValue.Value)
+                                    } else {
+                                        [PSNoteProperty]::new($propKeyValue.Key, $propKeyValue.Value)
+                                    }))
+                        }
+                    }
+                    if ($RemoveProperty) {
+                        foreach ($propToRemove in $RemoveProperty) {
+                            $_.PSObject.Properties.Remove($propToRemove)
+                        }
+                    }
+                    return $_ # output the object and we're done.
+                } }
+        #endregion Call Invoke-RestMethod
+    }
 }
