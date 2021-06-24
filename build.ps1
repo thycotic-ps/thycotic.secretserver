@@ -108,13 +108,16 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
         }
     }
     if ($PSBoundParameters['Release']) {
+        $zipFilePath = Join-Path $staging "$moduleName.zip"
+        $zipFileName = "$($moduleName).zip"
+
         if ((gh config get prompt) -eq 'enabled') {
             Invoke-Expression "gh config set prompt disabled"
         }
         $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
         $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
-        Compress-Archive "$staging\$moduleName\*" -DestinationPath "$staging\$moduleName.zip" -CompressionLevel Fastest -Force
-        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($staging)$($moduleName).zip#$($moduleName).zip`" --title `"Thycotic.SecretServer $($moduleData.ModuleVersion)`" --notes-file $changeLog"
+        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
+        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath).zip#$($zipFileName).zip`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
         if ($PSBoundParameters['Prerelease']) {
             $ghArgs = $ghArgs + " --prerelease"
         }
@@ -129,6 +132,21 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
         if ((gh config get prompt) -eq 'disabled') {
             Invoke-Expression "gh config set prompt enabled"
         }
+
+        # generate hash text file
+        $hashFileName = "$($moduleName)_hash.txt"
+        $hashFilePath = Join-Path $staging $hashFileName
+        Get-FileHash -Algorithm SHA256 -Path $zipFilePath | Select-Object Algorithm, Hash | Out-File $hashFilePath -Force
+
+        # module zip file
+        $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $zipFileName + ' --file ' + $zipFilePath
+        Write-Host "Azure CLI args: $azArgs" -ForegroundColor DarkBlue
+        Invoke-Expression "az $azArgs"
+
+        # module zip hash file
+        $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $hashFileName + ' --file ' + $hashFilePath
+        Write-Host "Azure CLI args: $azArgs" -ForegroundColor DarkYellow
+        Invoke-Expression "az $azArgs"
     }
 
     Remove-Item -Recurse -Force $staging
