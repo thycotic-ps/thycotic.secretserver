@@ -72,18 +72,22 @@ function Set-SecretField {
         $Slug,
 
         # Value to set for the provided field
-        [string]
+        [Parameter(ParameterSetName = 'reg')]
+        [Parameter(ParameterSetName = 'raw')]
         $Value,
 
         # Clear/blank out the field value
+        [Parameter(ParameterSetName = 'reg')]
         [switch]
         $Clear,
 
         # Filename to assign file contents provided from Value param to the field
+        [Parameter(ParameterSetName = 'raw')]
         [string]
         $Filename,
 
         # Path of file to attach to field
+        [Parameter(ParameterSetName = 'io')]
         [ValidateScript( {
                 if (Test-Path $_ -PathType Container) {
                     throw "Path [$_] is a directory, provide full file path"
@@ -163,8 +167,12 @@ function Set-SecretField {
                 if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Value')) {
                     $fieldBody.Add('fileName', $Filename)
 
-                    $fileBinary = [System.Text.Encoding]::UTF8.GetBytes($Value)
-                    $fieldBody.Add('fileAttachment', $fileBinary)
+                    if ($Value -is [System.String]) {
+                        $fileBinary = [System.Text.Encoding]::UTF8.GetBytes($Value)
+                        $fieldBody.Add('fileAttachment', $fileBinary)
+                    } else {
+                        $fieldBody.Add('fileAttachment', $Value)
+                    }
                 }
 
                 if ($restrictedParams.Count -gt 0) {
