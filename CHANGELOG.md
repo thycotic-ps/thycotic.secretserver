@@ -22,6 +22,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Update-FolderPermission - correct output type [2318c8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2318c8f85aa012581b52a95d9dc552ecd0bb99ae)
+* Update-Secret - fix issue where input was not processed properly [b37b699](https://github.com/thycotic-ps/thycotic.secretserver/commit/b37b699b56914836b9f50b30d60b309eaa8daf04)
+* Get-SecretField - fix issue where raw file content not returned IRM returns the content as an object, switched to use IWR to get raw content [3fdfaeb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3fdfaebd9e39aa8c5b158abc0b6bf46decebb36f)
 
 </details>
 
@@ -40,6 +42,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Set-SecretField - correct output messages [b09f147](https://github.com/thycotic-ps/thycotic.secretserver/commit/b09f147ff53f27e0bc130de0fed3cce71983af41)
+* Set-SecretField - parameter sets for file to make more clear Removed requirement that Value is only a string, added check to cover [5c3606b](https://github.com/thycotic-ps/thycotic.secretserver/commit/5c3606be95526b2a807ae0a9d41b70a96d58b58c)
+* Set-SecretField - format warning output [0df9c42](https://github.com/thycotic-ps/thycotic.secretserver/commit/0df9c42cc92128ac97d56a6321f1b313f9e252b5)
 
 </details>
 
