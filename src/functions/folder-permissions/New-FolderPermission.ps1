@@ -44,17 +44,22 @@ function New-FolderPermission {
         [int]
         $UserId,
 
-        # Folder Access Role Name
+        # Folder Access Role Name (View, Edit, Add Secret, Owner)
         [Parameter(Mandatory, ValueFromPipeline)]
         [ValidateSet('View', 'Edit', 'Add Secret', 'Owner')]
         [string]
         $FolderAccessRoleName,
 
-        # Secret Access Role Name
+        # Secret Access Role Name (View, Edit, List, Owner, None)
         [Parameter(Mandatory, ValueFromPipeline)]
         [ValidateSet('View', 'Edit', 'List', 'Owner', 'None')]
         [string]
-        $SecretAccessRoleName
+        $SecretAccessRoleName,
+
+        # If provided will break inheritance on the folder and add the permission
+        [Parameter()]
+        [switch]
+        $Force
     )
     begin {
         $tssNewParams = $PSBoundParameters
@@ -71,6 +76,11 @@ function New-FolderPermission {
                 $invokeParams.Method = 'POST'
 
                 $newBody = [ordered]@{}
+                if ($tssNewParams.ContainsKey('Force')) {
+                    $newBody.Add('breakInheritance',$true)
+                } else {
+                    $newBody.Add('breakInheritance',$false)
+                }
                 switch ($tssNewParams.Keys) {
                     'FolderId' { $newBody.Add('folderId', $FolderId) }
                     'GroupId' { $newBody.Add('groupId', $GroupId) }
@@ -88,7 +98,14 @@ function New-FolderPermission {
                 } catch {
                     Write-Warning "Issue creating Folder Permission on Folder [$FolderId]"
                     $err = $_
-                    . $ErrorHandling $err
+                    if ($err.ErrorDetails.Message) {
+                        $errorMsg = $err.ErrorDetails.Message | ConvertFrom-Json
+                        if ($errorMsg.Message -eq 'API_PermissionsAreInherited') {
+                            Write-Error "Folder [$FolderId] has InheritPermissions enabled, use -Force parameter to break inheritance"
+                        }
+                    } else {
+                        . $ErrorHandling $err
+                    }
                 }
 
                 if ($restResponse) {
