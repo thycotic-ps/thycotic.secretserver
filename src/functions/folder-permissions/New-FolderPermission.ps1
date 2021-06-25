@@ -4,13 +4,19 @@ function New-FolderPermission {
     Create a new folder permission
 
     .DESCRIPTION
-    Create a new folder permission
+    Create a new folder permission, use Force to break inheritance
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     New-TssFolderPermission -TssSession $session -FolderId 5 -UserId 21 -FolderAccessRoleName View -SecretAccessRoleName List
 
     Creates a folder permission on Folder ID 5 for User ID 21 granting View on the Folder-level and List on the Secrets in the folder
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    New-TssFolderPermission -TssSession $session -FolderId 46 -GroupId 12 -FolderAccessRoleName Owner -SecretAccessRoleName Owner -Force
+
+    Creates a folder permission on Folder ID 46 for Group ID 21, giving Owner for Folder and Secrets, breaking InheritPermissions if enabled
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/New-TssFolderPermission
