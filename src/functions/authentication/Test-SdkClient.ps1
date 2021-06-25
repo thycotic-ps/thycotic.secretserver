@@ -74,14 +74,14 @@ function Test-SdkClient {
             $tssStatusOutput += $tssProcess.StandardError.ReadToEnd()
 
             Write-Verbose "SDK Client raw output: $tssStatusOutput"
-            if ($tssStatusOutput -eq "Connected to endpoint") {
+            if ($tssStatusOutput -match "Connected to endpoint") {
                 if ($tssStatusOutput -match $SecretServer) {
                     return $true
                 } else {
                     return $false
                 }
             } else {
-                if ($tssStatusOutput -eq 'Not connected') {
+                if ($tssStatusOutput -match 'Not connected') {
                     return $false
                 } else {
                     return $false
