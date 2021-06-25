@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* New-FolderPermissions - Add force, breaks behavior Default endpoint breaks inheritance, command prevents it from doing that unless Force is provided [948747b](https://github.com/thycotic-ps/thycotic.secretserver/commit/948747b7f46638067d2ca42f466aa6edfc72f834)
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Test-SdkClient - fix logic issue on matching [680bc2a](https://github.com/thycotic-ps/thycotic.secretserver/commit/680bc2a0436d7c356adff3896ec58883cfd3d9bc)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* New-FolderPermission - add support for multiple Folder IDs [acf6bd3](https://github.com/thycotic-ps/thycotic.secretserver/commit/acf6bd32cf7f912086fe4734bb1c390b70048e37)
+* Add-FolderPermission - new command to bulk add permissions based on name (user/group) [da1c74d](https://github.com/thycotic-ps/thycotic.secretserver/commit/da1c74d0b3501bdd0da8fc895f1331bae19ca4c0)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* New-FolderPermission - add doc examples [7646fff](https://github.com/thycotic-ps/thycotic.secretserver/commit/7646fffcb698903f8604600d4562706acc9ac954)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.44.0] -- 2021-06-24
 
 ### Breaking Changes
