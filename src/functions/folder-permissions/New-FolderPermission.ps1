@@ -31,7 +31,7 @@ function New-FolderPermission {
 
         # Folder ID
         [Parameter(Mandatory, ValueFromPipeline)]
-        [int]
+        [int[]]
         $FolderId,
 
         # Group Id
@@ -70,46 +70,47 @@ function New-FolderPermission {
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             if ($tssNewParams.ContainsKey('UserId') -or $tssNewParams.ContainsKey('GroupId')) {
-                $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'folder-permissions' -join '/'
-                $invokeParams.Uri = $uri
-                $invokeParams.Method = 'POST'
+                foreach ($folder in $FolderId) {
+                    $restResponse = $null
+                    $uri = $TssSession.ApiUrl, 'folder-permissions' -join '/'
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Method = 'POST'
 
-                $newBody = [ordered]@{}
-                if ($tssNewParams.ContainsKey('Force')) {
-                    $newBody.Add('breakInheritance',$true)
-                } else {
-                    $newBody.Add('breakInheritance',$false)
-                }
-                switch ($tssNewParams.Keys) {
-                    'FolderId' { $newBody.Add('folderId', $FolderId) }
-                    'GroupId' { $newBody.Add('groupId', $GroupId) }
-                    'FolderAccessRoleName' { $newBody.Add('folderAccessRoleName', $FolderAccessRoleName) }
-                    'UserId' { $newBody.Add('userId', $UserId) }
-                    'SecretAccessRoleName' { $newBody.Add('secretAccessRoleName', $SecretAccessRoleName) }
-                }
-
-                $invokeParams.Body = $newBody | ConvertTo-Json
-
-                Write-Verbose "$($invokeParams.Method) $uri with:`n $newBody"
-                if (-not $PSCmdlet.ShouldProcess("FolderID: $FolderId", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
-                try {
-                    $restResponse = . $InvokeApi @invokeParams
-                } catch {
-                    Write-Warning "Issue creating Folder Permission on Folder [$FolderId]"
-                    $err = $_
-                    if ($err.ErrorDetails.Message) {
-                        $errorMsg = $err.ErrorDetails.Message | ConvertFrom-Json
-                        if ($errorMsg.Message -eq 'API_PermissionsAreInherited') {
-                            Write-Error "Folder [$FolderId] has InheritPermissions enabled, use -Force parameter to break inheritance"
-                        }
+                    $newBody = [ordered]@{}
+                    if ($tssNewParams.ContainsKey('Force')) {
+                        $newBody.Add('breakInheritance',$true)
                     } else {
-                        . $ErrorHandling $err
+                        $newBody.Add('breakInheritance',$false)
                     }
-                }
+                    switch ($tssNewParams.Keys) {
+                        'FolderId' { $newBody.Add('folderId', $folder) }
+                        'GroupId' { $newBody.Add('groupId', $GroupId) }
+                        'FolderAccessRoleName' { $newBody.Add('folderAccessRoleName', $FolderAccessRoleName) }
+                        'UserId' { $newBody.Add('userId', $UserId) }
+                        'SecretAccessRoleName' { $newBody.Add('secretAccessRoleName', $SecretAccessRoleName) }
+                    }
 
-                if ($restResponse) {
-                    [TssFolderPermissionSummary]$restResponse
+                    $invokeParams.Body = $newBody | ConvertTo-Json
+                    Write-Verbose "$($invokeParams.Method) $uri with:`n $newBody"
+                    if (-not $PSCmdlet.ShouldProcess("Folder ID: $folder", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
+                    try {
+                        $restResponse = . $InvokeApi @invokeParams
+                    } catch {
+                        Write-Warning "Issue creating Folder Permission on Folder [$folder]"
+                        $err = $_
+                        if ($err.ErrorDetails.Message) {
+                            $errorMsg = $err.ErrorDetails.Message | ConvertFrom-Json
+                            if ($errorMsg.Message -eq 'API_PermissionsAreInherited') {
+                                Write-Error "Folder [$folder] has InheritPermissions enabled, use -Force parameter to break inheritance"
+                            }
+                        } else {
+                            . $ErrorHandling $err
+                        }
+                    }
+
+                    if ($restResponse) {
+                        [TssFolderPermissionSummary]$restResponse
+                    }
                 }
             } else {
                 Write-Error 'Please provide one of the following parameters: -GroupId or -UserId'
