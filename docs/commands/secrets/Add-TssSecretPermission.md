@@ -1,37 +1,47 @@
-# New-TssSecretPermission
+# Add-TssSecretPermission
 
 ## SYNOPSIS
-Create a new Secret Permission
+Add a User or Group permission to a Secret
 
 ## SYNTAX
 
 ```
-New-TssSecretPermission [-TssSession] <TssSession> -SecretId <Int32[]> -AccessRole <String>
- [-DomainName <String>] [-GroupName <String>] [-Username <String>] [-Force] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Add-TssSecretPermission [-TssSession] <TssSession> -SecretId <Int32[]> -AccessRole <String>
+ [-DomainName <String>] [-GroupName <String>] [-Username <String>] [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Create a new Secret Permission, use -Force to break inheritance
+Add a User or Group permission to a Secret.
+Use -Force to break inheritance.
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-New-TssSecretPermission -TssSession $session -SecretId 76 -AccessRole View -Username bob.martin
+session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Add-TssSecretPermission -TssSession $session -Id 65 -Type User -Name bob -AccessRole Owner
 ```
 
-Adding user "bob.martin" to Secret 76, granting View rights to the Secret.
+Add bob to Secret 65 granting Secret role of owner
 
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$secrets = Search-TssSecret -TssSession $session -SearchText 'Azure'
-New-TssSecretPermission -TssSession $session -SecretId $secrets.Id -AccessRole View -DomainName corp -GroupName 'IT Support' -Force
+$secrets = Search-TssSecret -TssSession $session | Where-Object -not InheritPermission
+$secrets | Add-TssSecretPermission -TssSession $session -Username chance.wayne -AccessRole View
 ```
 
-Adding permission to all Secrets that have "Azure" in their name to the group "corp\IT Support" with View rights, breaking inheritance if enabled.
+Add "chance.wayne" to all Secrets that do not have Inherit Permissions enabled.
+Granting Secret role of View
+
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$Secrets = Search-TssSecret -TssSession $session -SearchText 'App'
+$Secrets | Add-TssSecretPermission -TssSession $session -Username chad -AccessRole Owner -Force
+```
+
+Add "chad" as owner for Secrets that have "App" in their name, will also break inheritance if enabled on any of the Secrets
 
 ## PARAMETERS
 
@@ -140,37 +150,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -WhatIf
-Shows what would happen if the cmdlet runs.
-The cmdlet is not run.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: wi
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Confirm
-Prompts you for confirmation before running the cmdlet.
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases: cf
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -184,7 +163,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/New-TssSecretPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/New-TssSecretPermission)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/Secrets/Add-TssSecretPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Secrets/Add-TssSecretPermission)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/New-SecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/New-SecretPermission.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-SecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-SecretPermission.ps1)
 

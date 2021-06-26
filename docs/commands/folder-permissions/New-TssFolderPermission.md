@@ -6,12 +6,13 @@ Create a new folder permission
 ## SYNTAX
 
 ```
-New-TssFolderPermission [-TssSession] <TssSession> -FolderId <Int32> [-GroupId <Int32>] [-UserId <Int32>]
- -FolderAccessRoleName <String> -SecretAccessRoleName <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssFolderPermission [-TssSession] <TssSession> -FolderId <Int32[]> [-GroupId <Int32>] [-UserId <Int32>]
+ -FolderAccessRoleName <String> -SecretAccessRoleName <String> [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Create a new folder permission
+Create a new folder permission, use -Force to break inheritance
 
 ## EXAMPLES
 
@@ -22,6 +23,14 @@ New-TssFolderPermission -TssSession $session -FolderId 5 -UserId 21 -FolderAcces
 ```
 
 Creates a folder permission on Folder ID 5 for User ID 21 granting View on the Folder-level and List on the Secrets in the folder
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+New-TssFolderPermission -TssSession $session -FolderId 46 -GroupId 12 -FolderAccessRoleName Owner -SecretAccessRoleName Owner -Force
+```
+
+Creates a folder permission on Folder ID 46 for Group ID 21, giving Owner for Folder and Secrets, breaking InheritPermissions if enabled
 
 ## PARAMETERS
 
@@ -44,13 +53,13 @@ Accept wildcard characters: False
 Folder ID
 
 ```yaml
-Type: Int32
+Type: Int32[]
 Parameter Sets: (All)
 Aliases:
 
 Required: True
 Position: Named
-Default value: 0
+Default value: None
 Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
@@ -86,7 +95,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderAccessRoleName
-Folder Access Role Name
+Folder Access Role Name (View, Edit, Add Secret, Owner)
 
 ```yaml
 Type: String
@@ -101,7 +110,7 @@ Accept wildcard characters: False
 ```
 
 ### -SecretAccessRoleName
-Secret Access Role Name
+Secret Access Role Name (View, Edit, List, Owner, None)
 
 ```yaml
 Type: String
@@ -112,6 +121,21 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Force
+If provided will break inheritance on the folder and add the permission
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
