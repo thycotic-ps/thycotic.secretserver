@@ -117,7 +117,7 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
         $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
         $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
         Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath).zip#$($zipFileName).zip`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
+        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
         if ($PSBoundParameters['Prerelease']) {
             $ghArgs = $ghArgs + " --prerelease"
         }
