@@ -85,7 +85,7 @@ Import-Module c:\temp\Thycotic.SecretServer\<version>\Thycotic.SecretServer.psd1
 2. Unblock & Extract the archive
 3. Copy the `Thycotic.SecretServer` folder to your "Powershell Modules" directory of choice.
 
-**Thycotic.SecretServer.zip SHA256:** [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/thycotic.secretserver_hash.txt)
+**Thycotic.SecretServer.zip SHA256:** [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt)
 {: .notice--warning}
 
 ## Verification
