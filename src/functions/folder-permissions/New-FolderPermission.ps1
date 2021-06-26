@@ -4,7 +4,7 @@ function New-FolderPermission {
     Create a new folder permission
 
     .DESCRIPTION
-    Create a new folder permission, use Force to break inheritance
+    Create a new folder permission, use -Force to break inheritance
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
