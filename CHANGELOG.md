@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.45.0] -- 2021-06-25
 
 ### Breaking Changes
 
@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * New-FolderPermissions - Add force, breaks behavior Default endpoint breaks inheritance, command prevents it from doing that unless Force is provided [948747b](https://github.com/thycotic-ps/thycotic.secretserver/commit/948747b7f46638067d2ca42f466aa6edfc72f834)
+* New-SecretPermission - Add DomainName, Username, GroupName, Force Removed UserId and GroupId. Command now won't break inheritance unless -Force is provided. [bbad8c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/bbad8c79b792042e19f1ab36a195da62739f2425)
 
 </details>
 
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * New-FolderPermission - add support for multiple Folder IDs [acf6bd3](https://github.com/thycotic-ps/thycotic.secretserver/commit/acf6bd32cf7f912086fe4734bb1c390b70048e37)
 * Add-FolderPermission - new command to bulk add permissions based on name (user/group) [da1c74d](https://github.com/thycotic-ps/thycotic.secretserver/commit/da1c74d0b3501bdd0da8fc895f1331bae19ca4c0)
+* Add-SecretPermission - new command [bcefc77](https://github.com/thycotic-ps/thycotic.secretserver/commit/bcefc77bfacfef1d62948796a6b3484785198d8f)
 
 </details>
 
