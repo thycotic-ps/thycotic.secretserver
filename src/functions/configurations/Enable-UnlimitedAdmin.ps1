@@ -56,7 +56,7 @@ function Enable-UnlimitedAdmin {
             if ($PSCmdlet.ShouldProcess("SecretId: $user", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                 Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    . $InvokeApi @invokeParams
                     Write-Verbose 'Unlimited Admin mode enabled'
                 } catch {
                     Write-Warning 'Issue enabling Unlimited Admin Mode'
