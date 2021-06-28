@@ -5,6 +5,54 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* TssSession - add CheckTokenTtl Check if token expiration is within timespan unit [5d0fb78](https://github.com/thycotic-ps/thycotic.secretserver/commit/5d0fb7878dbcafe2b5eb50dcc56fce67a95ffc0d)
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* UL - remove unused variable [6e423aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e423aa2af37894784c217efb576c0bee4fde4ef)
+* Add-FolderPermission - correct CBH example [7e6dcea](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e6dcea0840e77e5ec58229b9e081f8dd8b6c34e)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.45.0] -- 2021-06-25
 
 ### Breaking Changes
