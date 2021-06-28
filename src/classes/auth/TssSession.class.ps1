@@ -69,6 +69,15 @@ class TssSession {
     }
 
     [boolean]
+    CheckTokenTtl([string]$Unit, [int]$Value) {
+        if (($this.TimeOfDeath - [datetime]::Now).$Unit -le $Value) {
+            return $true
+        } else {
+            return $false
+        }
+    }
+
+    [boolean]
     SessionExpire() {
         $url = $this.ApiUrl, 'oauth-expiration' -join '/'
         try {

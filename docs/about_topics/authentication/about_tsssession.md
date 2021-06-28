@@ -63,6 +63,10 @@ title: "TssSession"
         Validates that TimeOfDeath is not greater than current time
         If ExternalToken or WindowsAuth is the TokenType will return true
 
+    [boolean] CheckTokenTtl( [string]Unit, [int]Value )
+        Checks the timespan for the TimeOfDeath and current datetime is within the unit and value. (TimeOfDeath - Now)
+        If it is the method returns true, if not returns false.
+
     [boolean] SessionExpire()
         POST to oauth-expiration endpoint of Secret Server to expire the session
         for the current AccessToken
