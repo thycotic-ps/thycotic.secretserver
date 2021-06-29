@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.46.0] -- 2021-06-28
 
 ### Breaking Changes
 
@@ -31,6 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * TssSession - add CheckTokenTtl Check if token expiration is within timespan unit [5d0fb78](https://github.com/thycotic-ps/thycotic.secretserver/commit/5d0fb7878dbcafe2b5eb50dcc56fce67a95ffc0d)
+* New-Group - new command [0da7494](https://github.com/thycotic-ps/thycotic.secretserver/commit/0da7494d4629d0fd6b806adddc18ab1a4159aa75)
 
 </details>
 
