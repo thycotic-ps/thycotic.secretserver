@@ -26,7 +26,7 @@ Use -Force to break inheritance.
 ### EXAMPLE 1
 ```
 session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Add-TssFolderPermission -TssSession $session -Id 65 -Type User -Name bob -FolderRole Owner -SecretRole Edit
+Add-TssFolderPermission -TssSession $session -Id 65 -Username bob -FolderRole Owner -SecretRole Edit
 ```
 
 Add bob to Folder 65 granting Folder role of owner and Secret role of Edit
