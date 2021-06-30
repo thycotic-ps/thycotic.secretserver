@@ -1,0 +1,16 @@
+ParentFolder, ChildFolder
+ABC Company, Customers
+ABC Company, Human Resources
+ABC Company, Information Technology
+ABC Company, Vendors
+ABC Company, Security
+Information Technology, Development Services
+Information Technology, Technical Services
+Development Services, Programmers
+Technical Services, Databases
+Technical Services, Systems
+Databases, Oracle
+Databases, SQL Server
+Systems, Network Infrastructure
+Systems, Unix
+Systems, Windows
