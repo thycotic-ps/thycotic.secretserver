@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.46.1] -- 2021-06-30
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Get-SecretField - fix bug on failed API call If endpoint returns hard exception, further API calls were breaking. [43b9551](https://github.com/thycotic-ps/thycotic.secretserver/commit/43b9551deaeb914c34da00d34924d9e4691286b8)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.46.0] -- 2021-06-28
 
 ### Breaking Changes
