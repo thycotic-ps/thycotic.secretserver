@@ -49,7 +49,7 @@ function Invoke-SecretGeneratePassword {
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-        if ($invokeGenerateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+        if ($PSBoundParameters.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $Id, 'generate-password', $Slug -join '/'
             $invokeGenerateParams.Uri = $uri
@@ -59,7 +59,7 @@ function Invoke-SecretGeneratePassword {
             try {
                 $restGeneratedPassword = . $InvokeApi @invokeGenerateParams
             } catch {
-                Write-Warning "Issue getting generated password for Secret [$secret] and Field Slug [$Slug]"
+                Write-Warning "Issue getting generated password for Secret [$Id] and Field Slug [$Slug]"
                 $err = $_
                 . $ErrorHandling $err
             }
@@ -76,7 +76,7 @@ function Invoke-SecretGeneratePassword {
                 try {
                     $restValidateResponse = . $InvokeApi @invokeValidateParams
                 } catch {
-                    Write-Warning "Issue validating generated password for Secret [$secret] and Field Slug [$Slug]"
+                    Write-Warning "Issue validating generated password for Secret [$Id] and Field Slug [$Slug]"
                     $err = $_
                     . $ErrorHandling $err
                 }
@@ -84,7 +84,7 @@ function Invoke-SecretGeneratePassword {
                 if ($restValidateResponse.isValid) {
                     $restGeneratedPassword
                 } else {
-                    Write-Warning "Unable to validate generated password for Secret [$secret] and Field Slug [$Slug]"
+                    Write-Warning "Unable to validate generated password for Secret [$Id] and Field Slug [$Slug]"
                 }
             }
         } else {
