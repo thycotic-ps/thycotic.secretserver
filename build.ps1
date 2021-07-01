@@ -149,7 +149,6 @@ if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
         Invoke-Expression "az $azArgs"
     }
 
-    Remove-Item -Recurse -Force $staging
 } else {
     Remove-Item -Recurse -Force $staging
     Write-Host "Tests failures detected; cancelling and cleaning up"
