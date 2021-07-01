@@ -5,22 +5,16 @@ Set value for a Secret Field
 
 ## SYNTAX
 
-### default (Default)
+### reg (Default)
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Clear] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### raw
 ```
 Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>]
  [-Filename <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### reg
-```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Clear] [-WhatIf]
- [-Confirm] [<CommonParameters>]
 ```
 
 ### io
@@ -141,7 +135,7 @@ Value to set for the provided field
 
 ```yaml
 Type: Object
-Parameter Sets: raw, reg
+Parameter Sets: reg, raw
 Aliases:
 
 Required: False
