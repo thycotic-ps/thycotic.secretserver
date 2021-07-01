@@ -52,7 +52,7 @@ function Set-SecretField {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'default')]
+    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'reg')]
     param(
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
