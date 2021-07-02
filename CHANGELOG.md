@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* Logging - Write-Log perf improvement [60c7388](https://github.com/thycotic-ps/thycotic.secretserver/commit/60c73886d5d36e24ef87445d4e0693774acbabb5)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.46.2] -- 2021-06-30
 
 ### Breaking Changes
