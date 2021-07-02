@@ -37,7 +37,7 @@ function Get-SecretField {
 
         # Secret ID to retrieve
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'field')]
-        [Parameter(Mandatory, ParameterSetName = 'restricted')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'restricted')]
         [Alias('SecretId')]
         [int[]]
         $Id,
