@@ -207,7 +207,7 @@ function Write-Log {
 
         if ($PSBoundParameters.ContainsKey('Divider')) {
             $dividerValue = ''
-            1..120 | ForEach-Object { $dividerValue += '+' }
+            $dividerValue += '+'*120
             $MessageToFile = '{0};{1};{2}' -f $Msg.TimeStamp, 'INFO', $dividerValue
         } else {
             $MessageToFile = '{0};{1};{2}' -f $Msg.TimeStamp, $Msg.MessageType, $Msg.Message
