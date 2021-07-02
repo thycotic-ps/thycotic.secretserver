@@ -33,7 +33,7 @@ function Add-SecretTemplateField {
         $TssSession,
 
         # Template Stub object
-        [Parameter(Mandatory, Position = 1)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, Position = 1)]
         [Alias('TemplateId')]
         [int[]]
         $Id,
