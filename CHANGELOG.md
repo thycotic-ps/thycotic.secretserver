@@ -9,293 +9,143 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### New Stuff
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### General Updates
 
-<details>
-    <summary>Click to view </summary>
-
 * Logging - Write-Log perf improvement [60c7388](https://github.com/thycotic-ps/thycotic.secretserver/commit/60c73886d5d36e24ef87445d4e0693774acbabb5)
-
-</details>
 
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.46.2] -- 2021-06-30
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Set-SecretField - fixes [#198](https://github.com/thycotic-ps/thycotic.secretserver/issues/198) [964b464](https://github.com/thycotic-ps/thycotic.secretserver/commit/964b464b1382c10001421fca9df752dfdedf18ca)
 * Invoke-SecretGeneratePassword - correct var references [20dee0d](https://github.com/thycotic-ps/thycotic.secretserver/commit/20dee0d9aee56ff3bb3b9f6eaef9c3f9bbaa558b)
 
-</details>
-
 ### New Stuff
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### General Updates
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.46.1] -- 2021-06-30
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * Get-SecretField - fix bug on failed API call If endpoint returns hard exception, further API calls were breaking. [43b9551](https://github.com/thycotic-ps/thycotic.secretserver/commit/43b9551deaeb914c34da00d34924d9e4691286b8)
-
-</details>
 
 ### New Stuff
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### General Updates
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.46.0] -- 2021-06-28
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * TssSession - add CheckTokenTtl Check if token expiration is within timespan unit [5d0fb78](https://github.com/thycotic-ps/thycotic.secretserver/commit/5d0fb7878dbcafe2b5eb50dcc56fce67a95ffc0d)
 * New-Group - new command [0da7494](https://github.com/thycotic-ps/thycotic.secretserver/commit/0da7494d4629d0fd6b806adddc18ab1a4159aa75)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * UL - remove unused variable [6e423aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e423aa2af37894784c217efb576c0bee4fde4ef)
 * Add-FolderPermission - correct CBH example [7e6dcea](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e6dcea0840e77e5ec58229b9e081f8dd8b6c34e)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.45.0] -- 2021-06-25
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * New-FolderPermissions - Add force, breaks behavior Default endpoint breaks inheritance, command prevents it from doing that unless Force is provided [948747b](https://github.com/thycotic-ps/thycotic.secretserver/commit/948747b7f46638067d2ca42f466aa6edfc72f834)
 * New-SecretPermission - Add DomainName, Username, GroupName, Force Removed UserId and GroupId. Command now won't break inheritance unless -Force is provided. [bbad8c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/bbad8c79b792042e19f1ab36a195da62739f2425)
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Test-SdkClient - fix logic issue on matching [680bc2a](https://github.com/thycotic-ps/thycotic.secretserver/commit/680bc2a0436d7c356adff3896ec58883cfd3d9bc)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * New-FolderPermission - add support for multiple Folder IDs [acf6bd3](https://github.com/thycotic-ps/thycotic.secretserver/commit/acf6bd32cf7f912086fe4734bb1c390b70048e37)
 * Add-FolderPermission - new command to bulk add permissions based on name (user/group) [da1c74d](https://github.com/thycotic-ps/thycotic.secretserver/commit/da1c74d0b3501bdd0da8fc895f1331bae19ca4c0)
 * Add-SecretPermission - new command [bcefc77](https://github.com/thycotic-ps/thycotic.secretserver/commit/bcefc77bfacfef1d62948796a6b3484785198d8f)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * New-FolderPermission - add doc examples [7646fff](https://github.com/thycotic-ps/thycotic.secretserver/commit/7646fffcb698903f8604600d4562706acc9ac954)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.44.0] -- 2021-06-24
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Update-FolderPermission - correct output type [2318c8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2318c8f85aa012581b52a95d9dc552ecd0bb99ae)
 * Update-Secret - fix issue where input was not processed properly [b37b699](https://github.com/thycotic-ps/thycotic.secretserver/commit/b37b699b56914836b9f50b30d60b309eaa8daf04)
 * Get-SecretField - fix issue where raw file content not returned IRM returns the content as an object, switched to use IWR to get raw content [3fdfaeb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3fdfaebd9e39aa8c5b158abc0b6bf46decebb36f)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-TssSecretAccessRequestSecret - new command [d89394b](https://github.com/thycotic-ps/thycotic.secretserver/commit/d89394b109e2418f5e6d48b0947b2c0e55558c08)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * Set-SecretField - correct output messages [b09f147](https://github.com/thycotic-ps/thycotic.secretserver/commit/b09f147ff53f27e0bc130de0fed3cce71983af41)
 * Set-SecretField - parameter sets for file to make more clear Removed requirement that Value is only a string, added check to cover [5c3606b](https://github.com/thycotic-ps/thycotic.secretserver/commit/5c3606be95526b2a807ae0a9d41b70a96d58b58c)
 * Set-SecretField - format warning output [0df9c42](https://github.com/thycotic-ps/thycotic.secretserver/commit/0df9c42cc92128ac97d56a6321f1b313f9e252b5)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.43.1] -- 2021-06-20
 
@@ -328,15 +178,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * Search-SecretTemplate - IncludeInactive fix param type [73d5217](https://github.com/thycotic-ps/thycotic.secretserver/commit/73d52175df5047bb4ce5a475bfc14058580de093)
 * Get-Secret - fixe issue with IncludeInactive Parameter was not applied to the API call being made [19f3920](https://github.com/thycotic-ps/thycotic.secretserver/commit/19f3920334e9e5237696efe674c01c1708acaccf)
 * Update-Folder - fix issue with warning string [3243797](https://github.com/thycotic-ps/thycotic.secretserver/commit/3243797a76283679f6bd312256dae4fee468fa7f)
 * Test-SdkClient - adjust return false logic [8d0cd20](https://github.com/thycotic-ps/thycotic.secretserver/commit/8d0cd20801e04232901dcecf6213099b499e6311)
-
-</details>
 
 ### New Stuff
 
@@ -356,9 +201,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
-<details>
-    <summary>Click to view </summary>
-
 * module - correcting casing on username [c4b1b34](https://github.com/thycotic-ps/thycotic.secretserver/commit/c4b1b34eb0c3904f14d8c47eaac0fc627896fe3b)
 * Invoke-RestApi - removing unneeded code [fce5152](https://github.com/thycotic-ps/thycotic.secretserver/commit/fce5152bbcbdb33509116c38e9336f689b2ba918)
 * Update-Folder - add type output [d42a3ce](https://github.com/thycotic-ps/thycotic.secretserver/commit/d42a3ce267690c1c46d1f28fc6c117ce71132f6c)
@@ -369,98 +211,53 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-GroupRole - update based on test [9232481](https://github.com/thycotic-ps/thycotic.secretserver/commit/92324815b2793f9c776feb015e64051726dc53f4)
 * Test-SecretState - set output to full type name [4cb9f28](https://github.com/thycotic-ps/thycotic.secretserver/commit/4cb9f2841e86548855af1e91b84d3fe6b66944b7)
 
-</details>
-
 ### Tests
-
-<details>
-    <summary>Click to view </summary>
 
 * Test-SdkClient - test update [0758191](https://github.com/thycotic-ps/thycotic.secretserver/commit/075819159e7421979ed50e4b808815069eebccd1)
 * Module file integrity test - update performance [83d2c19](https://github.com/thycotic-ps/thycotic.secretserver/commit/83d2c19c4a4c31746a6e70f1f43cd4128328c969)
 * Get-GroupUser - fix test [4144f87](https://github.com/thycotic-ps/thycotic.secretserver/commit/4144f87a15cb20cb13d61461c57ca4d569f39a21)
 
-</details>
-
 ## [0.42.0] -- 2021-06-04
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Add-GroupMember - correct warning message [34cb4d5](https://github.com/thycotic-ps/thycotic.secretserver/commit/34cb4d51b341d4ae4a8f43349c5d391b38cb1739)
 * Remove-Folder - correct warning message [ade562f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ade562f03fa4ec8dd73874acaa201ac615f550e5)
 * Set-FolderPermission - correct warning message [4f65edd](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f65edd9c619ac56be90c269025db5f1864e8af8)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-FolderState -allows to see actions allowed [a4091c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4091c1106b6cf3447654a4e609b96964d53d459)
 * Test-FolderAction - test for allowed action [946c35e](https://github.com/thycotic-ps/thycotic.secretserver/commit/946c35e6f86a99b2f8127ebe0a54ae2d591f4476)
 * Test-SecretAction - allows test for given action on secret [4c21a43](https://github.com/thycotic-ps/thycotic.secretserver/commit/4c21a434f5d9b1d71ac9e8cf304c01b52adba931)
 * Test-SecretState - test for a given state on a secret [942452d](https://github.com/thycotic-ps/thycotic.secretserver/commit/942452d0724c5b26e85e0ae4f26098c04c32a061)
 
-</details>
-
 ### General Updates
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.41.0] -- 2021-06-03
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * Protect-Secret - Renamed to Close-Secret Removed output as well. Will return no output if successful. [ab774f0](https://github.com/thycotic-ps/thycotic.secretserver/commit/ab774f089854722c0bece134b9454226f1b3c100)
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * module - fix issue with import on unix OS [c73537f](https://github.com/thycotic-ps/thycotic.secretserver/commit/c73537f9c8e879c73b78ae853f9f1859373a459a)
 * Disable/Enable Unlimited Admin - correcting validation [2c32f8f](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c32f8fab3fd7a62eb07d8c9b6919b516b8041d3)
 * Search-SecretPermission - correct issue from test [3af9359](https://github.com/thycotic-ps/thycotic.secretserver/commit/3af93592fd550814103013adcdfb3c0d8fe742fb)
 * Update-GroupMember - corrected error Functions as expected now [b9fda39](https://github.com/thycotic-ps/thycotic.secretserver/commit/b9fda39cd850ef49f295ad1766bcdbd6fb84e7a9)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-SecretPermission - closes [#186](https://github.com/thycotic-ps/thycotic.secretserver/issues/186) [7731fab](https://github.com/thycotic-ps/thycotic.secretserver/commit/7731fabecea4f4d8e2008bb12469d3b929fa8f81)
 * Remove-SecretPermission - closes [#187](https://github.com/thycotic-ps/thycotic.secretserver/issues/187) [d020a14](https://github.com/thycotic-ps/thycotic.secretserver/commit/d020a14844cc558b4ff2cd32cd78f1add43fb76e)
@@ -480,12 +277,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * New-SecretHook - closes [#196](https://github.com/thycotic-ps/thycotic.secretserver/issues/196) [942ae0a](https://github.com/thycotic-ps/thycotic.secretserver/commit/942ae0a7efe2dd1d0a3a053b3b4bf5c716a9185e)
 * New-SecretDependency - closes [#182](https://github.com/thycotic-ps/thycotic.secretserver/issues/182) [26b343f](https://github.com/thycotic-ps/thycotic.secretserver/commit/26b343f5cec5882fda9f1c96eafe9ed8118b0e0c)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * adding devcontainer [cfa85ad](https://github.com/thycotic-ps/thycotic.secretserver/commit/cfa85ad9fd59e7988beb8a1ce829f0ea7a8a73ca)
 * module - Add aliases Checkout-Secret / CheckIn-Secret Compliments use of the Open/Close-Secret [5ee8224](https://github.com/thycotic-ps/thycotic.secretserver/commit/5ee822490fc08f506f5c6d2b7f61f04433c2e6fc)
@@ -498,42 +290,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-User - updating verbose output [10e7862](https://github.com/thycotic-ps/thycotic.secretserver/commit/10e7862735f3ee99355bd9315ee25ce4baf49e25)
 * Update-SecretHook - updated PrePostOption help [e089053](https://github.com/thycotic-ps/thycotic.secretserver/commit/e0890537ccb599ec618c4ab9256745b61dc1b411)
 
-</details>
-
 ### Tests
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-SecretHook correct test filename [74444c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/74444c712e75aa95576556244e2cc75e4c3562a7)
 * Update-SecretHook - update tests Added params parameters [e16cbc3](https://github.com/thycotic-ps/thycotic.secretserver/commit/e16cbc337cdb2f7ec4adcb001a53f29715431daf)
-
-</details>
 
 ## [0.40.0] -- 2021-05-28
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * TssUserSummary - add property TwoFactorMethod [880672b](https://github.com/thycotic-ps/thycotic.secretserver/commit/880672b71f3a7643cd2f17ef00bb11f5b54fe263)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-SecretDependencyTemplate [d28cf62](https://github.com/thycotic-ps/thycotic.secretserver/commit/d28cf623d5b47bd21af6ebcb84b0f7f9466f0ce7)
 * Get-SecretDependencyStub [7a750fe](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a750fe6cf3fbb162bb3a69ae163719ad3c7e7c2)
@@ -549,12 +321,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Enable/Disable Unlimited Admin Mode [8b64a58](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b64a58a1e16957e5bc2b8bc36892b4fbe461216)
 * New-SecretPermission - closes #188 [eac25ad](https://github.com/thycotic-ps/thycotic.secretserver/commit/eac25ad87b37ab7043bcadc5ea0ae46f89107700)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-SecretDependency - adjust output [c2aa919](https://github.com/thycotic-ps/thycotic.secretserver/commit/c2aa919f127f3998494aeec94ad016aac082d9af)
 * Get-SecretDependencyTemplate - rename class type [855ab2e](https://github.com/thycotic-ps/thycotic.secretserver/commit/855ab2ee64ec5cfc3fc8b477cdba6b919d13657c)
@@ -565,42 +332,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - applying formatting changes [71fa1f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/71fa1f714dfbf8ce203d607f8d966921f775ef0e)
 * Get-UserAudit - fixing warning message [99dd43e](https://github.com/thycotic-ps/thycotic.secretserver/commit/99dd43e3465888efe7feb3383e1d62cb93364aa5)
 
-</details>
-
 ### Tests
-
-<details>
-    <summary>Click to view </summary>
 
 * Tests - renaming [9cb0867](https://github.com/thycotic-ps/thycotic.secretserver/commit/9cb0867e456c2efcc20d6af8f279516d8374ca48)
 * Tests - Removed integration and unit testing [ddc96c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/ddc96c22efe387038bc3414875cd2e06f2109d3f)
-
-</details>
 
 ## [0.39.0] -- 2021-05-07
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-SecretDependency - fixes [#173](https://github.com/thycotic-ps/thycotic.secretserver/issues/173) [3ad064b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ad064b39b00b5d55a58164ff7c61144c9a43ee1)
 * New-SecretDependencyGroup - fixes [#178](https://github.com/thycotic-ps/thycotic.secretserver/issues/178) [26a2c80](https://github.com/thycotic-ps/thycotic.secretserver/commit/26a2c80e10db2e3ce9e6569a47b81902b4fa8c58)
@@ -612,54 +359,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Start-SecretDependency - fixes [#179](https://github.com/thycotic-ps/thycotic.secretserver/issues/179) [2565995](https://github.com/thycotic-ps/thycotic.secretserver/commit/25659956127826ef05db97e948dcaf4ec0caf559)
 * Get-SecretDependencyRunStatus - fixes [#180](https://github.com/thycotic-ps/thycotic.secretserver/issues/180) [c062da2](https://github.com/thycotic-ps/thycotic.secretserver/commit/c062da298a7c30bdb3acf8a2305f51033bbbddee)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * module - add format for dependency classes [51ae103](https://github.com/thycotic-ps/thycotic.secretserver/commit/51ae10387ef6d2d0e9add56f05ede7ccfd7c0288)
 * Get-SecretDependency - adding param description [bf97d39](https://github.com/thycotic-ps/thycotic.secretserver/commit/bf97d39e883c9702e7bbfb2e0440cb21f070707f)
 * Start-SecretHeartbeat - correcting help links [e4d9c95](https://github.com/thycotic-ps/thycotic.secretserver/commit/e4d9c95a82fc0d168ba28d80e3c7539949162ae4)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.38.0] -- 2021-04-28
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * New-TssUser - add examples fixes [#160](https://github.com/thycotic-ps/thycotic.secretserver/issues/160) [400ac84](https://github.com/thycotic-ps/thycotic.secretserver/commit/400ac84cfc307b63e0f4e412c5d52a8878031172)
 * Update-TssSecret - fix issue with uri found during testing [b7e96f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b7e96f17e897d102ef2cb01ea9fb63c7caaf4f68)
 * Docs - correcting links for CBH [8347663](https://github.com/thycotic-ps/thycotic.secretserver/commit/834766305ae6c82de43c11a1008286e098647cba)
 
-</details>
-
 ### New Functions
-
-<details>
-    <summary>Click to view </summary>
 
 * Update-TssSecret - fixes [#169](https://github.com/thycotic-ps/thycotic.secretserver/issues/169) [3587c61](https://github.com/thycotic-ps/thycotic.secretserver/commit/3587c61b2f991da8fc518d33cfeca0c20dfb5437)
 * Search-TssRpcPasswordType - closes [#149](https://github.com/thycotic-ps/thycotic.secretserver/issues/149) [5f99639](https://github.com/thycotic-ps/thycotic.secretserver/commit/5f996396084919fb68417fc27df664d60fc6d8ff)
@@ -667,51 +389,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-GroupMember - closes [#55](https://github.com/thycotic-ps/thycotic.secretserver/issues/55) [66a203d](https://github.com/thycotic-ps/thycotic.secretserver/commit/66a203d8d46be56059890e9e0d2eba978b7e13f8)
 * Secret Template - Added New-SecretTemplateField and Add-SecretTemplateField [7fdd18b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7fdd18bab2fc68b2e4793db8b56ebbc487da1fb6)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * docs - commands page - remove links to spec file New API doc site: https://thycotic-ps.github.io/secretserver-apidoc [3f16fee](https://github.com/thycotic-ps/thycotic.secretserver/commit/3f16fee904af3b2eb13312c8564967a09a6e2a23)
 * Set-SecretField - Correcting examples [6f89ba2](https://github.com/thycotic-ps/thycotic.secretserver/commit/6f89ba298f3f8efe2a391a245307cbc5a83c593b)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.37.0] -- 2021-04-16
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * Removed Folder and User stub commands [c5037c4](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5037c449325c205f64b76c3348d523fc7af6c03)
-
-</details>
 
 ### Bug Fixes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### New
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-TssFolder - Add FolderPath parameter [05dd198](https://github.com/thycotic-ps/thycotic.secretserver/commit/05dd198a5470d2e3d157879c50294dfac0ce07aa)
 * New-TssUser - closes [#127](https://github.com/thycotic-ps/thycotic.secretserver/issues/127) [27b69a7](https://github.com/thycotic-ps/thycotic.secretserver/commit/27b69a7a3c86ae6d5572539ccce815d380206f65)
@@ -725,12 +422,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Disable-User - closes [#157](https://github.com/thycotic-ps/thycotic.secretserver/issues/157) [51fedf8](https://github.com/thycotic-ps/thycotic.secretserver/commit/51fedf88c8988383f08ecdde73a51d36354d9f60)
 * Start-Discovery - closes [#151](https://github.com/thycotic-ps/thycotic.secretserver/issues/151) [05501de](https://github.com/thycotic-ps/thycotic.secretserver/commit/05501de057970265229ab49e99a8ae63035c7c14)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-TssFolder - perf improvement [233744d](https://github.com/thycotic-ps/thycotic.secretserver/commit/233744d745179a3da8c2ce47866dcc40bdecd9f6)
 * docs - add New-TssUser help [738584d](https://github.com/thycotic-ps/thycotic.secretserver/commit/738584d38b8077d0606b4e61028899e72b0ebe73)
@@ -740,44 +432,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Enable-SecretEmail - correct link in cbh [4ded087](https://github.com/thycotic-ps/thycotic.secretserver/commit/4ded087c6b5b2cd8da771fae4ef1210af7b9b0f4)
 * functions - correcting parameter help [a1fc3df](https://github.com/thycotic-ps/thycotic.secretserver/commit/a1fc3dfedc2b0d04da96cf252a8cc7710eb1a8f9)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * None
-
-</details>
 
 ## [0.36.0] -- 2021-04-05
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * None
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * New-TssFolder - fixes [#145](https://github.com/thycotic-ps/thycotic.secretserver/issues/145) [ba94c17](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba94c17255c9494999e2d55998e31d5289df2489)
 * docs - Working With content [#82](https://github.com/thycotic-ps/thycotic.secretserver/issues/82) [650ae1e](https://github.com/thycotic-ps/thycotic.secretserver/commit/650ae1e39c3bf26883307e216ef1362c2e6272a5)
 * Set-TssSecret - fixes [#147](https://github.com/thycotic-ps/thycotic.secretserver/issues/147) [a9dd25f](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9dd25f2d87ff0138692ab2dee018d7e8c6e33ae)
 * Get-TssConfiguration - fixes [#148](https://github.com/thycotic-ps/thycotic.secretserver/issues/148) April release adds additional properties [8c5d6a8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c5d6a8d5c9ec94ee64af3f1fcd18f9ae6cfe568)
 
-</details>
-
 ### New Functions
-
-<details>
-    <summary>Click to view </summary>
 
 * Revoke-Secret - fixes [#134](https://github.com/thycotic-ps/thycotic.secretserver/issues/134) [64d14e2](https://github.com/thycotic-ps/thycotic.secretserver/commit/64d14e223a687275b5e886a48ceeefd610fb05fa)
 * Start-SecretHeartbeat - fixes [#135](https://github.com/thycotic-ps/thycotic.secretserver/issues/135) [34dfd79](https://github.com/thycotic-ps/thycotic.secretserver/commit/34dfd79af17c8e210787ab2737e7eb6f7c0e7693)
@@ -785,42 +457,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-SecretRpcPrivileged - fixes [#139](https://github.com/thycotic-ps/thycotic.secretserver/issues/139) [91a4851](https://github.com/thycotic-ps/thycotic.secretserver/commit/91a485165a40bc662cca70d779d8d04479f06247)
 * Search-DistributedEngineSite - fixes [#146](https://github.com/thycotic-ps/thycotic.secretserver/issues/146) [c9165c9](https://github.com/thycotic-ps/thycotic.secretserver/commit/c9165c9c6ac2f17720cf5735681884848899216a)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * Set-SecretExpiration - update variable name [941b21c](https://github.com/thycotic-ps/thycotic.secretserver/commit/941b21c14d0453624dcc7812d64bc169ebad5344)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
 * Tests - added assert calls [4dbe545](https://github.com/thycotic-ps/thycotic.secretserver/commit/4dbe5455fbcdfb92ecb5b92d2b893ed52fc3d147)
-
-</details>
 
 ## [0.35.0] -- 2021-04-04
 
 ### Breaking Changes
 
-<details>
-    <summary>Click to view </summary>
-
 * TssSecret - GetCredential method update closes [#133](https://github.com/thycotic-ps/thycotic.secretserver/issues/133) [92e8a1e](https://github.com/thycotic-ps/thycotic.secretserver/commit/92e8a1ed56c9b4fb730bef16286ec32551632808)
 * New-TssFolder - Revert param changes [78638ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/78638ed6b0ea05af977f99ba8caa65ce86eecc07)
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * module - correct import closes [#132](https://github.com/thycotic-ps/thycotic.secretserver/issues/132) [47ec7ce](https://github.com/thycotic-ps/thycotic.secretserver/commit/47ec7cebc86dc6be4594d7395b88198c37f973fc)
 * Find-User - fixed output issue identified by test [3bee92b](https://github.com/thycotic-ps/thycotic.secretserver/commit/3bee92bfdd93be5d4ce4171247603b4933bd719b)
@@ -829,22 +481,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * CheckVersion - correct invoke param [57dfb6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57dfb6d03b1b450c874aa18ec7e913e7f77c3dad)
 * TssSession - Correct issue found on SessionRefresh [83d6533](https://github.com/thycotic-ps/thycotic.secretserver/commit/83d65333a248154194dda25ab85743ece0aeb77c)
 
-</details>
-
 ### New Functions
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-TssUserStub - closes #97 [5650be7](https://github.com/thycotic-ps/thycotic.secretserver/commit/5650be73b21ce742d0a7e00d59bec4838462b3f8)
 * Set-TssSecretSecurity - fixes #137 [9e3b22e](https://github.com/thycotic-ps/thycotic.secretserver/commit/9e3b22e331bec9a967782b86147173d21c8e0b78)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * build - remove outputing file list [87929d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/87929d6659551091bbfd7bfa9ffdf9f781e8d38c)
 * Get-UserStub - moving to correct directory [2a23010](https://github.com/thycotic-ps/thycotic.secretserver/commit/2a23010dcacc8b8f1490a0d164f7686783e989ac)
@@ -861,12 +503,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * doc - update commands [4a11a5d](https://github.com/thycotic-ps/thycotic.secretserver/commit/4a11a5d3da1dddad3476a1fc36521a0f25c33de1)
 * module - applying formatting changes [71fa1f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/71fa1f714dfbf8ce203d607f8d966921f775ef0e)
 
-</details>
-
 ### Tests
-
-<details>
-    <summary>Click to view </summary>
 
 * snippet - test added assert call [18685b6](https://github.com/thycotic-ps/thycotic.secretserver/commit/18685b6dbafd1ff7705e9c8a2719a04e19dda5c9)
 * tests - add random string generator [8e1500d](https://github.com/thycotic-ps/thycotic.secretserver/commit/8e1500da6bdaf666ffc7555ada38a92e6107bb2e)
@@ -875,25 +512,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Secret Tests - reworked [ee188be](https://github.com/thycotic-ps/thycotic.secretserver/commit/ee188beab18438a64cb46e5f98ef2356341c6546)
 * Set-Secret - Tests rework Still work to do [cb39262](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb39262473c730c9a6b4debc4560a1a60553ecb1)
 
-</details>
-
 ## [0.34.0] -- 2021-03-25
 
 ### Breaking Changes
-
-<details>
-    <summary>Click to view </summary>
 
 * Set-TssSecret - remove email setting params closes [#125](https://github.com/thycotic-ps/thycotic.secretserver/issues/125) [6e98382](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e9838232eae4ce68de5e576e1db2601393d72fc)
 * Set-TssSecret - remove field params closes [#118](https://github.com/thycotic-ps/thycotic.secretserver/issues/118) [8a90145](https://github.com/thycotic-ps/thycotic.secretserver/commit/8a901450880a0acc93cb7142d2f57eb50c4cdabb)
 * Get-TssFolderPermissionStub - removed function [0194279](https://github.com/thycotic-ps/thycotic.secretserver/commit/01942795ddb43f6464d8265742fc2933de2347eb)
 
-</details>
-
 ### New Functions
-
-<details>
-    <summary>Click to view </summary>
 
 * Get-TssConfiguration - closes [#112](https://github.com/thycotic-ps/thycotic.secretserver/issues/112) [02555a6](https://github.com/thycotic-ps/thycotic.secretserver/commit/02555a6dfc42211997c3f2da966060a3205c44ab)
 * Get-TssSecretSetting - closes [#15](https://github.com/thycotic-ps/thycotic.secretserver/issues/15) [d73252f](https://github.com/thycotic-ps/thycotic.secretserver/commit/d73252f010380a92e0cdb775061728f53942bd31)
@@ -910,12 +537,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssSecretTemplate - closes [#81](https://github.com/thycotic-ps/thycotic.secretserver/issues/81) [f96c4bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/f96c4bf2b661dc2adb5e1fa5968e3dcdb67c255c)
 * Protect-TssSecret - closes [#131](https://github.com/thycotic-ps/thycotic.secretserver/issues/131) [cb8e53d](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb8e53dc98682bcdb84a2631cc52f31f46582fb8)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-TssGroup - code cleanup [1c796b8](https://github.com/thycotic-ps/thycotic.secretserver/commit/1c796b8b4fcde6dfa29d98f720d1720156f7de03)
 * Search-TssRole - code cleanup [7f036f8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7f036f8b64e268373575ca1f48b2a084733f2d9f)
@@ -948,29 +570,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * module - adjust TssSecretState format [da1f699](https://github.com/thycotic-ps/thycotic.secretserver/commit/da1f6991242e8707285c2afe8f39b9bef69de02e)
 * module - adjusting pattern for restricted params [1ea709b](https://github.com/thycotic-ps/thycotic.secretserver/commit/1ea709bba013e5d0bd4d706b8aee0e45036c3a64)
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Find-TssSecret - closes #111 [4f9d2c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f9d2c7be971dcb1506cc569832712ef4e513336)
 * TssSecret - SetFieldValue - closes [#124](https://github.com/thycotic-ps/thycotic.secretserver/issues/124) [aa75be9](https://github.com/thycotic-ps/thycotic.secretserver/commit/aa75be996d863c3d2c498ba38fd8cee704d4b8e9)
 * Invoke-TssRestApi - correct issue with processing [1688c7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/1688c7d25a68e5c1a6896c36c0961775b41127f4)
 
-</details>
-
 ### Tests
-
-<details>
-    <summary>Click to view </summary>
 
 * Folder Permission - Tests - update mocking [457fe7d](https://github.com/thycotic-ps/thycotic.secretserver/commit/457fe7ddd3c25756ffecd2190f02e0bd736852cf)
 * New-TssFolderPermission Test - remove unused code [09981c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/09981c88d775ef199d506295a2f10447db60a0a7)
 * New-TssFolder - removed integration test ToDo - replace with mocking [3ac59d8](https://github.com/thycotic-ps/thycotic.secretserver/commit/3ac59d8574a1f17d6612b86431d94123e7eb2aef)
-
-</details>
 
 ## [0.33.1] -- 2021-03-05
 
@@ -985,9 +595,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.33.0] -- 2021-03-05
 
 ### Added
-
-<details>
-    <summary>Click to view </summary>
 
 * **Module** Added warning message on detected Secret Server version [more details](https://thycotic-ps.github.io/thycotic.secretserver/docs/compatibility/) [a97a8c5](https://github.com/thycotic-ps/thycotic.secretserver/commit/a97a8c5f880c5f2ae7a760af8843daa2e7967ccf)
 * `Search-TssRole` **New Command** [#105](https://github.com/thycotic-ps/thycotic.secretserver/issues/105) [baca549](https://github.com/thycotic-ps/thycotic.secretserver/commit/baca54911d176565ee3fbd97d31dfbd4b15c3323)
@@ -1005,8 +612,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssSecretAudit` **New Command** [#13](https://github.com/thycotic-ps/thycotic.secretserver/issues/13) [af9e621](https://github.com/thycotic-ps/thycotic.secretserver/commit/af9e621ebb76bc593d286b848a0a92d04efd6f19)
 * `Get-TssSecretState` **New Command** [#17](https://github.com/thycotic-ps/thycotic.secretserver/issues/17) [357df13](https://github.com/thycotic-ps/thycotic.secretserver/commit/357df13fba08bd3db472d06f9ed06fd77f7dd9ac)
 * `Get-TssSecretAttachment` **New Command** [#44](https://github.com/thycotic-ps/thycotic.secretserver/issues/44) [47a7b45](https://github.com/thycotic-ps/thycotic.secretserver/commit/47a7b45384b2b1bdd0fb01d35cb225ffd7ec627f)
-
-</details>
 
 ### Changed
 
