@@ -26,6 +26,6 @@ process {
     $currentVersion = $TssSession.SecretServerVersion
 
     if ($currentVersion -lt $MinimumSupported) {
-        Write-Warning "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
+        Write-Verbose "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
     }
 }
