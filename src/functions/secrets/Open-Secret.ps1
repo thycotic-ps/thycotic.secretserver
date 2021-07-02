@@ -43,7 +43,8 @@ function Open-Secret {
 
         # Secret ID
         [Alias("SecretId")]
-        [int]
+        [Parameter(ValueFromPipelineByPropertyName)]
+        [int[]]
         $Id,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
@@ -68,43 +69,46 @@ function Open-Secret {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
 
-            # Checkout endpoint requires a pre-checkout comment be sent
-            $restrictedBody = @{}
-            switch ($tssParams.Keys) {
-                'Comment' { $restrictedBody.Add('comment',$Comment) }
-                'TicketNumber' { $restrictedBody.Add('ticketNumber', $TicketNumber) }
-                'TicketSystemId' { $restrictedBody.Add('ticketSystemId', $TicketSystemId) }
-            }
-            if ($restrictedBody.Count -gt 0) {
-                $uriViewComment = $TssSession.ApiUrl, 'secret-access-requests', 'secrets', $Id, 'view-comment' -join '/'
+            foreach($secret in $Id) {
 
-                $invokeViewCommentParams.Body = $restrictedBody | ConvertTo-Json
-                $invokeViewCommentParams.Uri = $uriViewComment
-                $invokeViewCommentParams.Method = 'POST'
+                # Checkout endpoint requires a pre-checkout comment be sent
+                $restrictedBody = @{}
+                switch ($tssParams.Keys) {
+                    'Comment' { $restrictedBody.Add('comment',$Comment) }
+                    'TicketNumber' { $restrictedBody.Add('ticketNumber', $TicketNumber) }
+                    'TicketSystemId' { $restrictedBody.Add('ticketSystemId', $TicketSystemId) }
+                }
+                if ($restrictedBody.Count -gt 0) {
+                    $uriViewComment = $TssSession.ApiUrl, 'secret-access-requests', 'secrets', $secret, 'view-comment' -join '/'
 
-                if ($PSCmdlet.ShouldProcess("Secret ID: $Id", "$($invokeViewCommentParams.Method) $uriViewComment with: `n$($invokeViewCommentParams.Body)`n")) {
-                    Write-Verbose "Performing the operation $($invokeViewCommentParams.Method) $uriViewComment with:`n$($invokeViewCommentParams.Body)`n"
+                    $invokeViewCommentParams.Body = $restrictedBody | ConvertTo-Json
+                    $invokeViewCommentParams.Uri = $uriViewComment
+                    $invokeViewCommentParams.Method = 'POST'
+
+                    if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeViewCommentParams.Method) $uriViewComment with: `n$($invokeViewCommentParams.Body)`n")) {
+                        Write-Verbose "Performing the operation $($invokeViewCommentParams.Method) $uriViewComment with:`n$($invokeViewCommentParams.Body)`n"
+                        try {
+                            . $InvokeApi @invokeViewCommentParams >$null
+                        } catch {
+                            Write-Warning "Issue adding view comment for Secret [$secret]"
+                            $err = $_
+                            . $ErrorHandling $err
+                        }
+                    }
+                }
+                # Secret Checkout
+                $uriCheckout = $TssSession.ApiUrl, 'secrets', $secret, 'check-out' -join '/'
+                $invokeCheckoutParams.Uri = $uriCheckout
+                $invokeCheckoutParams.Method = 'POST'
+                if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeCheckoutParams.Method) $uriCheckout")) {
+                    Write-Verbose "Performing the operation $($invokeCheckoutParams.Method) $uriCheckout"
                     try {
-                        . $InvokeApi @invokeViewCommentParams >$null
+                        . $InvokeApi @invokeCheckoutParams >$null
                     } catch {
-                        Write-Warning "Issue adding view comment for Secret [$Id]"
+                        Write-Warning "Issue checking out Secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
                     }
-                }
-            }
-            # Secret Checkout
-            $uriCheckout = $TssSession.ApiUrl, 'secrets', $Id, 'check-out' -join '/'
-            $invokeCheckoutParams.Uri = $uriCheckout
-            $invokeCheckoutParams.Method = 'POST'
-            if ($PSCmdlet.ShouldProcess("Secret ID: $Id", "$($invokeCheckoutParams.Method) $uriCheckout")) {
-                Write-Verbose "Performing the operation $($invokeCheckoutParams.Method) $uriCheckout"
-                try {
-                    . $InvokeApi @invokeCheckoutParams >$null
-                } catch {
-                    Write-Warning "Issue checking out Secret [$Id]"
-                    $err = $_
-                    . $ErrorHandling $err
                 }
             }
         } else {
