@@ -13,15 +13,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* None
+* Get-Secret - fix piping support [bf750b5](https://github.com/thycotic-ps/thycotic.secretserver/commit/bf750b54e471f26803615812c70aa1a1e8ed6774)
+* Get-SecretField - fix pipeline support [d711b45](https://github.com/thycotic-ps/thycotic.secretserver/commit/d711b45612f4d222cb143f529d1f9fa7b0ae2986)
+* Invoke-SecretGeneratePassword - remove pipeline support command does not use it [c5f8441](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5f844101c811416f79e7c89d3f3e71549e3177d)
+* Add-SecretTemplateField - add piping support [23c35aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/23c35aa15b4a290f9bd4adefd98f5dd52e99c43e)
 
 ### New Stuff
 
-* None
+* Open-Secret - add piping support [9a5b009](https://github.com/thycotic-ps/thycotic.secretserver/commit/9a5b009edb0911e23146eee392f438b29d9a7718)
 
 ### General Updates
 
 * Logging - Write-Log perf improvement [60c7388](https://github.com/thycotic-ps/thycotic.secretserver/commit/60c73886d5d36e24ef87445d4e0693774acbabb5)
+* check version - change to verbose instead of warning [d4ff2ad](https://github.com/thycotic-ps/thycotic.secretserver/commit/d4ff2add84b25e00e842a94e36cd26d71efd36f2)
+* Close-Secret - removing unused variable [2191587](https://github.com/thycotic-ps/thycotic.secretserver/commit/2191587a8bee50168380fed1dee5d855a315ab01)
 
 ### Tests
 
