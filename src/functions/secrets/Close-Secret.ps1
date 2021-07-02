@@ -90,7 +90,6 @@ function Close-Secret {
         if ($protectParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
-                $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
