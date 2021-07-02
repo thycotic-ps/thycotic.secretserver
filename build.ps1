@@ -8,20 +8,24 @@ param(
     [string]
     $GalleryKey,
 
+    # GitHub pre-release
     [Parameter(ParameterSetName = 'publish')]
     [switch]
     $Prerelease,
 
+    # PowerShell Gallery/GitHub release
     [Parameter(ParameterSetName = 'release')]
     [Parameter(ParameterSetName = 'publish')]
     [switch]
     $Release,
 
+    # Draft GitHub release
     [Parameter(ParameterSetName = 'release')]
     [Parameter(ParameterSetName = 'publish')]
     [switch]
     $Draft,
 
+    # Don't run Pester tests
     [Parameter(ParameterSetName = 'publish')]
     [switch]
     $SkipTests
@@ -30,6 +34,8 @@ Push-Location
 Set-Location $PSScriptRoot
 $moduleName = 'Thycotic.SecretServer'
 $staging = "$env:TEMP\tss_staging\"
+$moduleTempPath = Join-Path $staging $moduleName
+$moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
 
 $git = git status
 if ($git[1] -notmatch "Your branch is up to date" -and (-not $PSBoundParameters.ContainsKey('PublishDocs'))) {
@@ -82,39 +88,54 @@ if (-not $PSBoundParameters['SkipTests']) {
     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
 }
 
-if ($PSBoundParameters['Prerelease']) {
-    $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$Prerelease
-} else {
-    $foundModule = Find-Module -Name $moduleName
-}
-
-if ($foundModule.Version -ge $imported.Version) {
-    Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
-}
 
 if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
-    $moduleTempPath = Join-Path $staging $moduleName
+
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
     if ($PSBoundParameters['GalleryKey']) {
-        try {
-            Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
+        if ($foundModule.Version -ge $imported.Version) {
+            Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+        } else {
+            try {
+                Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
 
-            Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-            Write-Host "successfully published to PS Gallery"
-        } catch {
-            Write-Warning "Publish failed: $_"
+                Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+                Write-Host "successfully published to PS Gallery"
+            } catch {
+                Write-Warning "Publish failed: $_"
+            }
         }
     }
-    if ($PSBoundParameters['Release']) {
-        $zipFilePath = Join-Path $staging "$moduleName.zip"
-        $zipFileName = "$($moduleName).zip"
 
-        if ((gh config get prompt) -eq 'enabled') {
-            Invoke-Expression "gh config set prompt disabled"
+    $zipFilePath = Join-Path $staging "$moduleName.zip"
+    $zipFileName = "$($moduleName).zip"
+    if ((gh config get prompt) -eq 'enabled') {
+        Invoke-Expression "gh config set prompt disabled"
+    }
+
+    if ($PSBoundParameters['Prerelease']) {
+        $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
+        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
+        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --prerelease"
+        if ($PSBoundParameters['Prerelease']) {
+            $ghArgs = $ghArgs + " --prerelease"
         }
-        $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
+        if ($PSBoundParameters['Draft']) {
+            $ghArgs = $ghArgs + " --draft"
+        }
+
+        Write-Host "gh command to execute: $ghArgs" -ForegroundColor DarkYellow
+
+        Invoke-Expression "gh $ghArgs"
+
+        if ((gh config get prompt) -eq 'disabled') {
+            Invoke-Expression "gh config set prompt enabled"
+        }
+    }
+
+    if ($PSBoundParameters['Release']) {
         $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
         Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
         $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
