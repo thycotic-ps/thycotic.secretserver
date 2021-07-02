@@ -30,13 +30,13 @@ function Invoke-SecretGeneratePassword {
         $TssSession,
 
         # Secret Id
-        [Parameter(Mandatory, ValueFromPipeline)]
+        [Parameter(Mandatory)]
         [Alias('SecretId')]
         [int]
         $Id,
 
         # Field slug name
-        [Parameter(Mandatory, ValueFromPipeline)]
+        [Parameter(Mandatory)]
         [Alias('FieldSlug')]
         [string]
         $Slug
