@@ -51,7 +51,7 @@ Aliases: SecretId
 Required: True
 Position: Named
 Default value: 0
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -66,7 +66,7 @@ Aliases: FieldSlug
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

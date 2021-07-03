@@ -61,19 +61,7 @@ Secret ID to retrieve
 
 ```yaml
 Type: Int32[]
-Parameter Sets: field
-Aliases: SecretId
-
-Required: True
-Position: Named
-Default value: None
-Accept pipeline input: True (ByPropertyName)
-Accept wildcard characters: False
-```
-
-```yaml
-Type: Int32[]
-Parameter Sets: restricted
+Parameter Sets: (All)
 Aliases: SecretId
 
 Required: True

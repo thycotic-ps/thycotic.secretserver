@@ -6,7 +6,7 @@ Checkout a Secret
 ## SYNTAX
 
 ```
-Open-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-Comment <String>] [-TicketNumber <String>]
+Open-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Comment <String>] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -60,14 +60,14 @@ Accept wildcard characters: False
 Secret ID
 
 ```yaml
-Type: Int32
+Type: Int32[]
 Parameter Sets: (All)
 Aliases: SecretId
 
 Required: False
 Position: Named
-Default value: 0
-Accept pipeline input: False
+Default value: None
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
