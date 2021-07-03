@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.47.0] -- 2021-07-03
 
 ### Breaking Changes
 
@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-Report - new command fixes [#4](https://github.com/thycotic-ps/thycotic.secretserver/issues/4) [3b36868](https://github.com/thycotic-ps/thycotic.secretserver/commit/3b36868b61b680203e2b28410b48009fb9ed46ec)
 * Remove-Report - new command fixes [#42](https://github.com/thycotic-ps/thycotic.secretserver/issues/42) [2cf097d](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf097da80b3969151aec50eb77b3d3682fcbce3)
 * Get-ReportParameter - new command fixes [#21](https://github.com/thycotic-ps/thycotic.secretserver/issues/21) [f37b1b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/f37b1b77a7d0f5955883d8c3dcd5c2e38d91e486)
+* Invoke-Report - new command for executing reports [59cd835](https://github.com/thycotic-ps/thycotic.secretserver/commit/59cd835751727648f21fa45117d71820fe6e2429)
+* Export-Report - new command [cc0b187](https://github.com/thycotic-ps/thycotic.secretserver/commit/cc0b1878e09e7caf4a849186377313e186d53cc0)
 
 ### General Updates
 
