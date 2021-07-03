@@ -15,18 +15,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Get-Secret - fix piping support [bf750b5](https://github.com/thycotic-ps/thycotic.secretserver/commit/bf750b54e471f26803615812c70aa1a1e8ed6774)
 * Get-SecretField - fix pipeline support [d711b45](https://github.com/thycotic-ps/thycotic.secretserver/commit/d711b45612f4d222cb143f529d1f9fa7b0ae2986)
-* Invoke-SecretGeneratePassword - remove pipeline support command does not use it [c5f8441](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5f844101c811416f79e7c89d3f3e71549e3177d)
 * Add-SecretTemplateField - add piping support [23c35aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/23c35aa15b4a290f9bd4adefd98f5dd52e99c43e)
+* Get-SecretAttachment - fixed output issue if file attachment is not found [c6fda6f](https://github.com/thycotic-ps/thycotic.secretserver/commit/c6fda6fdf34935a7abc243e3fa1c41ef04608da4)
 
 ### New Stuff
 
 * Open-Secret - add piping support [9a5b009](https://github.com/thycotic-ps/thycotic.secretserver/commit/9a5b009edb0911e23146eee392f438b29d9a7718)
+* Find-Report - new command fixes [#3](https://github.com/thycotic-ps/thycotic.secretserver/issues/3) [9087705](https://github.com/thycotic-ps/thycotic.secretserver/commit/90877053adbe121291082f5884ab3776ea468a71)
+* Search-Report - new command fixes [#4](https://github.com/thycotic-ps/thycotic.secretserver/issues/4) [3b36868](https://github.com/thycotic-ps/thycotic.secretserver/commit/3b36868b61b680203e2b28410b48009fb9ed46ec)
+* Remove-Report - new command fixes [#42](https://github.com/thycotic-ps/thycotic.secretserver/issues/42) [2cf097d](https://github.com/thycotic-ps/thycotic.secretserver/commit/2cf097da80b3969151aec50eb77b3d3682fcbce3)
+* Get-ReportParameter - new command fixes [#21](https://github.com/thycotic-ps/thycotic.secretserver/issues/21) [f37b1b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/f37b1b77a7d0f5955883d8c3dcd5c2e38d91e486)
 
 ### General Updates
 
 * Logging - Write-Log perf improvement [60c7388](https://github.com/thycotic-ps/thycotic.secretserver/commit/60c73886d5d36e24ef87445d4e0693774acbabb5)
 * check version - change to verbose instead of warning [d4ff2ad](https://github.com/thycotic-ps/thycotic.secretserver/commit/d4ff2add84b25e00e842a94e36cd26d71efd36f2)
 * Close-Secret - removing unused variable [2191587](https://github.com/thycotic-ps/thycotic.secretserver/commit/2191587a8bee50168380fed1dee5d855a315ab01)
+* Invoke-SecretGeneratePassword - remove pipeline support command does not use it [c5f8441](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5f844101c811416f79e7c89d3f3e71549e3177d)
 
 ### Tests
 
