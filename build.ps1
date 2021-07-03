@@ -86,56 +86,39 @@ if (-not $PSBoundParameters['SkipTests']) {
     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
 }
 
-if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
+if ($PSBoundParameters['Prerelease']) {
+    $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$Prerelease
+} else {
+    $foundModule = Find-Module -Name $moduleName
+}
 
+if ($foundModule.Version -ge $imported.Version) {
+    Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+}
+
+if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
+    $moduleTempPath = Join-Path $staging $moduleName
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
-    $moduleTempPath = Join-Path $staging $moduleName
-    $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
-
     if ($PSBoundParameters['GalleryKey']) {
-        if ($foundModule.Version -ge $imported.Version) {
-            Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
-        } else {
-            try {
-                Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
+        try {
+            Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
 
-                Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-                Write-Host "successfully published to PS Gallery"
-            } catch {
-                Write-Warning "Publish failed: $_"
-            }
+            Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+            Write-Host "successfully published to PS Gallery"
+        } catch {
+            Write-Warning "Publish failed: $_"
         }
     }
-
-    $zipFilePath = Join-Path $staging "$moduleName.zip"
-    $zipFileName = "$($moduleName).zip"
-    if ((gh config get prompt) -eq 'enabled') {
-        Invoke-Expression "gh config set prompt disabled"
-    }
-
-    if ($PSBoundParameters['Prerelease']) {
-        $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
-        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --prerelease"
-        if ($PSBoundParameters['Prerelease']) {
-            $ghArgs = $ghArgs + " --prerelease"
-        }
-        if ($PSBoundParameters['Draft']) {
-            $ghArgs = $ghArgs + " --draft"
-        }
-
-        Write-Host "gh command to execute: $ghArgs" -ForegroundColor DarkYellow
-
-        Invoke-Expression "gh $ghArgs"
-
-        if ((gh config get prompt) -eq 'disabled') {
-            Invoke-Expression "gh config set prompt enabled"
-        }
-    }
-
     if ($PSBoundParameters['Release']) {
+        $zipFilePath = Join-Path $staging "$moduleName.zip"
+        $zipFileName = "$($moduleName).zip"
+
+        if ((gh config get prompt) -eq 'enabled') {
+            Invoke-Expression "gh config set prompt disabled"
+        }
+        $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
         $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
         Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
         $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
