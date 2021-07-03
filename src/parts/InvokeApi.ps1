@@ -64,9 +64,6 @@ param(
     [switch]
     $ProxyUseDefaultCredentials
 )
-begin {
-    $inParams = $PSBoundParameters
-}
 process {
     #region Prepare Parameters
     $irmSplat = @{ } + $PSBoundParameters    # First, copy PSBoundParameters and remove the parameters that aren't Invoke-RestMethod's
