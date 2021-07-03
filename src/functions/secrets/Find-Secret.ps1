@@ -241,9 +241,7 @@ function Find-Secret {
                 $uri = $uri, $uriFilter -join '&'
             }
 
-
             $invokeParams.Uri = $uri
-
             $invokeParams.Method = 'GET'
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
