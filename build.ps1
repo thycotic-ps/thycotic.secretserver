@@ -34,8 +34,6 @@ Push-Location
 Set-Location $PSScriptRoot
 $moduleName = 'Thycotic.SecretServer'
 $staging = "$env:TEMP\tss_staging\"
-$moduleTempPath = Join-Path $staging $moduleName
-$moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
 
 $git = git status
 if ($git[1] -notmatch "Your branch is up to date" -and (-not $PSBoundParameters.ContainsKey('PublishDocs'))) {
@@ -88,11 +86,13 @@ if (-not $PSBoundParameters['SkipTests']) {
     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
 }
 
-
 if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
 
     Write-Host "Staging directory: $moduleTempPath"
     $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+
+    $moduleTempPath = Join-Path $staging $moduleName
+    $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
 
     if ($PSBoundParameters['GalleryKey']) {
         if ($foundModule.Version -ge $imported.Version) {
