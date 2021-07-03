@@ -62,25 +62,7 @@ param(
     # Indicates that the cmdlet uses the credentials of the current user to access the proxy server that is specified by the Proxy parameter.
     # This parameter is valid only when the Proxy parameter is also used in the command. You cannot use the ProxyCredential and ProxyUseDefaultCredentials parameters in the same command.
     [switch]
-    $ProxyUseDefaultCredentials,
-
-    # Output a custom type name for the results.
-    [Parameter(ValueFromPipelineByPropertyName)]
-    [string[]]
-    $PSTypeName,
-
-    # A set of additional properties to add to an object
-    [Parameter(ValueFromPipelineByPropertyName)]
-    [Collections.IDictionary]
-    $Property,
-
-    # A list of property names to remove from an object
-    [string[]]
-    $RemoveProperty,
-
-    # Expand a given property from an object
-    [string]
-    $ExpandProperty
+    $ProxyUseDefaultCredentials
 )
 begin {
     $inParams = $PSBoundParameters
@@ -103,11 +85,6 @@ process {
                 Authorization = "Bearer $PersonalAccessToken"
             }
         }
-    } else {
-    }
-    if ($Body -and $Body -isnot [string]) {
-        # If a body was passed, and it wasn't a string
-        # $irmSplat.Body = $Body | ConvertTo-Json -Depth 100 # make it JSON.
     }
     if (-not $irmSplat.ContentType) {
         # If no content type was passed
@@ -116,71 +93,6 @@ process {
     #endregion Prepare Parameters
 
     #region Call Invoke-RestMethod
-    # We call Invoke-RestMethod with the parameters we've passed in.
-    # It will take care of converting the results from JSON.
-    Invoke-RestMethod @irmSplat |
-        & { process {
-                $in = $_
-                # What it will not do is "unroll" them.
-                if ($in -eq 'null') {
-                    return
-                }
-                if ($inParams.ContainsKey('ExpandProperty')) {
-                    if ($in.$ExpandProperty) {
-                        $in.$ExpandProperty
-                    }
-                } elseif ($in.code -like '*API_*') {
-                    $PSCmdlet.WriteError(
-                        [Management.Automation.ErrorRecord]::new(
-                            [Exception]::new("$($in.message)"),"$($in.code)","InvalidOperation",$in))
-                    $PSCmdlet.WriteVerbose("$in")
-                    return
-                } elseif ($in -notlike '*<html*') {
-                    # Otherwise, As long as the value doesn't look like HTML,
-                    $_ # pass it down the pipe.
-                } else {
-                    # If it happened to look like HTML, write an error
-                    $PSCmdlet.WriteError(
-                        [Management.Automation.ErrorRecord]::new(
-                            [Exception]::new("Response was HTML, Request Failed."),
-                            "ResultWasHTML", "NotSpecified", $in))
-                    $PSCmdlet.WriteVerbose("$in") # and write the full content to verbose.
-                    return
-                }
-                # Redirect standard error (2) to same place as standard output (1)
-            } } 2>&1 |
-        & { process {
-                # One more step of the pipeline will unroll each of the values.
-                if ($_ -is [string]) { return $_ }
-                if ($null -ne $_.Count -and $_.Count -eq 0) { return }
-                if ($PSTypeName -and # If we have a PSTypeName (to apply formatting)
-                    $_ -isnot [Management.Automation.ErrorRecord] # and it is not an error (which we do not want to format)
-                ) {
-                    $_.PSTypeNames.Clear() # then clear the existing typenames and decorate the object.
-                    foreach ($t in $PSTypeName) {
-                        $_.PSTypeNames.add($T)
-                    }
-                }
-
-                if ($Property) {
-                    foreach ($propKeyValue in $Property.GetEnumerator()) {
-                        if ($_.PSObject.Properties[$propKeyValue.Key]) {
-                            $_.PSObject.Properties.Remove($propKeyValue.Key)
-                        }
-                        $_.PSObject.Properties.Add($(
-                                if ($propKeyValue.Value -as [ScriptBlock[]]) {
-                                    [PSScriptProperty]::new.Invoke(@($propKeyValue.Key) + $propKeyValue.Value)
-                                } else {
-                                    [PSNoteProperty]::new($propKeyValue.Key, $propKeyValue.Value)
-                                }))
-                    }
-                }
-                if ($RemoveProperty) {
-                    foreach ($propToRemove in $RemoveProperty) {
-                        $_.PSObject.Properties.Remove($propToRemove)
-                    }
-                }
-                return $_ # output the object and we're done.
-            } }
+    Invoke-RestMethod @irmSplat
     #endregion Call Invoke-RestMethod
 }
