@@ -107,24 +107,30 @@ function Get-SecretAttachment {
                     continue
                 }
 
-                $fileAttachment = [IO.Path]::Combine($Path, $attachmentFilename)
-                $getSecretFieldParams = @{
-                    TssSession = $TssSession
-                    Id         = $secret
-                    Slug       = $Slug
-                    OutFile    = $fileAttachment
-                }
-                if ($restrictedParams.Count -gt 0) {
-                    $getSecretFieldParams.Add('Comment', $Comment)
-                    $getSecretFieldParams.Add('ForceCheckIn', $ForceCheckIn)
-                    $getSecretFieldParams.Add('TicketNumber', $TicketNumber)
-                    $getSecretFieldParams.Add('TicketSystemId', $TicketSystemId)
-                }
-                Get-TssSecretField @getSecretFieldParams
+                if ($attachmentFilename) {
+                    $fileAttachment = [IO.Path]::Combine($Path, $attachmentFilename)
+                    $getSecretFieldParams = @{
+                        TssSession = $TssSession
+                        Id         = $secret
+                        Slug       = $Slug
+                        OutFile    = $fileAttachment
+                    }
+                    if ($restrictedParams.Count -gt 0) {
+                        $getSecretFieldParams.Add('Comment', $Comment)
+                        $getSecretFieldParams.Add('ForceCheckIn', $ForceCheckIn)
+                        $getSecretFieldParams.Add('TicketNumber', $TicketNumber)
+                        $getSecretFieldParams.Add('TicketSystemId', $TicketSystemId)
+                    }
+                    Write-Verbose "Secret Attachment file name: $fileAttachment"
+                    Get-TssSecretField @getSecretFieldParams
 
-                if (Test-Path $fileAttachment) {
-                    Write-Verbose "Secret [$secret] file [$attachmentFilename] successfully written to the path [$fileAttachment]"
-                    Get-ChildItem $fileAttachment
+                    if (Test-Path $fileAttachment) {
+                        Write-Verbose "Secret [$secret] file [$attachmentFilename] successfully written to the path [$fileAttachment]"
+                        Get-ChildItem $fileAttachment
+                    }
+                } else {
+                    Write-Warning "Unable to find a filename for Secret [$secret] and slug [$slug]"
+                    continue
                 }
             }
         } else {
