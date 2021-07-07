@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Set-SecretRpcPrivilege - correct links in cbh [a0288bb](https://github.com/thycotic-ps/thycotic.secretserver/commit/a0288bbd98de0f468dc709aac8cc604342ab432e)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* TssSecretTemplateField - add IsList property [7e7e3c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e7e3c8b8884c66d6ca83bfc22e8305950f1e281)
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.47.0] -- 2021-07-03
 
 ### Breaking Changes
