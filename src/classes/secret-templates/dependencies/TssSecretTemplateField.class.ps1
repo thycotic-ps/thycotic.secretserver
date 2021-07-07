@@ -50,6 +50,9 @@ class TssSecretTemplateField {
     $IsUrl
 
     [boolean]
+    $IsList
+
+    [boolean]
     $MustEncrypt
 
     [string]

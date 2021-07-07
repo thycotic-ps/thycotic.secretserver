@@ -66,6 +66,9 @@ title: "TssSecretTemplateField"
     IsUrl
         IsUrl
 
+    IsList
+        IsList
+
     MustEncrypt
         MustEncrypt (Expose for Display)
 
