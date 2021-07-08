@@ -23,7 +23,17 @@ The mandatory parameters:
 - SecretServer - provide the URL used to access your Secret Server web application
 - Credential - provide a PSCredential object that contains the Secret Server username and password
 
-### Interactive Login
+## Client SDK Authentication
+
+The Client SDK is a console application (`tss.exe`) published by Thyctoic. This is now packaged with the module and can be utilized to both initialize a configuration and authenticate to Secret Server via the token (`tss.exe token`).
+
+[Invoke-TssSdkClient](../commands/authentication/Initialize-TssSdkClient) function can be utilized to create the configuration. This function requires that you have [configured Secret Server](https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#task_1__configuring_secret_server) with an Application User and then created the Client Onboarding rule. You can view the examples on the function to see how it is used.
+
+Once you have initialized a configuration, the [path to that configuration](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession.html#example-6) is provided to `New-TssSession` where it will use that to request a token for API authentication.
+
+[More details on the Client SDK](https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#how_it_works)
+
+## Interactive Login
 
 Use of `Get-Credential` will provide a prompt to enter the username and password for interactive login:
 
@@ -55,7 +65,7 @@ TokenType    : bearer
 ExpiresIn    : 1199
 ```
 
-### Automated Login
+## Automated Login
 
 In automation scenarios, a credential object is created without prompting by utilizing: `[pscredential]::new()`.
 
@@ -67,11 +77,11 @@ $cred = [pscredential]::new($username,$password)
 $session = New-TssSession -SecretServer https://vault.company/SecretServer -Credential $session
 ```
 
-#### SecretManagement Module
+### SecretManagement Module
 
 Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the credential needed for authenticating to Secret Server.
 
-##### Example Usage
+#### Example Usage
 
 ```powershell
 # Install-Module Microsoft.PowerShell.SecretManagement -Scope AllUsers -Force
@@ -123,7 +133,7 @@ $cred = Get-Credential
 $session = nts 'https://tenant.secretservercloud.com' $cred
 ```
 
-## Methods
+# Methods
 
 Methods are available on the `New-TssSession` object to help with session management in your automation process. You can find these by piping to `Get-Member`.
 
@@ -159,20 +169,20 @@ TokenType      Property   string TokenType {get;set;}
 Note that these methods are defined as `boolean`, so they will only return true or false; the intent is to utilize them in workflow validation (e.g., `if/else`).
 {: .notice--info}
 
-### IsValidToken
+## IsValidToken
 
 This method utilizes a hidden properties on the `TssObject` called `TimeOfDeath` (`datetime` type). This property's value is calculated based on the `expires_in` value returned by the OAuth2 endpoint and based on the machine's local time calling the function.
 
 More details: [TssSession source code](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/src/classes/TssSession.class.ps1)
 
-### IsValidSession
+## IsValidSession
 
 This method does a basic check to validate the following:
 
 - `TssSession` property `AccessToken` has a value
 - A hidden property on `TssSession` called `StartTime` is set to a current time.
 
-### SessionExpire
+## SessionExpire
 
 Disposing of connections to systems is good practice in your scripts. Secret Server REST API offers the ability to expire the token issued for an authenticated session. The endpoint used is /oauth-expiration. A method is added to the TssSession object where you can call this method, and your token for that session will be expired.
 
@@ -186,7 +196,7 @@ $session.SessionExpire()
 
 After calling the method, any further use of that $session object will result in an error referencing an expired token.
 
-### SessionRefresh
+## SessionRefresh
 
 This method is utilizing the refresh token according to the Secret Server Webservices configuration. It will call the endpoint and provide the required details to request a new token to allow your session to continue authenticating. The number of times you can use this method is directly related to the Maximum Token Refreshes Allowed configuration of your Secret Server configuration.
 
