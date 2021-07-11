@@ -1,0 +1,31 @@
+name: Feature Request
+description: Create a bug report to help improve the module
+labels: [feature-request, triage-required]
+body:
+  - type: markdown
+    id: intro-md
+    attributes:
+      value: |
+        Thank you for taking the time to fill out this bug report! We are currently testing out a beta of the new [Issue Forms](https://github.blog/changelog/2021-06-23-whats-new-with-github-issues/).
+        **Please be aware this repository is not for feature request specific to the REST API for Secret Server, only the PowerShell module itself.
+  - type: textarea
+    attributes:
+      label: "Summarize Functionality"
+      description: "Please provide a clear/concise description of what problem this feature will solve."
+    validations:
+      required: true
+  - type: dropdown
+    id: existing-command
+    attributes:
+      label: "Is there a command that is similiar or close to what you are looking for?"
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Technical Details"
+      description: "Provide links to concepts, example code or write-ups of the desired functionality."
+    validations:
+      required: false

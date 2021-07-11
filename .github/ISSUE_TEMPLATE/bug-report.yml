@@ -1,0 +1,89 @@
+name: Bug Report
+description: Create a bug report to help improve the module
+labels: [bug, triage-required]
+body:
+  - type: markdown
+    id: intro-md
+    attributes:
+      value: |
+        Thank you for taking the time to fill out this bug report! We are currently testing out a beta of the new [Issue Forms](https://github.blog/changelog/2021-06-23-whats-new-with-github-issues/).
+        Please ensure you include as much detail as you can.
+  - type: dropdown
+    id: existing-issue
+    attributes:
+      label: "Verified issue does not already exist?"
+      description: "Please search to see if an issue already exists for the bug you encountered."
+      options:
+        - "Yes"
+        - "No"
+    validations:
+      required: true
+  - type: textarea
+    id: error-received
+    attributes:
+      label: "What error did you receive"
+      description: "Please provide the full error object from the PowerShell session. You can copy/paste the output from: $error[0] | select *"
+    validations:
+      required: true
+  - type: textarea
+    id: verbose-output
+    attributes:
+      label: "Please run the command using -Verbose"
+      description: "Running the function with -Verbose parameter will provide more logging details. Copy/Paste that output below if you can."
+    validations:
+      required: false
+  - type: textarea
+    id: commands-used
+    attributes:
+      label: "Provide steps to reproduce and commands used"
+      description: "Command(s) and or steps to reproduce the reported error can help in triaging the issue."
+    validations:
+      required: true
+  - type: textarea
+    id: expected-behavior
+    attributes:
+      label: "Expected behavior"
+    validations:
+      required: true
+  - type: dropdown
+    id: tss-edition
+    attributes:
+      label: "What Edition of Secret Server?"
+      options:
+        - "Platinum"
+        - "Professional"
+        - "Cloud Subscription"
+        - "Other"
+    validations:
+      required: true
+  - type: dropdown
+    id: tss-build
+    attributes:
+      label: "What version of Secret Server"
+      description: "Please not only 10.9.0 and above is formally supported by this module"
+      options:
+        - "EA release"
+        - "10.9"
+        - "10.8"
+        - "10.7"
+    validations:
+      required: true
+  - type: dropdown
+    id: host-detail
+    attributes:
+      label: "What PowerShell host was used when producing this error"
+      options:
+        - PowerShell Core (pwsh.exe)
+        - Windows PowerShell (powershell.exe)
+        - Windows PowerShell ISE (powershell_ise.exe)
+        - VS Code (terminal)
+        - VS Code (integrated terminal)
+    validations:
+      required: true
+  - type: textarea
+    id: ps-version
+    attributes:
+      label: "PowerShell Host Version"
+      description: "You can provide the output from: $PSVersionTable | clip"
+    validations:
+      required: true
