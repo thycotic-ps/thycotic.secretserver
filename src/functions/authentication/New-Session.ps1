@@ -109,7 +109,7 @@ function New-Session {
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.ApiVersion -join '/'
         }
 
-        $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
+        $tssExe = [IO.Path]::Combine($clientSdkPath, 'tss.exe')
     }
 
     process {

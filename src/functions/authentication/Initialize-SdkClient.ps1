@@ -57,7 +57,7 @@ function Initialize-SdkClient {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $tssExe = [IO.Path]::Combine([string]$PSModuleRoot, 'bin', 'tss.exe')
+        $tssExe = [IO.Path]::Combine($clientSdkPath, 'tss.exe')
 
         if ($IsLinux) {
             Write-Verbose 'SDK Client, tss utility, has some dependencies required on certain Linux distributions, more details: https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#task_2__installing_the_sdk_client'

@@ -54,6 +54,8 @@ if ($partsDirectory) {
 
 #region alias
 $script:PSModuleRoot = $PSScriptRoot
+$script:binRoot = [IO.Path]::Combine($PSModuleRoot,'bin')
+$script:clientSdkPath = [IO.Path]::Combine($binRoot,'ClientSdk')
 <#
     Secret Server does not delete secrets, just disables them.
     Remove is a common term though and one used by SecretManagement module from Microsoft.
