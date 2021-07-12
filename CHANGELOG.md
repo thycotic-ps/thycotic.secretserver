@@ -40,6 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * TssSecretTemplateField - add IsList property [7e7e3c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e7e3c8b8884c66d6ca83bfc22e8305950f1e281)
+* Client SDK - move binaries to new folder, update path references [37f0a9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/37f0a9d49e033c510d4857789ce535f6693ad04f)
 
 </details>
 
