@@ -22,3 +22,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+
+//
+src/bin/Thycotic.SecretServer.dll
