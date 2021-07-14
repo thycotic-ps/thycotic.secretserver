@@ -18,10 +18,10 @@ Create a new Secret password, based on password rules of the field
 ```
 $session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
 $newPassword = Invoke-TssSecretGeneratePassword -TssSession $session -Id 25 -Slug 'private-key-passphrase'
-Set-TssSecret -TssSession $session -Id 25 -Field 'private-key-passphrase' -Value $newPassword
+Set-TssSecretField -TssSession $session -Id 25 -Slug 'private-key-passphrase' -Value $newPassword
 ```
 
-Generating password for Secret ID 25 based on password rules configured for the template, updating password field using Set-TssSecret
+Generating password for Secret ID 25 based on password rules configured for the template, updating password field
 
 ## PARAMETERS
 
