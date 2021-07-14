@@ -7,8 +7,8 @@ Find a secret
 
 ### filter (Default)
 ```
-Find-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-FolderId <Int32>] [-IncludeSubFolders]
- [-Field <String>] [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
+Find-TssSecret [-TssSession] <Session> [-Id <Int32>] [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
+ [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
  [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
  [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [<CommonParameters>]
@@ -16,19 +16,19 @@ Find-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-FolderId <Int32>] [-In
 
 ### secret
 ```
-Find-TssSecret [-TssSession] <TssSession> [-Id <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
+Find-TssSecret [-TssSession] <Session> [-Id <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <String>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
  [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [<CommonParameters>]
 ```
 
 ### folder
 ```
-Find-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [<CommonParameters>]
+Find-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [<CommonParameters>]
 ```
 
 ### field
 ```
-Find-TssSecret [-TssSession] <TssSession> [-Field <String>] [-FieldText <String>] [-ExactMatch]
+Find-TssSecret [-TssSession] <Session> [-Field <String>] [-FieldText <String>] [-ExactMatch]
  [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [<CommonParameters>]
 ```
 
@@ -51,7 +51,7 @@ Return secrets found in folder 50 where RPC is enabled on the secret templates
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

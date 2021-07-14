@@ -7,19 +7,19 @@ Set Secret expiration
 
 ### SpecificDate
 ```
-Set-TssSecretExpiration [-TssSession] <TssSession> -Id <Int32[]> [-DateExpiration <DateTime>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Set-TssSecretExpiration [-TssSession] <Session> -Id <Int32[]> [-DateExpiration <DateTime>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### DayInterval
 ```
-Set-TssSecretExpiration [-TssSession] <TssSession> -Id <Int32[]> [-Interval <Int32>] [-WhatIf] [-Confirm]
+Set-TssSecretExpiration [-TssSession] <Session> -Id <Int32[]> [-Interval <Int32>] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### Template
 ```
-Set-TssSecretExpiration [-TssSession] <TssSession> -Id <Int32[]> [-Template] [-WhatIf] [-Confirm]
+Set-TssSecretExpiration [-TssSession] <Session> -Id <Int32[]> [-Template] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -58,7 +58,7 @@ Set Secret expiration on Secret 23 to interval of 21 days
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

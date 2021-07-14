@@ -6,8 +6,8 @@ Export results of a Report to CSV format.
 ## SYNTAX
 
 ```
-Export-TssReport [-TssSession] <TssSession> [-ReportId <Int32>] [-ReportName <String>]
- [-Parameters <Hashtable>] [-Delimiter <String>] [-Format <String>] [<CommonParameters>]
+Export-TssReport [-TssSession] <Session> [-ReportId <Int32>] [-ReportName <String>] [-Parameters <Hashtable>]
+ [-Delimiter <String>] [-Format <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,7 +45,7 @@ Exports report 60 (Changed90DaysReportName) in CSV format, delimited by pipe cha
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -1,7 +1,7 @@
 [cmdletbinding()]
 param(
     [Parameter(Mandatory,Position = 0)]
-    [TssSession]
+    [Thycotic.PowerShell.Authentication.Session]
     $TssSession,
 
     [Parameter(Position = 1)]

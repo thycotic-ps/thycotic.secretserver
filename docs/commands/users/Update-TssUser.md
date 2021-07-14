@@ -6,7 +6,7 @@ Update all members of a group
 ## SYNTAX
 
 ```
-Update-TssUser [-TssSession] <TssSession> -Id <Int32> -User <TssUser> [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssUser [-TssSession] <Session> -Id <Int32> -User <TssUser> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Get the TssUser object via Get-TssUser, updating the display name on User 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

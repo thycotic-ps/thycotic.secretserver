@@ -6,7 +6,7 @@ Gets a report
 ## SYNTAX
 
 ```
-Get-TssReport [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssReport [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Gets the details on report ID 6
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Get roles assigned to User Id
 ## SYNTAX
 
 ```
-Get-TssUserRoleAssigned [-TssSession] <TssSession> -UserId <Int32[]> [<CommonParameters>]
+Get-TssUserRoleAssigned [-TssSession] <Session> -UserId <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Returns roles assigned to the User ID 254
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

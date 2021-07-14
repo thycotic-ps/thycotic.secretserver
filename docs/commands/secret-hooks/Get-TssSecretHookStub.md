@@ -6,7 +6,7 @@ Get stub for a new Secret Hook
 ## SYNTAX
 
 ```
-Get-TssSecretHookStub [-TssSession] <TssSession> -SecretId <Int32[]> -ScriptId <Int32> -Name <String>
+Get-TssSecretHookStub [-TssSession] <Session> -SecretId <Int32[]> -ScriptId <Int32> -Name <String>
  -PrePostOption <String> [-EventAction <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, Pre
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

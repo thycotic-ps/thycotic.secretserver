@@ -28,7 +28,7 @@ function Get-FolderPermission {
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
+        [Thycotic.PowerShell.Authentication.Session]$TssSession,
 
         # Folder Permission ID
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]

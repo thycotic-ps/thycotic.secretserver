@@ -6,7 +6,7 @@ Set Secret general security options
 ## SYNTAX
 
 ```
-Set-TssSecretSecurity [-TssSession] <TssSession> -Id <Int32[]> [-DoubleLockId <Int32>] [-HideLauncherPassword]
+Set-TssSecretSecurity [-TssSession] <Session> -Id <Int32[]> [-DoubleLockId <Int32>] [-HideLauncherPassword]
  [-ProxyEnabled] [-RequiresComment] [-SessionRecordingEnabled] [-WebLauncherRequiresIncognitoMode] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
@@ -30,7 +30,7 @@ DOING something
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

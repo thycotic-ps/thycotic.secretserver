@@ -6,7 +6,7 @@ Find for a Secret Server Group
 ## SYNTAX
 
 ```
-Find-TssGroup [-TssSession] <TssSession> [-DomainId <Int32>] [-ViewableGroups] [-SearchText <String>]
+Find-TssGroup [-TssSession] <Session> [-DomainId <Int32>] [-ViewableGroups] [-SearchText <String>]
  [-IncludeInactive] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Return list of Groups found in Secret Server matching the characters IT
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

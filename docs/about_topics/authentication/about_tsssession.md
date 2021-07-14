@@ -1,12 +1,12 @@
 ---
-title: "TssSession"
+title: "Thycotic.PowerShell.Authentication.Session"
 ---
 
 # TOPIC
-    This help topic describes the TssSession class in the Thycotic.SecretServer module.
+    This help topic describes the Session class in the Thycotic.SecretServer module.
 
 # CLASS
-    TssSession
+    Thycotic.PowerShell.Authentication.Session
 
 # INHERITANCE
     None
@@ -25,7 +25,7 @@ title: "TssSession"
     ApiVersion:
         Default value of `api/v1`
 
-    WindowsAuth:
+    WindowsAuth: readonly
         Default to `winauthwebservices`, utilized with IWA
 
     AccessToken:
@@ -63,8 +63,8 @@ title: "TssSession"
         Validates that TimeOfDeath is not greater than current time
         If ExternalToken or WindowsAuth is the TokenType will return true
 
-    [boolean] CheckTokenTtl( [string]Unit, [int]Value )
-        Checks the timespan for the TimeOfDeath and current datetime is within the unit and value. (TimeOfDeath - Now)
+    [boolean] CheckTokenTtl( [int]Value )
+        Checks the timespan for the TimeOfDeath and current datetime TotalMinutes is within the value. (TimeOfDeath - Now)
         If it is the method returns true, if not returns false.
 
     [boolean] SessionExpire()

@@ -6,7 +6,7 @@ Get default report parameters.
 ## SYNTAX
 
 ```
-Get-TssReportParameter [-TssSession] <TssSession> -Id <Int32> [<CommonParameters>]
+Get-TssReportParameter [-TssSession] <Session> -Id <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get report parameters for Report 34.
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Update a Secret Permission
 ## SYNTAX
 
 ```
-Update-TssSecretPermission [-TssSession] <TssSession> -Id <Int32[]> -SecretId <Int32> -AccessRole <String>
+Update-TssSecretPermission [-TssSession] <Session> -Id <Int32[]> -SecretId <Int32> -AccessRole <String>
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Update Secret Permission 242, setting access role to View
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

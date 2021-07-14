@@ -6,7 +6,7 @@ Get Secret Access Request by Secret ID for Current User
 ## SYNTAX
 
 ```
-Get-TssSecretAccessRequestSecret [-TssSession] <TssSession> -SecretId <Int32[]> [<CommonParameters>]
+Get-TssSecretAccessRequestSecret [-TssSession] <Session> -SecretId <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get any Secret Access Request on Secret 42 for current user (based on access tok
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

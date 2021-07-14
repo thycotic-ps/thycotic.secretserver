@@ -6,7 +6,7 @@ Disables the Checkout setting for a Secret
 ## SYNTAX
 
 ```
-Disable-TssSecretCheckout [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-TicketNumber <Int32>]
+Disable-TssSecretCheckout [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-TicketNumber <Int32>]
  [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Disable Checkout When Viewed setting on Secret IDs 42, 43, and 45
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Search Workflow Templates
 ## SYNTAX
 
 ```
-Search-TssWorkflowTemplate [-TssSession] <TssSession> [-IncludeInactive] [-Type <String>] [-SortBy <String>]
+Search-TssWorkflowTemplate [-TssSession] <Session> [-IncludeInactive] [-Type <String>] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Search Workflow Templates and return those that are inactive in the results
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

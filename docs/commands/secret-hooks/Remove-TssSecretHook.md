@@ -6,7 +6,7 @@ Delete a Secret Hook
 ## SYNTAX
 
 ```
-Remove-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32> -SecretHookId <Int32[]> [-WhatIf] [-Confirm]
+Remove-TssSecretHook [-TssSession] <Session> -SecretId <Int32> -SecretHookId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Delete the Hook ID 2 on Secret ID 385
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

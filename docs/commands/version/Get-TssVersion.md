@@ -6,7 +6,7 @@ Get version of Secret Server
 ## SYNTAX
 
 ```
-Get-TssVersion [-TssSession] <TssSession> [<CommonParameters>]
+Get-TssVersion [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Returns version of Secret Server alpha
 TssSession object created by New-TssSession
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

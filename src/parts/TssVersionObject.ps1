@@ -6,7 +6,7 @@
 #>
 [cmdletbinding()]
 param(
-    [TssSession]
+    [Thycotic.PowerShell.Authentication.Session]
     $TssSession,
 
     [System.Management.Automation.InvocationInfo]

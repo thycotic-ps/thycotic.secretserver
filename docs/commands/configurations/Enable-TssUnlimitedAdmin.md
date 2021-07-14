@@ -6,7 +6,7 @@ Enable Unlimited Admin Mode
 ## SYNTAX
 
 ```
-Enable-TssUnlimitedAdmin [-TssSession] <TssSession> [-Note] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Enable-TssUnlimitedAdmin [-TssSession] <Session> [-Note] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Enables Unlimited Admin Mode providing the required note
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

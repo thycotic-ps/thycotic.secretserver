@@ -6,7 +6,7 @@ Return a list of Secret Dependencies for a Secret
 ## SYNTAX
 
 ```
-Search-TssSecretDependency [-TssSession] <TssSession> -Id <Int32[]> [-GroupId <Int32>] [-IncludeInactive]
+Search-TssSecretDependency [-TssSession] <Session> -Id <Int32[]> [-GroupId <Int32>] [-IncludeInactive]
  [-LastRunStatus <String>] [-SearchText <String>] [-TemplateId <Int32>] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return Secret Dependencies configured for Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -7,17 +7,17 @@ Get a folder from Secret Server
 
 ### id
 ```
-Get-TssFolder [-TssSession] <TssSession> [-Id <Int32[]>] [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
+Get-TssFolder [-TssSession] <Session> [-Id <Int32[]>] [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
 ```
 
 ### filter
 ```
-Get-TssFolder [-TssSession] <TssSession> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
+Get-TssFolder [-TssSession] <Session> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssFolder [-TssSession] <TssSession> [-FolderPath <String>] [<CommonParameters>]
+Get-TssFolder [-TssSession] <Session> [-FolderPath <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -63,7 +63,7 @@ Returns folder that has a path of ABC Company\Security
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

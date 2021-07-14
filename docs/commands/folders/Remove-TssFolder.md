@@ -6,7 +6,7 @@ Delete secret folder
 ## SYNTAX
 
 ```
-Remove-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-TssFolder [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Delete Folder ID 28
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -7,13 +7,13 @@ Search Roles
 
 ### user (Default)
 ```
-Search-TssRole [-TssSession] <TssSession> [-UserId <Int32>] [-IncludeInactive] [-SortBy <String>]
+Search-TssRole [-TssSession] <Session> [-UserId <Int32>] [-IncludeInactive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### group
 ```
-Search-TssRole [-TssSession] <TssSession> [-GroupId <Int32>] [-IncludeInactive] [-SortBy <String>]
+Search-TssRole [-TssSession] <Session> [-GroupId <Int32>] [-IncludeInactive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -36,7 +36,7 @@ Returns roles assigned to User ID 43
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

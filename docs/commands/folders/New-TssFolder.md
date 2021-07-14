@@ -6,9 +6,8 @@ Create a new folder
 ## SYNTAX
 
 ```
-New-TssFolder [-TssSession] <TssSession> -FolderName <String> [-ParentFolderId <Int32>]
- [-SecretPolicyId <Int32>] [-InheritPermissions] [-InheritSecretPolicy] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssFolder [-TssSession] <Session> -FolderName <String> [-ParentFolderId <Int32>] [-SecretPolicyId <Int32>]
+ [-InheritPermissions] [-InheritSecretPolicy] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +47,7 @@ Creates a folder named "Marketing Dept" under parent folder 27 with inheritance 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

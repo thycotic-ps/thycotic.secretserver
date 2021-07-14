@@ -6,7 +6,7 @@ Return template object
 ## SYNTAX
 
 ```
-Get-TssSecretStub [-TssSession] <TssSession> -SecretTemplateId <Int32> [-FolderId <Int32>] [<CommonParameters>]
+Get-TssSecretStub [-TssSession] <Session> -SecretTemplateId <Int32> [-FolderId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +38,7 @@ Getting the Active Directory template stub object, setting the Name and Username
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Search for Secret Templates
 ## SYNTAX
 
 ```
-Search-TssSecretTemplate [-TssSession] <TssSession> [-SearchText <String>] [-IncludeSecretCount]
+Search-TssSecretTemplate [-TssSession] <Session> [-SearchText <String>] [-IncludeSecretCount]
  [-IncludeInactive] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return all Secret Templates where "key" is in the template name
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

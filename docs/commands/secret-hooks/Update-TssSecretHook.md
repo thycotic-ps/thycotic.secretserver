@@ -6,7 +6,7 @@ Update Secret Hook
 ## SYNTAX
 
 ```
-Update-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32> -SecretHookId <Int32> [-Arguments <String>]
+Update-TssSecretHook [-TssSession] <Session> -SecretId <Int32> -SecretHookId <Int32> [-Arguments <String>]
  [-Database <String>] [-Description <String>] [-EventAction <String>] [-FailureMessage <String>]
  [-Name <String>] [-Port <String>] [-PrePostOption <String>] [-PrivilegedSecretId <Int32>] [-ScriptId <Int32>]
  [-ScriptTypeId <Int32>] [-ServerKeyDigest <String>] [-ServerName <String>] [-SortOrder <Int32>]
@@ -33,7 +33,7 @@ Update Secret Hook 2's Arguments property on Secret ID 76
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

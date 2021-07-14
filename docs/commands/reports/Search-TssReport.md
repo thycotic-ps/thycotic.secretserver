@@ -6,7 +6,7 @@ Search for a report.
 ## SYNTAX
 
 ```
-Search-TssReport [-TssSession] <TssSession> [-CategoryId <Int32>] [-IncludeInactive] [-Name <String>]
+Search-TssReport [-TssSession] <Session> [-CategoryId <Int32>] [-IncludeInactive] [-Name <String>]
  [-SearchText <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Return a list of Reports found with "secret" in the name.
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

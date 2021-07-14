@@ -6,7 +6,7 @@ Create a new secret
 ## SYNTAX
 
 ```
-New-TssSecret [-TssSession] <TssSession> [-SecretStub] <TssSecret> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSecret [-TssSession] <Session> [-SecretStub] <TssSecret> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -47,7 +47,7 @@ Output will show the FolderId, Name, SecretTemplateName, and Active properties.
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

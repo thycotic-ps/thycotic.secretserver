@@ -6,7 +6,7 @@ Update all members of a group
 ## SYNTAX
 
 ```
-Update-TssFolder [-TssSession] <TssSession> [-Folder] <TssFolder> [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssFolder [-TssSession] <Session> [-Folder] <TssFolder> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Updates Folder ID 77 setting Secret Policy ID 15
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

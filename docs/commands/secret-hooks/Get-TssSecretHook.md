@@ -6,7 +6,7 @@ Get details of a Secret Hook
 ## SYNTAX
 
 ```
-Get-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32> -SecretHookId <Int32> [<CommonParameters>]
+Get-TssSecretHook [-TssSession] <Session> -SecretId <Int32> -SecretHookId <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get details of Secret Hook ID 1 of Secret ID 376
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

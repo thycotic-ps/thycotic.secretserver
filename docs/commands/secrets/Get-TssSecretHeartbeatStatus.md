@@ -6,7 +6,7 @@ Get a Secret's Heartbeat status
 ## SYNTAX
 
 ```
-Get-TssSecretHeartbeatStatus [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretHeartbeatStatus [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Returns heartbeat status of Secret 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

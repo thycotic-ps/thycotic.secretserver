@@ -6,7 +6,7 @@ Get details on a Folder
 ## SYNTAX
 
 ```
-Get-TssFolderState [-TssSession] <TssSession> -Id <Int32[]> [-NoException] [<CommonParameters>]
+Get-TssFolderState [-TssSession] <Session> -Id <Int32[]> [-NoException] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Returns details on Folder ID 482, if no access to folder will return no results
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

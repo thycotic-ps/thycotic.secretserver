@@ -6,7 +6,7 @@ Get audit for a user
 ## SYNTAX
 
 ```
-Get-TssUserAudit [-TssSession] <TssSession> -UserId <Int32[]> [<CommonParameters>]
+Get-TssUserAudit [-TssSession] <Session> -UserId <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get all of the audits for UserId 2
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

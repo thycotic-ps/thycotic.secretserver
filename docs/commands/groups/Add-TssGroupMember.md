@@ -6,7 +6,7 @@ Add a user to a group
 ## SYNTAX
 
 ```
-Add-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+Add-TssGroupMember [-TssSession] <Session> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Add User ID 54 to Group ID 8
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

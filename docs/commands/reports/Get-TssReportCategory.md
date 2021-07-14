@@ -6,7 +6,7 @@ Get report categories
 ## SYNTAX
 
 ```
-Get-TssReportCategory [-TssSession] <TssSession> [-Id <Int32[]>] [-All] [<CommonParameters>]
+Get-TssReportCategory [-TssSession] <Session> [-Id <Int32[]>] [-All] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Returns a list of all categories
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

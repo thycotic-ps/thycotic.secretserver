@@ -6,7 +6,7 @@ Start Secret Dependency
 ## SYNTAX
 
 ```
-Start-TssSecretDependency [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-TssSecretDependency [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ After starting a Secret's Dependency 46, get the status of that run
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

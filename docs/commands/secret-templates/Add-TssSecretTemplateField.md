@@ -6,8 +6,8 @@ Add a new field to a Secret Template
 ## SYNTAX
 
 ```
-Add-TssSecretTemplateField [-TssSession] <TssSession> [-Id] <Int32[]> [-Field] <TssSecretTemplateField>
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Add-TssSecretTemplateField [-TssSession] <Session> [-Id] <Int32[]> [-Field] <TssSecretTemplateField> [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ Output the current fields for Secret Template 6042, create a new field named "Ad
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

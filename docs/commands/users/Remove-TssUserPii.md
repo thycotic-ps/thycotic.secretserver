@@ -6,7 +6,7 @@ Delete a user's personally identifiable info
 ## SYNTAX
 
 ```
-Remove-TssUserPii [-TssSession] <TssSession> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Remove-TssUserPii [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Secret Server will go through and delete identified PII data for user 56
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

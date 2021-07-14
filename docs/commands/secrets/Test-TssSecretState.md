@@ -6,7 +6,7 @@ Test for a State on a Secret
 ## SYNTAX
 
 ```
-Test-TssSecretState [-TssSession] <TssSession> -SecretId <Int32> -State <String> [<CommonParameters>]
+Test-TssSecretState [-TssSession] <Session> -SecretId <Int32> -State <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Test for state RequiresCheckout on Secret ID 75, returning true if exists and fa
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

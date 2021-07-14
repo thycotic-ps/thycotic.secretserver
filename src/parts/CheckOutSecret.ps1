@@ -12,7 +12,7 @@
 [cmdletbinding(SupportsShouldProcess)]
 param(
     [Parameter(ValueFromPipeline,Position = 0,Mandatory)]
-    [TssSession]
+    [Thycotic.PowerShell.Authentication.Session]
     $TssSession,
 
     [Parameter(ValueFromPipeline,Position = 1,Mandatory)]

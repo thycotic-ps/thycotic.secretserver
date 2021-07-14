@@ -6,7 +6,7 @@ Update a Secret
 ## SYNTAX
 
 ```
-Update-TssSecret [-TssSession] <TssSession> [-Secret] <TssSecret> [-IncludeInactive] [-Comment <String>]
+Update-TssSecret [-TssSession] <Session> [-Secret] <TssSecret> [-IncludeInactive] [-Comment <String>]
  [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -31,7 +31,7 @@ Update Secret ID 42, setting SiteID to Site 2
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

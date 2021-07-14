@@ -6,7 +6,7 @@ Search Directory Services domains
 ## SYNTAX
 
 ```
-Search-TssDirectoryServiceDomain [-TssSession] <TssSession> [-DomainName <Int32>] [-IncludeInactive]
+Search-TssDirectoryServiceDomain [-TssSession] <Session> [-DomainName <Int32>] [-IncludeInactive]
  [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return the domain lab.local information
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,8 +6,7 @@ Set Secret Template active or inactive
 ## SYNTAX
 
 ```
-Set-TssSecretTemplate [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Set-TssSecretTemplate [-TssSession] <Session> -Id <Int32[]> [-Active] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +28,7 @@ Sets Secret Template 6093 Active to false or90
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

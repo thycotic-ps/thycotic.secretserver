@@ -6,7 +6,7 @@ Get list of Dependency Templates
 ## SYNTAX
 
 ```
-Get-TssSecretDependencyTemplate [-TssSession] <TssSession> [-Id <Int32[]>] [-Template <String>]
+Get-TssSecretDependencyTemplate [-TssSession] <Session> [-Id <Int32[]>] [-Template <String>]
  [<CommonParameters>]
 ```
 
@@ -45,7 +45,7 @@ Return Dependency Template named Window Service
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

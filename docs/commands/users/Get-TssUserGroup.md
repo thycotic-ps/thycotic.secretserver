@@ -6,7 +6,7 @@ Get the groups of a user by ID
 ## SYNTAX
 
 ```
-Get-TssUserGroup [-TssSession] <TssSession> -Id <Int32[]> [-SortBy <String>] [<CommonParameters>]
+Get-TssUserGroup [-TssSession] <Session> -Id <Int32[]> [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get group the User ID 42 is a member of
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

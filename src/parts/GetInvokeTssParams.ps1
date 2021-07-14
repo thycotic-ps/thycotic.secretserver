@@ -6,7 +6,7 @@
 #>
 param(
     [Parameter(ValueFromPipeline,Position = 0,Mandatory)]
-    [TssSession]
+    [Thycotic.PowerShell.Authentication.Session]
     $TssSession
 )
 

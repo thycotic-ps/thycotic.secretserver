@@ -27,7 +27,7 @@ function Search-Role {
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
 
-        [TssSession]
+        [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
         # Only return roles assigned to this User ID

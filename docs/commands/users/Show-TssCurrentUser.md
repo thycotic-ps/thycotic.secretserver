@@ -6,7 +6,7 @@ Show the current user of the current session
 ## SYNTAX
 
 ```
-Show-TssCurrentUser [-TssSession] <TssSession> [<CommonParameters>]
+Show-TssCurrentUser [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,7 +37,7 @@ Get the current user for the session and output a sorted list of Secret Server p
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Create a new Secret password
 ## SYNTAX
 
 ```
-Invoke-TssSecretGeneratePassword [-TssSession] <TssSession> -Id <Int32> -Slug <String> [<CommonParameters>]
+Invoke-TssSecretGeneratePassword [-TssSession] <Session> -Id <Int32> -Slug <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ Generating password for Secret ID 25 based on password rules configured for the 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

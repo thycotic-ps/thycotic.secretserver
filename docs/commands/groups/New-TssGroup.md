@@ -6,7 +6,7 @@ Create a new Group
 ## SYNTAX
 
 ```
-New-TssGroup [-TssSession] <TssSession> -GroupName <String> [-Enabled] [-DomainId <Int32>] [-AdGuid <String>]
+New-TssGroup [-TssSession] <Session> -GroupName <String> [-Enabled] [-DomainId <Int32>] [-AdGuid <String>]
  [-Synchronized] [-SynchronizeNow] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Creates a local Secret Server group named, Local Admin Group, enabling it upon c
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

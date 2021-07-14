@@ -7,13 +7,13 @@ Set the Privileged Account for the RPC configuration on a Secret
 
 ### secret
 ```
-Set-TssSecretRpcPrivileged [-TssSession] <TssSession> -Id <Int32[]> [-CredentialOnSecret] [-WhatIf] [-Confirm]
+Set-TssSecretRpcPrivileged [-TssSession] <Session> -Id <Int32[]> [-CredentialOnSecret] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### privileged
 ```
-Set-TssSecretRpcPrivileged [-TssSession] <TssSession> -Id <Int32[]> [-PrivilegedSecretId <Int32>] [-WhatIf]
+Set-TssSecretRpcPrivileged [-TssSession] <Session> -Id <Int32[]> [-PrivilegedSecretId <Int32>] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
@@ -44,7 +44,7 @@ Set the RPC Privileged Account on Secret 56 to use the Secret itself (Credential
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

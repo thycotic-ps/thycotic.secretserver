@@ -6,7 +6,7 @@ Test for an allowed action on a Folder
 ## SYNTAX
 
 ```
-Test-TssFolderAction [-TssSession] <TssSession> -FolderId <Int32> -Action <String> [<CommonParameters>]
+Test-TssFolderAction [-TssSession] <Session> -FolderId <Int32> -Action <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Test for action AddSecret on Folder ID 75, returning true if exists and false if
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

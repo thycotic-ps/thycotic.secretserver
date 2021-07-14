@@ -6,7 +6,7 @@ Get status of password change
 ## SYNTAX
 
 ```
-Get-TssSecretPasswordStatus [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretPasswordStatus [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get password change status of Secret ID 26
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

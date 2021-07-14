@@ -6,7 +6,7 @@ Search report schedule
 ## SYNTAX
 
 ```
-Search-TssReportSchedule [-TssSession] <TssSession> [-IncludeDeleted] [-ReportId <Int32>] [-SortBy <String>]
+Search-TssReportSchedule [-TssSession] <Session> [-IncludeDeleted] [-ReportId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Returns list of all report schedules, including those that were deleted
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

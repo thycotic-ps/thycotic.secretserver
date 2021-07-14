@@ -6,8 +6,8 @@ Executes returns the results of a Report.
 ## SYNTAX
 
 ```
-Invoke-TssReport [-TssSession] <TssSession> [-ReportId <Int32>] [-ReportName <String>]
- [-Parameters <Hashtable>] [<CommonParameters>]
+Invoke-TssReport [-TssSession] <Session> [-ReportId <Int32>] [-ReportName <String>] [-Parameters <Hashtable>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,7 +45,7 @@ Executes report 60 (Changed90DaysReportName) returning PSCustomObject result
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

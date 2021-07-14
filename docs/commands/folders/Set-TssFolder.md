@@ -6,7 +6,7 @@ Set various properties for a given secret folder
 ## SYNTAX
 
 ```
-Set-TssFolder [-TssSession] <TssSession> -Id <Int32[]> [-AllowedTemplate <Int32[]>] [-AllowRemoveOwner]
+Set-TssFolder [-TssSession] <Session> -Id <Int32[]> [-AllowedTemplate <Int32[]>] [-AllowRemoveOwner]
  [-EnableInheritPermission] [-EnableInheritSecretPolicy] [-FolderName <String>] [-SecretPolicy <Int32>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
@@ -30,7 +30,7 @@ Renames Folder ID 93 to 'Security Admins'
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

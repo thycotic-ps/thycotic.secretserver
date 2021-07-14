@@ -7,13 +7,13 @@ Add a User or Group permission to a Folder
 
 ### user
 ```
-Add-TssFolderPermission [-TssSession] <TssSession> -FolderId <Int32[]> -Username <String> -FolderRole <String>
+Add-TssFolderPermission [-TssSession] <Session> -FolderId <Int32[]> -Username <String> -FolderRole <String>
  -SecretRole <String> [-Force] [<CommonParameters>]
 ```
 
 ### group
 ```
-Add-TssFolderPermission [-TssSession] <TssSession> -FolderId <Int32[]> -Group <String> -FolderRole <String>
+Add-TssFolderPermission [-TssSession] <Session> -FolderId <Int32[]> -Group <String> -FolderRole <String>
  -SecretRole <String> [-Force] [<CommonParameters>]
 ```
 
@@ -56,7 +56,7 @@ Add "chad" as owner for Folder and Secret on Folders that have "App" in their na
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

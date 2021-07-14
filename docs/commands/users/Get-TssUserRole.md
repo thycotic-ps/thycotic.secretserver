@@ -6,7 +6,7 @@ Get roles for a user
 ## SYNTAX
 
 ```
-Get-TssUserRole [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssUserRole [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get assigned roles for User ID 2
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Start Discovery processing
 ## SYNTAX
 
 ```
-Start-TssDiscovery [-TssSession] <TssSession> [-Type] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-TssDiscovery [-TssSession] <Session> [-Type] <String> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -36,7 +36,7 @@ Run Discovery Scan
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

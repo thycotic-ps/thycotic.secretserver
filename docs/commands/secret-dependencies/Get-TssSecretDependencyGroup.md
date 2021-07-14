@@ -6,7 +6,7 @@ Get Secret Dependency Group for a Secret
 ## SYNTAX
 
 ```
-Get-TssSecretDependencyGroup [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretDependencyGroup [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return Secret Dependency Group(s) for Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

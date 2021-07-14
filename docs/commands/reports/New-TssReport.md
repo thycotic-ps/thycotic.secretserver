@@ -6,7 +6,7 @@ Short of what command does
 ## SYNTAX
 
 ```
-New-TssReport [-TssSession] <TssSession> [-ReportName] <String> [-CategoryId] <Int32> -Description <String>
+New-TssReport [-TssSession] <Session> [-ReportName] <String> [-CategoryId] <Int32> -Description <String>
  [-ChartType <String>] [-Is3DReport] [-PageSize <Int32>] [-Paging <String>] -ReportSql <String> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
@@ -44,7 +44,7 @@ Create a new report where the T-SQL is stored in a SQL script file
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

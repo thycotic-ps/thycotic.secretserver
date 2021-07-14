@@ -6,7 +6,7 @@ Get Secret settings
 ## SYNTAX
 
 ```
-Get-TssSecretSetting [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretSetting [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get settings details for Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

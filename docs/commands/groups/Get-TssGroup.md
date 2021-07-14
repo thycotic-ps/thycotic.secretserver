@@ -6,7 +6,7 @@ Get Group by ID
 ## SYNTAX
 
 ```
-Get-TssGroup [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssGroup [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get details on Group ID 8
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

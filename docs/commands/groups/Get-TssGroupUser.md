@@ -6,7 +6,7 @@ Get a user in a Group
 ## SYNTAX
 
 ```
-Get-TssGroupUser [-TssSession] <TssSession> -Id <Int32> -UserId <Int32> [<CommonParameters>]
+Get-TssGroupUser [-TssSession] <Session> -Id <Int32> -UserId <Int32> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get User Id 43 details in Group ID 8
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

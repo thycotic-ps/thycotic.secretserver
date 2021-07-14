@@ -7,13 +7,13 @@ Search metadata
 
 ### item
 ```
-Search-TssMetadata [-TssSession] <TssSession> -ItemId <Int32> -Type <String> [-SortBy <String>]
+Search-TssMetadata [-TssSession] <Session> -ItemId <Int32> -Type <String> [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### field
 ```
-Search-TssMetadata [-TssSession] <TssSession> [-FieldId <Int32>] [-SortBy <String>] [<CommonParameters>]
+Search-TssMetadata [-TssSession] <Session> [-FieldId <Int32>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -37,7 +37,7 @@ Return Field ID 4 on object Item ID 46
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

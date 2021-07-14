@@ -6,7 +6,7 @@ Search all hooks for a specific Secret ID
 ## SYNTAX
 
 ```
-Search-TssSecretHook [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Search-TssSecretHook [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return all secret hooks associated with Secret ID 82
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

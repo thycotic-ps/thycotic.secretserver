@@ -6,7 +6,7 @@ Get a secret template from Secret Server
 ## SYNTAX
 
 ```
-Get-TssSecretTemplate [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretTemplate [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Returns secret associated with the Secret ID, 93
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

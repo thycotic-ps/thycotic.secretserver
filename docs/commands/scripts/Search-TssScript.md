@@ -6,7 +6,7 @@ Search Secret Server scripts
 ## SYNTAX
 
 ```
-Search-TssScript [-TssSession] <TssSession> [-SearchText <String>] [-IncludeInactive] [-SortBy <String>]
+Search-TssScript [-TssSession] <Session> [-SearchText <String>] [-IncludeInactive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return list of Scripts that have the text "admin" in the name
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

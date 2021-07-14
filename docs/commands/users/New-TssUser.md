@@ -6,8 +6,8 @@ Create a new Secret Server User
 ## SYNTAX
 
 ```
-New-TssUser [-TssSession] <TssSession> -Username <String> -DisplayName <String> -Password <SecureString>
- [-Active] [-IsApplicationAccount] [-EmailAddress <String>] [-DomainId <Int32>] [-AdGuid <String>]
+New-TssUser [-TssSession] <Session> -Username <String> -DisplayName <String> -Password <SecureString> [-Active]
+ [-IsApplicationAccount] [-EmailAddress <String>] [-DomainId <Int32>] [-AdGuid <String>]
  [-TwoFactorType <String>] [-RadiusUsername <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -38,7 +38,7 @@ Create apiuser as an Application Account and enable on creation.
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

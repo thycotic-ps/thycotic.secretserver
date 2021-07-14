@@ -25,7 +25,7 @@ function Start-SecretHeartbeat {
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
-        [TssSession]
+        [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
         # Secret Id

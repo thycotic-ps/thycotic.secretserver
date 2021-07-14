@@ -6,7 +6,7 @@ Set a Secret's Associated Secret for RPC Scripts
 ## SYNTAX
 
 ```
-Set-TssSecretRpcAssociated [-TssSession] <TssSession> -Id <Int32[]> -AssociatedSecretId <Int32[]> [-WhatIf]
+Set-TssSecretRpcAssociated [-TssSession] <Session> -Id <Int32[]> -AssociatedSecretId <Int32[]> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
@@ -41,7 +41,7 @@ Pull the current Associated Secrets on Secret ID 330, add the Secret ID 42 to th
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

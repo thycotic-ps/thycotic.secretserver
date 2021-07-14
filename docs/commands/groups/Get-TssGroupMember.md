@@ -6,7 +6,7 @@ Get a Group's membership
 ## SYNTAX
 
 ```
-Get-TssGroupMember [-TssSession] <TssSession> -Id <Int32[]> [-IncludeInactive] [-UserDomainId <Int32>]
+Get-TssGroupMember [-TssSession] <Session> -Id <Int32[]> [-IncludeInactive] [-UserDomainId <Int32>]
  [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Get users that are members of Group 2
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

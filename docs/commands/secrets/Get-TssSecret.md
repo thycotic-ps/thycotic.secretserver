@@ -7,21 +7,20 @@ Get a secret from Secret Server
 
 ### all (Default)
 ```
-Get-TssSecret [-TssSession] <TssSession> [-Id] <Int32[]> [-Path <String>] [-Comment <String>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String>] [-Comment <String>]
  [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssSecret [-TssSession] <TssSession> [-Id] <Int32[]> [-Path <String>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String>] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecret [-TssSession] <TssSession> [-Id] <Int32[]> [-Comment <String>]
- [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
- [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Comment <String>] [-DoublelockPassword <SecureString>]
+ [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -98,7 +97,7 @@ Get the Secert 330, pulling the fields on that Secret that are files and output 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

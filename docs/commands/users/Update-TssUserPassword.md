@@ -6,7 +6,7 @@ Update current User's password
 ## SYNTAX
 
 ```
-Update-TssUserPassword [-TssSession] <TssSession> [-Current] <SecureString> [-New] <SecureString> [-WhatIf]
+Update-TssUserPassword [-TssSession] <Session> [-Current] <SecureString> [-New] <SecureString> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
@@ -30,7 +30,7 @@ Updates the user's password for the current session
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

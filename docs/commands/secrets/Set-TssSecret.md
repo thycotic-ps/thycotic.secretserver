@@ -7,35 +7,35 @@ Set various settings or fields for a given secret
 
 ### all (Default)
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
- [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-Active] [-AutoChangeEnabled]
- [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-EnableInheritSecretPolicy]
- [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
- [-SecretPolicy <Int32>] [-SiteId <Int32>] [-CheckIn] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
+ [-TicketSystemId <Int32>] [-Active] [-AutoChangeEnabled] [-AutoChangeNextPassword <SecureString>]
+ [-EnableInheritPermission] [-EnableInheritSecretPolicy] [-FolderId <Int32>] [-GenerateSshKeys]
+ [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>] [-SecretPolicy <Int32>] [-SiteId <Int32>] [-CheckIn]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
- [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
+ [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### checkIn
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-ForceCheckIn] [-CheckIn] [-WhatIf] [-Confirm]
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-ForceCheckIn] [-CheckIn] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### general
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy]
- [-FolderId <Int32>] [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>]
- [-SecretPolicy <Int32>] [-SiteId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Active] [-EnableInheritSecretPolicy] [-FolderId <Int32>]
+ [-GenerateSshKeys] [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>] [-SecretPolicy <Int32>]
+ [-SiteId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### password
 ```
-Set-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-AutoChangeEnabled]
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-AutoChangeEnabled]
  [-AutoChangeNextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -66,7 +66,7 @@ Sets secret 1455 disables emailing when changed
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

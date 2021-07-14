@@ -6,8 +6,8 @@ Get a Secret attachment
 ## SYNTAX
 
 ```
-Get-TssSecretAttachment [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> -Path <String>
- [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> -Path <String> [-Comment <String>]
+ [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ Get the Secert ID 35's field Attached File (using slug name attached-file), writ
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

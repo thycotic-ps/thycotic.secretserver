@@ -6,7 +6,7 @@ Start a current password change
 ## SYNTAX
 
 ```
-Start-TssSecretChangePassword [-TssSession] <TssSession> -Id <Int32[]> -Type <String>
+Start-TssSecretChangePassword [-TssSession] <Session> -Id <Int32[]> -Type <String>
  [-NextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Start a current password change operation on secret 46
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

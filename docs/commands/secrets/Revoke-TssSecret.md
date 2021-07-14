@@ -6,9 +6,9 @@ Expire a secret
 ## SYNTAX
 
 ```
-Revoke-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>]
- [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
- [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Revoke-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-DoublelockPassword <SecureString>]
+ [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -30,7 +30,7 @@ Expire Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

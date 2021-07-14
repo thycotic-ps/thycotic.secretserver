@@ -6,7 +6,7 @@ Get audits for a Secret(s)
 ## SYNTAX
 
 ```
-Get-TssSecretAudit [-TssSession] <TssSession> -Id <Int32[]> [-IncludePasswordChangeLog] [-SortBy <String>]
+Get-TssSecretAudit [-TssSession] <Session> -Id <Int32[]> [-IncludePasswordChangeLog] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Get audit for Secret ID 65
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 
@@ -92,7 +92,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretAudit
+### SecretAudit
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

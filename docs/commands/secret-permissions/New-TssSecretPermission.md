@@ -6,9 +6,8 @@ Create a new Secret Permission
 ## SYNTAX
 
 ```
-New-TssSecretPermission [-TssSession] <TssSession> -SecretId <Int32[]> -AccessRole <String>
- [-DomainName <String>] [-GroupName <String>] [-Username <String>] [-Force] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSecretPermission [-TssSession] <Session> -SecretId <Int32[]> -AccessRole <String> [-DomainName <String>]
+ [-GroupName <String>] [-Username <String>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -39,7 +38,7 @@ Adding permission to all Secrets that have "Azure" in their name to the group "c
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

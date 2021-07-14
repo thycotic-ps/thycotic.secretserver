@@ -6,7 +6,7 @@ Get the owners for a User ID
 ## SYNTAX
 
 ```
-Get-TssUserOwner [-TssSession] <TssSession> -Id <Int32[]> [-SortBy <String>] [<CommonParameters>]
+Get-TssUserOwner [-TssSession] <Session> -Id <Int32[]> [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get Owners of the User ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

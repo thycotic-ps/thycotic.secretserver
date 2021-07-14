@@ -6,7 +6,7 @@ Reset a User's password
 ## SYNTAX
 
 ```
-Reset-TssUserPassword [-TssSession] <TssSession> -Id <Int32[]> -Password <SecureString> [-WhatIf] [-Confirm]
+Reset-TssUserPassword [-TssSession] <Session> -Id <Int32[]> -Password <SecureString> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Add minimum example for each parameter
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

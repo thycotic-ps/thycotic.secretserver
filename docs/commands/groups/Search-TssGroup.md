@@ -6,7 +6,7 @@ Search for user management groups
 ## SYNTAX
 
 ```
-Search-TssGroup [-TssSession] <TssSession> [-DomainId <Int32>] [-IncludeInactive] [-SearchText <String>]
+Search-TssGroup [-TssSession] <Session> [-DomainId <Int32>] [-IncludeInactive] [-SearchText <String>]
  [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return list of all groups found in Secret Server that account has access to mana
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Search for a Secret Server user
 ## SYNTAX
 
 ```
-Search-TssUser [-TssSession] <TssSession> [-DomainId <Int32>] [-IncludeInactive] [-Field <String[]>]
+Search-TssUser [-TssSession] <Session> [-DomainId <Int32>] [-IncludeInactive] [-Field <String[]>]
  [-SearchText <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Return a list of all users with "demo" in the username or email
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

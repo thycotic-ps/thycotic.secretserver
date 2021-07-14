@@ -28,7 +28,7 @@ function Test-Version {
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession
+        [Thycotic.PowerShell.Authentication.Session]$TssSession
     )
     begin {
         $tssParams = $PSBoundParameters

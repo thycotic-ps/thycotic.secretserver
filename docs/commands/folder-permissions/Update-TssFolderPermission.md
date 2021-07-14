@@ -6,7 +6,7 @@ Update properties for a given FolderPermission
 ## SYNTAX
 
 ```
-Update-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> -FolderId <Int32>
+Update-TssFolderPermission [-TssSession] <Session> -Id <Int32[]> -FolderId <Int32>
  -FolderAccessRolename <String> [-SecretAccessRoleName <String>] [-BreakInheritance] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
@@ -38,7 +38,7 @@ Update Folder Permission ID 45 on Folder ID 72 to Owner folder permission
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Search Distributed Engine Sites in Secret Server
 ## SYNTAX
 
 ```
-Search-TssDistributedEngineSite [-TssSession] <TssSession> [-SiteId <Int32>] [-SiteName <String>]
+Search-TssDistributedEngineSite [-TssSession] <Session> [-SiteId <Int32>] [-SiteName <String>]
  [-IncludeSiteMetrics] [-IncludeSitesAddNewEngines] [-IncludeInactive] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Add minimum example for each parameter
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

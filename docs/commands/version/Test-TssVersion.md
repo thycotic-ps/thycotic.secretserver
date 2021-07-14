@@ -6,7 +6,7 @@ Test Secret Server version
 ## SYNTAX
 
 ```
-Test-TssVersion [-TssSession] <TssSession> [<CommonParameters>]
+Test-TssVersion [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Pulls version of Secret Server and queries for latest version, returning object 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

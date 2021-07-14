@@ -6,7 +6,7 @@ Get a folder permission(s)
 ## SYNTAX
 
 ```
-Get-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
+Get-TssFolderPermission [-TssSession] <Session> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Returns Folder Permission(s) for Folder ID
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

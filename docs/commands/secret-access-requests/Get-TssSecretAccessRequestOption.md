@@ -6,7 +6,7 @@ Get Secret Access Option by Secret Id
 ## SYNTAX
 
 ```
-Get-TssSecretAccessRequestOption [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretAccessRequestOption [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get the Secret Access Request options for Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

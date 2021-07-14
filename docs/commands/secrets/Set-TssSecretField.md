@@ -7,25 +7,25 @@ Set value for a Secret Field
 
 ### reg (Default)
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Clear] [-WhatIf]
+Set-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Clear] [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
 ### raw
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Value <Object>]
- [-Filename <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-Value <Object>] [-Filename <String>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### io
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Path <Object>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Set-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-Path <Object>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Set-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-Comment <String>] [-ForceCheckIn]
+Set-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-Comment <String>] [-ForceCheckIn]
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -89,7 +89,7 @@ Sets the attached-file field on Secret 42 to the contents of the attachment.txt 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

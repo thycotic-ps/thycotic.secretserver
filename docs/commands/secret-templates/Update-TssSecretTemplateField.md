@@ -6,8 +6,8 @@ Update a field on a Secret Template
 ## SYNTAX
 
 ```
-Update-TssSecretTemplateField [-TssSession] <TssSession> [-TemplateId] <Int32>
- [-Field <TssSecretTemplateField>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssSecretTemplateField [-TssSession] <Session> [-TemplateId] <Int32> [-Field <TssSecretTemplateField>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -32,7 +32,7 @@ Gets current Password field on Template 6025 and updates IsRequired to be true
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

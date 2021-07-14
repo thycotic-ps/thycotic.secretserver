@@ -6,7 +6,7 @@ Delete a report category
 ## SYNTAX
 
 ```
-Remove-TssReportCategory [-TssSession] <TssSession> -ReportCategoryId <Int32[]> [-WhatIf] [-Confirm]
+Remove-TssReportCategory [-TssSession] <Session> -ReportCategoryId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -39,7 +39,7 @@ Removes report category 21
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

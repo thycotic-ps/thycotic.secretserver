@@ -6,7 +6,7 @@ Get Secret Server configuration section(s)
 ## SYNTAX
 
 ```
-Get-TssConfiguration [-TssSession] <TssSession> [-Type <String>] [<CommonParameters>]
+Get-TssConfiguration [-TssSession] <Session> [-Type <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return all configuration objects
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

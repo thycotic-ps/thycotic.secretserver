@@ -7,13 +7,13 @@ Get data of a field
 
 ### field (Default)
 ```
-Get-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
+Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
  [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecretField [-TssSession] <TssSession> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
+Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
  [-Comment <String>] [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive]
  [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
@@ -45,7 +45,7 @@ Get the private key from Secret 432, writing to the file private-key.json
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

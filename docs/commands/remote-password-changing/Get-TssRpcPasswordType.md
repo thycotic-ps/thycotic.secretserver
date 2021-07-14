@@ -6,7 +6,7 @@ Get Password Type
 ## SYNTAX
 
 ```
-Get-TssRpcPasswordType [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssRpcPasswordType [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get Password Type 52
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -7,14 +7,14 @@ Create a new Secret Template
 
 ### newcopy
 ```
-New-TssSecretTemplate [-TssSession] <TssSession> -Template <TssSecretTemplate> [-WhatIf] [-Confirm]
+New-TssSecretTemplate [-TssSession] <Session> -Template <TssSecretTemplate> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
 ### new
 ```
-New-TssSecretTemplate [-TssSession] <TssSession> -TemplateName <String>
- -TemplateField <TssSecretTemplateField[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSecretTemplate [-TssSession] <Session> -TemplateName <String> -TemplateField <TssSecretTemplateField[]>
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -50,7 +50,7 @@ Creates a new template named "Test Template 42" with 3 fields
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

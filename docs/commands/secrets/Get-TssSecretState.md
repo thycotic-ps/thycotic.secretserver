@@ -6,7 +6,7 @@ Get details on state of the Secret
 ## SYNTAX
 
 ```
-Get-TssSecretState [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretState [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Add minimum example for each parameter
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

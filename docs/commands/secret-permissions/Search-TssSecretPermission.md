@@ -6,7 +6,7 @@ Search Secret Permissions
 ## SYNTAX
 
 ```
-Search-TssSecretPermission [-TssSession] <TssSession> [-DomainName <String>] [-GroupId <Int32>]
+Search-TssSecretPermission [-TssSession] <Session> [-DomainName <String>] [-GroupId <Int32>]
  [-GroupName <String>] [-SecretId <Int32>] [-UserId <Int32>] [-Username <String>] [-SortBy <String>]
  [<CommonParameters>]
 ```
@@ -30,7 +30,7 @@ Get list of permissions for Secret ID 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

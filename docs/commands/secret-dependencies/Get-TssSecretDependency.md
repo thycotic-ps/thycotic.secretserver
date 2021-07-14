@@ -6,7 +6,7 @@ Get a Secret Dependency
 ## SYNTAX
 
 ```
-Get-TssSecretDependency [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretDependency [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return the Secret Dependency 24
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Delete a folder permissions
 ## SYNTAX
 
 ```
-Remove-TssFolderPermission [-TssSession] <TssSession> -Id <Int32[]> [-BreakInheritance] [-WhatIf] [-Confirm]
+Remove-TssFolderPermission [-TssSession] <Session> -Id <Int32[]> [-BreakInheritance] [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Delete Folder Permission ID 9
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

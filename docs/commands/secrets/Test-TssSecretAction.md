@@ -6,7 +6,7 @@ Test for an allowed action on a Secret
 ## SYNTAX
 
 ```
-Test-TssSecretAction [-TssSession] <TssSession> -SecretId <Int32> -Action <String> [<CommonParameters>]
+Test-TssSecretAction [-TssSession] <Session> -SecretId <Int32> -Action <String> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Test for action Edit on Secret ID 75, returning true if exists and false if not
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

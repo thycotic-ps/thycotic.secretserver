@@ -6,7 +6,7 @@ Get a list of the Associated Secrets configured for a Secret
 ## SYNTAX
 
 ```
-Get-TssSecretRpcAssociated [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretRpcAssociated [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Add minimum example for each parameter
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

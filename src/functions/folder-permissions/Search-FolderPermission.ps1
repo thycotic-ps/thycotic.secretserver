@@ -28,7 +28,7 @@ function Search-FolderPermission {
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
+        [Thycotic.PowerShell.Authentication.Session]$TssSession,
 
         # Folder ID
         [int]

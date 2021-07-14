@@ -6,7 +6,7 @@ Create a new Dependency Group on a Secret
 ## SYNTAX
 
 ```
-New-TssSecretDependencyGroup [-TssSession] <TssSession> -Id <Int32[]> -GroupName <String> [-SiteId <Int32>]
+New-TssSecretDependencyGroup [-TssSession] <Session> -Id <Int32[]> -GroupName <String> [-SiteId <Int32>]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -37,7 +37,7 @@ Create the Dependency Group "Test Env" on all Secrets found under Folder ID 50, 
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

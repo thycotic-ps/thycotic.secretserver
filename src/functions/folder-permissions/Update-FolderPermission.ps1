@@ -34,7 +34,7 @@ function Update-FolderPermission {
         [Parameter(Mandatory,
             ValueFromPipeline,
             Position = 0)]
-        [TssSession]$TssSession,
+        [Thycotic.PowerShell.Authentication.Session]$TssSession,
 
         # Folder Permission Id to modify
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]

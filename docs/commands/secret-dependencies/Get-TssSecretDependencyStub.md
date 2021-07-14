@@ -7,13 +7,13 @@ Get default values for a new Secret Dependency
 
 ### template
 ```
-Get-TssSecretDependencyStub [-TssSession] <TssSession> [-SecretId] <Int32> -TemplateId <Int32>
+Get-TssSecretDependencyStub [-TssSession] <Session> [-SecretId] <Int32> -TemplateId <Int32>
  [<CommonParameters>]
 ```
 
 ### script
 ```
-Get-TssSecretDependencyStub [-TssSession] <TssSession> [-SecretId] <Int32> [-ScriptId <Int32>] -Type <String>
+Get-TssSecretDependencyStub [-TssSession] <Session> [-SecretId] <Int32> [-ScriptId <Int32>] -Type <String>
  [<CommonParameters>]
 ```
 
@@ -36,7 +36,7 @@ Return Secret Dependency Stub for Secret 42 and Template ID 6
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

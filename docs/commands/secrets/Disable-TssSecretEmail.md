@@ -6,9 +6,9 @@ Disables the email setting for a Secret
 ## SYNTAX
 
 ```
-Disable-TssSecretEmail [-TssSession] <TssSession> -Id <Int32[]> [-WhenChanged] [-WhenViewed]
- [-WhenHeartbeatFails] [-Comment <String>] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Disable-TssSecretEmail [-TssSession] <Session> -Id <Int32[]> [-WhenChanged] [-WhenViewed] [-WhenHeartbeatFails]
+ [-Comment <String>] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -38,7 +38,7 @@ Disable Email When Viewed setting on Secret IDs 42, 43, and 45
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

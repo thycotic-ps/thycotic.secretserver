@@ -6,7 +6,7 @@ Create a new Secret Dependency
 ## SYNTAX
 
 ```
-New-TssSecretDependency [-TssSession] <TssSession> -DependencyStub <TssSecretDependency> [-WhatIf] [-Confirm]
+New-TssSecretDependency [-TssSession] <Session> -DependencyStub <TssSecretDependency> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -30,7 +30,7 @@ Create new dependency on Secret 42
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

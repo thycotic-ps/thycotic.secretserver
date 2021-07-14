@@ -7,7 +7,7 @@ Search for a secret
 
 ### filter (Default)
 ```
-Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
+Search-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
  [-SearchText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
  [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
@@ -17,20 +17,20 @@ Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFold
 
 ### folder
 ```
-Search-TssSecret [-TssSession] <TssSession> [-FolderId <Int32>] [-IncludeSubFolders] [-SortBy <String>]
+Search-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### field
 ```
-Search-TssSecret [-TssSession] <TssSession> [-Field <String>] [-SearchText <String>] [-ExactMatch]
+Search-TssSecret [-TssSession] <Session> [-Field <String>] [-SearchText <String>] [-ExactMatch]
  [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### secret
 ```
-Search-TssSecret [-TssSession] <TssSession> [-SecretTemplateId <Int32>] [-SiteId <Int32>]
+Search-TssSecret [-TssSession] <Session> [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <String>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
  [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
@@ -95,7 +95,7 @@ Return all secret(s) that have the username "root"
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

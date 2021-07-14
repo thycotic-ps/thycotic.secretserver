@@ -6,7 +6,7 @@ Get a Secret Server User
 ## SYNTAX
 
 ```
-Get-TssUser [-TssSession] <TssSession> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
+Get-TssUser [-TssSession] <Session> -Id <Int32[]> [-IncludeInactive] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get the User ID 2
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

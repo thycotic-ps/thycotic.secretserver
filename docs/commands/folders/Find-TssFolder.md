@@ -6,7 +6,7 @@ Find secret folders
 ## SYNTAX
 
 ```
-Find-TssFolder [-TssSession] <TssSession> [-ParentFolderId <Int32>] [-SearchText <String>]
+Find-TssFolder [-TssSession] <Session> [-ParentFolderId <Int32>] [-SearchText <String>]
  [-PermissionRequired <String>] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return folders with Parent Folder ID of 56
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

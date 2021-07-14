@@ -54,7 +54,7 @@ function New-Session {
     TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('TssSession')]
+    [OutputType('Thycotic.PowerShell.Authentication.Session')]
     param(
         # Secret Server URL
         [Parameter(Mandatory, ParameterSetName = 'new', Position = 0)]
@@ -94,7 +94,7 @@ function New-Session {
         $newTssParams = $PSBoundParameters
         $invokeParams = @{ }
 
-        $outputTssSession = [TssSession]::new()
+        $outputTssSession = [Thycotic.PowerShell.Authentication.Session]::new()
 
         if ($SecretServer -match '(?:\/api\/v1)|(?:\/oauth2\/token)') {
             throw 'Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided'

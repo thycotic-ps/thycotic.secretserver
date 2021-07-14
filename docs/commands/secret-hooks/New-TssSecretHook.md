@@ -6,7 +6,7 @@ Create a Secret Hook
 ## SYNTAX
 
 ```
-New-TssSecretHook [-TssSession] <TssSession> -SecretId <Int32[]> -SecretHookStub <TssSecretHook> [-WhatIf]
+New-TssSecretHook [-TssSession] <Session> -SecretId <Int32[]> -SecretHookStub <TssSecretHook> [-WhatIf]
  [-Confirm] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Update Secret Hook 2's Arguments property on Secret ID 76
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

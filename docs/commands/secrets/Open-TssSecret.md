@@ -6,7 +6,7 @@ Checkout a Secret
 ## SYNTAX
 
 ```
-Open-TssSecret [-TssSession] <TssSession> [-Id <Int32[]>] [-Comment <String>] [-TicketNumber <String>]
+Open-TssSecret [-TssSession] <Session> [-Id <Int32[]>] [-Comment <String>] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -45,7 +45,7 @@ Checkout Secret ID 42 providing a comment (Secret configured to checkout and req
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,7 +6,7 @@ Get a list of Sites
 ## SYNTAX
 
 ```
-Get-TssSite [-TssSession] <TssSession> [-IncludeInactive] [<CommonParameters>]
+Get-TssSite [-TssSession] <Session> [-IncludeInactive] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Get a list of Sites, including those disabled in the results
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

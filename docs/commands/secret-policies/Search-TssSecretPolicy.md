@@ -6,7 +6,7 @@ Search Secret Policies
 ## SYNTAX
 
 ```
-Search-TssSecretPolicy [-TssSession] <TssSession> [-PolicyName <String>] [-IncludeInactive] [-SortBy <String>]
+Search-TssSecretPolicy [-TssSession] <Session> [-PolicyName <String>] [-IncludeInactive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Search for Secret Policies with names matching "heartbeat"
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

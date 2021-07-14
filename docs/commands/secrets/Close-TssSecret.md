@@ -6,7 +6,7 @@ Check-In a Secret
 ## SYNTAX
 
 ```
-Close-TssSecret [-TssSession] <TssSession> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
+Close-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn]
  [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-IncludeInactive] [<CommonParameters>]
 ```
 
@@ -47,7 +47,7 @@ Check-In Secret 42 after using it to get the username/password credential
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

@@ -6,8 +6,8 @@ Add a User or Group permission to a Secret
 ## SYNTAX
 
 ```
-Add-TssSecretPermission [-TssSession] <TssSession> -SecretId <Int32[]> -AccessRole <String>
- [-DomainName <String>] [-GroupName <String>] [-Username <String>] [-Force] [<CommonParameters>]
+Add-TssSecretPermission [-TssSession] <Session> -SecretId <Int32[]> -AccessRole <String> [-DomainName <String>]
+ [-GroupName <String>] [-Username <String>] [-Force] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,7 +49,7 @@ Add "chad" as owner for Secrets that have "App" in their name, will also break i
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

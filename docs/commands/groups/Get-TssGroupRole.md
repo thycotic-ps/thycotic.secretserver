@@ -6,7 +6,7 @@ Get roles assigned to a Group
 ## SYNTAX
 
 ```
-Get-TssGroupRole [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssGroupRole [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return list of roles assigned to Group ID 8
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

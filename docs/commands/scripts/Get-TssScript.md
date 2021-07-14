@@ -6,7 +6,7 @@ Get a single Secret Server Script by Id
 ## SYNTAX
 
 ```
-Get-TssScript [-TssSession] <TssSession> -Id <Int32[]> [<CommonParameters>]
+Get-TssScript [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -28,7 +28,7 @@ Return Script ID 10
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

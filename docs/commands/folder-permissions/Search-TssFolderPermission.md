@@ -6,7 +6,7 @@ Search folder permissions
 ## SYNTAX
 
 ```
-Search-TssFolderPermission [-TssSession] <TssSession> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
+Search-TssFolderPermission [-TssSession] <Session> [-FolderId <Int32>] [-GroupId <Int32>] [-UserId <Int32>]
  [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Return Folder Permissions for Folder ID 32
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

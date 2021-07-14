@@ -6,7 +6,7 @@ Update all members of a group
 ## SYNTAX
 
 ```
-Update-TssGroupMember [-TssSession] <TssSession> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
+Update-TssGroupMember [-TssSession] <Session> -Id <Int32> -UserId <Int32[]> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -29,7 +29,7 @@ Update Group 8 to have users 54, 35, 97, and 345 as members
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 

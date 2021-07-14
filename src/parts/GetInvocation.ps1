@@ -16,7 +16,7 @@ $cmdText = $Invocation.InvocationName
 foreach ($param in $Invocation.BoundParameters.GetEnumerator()) {
     $name = $param.Key
     $paramValue = switch ($param.Value) {
-        { $_ -is [TssSession] } {
+        { $_ -is [Thycotic.PowerShell.Authentication.Session] } {
             "TssSessionObject"
         }
         { $_ -is [PSCredential] } {

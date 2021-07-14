@@ -6,7 +6,7 @@ Get Run status of a Secret Dependency identifier
 ## SYNTAX
 
 ```
-Get-TssSecretDependencyRunStatus [-TssSession] <TssSession> -Identifier <String[]> [<CommonParameters>]
+Get-TssSecretDependencyRunStatus [-TssSession] <Session> -Identifier <String[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,7 +29,7 @@ After starting a Secret's Dependency 46, get the status of that run
 TssSession object created by New-TssSession for auth
 
 ```yaml
-Type: TssSession
+Type: Session
 Parameter Sets: (All)
 Aliases:
 
