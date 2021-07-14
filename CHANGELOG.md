@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     <summary>Click to view </summary>
 
 * Set-SecretRpcPrivilege - correct links in cbh [a0288bb](https://github.com/thycotic-ps/thycotic.secretserver/commit/a0288bbd98de0f468dc709aac8cc604342ab432e)
+* invoke-SecretGeneratePassword - fix doc error [5b2c270](https://github.com/thycotic-ps/thycotic.secretserver/commit/5b2c27049ad0b88fa6d0bb2e1a544db13fe56e87)
 
 </details>
 
