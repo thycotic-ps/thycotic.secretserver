@@ -107,5 +107,52 @@ namespace Thycotic.PowerShell.Authentication
                 return false;
             }
         }
+
+        public bool SessionRefresh()
+        {
+            if (this.TokenType.Equals("ExternalToken") || this.TokenType.Equals("SdkClient") || this.TokenType.Equals("WindowsAuth"))
+            {
+                return false;
+            }
+            else
+            {
+                try
+                {
+                    System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
+                    var sessionClient = new RestClient(this.SecretServer + "/oauth2/token");
+                    var sessionRequest = new RestRequest(Method.POST);
+                    sessionRequest.Parameters.Clear();
+                    sessionRequest.AddParameter("grant_type", "refresh_token");
+                    sessionRequest.AddParameter("refresh_token", this.RefreshToken);
+                    IRestResponse sessionResponse = sessionClient.Execute(sessionRequest);
+
+                    //class model for api response
+                    ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(sessionResponse.Content);
+
+                    this.AccessToken = apiResponse.access_token;
+                    this.RefreshToken = apiResponse.refresh_token;
+                    this.TokenType = apiResponse.token_type;
+                    this.StartTime = DateTime.Now;
+
+                    // calculate time from expires_in seconds
+                    TimeSpan timeFromSeconds = TimeSpan.FromSeconds(apiResponse.expires_in);
+                    this.TimeOfDeath = DateTime.Now.Add(timeFromSeconds);
+
+                    return true;
+                }
+                catch
+                {
+                    return false;
+                }
+            }
+        }
+        public class ApiResponse
+        {
+            public string access_token { get; set; }
+            public string refresh_token { get; set; }
+            public string token_type { get; set; }
+            public int expires_in { get; set; }
+        }
     }
 }
