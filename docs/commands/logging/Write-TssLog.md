@@ -1,100 +1,137 @@
+---
+external help file: Thycotic.SecretServer.dll-Help.xml
+Module Name: Thycotic.SecretServer
+schema: 2.0.0
+---
+
 # Write-TssLog
 
 ## SYNOPSIS
-Writes a message to specified log file
+Writes message to the log file.
 
 ## SYNTAX
 
+### message
 ```
-Write-TssLog [[-LogFormat] <String>] [[-LogFilePath] <String>] [[-MessageType] <String>] [[-Message] <String>]
- [-Divider] [<CommonParameters>]
+Write-TssLog [-LogFilePath] <String> [-LogFormat] <String> [-MessageType] <String> [[-Message] <String>]
+ [<CommonParameters>]
+```
+
+### divider
+```
+Write-TssLog [-LogFilePath] <String> [-LogFormat] <String> [-MessageType] <String> [-Divider]
+ [[-DividerCharacter] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Writes the message provided by appending. This is used during your script process or workflow to add messages based on the MessageType desired (error, warning, info, etc.).
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Write-TssLog -LogFilePath $newLog.FullName -LogFormat 'log' -MessageType ERROR -Message "Issue capturing secret details: $($_.Exception)"
 ```
 
-{{ Add example description here }}
+Appends an informational message including an error's exception (added to the catch block of a call to a function) using LOG format.
+
+### Example 2
+```powershell
+Write-TssLog -LogFilePath $newLog.FullName -LogFormat 'csv' -MessageType ERROR -Message "Issue capturing secret details: $($_.Exception)"
+```
+
+Appends an informational message including an error's exception (added to the catch block of a call to a function) using CSV format.
 
 ## PARAMETERS
 
-### -LogFormat
-Format of log to generate, default to LOG; allowed: log, csv, json, xml, cmtrace
+### -Divider
+Switch to indicate a divider is appended to the log file.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: divider
+Aliases:
+
+Required: False
+Position: 4
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DividerCharacter
+The character to use for the divider, autogenerates 120-character divider and append to the log file. Defaults to plus-sign (+)
+
+```yaml
+Type: String
+Parameter Sets: divider
+Aliases:
+
+Required: False
+Position: 5
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFilePath
+Full file path to the log file
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
 
-Required: False
+Required: True
+Position: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -LogFormat
+Format of log to generate, default to LOG; allowed: log, csv
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+Accepted values: log, csv
+
+Required: True
 Position: 1
 Default value: Log
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -LogFilePath
-Exact log path and filename to use
+### -Message
+Message to append to the log
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: message
 Aliases:
 
 Required: False
-Position: 2
+Position: 3
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -MessageType
-Message type, default INFO; allowed: INFO, WARNING, ERROR, FATAL
+Message type to write to the log, default INFO (allowed INFO, WARNING, ERROR, FATAL)
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
+Accepted values: INFO, WARNING, ERROR, FATAL
 
-Required: False
-Position: 3
+Required: True
+Position: 2
 Default value: INFO
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -Message
-Message content to write to file
-
-```yaml
-Type: String
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: 4
-Default value: None
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -Divider
-Character divider will be added to file as INFO message, using plus sign (+)
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -109,3 +146,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/logging/Write-TssLog](https://thycotic-ps.github.io/thycotic.secretserver/commands/logging/Write-TssLog)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/Thycotic.SecretServer/cmdlets/logging/WriteLogCmdlet.cs](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/Thycotic.SecretServer/cmdlets/logging/WriteLogCmdlet.cs)

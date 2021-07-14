@@ -1,30 +1,36 @@
+---
+external help file: Thycotic.SecretServer.dll-Help.xml
+Module Name: Thycotic.SecretServer
+schema: 2.0.0
+---
+
 # Stop-TssLog
 
 ## SYNOPSIS
-Write closing data to log file & exits the calling script
+Adds footer to the end of the log file.
 
 ## SYNTAX
 
 ```
-Stop-TssLog [[-LogFormat] <String>] [[-LogFilePath] <String>] [<CommonParameters>]
+Stop-TssLog [[-LogFilePath] <String>] [[-LogFormat] <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-{{ Fill in the Description }}
+Appends a footer to the log file to "close" the logging process. This should be called at the end of your script or workflow.
 
 ## EXAMPLES
 
 ### Example 1
 ```powershell
-PS C:\> {{ Add example code here }}
+Stop-TssLog -LogFilePath $newLog.FullName
 ```
 
-{{ Add example description here }}
+Log file from the Start-TssLog call passed in and footer written to the file.
 
 ## PARAMETERS
 
-### -LogFormat
-Format of log to generate, default to LOG; allowed: log, csv, json, xml, cmtrace
+### -LogFilePath
+Full file path to the log file to create
 
 ```yaml
 Type: String
@@ -32,23 +38,24 @@ Parameter Sets: (All)
 Aliases:
 
 Required: False
-Position: 1
-Default value: Log
+Position: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -LogFilePath
-Exact log path and filename to use
+### -LogFormat
+Format of log to generate, default to LOG; allowed: log, csv
 
 ```yaml
 Type: String
 Parameter Sets: (All)
 Aliases:
+Accepted values: log, csv
 
 Required: False
-Position: 2
-Default value: None
+Position: 1
+Default value: Log
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -63,3 +70,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 
 ## RELATED LINKS
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/logging/Stop-TssLog](https://thycotic-ps.github.io/thycotic.secretserver/commands/logging/Stop-TssLog)
+
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/Thycotic.SecretServer/cmdlets/logging/StopLogCmdlet.cs](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/Thycotic.SecretServer/cmdlets/logging/StopLogCmdlet.cs)
