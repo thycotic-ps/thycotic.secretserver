@@ -28,3 +28,4 @@ src/bin/Thycotic.SecretServer.dll
 src/bin/Thycotic.SecretServer.deps.json
 src/bin/Thycotic.SecretServer.xml
 src/bin/Thycotic.SecretServer.pdb
+src/bin/*.dll
