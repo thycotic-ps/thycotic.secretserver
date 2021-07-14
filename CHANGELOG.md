@@ -7,12 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased] -- 2021-xx-xx
 
-### Breaking Changes
+### Major Changes
 
-<details>
-    <summary>Click to view </summary>
-
-* None
+* TssSession - migrate to C# Class and renamed [4369e1a](https://github.com/thycotic-ps/thycotic.secretserver/commit/4369e1a7cd0fa6dca2c082c0f8191128bbe45560)
+* Logging commands - converted to cmdlets [0096aa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0096aa7f83202105004e3b6133ac12502660bc87)
+* module - update TssSession --> Thycotic.PowerShell.Authentication.Session [f2f869c](https://github.com/thycotic-ps/thycotic.secretserver/commit/f2f869c4e6adabe79844c8571f3d8ea40c3a60fb)
 
 </details>
 
