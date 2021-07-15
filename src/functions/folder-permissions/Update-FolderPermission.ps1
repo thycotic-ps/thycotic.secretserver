@@ -89,12 +89,12 @@ function Update-FolderPermission {
                 }
                 $invokeParams.Body = $setBody | ConvertTo-Json
 
-                if ($PSCmdlet.ShouldProcess("FolderPermissionID: ${5}", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
+                if ($PSCmdlet.ShouldProcess("FolderPermissionID: $folderPermission", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning 'Issue setting property on folder permission [$folderPermission]'
+                        Write-Warning "Issue setting property on folder permission [$folderPermission]"
                         $err = $_
                         . $ErrorHandling $err
                     }
