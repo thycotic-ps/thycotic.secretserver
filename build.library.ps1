@@ -20,8 +20,7 @@ if ($MyInvocation.ScriptName -notlike '*Invoke-Build.ps1') {
     $ErrorActionPreference = 'Stop'
     try {
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
-    }
-    catch {
+    } catch {
         Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope AllUsers -Force
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
     }
@@ -36,7 +35,7 @@ task Clean -Before Build {
 }
 
 task Build {
-    exec { dotnet build --configuration $Configuration --output $ProjectOut /p:Version=$Version $ProjectFile}
+    exec { dotnet build --configuration $Configuration --output $ProjectOut /p:Version=$Version $ProjectFile }
 }
 
 task . build
