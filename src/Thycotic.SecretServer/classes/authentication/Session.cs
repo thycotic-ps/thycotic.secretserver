@@ -2,13 +2,50 @@
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using Newtonsoft.Json;
 using RestSharp;
+using Newtonsoft.Json;
 
 namespace Thycotic.PowerShell.Authentication
 {
+    public class Request
+    {
+        public static IRestResponse AccessToken(string SecretServerHost, string Username, string Password, string ProxyServer, int Timeout = 0)
+        {
+            var client = new RestClient(SecretServerHost + "/oauth2/token");
+            client.Timeout = Timeout;
+            if (string.IsNullOrEmpty(ProxyServer))
+            {
+                client.Proxy = new WebProxy(ProxyServer);
+            }
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("username", Username);
+            request.AddParameter("password", Password);
+            request.AddParameter("grant_type", "password");
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
+
+        public static IRestResponse RefreshToken(string SecretServerHost, string TokenValue, string ProxyServer, int Timeout = 0)
+        {
+            var client = new RestClient(SecretServerHost + "/oauth2/token");
+            client.Timeout = Timeout;
+            if (string.IsNullOrEmpty(ProxyServer))
+            {
+                client.Proxy = new WebProxy(ProxyServer);
+            }
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("refresh_token", TokenValue);
+            request.AddParameter("grant_type", "refresh_token");
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
+    }
+
     public class Session
     {
         public string SecretServer { get; set; }
@@ -110,44 +147,23 @@ namespace Thycotic.PowerShell.Authentication
 
         public bool SessionRefresh()
         {
-            if (this.TokenType.Equals("ExternalToken") || this.TokenType.Equals("SdkClient") || this.TokenType.Equals("WindowsAuth"))
+            try
+            {
+                var obj = Request.RefreshToken(this.SecretServer, this.RefreshToken, null);
+                var jsonObj = JsonConvert.DeserializeObject<ApiTokenResponse>(obj.Content);
+                this.AccessToken = jsonObj.access_token;
+                this.RefreshToken = jsonObj.refresh_token;
+                this.ExpiresIn = jsonObj.expires_in;
+                this.TokenType = jsonObj.token_type;
+                return true;
+            }
+            catch
             {
                 return false;
             }
-            else
-            {
-                try
-                {
-                    System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-
-                    var sessionClient = new RestClient(this.SecretServer + "/oauth2/token");
-                    var sessionRequest = new RestRequest(Method.POST);
-                    sessionRequest.Parameters.Clear();
-                    sessionRequest.AddParameter("grant_type", "refresh_token");
-                    sessionRequest.AddParameter("refresh_token", this.RefreshToken);
-                    IRestResponse sessionResponse = sessionClient.Execute(sessionRequest);
-
-                    //class model for api response
-                    ApiResponse apiResponse = JsonConvert.DeserializeObject<ApiResponse>(sessionResponse.Content);
-
-                    this.AccessToken = apiResponse.access_token;
-                    this.RefreshToken = apiResponse.refresh_token;
-                    this.TokenType = apiResponse.token_type;
-                    this.StartTime = DateTime.Now;
-
-                    // calculate time from expires_in seconds
-                    TimeSpan timeFromSeconds = TimeSpan.FromSeconds(apiResponse.expires_in);
-                    this.TimeOfDeath = DateTime.Now.Add(timeFromSeconds);
-
-                    return true;
-                }
-                catch
-                {
-                    return false;
-                }
-            }
         }
-        public class ApiResponse
+
+        public class ApiTokenResponse
         {
             public string access_token { get; set; }
             public string refresh_token { get; set; }
