@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.48.0] -- 2021-xx-xx
 
 ### Major Changes
 
@@ -13,46 +13,24 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Logging commands - converted to cmdlets [0096aa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0096aa7f83202105004e3b6133ac12502660bc87)
 * module - update TssSession --> Thycotic.PowerShell.Authentication.Session [f2f869c](https://github.com/thycotic-ps/thycotic.secretserver/commit/f2f869c4e6adabe79844c8571f3d8ea40c3a60fb)
 
-</details>
-
 ### Bug Fixes
-
-<details>
-    <summary>Click to view </summary>
 
 * Set-SecretRpcPrivilege - correct links in cbh [a0288bb](https://github.com/thycotic-ps/thycotic.secretserver/commit/a0288bbd98de0f468dc709aac8cc604342ab432e)
 * invoke-SecretGeneratePassword - fix doc error [5b2c270](https://github.com/thycotic-ps/thycotic.secretserver/commit/5b2c27049ad0b88fa6d0bb2e1a544db13fe56e87)
 * Update-FolderPermission - correct logging [50a1df6](https://github.com/thycotic-ps/thycotic.secretserver/commit/50a1df6a628dbf71b02f7faeb0073f2a43196d2d)
 
-</details>
-
 ### New Stuff
-
-<details>
-    <summary>Click to view </summary>
 
 * Search-Metadata - new command [e25470a](https://github.com/thycotic-ps/thycotic.secretserver/commit/e25470a692ca5104045c1425d910bea6608b0327)
 
-</details>
-
 ### General Updates
-
-<details>
-    <summary>Click to view </summary>
 
 * TssSecretTemplateField - add IsList property [7e7e3c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e7e3c8b8884c66d6ca83bfc22e8305950f1e281)
 * Client SDK - move binaries to new folder, update path references [37f0a9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/37f0a9d49e033c510d4857789ce535f6693ad04f)
 
-</details>
-
 ### Tests
 
-<details>
-    <summary>Click to view </summary>
-
-* None
-
-</details>
+* tests - adjust for new build process [bea6605](https://github.com/thycotic-ps/thycotic.secretserver/commit/bea660540a34dd29f099de704e2e89cdee3e8f97)
 
 ## [0.47.0] -- 2021-07-03
 
