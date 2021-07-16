@@ -1,160 +1,194 @@
 [cmdletbinding()]
 param(
-    [Parameter(ParameterSetName = 'docs')]
-    [switch]
-    $PublishDocs,
-
-    [Parameter(ParameterSetName = 'publish')]
+    [ValidateSet('Release','Prerelease')]
     [string]
-    $GalleryKey,
+    $Configuration,
 
-    # GitHub pre-release
-    [Parameter(ParameterSetName = 'publish')]
-    [switch]
-    $Prerelease,
-
-    # PowerShell Gallery/GitHub release
-    [Parameter(ParameterSetName = 'release')]
-    [Parameter(ParameterSetName = 'publish')]
-    [switch]
-    $Release,
-
-    # Draft GitHub release
-    [Parameter(ParameterSetName = 'release')]
-    [Parameter(ParameterSetName = 'publish')]
-    [switch]
-    $Draft,
-
-    # Don't run Pester tests
-    [Parameter(ParameterSetName = 'publish')]
-    [switch]
-    $SkipTests
+    [string]
+    $GalleryKey
 )
-Push-Location
-Set-Location $PSScriptRoot
-$moduleName = 'Thycotic.SecretServer'
-$staging = "$env:TEMP\tss_staging\"
+if ($PSEdition -eq 'Desktop') {
+    throw "Build process must be run using PowerShell 7"
+}
+
+if (-not (Get-Module platyPs -List)) {
+    Write-Output "platyPs module not found, attempting to install"
+    try {
+        Install-Module platyPs -Scope AllUsers -Force
+    } catch {
+        throw "Unable to install platyPs module: $($_)"
+    }
+}
+
+if (-not (Get-Module Pester -List)) {
+    Write-Output "Pester module not found, attempting to install"
+    try {
+        Install-Module Pester -Scope AllUsers -Force
+    } catch {
+        throw "Unable to install Pester: $($_)"
+    }
+}
 
 $git = git status
-if ($git[1] -notmatch "Your branch is up to date" -and (-not $PSBoundParameters.ContainsKey('PublishDocs'))) {
-    Pop-Location
+if ($git[1] -notmatch "Your branch is up to date") {
     throw "Local branch has commits not in GitHub"
 }
-if (Test-Path $staging) {
-    Remove-Item -Recurse -Force $staging
-}
-if (Get-Module Thycotic.SecretServer) {
-    Remove-Module Thycotic.SecretServer -Force
-}
-$imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
 
-if ($PSBoundParameters['PublishDocs']) {
-    if ($PSEdition -eq 'Desktop') {
-        Write-Warning "Doc processing has to run under PowerShell Core"
-        return
+$moduleName = 'Thycotic.SecretServer'
+$staging = [IO.Path]::Combine($env:TEMP, 'tss_staging')
+$docRoot = [IO.Path]::Combine($PSScriptRoot, 'docs', 'commands')
+$functionsRoot = [IO.Path]::Combine($PSScriptRoot, 'src', 'functions')
+$cmdletsRoot = [IO.Path]::Combine($PSScriptRoot, 'src', 'Thycotic.SecretServer', 'cmdlets')
+$helpPath = [IO.Path]::Combine($PSScriptRoot, 'src', 'en-us')
+$externalHelpFile = [IO.Path]::Combine($helpPath, 'Thycotic.SecretServer.dll-Help.xml')
+$libraryBuildScript = [IO.Path]::Combine($PSScriptRoot, 'build.library.ps1')
+
+$zipFilePath = Join-Path $staging "$moduleName.zip"
+$zipFileName = "$($moduleName).zip"
+
+$moduleTempPath = Join-Path $staging $moduleName
+$changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
+
+task library -Before stage, build, docs {
+    Invoke-Build -File $libraryBuildScript
+}
+
+task stage -Before build {
+    if (Test-Path $staging) {
+        Remove-Item -Recurse -Force $staging
     }
-    $docRoot = "$PSScriptRoot\docs\commands"
-    $functionsRoot = "$PSScriptRoot\src\functions"
-    $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
 
+    Write-Output "Staging directory: $moduleTempPath"
+    $script:imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+    $script:moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
+}
+
+task docs -Before stage, build {
     Import-Module platyPS
-    $cmdParams = @{
+
+    $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
+
+    $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
+    $docFunctionsParams = @{
         Module      = $moduleName
         CommandType = 'Function'
     }
-    $commands = Get-Command @cmdParams
+    $functions = Get-Command @docFunctionsParams
 
-    $functionDirectories.foreach({
-            $categoryFolderName = Split-Path $_ -Leaf
-            $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
+    $cmdletDirectories = [IO.Directory]::GetDirectories($cmdletsRoot)
+    $docCmdletParams = @{
+        Module      = $moduleName
+        CommandType = 'Cmdlet'
+    }
+    $cmdlets = Get-Command @docCmdletParams
 
-            if (Test-Path $docCommandPath) {
-                $helpNames = Get-ChildItem $_ -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
-                $helpCommands = $commands.Where({ $_.Name -in $helpNames })
-                $helpCommands.foreach({
-                        New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force
-                    })
-            } else {
-                Write-Error "Doc path does not exist: $docCommandPath"
-            }
-        })
-    return
+    Write-Output "Working on functions [$($functions.Count)]"
+    foreach ($fDir in $functionDirectories) {
+        $categoryFolderName = Split-Path $fDir -Leaf
+        $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
+
+        if (Test-Path $docCommandPath) {
+            $helpNames = Get-ChildItem $fDir -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
+            $helpCommands = $functions.Where({ $_.Name -in $helpNames })
+            $helpCommands.foreach({
+                    New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
+                })
+        } else {
+            Write-Error "Doc path does not exist: $docCommandPath"
+        }
+    }
+
+    Write-Output "Working on cmdlets [$($cmdlets.Count)]"
+    if (Test-Path $externalHelpFile) {
+        Remove-Item $externalHelpFile -Force
+    }
+    $cmdletDocPaths = @()
+    foreach ($cDir in $cmdletDirectories) {
+        $categoryFolder = Split-Path $cDir -Leaf
+        $docCommandPath = [IO.Path]::Combine($docRoot, $categoryFolder)
+
+        if (Test-Path $docCommandPath) {
+            $cmdletDocPaths += $docCommandPath
+        } else {
+            Write-Error "Doc path does not exist: $docCommandPath"
+        }
+    }
+    if ($cmdletDocPaths.Count -gt 0) {
+        New-ExternalHelp -Path $cmdletDocPaths -OutputPath $helpPath >$null
+    }
 }
 
-if (-not $PSBoundParameters['SkipTests']) {
-    Import-Module Pester
-    $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
-}
+# task tests -Before stage, docs, build {
+#     Import-Module Pester
+#     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
 
-if ($PSBoundParameters['Prerelease']) {
-    $foundModule = Find-Module -Name $moduleName -AllowPrerelease:$Prerelease
-} else {
-    $foundModule = Find-Module -Name $moduleName
-}
+#     if ($tests.FailedCount -gt 0) {
+#         throw "Test failures detected"
+#     }
+# }
 
-if ($foundModule.Version -ge $imported.Version) {
-    Write-Warning "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
-}
+task build {
+    if ([string]::IsNullOrEmpty($GalleryKey) -and $Configuration -ne 'PreRelease') {
+        throw "Gallery Key must be provided to release"
+    }
 
-if ($tests.FailedCount -eq 0 -or $PSBoundParameters['SkipTests']) {
-    $moduleTempPath = Join-Path $staging $moduleName
-    Write-Host "Staging directory: $moduleTempPath"
-    $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+    if ((gh config get prompt) -eq 'enabled') {
+        Invoke-Expression "gh config set prompt disabled"
+    }
 
-    if ($PSBoundParameters['GalleryKey']) {
+    if ($Configuration -eq 'Release') {
+        $foundModule = Find-Module -Name $moduleName
+        if ($foundModule.Version -ge $imported.Version) {
+            throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+        }
+
         try {
-            Write-Host "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
-
+            Write-Output "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
             Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-            Write-Host "successfully published to PS Gallery"
+            Write-Output "Publishing to PS Gallery, completed"
         } catch {
-            Write-Warning "Publish failed: $_"
+            Write-Warning "Publishing to PS Gallery failed: $($_)"
         }
     }
-    if ($PSBoundParameters['Release']) {
-        $zipFilePath = Join-Path $staging "$moduleName.zip"
-        $zipFileName = "$($moduleName).zip"
 
-        if ((gh config get prompt) -eq 'enabled') {
-            Invoke-Expression "gh config set prompt disabled"
-        }
-        $moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
-        $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
-        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-        $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
-        if ($PSBoundParameters['Prerelease']) {
-            $ghArgs = $ghArgs + " --prerelease"
-        }
-        if ($PSBoundParameters['Draft']) {
-            $ghArgs = $ghArgs + " --draft"
-        }
-
-        Write-Host "gh command to execute: $ghArgs" -ForegroundColor DarkYellow
-
-        Invoke-Expression "gh $ghArgs"
-
-        if ((gh config get prompt) -eq 'disabled') {
-            Invoke-Expression "gh config set prompt enabled"
-        }
-
-        # generate hash text file
-        $hashFileName = "$($moduleName)_hash.txt"
-        $hashFilePath = Join-Path $staging $hashFileName
-        Get-FileHash -Algorithm SHA256 -Path $zipFilePath | Select-Object Algorithm, Hash | Out-File $hashFilePath -Force
-
-        # module zip file
-        $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $zipFileName + ' --file ' + $zipFilePath
-        Write-Host "Azure CLI args: $azArgs" -ForegroundColor DarkBlue
-        Invoke-Expression "az $azArgs"
-
-        # module zip hash file
-        $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $hashFileName + ' --file ' + $hashFilePath
-        Write-Host "Azure CLI args: $azArgs" -ForegroundColor DarkYellow
-        Invoke-Expression "az $azArgs"
+    Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
+    $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
+    if ($Configuration -eq 'Prerelease') {
+        $ghArgs = $ghArgs + " --prerelease"
     }
 
-} else {
-    Remove-Item -Recurse -Force $staging
-    Write-Host "Tests failures detected; cancelling and cleaning up"
+    Write-Output "gh command to execute: $ghArgs"
+    Invoke-Expression "gh $ghArgs"
+
+    if ((gh config get prompt) -eq 'disabled') {
+        Invoke-Expression "gh config set prompt enabled"
+    }
+
+    if ($Configuration -eq 'Release') {
+        try {
+            $testAzAccount = az account list | ConvertFrom-Json
+        } catch {
+            throw "az CLI is not connected"
+        }
+        if ($testAzAccount) {
+            # generate hash text file
+            $hashFileName = "$($moduleName)_hash.txt"
+            $hashFilePath = Join-Path $staging $hashFileName
+            Get-FileHash -Algorithm SHA256 -Path $zipFilePath | Select-Object Algorithm, Hash | Out-File $hashFilePath -Force
+
+            # module zip file
+            $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $zipFileName + ' --file ' + $zipFilePath
+            Write-Output "Azure CLI args: $azArgs"
+            Invoke-Expression "az $azArgs"
+
+            # module zip hash file
+            $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $hashFileName + ' --file ' + $hashFilePath
+            Write-Output "Azure CLI args: $azArgs"
+            Invoke-Expression "az $azArgs"
+        } else {
+            Write-Output "No Azure Account"
+        }
+    }
 }
-Pop-Location
+
+task . build
