@@ -1,5 +1,6 @@
 BeforeDiscovery {
     $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    $commandName = $commandName.Replace('-','-Tss')
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {

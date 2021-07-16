@@ -1,5 +1,7 @@
 BeforeDiscovery {
-    $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf}
+    $commandName = Split-Path ($PSCommandPath.Replace('.Tests.ps1','')) -Leaf
+    $commandName = $commandName.Replace('-','-Tss')
+}
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
         [object[]]$knownParameters = 'TssSession', 'ReportName', 'CategoryId', 'ReportSql', 'Description', 'ChartType', 'Is3DReport', 'PageSize', 'Paging'
