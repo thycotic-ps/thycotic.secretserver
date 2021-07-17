@@ -164,11 +164,14 @@ task build {
     }
 
     $tagName = "v$($moduleData.ModuleVersion)"
+    $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
     if ($Configuration -eq 'PreRelease') {
         $tagName = "$tagName-$($GitHubPreTag)"
+        $releaseTitle = "$releaseTitle-$($GitHubPreTag)"
     }
+
     Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-    $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
+    $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
     if ($Configuration -eq 'Prerelease') {
         $ghArgs = $ghArgs + " --prerelease"
     }
