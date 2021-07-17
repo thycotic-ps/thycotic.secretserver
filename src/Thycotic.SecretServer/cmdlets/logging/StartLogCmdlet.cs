@@ -27,7 +27,7 @@ namespace Thycotic.SecretServer
         /// </summary>
         [Parameter(Position = 1)]
         [ValidateSet("log", "csv")]
-        public string LogFormat { get; set; }
+        public string LogFormat { get; set; } = "log";
 
         /// <summary>
         /// <para type="description">Script Version to include as reference in the log file header</para>

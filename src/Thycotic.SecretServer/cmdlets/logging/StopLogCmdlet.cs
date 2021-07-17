@@ -27,7 +27,7 @@ namespace Thycotic.SecretServer
         /// </summary>
         [Parameter(Position = 1)]
         [ValidateSet("log", "csv")]
-        public string LogFormat { get; set; }
+        public string LogFormat { get; set; } = "log";
 
         protected override void EndProcessing()
         {

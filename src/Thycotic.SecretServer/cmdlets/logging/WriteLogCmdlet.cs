@@ -29,7 +29,7 @@ namespace Thycotic.SecretServer
         /// </summary>
         [Parameter(Mandatory = true, Position = 1)]
         [ValidateSet("log", "csv")]
-        public string LogFormat { get; set; }
+        public string LogFormat { get; set; } = "log";
 
         /// <summary>
         /// <para type="description">Message type to write to the log, default INFO (allowed INFO, WARNING, ERROR, FATAL)</para>
