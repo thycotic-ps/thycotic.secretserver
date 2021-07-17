@@ -27,7 +27,7 @@ namespace Thycotic.SecretServer
         /// <summary>
         /// <para type="description">Format of log to generate, default to LOG; allowed: log, csv</para>
         /// </summary>
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Position = 1)]
         [ValidateSet("log", "csv")]
         public string LogFormat { get; set; } = "log";
 
