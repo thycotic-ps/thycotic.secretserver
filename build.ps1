@@ -5,6 +5,9 @@ param(
     $Configuration,
 
     [string]
+    $GitHubPreTag,
+
+    [string]
     $GalleryKey
 )
 if ($PSEdition -eq 'Desktop') {
@@ -59,7 +62,10 @@ task stage -Before build {
     }
 
     Write-Output "Staging directory: $moduleTempPath"
-    $script:imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+    $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+
+    # remove project files
+    Remove-Item -Recurse "$moduleTempPath\Thycotic.SecretServer" -Force
     $script:moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
 }
 
@@ -151,8 +157,12 @@ task build {
         }
     }
 
+    $tagName = "v$($moduleData.ModuleVersion)"
+    if ($Configuration -eq 'PreRelease') {
+        $tagName = "$tagName-$($GitHubPreTag)"
+    }
     Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-    $ghArgs = "release create `"v$($moduleData.ModuleVersion)`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
+    $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$moduleName $($moduleData.ModuleVersion)`" --notes-file $changeLog"
     if ($Configuration -eq 'Prerelease') {
         $ghArgs = $ghArgs + " --prerelease"
     }
