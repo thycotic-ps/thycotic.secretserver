@@ -4,6 +4,7 @@ param(
     [string]
     $Configuration,
 
+    [ValidateScript({$_ -match '^alpha'})]
     [string]
     $GitHubPreTag,
 
@@ -134,6 +135,11 @@ task docs -Before stage, build {
 # }
 
 task build {
+    $git = git status
+    if ($git[1] -notmatch "Your branch is up to date") {
+        throw "Local branch has commits not in GitHub"
+    }
+
     if ([string]::IsNullOrEmpty($GalleryKey) -and $Configuration -ne 'PreRelease') {
         throw "Gallery Key must be provided to release"
     }
