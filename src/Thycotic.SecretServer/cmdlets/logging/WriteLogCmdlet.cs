@@ -87,7 +87,7 @@ namespace Thycotic.SecretServer
                     using (StreamWriter sw = File.AppendText(LogFilePath))
                     {
                         // write line with timestamp included
-                        sw.WriteLine(currentTime + ";" + MessageType + ";" + MessageType);
+                        sw.WriteLine(currentTime + ";" + MessageType + ";" + Message);
                     }
                 }
 
