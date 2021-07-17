@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * invoke-SecretGeneratePassword - fix doc error [5b2c270](https://github.com/thycotic-ps/thycotic.secretserver/commit/5b2c27049ad0b88fa6d0bb2e1a544db13fe56e87)
 * Update-FolderPermission - correct logging [50a1df6](https://github.com/thycotic-ps/thycotic.secretserver/commit/50a1df6a628dbf71b02f7faeb0073f2a43196d2d)
 * Logging cmdlets - default format to "log" [4551208](https://github.com/thycotic-ps/thycotic.secretserver/commit/45512080b7b459d4b24c0aaff573aa0d6ad780a8)
+* WriteLog cmdlet - correct LogFormat parameter [2214e9a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2214e9a08c6d3597621278d153b32c34133ef347)
 
 ### New Stuff
 
