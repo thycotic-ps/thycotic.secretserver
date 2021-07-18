@@ -35,25 +35,42 @@ namespace Thycotic.SecretServer
         [Parameter(Position = 2)]
         public string ScriptVersion { get; set; }
 
+        /// <summary>
+        /// <para type="description">Force will recreate the provided LogFilePath, if it exists</para>
+        /// </summary>
+        [Parameter(Position = 3)]
+        public SwitchParameter Force { get; set; }
+
         protected override void EndProcessing()
         {
-            // check if path is valid
-            if (!File.Exists(LogFilePath))
+            // if exists and force provided, try to remove the file
+            if (File.Exists(LogFilePath) && this.MyInvocation.BoundParameters.ContainsKey("Force"))
             {
-                // remove file if exists
-                if (File.Exists(LogFilePath))
+                // try to remove file if exists
+                try
                 {
-                    // try to remove file if exists
-                    try
-                    {
-                        File.Delete(LogFilePath);
-                    }
-                    catch
-                    {
-                        // throw exception could not remove file
-                        throw new System.Exception("Could not remove file: " + LogFilePath);
-                    }
+                    File.Delete(LogFilePath);
                 }
+                catch
+                {
+                    // throw exception could not remove file
+                    throw new System.Exception("Could not remove file: " + LogFilePath);
+                }
+            }
+            else if (!File.Exists(LogFilePath))
+            {
+                try
+                {
+                    File.Create(LogFilePath);
+                }
+                catch
+                {
+                    throw new System.Exception("Issue creating log file: " + LogFilePath);
+                }
+            }
+            else
+            {
+                throw new System.Exception("Could not find file provided: " + LogFilePath);
             }
 
             // get current timestamp
@@ -74,29 +91,19 @@ namespace Thycotic.SecretServer
                     sw.WriteLine(currentTime + ";INFO;.##....##.##.......##....##.##....##..##..........##.......##....##.##.......##....##....##.##...##.......##....##.");
                     sw.WriteLine(currentTime + ";INFO;..######..########..######..##.....##.########....##........######..########.##.....##....###....########.##.....##");
                     sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
                     sw.WriteLine(currentTime + ";INFO;Started processing at" + "[" + currentTime + "]");
                     sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;");
-                    sw.WriteLine(currentTime + ";INFO;Module Version:     [$((Get-Module Thycotic.SecretServer).Version.ToString())]");
-                    sw.WriteLine(currentTime + ";INFO;PowerShell Version: [$($PSVersionTable.PSVersion.ToString())]");
-                    sw.WriteLine(currentTime + ";INFO;OS Version:         [$($PSVersionTable.OS.ToString())]");
-                    sw.WriteLine(currentTime + ";INFO;Script version:     [" + ScriptVersion + "].");
-                    sw.WriteLine(currentTime + ";INFO;");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
+                    sw.WriteLine(currentTime + ";INFO;Script version: [" + ScriptVersion + "].");
                     sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
                     sw.WriteLine(currentTime + ";INFO;");
                 }
             }
             if (LogFormat.Equals("csv"))
             {
-                var osVersion = Environment.OSVersion;
                 var data = new List<msgCsv>
                 {
-                    new msgCsv { MsgTime = currentTime, MsgType = "INFO", MsgText = "Started processing at" + "[" + currentTime + "]" },
-                    new msgCsv { MsgTime = currentTime, MsgType = "INFO", MsgText = "OS Version: " + "[" + osVersion + "]" },
-                    new msgCsv { MsgTime = currentTime, MsgType = "INFO", MsgText = "Script version: " + "[" + ScriptVersion + "]." },
+                    new msgCsv { MsgTime = currentTime, MsgType = "INFO", MsgText = "Started processing at [" + currentTime + "]" },
+                    new msgCsv { MsgTime = currentTime, MsgType = "INFO", MsgText = "Script version: [" + ScriptVersion + "]."}
                 };
 
                 var config = new CsvConfiguration(CultureInfo.InvariantCulture)
