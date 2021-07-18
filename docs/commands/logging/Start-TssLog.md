@@ -12,7 +12,8 @@ Creates an initial log file with a header.
 ## SYNTAX
 
 ```
-Start-TssLog [[-LogFilePath] <String>] [[-LogFormat] <String>] [[-ScriptVersion] <String>] [<CommonParameters>]
+Start-TssLog [[-LogFilePath] <String>] [[-LogFormat] <String>] [[-ScriptVersion] <String>] [-Force]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -29,6 +30,21 @@ Start-TssLog -LogFilePath $newLog.FullName -ScriptVersion '1.0.4'
 Generate a new temporary file to use as a log, writing Script version of 1.0.4.
 
 ## PARAMETERS
+
+### -Force
+{{ Fill Force Description }}
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: 3
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
 
 ### -LogFilePath
 Full file path to the log file to create

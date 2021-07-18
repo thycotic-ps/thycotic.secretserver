@@ -13,13 +13,13 @@ Writes message to the log file.
 
 ### message
 ```
-Write-TssLog [-LogFilePath] <String> [-LogFormat] <String> [-MessageType] <String> [[-Message] <String>]
+Write-TssLog [-LogFilePath] <String> [[-LogFormat] <String>] [[-MessageType] <String>] [[-Message] <String>]
  [<CommonParameters>]
 ```
 
 ### divider
 ```
-Write-TssLog [-LogFilePath] <String> [-LogFormat] <String> [-MessageType] <String> [-Divider]
+Write-TssLog [-LogFilePath] <String> [[-LogFormat] <String>] [[-MessageType] <String>] [-Divider]
  [[-DividerCharacter] <String>] [<CommonParameters>]
 ```
 
@@ -85,7 +85,7 @@ Aliases:
 Required: True
 Position: 0
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -98,7 +98,7 @@ Parameter Sets: (All)
 Aliases:
 Accepted values: log, csv
 
-Required: True
+Required: False
 Position: 1
 Default value: Log
 Accept pipeline input: False
@@ -116,7 +116,7 @@ Aliases:
 Required: False
 Position: 3
 Default value: None
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -125,14 +125,27 @@ Message type to write to the log, default INFO (allowed INFO, WARNING, ERROR, FA
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: message
 Aliases:
 Accepted values: INFO, WARNING, ERROR, FATAL
 
-Required: True
+Required: False
 Position: 2
 Default value: INFO
-Accept pipeline input: False
+Accept pipeline input: True (ByPropertyName, ByValue)
+Accept wildcard characters: False
+```
+
+```yaml
+Type: String
+Parameter Sets: divider
+Aliases:
+Accepted values: INFO, WARNING, ERROR, FATAL
+
+Required: False
+Position: 2
+Default value: INFO
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
