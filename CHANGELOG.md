@@ -21,10 +21,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Logging cmdlets - default format to "log" [4551208](https://github.com/thycotic-ps/thycotic.secretserver/commit/45512080b7b459d4b24c0aaff573aa0d6ad780a8)
 * WriteLog cmdlet - correct LogFormat parameter [2214e9a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2214e9a08c6d3597621278d153b32c34133ef347)
 * WriteLog cmdlet - Correct message output log format [4773c6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/4773c6d898cbfad9d852dd5d6b21a4b14e08d5c6)
+* Stop-Log - correct code comment [f707419](https://github.com/thycotic-ps/thycotic.secretserver/commit/f707419112a27f8a3ce784120cb34e713bcfc278)
 
 ### New Stuff
 
 * Search-Metadata - new command [e25470a](https://github.com/thycotic-ps/thycotic.secretserver/commit/e25470a692ca5104045c1425d910bea6608b0327)
+* Write-Log - add pipe support for LogFilePath, LogFormat, MessageType, and Message [12b78bd](https://github.com/thycotic-ps/thycotic.secretserver/commit/12b78bdb5033e6be95cd1216897710426efec15c)
 
 ### General Updates
 
