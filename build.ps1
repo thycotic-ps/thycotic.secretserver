@@ -1,10 +1,10 @@
 [cmdletbinding()]
 param(
-    [ValidateSet('Release','Prerelease')]
+    [ValidateSet('Debug','Release','Prerelease')]
     [string]
     $Configuration,
 
-    [ValidateScript({$_ -match '^alpha'})]
+    [ValidateScript({ $_ -match '^alpha' })]
     [string]
     $GitHubPreTag,
 
@@ -15,7 +15,7 @@ if ($PSEdition -eq 'Desktop') {
     throw "Build process must be run using PowerShell 7"
 }
 
-if (-not (Get-Module platyPs -List)) {
+if (-not (Get-Module platyPs -List) -and $Configuration -ne 'Debug') {
     Write-Output "platyPs module not found, attempting to install"
     try {
         Install-Module platyPs -Scope AllUsers -Force
@@ -24,7 +24,7 @@ if (-not (Get-Module platyPs -List)) {
     }
 }
 
-if (-not (Get-Module Pester -List)) {
+if (-not (Get-Module Pester -List) -and $Configuration -ne 'Debug') {
     Write-Output "Pester module not found, attempting to install"
     try {
         Install-Module Pester -Scope AllUsers -Force
@@ -33,9 +33,11 @@ if (-not (Get-Module Pester -List)) {
     }
 }
 
-$git = git status
-if ($git[1] -notmatch "Your branch is up to date") {
-    throw "Local branch has commits not in GitHub"
+if ($Configuration -ne 'Debug') {
+    $git = git status
+    if ($git[1] -notmatch "Your branch is up to date") {
+        throw "Local branch has commits not in GitHub"
+    }
 }
 
 $moduleName = 'Thycotic.SecretServer'
@@ -58,16 +60,18 @@ task library -Before stage, build, docs {
 }
 
 task stage -Before build {
-    if (Test-Path $staging) {
-        Remove-Item -Recurse -Force $staging
+    if ($Configuration -ne 'Debug') {
+        if (Test-Path $staging) {
+            Remove-Item -Recurse -Force $staging
+        }
+
+        Write-Output "Staging directory: $moduleTempPath"
+        $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
+
+        # remove project files
+        Remove-Item -Recurse "$moduleTempPath\Thycotic.SecretServer" -Force
+        $script:moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
     }
-
-    Write-Output "Staging directory: $moduleTempPath"
-    $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
-
-    # remove project files
-    Remove-Item -Recurse "$moduleTempPath\Thycotic.SecretServer" -Force
-    $script:moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
 }
 
 task docs -Before stage, build {
@@ -116,6 +120,7 @@ task docs -Before stage, build {
 
         if (Test-Path $docCommandPath) {
             $cmdletDocPaths += $docCommandPath
+            Update-MarkdownHelp -Path $docCommandPath >$null
         } else {
             Write-Error "Doc path does not exist: $docCommandPath"
         }
@@ -135,77 +140,79 @@ task docs -Before stage, build {
 # }
 
 task build {
-    $git = git status
-    if ($git[1] -notmatch "Your branch is up to date") {
-        throw "Local branch has commits not in GitHub"
-    }
-
-    if ([string]::IsNullOrEmpty($GalleryKey) -and $Configuration -ne 'PreRelease') {
-        throw "Gallery Key must be provided to release"
-    }
-
-    if ((gh config get prompt) -eq 'enabled') {
-        Invoke-Expression "gh config set prompt disabled"
-    }
-
-    if ($Configuration -eq 'Release') {
-        $foundModule = Find-Module -Name $moduleName
-        if ($foundModule.Version -ge $imported.Version) {
-            throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+    if ($Configuration -ne 'Debug') {
+        $git = git status
+        if ($git[1] -notmatch "Your branch is up to date") {
+            throw "Local branch has commits not in GitHub"
         }
 
-        try {
-            Write-Output "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
-            Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-            Write-Output "Publishing to PS Gallery, completed"
-        } catch {
-            Write-Warning "Publishing to PS Gallery failed: $($_)"
+        if ([string]::IsNullOrEmpty($GalleryKey) -and $Configuration -ne 'PreRelease') {
+            throw "Gallery Key must be provided to release"
         }
-    }
 
-    $tagName = "v$($moduleData.ModuleVersion)"
-    $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
-    if ($Configuration -eq 'PreRelease') {
-        $tagName = "$tagName-$($GitHubPreTag)"
-        $releaseTitle = "$releaseTitle-$($GitHubPreTag)"
-    }
-
-    Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-    $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
-    if ($Configuration -eq 'Prerelease') {
-        $ghArgs = $ghArgs + " --prerelease"
-    }
-
-    Write-Output "gh command to execute: $ghArgs"
-    Invoke-Expression "gh $ghArgs"
-
-    if ((gh config get prompt) -eq 'disabled') {
-        Invoke-Expression "gh config set prompt enabled"
-    }
-
-    if ($Configuration -eq 'Release') {
-        try {
-            $testAzAccount = az account list | ConvertFrom-Json
-        } catch {
-            throw "az CLI is not connected"
+        if ((gh config get prompt) -eq 'enabled') {
+            Invoke-Expression "gh config set prompt disabled"
         }
-        if ($testAzAccount) {
-            # generate hash text file
-            $hashFileName = "$($moduleName)_hash.txt"
-            $hashFilePath = Join-Path $staging $hashFileName
-            Get-FileHash -Algorithm SHA256 -Path $zipFilePath | Select-Object Algorithm, Hash | Out-File $hashFilePath -Force
 
-            # module zip file
-            $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $zipFileName + ' --file ' + $zipFilePath
-            Write-Output "Azure CLI args: $azArgs"
-            Invoke-Expression "az $azArgs"
+        if ($Configuration -eq 'Release') {
+            $foundModule = Find-Module -Name $moduleName
+            if ($foundModule.Version -ge $imported.Version) {
+                throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+            }
 
-            # module zip hash file
-            $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $hashFileName + ' --file ' + $hashFilePath
-            Write-Output "Azure CLI args: $azArgs"
-            Invoke-Expression "az $azArgs"
-        } else {
-            Write-Output "No Azure Account"
+            try {
+                Write-Output "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
+                Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+                Write-Output "Publishing to PS Gallery, completed"
+            } catch {
+                Write-Warning "Publishing to PS Gallery failed: $($_)"
+            }
+        }
+
+        $tagName = "v$($moduleData.ModuleVersion)"
+        $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
+        if ($Configuration -eq 'PreRelease') {
+            $tagName = "$tagName-$($GitHubPreTag)"
+            $releaseTitle = "$releaseTitle-$($GitHubPreTag)"
+        }
+
+        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
+        $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
+        if ($Configuration -eq 'Prerelease') {
+            $ghArgs = $ghArgs + " --prerelease"
+        }
+
+        Write-Output "gh command to execute: $ghArgs"
+        Invoke-Expression "gh $ghArgs"
+
+        if ((gh config get prompt) -eq 'disabled') {
+            Invoke-Expression "gh config set prompt enabled"
+        }
+
+        if ($Configuration -eq 'Release') {
+            try {
+                $testAzAccount = az account list | ConvertFrom-Json
+            } catch {
+                throw "az CLI is not connected"
+            }
+            if ($testAzAccount) {
+                # generate hash text file
+                $hashFileName = "$($moduleName)_hash.txt"
+                $hashFilePath = Join-Path $staging $hashFileName
+                Get-FileHash -Algorithm SHA256 -Path $zipFilePath | Select-Object Algorithm, Hash | Out-File $hashFilePath -Force
+
+                # module zip file
+                $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $zipFileName + ' --file ' + $zipFilePath
+                Write-Output "Azure CLI args: $azArgs"
+                Invoke-Expression "az $azArgs"
+
+                # module zip hash file
+                $azArgs = 'storage blob upload --account-name thyproservices --container-name ''$web'' --name ' + $hashFileName + ' --file ' + $hashFilePath
+                Write-Output "Azure CLI args: $azArgs"
+                Invoke-Expression "az $azArgs"
+            } else {
+                Write-Output "No Azure Account"
+            }
         }
     }
 }
