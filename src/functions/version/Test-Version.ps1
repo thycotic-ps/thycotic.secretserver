@@ -25,10 +25,9 @@ function Test-Version {
     [OutputType('TssVersion')]
     param (
         # TssSession object created by New-TssSession for auth
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
-        [Thycotic.PowerShell.Authentication.Session]$TssSession
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [Thycotic.PowerShell.Authentication.Session]
+        $TssSession
     )
     begin {
         $tssParams = $PSBoundParameters
