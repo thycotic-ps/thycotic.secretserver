@@ -21,27 +21,29 @@ namespace Thycotic.SecretServer
         /// <summary>
         /// <para type="description">Full file path to the log file</para>
         /// </summary>
-        [Parameter(Mandatory = true, Position = 0)]
+        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public string LogFilePath { get; set; }
 
         /// <summary>
         /// <para type="description">Format of log to generate, default to LOG; allowed: log, csv</para>
         /// </summary>
-        [Parameter(Position = 1)]
+        [Parameter(ParameterSetName = "message", Position = 1)]
+        [Parameter(ParameterSetName = "divider")]
         [ValidateSet("log", "csv")]
         public string LogFormat { get; set; } = "log";
 
         /// <summary>
         /// <para type="description">Message type to write to the log, default INFO (allowed INFO, WARNING, ERROR, FATAL)</para>
         /// </summary>
-        [Parameter(Mandatory = true, Position = 2)]
+        [Parameter(ParameterSetName = "message", Position = 2, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
+        [Parameter(ParameterSetName = "divider")]
         [ValidateSet("INFO", "WARNING", "ERROR", "FATAL")]
         public string MessageType { get; set; } = "INFO";
 
         /// <summary>
         /// <para type="description">Message to append to the log</para>
         /// </summary>
-        [Parameter(ParameterSetName = "message", Position = 3)]
+        [Parameter(ParameterSetName = "message", Position = 3, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public string Message { get; set; }
 
         /// <summary>
@@ -56,13 +58,12 @@ namespace Thycotic.SecretServer
         [Parameter(ParameterSetName = "divider", Position = 5)]
         public string DividerCharacter { get; set; } = "+";
 
-
         protected override void EndProcessing()
         {
             // check if path is valid
             if (!File.Exists(LogFilePath))
             {
-                // throw exception could not remove file
+                // throw exception could find file
                 throw new System.Exception("Could not find file: " + LogFilePath);
             }
 
