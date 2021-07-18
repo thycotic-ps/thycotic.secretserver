@@ -26,7 +26,7 @@ Search Workflow Templates and return those that are inactive in the results
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

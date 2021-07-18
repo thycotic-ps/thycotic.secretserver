@@ -26,7 +26,7 @@ Get audit for Secret ID 65
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

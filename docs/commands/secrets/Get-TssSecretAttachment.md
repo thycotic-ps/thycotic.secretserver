@@ -29,7 +29,7 @@ Get the Secert ID 35's field Attached File (using slug name attached-file), writ
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

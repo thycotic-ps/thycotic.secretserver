@@ -33,7 +33,7 @@ Returns roles assigned to User ID 43
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

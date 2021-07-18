@@ -63,7 +63,7 @@ Sets secret 1455 disables emailing when changed
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

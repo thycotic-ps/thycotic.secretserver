@@ -27,7 +27,7 @@ Updates Folder ID 77 setting Secret Policy ID 15
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

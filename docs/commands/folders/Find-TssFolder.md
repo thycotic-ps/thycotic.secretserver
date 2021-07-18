@@ -26,7 +26,7 @@ Return folders with Parent Folder ID of 56
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

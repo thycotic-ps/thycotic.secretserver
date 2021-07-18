@@ -33,7 +33,7 @@ Returns details on Folder ID 482, if no access to folder will return no results
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

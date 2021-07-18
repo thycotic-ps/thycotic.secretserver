@@ -26,7 +26,7 @@ Return list of all groups found in Secret Server that account has access to mana
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

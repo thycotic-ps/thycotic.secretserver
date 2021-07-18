@@ -26,7 +26,7 @@ Update Group 8 to have users 54, 35, 97, and 345 as members
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

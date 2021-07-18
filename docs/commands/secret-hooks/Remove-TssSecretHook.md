@@ -26,7 +26,7 @@ Delete the Hook ID 2 on Secret ID 385
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

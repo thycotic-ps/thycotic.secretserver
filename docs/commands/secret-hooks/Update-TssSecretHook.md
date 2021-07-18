@@ -30,7 +30,7 @@ Update Secret Hook 2's Arguments property on Secret ID 76
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

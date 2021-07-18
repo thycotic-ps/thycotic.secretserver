@@ -94,7 +94,7 @@ Get the Secert 330, pulling the fields on that Secret that are files and output 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

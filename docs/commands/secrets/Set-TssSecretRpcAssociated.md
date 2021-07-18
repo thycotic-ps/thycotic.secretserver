@@ -38,7 +38,7 @@ Pull the current Associated Secrets on Secret ID 330, add the Secret ID 42 to th
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

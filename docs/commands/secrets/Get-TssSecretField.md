@@ -42,7 +42,7 @@ Get the private key from Secret 432, writing to the file private-key.json
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

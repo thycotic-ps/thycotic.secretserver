@@ -25,7 +25,7 @@ Returns Folder Permission(s) for Folder ID
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

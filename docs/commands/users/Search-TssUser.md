@@ -34,7 +34,7 @@ Return a list of all users with "demo" in the username or email
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

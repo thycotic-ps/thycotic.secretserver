@@ -26,7 +26,7 @@ Creates a local Secret Server group named, Local Admin Group, enabling it upon c
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

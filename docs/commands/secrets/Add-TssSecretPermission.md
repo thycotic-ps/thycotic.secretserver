@@ -46,7 +46,7 @@ Add "chad" as owner for Secrets that have "App" in their name, will also break i
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

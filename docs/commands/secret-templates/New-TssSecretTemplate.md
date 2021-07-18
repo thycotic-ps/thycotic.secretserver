@@ -47,7 +47,7 @@ Creates a new template named "Test Template 42" with 3 fields
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

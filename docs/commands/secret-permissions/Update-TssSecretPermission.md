@@ -26,7 +26,7 @@ Update Secret Permission 242, setting access role to View
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

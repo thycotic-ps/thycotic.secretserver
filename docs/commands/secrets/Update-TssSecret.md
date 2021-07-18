@@ -28,7 +28,7 @@ Update Secret ID 42, setting SiteID to Site 2
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

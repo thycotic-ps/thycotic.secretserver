@@ -34,7 +34,7 @@ Disable Checkout When Viewed setting on Secret IDs 42, 43, and 45
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

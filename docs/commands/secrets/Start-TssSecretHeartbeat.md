@@ -25,7 +25,7 @@ Start a heartbeat operation on Secret 46
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

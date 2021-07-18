@@ -26,7 +26,7 @@ List Password Types that are inactive and have "Directory" in the name
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

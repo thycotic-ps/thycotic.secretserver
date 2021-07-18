@@ -27,7 +27,7 @@ Renames Folder ID 93 to 'Security Admins'
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

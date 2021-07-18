@@ -29,7 +29,7 @@ Output the current fields for Secret Template 6042, create a new field named "Ad
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

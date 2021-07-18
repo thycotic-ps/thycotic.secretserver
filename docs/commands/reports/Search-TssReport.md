@@ -34,7 +34,7 @@ Return a list of Reports found with "secret" in the name.
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -48,7 +48,7 @@ Return secrets found in folder 50 where RPC is enabled on the secret templates
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

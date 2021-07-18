@@ -27,7 +27,7 @@ Get the TssUser object via Get-TssUser, updating the display name on User 42
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

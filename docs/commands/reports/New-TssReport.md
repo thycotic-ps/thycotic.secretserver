@@ -41,7 +41,7 @@ Create a new report where the T-SQL is stored in a SQL script file
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

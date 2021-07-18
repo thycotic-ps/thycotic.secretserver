@@ -33,7 +33,7 @@ Return Secret Dependency Stub for Secret 42 and Template ID 6
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

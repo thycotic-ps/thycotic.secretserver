@@ -41,7 +41,7 @@ Set the RPC Privileged Account on Secret 56 to use the Secret itself (Credential
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

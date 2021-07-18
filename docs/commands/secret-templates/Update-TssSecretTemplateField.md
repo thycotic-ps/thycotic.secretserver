@@ -29,7 +29,7 @@ Gets current Password field on Template 6025 and updates IsRequired to be true
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

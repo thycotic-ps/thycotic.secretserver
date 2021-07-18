@@ -25,7 +25,7 @@ Get User Id 43 details in Group ID 8
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

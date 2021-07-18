@@ -55,7 +55,7 @@ Set Secret expiration on Secret 23 to interval of 21 days
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

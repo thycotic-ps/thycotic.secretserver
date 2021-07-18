@@ -25,7 +25,7 @@ Get details of Secret Hook ID 1 of Secret ID 376
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

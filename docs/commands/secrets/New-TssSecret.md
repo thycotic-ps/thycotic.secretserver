@@ -44,7 +44,7 @@ Output will show the FolderId, Name, SecretTemplateName, and Active properties.
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

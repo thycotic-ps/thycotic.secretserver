@@ -34,7 +34,7 @@ Get the current user for the session and output a sorted list of Secret Server p
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

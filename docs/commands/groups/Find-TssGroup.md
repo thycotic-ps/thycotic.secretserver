@@ -34,7 +34,7 @@ Return list of Groups found in Secret Server matching the characters IT
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -35,7 +35,7 @@ Adding permission to all Secrets that have "Azure" in their name to the group "c
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

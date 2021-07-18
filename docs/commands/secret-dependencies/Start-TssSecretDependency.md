@@ -26,7 +26,7 @@ After starting a Secret's Dependency 46, get the status of that run
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

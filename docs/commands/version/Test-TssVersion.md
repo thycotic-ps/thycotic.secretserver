@@ -25,7 +25,7 @@ Pulls version of Secret Server and queries for latest version, returning object 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

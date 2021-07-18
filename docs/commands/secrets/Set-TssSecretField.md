@@ -86,7 +86,7 @@ Sets the attached-file field on Secret 42 to the contents of the attachment.txt 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

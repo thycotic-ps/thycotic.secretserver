@@ -25,7 +25,7 @@ Return all secret hooks associated with Secret ID 82
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

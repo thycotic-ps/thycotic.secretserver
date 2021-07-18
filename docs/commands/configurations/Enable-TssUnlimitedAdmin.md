@@ -25,7 +25,7 @@ Enables Unlimited Admin Mode providing the required note
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

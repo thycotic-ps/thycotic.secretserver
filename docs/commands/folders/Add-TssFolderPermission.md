@@ -53,7 +53,7 @@ Add "chad" as owner for Folder and Secret on Folders that have "App" in their na
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

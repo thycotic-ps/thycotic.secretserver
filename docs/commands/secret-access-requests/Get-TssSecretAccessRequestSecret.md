@@ -25,7 +25,7 @@ Get any Secret Access Request on Secret 42 for current user (based on access tok
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

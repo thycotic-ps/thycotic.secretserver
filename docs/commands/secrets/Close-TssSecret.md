@@ -44,7 +44,7 @@ Check-In Secret 42 after using it to get the username/password credential
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

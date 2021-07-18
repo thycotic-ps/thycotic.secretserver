@@ -26,7 +26,7 @@ Generating password for Secret ID 25 based on password rules configured for the 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -26,7 +26,7 @@ Return list of Scripts that have the text "admin" in the name
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -26,7 +26,7 @@ Remove User ID 34 from Group ID 8
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

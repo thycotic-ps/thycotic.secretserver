@@ -35,7 +35,7 @@ Update Folder Permission ID 45 on Folder ID 72 to Owner folder permission
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

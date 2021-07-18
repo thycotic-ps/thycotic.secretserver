@@ -44,7 +44,7 @@ Creates a folder named "Marketing Dept" under parent folder 27 with inheritance 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -42,7 +42,7 @@ Exports report 60 (Changed90DaysReportName) in CSV format, delimited by pipe cha
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -34,7 +34,7 @@ Create the Dependency Group "Test Env" on all Secrets found under Folder ID 50, 
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

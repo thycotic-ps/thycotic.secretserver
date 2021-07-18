@@ -42,7 +42,7 @@ Checkout Secret ID 42 providing a comment (Secret configured to checkout and req
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

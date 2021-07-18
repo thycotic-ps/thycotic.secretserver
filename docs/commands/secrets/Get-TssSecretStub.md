@@ -35,7 +35,7 @@ Getting the Active Directory template stub object, setting the Name and Username
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

@@ -35,7 +35,7 @@ Creates a folder permission on Folder ID 46 for Group ID 21, giving Owner for Fo
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

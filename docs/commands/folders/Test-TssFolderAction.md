@@ -25,7 +25,7 @@ Test for action AddSecret on Folder ID 75, returning true if exists and false if
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

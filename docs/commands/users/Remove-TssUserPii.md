@@ -25,7 +25,7 @@ Secret Server will go through and delete identified PII data for user 56
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session

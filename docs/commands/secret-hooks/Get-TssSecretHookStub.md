@@ -26,7 +26,7 @@ Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, Pre
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session
