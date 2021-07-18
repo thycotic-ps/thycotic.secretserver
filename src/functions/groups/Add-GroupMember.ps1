@@ -24,7 +24,7 @@ function Add-GroupMember {
     [cmdletbinding(SupportsShouldProcess)]
     [OutputType('TssGroupUser')]
     param(
-        # TssSession object created by New-TssSession for auth
+        # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,

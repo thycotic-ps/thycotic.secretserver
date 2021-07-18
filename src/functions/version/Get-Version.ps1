@@ -30,7 +30,7 @@ function Get-Version {
     [cmdletbinding()]
     [OutputType('TssVersion')]
     param(
-        # TssSession object passed for auth info
+        # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession

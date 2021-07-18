@@ -24,7 +24,7 @@ function Remove-SecretDependency {
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     [OutputType('TssDelete')]
     param (
-        # TssSession object created by New-TssSession for auth
+        # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,

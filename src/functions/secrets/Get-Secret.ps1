@@ -67,7 +67,7 @@ function Get-Secret {
     [cmdletbinding(DefaultParameterSetName = 'all')]
     [OutputType('TssSecret')]
     param(
-        # TssSession object created by New-TssSession for auth
+        # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
