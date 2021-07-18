@@ -17,16 +17,18 @@ Each function included below will have a version check on Secret Server before t
 The Secret Server version listed is the minimum required to use the function.
 {: .notice--info}
 
-**Function Name**                   | **Secret Server Version**     |
------------------------------------ | ----------------------------- |
-[Get-TssConfiguration]              | 10.9.000032
-[Search-TssDistributedEngineSite]   | 10.9.000032
-[Get-TssSecretAudit]                | 10.9.000032
-[Get-TssSecretState]                | 10.9.000032
-[Get-TssUserRoleAssigned]           | 10.9.000032
+| **Function Name**                 | **Secret Server Version** |
+| --------------------------------- | ------------------------- |
+| [Get-TssConfiguration]            | 10.9.000032               |
+| [Search-TssDistributedEngineSite] | 10.9.000032               |
+| [Get-TssSecretAudit]              | 10.9.000032               |
+| [Get-TssSecretState]              | 10.9.000032               |
+| [Get-TssUserRoleAssigned]         | 10.9.000032               |
+| [Search-TssMetadata]              | 10.9.000064               |
 
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
 [Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
 [Get-TssSecretState]:/thycotic.secretserver/commands/secrets/Get-TssSecretState
 [Get-TssConfiguration]:/thycotic.secretserver/commands/configurations/Get-TssConfiguration
 [Search-TssDistributedEngineSite]:/thycotic.secretserver/commands/distributed-engine/Search-TssDistributedEngineSite
+[Search-TssMetadata]:/thycotic.secretserver/commands/metadata/Search-TssMetadata
