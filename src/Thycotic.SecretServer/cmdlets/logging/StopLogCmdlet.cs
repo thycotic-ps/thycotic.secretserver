@@ -34,7 +34,7 @@ namespace Thycotic.SecretServer
             // check if path is valid
             if (!File.Exists(LogFilePath))
             {
-                // throw exception could not remove file
+                // throw exception could find file
                 throw new System.Exception("Could not find file: " + LogFilePath);
             }
 
