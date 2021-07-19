@@ -983,12 +983,40 @@
             "    /// <para type=\"synopsis\">${1:synopsis summary}</para>",
             "    /// <para type=\"description\">${1}</para>",
             "    /// </summary>",
-            "    [Cmdlet(VerbsLifecycle.Start, \"Log\", HelpUri = \"https://thycotic-ps.github.io/thycotic.secretserver/${2:folder name}/${3:public name}\")]",
-            "    public class ${4:Private name}Cmdlet : PSCmdlet",
+            "    [Cmdlet(${2:VerbClass - VersCommon}, \"${3:Noun}\", HelpUri = \"https://thycotic-ps.github.io/thycotic.secretserver/${4:folder name}/${5:public name}\")]",
+            "    public class ${6:Private name}Cmdlet : PSCmdlet",
             "    {",
+            "        ///<summary>",
+            "        ///<para type=\"description\">TssSession object created by New-TssSession for authentication</para>",
+            "        ///</summary>",
+            "        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]",
+            "        public Thycotic.PowerShell.Authentication.Session TssSession {get; set;}",
             "    }",
             "}"
         ],
         "description": "cmdlet base"
+    },
+    "Base C# class library": {
+        "prefix": "tssclass",
+        "body": [
+            "using System;",
+            "using System.Threading.Tasks;",
+            "using System.Management.Automation;",
+            "using System.Management.Automation.Runspaces;",
+            "",
+            "namespace Thycotic.PowerShell.${1:Tag name}",
+            "{",
+            "    public class ${2:Class Name}",
+            "    {",
+            "        public ${3:type} ${4:property name} { get; set; }",
+            "        public ${5:type} ${6:property name} { get; } = \"${7:default value}\";",
+            "",
+            "        public ${8:method output type} ${9:method name}()",
+            "        {",
+            "        }",
+            "    }",
+            "}"
+        ],
+        "description": "Base C# class library"
     }
 }
