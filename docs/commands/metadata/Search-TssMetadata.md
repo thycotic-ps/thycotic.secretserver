@@ -34,7 +34,7 @@ Return Field ID 4 on object Item ID 46
 ## PARAMETERS
 
 ### -TssSession
-TssSession object created by New-TssSession for auth
+TssSession object created by New-TssSession for authentication
 
 ```yaml
 Type: Session
@@ -115,7 +115,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssMetadataSummary
+### Thycotic.PowerShell.Metadata.Summary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

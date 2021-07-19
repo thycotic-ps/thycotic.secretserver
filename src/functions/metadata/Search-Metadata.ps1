@@ -24,7 +24,7 @@ function Search-Metadata {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssMetadataSummary')]
+    [OutputType('Thycotic.PowerShell.Metadata.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -90,7 +90,7 @@ function Search-Metadata {
                 Write-Warning "No Metadata found"
             }
             if ($restResponse.records) {
-                [TssMetadataSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Metadata.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
