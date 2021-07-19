@@ -22,16 +22,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * WriteLog cmdlet - correct LogFormat parameter [2214e9a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2214e9a08c6d3597621278d153b32c34133ef347)
 * WriteLog cmdlet - Correct message output log format [4773c6d](https://github.com/thycotic-ps/thycotic.secretserver/commit/4773c6d898cbfad9d852dd5d6b21a4b14e08d5c6)
 * Stop-Log - correct code comment [f707419](https://github.com/thycotic-ps/thycotic.secretserver/commit/f707419112a27f8a3ce784120cb34e713bcfc278)
+* Search-Metadata - update version check, only for 10.9.64 and above [8ac59f8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8ac59f8142476047638e659b752ca930c1240d5a)
 
 ### New Stuff
 
 * Search-Metadata - new command [e25470a](https://github.com/thycotic-ps/thycotic.secretserver/commit/e25470a692ca5104045c1425d910bea6608b0327)
 * Write-Log - add pipe support for LogFilePath, LogFormat, MessageType, and Message [12b78bd](https://github.com/thycotic-ps/thycotic.secretserver/commit/12b78bdb5033e6be95cd1216897710426efec15c)
+* Search-Metadata - convert to C# class [c5d819a](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5d819a36488526ea8bd8f7412ca4931a810ddf3)
 
 ### General Updates
 
 * TssSecretTemplateField - add IsList property [7e7e3c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e7e3c8b8884c66d6ca83bfc22e8305950f1e281)
 * Client SDK - move binaries to new folder, update path references [37f0a9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/37f0a9d49e033c510d4857789ce535f6693ad04f)
+* TssSession parameter - update help description [c7bd03d](https://github.com/thycotic-ps/thycotic.secretserver/commit/c7bd03d627ed52d86b4b79eecfe208599c010f35)
+* Version commands - update format of param block [8de8248](https://github.com/thycotic-ps/thycotic.secretserver/commit/8de8248ad73e43d82d389cecaee77edbcfdc4eae)
+* doc update - compatibility add metadata cmd [a9dd53b](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9dd53be6ea04bfca5dc3767b41559cc6d00f271)
 
 ### Tests
 
