@@ -47,6 +47,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * TssSession parameter - update help description [c7bd03d](https://github.com/thycotic-ps/thycotic.secretserver/commit/c7bd03d627ed52d86b4b79eecfe208599c010f35)
 * Version commands - update format of param block [8de8248](https://github.com/thycotic-ps/thycotic.secretserver/commit/8de8248ad73e43d82d389cecaee77edbcfdc4eae)
 * doc update - compatibility add metadata cmd [a9dd53b](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9dd53be6ea04bfca5dc3767b41559cc6d00f271)
+* module - Format ps1xml file update to new class names [588c721](https://github.com/thycotic-ps/thycotic.secretserver/commit/588c72160d515d3299e215a19cbef3e67e36d437)
 
 ### Tests
 
