@@ -9,10 +9,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Major Changes
 
-* TssSession - migrate to C# Class and renamed [4369e1a](https://github.com/thycotic-ps/thycotic.secretserver/commit/4369e1a7cd0fa6dca2c082c0f8191128bbe45560)
-* TssSecret - migrate and udpate --> Thycotic.PowerShell.Secrets.Secret [a170898](https://github.com/thycotic-ps/thycotic.secretserver/commit/a17089838607a0f4e83e80ffc3bcfb6152eecf1e)
 * Logging commands - converted to cmdlets [0096aa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0096aa7f83202105004e3b6133ac12502660bc87)
 * module - update TssSession --> Thycotic.PowerShell.Authentication.Session [f2f869c](https://github.com/thycotic-ps/thycotic.secretserver/commit/f2f869c4e6adabe79844c8571f3d8ea40c3a60fb)
+* removing about files from local module, only maintaining online going forward [cc6a162](https://github.com/thycotic-ps/thycotic.secretserver/commit/cc6a16286caee0fa1e155472bf00cf9641114121)
+* TssSession - migrate to C# Class and renamed [4369e1a](https://github.com/thycotic-ps/thycotic.secretserver/commit/4369e1a7cd0fa6dca2c082c0f8191128bbe45560)
+* TssSecret - migrate and update --> Thycotic.PowerShell.Secrets.Secret [a170898](https://github.com/thycotic-ps/thycotic.secretserver/commit/a17089838607a0f4e83e80ffc3bcfb6152eecf1e)
+* SecretItems - rename class to Items [20a0997](https://github.com/thycotic-ps/thycotic.secretserver/commit/20a0997f20214844e36ade97294a3e6a281bb950)
+* TssSecretSummary - migrate and update --> Thycotic.PowerShell.Secrets.Summary [cb5eebd](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb5eebd3f65d18d4d0cb2df603e466c368681b55)
+* TssSecretSummary - migrate and update --> SummaryExtendedField [f42827c](https://github.com/thycotic-ps/thycotic.secretserver/commit/f42827c2e5223a91fe79b92313a7ae5f43c015c3)
+* TssSecretDetailSettings - migrate and update --> Thycotic.PowerShell.Secrets.DetailSettings [c56b75b](https://github.com/thycotic-ps/thycotic.secretserver/commit/c56b75b498b88de98055901209697361a1d9329f)
+* TssSecretDetailState - migrate and update --> Thycotic.PowerShell.Secrets.DetailState [4f85ad2](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f85ad2564f38dd28e41d88d7ac487c93e6ab606)
+* TssSecretLookup - migrate and update --> Thycotic.PowerShell.Secrets.Lookup [b954371](https://github.com/thycotic-ps/thycotic.secretserver/commit/b95437193a001ef897130bef4c4d035c6e221571)
+* TssSecretHeartbeatStatus - migrate and update --> Thycotic.PowerShell.Secrets.HeartbeatStatus [a9f3117](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9f3117b20bb8187a5e71f5a767e2148946398a1)
+* TssSecretPasswordStatus - migrate and update --> Thycotic.PowerShell.Secrets.PasswordStatus [ea6e1b9](https://github.com/thycotic-ps/thycotic.secretserver/commit/ea6e1b95bfb70579cd438bb14921f55d4aa2431a)
 
 ### Bug Fixes
 

@@ -33,13 +33,6 @@ if (-not (Get-Module Pester -List) -and $Configuration -ne 'Debug') {
     }
 }
 
-if ($Configuration -ne 'Debug') {
-    $git = git status
-    if ($git[1] -notmatch "Your branch is up to date") {
-        throw "Local branch has commits not in GitHub"
-    }
-}
-
 $moduleName = 'Thycotic.SecretServer'
 $staging = [IO.Path]::Combine($env:TEMP, 'tss_staging')
 $docRoot = [IO.Path]::Combine($PSScriptRoot, 'docs', 'commands')
