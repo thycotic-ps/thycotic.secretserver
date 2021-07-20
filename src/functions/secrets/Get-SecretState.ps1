@@ -22,7 +22,7 @@ function Get-SecretState {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDetailState')]
+    [OutputType('Thycotic.PowerShell.Secrets.DetailState')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Get-SecretState {
                 }
 
                 if ($restResponse) {
-                    [TssSecretDetailState]$restResponse
+                    [Thycotic.PowerShell.Secrets.DetailState]$restResponse
                 }
             }
         } else {

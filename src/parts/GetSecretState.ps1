@@ -25,6 +25,6 @@ process {
     }
 
     if ($restResponse) {
-        [TssSecretDetailState]$restResponse
+        [Thycotic.PowerShell.Secrets.DetailState]$restResponse
     }
 }

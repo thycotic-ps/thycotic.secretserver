@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDetailState"
+title: "Thycotic.PowerShell.Secrets.DetailState"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDetailState class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.DetailState class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDetailState
+    Thycotic.PowerShell.Secrets.DetailState
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDetailState class represents the SecretDetailViewModel returned by Secret Server endpoint GET /secrets/{id}/state
+    The Thycotic.PowerShell.Secrets.DetailState class represents the SecretDetailViewModel returned by Secret Server endpoint GET /secrets/{id}/state
 
 # CONSTRUCTORS
     new()
