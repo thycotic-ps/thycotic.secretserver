@@ -37,7 +37,7 @@ Set value for a Secret Field
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecretField -TssSession $session Id 42 -Slug notes -Value "Test test test"
+Set-TssSecretField -TssSession $session -Id 42 -Slug notes -Value "Test test test"
 ```
 
 Set Notes field on Secret 42 to the value "Test test test"
