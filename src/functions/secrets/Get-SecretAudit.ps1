@@ -22,7 +22,7 @@ function Get-SecretAudit {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('SecretAudit')]
+    [OutputType('Thycotic.PowerShell.Secrets.Audit')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -72,7 +72,7 @@ function Get-SecretAudit {
                 }
 
                 if ($restResponse) {
-                    [TssSecretAudit[]]$restResponse.records
+                    [Thycotic.PowerShell.Secrets.Audit[]]$restResponse.records
                 }
             }
         } else {
