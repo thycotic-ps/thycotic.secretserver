@@ -24,7 +24,7 @@ function Update-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('TssSecret')]
+    [OutputType('Thycotic.PowerShell.Secrets.Secret')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -33,7 +33,7 @@ function Update-Secret {
 
         # Input object obtained via Get-TssSecretStub or Get-TssSecret
         [Parameter(Mandatory, Position = 1)]
-        [TssSecret]
+        [Thycotic.PowerShell.Secrets.Secret]
         $Secret,
 
         # Include inactive Secrets
@@ -107,7 +107,7 @@ function Update-Secret {
                 }
 
                 if ($updateResponse.id -eq $secretId) {
-                    [TssSecret]$updateResponse
+                    [Thycotic.PowerShell.Secrets.Secret]$updateResponse
                 }
             }
         } else {

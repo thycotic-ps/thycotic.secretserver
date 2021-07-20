@@ -154,7 +154,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecret
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

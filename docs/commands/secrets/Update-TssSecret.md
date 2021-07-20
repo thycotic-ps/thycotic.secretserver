@@ -6,7 +6,7 @@ Update a Secret
 ## SYNTAX
 
 ```
-Update-TssSecret [-TssSession] <Session> [-Secret] <TssSecret> [-IncludeInactive] [-Comment <String>]
+Update-TssSecret [-TssSession] <Session> [-Secret] <Secret> [-IncludeInactive] [-Comment <String>]
  [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -46,7 +46,7 @@ Accept wildcard characters: False
 Input object obtained via Get-TssSecretStub or Get-TssSecret
 
 ```yaml
-Type: TssSecret
+Type: Secret
 Parameter Sets: (All)
 Aliases:
 
@@ -170,7 +170,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecret
+### Thycotic.PowerShell.Secrets.Secret
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

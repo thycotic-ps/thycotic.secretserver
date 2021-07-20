@@ -65,7 +65,7 @@ function Get-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(DefaultParameterSetName = 'all')]
-    [OutputType('TssSecret')]
+    [OutputType('Thycotic.PowerShell.Secrets.Secret')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, Position = 0)]
@@ -188,7 +188,12 @@ function Get-Secret {
                 }
 
                 if ($restResponse) {
-                    [TssSecret]$restResponse
+                    if ($restResponse.Code) {
+                        $responseCodeMsg = $restResponse | ConvertTo-Json
+                        Write-Error "Issue accessing secret:`n $responseCodeMsg"
+                    } else {
+                        [Thycotic.PowerShell.Secrets.Secret]$restResponse
+                    }
                 }
             }
         } else {

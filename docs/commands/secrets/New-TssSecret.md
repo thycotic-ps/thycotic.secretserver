@@ -6,7 +6,7 @@ Create a new secret
 ## SYNTAX
 
 ```
-New-TssSecret [-TssSession] <Session> [-SecretStub] <TssSecret> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSecret [-TssSession] <Session> [-SecretStub] <Secret> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 Input object obtained via Get-TssSecretStub
 
 ```yaml
-Type: TssSecret
+Type: Secret
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +111,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecret
+### Thycotic.PowerShell.Secrets.Secret
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

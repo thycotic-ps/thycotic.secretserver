@@ -40,7 +40,7 @@ function New-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecret')]
+    [OutputType('Thycotic.PowerShell.Secrets.Secret')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -49,7 +49,7 @@ function New-Secret {
 
         # Input object obtained via Get-TssSecretStub
         [Parameter(Mandatory, Position = 1)]
-        [TssSecret]
+        [Thycotic.PowerShell.Secrets.Secret]
         $SecretStub
     )
 
@@ -83,7 +83,7 @@ function New-Secret {
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                [TssSecret]$restResponse
+                [Thycotic.PowerShell.Secrets.Secret]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'
