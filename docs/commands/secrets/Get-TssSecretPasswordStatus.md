@@ -17,7 +17,7 @@ Get status of password change
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssSecretPasswordStatus -TssSession $session -Id 26
+Get-Thycotic.PowerShell.Secrets.PasswordStatus -TssSession $session -Id 26
 ```
 
 Get password change status of Secret ID 26
@@ -61,13 +61,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretPasswordStatus
+### Thycotic.PowerShell.Secrets.PasswordStatus
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.PasswordStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.PasswordStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretPasswordStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretPasswordStatus.ps1)
 

@@ -1,18 +1,18 @@
 ---
-title: "TssSecretPasswordStatus"
+title: "Thycotic.PowerShell.Secrets.PasswordStatus"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretPasswordStatus class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.PasswordStatus class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretPasswordStatus
+    Thycotic.PowerShell.Secrets.PasswordStatus
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretPasswordStatus class represents and object returned by an internal endpoint to Secret Server
+    The Thycotic.PowerShell.Secrets.PasswordStatus class represents and object returned by an internal endpoint to Secret Server
 
 # CONSTRUCTORS
     new()
@@ -36,4 +36,4 @@ title: "TssSecretPasswordStatus"
 # METHODS
 
 # RELATED LINKS:
-    Get-TssSecretPasswordStatus
+    Get-Thycotic.PowerShell.Secrets.PasswordStatus

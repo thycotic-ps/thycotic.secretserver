@@ -8,12 +8,12 @@ function Get-SecretPasswordStatus {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssSecretPasswordStatus -TssSession $session -Id 26
+    Get-Thycotic.PowerShell.Secrets.PasswordStatus -TssSession $session -Id 26
 
     Get password change status of Secret ID 26
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.PasswordStatus
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretPasswordStatus.ps1
@@ -22,7 +22,7 @@ function Get-SecretPasswordStatus {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretPasswordStatus')]
+    [OutputType('Thycotic.PowerShell.Secrets.PasswordStatus')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -61,7 +61,7 @@ function Get-SecretPasswordStatus {
                 }
 
                 if ($restResponse.status -ne 'None') {
-                    [TssSecretPasswordStatus]$restResponse
+                    [Thycotic.PowerShell.Secrets.PasswordStatus]$restResponse
                 } else {
                     Write-Host "No active password change found on Secret [$secret]"
                 }
