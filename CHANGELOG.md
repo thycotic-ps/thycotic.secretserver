@@ -48,6 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Version commands - update format of param block [8de8248](https://github.com/thycotic-ps/thycotic.secretserver/commit/8de8248ad73e43d82d389cecaee77edbcfdc4eae)
 * doc update - compatibility add metadata cmd [a9dd53b](https://github.com/thycotic-ps/thycotic.secretserver/commit/a9dd53be6ea04bfca5dc3767b41559cc6d00f271)
 * module - Format ps1xml file update to new class names [588c721](https://github.com/thycotic-ps/thycotic.secretserver/commit/588c72160d515d3299e215a19cbef3e67e36d437)
+* Set-SecretField - correct syntax issue in ex 1 [f288b94](https://github.com/thycotic-ps/thycotic.secretserver/commit/f288b944db1350a4b0eb5ab35a93e36b9b8d2a7d)
 
 ### Tests
 
