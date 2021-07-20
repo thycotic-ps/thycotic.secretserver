@@ -1,18 +1,18 @@
 ---
-title: "TssSshLauncherSettings"
+title: "Thycotic.PowerShell.Secrets.SshLauncherSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssSshLauncherSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.SshLauncherSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSshLauncherSettings
+    Thycotic.PowerShell.Secrets.SshLauncherSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSshLauncherSettings class represents the SshLauncherSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
+    The Thycotic.PowerShell.Secrets.SshLauncherSettings class represents the SshLauncherSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
 
 # CONSTRUCTORS
     new()
@@ -36,5 +36,5 @@ title: "TssSshLauncherSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDetailSettings
+    Thycotic.PowerShell.Secrets.DetailSettings
     Get-TssSecretSetting

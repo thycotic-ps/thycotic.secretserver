@@ -1,18 +1,18 @@
 ---
-title: "TssRdpLauncherSettings"
+title: "Thycotic.PowerShell.Secrets.RdpLauncherSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssRdpLauncherSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.RdpLauncherSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssRdpLauncherSettings
+    Thycotic.PowerShell.Secrets.RdpLauncherSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssRdpLauncherSettings class represents the RdpLauncherSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
+    The Thycotic.PowerShell.Secrets.RdpLauncherSettings class represents the RdpLauncherSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
 
 # CONSTRUCTORS
     new()
@@ -45,5 +45,5 @@ title: "TssRdpLauncherSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDetailSettings
+    Thycotic.PowerShell.Secrets.DetailSettings
     Get-TssSecretSetting

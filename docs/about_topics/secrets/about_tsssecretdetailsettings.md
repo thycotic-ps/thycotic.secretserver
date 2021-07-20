@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDetailSettings"
+title: "Thycotic.PowerShell.Secrets.DetailSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDetailSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.DetailSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDetailSettings
+    Thycotic.PowerShell.Secrets.DetailSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDetailSettings class represents the SecretDetailSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
+    The Thycotic.PowerShell.Secrets.DetailSettings class represents the SecretDetailSettingsModel object returned by Secret Server endpoint GET /secrets/{id}/settings
 
 # CONSTRUCTORS
     new()
@@ -51,7 +51,7 @@ title: "TssSecretDetailSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssOneTimePasswordSettings
-    TssRdpLauncherSettings
-    TssSshLauncherSettings
+    Thycotic.PowerShell.Secrets.OneTimePasswordSettings
+    Thycotic.PowerShell.Secrets.RdpLauncherSettings
+    Thycotic.PowerShell.Secrets.SshLauncherSettings
     Get-TssSecretSetting

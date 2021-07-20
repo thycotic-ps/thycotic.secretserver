@@ -1,18 +1,18 @@
 ---
-title: "TssOneTimePasswordSettings"
+title: "Thycotic.PowerShell.Secrets.OneTimePasswordSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssOneTimePasswordSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.OneTimePasswordSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssOneTimePasswordSettings
+    Thycotic.PowerShell.Secrets.OneTimePasswordSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssOneTimePasswordSettings class represents the OneTimePasswordSettingsModel object returned by Secret Server endpoint GET /secret/{id}/settings
+    The Thycotic.PowerShell.Secrets.OneTimePasswordSettings class represents the OneTimePasswordSettingsModel object returned by Secret Server endpoint GET /secret/{id}/settings
 
 # CONSTRUCTORS
     new()
@@ -36,5 +36,5 @@ title: "TssOneTimePasswordSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDetailSettings
+    Thycotic.PowerShell.Secrets.DetailSettings
     Get-TssSecretSetting
