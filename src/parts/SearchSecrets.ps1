@@ -48,6 +48,6 @@ process {
     }
 
     if ($restResponse.records) {
-        [TssSecretSummary[]]$restResponse.records
+        [Thycotic.PowerShell.Secrets.Summary[]]$restResponse.records
     }
 }

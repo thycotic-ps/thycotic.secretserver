@@ -35,7 +35,7 @@ function Close-Secret {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [OutputType('TssSecretSummary')]
+    [OutputType('Thycotic.PowerShell.Secrets.Summary')]
     [cmdletbinding()]
     param(
         # TssSession object created by New-TssSession for authentication

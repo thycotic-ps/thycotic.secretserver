@@ -22,7 +22,7 @@ function Get-SecretSummary {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretSummary')]
+    [OutputType('Thycotic.PowerShell.Secrets.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Get-SecretSummary {
                 }
 
                 if ($restResponse) {
-                    [TssSecretSummary]$restResponse
+                    [Thycotic.PowerShell.Secrets.Summary]$restResponse
                 }
             }
         } else {

@@ -52,7 +52,7 @@ function Search-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(DefaultParameterSetName = 'filter')]
-    [OutputType('TssSecretSummary')]
+    [OutputType('Thycotic.PowerShell.Secrets.Summary')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -285,7 +285,7 @@ function Search-Secret {
             }
 
             if ($restResponse.records) {
-                [TssSecretSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Secrets.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
