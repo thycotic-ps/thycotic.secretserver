@@ -1,21 +1,21 @@
 ---
-title: "TssSecretLookup"
+title: "Thycotic.PowerShell.Secrets.Lookup"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretLookup class in the Thycotic.SecretServer module.
+    This help topic describes the Thycotic.PowerShell.Secrets.Lookup class in the Thycotic.SecretServer module.
 
 # CLASS
-    TssSecretLookup
+    Thycotic.PowerShell.Secrets.Lookup
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretLookup class represents a revised version of the SecretLookup object returned by Secret Server endpoint /secrets/lookup.
+    The Thycotic.PowerShell.Secrets.Lookup class represents a revised version of the SecretLookup object returned by Secret Server endpoint /secrets/lookup.
     This endpoint returns records as ID and Value:
         "id": <secret id>
-        "value: "<Folder ID> - <Secret Tempalte ID> - <Secret Name>
+        "value: "<Folder ID> - <Secret Template ID> - <Secret Name>
     This class is revising this to output the items in the value as proper properties (handled by the calling function).
 
 # CONSTRUCTORS

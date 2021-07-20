@@ -386,7 +386,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretLookup
+### Thycotic.PowerShell.Secrets.Lookup
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

@@ -22,7 +22,7 @@ function Find-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(DefaultParameterSetName = 'filter')]
-    [OutputType('TssSecretLookup')]
+    [OutputType('Thycotic.PowerShell.Secrets.Lookup')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -253,7 +253,7 @@ function Find-Secret {
             }
 
             if ($tssParams.ContainsKey('Id') -and $restResponse) {
-                [TssSecretLookup]@{
+                [Thycotic.PowerShell.Secrets.Lookup]@{
                     Id         = $restResponse.Id
                     SecretName = $restResponse.value
                 }
@@ -264,7 +264,7 @@ function Find-Secret {
                 if ($restResponse) {
                     foreach ($secret in $restResponse.records) {
                         $parsedValue = $secret.value.Split('-', 3).Trim()
-                        [TssSecretLookup]@{
+                        [Thycotic.PowerShell.Secrets.Lookup]@{
                             Id               = $secret.id
                             FolderId         = $parsedValue[0]
                             SecretTemplateId = $parsedValue[1]
