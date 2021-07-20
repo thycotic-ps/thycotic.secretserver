@@ -1,18 +1,18 @@
 ---
-title: "TssSecret"
+title: "Thycotic.PowerShell.Secrets.Secret"
 ---
 
 # TOPIC
-    This help topic describes the TssSecret class in the Thycotic.SecretServer module.
+    This help topic describes the Thycotic.PowerShell.Secrets.Secret class in the Thycotic.SecretServer module.
 
 # CLASS
-    TssSecret
+    Thycotic.PowerShell.Secrets.Secret
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecret class represents the SecretModel object returned by Secret Server endpoint /secrets{id}.
+    The Thycotic.PowerShell.Secrets.Secret class represents the SecretModel object returned by Secret Server endpoint GET /secrets/{id}.
 
 # CONSTRUCTORS
     new()

@@ -54,6 +54,7 @@ title: "Thycotic.PowerShell.Secrets.Items"
 # METHODS
 
 # RELATED LINKS:
+    Thycotic.PowerShell.Secrets.Secret
     Get-TssSecret
     Get-TssSecretStub
     New-TssSecret

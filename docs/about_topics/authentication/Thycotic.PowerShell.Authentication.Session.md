@@ -3,7 +3,7 @@ title: "Thycotic.PowerShell.Authentication.Session"
 ---
 
 # TOPIC
-    This help topic describes the Session class in the Thycotic.SecretServer module.
+    This help topic describes the Thycotic.PowerShell.Authentication.Session class in the Thycotic.SecretServer module.
 
 # CLASS
     Thycotic.PowerShell.Authentication.Session
@@ -12,7 +12,7 @@ title: "Thycotic.PowerShell.Authentication.Session"
     None
 
 # DESCRIPTION
-    The TssSession class represents an authenticated object to Secret Server.
+    The Thycotic.PowerShell.Authentication.Session class represents an authenticated object to Secret Server.
     New-TssSession is used to create an instance of this class type.
 
 # CONSTRUCTORS

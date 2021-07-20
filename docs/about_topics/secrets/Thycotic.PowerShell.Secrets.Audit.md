@@ -1,18 +1,18 @@
 ---
-title: "TssSecretAudit"
+title: "Thycotic.PowerShell.Secrets.Audit"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretAudit class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.Audit class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretAudit
+    Thycotic.PowerShell.Secrets.Audit
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretAudit class represents the SecretAudit object returned by Secret Server endpoint GET /users/{id}/audits
+    The Thycotic.PowerShell.Secrets.Audit class represents the SecretAudit object returned by Secret Server endpoint GET /users/{id}/audits
 
 # CONSTRUCTORS
     new()
@@ -55,7 +55,7 @@ title: "TssSecretAudit"
         Status
 
     TicketNumber
-        Ticket Number of Audit`
+        Ticket Number of Audit
 
 # METHODS
 

@@ -36,4 +36,4 @@ title: "Thycotic.PowerShell.Secrets.PasswordStatus"
 # METHODS
 
 # RELATED LINKS:
-    Get-Thycotic.PowerShell.Secrets.PasswordStatus
+    Get-TssSecretPasswordStatus

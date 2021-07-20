@@ -27,4 +27,4 @@ title: "Thycotic.PowerShell.Secrets.HeartbeatStatus"
 # METHODS
 
 # RELATED LINKS:
-    Get-Thycotic.PowerShell.Secrets.HeartbeatStatus
+    Get-TssSecretHeartbeatStatus
