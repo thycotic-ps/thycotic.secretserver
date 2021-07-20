@@ -1,18 +1,18 @@
 ---
-title: "TssSecretHeartbeatStatus"
+title: "Thycotic.PowerShell.Secrets.HeartbeatStatus"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretHeartbeatStatus class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Secrets.HeartbeatStatus class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretHeartbeatStatus
+    Thycotic.PowerShell.Secrets.HeartbeatStatus
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretHeartbeatStatus class represents the object returned by Secret Server endpoint GET /internals/secret-detail/{id}/heartbeat-status
+    The Thycotic.PowerShell.Secrets.HeartbeatStatus class represents the object returned by Secret Server endpoint GET /internals/secret-detail/{id}/heartbeat-status
 
 # CONSTRUCTORS
     new()
@@ -27,4 +27,4 @@ title: "TssSecretHeartbeatStatus"
 # METHODS
 
 # RELATED LINKS:
-    Get-TssSecretHeartbeatStatus
+    Get-Thycotic.PowerShell.Secrets.HeartbeatStatus

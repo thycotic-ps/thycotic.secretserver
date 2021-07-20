@@ -17,7 +17,7 @@ Get a Secret's Heartbeat status
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssSecretHeartbeatStatus -TssSession $session -Id 42
+Get-Thycotic.PowerShell.Secrets.HeartbeatStatus -TssSession $session -Id 42
 ```
 
 Returns heartbeat status of Secret 42
@@ -61,13 +61,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretHeartbeatStatus
+### Thycotic.PowerShell.Secrets.HeartbeatStatus
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretHeartbeatStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretHeartbeatStatus)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.HeartbeatStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.HeartbeatStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretHeartbeatStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretHeartbeatStatus.ps1)
 
