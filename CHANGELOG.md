@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.48.0] -- 2021-xx-xx
+## [0.48.0] -- 2021-07-20
 
 ### Major Changes
 
@@ -39,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-Metadata - new command [e25470a](https://github.com/thycotic-ps/thycotic.secretserver/commit/e25470a692ca5104045c1425d910bea6608b0327)
 * Write-Log - add pipe support for LogFilePath, LogFormat, MessageType, and Message [12b78bd](https://github.com/thycotic-ps/thycotic.secretserver/commit/12b78bdb5033e6be95cd1216897710426efec15c)
 * Search-Metadata - convert to C# class [c5d819a](https://github.com/thycotic-ps/thycotic.secretserver/commit/c5d819a36488526ea8bd8f7412ca4931a810ddf3)
+* Update-SecretRdpLauncherSetting - new command [24d9ad7](https://github.com/thycotic-ps/thycotic.secretserver/commit/24d9ad77edeed79504c892302399d266f02e0cbf)
 
 ### General Updates
 
