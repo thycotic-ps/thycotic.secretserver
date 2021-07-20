@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 
-namespace Thycotic.PowerShell.Secrest
+namespace Thycotic.PowerShell.Secrets
 {
     public class DetailState
     {
@@ -11,6 +11,7 @@ namespace Thycotic.PowerShell.Secrest
         public string CheckedOutUserDisplayname { get; set; }
         public int CheckedOutUserId { get; set; }
         public int CheckOutIntervalMinutes { get; set; }
+        public int CheckOutMinutesRemaining { get; set; }
         public int FolderId { get; set; }
         public string FolderName { get; set; }
         public int Id { get; set; }
