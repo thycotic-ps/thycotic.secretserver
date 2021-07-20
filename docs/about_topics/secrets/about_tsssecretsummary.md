@@ -39,7 +39,7 @@ title: "TssSecretSummary"
     DoubleLockEnabled
         Indicates whether or not DoubleLock is enabled for this password
 
-    ExtendedFields [TssSecretSummaryExtendedField[]]
+    ExtendedFields [Thycotic.PowerShell.Secrets.SummaryExtendedField[]]
         Any requested extended fields from a lookup request
 
     FolderId
@@ -93,6 +93,6 @@ title: "TssSecretSummary"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretSummaryExtendedField
+    Thycotic.PowerShell.Secrets.SummaryExtendedField
     Search-TssSecret
     Get-TssSecretSummary
