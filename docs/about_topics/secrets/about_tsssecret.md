@@ -81,7 +81,7 @@ title: "TssSecret"
     IsRestricted
         Whether the secret is restricted
 
-    Items [TssSecretItem[]]
+    Items [Thycotic.PowerShell.Secrets.Items[]]
         Secret data fields
 
     LastHeartBeatCheck
@@ -149,7 +149,7 @@ title: "TssSecret"
         Sets the ItemValue value of a Field item
 
 # RELATED LINKS:
-    TssSecretItem
+    Thycotic.PowerShell.Secrets.Items
     Get-TssSecret
     Get-TssSecretStub
     New-TssSecret

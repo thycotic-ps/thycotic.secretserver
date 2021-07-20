@@ -29,7 +29,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool IsDoubleLock { get; set; }
         public bool IsOutOfSync { get; set; }
         public bool IsRestricted { get; set; }
-        public SecretItem[] Items { get; set; }
+        public Items[] Items { get; set; }
         public DateTime? LastHeartBeatCheck { get; set; }
         public string LastHeartBeatStatus { get; set; }
         public DateTime? LastPasswordChangeAttempt { get; set; }

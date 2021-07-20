@@ -5,7 +5,7 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.Secrets
 {
-    public class SecretItem
+    public class Items
     {
         public string FieldDescription { get; set; }
         public int FieldId { get; set; }
