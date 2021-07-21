@@ -1,5 +1,6 @@
 using System;
 using System.Security;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
@@ -114,18 +115,22 @@ namespace Thycotic.PowerShell.Secrets
             }
         }
 
-        public object GetFileFields()
+        public List<FileField> GetFileFields()
         {
-            PSObject fileDetails = new PSObject();
+            List<FileField> files = new List<FileField>();
             foreach (var item in this.Items)
             {
                 if (item.IsFile)
                 {
-                    fileDetails.Properties.Add(new PSNoteProperty("SlugName", item.Slug));
-                    fileDetails.Properties.Add(new PSNoteProperty("Filename", item.Filename));
+                    files.Add(new FileField { SlugName = item.Slug, Filename = item.Filename });
                 }
             }
-            return fileDetails;
+            return files;
+        }
+        public class FileField
+        {
+            public string SlugName { get; set; }
+            public string Filename { get; set; }
         }
     }
 }
