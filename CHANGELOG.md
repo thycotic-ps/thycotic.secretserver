@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Format file - fixes spelling error, adjust view names fixes [#204](https://github.com/thycotic-ps/thycotic.secretserver/issues/204) [c28e309](https://github.com/thycotic-ps/thycotic.secretserver/commit/c28e30929cd833db04bd92faf2159308355a0ec2)
 * Get-Secret - Correct types reference fixes [#205](https://github.com/thycotic-ps/thycotic.secretserver/issues/205) [d3911dd](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3911dd0cd7cab4ee2e1e624a35c428f5b1539ff)
 * Start-Log - adjust file validation, add proper dispose fixes [#206](https://github.com/thycotic-ps/thycotic.secretserver/issues/206) [ca4e98f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ca4e98f851543dae1706647b88a82bf6a20f7253)
+* Set-SecretField - correct Path validation [fc4eb48](https://github.com/thycotic-ps/thycotic.secretserver/commit/fc4eb485952c5c048458de1b6ef18f40b9c8d1de)
 
 ### New Stuff
 
