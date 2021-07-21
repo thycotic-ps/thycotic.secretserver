@@ -74,7 +74,7 @@ namespace Thycotic.SecretServer
             {
                 if (this.MyInvocation.BoundParameters.ContainsKey("Divider"))
                 {
-                    var repeatingDivider = new StringBuilder(DividerCharacter, 120);
+                    var repeatingDivider = new StringBuilder(DividerCharacter, 120).Insert(0, DividerCharacter, 120).ToString();
 
                     // write message to file
                     using (StreamWriter sw = File.AppendText(LogFilePath))
