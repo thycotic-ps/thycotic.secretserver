@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Globalization;
 using System.Collections.Generic;
 using System.Management.Automation;
@@ -35,16 +36,10 @@ namespace Thycotic.SecretServer
         [Parameter(Position = 2)]
         public string ScriptVersion { get; set; }
 
-        /// <summary>
-        /// <para type="description">Force will recreate the provided LogFilePath, if it exists</para>
-        /// </summary>
-        [Parameter(Position = 3)]
-        public SwitchParameter Force { get; set; }
-
-        protected override void EndProcessing()
+        protected override void BeginProcessing()
         {
             // if exists and force provided, try to remove the file
-            if (File.Exists(LogFilePath) && this.MyInvocation.BoundParameters.ContainsKey("Force"))
+            if (File.Exists(LogFilePath))
             {
                 // try to remove file if exists
                 try
@@ -57,46 +52,36 @@ namespace Thycotic.SecretServer
                     throw new System.Exception("Could not remove file: " + LogFilePath);
                 }
             }
-            else if (!File.Exists(LogFilePath))
-            {
-                try
-                {
-                    File.Create(LogFilePath);
-                }
-                catch
-                {
-                    throw new System.Exception("Issue creating log file: " + LogFilePath);
-                }
-            }
-            else
-            {
-                throw new System.Exception("Could not find file provided: " + LogFilePath);
-            }
-
+        }
+        protected override void ProcessRecord()
+        {
             // get current timestamp
             var currentTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.ffffff");
 
             if (LogFormat.Equals("log"))
             {
                 // write initial header to the file
-                using (StreamWriter sw = File.AppendText(LogFilePath))
-                {
-                    // write line with timestamp included
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;..######..########..######..########..########.########.....######..########.########..##.....##.########.########.");
-                    sw.WriteLine(currentTime + ";INFO;.##....##.##.......##....##.##.....##.##..........##.......##....##.##.......##.....##.##.....##.##.......##.....##");
-                    sw.WriteLine(currentTime + ";INFO;.##.......##.......##.......##.....##.##..........##.......##.......##.......##.....##.##.....##.##.......##.....##");
-                    sw.WriteLine(currentTime + ";INFO;..######..######...##.......########..######......##........######..######...########..##.....##.######...########.");
-                    sw.WriteLine(currentTime + ";INFO;.......##.##.......##.......##...##...##..........##.............##.##.......##...##....##...##..##.......##...##..");
-                    sw.WriteLine(currentTime + ";INFO;.##....##.##.......##....##.##....##..##..........##.......##....##.##.......##....##....##.##...##.......##....##.");
-                    sw.WriteLine(currentTime + ";INFO;..######..########..######..##.....##.########....##........######..########.##.....##....###....########.##.....##");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;Started processing at" + "[" + currentTime + "]");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;Script version: [" + ScriptVersion + "].");
-                    sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
-                    sw.WriteLine(currentTime + ";INFO;");
-                }
+                FileStream logFile = File.Create(LogFilePath);
+                var sw = new StreamWriter(logFile);
+
+                // write line with timestamp included
+                sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
+                sw.WriteLine(currentTime + ";INFO;..######..########..######..########..########.########.....######..########.########..##.....##.########.########.");
+                sw.WriteLine(currentTime + ";INFO;.##....##.##.......##....##.##.....##.##..........##.......##....##.##.......##.....##.##.....##.##.......##.....##");
+                sw.WriteLine(currentTime + ";INFO;.##.......##.......##.......##.....##.##..........##.......##.......##.......##.....##.##.....##.##.......##.....##");
+                sw.WriteLine(currentTime + ";INFO;..######..######...##.......########..######......##........######..######...########..##.....##.######...########.");
+                sw.WriteLine(currentTime + ";INFO;.......##.##.......##.......##...##...##..........##.............##.##.......##...##....##...##..##.......##...##..");
+                sw.WriteLine(currentTime + ";INFO;.##....##.##.......##....##.##....##..##..........##.......##....##.##.......##....##....##.##...##.......##....##.");
+                sw.WriteLine(currentTime + ";INFO;..######..########..######..##.....##.########....##........######..########.##.....##....###....########.##.....##");
+                sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
+                sw.WriteLine(currentTime + ";INFO;Started processing at" + "[" + currentTime + "]");
+                sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
+                sw.WriteLine(currentTime + ";INFO;Script version: [" + ScriptVersion + "].");
+                sw.WriteLine(currentTime + ";INFO;************************************************************************************************************************");
+                sw.WriteLine(currentTime + ";INFO;");
+
+                sw.Dispose();
+                logFile.Close();
             }
             if (LogFormat.Equals("csv"))
             {
@@ -116,6 +101,7 @@ namespace Thycotic.SecretServer
                 using (var csvWriter = new CsvWriter(writer, CultureInfo.InvariantCulture))
                 {
                     csvWriter.WriteRecords(data);
+                    csvWriter.Dispose();
                 }
             }
         }
