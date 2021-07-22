@@ -92,7 +92,7 @@ namespace Thycotic.PowerShell.Secrets
 
         public string GetFieldValue(string SlugName)
         {
-            string value = "";
+            string value = null;
             foreach (var item in this.Items)
             {
                 if (item.Slug.Equals(SlugName, StringComparison.OrdinalIgnoreCase))
@@ -115,6 +115,17 @@ namespace Thycotic.PowerShell.Secrets
             }
         }
 
+        public void UpdateFieldId(string SlugName, int OrginalId, int NewId)
+        {
+            foreach (var item in this.Items)
+            {
+                if (item.Slug.Equals(SlugName) && item.FieldId.Equals(OrginalId))
+                {
+                    item.FieldId = NewId;
+                    break;
+                }
+            }
+        }
         public List<FileField> GetFileFields()
         {
             List<FileField> files = new List<FileField>();
