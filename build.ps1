@@ -133,6 +133,7 @@ task docs -Before stage, build {
 # }
 
 task build {
+    Write-Output "Build started: $(Get-Date -Format FileDateTime)"
     if ($Configuration -ne 'Debug') {
         $git = git status
         if ($git[1] -notmatch "Your branch is up to date") {
