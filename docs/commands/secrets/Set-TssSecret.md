@@ -8,22 +8,16 @@ Set various settings or fields for a given secret
 ### all (Default)
 ```
 Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
- [-TicketSystemId <Int32>] [-Active] [-AutoChangeEnabled] [-AutoChangeNextPassword <SecureString>]
- [-EnableInheritPermission] [-EnableInheritSecretPolicy] [-FolderId <Int32>] [-GenerateSshKeys]
+ [-TicketSystemId <Int32>] [-Active] [-EnableInheritSecretPolicy] [-FolderId <Int32>] [-GenerateSshKeys]
  [-HeartbeatEnabled] [-IsOutOfSync] [-SecretName <String>] [-SecretPolicy <Int32>] [-SiteId <Int32>] [-CheckIn]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-AutoChangeEnabled] [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### restricted
 ```
 Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Comment <String>] [-ForceCheckIn] [-TicketNumber <Int32>]
  [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
-### checkIn
-```
-Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-ForceCheckIn] [-CheckIn] [-WhatIf] [-Confirm]
- [<CommonParameters>]
 ```
 
 ### general
@@ -33,10 +27,15 @@ Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-Active] [-EnableInheritSec
  [-SiteId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
-### password
+### checkIn
+```
+Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-CheckIn] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### put
 ```
 Set-TssSecret [-TssSession] <Session> -Id <Int32[]> [-AutoChangeEnabled]
- [-AutoChangeNextPassword <SecureString>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-AutoChangeNextPassword <SecureString>] [-EnableInheritPermission] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -88,7 +87,7 @@ Aliases: SecretId
 Required: True
 Position: Named
 Default value: None
-Accept pipeline input: True (ByPropertyName)
+Accept pipeline input: True (ByPropertyName, ByValue)
 Accept wildcard characters: False
 ```
 
@@ -112,7 +111,7 @@ Force check-in of the Secret
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: all, restricted, checkIn
+Parameter Sets: all, restricted
 Aliases:
 
 Required: False
@@ -167,51 +166,6 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AutoChangeEnabled
-Whether Auto Change is enabled
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all, password
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -AutoChangeNextPassword
-Manual password to use on next Auto Change
-
-```yaml
-Type: SecureString
-Parameter Sets: all, password
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -EnableInheritPermission
-Whether the Secret inherits permissions from the containing folder
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: all
-Aliases: EnableInheritPermissions
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -EnableInheritSecretPolicy
 Whether Secret Policy is inherited from containing folder
 
@@ -233,7 +187,7 @@ Folder (ID)
 ```yaml
 Type: Int32
 Parameter Sets: all, general
-Aliases: Folder
+Aliases:
 
 Required: False
 Position: Named
@@ -338,6 +292,51 @@ Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secre
 ```yaml
 Type: SwitchParameter
 Parameter Sets: all, checkIn
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoChangeEnabled
+Set Auto Change Enabled
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, put
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoChangeNextPassword
+Set the password to use on next Auto Change
+
+```yaml
+Type: SecureString
+Parameter Sets: all, put
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -EnableInheritPermission
+Set Inherit Permission on the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: all, put
 Aliases:
 
 Required: False

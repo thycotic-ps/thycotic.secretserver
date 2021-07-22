@@ -27,7 +27,7 @@ function Set-Secret {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
+    [cmdletbinding(SupportsShouldProcess,DefaultParameterSetName = 'all')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -35,115 +35,113 @@ function Set-Secret {
         $TssSession,
 
         # Secret Id to modify
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipeline, ValueFromPipelineByPropertyName)]
         [Alias('SecretId')]
         [int[]]
         $Id,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(ParameterSetName = 'all')]
         [string]
         $Comment,
 
         # Force check-in of the Secret
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
-        [Parameter(ParameterSetName = 'checkIn')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $ForceCheckIn,
 
         # Associated Ticket Number
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(ParameterSetName = 'all')]
         [int]
         $TicketNumber,
 
         #Associated Ticket System ID
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'restricted')]
+        [Parameter(ParameterSetName = 'all')]
         [int]
         $TicketSystemId,
 
         # Set the secret active secret is active
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $Active,
 
-        # Whether Auto Change is enabled
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'password')]
-        [switch]
-        $AutoChangeEnabled,
-
-        # Manual password to use on next Auto Change
-        [Parameter(ParameterSetName = 'all')]
-        [Parameter(ParameterSetName = 'password')]
-        [securestring]
-        $AutoChangeNextPassword,
-
-        # Whether the Secret inherits permissions from the containing folder
-        [Parameter(ParameterSetName = 'all')]
-        [Alias('EnableInheritPermissions')]
-        [switch]
-        $EnableInheritPermission,
-
         # Whether Secret Policy is inherited from containing folder
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $EnableInheritSecretPolicy,
 
         # Folder (ID)
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
-        [Alias('Folder')]
+        [Parameter(ParameterSetName = 'all')]
         [int]
         $FolderId,
 
         # Generate new SSH Keys
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $GenerateSshKeys,
 
         # Heartbeat enabled
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $HeartbeatEnabled,
 
         # Secret out of sync
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
         $IsOutOfSync,
 
         # Secret name
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [string]
         $SecretName,
 
         # Secret Policy (ID)
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [int]
         $SecretPolicy,
 
         # Secret Site
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'general')]
+        [Parameter(ParameterSetName = 'all')]
         [Alias('Site')]
         [int]
         $SiteId,
 
         # Check-In a Secret, can be combined with ForceCheckIn to forcibly check the Secret in
-        [Parameter(ParameterSetName = 'all')]
         [Parameter(ParameterSetName = 'checkIn')]
+        [Parameter(ParameterSetName = 'all')]
         [switch]
-        $CheckIn
+        $CheckIn,
+
+        # Set Auto Change Enabled
+        [Parameter(ParameterSetName = 'put')]
+        [Parameter(ParameterSetName = 'all')]
+        [switch]
+        $AutoChangeEnabled,
+
+        # Set the password to use on next Auto Change
+        [Parameter(ParameterSetName = 'put')]
+        [Parameter(ParameterSetName = 'all')]
+        [securestring]
+        $AutoChangeNextPassword,
+
+        # Set Inherit Permission on the Secret
+        [Parameter(ParameterSetName = 'put')]
+        [Parameter(ParameterSetName = 'all')]
+        [switch]
+        $EnableInheritPermission
     )
     begin {
         $setSecretParams = $PSBoundParameters
@@ -160,17 +158,11 @@ function Set-Secret {
         }
 
         # Require Get-TssSecret and PUT /secrets/{id} endpoint
-        $passwordParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'password'
-        $folderParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'folder'
-        $otherParams = @()
-        foreach ($p in $passwordParamSet) {
+        $secretParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'put'
+        $secretParams = @()
+        foreach ($p in $secretParamSet) {
             if ($setSecretParams.ContainsKey($p)) {
-                $otherParams += $p
-            }
-        }
-        foreach ($f in $folderParamSet) {
-            if ($setSecretParams.ContainsKey($f)) {
-                $otherParams += $f
+                $secretParams += $p
             }
         }
 
@@ -183,8 +175,8 @@ function Set-Secret {
             }
         }
 
-        $invokeParamsGenearl = . $GetInvokeTssParams $TssSession
-        $invokeParamsOther = . $GetInvokeTssParams $TssSession
+        $invokeParamsGeneral = . $GetInvokeTssParams $TssSession
+        $invokeParamsSecret = . $GetInvokeTssParams $TssSession
         $invokeParamsCheckIn = . $GetInvokeTssParams $TssSession
     }
     process {
@@ -192,54 +184,50 @@ function Set-Secret {
         if ($setSecretParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
-                if ($otherParams.Count -gt 0) {
+                if ($secretParams.Count -gt 0) {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
-                    $invokeParamsOther.Uri = $uri
-                    $invokeParamsOther.Method = 'PUT'
+                    $invokeParamsSecret.Uri = $uri
+                    $invokeParamsSecret.Method = 'PUT'
 
                     $whatIfProcessing = 0
-                    if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeEnabled to $AutoChangeEnabled")) {
+                    if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsSecret.Method) $uri updating AutoChangeEnabled to $AutoChangeEnabled")) {
                         $whatIfProcessing++
                     }
-                    if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
+                    if ($setSecretParams.ContainsKey('AutoChangeNextPassword') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsSecret.Method) $uri updating AutoChangeNextPassword to $AutoChangeNextPassword")) {
                         $whatIfProcessing++
                     }
-                    if ($setSecretParams.ContainsKey('EnableInheritPermission') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsOther.Method) $uri updating Inherit Permission to $EnableInheritPermission")) {
+                    if ($setSecretParams.ContainsKey('EnableInheritPermission') -and -not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsSecret.Method) $uri updating Inherit Permission to $EnableInheritPermission")) {
                         $whatIfProcessing++
                     }
 
-                    $getParams = @{
-                        TssSession = $TssSession
-                        Id         = $secret
-                    }
-                    if ($restrictedParams.Count -gt 0) {
-                        $getParams.Add('ForceCheckIn', $ForceCheckIn)
-                        $getParams.Add('TicketNumber', $TicketNumber)
-                        $getParams.Add('TicketSystemId', $TicketSystemId)
-                        $getParams.Add('Comment', $Comment)
-                    }
                     if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", 'Getting Secret')) {
                         $whatIfProcessing++
                     }
 
                     if ($whatIfProcessing -eq 0) {
+
+                        $getParams = @{
+                            TssSession = $TssSession
+                            Id = $secret
+                        }
+                        if ($restrictedParams.Count -gt 0) {
+                            $getParams.Add('ForceCheckIn',$ForceCheckIn)
+                            $getParams.Add('TicketNumber',$TicketNumber)
+                            $getParams.Add('TicketSystemId',$TicketSystemId)
+                            $getParams.Add('Comment',$Comment)
+                        }
                         try {
-                            Write-Verbose "Getting SecretID: [$secret]"
-                            $getSecret = . $GetSecret $TssSession $secret $restrictedParams
+                            Write-Verbose "Getting Secret: [$secret]"
+                            $getSecret = Get-Secret @getParams -ErrorAction Stop
                         } catch {
-                            Write-Error "Issue getting Secret [$secret] details: $_"
+                            Write-Error "Issue getting Secret [$secret]: $_"
                         }
 
                         if ($getSecret) {
-                            if ($restrictedParams.Count -gt 0) {
-                                $getSecret.Add('ForceCheckIn', $ForceCheckIn)
-                                $getSecret.Add('TicketNumber', $TicketNumber)
-                                $getSecret.Add('TicketSystemId', $TicketSystemId)
-                                $getSecret.Add('Comment', $Comment)
-                            }
+                            $putSecretBody = $getSecret | ConvertTo-Json | ConvertFrom-Json
 
                             if ($setSecretParams.ContainsKey('AutoChangeEnabled')) {
-                                $getSecret.AutoChangeEnabled = [boolean]$AutoChangeEnabled
+                                $putSecretBody.AutoChangeEnabled = [boolean]$AutoChangeEnabled
                             }
                             if ($setSecretParams.ContainsKey('AutoChangeNextPassword')) {
                                 if ($setSecretParams.ContainsKey('AutoChangeEnabled') -and -not $AutoChangeEnabled) {
@@ -247,17 +235,28 @@ function Set-Secret {
                                 } elseif ($getSecret.AutoChangeEnabled -eq $false -and -not $AutoChangeEnabled) {
                                     Write-Warning "AutoChangeNextPassword require AutoChange to be enabled. AutoChange found disabled on secret [$secret]. Please provide -AutoChangeEnabled parameter to enable it and set next manual password."
                                 } else {
-                                    $getSecret.AutoChangeNextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($AutoChangeNextPassword))
+                                    $putSecretBody.AutoChangeNextPassword = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($AutoChangeNextPassword))
                                 }
                             }
                             if ($setSecretParams.ContainsKey('EnableInheritPermission')) {
-                                $getSecret.EnableInheritPermissions = $EnableInheritPermission
+                                $putSecretBody.EnableInheritPermissions = $EnableInheritPermission
                             }
-                            $invokeParamsOther.Body = $getSecret | ConvertTo-Json -Depth 5
+                            $invokeParamsSecret.Body = $putSecretBody | ConvertTo-Json -Depth 5
 
-                            Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
+                            if ($restrictedParams.Count -gt 0) {
+                                switch ($updateParams.Keys) {
+                                    'Comment' { $putSecretBody.PSObject.Properties.Add([PSNoteProperty]::new('comment', $Comment)) }
+                                    'ForceCheckIn' { $putSecretBody.PSObject.Properties.Add([PSNoteProperty]::new('forceCheckIn', [boolean]$ForceCheckIn)) }
+                                    'TicketNumber' { $putSecretBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketNumber', $TicketNumber)) }
+                                    'TicketSystemId' { $putSecretBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketSystemId', $TicketSystemId)) }
+                                }
+                                $uri = $uri, 'restricted' -join '/'
+                                $invokeParamsSecret.Uri = $uri
+                                $invokeParamsSecret.Method = 'POST'
+                            }
+                            Write-Verbose "$($invokeParamsSecret.Method) $uri with:`t$($invokeParamsSecret.Body)`n"
                             try {
-                                $otherResponse = . $InvokeApi @invokeParamsOther
+                                $otherResponse = Invoke-RestApi @invokeParamsSecret
                             } catch {
                                 Write-Warning "Issue setting property on secret [$secret]"
                                 $err = $_
@@ -352,14 +351,14 @@ function Set-Secret {
                     }
 
                     $uri = $TssSession.ApiUrl, 'secrets', $secret, 'general' -join '/'
-                    $invokeParamsGenearl.Uri = $uri
-                    $invokeParamsGenearl.Method = 'PATCH'
-                    $invokeParamsGenearl.Body = $generalBody | ConvertTo-Json -Depth 5
+                    $invokeParamsGeneral.Uri = $uri
+                    $invokeParamsGeneral.Method = 'PATCH'
+                    $invokeParamsGeneral.Body = $generalBody | ConvertTo-Json -Depth 5
 
-                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n")) {
-                        Write-Verbose "$($invokeParamsGenearl.Method) $uri with:`n$($invokeParamsGenearl.Body)`n"
+                    if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGeneral.Method) $uri with:`n$($invokeParamsGeneral.Body)`n")) {
+                        Write-Verbose "$($invokeParamsGeneral.Method) $uri with:`n$($invokeParamsGeneral.Body)`n"
                         try {
-                            $generalResponse = . $InvokeApi @invokeParamsGenearl
+                            $generalResponse = Invoke-RestApi @invokeParamsGeneral
                         } catch {
                             Write-Warning "Issue configuring general settings on [$secret]"
                             $err = $_
@@ -398,7 +397,7 @@ function Set-Secret {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsCheckIn.Method) $uri with:`n$($invokeParamsCheckIn.Body)`n")) {
                         Write-Verbose "$($invokeParamsCheckIn.Method) $uri with:`n$checkInBody`n"
                         try {
-                            $checkInResponse = . $InvokeApi @invokeParamsCheckIn
+                            $checkInResponse = Invoke-RestApi @invokeParamsCheckIn
                         } catch {
                             Write-Warning "Issue performing check-in on secret [$secret]"
                             $err = $_
