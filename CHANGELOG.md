@@ -5,36 +5,6 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.48.1] -- 2021-07-23
-
-### Breaking Changes
-
-* None
-
-### Bug Fixes
-
-* Write-Log - fixes [#202](https://github.com/thycotic-ps/thycotic.secretserver/issues/202) [214da74](https://github.com/thycotic-ps/thycotic.secretserver/commit/214da7405b413dce539a0e3de007335411e6cbc7)
-* Secret class - rework GetFileFields() method fixes [#203](https://github.com/thycotic-ps/thycotic.secretserver/issues/203) [25e7b6b](https://github.com/thycotic-ps/thycotic.secretserver/commit/25e7b6b583ff5e3b2f4f823ba6e1b007b1acf061)
-* Format file - fixes spelling error, adjust view names fixes [#204](https://github.com/thycotic-ps/thycotic.secretserver/issues/204) [c28e309](https://github.com/thycotic-ps/thycotic.secretserver/commit/c28e30929cd833db04bd92faf2159308355a0ec2)
-* Get-Secret - Correct types reference fixes [#205](https://github.com/thycotic-ps/thycotic.secretserver/issues/205) [d3911dd](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3911dd0cd7cab4ee2e1e624a35c428f5b1539ff)
-* Start-Log - adjust file validation, add proper dispose fixes [#206](https://github.com/thycotic-ps/thycotic.secretserver/issues/206) [ca4e98f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ca4e98f851543dae1706647b88a82bf6a20f7253)
-* Set-SecretField - correct Path validation [fc4eb48](https://github.com/thycotic-ps/thycotic.secretserver/commit/fc4eb485952c5c048458de1b6ef18f40b9c8d1de)
-* Set-Secret - fixing various issues with some of the parameters [669ed26](https://github.com/thycotic-ps/thycotic.secretserver/commit/669ed26159f37461ad6c283f45388279265efe88)
-* Secret class - GetFieldValue method issue with empty value [3d3f0eb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3d3f0eb8d82a0865c9ee2b19f03c7388cc1014ac)
-
-### New Stuff
-
-* None
-
-### General Updates
-
-* TssSecretTemplateField - add SecretTemplateFieldId to default view [3a6f207](https://github.com/thycotic-ps/thycotic.secretserver/commit/3a6f2071c46d5afcb9e4cf72a5e2ce3dfd1b9ed4)
-* TssFolderPermissionSummary - adjust default table view [b12828e](https://github.com/thycotic-ps/thycotic.secretserver/commit/b12828e260bc728597769ea65ecd36cb6420ddd2)
-
-### Tests
-
-* None
-
 ## [0.48.0] -- 2021-07-20
 
 ### Major Changes
