@@ -48,6 +48,14 @@ $zipFileName = "$($moduleName).zip"
 $moduleTempPath = Join-Path $staging $moduleName
 $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
 
+
+if (Test-Path $changeLog -and $Configuration -in 'Release','Prerelease') {
+    Write-Output "gh command to execute: $ghArgs"
+    Invoke-Expression "gh $ghArgs"
+} else {
+    throw "release.md file not found"
+}
+
 task library -Before stage, build, docs {
     Invoke-Build -File $libraryBuildScript
 }
@@ -175,9 +183,6 @@ task build {
         if ($Configuration -eq 'Prerelease') {
             $ghArgs = $ghArgs + " --prerelease"
         }
-
-        Write-Output "gh command to execute: $ghArgs"
-        Invoke-Expression "gh $ghArgs"
 
         if ((gh config get prompt) -eq 'disabled') {
             Invoke-Expression "gh config set prompt enabled"
