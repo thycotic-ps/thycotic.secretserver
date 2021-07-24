@@ -3,31 +3,54 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/thycotic-ps/thycotic.secretserver?style=flat-square)
 ![GitHub issues by-label](https://img.shields.io/github/issues/thycotic-ps/thycotic.secretserver/bugs?style=flat-square)
 
-# Introduction
+<h1 align="center">Thycotic.SecretServer PowerShell Module</h1>
+<p></p>
 
-Welcome to the Thycotic Secret Server PowerShell module. This module utilizes the REST API to manage and use the Secrets managed by Secret Server in your automation tooling/scripting. This module is managed and maintained by Thycotic Professional Services.
+## Purpose
 
-> It is currently **out of scope** for Thycotic Support services.
+This module provides a secure method that Secret Server Administrators and Users can use for managing and automating their environment. Scripts and automated processing that requires a privileged (or non-privileged) account have to be stored somewhere. Why store them in plaintext within a script or in an XML file that only uses DPAPI encryption (`SecureString > Export-Clixml`)?
 
-The module's goal is to give users a more accessible starting point working with the Secret Server's REST API. The best effort is made to have a similar workflow with the UI to plan out the functions and tasks you need to perform.
+Secret Server provides a management tool for those privileged accounts. Thycotic.SecretServer module allows you to access those accounts securely and utilize them in your scripts and automation in a secure manner.
 
-# Install Options
+## Classes
+
+The module utilizes C# based classes to provide a unique object and type with each endpoint. In addition, certain classes may include Methods that provide "shortcuts" for performing specific actions in PowerShell or manipulating the object output by a function.
+
+Documentation for the classes can be found on the documentation site here: [about topics](https://thycotic-ps.github.io/thycotic.secretserver/about_topics/)
+
+## Maintainers
+
+This module is managed and maintained by Thycotic Professional Services.
+
+## Support
+
+See the Disclaimer at the bottom of this page for other legal jargon. This module is an open-source project. Maintenance and support are provided using the standard GitHub measures via [GitHub Issues](https://github.com/thycotic-ps/thycotic.secretserver/issues/new) or [GitHub Discussion](https://github.com/thycotic-ps/thycotic.secretserver/discussions/new).
+
+If a customer desires more in-depth assistance implementing the module in their environment, please reach out to your Thycotic Account Rep to engage [Thycotic Professional Services](https://thycotic.com/products/professional-services-training/).
+
+## Install Options
+
+This project strives to cover all types of environments. We understand that some do not allow pulling PowerShell modules from every resource. The following sources are available for downloading each release of the module:
 
 - [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
 - [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest) (latest)
-- [Direct Download](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer.zip) (if above are blocked)
+- [Direct Download](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer.zip)
 
-More on the installation of the module can be found on our documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
+Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
 
-# Changelog
+## Changelog
 
-A formal changelog is provided in the repository ([CHANGELOG](CHANGELOG.md)) and will be included with each GitHub release.
+A formal changelog is provided in the repository ([CHANGELOG](CHANGELOG.md)) and with each GitHub release.
 
-# Documentation
+## Documentation
 
-All documentation for the module is now hosted on the GitHub site [https://thycotic-ps.github.io/thycotic.secretserver](https://thycotic-ps.github.io/thycotic.secretserver)
+All documentation for the module is hosted in this project and utilizes GitHub Pages: [https://thycotic-ps.github.io/thycotic.secretserver](https://thycotic-ps.github.io/thycotic.secretserver)
 
-You will also find in-module help for the classes (`about_*`) and functions (CBH) that can be accessed using `Get-Help` after you have imported the module.
+You will also find in-module help for functions via comment-based help that can be accessed using `Get-Help`.
+
+# Show your support
+
+Give a ⭐️ if this project helped you!
 
 # Disclaimer
 
