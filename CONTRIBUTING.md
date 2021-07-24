@@ -26,15 +26,21 @@ We add the [help-wanted](https://github.com/thycotic-ps/thycotic.secretserver/la
 
 You will need to fork this repository to your local machine. See [github help page](https://help.github.com/articles/fork-a-repo) for help.
 
+## Please Consider Your Commit Messages
+
+The git history of a branch is utilized in building the CHANGELOG for the project. Pleas be considerate of this when you are commiting to your fork to submit a PR.
+
+More info: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+
 ## Submitting your changes
 
 Once your changes and tests are ready to submit for review:
 
 1. Test your changes
 
-    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. Run the test for the specific function to make sure nothing is broken.
+    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. At this time the tests for each command only provide for unit testing the parameters and output type.
 
-    The module's testing framework is progressing to all unit tests to make the tests more mobile. Please consider adding a screenshot or console output in the PR to provide references for the reviewer.
+    Secret Server offers the ability to have multiple configuration and environmental limitations. Therefore at this time no integration tests are included for automatic testing. The maintainers will perform manual integration tests as required. Please include screenshots or verbose output of your testing if possible.
 
     > If your change is altering the module's functionality or function, this requires explicit approval from maintainer(s) before being submitted as a PR.
 
