@@ -18,6 +18,22 @@ The module utilizes C# based classes to provide a unique object and type with ea
 
 Documentation for the classes can be found on the documentation site here: [about topics](https://thycotic-ps.github.io/thycotic.secretserver/about_topics/)
 
+### Library Build
+
+The source code for the library is found in the `src\Thycotic.SecretServer` folder. This project utilizes [InvokeBuild](https://powershellgallery.com/packages/InvokeBuild) to build the library.
+
+If you would like to locally debug the project for contributing or your purpose, clone the repository and then run the following command:
+
+> You will need PowerShell 7 installed for this process!
+
+```powershell
+# Install the InvokeBuild module if not already
+Install-Module InvokeBuild
+
+# build the library
+Invoke-Build -File .\build.ps1 -Configuration Debug
+```
+
 ## Maintainers
 
 This module is managed and maintained by Thycotic Professional Services.
