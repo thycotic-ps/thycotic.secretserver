@@ -138,7 +138,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSiteSummary
+### Thycotic.PowerShell.DistributedEngines.SiteSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
