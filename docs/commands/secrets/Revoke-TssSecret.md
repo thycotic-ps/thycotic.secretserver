@@ -184,7 +184,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDelete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

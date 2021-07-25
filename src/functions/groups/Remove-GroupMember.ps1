@@ -22,7 +22,7 @@ function Remove-GroupMember {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssDelete')]
+    [OutputType('Thycotic.PowerShell.General.Delete')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -64,7 +64,7 @@ function Remove-GroupMember {
             }
 
             if ($restResponse) {
-                [TssDelete]@{
+                [Thycotic.PowerShell.General.Delete]@{
                     Id         = $restResponse.id
                     ObjectType = $restResponse.objectType
                 }

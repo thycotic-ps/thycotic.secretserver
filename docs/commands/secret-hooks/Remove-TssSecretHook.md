@@ -108,7 +108,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDelete
+### Thycotic.PowerShell.General.Delete
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
