@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.ProtocolHandlerSettings"
+title: "ProtocolHandlerSettings"
 ---
 
 # TOPIC

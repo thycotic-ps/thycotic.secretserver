@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.LocalUserPasswords"
+title: "LocalUserPasswords"
 ---
 
 # TOPIC
