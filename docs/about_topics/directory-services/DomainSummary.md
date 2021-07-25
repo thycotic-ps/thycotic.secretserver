@@ -1,18 +1,18 @@
 ---
-title: "TssDomainSummary"
+title: "Thycotic.PowerShell.DirectoryServices.DomainSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssDomainSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.DirectoryServices.DomainSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssDomainSummary
+    Thycotic.PowerShell.DirectoryServices.DomainSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssDomainSummary class represents the DomainSummary object returned by Secret Server endpoint GET /directory-services/domains
+    The Thycotic.PowerShell.DirectoryServices.DomainSummary class represents the DomainSummary object returned by Secret Server endpoint GET /directory-services/domains
 
 # CONSTRUCTORS
     new()

@@ -22,7 +22,7 @@ function Search-DirectoryServiceDomain {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssDomainSummary')]
+    [OutputType('Thycotic.PowerShell.DirectoryServices.DomainSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -83,7 +83,7 @@ function Search-DirectoryServiceDomain {
                 Write-Warning 'No Directory Domain found'
             }
             if ($restResponse.records) {
-                [TssDomainSummary[]]$restResponse.records
+                [Thycotic.PowerShell.DirectoryServices.DomainSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
