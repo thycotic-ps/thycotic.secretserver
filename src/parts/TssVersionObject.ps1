@@ -35,7 +35,7 @@ process {
     $versionProperties = $restResponse.model.PSObject.Properties.Name
     $VersionRecord = $restResponse.model
 
-    $outVersion = [TssVersion]::new()
+    $outVersion = [Thycotic.PowerShell.General.VersionSummary]::new()
     foreach ($v in $VersionRecord) {
         foreach ($vProp in $versionProperties) {
             $outVersion.$vProp = $v.$vProp

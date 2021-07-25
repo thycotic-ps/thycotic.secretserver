@@ -22,7 +22,7 @@ function Test-Version {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssVersion')]
+    [OutputType('Thycotic.PowerShell.General.VersionSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

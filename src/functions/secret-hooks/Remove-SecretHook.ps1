@@ -22,7 +22,7 @@ function Remove-SecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssDelete')]
+    [OutputType('Thycotic.PowerShell.General.Delete')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -58,7 +58,7 @@ function Remove-SecretHook {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $restResponse = . $InvokeApi @invokeParams
-                    [TssDelete]@{
+                    [Thycotic.PowerShell.General.Delete]@{
                         Id = $hook
                         ObjectType = 'Secret Hook'
                     }
