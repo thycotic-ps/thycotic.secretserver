@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.LauncherSettings"
+title: "LauncherSettings"
 ---
 
 # TOPIC

@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.PermissionOptions"
+title: "PermissionOptions"
 ---
 
 # TOPIC

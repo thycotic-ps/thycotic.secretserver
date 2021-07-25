@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.General"
+title: "General"
 ---
 
 # TOPIC

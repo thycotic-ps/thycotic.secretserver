@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.UserExperience"
+title: "UserExperience"
 ---
 
 # TOPIC

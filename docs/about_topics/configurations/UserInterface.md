@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.UserInterface"
+title: "UserInterface"
 ---
 
 # TOPIC

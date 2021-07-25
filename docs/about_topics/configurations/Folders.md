@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Configuration.Folders"
+title: "Folders"
 ---
 
 # TOPIC
