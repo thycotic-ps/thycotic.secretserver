@@ -1,18 +1,18 @@
 ---
-title: "TssSiteSummary"
+title: "SiteSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssSiteSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.DistributedEngines.SiteSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSiteSummary
+    Thycotic.PowerShell.DistributedEngines.SiteSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSiteSummary class represents the SiteSummaryModel object returned by Secret Server endpoint GET /distributed-engines/sites
+    The Thycotic.PowerShell.DistributedEngines.SiteSummary class represents the SiteSummaryModel object returned by Secret Server endpoint GET /distributed-engines/sites
 
 # CONSTRUCTORS
     new()
@@ -39,7 +39,7 @@ title: "TssSiteSummary"
     SiteId: integer (int32)
         Id of Site
 
-    SiteMetrics: [TssSiteMetric[]]
+    SiteMetrics: SiteMetric[]
         List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more. Only returned on a search when IncludeSiteMetrics is true.
 
     SiteName: string

@@ -1,3 +1,3 @@
-# Distributed Engines
+# Thycotic.PowerShell.DistributedEngines
 
 {% include list.liquid all=true %}

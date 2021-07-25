@@ -22,7 +22,7 @@ function Search-DistributedEngineSite {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSiteSummary')]
+    [OutputType('Thycotic.PowerShell.DistributedEngines.SiteSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -102,7 +102,7 @@ function Search-DistributedEngineSite {
                 Write-Warning 'No Distributed Engine Sites found'
             }
             if ($restResponse.records) {
-                [TssSiteSummary[]]$restResponse.records
+                [Thycotic.PowerShell.DistributedEngines.SiteSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
