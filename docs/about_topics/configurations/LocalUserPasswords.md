@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationLocalUserPasswords"
+title: "Thycotic.PowerShell.Configuration.LocalUserPasswords"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationLocalUserPasswords class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.LocalUserPasswords" class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationLocalUserPasswords
+    Thycotic.PowerShell.Configuration.LocalUserPasswords"
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationLocalUserPasswords class represents the ConfigurationLocalUserPasswords returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.LocalUserPasswords" class represents the ConfigurationLocalUserPasswords returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -69,5 +69,4 @@ title: "TssConfigurationLocalUserPasswords"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration

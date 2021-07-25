@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationProtocolHandlerSettings"
+title: "Thycotic.PowerShell.Configuration.ProtocolHandlerSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationProtocolHandlerSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.ProtocolHandlerSettings" class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationProtocolHandlerSettings
+    Thycotic.PowerShell.Configuration.ProtocolHandlerSettings"
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationProtocolHandlerSettings class represents the ConfigurationLauncherSettingsModel object returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.ProtocolHandlerSettings" class represents the ConfigurationLauncherSettingsModel object returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -30,5 +30,4 @@ title: "TssConfigurationProtocolHandlerSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssConfigurationGeneral
     Get-TssConfiguration
