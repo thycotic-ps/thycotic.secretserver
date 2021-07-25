@@ -4,6 +4,29 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [0.49.0] -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* None
+
+### General Updates
+
+* test import action - update build and import test workflow [337b014](https://github.com/thycotic-ps/thycotic.secretserver/commit/337b01441f0ab84af008dfb4371d299b81ecb27b)
+
+### Tests
+
+* Test - Correct references [bc37232](https://github.com/thycotic-ps/thycotic.secretserver/commit/bc3723289e2639907dc20d31851c964f6d6e6194)
+
 ## [0.48.1] -- 2021-07-23
 
 ### Breaking Changes
