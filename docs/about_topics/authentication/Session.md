@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Authentication.Session"
+title: "Session"
 ---
 
 # TOPIC
