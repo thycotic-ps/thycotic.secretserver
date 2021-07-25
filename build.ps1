@@ -1,6 +1,6 @@
 [cmdletbinding()]
 param(
-    [ValidateSet('Debug','Release','Prerelease')]
+    [ValidateSet('Debug','Release','Prerelease','CI')]
     [string]
     $Configuration,
 
@@ -15,7 +15,7 @@ if ($PSEdition -eq 'Desktop') {
     throw "Build process must be run using PowerShell 7"
 }
 
-if (-not (Get-Module platyPs -List) -and $Configuration -ne 'Debug') {
+if (-not (Get-Module platyPs -List) -and ($Configuration -notin 'CI','Debug')) {
     Write-Output "platyPs module not found, attempting to install"
     try {
         Install-Module platyPs -Scope AllUsers -Force
@@ -24,7 +24,7 @@ if (-not (Get-Module platyPs -List) -and $Configuration -ne 'Debug') {
     }
 }
 
-if (-not (Get-Module Pester -List) -and $Configuration -ne 'Debug') {
+if (-not (Get-Module Pester -List) -and ($Configuration -notin 'CI','Debug')) {
     Write-Output "Pester module not found, attempting to install"
     try {
         Install-Module Pester -Scope AllUsers -Force
@@ -34,7 +34,8 @@ if (-not (Get-Module Pester -List) -and $Configuration -ne 'Debug') {
 }
 
 $moduleName = 'Thycotic.SecretServer'
-$staging = [IO.Path]::Combine($env:TEMP, 'tss_staging')
+$libraryFolderName = 'Thycotic.SecretServer'
+$staging = [IO.Path]::Combine($PSScriptRoot, 'release_dir')
 $docRoot = [IO.Path]::Combine($PSScriptRoot, 'docs', 'commands')
 $functionsRoot = [IO.Path]::Combine($PSScriptRoot, 'src', 'functions')
 $cmdletsRoot = [IO.Path]::Combine($PSScriptRoot, 'src', 'Thycotic.SecretServer', 'cmdlets')
@@ -49,11 +50,13 @@ $moduleTempPath = Join-Path $staging $moduleName
 $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
 
 
-if (Test-Path $changeLog -and $Configuration -in 'Release','Prerelease') {
-    Write-Output "gh command to execute: $ghArgs"
-    Invoke-Expression "gh $ghArgs"
-} else {
-    throw "release.md file not found"
+if ($Configuration -in 'Release','Prerelease') {
+    if (Test-Path $changeLog) {
+        Write-Output "gh command to execute: $ghArgs"
+        Invoke-Expression "gh $ghArgs"
+    } else {
+        throw "release.md file not found"
+    }
 }
 
 task library -Before stage, build, docs {
@@ -64,130 +67,134 @@ task stage -Before build {
     if ($Configuration -ne 'Debug') {
         if (Test-Path $staging) {
             Remove-Item -Recurse -Force $staging
+            New-Item -ItemType Directory -Force -Path $staging >$null
+        } else {
+            New-Item -ItemType Directory -Force -Path $staging >$null
         }
+
+        $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
 
         Write-Output "Staging directory: $moduleTempPath"
         $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
         # remove project files
-        Remove-Item -Recurse "$moduleTempPath\Thycotic.SecretServer" -Force
-        $script:moduleData = Import-PowerShellDataFile "$staging\$moduleName\$moduleName.psd1"
+        Remove-Item -Recurse "$moduleTempPath\$libraryFolderName" -Force
+        $script:moduleData = Import-PowerShellDataFile "$moduleTempPath\$moduleName.psd1"
+    } else {
+        Write-Output "Debug mode, skipping staging"
     }
 }
 
 task docs -Before stage, build {
-    Import-Module platyPS
+    if ($Configuration -ne 'CI') {
+        Import-Module platyPS
 
-    $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
+        $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
 
-    $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
-    $docFunctionsParams = @{
-        Module      = $moduleName
-        CommandType = 'Function'
-    }
-    $functions = Get-Command @docFunctionsParams
-
-    $cmdletDirectories = [IO.Directory]::GetDirectories($cmdletsRoot)
-    $docCmdletParams = @{
-        Module      = $moduleName
-        CommandType = 'Cmdlet'
-    }
-    $cmdlets = Get-Command @docCmdletParams
-
-    Write-Output "Working on functions [$($functions.Count)]"
-    foreach ($fDir in $functionDirectories) {
-        $categoryFolderName = Split-Path $fDir -Leaf
-        $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
-
-        if (Test-Path $docCommandPath) {
-            $helpNames = Get-ChildItem $fDir -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
-            $helpCommands = $functions.Where({ $_.Name -in $helpNames })
-            $helpCommands.foreach({
-                    New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
-                })
-        } else {
-            Write-Error "Doc path does not exist: $docCommandPath"
+        $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
+        $docFunctionsParams = @{
+            Module      = $moduleName
+            CommandType = 'Function'
         }
-    }
+        $functions = Get-Command @docFunctionsParams
 
-    Write-Output "Working on cmdlets [$($cmdlets.Count)]"
-    if (Test-Path $externalHelpFile) {
-        Remove-Item $externalHelpFile -Force
-    }
-    $cmdletDocPaths = @()
-    foreach ($cDir in $cmdletDirectories) {
-        $categoryFolder = Split-Path $cDir -Leaf
-        $docCommandPath = [IO.Path]::Combine($docRoot, $categoryFolder)
-
-        if (Test-Path $docCommandPath) {
-            $cmdletDocPaths += $docCommandPath
-            Update-MarkdownHelp -Path $docCommandPath >$null
-        } else {
-            Write-Error "Doc path does not exist: $docCommandPath"
+        $cmdletDirectories = [IO.Directory]::GetDirectories($cmdletsRoot)
+        $docCmdletParams = @{
+            Module      = $moduleName
+            CommandType = 'Cmdlet'
         }
-    }
-    if ($cmdletDocPaths.Count -gt 0) {
-        New-ExternalHelp -Path $cmdletDocPaths -OutputPath $helpPath >$null
+        $cmdlets = Get-Command @docCmdletParams
+
+        Write-Output "Working on functions [$($functions.Count)]"
+        foreach ($fDir in $functionDirectories) {
+            $categoryFolderName = Split-Path $fDir -Leaf
+            $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
+
+            if (Test-Path $docCommandPath) {
+                $helpNames = Get-ChildItem $fDir -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
+                $helpCommands = $functions.Where({ $_.Name -in $helpNames })
+                $helpCommands.foreach({
+                        New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
+                    })
+            } else {
+                Write-Error "Doc path does not exist: $docCommandPath"
+            }
+        }
+
+        Write-Output "Working on cmdlets [$($cmdlets.Count)]"
+        if (Test-Path $externalHelpFile) {
+            Remove-Item $externalHelpFile -Force
+        }
+        $cmdletDocPaths = @()
+        foreach ($cDir in $cmdletDirectories) {
+            $categoryFolder = Split-Path $cDir -Leaf
+            $docCommandPath = [IO.Path]::Combine($docRoot, $categoryFolder)
+
+            if (Test-Path $docCommandPath) {
+                $cmdletDocPaths += $docCommandPath
+                Update-MarkdownHelp -Path $docCommandPath >$null
+            } else {
+                Write-Error "Doc path does not exist: $docCommandPath"
+            }
+        }
+        if ($cmdletDocPaths.Count -gt 0) {
+            New-ExternalHelp -Path $cmdletDocPaths -OutputPath $helpPath >$null
+        }
+    } else {
+        Write-Output "Skipping documentation generation"
     }
 }
-
-# task tests -Before stage, docs, build {
-#     Import-Module Pester
-#     $tests = Invoke-Pester -Path "$PSScriptRoot\tests" -Output Minimal -PassThru
-
-#     if ($tests.FailedCount -gt 0) {
-#         throw "Test failures detected"
-#     }
-# }
 
 task build {
     Write-Output "Build started: $(Get-Date -Format FileDateTime)"
     if ($Configuration -ne 'Debug') {
-        $git = git status
-        if ($git[1] -notmatch "Your branch is up to date") {
-            throw "Local branch has commits not in GitHub"
-        }
-
-        if ([string]::IsNullOrEmpty($GalleryKey) -and $Configuration -ne 'PreRelease') {
-            throw "Gallery Key must be provided to release"
-        }
-
-        if ((gh config get prompt) -eq 'enabled') {
-            Invoke-Expression "gh config set prompt disabled"
-        }
-
-        if ($Configuration -eq 'Release') {
-            $foundModule = Find-Module -Name $moduleName
-            if ($foundModule.Version -ge $imported.Version) {
-                throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+        if ($Configuration -ne 'CI') {
+            $git = git status
+            if ($git[1] -notmatch "Your branch is up to date") {
+                throw "Local branch has commits not in GitHub"
             }
 
-            try {
-                Write-Output "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
-                Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
-                Write-Output "Publishing to PS Gallery, completed"
-            } catch {
-                Write-Warning "Publishing to PS Gallery failed: $($_)"
+            if ([string]::IsNullOrEmpty($GalleryKey) -and ($Configuration -ne 'PreRelease')) {
+                throw "Gallery Key must be provided to release"
+            }
+
+            if ((gh config get prompt) -eq 'enabled') {
+                Invoke-Expression "gh config set prompt disabled"
+            }
+
+            if ($Configuration -eq 'Release') {
+                $foundModule = Find-Module -Name $moduleName
+                if ($foundModule.Version -ge $imported.Version) {
+                    throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
+                }
+
+                try {
+                    Write-Output "Publishing $moduleName [$($imported.Version)] to PowerShell Gallery"
+                    Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+                    Write-Output "Publishing to PS Gallery, completed"
+                } catch {
+                    Write-Warning "Publishing to PS Gallery failed: $($_)"
+                }
+            }
+
+            $tagName = "v$($moduleData.ModuleVersion)"
+            $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
+            if ($Configuration -eq 'PreRelease') {
+                $tagName = "$tagName-$($GitHubPreTag)"
+                $releaseTitle = "$releaseTitle-$($GitHubPreTag)"
+            }
+            Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
+        }
+        if ($Configuration -ne 'CI') {
+            $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
+            if ($Configuration -eq 'Prerelease') {
+                $ghArgs = $ghArgs + " --prerelease"
+            }
+
+            if ((gh config get prompt) -eq 'disabled') {
+                Invoke-Expression "gh config set prompt enabled"
             }
         }
-
-        $tagName = "v$($moduleData.ModuleVersion)"
-        $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
-        if ($Configuration -eq 'PreRelease') {
-            $tagName = "$tagName-$($GitHubPreTag)"
-            $releaseTitle = "$releaseTitle-$($GitHubPreTag)"
-        }
-
-        Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
-        $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
-        if ($Configuration -eq 'Prerelease') {
-            $ghArgs = $ghArgs + " --prerelease"
-        }
-
-        if ((gh config get prompt) -eq 'disabled') {
-            Invoke-Expression "gh config set prompt enabled"
-        }
-
         if ($Configuration -eq 'Release') {
             try {
                 $testAzAccount = az account list | ConvertFrom-Json
