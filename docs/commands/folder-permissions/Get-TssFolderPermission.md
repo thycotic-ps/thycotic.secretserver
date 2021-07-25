@@ -76,7 +76,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderPermission
+### Thycotic.PowerShell.FolderPermission.General
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

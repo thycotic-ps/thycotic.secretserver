@@ -1,18 +1,18 @@
 ---
-title: "TssFolderPermission"
+title: "General"
 ---
 
 # TOPIC
-    This help topic describes the TssFolderPermission class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.FolderPermission.General class in the Thycotic.SecretServer module
 
 # CLASS
-    TssFolderPermission
+    Thycotic.PowerShell.FolderPermission.General
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssFolderPermission class represents the FolderPermissionModel object returned by Secret Server endpoint GET /folder-permissions/{id}
+    The Thycotic.PowerShell.FolderPermission.General class represents the FolderPermissionModel object returned by Secret Server endpoint GET /folder-permissions/{id}
 
 # CONSTRUCTORS
     new()
@@ -37,5 +37,4 @@ title: "TssFolderPermission"
 
 # RELATED LINKS:
     Get-TssFolderPermission
-    Get-TssFolderPermissionStub
     New-TssFolderPermission
