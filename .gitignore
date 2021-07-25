@@ -1,7 +1,7 @@
 .VSCodeCounter/*
 *.xlsx
 debug.log
-release.md
+release*
 .vs/
 
 # ignoring doc works for now
