@@ -1,3 +1,3 @@
-# Directory Services
+# Thycotic.PowerShell.DirectoryServices
 
 {% include list.liquid all=true %}
