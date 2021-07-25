@@ -22,7 +22,7 @@ function Search-FolderPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssFolderPermissionSummary')]
+    [OutputType('Thycotic.PowerShell.FolderPermission.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,
@@ -92,7 +92,7 @@ function Search-FolderPermission {
                     Write-Warning 'No Folder Permissions found'
                 }
                 if ($restResponse.records) {
-                    [TssFolderPermissionSummary[]]$restResponse.records
+                    [Thycotic.PowerShell.FolderPermission.Summary[]]$restResponse.records
                 }
             } else {
                 Write-Error 'Please provide one of the following parameters: -FolderId, -GroupId or -UserId'

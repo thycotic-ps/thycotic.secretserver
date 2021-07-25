@@ -1,18 +1,18 @@
 ---
-title: "TssFolderPermissionSummary"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssFolderPermissionSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.FolderPermission.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssFolderPermissionSummary
+    Thycotic.PowerShell.FolderPermission.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssFolderPermissionSummary class represents the FolderPermissionSummary object returned by Secret Server endpoint GET /folder-permissions
+    The Thycotic.PowerShell.FolderPermission.Summary class represents the FolderPermissionSummary object returned by Secret Server endpoint GET /folder-permissions
 
 # CONSTRUCTORS
     new()
