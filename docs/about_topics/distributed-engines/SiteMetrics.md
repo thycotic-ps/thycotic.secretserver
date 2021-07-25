@@ -1,18 +1,18 @@
 ---
-title: "TssSiteSummary"
+title: "SiteMetrics"
 ---
 
 # TOPIC
-    This help topic describes the TssSiteMetric class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.DistributedEngines.SiteMetrics class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSiteMetric
+    Thycotic.PowerShell.DistributedEngines.SiteMetrics
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSiteMetric class represents the SiteMetic object returned by Secret Server endpoint GET /distributed-engines/sites
+    The Thycotic.PowerShell.DistributedEngines.SiteMetrics class represents the SiteMetic object returned by Secret Server endpoint GET /distributed-engines/sites
     List of Metrics for this site such as ConnectionStatusOffline, ConnectionStatusOnline, ActivationStatusPending, LostConnection, and more. Only returned on a search when IncludeSiteMetrics is true.
 
 # CONSTRUCTORS
@@ -31,5 +31,4 @@ title: "TssSiteSummary"
 # METHODS
 
 # RELATED LINKS:
-    TssSiteSummary
     Search-TssDistributedEngineSite
