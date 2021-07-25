@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationPermissionOptions"
+title: "Thycotic.PowerShell.Configuration.PermissionOptions"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationPermissionOptions class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.PermissionOptions class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationPermissionOptions
+    Thycotic.PowerShell.Configuration.PermissionOptions
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationPermissionOptions class represents the ConfigurationPermissionOptionsModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.PermissionOptions class represents the ConfigurationPermissionOptionsModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -36,5 +36,4 @@ title: "TssConfigurationPermissionOptions"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration

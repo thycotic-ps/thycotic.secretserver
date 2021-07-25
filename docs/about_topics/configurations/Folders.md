@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationFolders"
+title: "Thycotic.PowerShell.Configuration.Folders"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationFolders class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.Folders class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationFolders
+    Thycotic.PowerShell.Configuration.Folders
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationFolders class represents the ConfigurationFoldersModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.Folders class represents the ConfigurationFoldersModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -39,5 +39,4 @@ title: "TssConfigurationFolders"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration

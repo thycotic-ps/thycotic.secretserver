@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationUserInterface"
+title: "Thycotic.PowerShell.Configuration.UserInterface"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationUserInterface class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.UserInterface class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationUserInterface
+    Thycotic.PowerShell.Configuration.UserInterface
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationUserInterface class represents the ConfigurationUserInterfaceModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.UserInterface class represents the ConfigurationUserInterfaceModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()

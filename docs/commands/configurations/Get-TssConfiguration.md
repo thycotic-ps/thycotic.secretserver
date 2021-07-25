@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssConfigurationGeneral
+### Thycotic.PowerShell.Configuration.General
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

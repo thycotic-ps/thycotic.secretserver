@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationLauncherSettings"
+title: "Thycotic.PowerShell.Configuration.LauncherSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationLauncherSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.LauncherSettings" class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationLauncherSettings
+    Thycotic.PowerShell.Configuration.LauncherSettings"
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationLauncherSettings class represents the ConfigurationLauncherSettingsModel object returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.LauncherSettings" class represents the ConfigurationLauncherSettingsModel object returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -48,5 +48,4 @@ title: "TssConfigurationLauncherSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssConfigurationGeneral
     Get-TssConfiguration

@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationUserExperience"
+title: "Thycotic.PowerShell.Configuration.UserExperience"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationUserExperience class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.UserExperience class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationUserExperience
+    Thycotic.PowerShell.Configuration.UserExperience
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationUserExperience class represents the ConfigurationUserExperienceModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.UserExperience class represents the ConfigurationUserExperienceModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -57,5 +57,4 @@ title: "TssConfigurationUserExperience"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration
