@@ -1,18 +1,18 @@
 ---
-title: "TssVersion"
+title: "VersionSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssVersion class in the Thycotic.SecretServer module.
+    This help topic describes the Thycotic.PowerShell.General.VersionSummary class in the Thycotic.SecretServer module.
 
 # CLASS
-    TssVersion
+    Thycotic.PowerShell.General.VersionSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssVersion class represents a custom object for version details of Secret Server.
+    The Thycotic.PowerShell.General.VersionSummary class represents a custom object for Version details of Secret Server.
 
 # CONSTRUCTORS
     new()

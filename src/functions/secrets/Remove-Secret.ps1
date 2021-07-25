@@ -22,7 +22,7 @@ function Remove-Secret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('TssDelete')]
+    [OutputType('Thycotic.PowerShell.General.Delete')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -62,7 +62,7 @@ function Remove-Secret {
                 }
 
                 if ($restResponse) {
-                    [TssDelete]$restResponse
+                    [Thycotic.PowerShell.General.Delete]$restResponse
                 }
             }
         } else {

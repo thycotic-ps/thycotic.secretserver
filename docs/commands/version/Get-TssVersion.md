@@ -46,7 +46,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssVersion
+### Thycotic.PowerShell.General.VersionSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

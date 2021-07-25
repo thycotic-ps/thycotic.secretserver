@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssDelete" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssDelete'
+        It "$commandName should set OutputType to Thycotic.PowerShell.General.Delete" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.General.Delete'
         }
     }
 }

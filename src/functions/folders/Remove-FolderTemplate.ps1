@@ -22,7 +22,7 @@ function Remove-FolderTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssDelete')]
+    [OutputType('Thycotic.PowerShell.General.Delete')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -67,7 +67,7 @@ function Remove-FolderTemplate {
                 }
 
                 if ($restResponse) {
-                    [TssDelete]$restResponse
+                    [Thycotic.PowerShell.General.Delete]$restResponse
                 }
             }
         } else {
