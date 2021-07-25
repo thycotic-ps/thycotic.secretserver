@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationEmailSettings"
+title: "Thycotic.PowerShell.Configuration.EmailSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationEmailSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.EmailSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationEmailSettings
+    Thycotic.PowerShell.Configuration.EmailSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationEmailSettings class represents the ConfigurationEmailModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.EmailSettings class represents the ConfigurationEmailModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -51,5 +51,4 @@ title: "TssConfigurationEmailSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration

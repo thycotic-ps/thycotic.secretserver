@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationApplicationSettings"
+title: "Thycotic.PowerShell.Configuration.ApplicationSettings"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationApplicationSettings class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.ApplicationSettings class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationApplicationSettings
+    Thycotic.PowerShell.Configuration.ApplicationSettings
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationApplicationSettings class represents the ConfigurationApplicationSettingsModel returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.ApplicationSettings class represents the ConfigurationApplicationSettingsModel returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -99,5 +99,4 @@ title: "TssConfigurationApplicationSettings"
 # METHODS
 
 # RELATED LINKS:
-    TssConfiguration
     Get-TssConfiguration

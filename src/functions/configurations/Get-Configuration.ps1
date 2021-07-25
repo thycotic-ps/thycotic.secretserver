@@ -22,7 +22,7 @@ function Get-Configuration {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssConfigurationGeneral')]
+    [OutputType('Thycotic.PowerShell.Configuration.General')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -75,7 +75,7 @@ function Get-Configuration {
             }
 
             if ($restResponse) {
-                [TssConfigurationGeneral]$restResponse
+                [Thycotic.PowerShell.Configuration.General]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

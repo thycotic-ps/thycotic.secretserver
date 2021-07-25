@@ -1,18 +1,18 @@
 ---
-title: "TssConfigurationGeneral"
+title: "Thycotic.PowerShell.Configuration.General"
 ---
 
 # TOPIC
-    This help topic describes the TssConfigurationGeneral class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Configuration.General class in the Thycotic.SecretServer module
 
 # CLASS
-    TssConfigurationGeneral
+    Thycotic.PowerShell.Configuration.General
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssConfigurationGeneral class represents the ConfigurationGeneral object returned by Secret Server endpoint GET /configuration/general
+    The Thycotic.PowerShell.Configuration.General class represents the ConfigurationGeneral object returned by Secret Server endpoint GET /configuration/general
 
 # CONSTRUCTORS
     new()
@@ -21,7 +21,7 @@ title: "TssConfigurationGeneral"
     ApplicationSettings
         General Application Configuration Settings
 
-    Email
+    EmailSettings
         Email server configuration
 
     Folders
@@ -48,13 +48,4 @@ title: "TssConfigurationGeneral"
 # METHODS
 
 # RELATED LINKS:
-    TssConfigurationApplicationSettings
-    TssConfigurationEmailSettings
-    TssConfigurationFolders
-    TssConfigurationLauncherSettings
-    TssConfigurationLocalUserPasswords
-    TssConfigurationPermissionOptions
-    TssConfigurationProtocolHandlerSettings
-    TssConfigurationUserExperience
-    TssConfigurationUserInterface
     Get-TssConfiguration
