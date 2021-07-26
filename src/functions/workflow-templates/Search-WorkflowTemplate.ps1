@@ -22,7 +22,7 @@ function Search-WorkflowTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssWorkflowTemplateDetail')]
+    [OutputType('Thycotic.PowerShell.WorkflowTemplates.Detail')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -33,11 +33,11 @@ function Search-WorkflowTemplate {
         [switch]
         $IncludeInactive,
 
-        # Workflow Type, default to AccessRequest (only type available at this time)
+        # Workflow Type (AccessRequest, SecretEraseRequest)
         [Parameter()]
-        [ValidateSet('AccessRequest')]
+        [ValidateSet('AccessRequest','SecretEraseRequest')]
         [string]
-        $Type = 'AccessRequest',
+        $Type,
 
         # Sort by specific property, default Name
         [string]
@@ -54,7 +54,11 @@ function Search-WorkflowTemplate {
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'workflows', 'templates' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
-            $uri = $uri, "filter.includeInactive=$([boolean]$IncludeInactive)", "filter.workflowType=$Type" -join '&'
+            $uri = $uri, "filter.includeInactive=$([boolean]$IncludeInactive)" -join '&'
+
+            if ($tssParams.ContainsKey('Type')) {
+                $uri = $uri, "filter.workflowType=$Type" -join '&'
+            }
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
@@ -71,7 +75,7 @@ function Search-WorkflowTemplate {
                 Write-Warning "No Workflow(s) found"
             }
             if ($restResponse.records) {
-                [TssWorkflowTemplateDetail[]]$restResponse.records
+                [Thycotic.PowerShell.WorkflowTemplates.Detail[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
