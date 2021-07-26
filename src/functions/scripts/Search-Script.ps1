@@ -22,7 +22,7 @@ function Search-Script {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssScriptSummary')]
+    [OutputType('Thycotic.PowerShell.Scripts.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -78,7 +78,7 @@ function Search-Script {
                 Write-Warning "No Script found"
             }
             if ($restResponse.records) {
-                [TssScriptSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Scripts.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
