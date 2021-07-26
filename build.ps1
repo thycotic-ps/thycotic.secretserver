@@ -111,8 +111,8 @@ task docs -Before stage, build {
             $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
 
             if (Test-Path $docCommandPath) {
-                $helpNames = Get-ChildItem $fDir -File | ForEach-Object { $_.BaseName -replace '-','-Tss' }
-                $helpCommands = $functions.Where({ $_.Name -in $helpNames })
+                $helpNames = Get-ChildItem $fDir -File
+                $helpCommands = $functions.Where({ $_.Name -in $helpNames.BaseName })
                 $helpCommands.foreach({
                         New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
                     })
