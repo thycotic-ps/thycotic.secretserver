@@ -1,18 +1,18 @@
 ---
-title: "TssPasswordType"
+title: "PasswordType"
 ---
 
 # TOPIC
-    This help topic describes the TssPasswordType class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Rpc.PasswordType class in the Thycotic.SecretServer module
 
 # CLASS
-    TssPasswordType
+    Thycotic.PowerShell.Rpc.PasswordType
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssPasswordType class represents the PasswordTypeModel object returned by Secret Server endpoint GET /remote-password-changing/password-types/{id}
+    The Thycotic.PowerShell.Rpc.PasswordType class represents the PasswordTypeModel object returned by Secret Server endpoint GET /remote-password-changing/password-types/{id}
 
 # CONSTRUCTORS
     new()
@@ -30,7 +30,7 @@ title: "TssPasswordType"
     ExitCommand: string
         Exit Command
 
-    Fields: TssPasswordTypeField[]
+    Fields: PasswordTypeField[]
         Password Type Fields
 
     HasCommands: boolean

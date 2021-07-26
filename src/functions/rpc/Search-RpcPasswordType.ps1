@@ -7,10 +7,10 @@ function Search-RpcPasswordType {
     List available Password Types
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Search-TssRpcPasswordType
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Search-TssRpcPasswordType
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Search-RpcPasswordType.ps1
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -22,7 +22,7 @@ function Search-RpcPasswordType {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssPasswordTypeSummary')]
+    [OutputType('Thycotic.PowerShell.Rpc.PasswordTypeSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -52,7 +52,7 @@ function Search-RpcPasswordType {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
-            $uri = $TssSession.ApiUrl, 'remote-password-changing', 'password-types' -join '/'
+            $uri = $TssSession.ApiUrl, 'rpc', 'password-types' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
             $filters = @()
@@ -83,7 +83,7 @@ function Search-RpcPasswordType {
                 Write-Warning 'No RpcPasswordType found'
             }
             if ($restResponse.records) {
-                [TssPasswordTypeSummary[]]$restResponse.records
+                [TThycotic.PowerShell.Rpc.PasswordTypeSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

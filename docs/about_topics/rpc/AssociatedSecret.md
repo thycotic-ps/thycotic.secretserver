@@ -1,18 +1,18 @@
 ---
-title: "TssSecretRpcAssociated"
+title: "AssociatedSecret"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretRpcAssociated class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Rpc.AssociatedSecret class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretRpcAssociated
+    Thycotic.PowerShell.Rpc.AssociatedSecret
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretRpcAssociated class represents the resetSecrets object returned by Secret Server endpoint GET /internals/secret-detail/{id}/rpc
+    The Thycotic.PowerShell.Rpc.AssociatedSecret class represents the object returned by Secret Server endpoint GET /internals/secret-detail/{id}/rpc
 
 # CONSTRUCTORS
     new()
