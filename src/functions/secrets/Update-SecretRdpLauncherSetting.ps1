@@ -22,6 +22,7 @@ function Update-SecretRdpLauncherSetting {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
+    [OutputType('Thycotic.PowerShell.Secrets.RdpLauncherSettings')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

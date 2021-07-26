@@ -206,6 +206,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### Thycotic.PowerShell.Secrets.RdpLauncherSettings
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
