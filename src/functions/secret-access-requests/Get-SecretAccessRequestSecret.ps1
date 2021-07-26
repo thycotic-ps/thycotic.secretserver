@@ -22,7 +22,7 @@ function Get-SecretAccessRequestSecret {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretAccessRequest')]
+    [OutputType('Thycotic.PowerShell.AccessRequests.Request')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -59,7 +59,7 @@ function Get-SecretAccessRequestSecret {
                 }
 
                 if ($restResponse.records) {
-                    [TssSecretAccessRequest[]]$restResponse.records
+                    [Thycotic.PowerShell.AccessRequests.Request[]]$restResponse.records
                 }
             }
         } else {

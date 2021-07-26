@@ -1,18 +1,18 @@
 ---
-title: "TssMetadataSummary"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssMetadataSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Metadata.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssMetadataSummary
+    Thycotic.PowerShell.Metadata.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssMetadataSummary class represents the MetadataSummaryModel object returned by Secret Server endpoint GET /metadata/summary.
+    The Thycotic.PowerShell.Metadata.Summary class represents the MetadataSummaryModel object returned by Secret Server endpoint GET /metadata/summary.
 
 # CONSTRUCTORS
     new()
