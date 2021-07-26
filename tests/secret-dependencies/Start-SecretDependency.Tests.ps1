@@ -17,4 +17,9 @@ Describe "$commandName verify parameters" {
             $_ | Should -BeNullOrEmpty
         }
     }
+    Context "Command specific details" {
+        It "$commandName should set OutputType to System.String" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'System.String'
+        }
+    }
 }

@@ -22,7 +22,7 @@ function Get-SecretDependency {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDependency')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Dependency')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Get-SecretDependency {
                 }
 
                 if ($restResponse) {
-                    [TssSecretDependency]$restResponse
+                    [Thycotic.PowerShell.SecretDependencies.Dependency]$restResponse
                 }
             }
         } else {

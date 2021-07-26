@@ -93,7 +93,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssDependencyTemplate
+### Thycotic.PowerShell.SecretDependencies.Template
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
