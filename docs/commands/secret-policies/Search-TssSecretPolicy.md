@@ -92,7 +92,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretPolicy
+### Thycotic.PowerShell.SecretPolicies.Policy
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
