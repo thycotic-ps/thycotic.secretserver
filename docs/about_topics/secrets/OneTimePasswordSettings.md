@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.OneTimePasswordSettings"
+title: "OneTimePasswordSettings"
 ---
 
 # TOPIC

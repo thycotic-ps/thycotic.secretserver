@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.DetailState"
+title: "DetailState"
 ---
 
 # TOPIC

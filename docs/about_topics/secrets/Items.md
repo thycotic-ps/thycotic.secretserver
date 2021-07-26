@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.Items"
+title: "Items"
 ---
 
 # TOPIC
@@ -42,11 +42,17 @@ title: "Thycotic.PowerShell.Secrets.Items"
     IsPassword
         Whether the field is a password
 
+    IsList
+        Whether or not the secret field is a list
+
     ItemId
         Item ID
 
     ItemValue
         Item value
+
+    ListType
+        Secret field list type (Generic, URL, None)
 
     Slug
         Field Name Slug
