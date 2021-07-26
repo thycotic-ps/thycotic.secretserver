@@ -1,18 +1,18 @@
 ---
-title: "TssSecretPermission"
+title: "Permission"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretPerimssions class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretPermissions.Permission class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretPerimssion
+    Thycotic.PowerShell.SecretPermissions.Perimssion
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretPerimssion class represents the SecretPermission object returned by Secret Server endpoint GET /secret-permissions
+    The Thycotic.PowerShell.SecretPermissions.Perimssion class represents the SecretPermission object returned by Secret Server endpoint GET /secret-permissions
 
 # CONSTRUCTORS
     new()
@@ -49,5 +49,5 @@ title: "TssSecretPermission"
 
 # RELATED LINKS:
     Search-TssSecretPermission
-    Get-TssSecretPermission
     New-TssSecretPermission
+    Update-TssSecretPermission

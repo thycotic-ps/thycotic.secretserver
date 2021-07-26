@@ -22,7 +22,7 @@ function Search-SecretPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretPermission')]
+    [OutputType('Thycotic.PowerShell.SecretPermissions.Permission')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -117,7 +117,7 @@ function Search-SecretPermission {
                 Write-Warning 'No SecretPermission found'
             }
             if ($restResponse.records) {
-                [TssSecretPermission[]]$restResponse.records
+                [Thycotic.PowerShell.SecretPermissions.Permission[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
