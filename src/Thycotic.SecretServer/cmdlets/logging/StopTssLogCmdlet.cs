@@ -13,7 +13,7 @@ namespace Thycotic.SecretServer
     /// <para type="synopsis">Adds footer to the end of the log file.</para>
     /// <para type="description">Appends a footer to the log file to "close" the logging process. This should be called at the end of your script or workflow.</para>
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Stop, "Log", HelpUri = "https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssLog")]
+    [Cmdlet(VerbsLifecycle.Stop, "TssLog", HelpUri = "https://thycotic-ps.github.io/thycotic.secretserver/commands/Stop-TssLog")]
     public class StopLogCmdlet : PSCmdlet
     {
         /// <summary>
