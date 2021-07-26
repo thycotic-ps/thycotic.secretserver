@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.SummaryExtendedField"
+title: "SummaryExtendedField"
 ---
 
 # TOPIC

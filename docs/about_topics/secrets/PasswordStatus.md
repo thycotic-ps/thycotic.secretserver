@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.PasswordStatus"
+title: "PasswordStatus"
 ---
 
 # TOPIC

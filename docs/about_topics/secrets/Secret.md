@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.Secret"
+title: "Secret"
 ---
 
 # TOPIC

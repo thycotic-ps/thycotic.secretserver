@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.HeartbeatStatus"
+title: "HeartbeatStatus"
 ---
 
 # TOPIC

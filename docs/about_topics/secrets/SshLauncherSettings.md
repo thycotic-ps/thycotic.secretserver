@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.SshLauncherSettings"
+title: "SshLauncherSettings"
 ---
 
 # TOPIC
