@@ -1,5 +1,5 @@
 ---
-title: "Thycotic.PowerShell.Secrets.RdpLauncherSettings"
+title: "RdpLauncherSettings"
 ---
 
 # TOPIC
