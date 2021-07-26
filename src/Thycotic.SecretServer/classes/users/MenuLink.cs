@@ -7,7 +7,7 @@ namespace Thycotic.PowerShell.Users
 {
     public class MenuLink
     {
-        public string Links { get; set; }
+        public string Link { get; set; }
         public string Name { get; set; }
     }
 }
