@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* None
+* Set-TssSecretRpcPrivileged - update examples fixes [#209](https://github.com/thycotic-ps/thycotic.secretserver/issues/209) [641d16c](https://github.com/thycotic-ps/thycotic.secretserver/commit/641d16c237a1671e1f9c1ce56c46c7a480196be1)
 
 ### New Stuff
 
@@ -49,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * psm1 - update alias references with Tss prefix [cac7a3a](https://github.com/thycotic-ps/thycotic.secretserver/commit/cac7a3a703012939a4319bd090feac58dd800562)
 * Functions - add Tss prefix [4b2d962](https://github.com/thycotic-ps/thycotic.secretserver/commit/4b2d9620989491ec58f36e5fa3c1aac836a6786d)
 * Logging commands - add Tss prefix [e3bb997](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3bb9975614fe45e12ae359ed7878299dac4e5b8)
+* testimport - update to run on pull request [bcd111b](https://github.com/thycotic-ps/thycotic.secretserver/commit/bcd111b785569d08d380742724c9d3365f83e9d0)
 
 ### Tests
 
