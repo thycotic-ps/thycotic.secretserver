@@ -1,18 +1,18 @@
 ---
-title: "TssRole"
+title: "Role"
 ---
 
 # TOPIC
-    This help topic describes the TssRole class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Roles.Role class in the Thycotic.SecretServer module
 
 # CLASS
-    TssRole
+    Thycotic.PowerShell.Roles.Role
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssRole class represents the RoleModel object returned by Secret Server endpoint GET /roles
+    The Thycotic.PowerShell.Roles.Role class represents the RoleModel object returned by Secret Server endpoint GET /roles
 
 # CONSTRUCTORS
     new()
