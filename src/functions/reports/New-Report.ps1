@@ -34,7 +34,7 @@ function New-Report {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssReport')]
+    [OutputType('Thycotic.PowerShell.Reports.Report')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -125,7 +125,7 @@ function New-Report {
             }
 
             if ($restResponse) {
-                [TssReport]$restResponse
+                [Thycotic.PowerShell.Reports.Report]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

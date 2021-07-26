@@ -1,18 +1,18 @@
 ---
-title: "TssReportCategoryDetail"
+title: "CategoryDetail"
 ---
 
 # TOPIC
-    This help topic describes the TssReportCategoryDetail class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Reports.CategoryDetail class in the Thycotic.SecretServer module
 
 # CLASS
-    TssReportCategoryDetail
+    Thycotic.PowerShell.Reports.CategoryDetail
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssReportCategoryDetail class represents the ReportCategoryDetail object returned by Secret Server endpoint GET /reports/categories
+    The Thycotic.PowerShell.Reports.CategoryDetail class represents the ReportCategoryDetail object returned by Secret Server endpoint GET /reports/categories
 
 # CONSTRUCTORS
     new()

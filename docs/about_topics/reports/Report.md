@@ -1,18 +1,18 @@
 ---
-title: "TssReport"
+title: "Report"
 ---
 
 # TOPIC
-    This help topic describes the TssReport class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Reports.Report class in the Thycotic.SecretServer module
 
 # CLASS
-    TssReport
+    Thycotic.PowerShell.Reports.Report
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssReport class represents the ReportModel object returned by Secret Server endpoint /reports
+    The Thycotic.PowerShell.Reports.Report class represents the ReportModel object returned by Secret Server endpoint /reports
 
 # CONSTRUCTORS
     new()

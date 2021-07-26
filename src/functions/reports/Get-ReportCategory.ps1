@@ -28,7 +28,7 @@ function Get-ReportCategory {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssReportCategory')]
+    [OutputType('Thycotic.PowerShell.Reports.Category')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -91,7 +91,7 @@ function Get-ReportCategory {
                 }
 
                 if ($restResponse) {
-                    [TssReportCategory[]]$restResponse.model
+                    [Thycotic.PowerShell.Reports.Category[]]$restResponse.model
                 }
             }
         } else {
