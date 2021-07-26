@@ -22,7 +22,7 @@ function New-Group {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssGroup')]
+    [OutputType('Thycotic.PowerShell.Groups.Group')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

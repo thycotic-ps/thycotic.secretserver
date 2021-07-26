@@ -8,12 +8,12 @@ function Get-SecretHeartbeatStatus {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-Thycotic.PowerShell.Secrets.HeartbeatStatus -TssSession $session -Id 42
+    Get-TssSecretHeartbeatStatus -TssSession $session -Id 42
 
     Returns heartbeat status of Secret 42
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.HeartbeatStatus
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretHeartbeatStatus
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretHeartbeatStatus.ps1

@@ -168,7 +168,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssGroup
+### Thycotic.PowerShell.Groups.Group
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
