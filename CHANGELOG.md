@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Get-SecretRpcAssociated - rename --> Get-RpcAssociatedSecret breaking change [6cf7e9e](https://github.com/thycotic-ps/thycotic.secretserver/commit/6cf7e9ea9458d3980b0b725f40d71f1c40f45712)
 
 ### Bug Fixes
 
@@ -17,11 +17,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Stuff
 
-* None
+* Configurations - class conversion [6327c11](https://github.com/thycotic-ps/thycotic.secretserver/commit/6327c11a7468b326e8f56511b75e23423061b7db)
+* Directory Services - class conversion [353153c](https://github.com/thycotic-ps/thycotic.secretserver/commit/353153cb47a2b1fbe8504efdd7e6c53e566c9884)
+* DistributedEngines - class conversion [962a5e5](https://github.com/thycotic-ps/thycotic.secretserver/commit/962a5e502641c118e67319828d70033cecf87977)
+* FolderPermission - class conversion [6feec97](https://github.com/thycotic-ps/thycotic.secretserver/commit/6feec97eec0cee1a00d916ff86eb5c88b5e9683c)
+* General - class conversion (Delete, Site, VersionSummary) [734592d](https://github.com/thycotic-ps/thycotic.secretserver/commit/734592da30ca69e43c00eb555bea1a632083670a)
+* Folders - class conversion [0cf5cd7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0cf5cd7203ab6e1ca5efcbb5727cb2feaee3a94b)
+* Groups - class conversion [107ce3c](https://github.com/thycotic-ps/thycotic.secretserver/commit/107ce3c15711272aab4ae6c6be45337ecb925d9a)
+* Reports - class conversion [8374bf9](https://github.com/thycotic-ps/thycotic.secretserver/commit/8374bf999c5f6a40c98e44384057788251873b43)
+* Roles - class conversion [abf902c](https://github.com/thycotic-ps/thycotic.secretserver/commit/abf902c34093857cab21f6e543e7ba676345e45c)
+* RPC - class conversion [b986909](https://github.com/thycotic-ps/thycotic.secretserver/commit/b98690910358bc7aaba816ae1d2ac4313db54f72)
+* Scripts - class conversion [43d0f47](https://github.com/thycotic-ps/thycotic.secretserver/commit/43d0f475ff17ae8bd2f336560e54ad2a091f94fe)
+* SecretAccessRequest - class conversion [1036884](https://github.com/thycotic-ps/thycotic.secretserver/commit/1036884ed81c36eafc4e55e7efe25ab2ce2357d5)
+* SecretDependencies - class conversion [33f8300](https://github.com/thycotic-ps/thycotic.secretserver/commit/33f8300cc6c9bf1152a89a16a6d7fc6ae0fb264e)
+* SecretHooks - class conversion [33e4910](https://github.com/thycotic-ps/thycotic.secretserver/commit/33e4910accf8d89adf62421f0989e0135994b4cb)
+* Items - class update, add list properties for SS v11 [d3fcb98](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3fcb98e053cd37fa78bb850493274deebe33f52)
+* SecretPermissions - class conversion [f93b96a](https://github.com/thycotic-ps/thycotic.secretserver/commit/f93b96a15c71081d3df65b36ff259a27ac50e0b8)
+* SecretPolicies - class conversion [947eea3](https://github.com/thycotic-ps/thycotic.secretserver/commit/947eea397c36f1b59ac86bc6e8821e8f6921e5d6)
+* SecretTemplates - class conversion [7fb658b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7fb658b81ff6ca3bb3766f12a3ce67e08e7dc9db)
+* WorkflowTemplates - class conversion Also added support for SecretEraseRequest Type [1652259](https://github.com/thycotic-ps/thycotic.secretserver/commit/16522595d9e5c98b800654347b7590fc31b57b2a)
+* Users - class conversion [20552e5](https://github.com/thycotic-ps/thycotic.secretserver/commit/20552e5e1f0a9a79a117c6627770c09ef939813f)
 
 ### General Updates
 
 * test import action - update build and import test workflow [337b014](https://github.com/thycotic-ps/thycotic.secretserver/commit/337b01441f0ab84af008dfb4371d299b81ecb27b)
+* Secrets - rename about pages [64aa85e](https://github.com/thycotic-ps/thycotic.secretserver/commit/64aa85e5b8ce4654048c9f39e9c1aaa1b1639e66)
+* Class - types and format view update [7e4f57c](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e4f57cc3fbcf5cc03ca2ed2375fbcb3f0a44398)
+* RPC Class - correcting file name [dad12a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/dad12a0a8bb521c51cf532904becac139fa3c622)
+* Update-SecretRpdLauncherSetting - correct from test failure [ed745ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/ed745ae11aa4462d14ee2121542a41d94e0115c8)
 
 ### Tests
 
