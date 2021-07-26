@@ -99,5 +99,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Stop-TssSecretChangePassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Stop-TssSecretChangePassword)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-SecretChangePassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-SecretChangePassword.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-TssSecretChangePassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Stop-TssSecretChangePassword.ps1)
 

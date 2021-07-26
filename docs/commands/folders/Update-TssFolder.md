@@ -102,5 +102,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssFolder)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-Folder.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssFolder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssFolder.ps1)
 

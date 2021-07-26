@@ -79,5 +79,5 @@ https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__confi
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSdkClient](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSdkClient)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-SdkClient.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-SdkClient.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSdkClient.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSdkClient.ps1)
 

@@ -54,5 +54,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/version/Get-TssVersion](https://thycotic-ps.github.io/thycotic.secretserver/commands/version/Get-TssVersion)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Get-Version.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Get-Version.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Get-TssVersion.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/version/Get-TssVersion.ps1)
 

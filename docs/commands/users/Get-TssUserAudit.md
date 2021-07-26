@@ -69,5 +69,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserAudit)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-UserAudit.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-TssUserAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-TssUserAudit.ps1)
 

@@ -394,5 +394,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Find-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Find-TssSecret)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Find-Secret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Find-Secret.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Find-TssSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Find-TssSecret.ps1)
 

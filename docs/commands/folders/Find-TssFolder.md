@@ -117,5 +117,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Find-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Find-TssFolder)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Find-Folder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Find-Folder.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Find-TssFolder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Find-TssFolder.ps1)
 

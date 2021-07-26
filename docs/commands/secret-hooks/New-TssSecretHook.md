@@ -117,5 +117,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/New-TssSecretHook](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/New-TssSecretHook)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-SecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-SecretHook.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-TssSecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/New-TssSecretHook.ps1)
 

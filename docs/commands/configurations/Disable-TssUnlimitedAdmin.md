@@ -100,5 +100,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Disable-TssUnlimitedAdmin](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Disable-TssUnlimitedAdmin)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Disable-UnlimitedAdmin.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Disable-UnlimitedAdmin.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Disable-TssUnlimitedAdmin.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Disable-TssUnlimitedAdmin.ps1)
 

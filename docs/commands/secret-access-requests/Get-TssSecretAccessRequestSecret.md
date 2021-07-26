@@ -69,5 +69,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAccessRequestSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssSecretAccessRequestSecret)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Get-SecretAccessRequestSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Get-SecretAccessRequestSecret.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Get-TssSecretAccessRequestSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Get-TssSecretAccessRequestSecret.ps1)
 
