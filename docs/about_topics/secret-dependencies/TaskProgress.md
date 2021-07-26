@@ -1,24 +1,24 @@
 ---
-title: "TssSecretDependencyTaskProgress"
+title: "TaskProgress"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyTaskProgress class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.TaskProgress class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyTaskProgress
+    Thycotic.PowerShell.SecretDependencies.TaskProgress
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyTaskProgress class represents the TaskProgress object returned by Secret Server endpoint GET /secret-dependencies/run
+    The Thycotic.PowerShell.SecretDependencies.TaskProgress class represents the TaskProgress object returned by Secret Server endpoint GET /secret-dependencies/run
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
-    Errors: TssSecretDependencyTaskError[]
+    Errors: TaskError[]
         A list of errors for the task
 
     IsComplete: boolean

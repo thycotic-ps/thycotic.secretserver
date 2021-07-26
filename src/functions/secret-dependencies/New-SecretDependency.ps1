@@ -23,7 +23,7 @@ function New-SecretDependency {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretDependency')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Dependency')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -32,7 +32,7 @@ function New-SecretDependency {
 
         # Secret Dependency Stub object
         [Parameter(Mandatory,ValueFromPipeline)]
-        [TssSecretDependency]
+        [Thycotic.PowerShell.SecretDependencies.Dependency]
         $DependencyStub
     )
     begin {
@@ -60,7 +60,7 @@ function New-SecretDependency {
             }
 
             if ($restResponse) {
-                [TssSecretDependency]$restResponse
+                [Thycotic.PowerShell.SecretDependencies.Dependency]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

@@ -28,7 +28,7 @@ function New-SecretDependencyGroup {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretDependencyGroup')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Group')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -82,7 +82,7 @@ function New-SecretDependencyGroup {
                 }
 
                 if ($restResponse) {
-                    [TssSecretDependencyGroup]$restResponse
+                    [Thycotic.PowerShell.SecretDependencies.Group]$restResponse
                 }
             }
         } else {

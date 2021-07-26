@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependencyRunScript"
+title: "RunScript"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyRunScript class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.RunScript class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyRunScript
+    Thycotic.PowerShell.SecretDependencies.RunScript
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyRunScript class represents the SecretDependencyRunScript object returned by Secret Server endpoint GET /secret-dependencies/stub
+    The Thycotic.PowerShell.SecretDependencies.RunScript class represents the SecretDependencyRunScript object returned by Secret Server endpoint GET /secret-dependencies/stub
 
 # CONSTRUCTORS
     new()
@@ -39,5 +39,4 @@ title: "TssSecretDependencyRunScript"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDependency
     Get-TssSecretDependencyRunScriptStub

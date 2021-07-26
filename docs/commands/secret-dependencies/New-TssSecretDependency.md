@@ -6,7 +6,7 @@ Create a new Secret Dependency
 ## SYNTAX
 
 ```
-New-TssSecretDependency [-TssSession] <Session> -DependencyStub <TssSecretDependency> [-WhatIf] [-Confirm]
+New-TssSecretDependency [-TssSession] <Session> -DependencyStub <Dependency> [-WhatIf] [-Confirm]
  [<CommonParameters>]
 ```
 
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 Secret Dependency Stub object
 
 ```yaml
-Type: TssSecretDependency
+Type: Dependency
 Parameter Sets: (All)
 Aliases:
 
@@ -94,7 +94,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretDependency
+### Thycotic.PowerShell.SecretDependencies.Dependency
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

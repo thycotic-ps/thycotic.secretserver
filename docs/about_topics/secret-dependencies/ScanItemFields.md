@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependencyScanItemFields"
+title: "ScanItemFields"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyScanItemFields class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.ScanItemFields class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyScanItemFields
+    Thycotic.PowerShell.SecretDependencies.ScanItemFields
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyScanItemFields class represents the SecretDependencyScanItemField object returned by Secret Server endpoint GET /secret-dependencies/stub
+    The Thycotic.PowerShell.SecretDependencies.ScanItemFields class represents the SecretDependencyScanItemField object returned by Secret Server endpoint GET /secret-dependencies/stub
 
 # CONSTRUCTORS
     new()
@@ -33,5 +33,4 @@ title: "TssSecretDependencyScanItemFields"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDependencyTemplate
     Get-TssSecretDependencyStub

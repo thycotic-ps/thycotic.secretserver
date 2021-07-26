@@ -22,7 +22,7 @@ function Search-SecretDependency {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDependencySummary')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -105,7 +105,7 @@ function Search-SecretDependency {
                     Write-Warning "No Secret Dependencies found on Secret [$secret]"
                 }
                 if ($restResponse.records) {
-                    [TssSecretDependencySummary[]]$restResponse.records
+                    [Thycotic.PowerShell.SecretDependencies.Summary[]]$restResponse.records
                 }
             }
         } else {

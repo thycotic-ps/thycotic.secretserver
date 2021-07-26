@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependencyGroup"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencySummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencySummary
+    Thycotic.PowerShell.SecretDependencies.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencySummary class represents the SecretDependencySummary object returned by Secret Server endpoint GET /secret-dependencies
+    The Thycotic.PowerShell.SecretDependencies.Summary class represents the SecretDependencySummary object returned by Secret Server endpoint GET /secret-dependencies
 
 # CONSTRUCTORS
     new()
