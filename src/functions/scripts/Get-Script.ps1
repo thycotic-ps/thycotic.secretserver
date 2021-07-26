@@ -22,7 +22,7 @@ function Get-Script {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssScript')]
+    [OutputType('Thycotic.PowerShell.Scripts.Script')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
