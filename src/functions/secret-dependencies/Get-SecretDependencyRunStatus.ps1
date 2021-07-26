@@ -23,7 +23,7 @@ function Get-SecretDependencyRunStatus {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretDependencyTaskProgress')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.TaskProgress')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Get-SecretDependencyRunStatus {
                 }
 
                 if ($restResponse) {
-                    [TssSecretDependencyTaskProgress]$restResponse
+                    [Thycotic.PowerShell.SecretDependencies.TaskProgress]$restResponse
                 }
             }
         } else {

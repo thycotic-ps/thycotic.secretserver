@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependency"
+title: "Dependency"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependency class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.Dependency class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependency
+    Thycotic.PowerShell.SecretDependencies.Dependency
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependency class represents the SecretDependencyModel object returned by Secret Server endpoint GET /secret-dependencies/{id}
+    The Thycotic.PowerShell.SecretDependencies.Dependency class represents the SecretDependencyModel object returned by Secret Server endpoint GET /secret-dependencies/{id}
 
 # CONSTRUCTORS
     new()
@@ -30,7 +30,7 @@ title: "TssSecretDependency"
     ConditionMode: string
         Condition Mode governs if this dependency's run relies on the result of other dependencies above it. The Default is ALWAYSRUN. Other values maybe 'All Pass', 'Any Fail', 'DEPENDENCYPASS', 'DEPENDENCYFAIL'.
 
-    DependencyTemplate: SecretDependencyTemplate
+    DependencyTemplate: DependencyTemplate
         The DependencyTemplate properties that are populated if the Dependency is based on a Dependency template.
 
     Description: string
@@ -61,7 +61,7 @@ title: "TssSecretDependency"
         The Name of the Secret that the Secret Dependency is assigned to.
 
     Settings: object[]
-        The Settings used by the Secret Dependency. (Ex: WaitBeforeSeconds, Database, Port, SSHKeyDigest). If a setting exists with the same name (or intent in the case of Port and SqlPort) as a field on the Dependency template's DependencyScanItemFields collection, the value assigned to the setting takes precidence and will overwrite the corresponding DependencyScanItemField.
+        The Settings used by the Secret Dependency. (Ex: WaitBeforeSeconds, Database, Port, SSHKeyDigest). If a setting exists with the same name (or intent in the case of Port and SqlPort) as a field on the Dependency template's DependencyScanItemFields collection, the value assigned to the setting takes precedence and will overwrite the corresponding DependencyScanItemField.
 
     SortOrder: integer (int32)
         The sort order of the Secret Dependency in the group. Determines the order of execution of the dependencies within a group.

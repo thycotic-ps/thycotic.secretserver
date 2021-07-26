@@ -131,7 +131,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretDependencyGroup
+### Thycotic.PowerShell.SecretDependencies.Group
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

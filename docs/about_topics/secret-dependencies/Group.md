@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependencyGroup"
+title: "Group"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyGroup class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.Group class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyGroup
+    Thycotic.PowerShell.SecretDependencies.Group
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyGroup class represents the SecretDependencyGroup object returned by Secret Server endpoint POST /secret-dependencies/groups/{secretId}
+    The Thycotic.PowerShell.SecretDependencies.Group class represents the SecretDependencyGroup object returned by Secret Server endpoint POST /secret-dependencies/groups/{secretId}
 
 # CONSTRUCTORS
     new()

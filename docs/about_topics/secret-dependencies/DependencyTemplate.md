@@ -1,18 +1,18 @@
 ---
-title: "TssSecretDependencyTemplate"
+title: "DependencyTemplate"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretDependencyTemplate class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretDependencies.DependencyTemplate class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretDependencyTemplate
+    Thycotic.PowerShell.SecretDependencies.DependencyTemplate
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretDependencyTemplate class represents the SecretDependencyTemplate object returned by Secret Server endpoint GET /secret-dependencies/stub
+    The Thycotic.PowerShell.SecretDependencies.DependencyTemplate class represents the SecretDependencyTemplate object returned by Secret Server endpoint GET /secret-dependencies/stub
 
 # CONSTRUCTORS
     new()
@@ -21,7 +21,7 @@ title: "TssSecretDependencyTemplate"
     ChangerScriptId: integer (int32)
         The id of the script (if any) used by the Dependency Template
 
-    DependencyScanItemFields: TssSecretDependencyScanItemFields[]
+    DependencyScanItemFields: ScanItemFields[]
         The Scan Item Fields used by the Dependency Template
 
     ScriptName: string
@@ -36,5 +36,4 @@ title: "TssSecretDependencyTemplate"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretDependency
     Get-TssSecretDependencyStub
