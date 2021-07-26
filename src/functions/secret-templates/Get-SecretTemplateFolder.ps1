@@ -22,7 +22,7 @@ function Get-SecretTemplateFolder {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretTemplateView')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.View')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -58,7 +58,7 @@ function Get-SecretTemplateFolder {
                 }
 
                 if ($restResponse) {
-                    [TssSecretTemplateView[]]$restResponse
+                    [Thycotic.PowerShell.SecretTemplates.View[]]$restResponse
                 }
             }
         } else {

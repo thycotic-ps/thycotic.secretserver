@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretTemplateView
+### Thycotic.PowerShell.SecretTemplates.View
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
