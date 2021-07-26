@@ -1,4 +1,4 @@
-function Get-SecretRpcAssociated {
+function Get-RpcAssociatedSecret {
     <#
     .SYNOPSIS
     Get a list of the Associated Secrets configured for a Secret
@@ -8,21 +8,21 @@ function Get-SecretRpcAssociated {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssSecretRpcAssociated -TssSession $session - some test value
+    Get-TssRpcAssociatedSecret -TssSession $session - some test value
 
     Add minimum example for each parameter
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretRpcAssociated
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcAssociatedSecret
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretRpcAssociated.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-RpcAssociatedSecret.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretRpcAssociated')]
+    [OutputType('Thycotic.PowerShell.Rpc.AssociatedSecret')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -62,7 +62,7 @@ function Get-SecretRpcAssociated {
 
                 if ($restResponse.resetSecrets.value) {
                     foreach ($as in $restResponse.resetSecrets.value) {
-                        [TssSecretRpcAssociated]@{
+                        [Thycotic.PowerShell.Rpc.AssociatedSecret]@{
                             ParentSecretId     = $secret
                             Order              = $as.order
                             AssociatedSecretId = $as.secretId
