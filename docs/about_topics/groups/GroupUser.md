@@ -1,18 +1,18 @@
 ---
-title: "TssGroupUser"
+title: "GroupUser"
 ---
 
 # TOPIC
-    This help topic describes the TssGroupUser class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Groups.GroupUser class in the Thycotic.SecretServer module
 
 # CLASS
-    TssGroupUser
+    Thycotic.PowerShell.Groups.GroupUser
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssGroupUser class represents the GroupUserModel object returned by Secret Server endpoint GET /groups/{id}/users/{userId}
+    The Thycotic.PowerShell.Groups.GroupUser class represents the GroupUserModel object returned by Secret Server endpoint GET /groups/{id}/users/{userId}
 
 # CONSTRUCTORS
     new()

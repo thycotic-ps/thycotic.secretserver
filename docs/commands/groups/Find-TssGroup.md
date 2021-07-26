@@ -130,7 +130,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssGroupLookup
+### Thycotic.PowerShell.Groups.Lookup
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

@@ -8,12 +8,12 @@ function Get-SecretPasswordStatus {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-Thycotic.PowerShell.Secrets.PasswordStatus -TssSession $session -Id 26
+    Get-TssSecretPasswordStatus -TssSession $session -Id 26
 
     Get password change status of Secret ID 26
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-Thycotic.PowerShell.Secrets.PasswordStatus
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-SecretPasswordStatus.ps1

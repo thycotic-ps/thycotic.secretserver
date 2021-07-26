@@ -1,18 +1,18 @@
 ---
-title: "TssGroupOwner"
+title: "GroupOwner"
 ---
 
 # TOPIC
-    This help topic describes the TssGroupOwner class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Groups.GroupOwner class in the Thycotic.SecretServer module
 
 # CLASS
-    TssGroupOwner
+    Thycotic.PowerShell.Groups.GroupOwner
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssGroupOwner class represents the GroupOwner object returned by Secret Server endpoint GET /groups/{id}
+    The Thycotic.PowerShell.Groups.GroupOwner class represents the GroupOwner object returned by Secret Server endpoint GET /groups/{id}
 
 # CONSTRUCTORS
     new()
@@ -30,5 +30,4 @@ title: "TssGroupOwner"
 # METHODS
 
 # RELATED LINKS:
-    TssGroup
     Get-TssGroup

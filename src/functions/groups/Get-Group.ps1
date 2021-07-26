@@ -22,7 +22,7 @@ function Get-Group {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssGroup')]
+    [OutputType('Thycotic.PowerShell.Groups.Group')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -77,7 +77,7 @@ function Get-Group {
                             }
                         }
 
-                        [TssGroup]@{
+                        [Thycotic.PowerShell.Groups.Group]@{
                             AdGuid         = $g.AdGuid
                             CanEditMembers = $g.canEditMembers
                             Created        = $g.Created
