@@ -23,7 +23,7 @@ function Get-UserRoleAssigned {
     Only supported on 10.9.32 or higher of Secret Server
     #>
     [CmdletBinding()]
-    [OutputType('TssUserRoleSummary')]
+    [OutputType('Thycotic.PowerShell.Users.UserRoleSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -62,7 +62,7 @@ function Get-UserRoleAssigned {
                 }
 
                 if ($restResponse.records) {
-                    [TssUserRoleSummary[]]$restResponse.records
+                    [Thycotic.PowerShell.Users.UserRoleSummary[]]$restResponse.records
                 }
             }
         } else {

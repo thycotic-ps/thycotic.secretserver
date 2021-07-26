@@ -1,18 +1,18 @@
 ---
-title: "GroupUser"
+title: "User"
 ---
 
 # TOPIC
-    This help topic describes the Thycotic.PowerShell.Groups.GroupUser class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Groups.User class in the Thycotic.SecretServer module
 
 # CLASS
-    Thycotic.PowerShell.Groups.GroupUser
+    Thycotic.PowerShell.Groups.User
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The Thycotic.PowerShell.Groups.GroupUser class represents the GroupUserModel object returned by Secret Server endpoint GET /groups/{id}/users/{userId}
+    The Thycotic.PowerShell.Groups.User class represents the GroupUserModel object returned by Secret Server endpoint GET /groups/{id}/users/{userId}
 
 # CONSTRUCTORS
     new()
@@ -33,7 +33,7 @@ title: "GroupUser"
     UserId: integer (int32)
         User ID
 
-    UserName: string
+    Username: string
         User name
 
 # METHODS

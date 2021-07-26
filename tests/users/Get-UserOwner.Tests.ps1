@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssUserOwnerSummary" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssUserOwnerSummary'
+        It "$commandName should set OutputType to Thycotic.PowerShell.Users.OwnerSummary" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Users.OwnerSummary'
         }
     }
 }

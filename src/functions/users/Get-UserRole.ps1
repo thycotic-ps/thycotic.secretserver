@@ -22,7 +22,7 @@ function Get-UserRole {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssRoleSummary')]
+    [OutputType('Thycotic.PowerShell.Users.RoleSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -62,7 +62,7 @@ function Get-UserRole {
                 }
 
                 if ($restResponse.records.Count -gt 0) {
-                    [TssRoleSummary[]]$restResponse.records
+                    [Thycotic.PowerShell.Users.RoleSummary[]]$restResponse.records
                 } else {
                     Write-Warning "User ID [$user] not found"
                 }

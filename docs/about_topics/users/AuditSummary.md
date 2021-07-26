@@ -1,18 +1,18 @@
 ---
-title: "TssUserAuditSummary"
+title: "AuditSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssUserAuditSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Users.AuditSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssUserAuditSummary
+    Thycotic.PowerShell.Users.AuditSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssUserAuditSummary class represents the UserAuditSummary object returned by Secret Server endpoint GET /users/{id}/audit
+    The Thycotic.PowerShell.Users.AuditSummary class represents the UserAuditSummary object returned by Secret Server endpoint GET /users/{id}/audit
 
 # CONSTRUCTORS
     new()

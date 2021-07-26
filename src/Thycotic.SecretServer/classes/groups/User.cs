@@ -5,7 +5,7 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.Groups
 {
-    public class GroupUser
+    public class User
     {
         public int GroupDomainId { get; set; }
         public int GroupId { get; set; }

@@ -23,7 +23,7 @@ function Update-User {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [OutputType('TssUser')]
+    [OutputType('Thycotic.PowerShell.Users.User')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for authentication
@@ -39,7 +39,7 @@ function Update-User {
 
         # User object from Get-TssUser
         [Parameter(Mandatory)]
-        [TssUser]
+        [Thycotic.PowerShell.Users.User]
         $User
     )
     begin {
@@ -67,7 +67,7 @@ function Update-User {
                 }
 
                 if ($restResponse) {
-                    [TssUser]$restResponse
+                    [Thycotic.PowerShell.Users.User]$restResponse
                 }
             }
         } else {
