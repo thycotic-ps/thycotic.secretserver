@@ -1,18 +1,18 @@
 ---
-title: "TssPasswordTypeSummary"
+title: "PasswordTypeSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssPasswordTypeSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Rpc.PasswordTypeSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssPasswordTypeSummary
+    Thycotic.PowerShell.Rpc.PasswordTypeSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssPasswordTypeSummary class represents the PasswordTypeSummary object returned by Secret Server endpoint GET /remote-password-changing/password-types
+    The Thycotic.PowerShell.Rpc.PasswordTypeSummary class represents the PasswordTypeSummary object returned by Secret Server endpoint GET /remote-password-changing/password-types
 
 # CONSTRUCTORS
     new()

@@ -13,16 +13,16 @@ function Get-RpcPasswordType {
     Get Password Type 52
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Get-TssRpcPasswordType
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcPasswordType
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Get-RpcPasswordType.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-RpcPasswordType.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssPasswordType')]
+    [OutputType('Thycotic.PowerShell.Rpc.PasswordType')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -46,7 +46,7 @@ function Get-RpcPasswordType {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($passwordType in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'remote-password-changing', 'password-types', $passwordType -join '/'
+                $uri = $TssSession.ApiUrl, 'rpc', 'password-types', $passwordType -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
@@ -60,7 +60,7 @@ function Get-RpcPasswordType {
                 }
 
                 if ($restResponse) {
-                    [TssPasswordType]$restResponse
+                    [Thycotic.PowerShell.Rpc.PasswordType]$restResponse
                 }
             }
         } else {

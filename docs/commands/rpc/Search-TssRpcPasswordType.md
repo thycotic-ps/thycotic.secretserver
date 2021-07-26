@@ -92,13 +92,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssPasswordTypeSummary
+### Thycotic.PowerShell.Rpc.PasswordTypeSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Search-TssRpcPasswordType](https://thycotic-ps.github.io/thycotic.secretserver/commands/remote-password-changing/Search-TssRpcPasswordType)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Search-TssRpcPasswordType](https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Search-TssRpcPasswordType)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/remote-password-changing/Search-RpcPasswordType.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Search-RpcPasswordType.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Search-RpcPasswordType.ps1)
 
