@@ -29,7 +29,7 @@ function New-SecretPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretPermission')]
+    [OutputType('Thycotic.PowerShell.SecretPermissions.Permission')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -105,7 +105,7 @@ function New-SecretPermission {
                     }
 
                     if ($restResponse) {
-                        [TssSecretPermission]$restResponse
+                        [Thycotic.PowerShell.SecretPermissions.Permission]$restResponse
                     }
                 } else {
                     Write-Error "Secret [$secret] has InheritPermissions enabled, use -Force parameter to break inheritance."
