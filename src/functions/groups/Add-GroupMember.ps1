@@ -22,7 +22,7 @@ function Add-GroupMember {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('Thycotic.PowerShell.Groups.GroupUser')]
+    [OutputType('Thycotic.PowerShell.Groups.User')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -67,7 +67,7 @@ function Add-GroupMember {
                     }
 
                     if ($restResponse) {
-                        [Thycotic.PowerShell.Groups.GroupUser]$restResponse
+                        [Thycotic.PowerShell.Groups.User]$restResponse
                     }
                 }
             }

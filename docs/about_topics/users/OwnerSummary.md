@@ -1,18 +1,18 @@
 ---
-title: "TssUserOwnerSummary"
+title: "OwnerSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssUserOwnerSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Users.OwnerSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssUserOwnerSummary
+    Thycotic.PowerShell.Users.OwnerSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssUserOwnerSummary class represents the UserOwnerSummary object returned by Secret Server endpoint GET /users/{id}/owners
+    The Thycotic.PowerShell.Users.OwnerSummary class represents the UserOwnerSummary object returned by Secret Server endpoint GET /users/{id}/owners
 
 # CONSTRUCTORS
     new()

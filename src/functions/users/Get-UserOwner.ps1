@@ -22,7 +22,7 @@ function Get-UserOwner {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssUserOwnerSummary')]
+    [OutputType('Thycotic.PowerShell.Users.OwnerSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -64,7 +64,7 @@ function Get-UserOwner {
                 }
 
                 if ($restResponse.records) {
-                    [TssUserOwnerSummary[]]$restResponse.records
+                    [Thycotic.PowerShell.Users.OwnerSummary[]]$restResponse.records
                 }
             }
         } else {

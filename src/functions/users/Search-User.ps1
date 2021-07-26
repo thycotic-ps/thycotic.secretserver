@@ -28,7 +28,7 @@ function Search-User {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssUserSummary')]
+    [OutputType('Thycotic.PowerShell.Users.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -103,7 +103,7 @@ function Search-User {
                 Write-Warning 'No Users found'
             }
             if ($restResponse.records) {
-                [TssUserSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Users.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

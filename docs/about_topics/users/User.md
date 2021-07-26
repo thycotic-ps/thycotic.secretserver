@@ -1,18 +1,18 @@
 ---
-title: "TssUser"
+title: "User"
 ---
 
 # TOPIC
-    This help topic describes the TssUser class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Users.User class in the Thycotic.SecretServer module
 
 # CLASS
-    TssUser
+    Thycotic.PowerShell.Users.User
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssUser class represents the UserModel object returned by Secret Server endpoint GET /users/{id}
+    The Thycotic.PowerShell.Users.User class represents the UserModel object returned by Secret Server endpoint GET /users/{id}
 
 # CONSTRUCTORS
     new()

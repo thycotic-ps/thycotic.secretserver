@@ -29,7 +29,7 @@ function Show-CurrentUser {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssCurrentUser')]
+    [OutputType('Thycotic.PowerShell.Users.CurrentUser')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Show-CurrentUser {
             }
 
             if ($restResponse) {
-                [TssCurrentUser]$restResponse
+                [Thycotic.PowerShell.Users.CurrentUser]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

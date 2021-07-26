@@ -130,7 +130,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssUserSummary
+### Thycotic.PowerShell.Users.Summary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
