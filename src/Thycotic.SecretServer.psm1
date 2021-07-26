@@ -42,11 +42,11 @@ $script:clientSdkPath = [IO.Path]::Combine($binRoot,'ClientSdk')
     Creating an alias to map to Disable function of the module to keep things simplified.
 #>
 $aliases = @{
-    'gts' = 'Get-Secret'
-    'nts' = 'New-Session'
-    'ira' = 'Invoke-RestApi'
-    'Checkout-Secret' = 'Open-Secret'
-    'CheckIn-Secret' = 'Close-Secret'
+    'gts' = 'Get-TssSecret'
+    'nts' = 'New-TssSession'
+    'ira' = 'Invoke-TssRestApi'
+    'Checkout-TssSecret' = 'Open-TssSecret'
+    'CheckIn-TssSecret' = 'Close-TssSecret'
 }
 foreach ($_ in $aliases.GetEnumerator()) {
     New-Alias -Name $_.Key -Value $_.Value -Force
