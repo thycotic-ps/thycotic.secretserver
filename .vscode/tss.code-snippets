@@ -623,7 +623,7 @@
         "description": "New tests"
     },
     "About Help": {
-        "scope": "plaintext",
+        "scope": "markdown",
         "prefix": "tssabout",
         "body": [
             "TOPIC",

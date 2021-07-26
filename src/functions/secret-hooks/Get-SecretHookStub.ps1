@@ -8,9 +8,10 @@ function Get-SecretHookStub {
 
     .EXAMPLE
     session = New-TssSession -SecretServer https://alpha -Credential ssCred
-    Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+    $stub = Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+    New-TssSecretHook -TssSession $session -SecretId 2 -SecretHookStub $stub
 
-    Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, PrePostOption and Event Action.
+    Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, PrePostOption and Event Action. Creates the Hook on Secret ID 2.
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Get-TssSecretHookStub
@@ -22,7 +23,7 @@ function Get-SecretHookStub {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretHook')]
+    [OutputType('Thycotic.PowerShell.SecretHooks.Hook')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -83,7 +84,7 @@ function Get-SecretHookStub {
                     'CheckIn' { $EventActionId = 10025 }
                 }
                 if ($restResponse) {
-                    [TssSecretHook]@{
+                    [Thycotic.PowerShell.SecretHooks.Hook]@{
                         SecretHookId = $restResponse.SecretHookId
                         HookId = $restResponse.HookId
                         Name = $Name

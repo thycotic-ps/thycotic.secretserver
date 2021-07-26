@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssSecretHook" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssSecretHook'
+        It "$commandName should set OutputType to Thycotic.PowerShell.SecretHooks.Hook" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.SecretHooks.Hook'
         }
     }
 }
