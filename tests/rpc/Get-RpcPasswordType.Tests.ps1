@@ -18,8 +18,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to TssPasswordType" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'TssPasswordType'
+        It "$commandName should set OutputType to Thycotic.PowerShell.Rpc.PasswordType" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Rpc.PasswordType'
         }
     }
 }
