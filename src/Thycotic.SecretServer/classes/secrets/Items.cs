@@ -15,6 +15,8 @@ namespace Thycotic.PowerShell.Secrets
         public bool IsFile { get; set; }
         public bool IsNotes { get; set; }
         public bool IsPassword { get; set; }
+        public bool IsList { get; set; }
+        public string ListType { get; set; }
         public int ItemId { get; set; }
         public string ItemValue { get; set; }
         public string Slug { get; set; }
