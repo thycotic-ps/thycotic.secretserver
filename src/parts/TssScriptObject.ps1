@@ -5,9 +5,6 @@
 param(
     [pscustomobject]$Object
 )
-begin {
-    $Properties = $Object.PSObject.Properties.Name
-}
 process {
     $finalObject = @()
     foreach ($script in $Object) {
@@ -17,14 +14,14 @@ process {
             if ($sAddData.Params) {
                 $allParamData = @()
                 foreach ($p in $sAddData.Params) {
-                    $paramData = [TssScriptAdditionalDataParams]@{
+                    $paramData = [Thycotic.PowerShell.Scripts.AdditionalDataParams]@{
                         Name = $p.Name
                         SshType = $p.SshType
                     }
                     $allParamData += $paramData
                 }
             }
-            $additionalData = [TssScriptAdditionalData]@{
+            $additionalData = [Thycotic.PowerShell.Scripts.AdditionalData]@{
                 Port = $sAddData.Port
                 LineEnding = $sAddData.LineEnding
                 Version = $sAddData.Version
@@ -32,7 +29,7 @@ process {
                 Params = $allParamData
             }
         }
-        $tssScript = [TssScript]@{
+        $tssScript = [Thycotic.PowerShell.Scripts.Script]@{
             Active = $script.Active
             AdditionalData = $additionalData
             ConcurrencyId = $script.ConcurrencyId
@@ -46,7 +43,6 @@ process {
             ScriptType = $script.ScriptType
             UsageCount = $script.UsageCount
         }
-
         $finalObject += $tssScript
     }
     return $finalObject
