@@ -84,7 +84,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderDetailView
+### Thycotic.PowerShell.Folders.DetailView
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

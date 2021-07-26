@@ -1,24 +1,24 @@
 ---
-title: "TssFolder"
+title: "Folder"
 ---
 
 # TOPIC
-    This help topic describes the TssFolder class in the Thycotic.SecretServer module.
+    This help topic describes the Thycotic.PowerShell.Folders.Folder class in the Thycotic.SecretServer module.
 
 # CLASS
-    TssFolder
+    Thycotic.PowerShell.Folders.Folder
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssFolder class represents the FolderModel object returned by Secret Server endpoint /folders/{id}
+    The Thycotic.PowerShell.Folders.Folder class represents the FolderModel object returned by Secret Server endpoint /folders/{id}
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
-    ChildFolders [TssFolder[]]
+    ChildFolders Folder[]
         List of folders within this folder
 
     FolderName
@@ -45,11 +45,10 @@ title: "TssFolder"
     SecretPolicyId
         Secret policy ID
 
-    SecretTemplates [TssFolderTemplate[]]
+    SecretTemplates FolderTemplate[]
         List of templates that may be used to create secrets in this folder
 
 # METHODS
 
 # RELATED LINKS:
-    TssFolderTemplate
     Get-TssFolder

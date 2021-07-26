@@ -23,7 +23,7 @@ function Update-Folder {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [OutputType('TssFolder')]
+    [OutputType('Thycotic.PowerShell.Folders.Folder')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for authentication
@@ -33,7 +33,7 @@ function Update-Folder {
 
         # Folder object, output from Get-TssFolder
         [Parameter(Mandatory, Position = 1)]
-        [TssFolder]
+        [Thycotic.PowerShell.Folders.Folder]
         $Folder
     )
     begin {
@@ -62,7 +62,7 @@ function Update-Folder {
                 }
 
                 if ($restResponse) {
-                    [TssFolder]$restResponse
+                    [Thycotic.PowerShell.Folders.Folder]$restResponse
                 }
             }
         } else {

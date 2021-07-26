@@ -36,7 +36,7 @@ function New-Folder {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssFolder')]
+    [OutputType('Thycotic.PowerShell.Folders.Folder')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -116,7 +116,7 @@ function New-Folder {
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                [TssFolder]$restResponse
+                [Thycotic.PowerShell.Folders.Folder]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

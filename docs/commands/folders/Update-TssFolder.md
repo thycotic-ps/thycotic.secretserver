@@ -6,7 +6,7 @@ Update all members of a group
 ## SYNTAX
 
 ```
-Update-TssFolder [-TssSession] <Session> [-Folder] <TssFolder> [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssFolder [-TssSession] <Session> [-Folder] <Folder> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -45,7 +45,7 @@ Accept wildcard characters: False
 Folder object, output from Get-TssFolder
 
 ```yaml
-Type: TssFolder
+Type: Folder
 Parameter Sets: (All)
 Aliases:
 
@@ -94,7 +94,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolder
+### Thycotic.PowerShell.Folders.Folder
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

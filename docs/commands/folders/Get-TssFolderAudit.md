@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderAuditSummary
+### Thycotic.PowerShell.Folders.AuditSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

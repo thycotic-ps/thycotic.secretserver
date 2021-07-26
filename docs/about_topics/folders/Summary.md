@@ -1,18 +1,18 @@
 ---
-title: "TssFolderSummary"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssFolderSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Folders.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssFolderSummary
+    Thycotic.PowerShell.Folders.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssFolderSummary class represents the FolderSummary object returned by Secret Server endpoint GET /folders
+    The Thycotic.PowerShell.Folders.Summary class represents the FolderSummary object returned by Secret Server endpoint GET /folders
 
 # CONSTRUCTORS
     new()

@@ -36,7 +36,7 @@ function Add-FolderPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssFolderPermission')]
+    [OutputType('Thycotic.PowerShell.FolderPermission.General')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
