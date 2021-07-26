@@ -8,7 +8,8 @@ function New-SecretHook {
 
     .EXAMPLE
     session = New-TssSession -SecretServer https://alpha -Credential ssCred
-    Update-TssSecretHook -TssSession $session -SecretHookId 2 -SecretId 76 -Arguments '$USERNAME $PASSWORD $DOMAIN'
+    $stub = Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+    New-TssSecretHook -TssSession $session -SecretId 2 -SecretHookStub $stub
 
     Update Secret Hook 2's Arguments property on Secret ID 76
 
@@ -22,7 +23,7 @@ function New-SecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretHook')]
+    [OutputType('Thycotic.PowerShell.SecretHooks.Hook')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -37,7 +38,7 @@ function New-SecretHook {
 
         # Secret Hook Stub object
         [Parameter(Mandatory)]
-        [TssSecretHook]
+        [Thycotic.PowerShell.SecretHooks.Hook]
         $SecretHookStub
     )
     begin {
@@ -94,7 +95,7 @@ function New-SecretHook {
                 }
 
                 if ($restResponse) {
-                    [TssSecretHook]@{
+                    [Thycotic.PowerShell.SecretHooks.Hook]@{
                         SecretHookId = $restResponse.SecretHookId
                         HookId = $restResponse.HookId
                         Name = $restResponse.name.value

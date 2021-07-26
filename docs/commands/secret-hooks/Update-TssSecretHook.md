@@ -412,7 +412,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretHook
+### Thycotic.PowerShell.SecretHooks.Hook
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

@@ -6,8 +6,8 @@ Create a Secret Hook
 ## SYNTAX
 
 ```
-New-TssSecretHook [-TssSession] <Session> -SecretId <Int32[]> -SecretHookStub <TssSecretHook> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+New-TssSecretHook [-TssSession] <Session> -SecretId <Int32[]> -SecretHookStub <Hook> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -18,7 +18,8 @@ Create a Secret Hook
 ### EXAMPLE 1
 ```
 session = New-TssSession -SecretServer https://alpha -Credential ssCred
-Update-TssSecretHook -TssSession $session -SecretHookId 2 -SecretId 76 -Arguments '$USERNAME $PASSWORD $DOMAIN'
+$stub = Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+New-TssSecretHook -TssSession $session -SecretId 2 -SecretHookStub $stub
 ```
 
 Update Secret Hook 2's Arguments property on Secret ID 76
@@ -59,7 +60,7 @@ Accept wildcard characters: False
 Secret Hook Stub object
 
 ```yaml
-Type: TssSecretHook
+Type: Hook
 Parameter Sets: (All)
 Aliases:
 
@@ -108,7 +109,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretHook
+### Thycotic.PowerShell.SecretHooks.Hook
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

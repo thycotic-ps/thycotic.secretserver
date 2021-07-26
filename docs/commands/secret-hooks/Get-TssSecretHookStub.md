@@ -18,10 +18,12 @@ Get stub for a new Secret Hook
 ### EXAMPLE 1
 ```
 session = New-TssSession -SecretServer https://alpha -Credential ssCred
-Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+$stub = Get-TssSecretHookStub -TssSession $session -SecretId 391 -ScriptId 6 -Name 'Test Hook' -PrePostOption PRE -EventAction CheckIn
+New-TssSecretHook -TssSession $session -SecretId 2 -SecretHookStub $stub
 ```
 
 Get stub for Secret ID 391 and Script 6 with prepopulated settings for Name, PrePostOption and Event Action.
+Creates the Hook on Secret ID 2.
 
 ## PARAMETERS
 
@@ -122,7 +124,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretHook
+### Thycotic.PowerShell.SecretHooks.Hook
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
