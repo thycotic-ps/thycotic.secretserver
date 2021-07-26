@@ -25,7 +25,7 @@ Set the Privileged Account for the RPC configuration on a Secret
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecretRpcPrivilegedAccount -TssSession $session -Id 46 -PrivilegedSecretId 276
+Set-TssSecretRpcPrivileged -TssSession $session -Id 46 -PrivilegedSecretId 276
 ```
 
 Set the RPC Privileged Account on Secret 46 to Secret 276
@@ -33,7 +33,7 @@ Set the RPC Privileged Account on Secret 46 to Secret 276
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssSecretRpcPrivilegedAccount -TssSession $session -Id 56 -CredentialOnSecret
+Set-TssSecretRpcPrivileged -TssSession $session -Id 56 -CredentialOnSecret
 ```
 
 Set the RPC Privileged Account on Secret 56 to use the Secret itself (Credentials on Secret)
