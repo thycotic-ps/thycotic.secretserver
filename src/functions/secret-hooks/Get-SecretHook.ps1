@@ -22,7 +22,7 @@ function Get-SecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretHook')]
+    [OutputType('Thycotic.PowerShell.SecretHooks.Hook')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -64,7 +64,7 @@ function Get-SecretHook {
                 }
 
                 if ($restResponse) {
-                    [TssSecretHook]@{
+                    [Thycotic.PowerShell.SecretHooks.Hook]@{
                         SecretHookId = $restResponse.SecretHookId
                         HookId = $restResponse.HookId
                         Name = $restResponse.name.value

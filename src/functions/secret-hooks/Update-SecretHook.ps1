@@ -22,7 +22,7 @@ function Update-SecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('TssSecretHook')]
+    [OutputType('Thycotic.PowerShell.SecretHooks.Hook')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -283,7 +283,7 @@ function Update-SecretHook {
                 }
 
                 if ($restResponse) {
-                    [TssSecretHook]$restResponse
+                    [Thycotic.PowerShell.SecretHooks.Hook]$restResponse
                 }
             }
         } else {
