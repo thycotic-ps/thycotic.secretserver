@@ -138,5 +138,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssReport)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Search-Report.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Search-Report.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Search-TssReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Search-TssReport.ps1)
 

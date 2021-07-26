@@ -108,5 +108,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Search-TssReportSchedule](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Search-TssReportSchedule)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-ReportSchedule.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-ReportSchedule.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-TssReportSchedule.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Serach-TssReportSchedule.ps1)
 

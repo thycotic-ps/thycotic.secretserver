@@ -151,5 +151,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/New-TssSecretTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/New-TssSecretTemplate)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-SecretTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-SecretTemplate.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-TssSecretTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-TssSecretTemplate.ps1)
 

@@ -100,5 +100,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Remove-TssSecretPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Remove-TssSecretPermission)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Remove-SecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Remove-SecretPermission.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Remove-TssSecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permissions/Remove-TssSecretPermission.ps1)
 

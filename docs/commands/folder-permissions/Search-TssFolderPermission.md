@@ -115,5 +115,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Search-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Search-TssFolderPermission)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-FolderPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-FolderPermission.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-TssFolderPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Search-TssFolderPermission.ps1)
 

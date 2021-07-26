@@ -87,5 +87,5 @@ Possible Secret States:
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretState](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretState)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretState.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-SecretState.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-TssSecretState.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-TssSecretState.ps1)
 

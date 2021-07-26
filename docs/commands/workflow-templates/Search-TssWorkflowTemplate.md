@@ -100,5 +100,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/workflows/Search-TssWorkflowTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/workflows/Search-TssWorkflowTemplate)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/workflows/Search-WorkflowTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/workflows/Search-WorkflowTemplate.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/workflows/Search-TssWorkflowTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/workflows/Search-TssWorkflowTemplate.ps1)
 

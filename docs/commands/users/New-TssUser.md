@@ -245,5 +245,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/New-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/New-TssUser)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/New-User.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/New-User.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/New-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/New-TssUser.ps1)
 

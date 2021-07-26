@@ -117,5 +117,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Remove-TssFolderTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Remove-TssFolderTemplate)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-FolderTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-FolderTemplate.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-TssFolderTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Remove-TssFolderTemplate.ps1)
 

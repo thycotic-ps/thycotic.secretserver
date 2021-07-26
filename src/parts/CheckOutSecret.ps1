@@ -52,7 +52,7 @@ process {
         if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeViewCommentParams.Method) $uri with: `n$($invokeViewCommentParams.Body)`n")) {
             Write-Verbose "$($invokeViewCommentParams.Method) $uri with:`n$($invokeViewCommentParams.Body)`n"
             try {
-                $viewCommentResponse = . $InvokeApi @invokeViewCommentParams
+                . $InvokeApi @invokeViewCommentParams >$null
             } catch {
                 Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
                 $err = $_
