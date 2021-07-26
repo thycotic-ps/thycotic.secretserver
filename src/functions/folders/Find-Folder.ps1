@@ -22,7 +22,7 @@ function Find-Folder {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssFolderLookup')]
+    [OutputType('Thycotic.PowerShell.Folders.Lookup')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -100,7 +100,7 @@ function Find-Folder {
                 Write-Warning 'No Folder found'
             }
             if ($restResponse.records) {
-                [TssFolderLookup[]]$restResponse.records
+                [Thycotic.PowerShell.Folders.Lookup[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

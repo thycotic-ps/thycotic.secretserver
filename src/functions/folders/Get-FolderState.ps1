@@ -28,7 +28,7 @@ function Get-FolderState {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssFolderDetailView')]
+    [OutputType('Thycotic.PowerShell.Folders.DetailView')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -73,7 +73,7 @@ function Get-FolderState {
                 }
 
                 if ($restResponse) {
-                    [TssFolderDetailView]$restResponse
+                    [Thycotic.PowerShell.Folders.DetailView]$restResponse
                 }
             }
         } else {
