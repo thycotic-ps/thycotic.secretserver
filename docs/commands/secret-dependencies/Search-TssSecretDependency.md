@@ -160,5 +160,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Search-TssSecretDependency](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Search-TssSecretDependency)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Search-SecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Search-SecretDependency.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Search-TssSecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Search-TssSecretDependency.ps1)
 

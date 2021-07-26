@@ -165,5 +165,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Secrets/Add-TssSecretPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/Secrets/Add-TssSecretPermission)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-SecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-SecretPermission.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-TssSecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Secrets/Add-TssSecretPermission.ps1)
 

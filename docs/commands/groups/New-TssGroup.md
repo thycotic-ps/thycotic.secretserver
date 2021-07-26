@@ -176,5 +176,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/New-TssGroup)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/New-Group.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/New-Group.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/New-TssGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/New-TssGroup.ps1)
 

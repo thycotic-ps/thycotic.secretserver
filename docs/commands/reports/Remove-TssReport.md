@@ -100,5 +100,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReport)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/repors/Remove-Report.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/repors/Remove-Report.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/repors/Remove-TssReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/repors/Remove-TssReport.ps1)
 

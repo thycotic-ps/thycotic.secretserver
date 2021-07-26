@@ -214,7 +214,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Set-TssSecretTemplateStubField](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Set-TssSecretTemplateStubField)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/New-TssSecretTemplateStubField](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/New-TssSecretTemplateStubField)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Set-SecretTemplateStubField.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Set-SecretTemplateStubField.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-TssSecretTemplateStubField.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/New-TssSecretTemplateStubField.ps1)
 

@@ -18,9 +18,6 @@ param(
     [System.Management.Automation.InvocationInfo]
     $Invocation
 )
-begin {
-    $invokeParams = . $GetInvokeTssParams $TssSession
-}
 process {
     $source = $Invocation.MyCommand
     $currentVersion = $TssSession.SecretServerVersion

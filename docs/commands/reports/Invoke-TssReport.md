@@ -116,5 +116,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssReport)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Invoke-Report.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Invoke-Report.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Invoke-TssReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Invoke-TssReport.ps1)
 

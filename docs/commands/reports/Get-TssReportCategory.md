@@ -92,5 +92,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportCategory](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportCategory)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-ReportCategory.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-ReportCategory.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReportCategory.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReportCategory.ps1)
 

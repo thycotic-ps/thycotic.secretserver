@@ -214,5 +214,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecretRdpLauncherSetting](https://thycotic-ps.github.io/thycotic.secretserver/commands/Update-TssSecretRdpLauncherSetting)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-SecretRdpLauncherSetting.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-SecretRdpLauncherSetting.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-TssSecretRdpLauncherSetting.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-TssSecretRdpLauncherSetting.ps1)
 

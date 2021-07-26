@@ -146,5 +146,5 @@ Requires TssSession object returned by New-TssSession
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/Export-TssReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/Export-TssReport)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Export-Report.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Export-Report.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Export-TssReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Export-TssReport.ps1)
 
