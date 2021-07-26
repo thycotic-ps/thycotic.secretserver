@@ -15,7 +15,7 @@ namespace Thycotic.SecretServer
     /// <para type="description">Writes the message provided by appending.</para>
     /// <para type="description">This is used during your script process or workflow to add messages based on the MessageType desired (error, warning, info, etc.).</para>
     /// </summary>
-    [Cmdlet(VerbsCommunications.Write, "Log", HelpUri = "http://thycotic-ps.github.io/thycotic.secretserver/commands/Write-TssLog")]
+    [Cmdlet(VerbsCommunications.Write, "TssLog", HelpUri = "http://thycotic-ps.github.io/thycotic.secretserver/commands/Write-TssLog")]
     public class WriteLogCmdlet : PSCmdlet
     {
         /// <summary>

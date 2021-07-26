@@ -14,7 +14,7 @@ namespace Thycotic.SecretServer
     /// <para type="synopsis">Creates an initial log file with a header.</para>
     /// <para type="description">Creates a log file (will delete if the name already exists) and adds a formatted header.</para>
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Start, "Log", HelpUri = "https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssLog")]
+    [Cmdlet(VerbsLifecycle.Start, "TssLog", HelpUri = "https://thycotic-ps.github.io/thycotic.secretserver/commands/Start-TssLog")]
     public class StartLogCmdlet : PSCmdlet
     {
         /// <summary>
