@@ -22,7 +22,7 @@ function Get-SecretTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssSecretTemplate')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Template')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -62,7 +62,7 @@ function Get-SecretTemplate {
                 }
 
                 if ($restResponse) {
-                    [TssSecretTemplate]$restResponse
+                    [Thycotic.PowerShell.SecretTemplates.Template]$restResponse
                 }
             }
         } else {

@@ -6,8 +6,8 @@ Update a field on a Secret Template
 ## SYNTAX
 
 ```
-Update-TssSecretTemplateField [-TssSession] <Session> [-TemplateId] <Int32> [-Field <TssSecretTemplateField>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssSecretTemplateField [-TssSession] <Session> [-TemplateId] <Int32> [-Field <Field>] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 Secret Template Field (see example)
 
 ```yaml
-Type: TssSecretTemplateField
+Type: Field
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +111,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretTemplateField
+### Thycotic.PowerShell.SecretTemplates.Field
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

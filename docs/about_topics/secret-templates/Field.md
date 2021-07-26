@@ -1,18 +1,18 @@
 ---
-title: "TssSecretTemplateField"
+title: "Field"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretTemplateField class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretTemplates.Field class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretTemplateField
+    Thycotic.PowerShell.SecretTemplates.Field
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretTemplateField class represents the ISecretTemplateField object that is part of the SecretTemplateModel returned by endpoint '/secret-template/{id}'
+    The Thycotic.PowerShell.SecretTemplates.Field class represents the ISecretTemplateField object that is part of the SecretTemplateModel returned by endpoint '/secret-template/{id}'
 
 # CONSTRUCTORS
     new()
@@ -69,6 +69,9 @@ title: "TssSecretTemplateField"
     IsList
         IsList
 
+    ListType
+        List Type (None, Generic, URL)
+
     MustEncrypt
         MustEncrypt (Expose for Display)
 
@@ -90,5 +93,4 @@ title: "TssSecretTemplateField"
 # METHODS
 
 # RELATED LINKS:
-    TssSecretTemplate
     Get-TssSecretTemplate
