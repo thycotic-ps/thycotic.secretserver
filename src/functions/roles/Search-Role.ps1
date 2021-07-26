@@ -22,7 +22,7 @@ function Search-Role {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(DefaultParameterSetName = 'user')]
-    [OutputType('TssRole')]
+    [OutputType('Thycotic.PowerShell.Roles.Role')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -97,7 +97,7 @@ function Search-Role {
                 Write-Warning 'No Roles found'
             }
             if ($restResponse.records) {
-                [TssRole[]]$restResponse.records
+                [Thycotic.PowerShell.Roles.Role[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

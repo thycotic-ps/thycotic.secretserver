@@ -114,7 +114,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssRole
+### Thycotic.PowerShell.Roles.Role
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
