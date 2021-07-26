@@ -6,7 +6,7 @@ Update all members of a group
 ## SYNTAX
 
 ```
-Update-TssUser [-TssSession] <Session> -Id <Int32> -User <TssUser> [-WhatIf] [-Confirm] [<CommonParameters>]
+Update-TssUser [-TssSession] <Session> -Id <Int32> -User <User> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -60,7 +60,7 @@ Accept wildcard characters: False
 User object from Get-TssUser
 
 ```yaml
-Type: TssUser
+Type: User
 Parameter Sets: (All)
 Aliases:
 
@@ -109,7 +109,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssUser
+### Thycotic.PowerShell.Users.User
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

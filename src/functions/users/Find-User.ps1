@@ -28,7 +28,7 @@ function Find-User {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssUserLookup')]
+    [OutputType('Thycotic.PowerShell.Users.Lookup')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -105,7 +105,7 @@ function Find-User {
             if ($restResponse.records) {
                 foreach ($user in $restResponse.records) {
                     $parsedValue = $user.value.Split('-', 2).Trim()
-                    [TssUserLookup]@{
+                    [Thycotic.PowerShell.Users.Lookup]@{
                         Id       = $user.id
                         Username = $parsedValue[0]
                         Email    = $parsedValue[1]

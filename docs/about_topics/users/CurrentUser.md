@@ -1,24 +1,24 @@
 ---
-title: "TssCurrentUser"
+title: "CurrentUser"
 ---
 
 # TOPIC
-    This help topic describes the TssCurrentUser class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Users.CurrentUser class in the Thycotic.SecretServer module
 
 # CLASS
-    TssCurrentUser
+    Thycotic.PowerShell.Users.CurrentUser
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssCurrentUser class represents the CurrentUser object returned by Secret Server endpoint GET /users/current
+    The Thycotic.PowerShell.Users.CurrentUser class represents the CurrentUser object returned by Secret Server endpoint GET /users/current
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
-    AdminLinks [TssMenuLink[]]
+    AdminLinks MenuLink[]
         List of Admin link options for the current user
 
     DateOptionId
@@ -33,10 +33,10 @@ title: "TssCurrentUser"
     Id
         User ID of the current user
 
-    Permissions [TssRolePermission[]]
+    Permissions RolePermission[]
         Permissions assigned to the current user
 
-    ProfileLinks [TssMenuLink[]]
+    ProfileLinks MenuLink[]
         List of Profile options for the current user
 
     TimeOptionId
@@ -52,8 +52,6 @@ title: "TssCurrentUser"
         Current user's theme
 
 # METHODS
-    [TssRolePermission[]] GetPermissions()
-        Returns the TssRolePermission object, sorted by Name
 
 # RELATED LINKS:
     Show-TssCurrentUser

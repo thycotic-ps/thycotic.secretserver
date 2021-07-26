@@ -28,7 +28,7 @@ function New-User {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssUser')]
+    [OutputType('Thycotic.PowerShell.Users.User')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -130,7 +130,7 @@ function New-User {
             }
 
             if ($restResponse) {
-                [TssUser]$restResponse
+                [Thycotic.PowerShell.Users.User]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

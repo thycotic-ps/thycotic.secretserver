@@ -1,18 +1,18 @@
 ---
-title: "TssUserRoleSummary"
+title: "UserRoleSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssUserRoleSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Users.UserRoleSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssUserRoleSummary
+    Thycotic.PowerShell.Users.UserRoleSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssUserRoleSummary class represents the UserRoleSummary object returned by Secret Server endpoint GET /users/{userid}/roles-assigned
+    The Thycotic.PowerShell.Users.UserRoleSummary class represents the UserRoleSummary object returned by Secret Server endpoint GET /users/{userid}/roles-assigned
 
 # CONSTRUCTORS
     new()
@@ -27,7 +27,7 @@ title: "TssUserRoleSummary"
     IsDirectAssignment
         Is role directly assigned to the user
 
-    Groups [TssGroupAssignedRole]
+    Groups GroupAssignedRole
         Groups to which the user belongs that have the role
 
 # METHODS

@@ -22,7 +22,7 @@ function Get-UserGroup {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssUserGroup')]
+    [OutputType('Thycotic.PowerShell.Groups.UserSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -64,7 +64,7 @@ function Get-UserGroup {
                 }
 
                 if ($restResponse.records) {
-                    [TssGroupUserSummary[]]$restREsponse.records
+                    [Thycotic.PowerShell.Groups.UserSummary[]]$restREsponse.records
                 }
             }
         } else {

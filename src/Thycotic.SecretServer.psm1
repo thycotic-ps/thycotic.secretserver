@@ -1,23 +1,3 @@
-#region Import Classes
-$classRoot = [IO.Path]::Combine($PSScriptRoot,'classes')
-$classesRootDirectories = [IO.Directory]::GetDirectories($classRoot)
-foreach ($classRoot in $classesRootDirectories) {
-    $classDep = [IO.Path]::Combine($classRoot,'dependencies')
-    # import dependencies first
-    if (Test-Path $classDep) {
-        $dependentClasses = [IO.Directory]::GetFiles($classDep)
-        foreach ($class in $dependentClasses) {
-            . $class
-        }
-    }
-
-    # import parent
-    foreach ($class in [IO.Directory]::GetFiles($classRoot)) {
-        . $class
-    }
-}
-#endregion Import Classes
-
 #region Import Functions
 foreach ($file in Get-ChildItem -Path $PSScriptRoot\functions -Recurse -Filter *-*.ps1) {
     . $file.FullName
