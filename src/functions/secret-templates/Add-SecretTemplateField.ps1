@@ -25,7 +25,6 @@ function Add-SecretTemplateField {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretTemplate')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -40,7 +39,7 @@ function Add-SecretTemplateField {
 
         # Fields, use New-TssSecretTemplateField to build this object
         [Parameter(Mandatory, Position = 2)]
-        [TssSecretTemplateField]
+        [Thycotic.PowerShell.SecretTemplates.Field]
         $Field
     )
     begin {

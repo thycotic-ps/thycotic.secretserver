@@ -34,7 +34,7 @@ function New-SecretTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('TssSecretTemplate')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Template')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -44,7 +44,7 @@ function New-SecretTemplate {
         # Template Stub object
         [Parameter(Mandatory, ValueFromPipeline, ParameterSetName = 'newcopy')]
         [Alias('TemplateStub')]
-        [TssSecretTemplate]
+        [Thycotic.PowerShell.SecretTemplates.Template]
         $Template,
 
         # Template Name
@@ -55,7 +55,7 @@ function New-SecretTemplate {
         # Fields, use New-TssSecretTemplateField to build this object
         [Parameter(Mandatory, ParameterSetName = 'new')]
         [Alias('Fields')]
-        [TssSecretTemplateField[]]
+        [Thycotic.PowerShell.SecretTemplates.Field[]]
         $TemplateField
     )
     begin {
@@ -92,7 +92,7 @@ function New-SecretTemplate {
                 $invokeParams.Body = ($Template | ConvertTo-Json -Depth 6)
             }
             if ($fieldParams.Count -gt 0) {
-                $Template = [TssSecretTemplate]@{
+                $Template = [Thycotic.PowerShell.SecretTemplates.Template]@{
                     Id             = 0
                     Name           = $TemplateName
                     PasswordTypeId = 0
@@ -111,7 +111,7 @@ function New-SecretTemplate {
             }
 
             if ($restResponse) {
-                [TssSecretTemplate]$restResponse
+                [Thycotic.PowerShell.SecretTemplates.Template]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

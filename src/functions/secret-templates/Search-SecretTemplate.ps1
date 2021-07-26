@@ -22,7 +22,7 @@ function Search-SecretTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssSecretTemplateSummary')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -90,7 +90,7 @@ function Search-SecretTemplate {
                 Write-Warning 'No Secret Templates found'
             }
             if ($restResponse.records) {
-                [TssSecretTemplateSummary[]]$restResponse.records
+                [Thycotic.PowerShell.SecretTemplates.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'

@@ -43,7 +43,7 @@ function New-SecretTemplateField {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssSecretTemplateField')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Field')]
     param(
         # Field Name - value used for DisplayName, Name, and Slug Name
         [Parameter(Mandatory, Position = 0)]
@@ -121,7 +121,7 @@ function New-SecretTemplateField {
             [boolean]$ExposeForDisplay = $true
         }
 
-        [TssSecretTemplateField]@{
+        [Thycotic.PowerShell.SecretTemplates.Field]@{
             Description        = $Description
             DisplayName        = $FieldName
             EditablePermission = $editablePermission

@@ -24,7 +24,7 @@ function Update-SecretTemplateField {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [OutputType('TssSecretTemplateField')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Field')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for authentication
@@ -38,7 +38,7 @@ function Update-SecretTemplateField {
         $TemplateId,
 
         # Secret Template Field (see example)
-        [TssSecretTemplateField]
+        [Thycotic.PowerShell.SecretTemplates.Field]
         $Field
     )
     begin {
@@ -65,7 +65,7 @@ function Update-SecretTemplateField {
                     . $ErrorHandling $err
                 }
                 if ($restResponse) {
-                    [TssSecretTemplateField]$restResponse
+                    [Thycotic.PowerShell.SecretTemplates.Field]$restResponse
                 }
             }
         } else {

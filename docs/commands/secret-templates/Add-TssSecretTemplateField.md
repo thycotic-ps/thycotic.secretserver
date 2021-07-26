@@ -6,8 +6,8 @@ Add a new field to a Secret Template
 ## SYNTAX
 
 ```
-Add-TssSecretTemplateField [-TssSession] <Session> [-Id] <Int32[]> [-Field] <TssSecretTemplateField> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Add-TssSecretTemplateField [-TssSession] <Session> [-Id] <Int32[]> [-Field] <Field> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -62,7 +62,7 @@ Accept wildcard characters: False
 Fields, use New-TssSecretTemplateField to build this object
 
 ```yaml
-Type: TssSecretTemplateField
+Type: Field
 Parameter Sets: (All)
 Aliases:
 
@@ -111,7 +111,6 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretTemplate
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

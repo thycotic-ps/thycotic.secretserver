@@ -7,14 +7,13 @@ Create a new Secret Template
 
 ### newcopy
 ```
-New-TssSecretTemplate [-TssSession] <Session> -Template <TssSecretTemplate> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSecretTemplate [-TssSession] <Session> -Template <Template> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### new
 ```
-New-TssSecretTemplate [-TssSession] <Session> -TemplateName <String> -TemplateField <TssSecretTemplateField[]>
- [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSecretTemplate [-TssSession] <Session> -TemplateName <String> -TemplateField <Field[]> [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,7 +64,7 @@ Accept wildcard characters: False
 Template Stub object
 
 ```yaml
-Type: TssSecretTemplate
+Type: Template
 Parameter Sets: newcopy
 Aliases: TemplateStub
 
@@ -95,7 +94,7 @@ Accept wildcard characters: False
 Fields, use New-TssSecretTemplateField to build this object
 
 ```yaml
-Type: TssSecretTemplateField[]
+Type: Field[]
 Parameter Sets: new
 Aliases: Fields
 
@@ -144,7 +143,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretTemplate
+### Thycotic.PowerShell.SecretTemplates.Template
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

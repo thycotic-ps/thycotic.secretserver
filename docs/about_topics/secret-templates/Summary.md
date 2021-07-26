@@ -1,18 +1,18 @@
 ---
-title: "TssSecretTemplateSummary"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretTemplateSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretTemplates.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretTemplateSummary
+    Thycotic.PowerShell.SecretTemplates.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretTemplateSummary class represents the SecretTemplateSummary object returned by Secret Server endpoint GET /secret-templates
+    The Thycotic.PowerShell.SecretTemplates.Summary class represents the SecretTemplateSummary object returned by Secret Server endpoint GET /secret-templates
 
 # CONSTRUCTORS
     new()
