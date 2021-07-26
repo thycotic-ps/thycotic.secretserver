@@ -100,7 +100,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssReportScheduleSummary
+### Thycotic.PowerShell.Reports.ScheduleSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

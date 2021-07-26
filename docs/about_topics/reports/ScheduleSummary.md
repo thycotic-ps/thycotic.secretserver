@@ -1,18 +1,18 @@
 ---
-title: "TssReportScheduleSummary"
+title: "ScheduleSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssReportScheduleSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Reports.ScheduleSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssReportScheduleSummary
+    Thycotic.PowerShell.Reports.ScheduleSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssReportScheduleSummary class represents the ReportScheduleSummaryModel object returned by Secret Server endpoint /reports/schedules
+    The Thycotic.PowerShell.Reports.ScheduleSummary class represents the ReportScheduleSummaryModel object returned by Secret Server endpoint /reports/schedules
 
 # CONSTRUCTORS
     new()

@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssReportParameter
+### Thycotic.PowerShell.Reports.Parameter
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

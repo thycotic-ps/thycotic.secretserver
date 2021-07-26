@@ -28,7 +28,7 @@ function Find-Report {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssReportLookup')]
+    [OutputType('Thycotic.PowerShell.Reports.Lookup')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -93,7 +93,7 @@ function Find-Report {
             }
 
             if ($restResponse.records) {
-                [TssReportLookup[]]$restResponse.records
+                [Thycotic.PowerShell.Reports.Lookup[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
