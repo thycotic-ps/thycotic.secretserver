@@ -14,7 +14,7 @@ function Export-Report {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Export-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'adrastea.jupiter.com\brittney.poole - 4073'}
+    Export-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'ada.jupiter.com\brittney.poole - 4073'}
 
     Exports report "Filter Name" returning CSV formatted result, based on custom text filter
 
@@ -34,7 +34,7 @@ function Export-Report {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType([System.String])]
+    [OutputType('System.String')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

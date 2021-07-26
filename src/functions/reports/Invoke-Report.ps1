@@ -14,7 +14,7 @@ function Invoke-Report {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Invoke-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'adrastea.jupiter.com\brittney.poole - 4073'}
+    Invoke-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'ada.jupiter.com\brittney.poole - 4073'}
 
     Executes report "Filter Name" returning PSCustomObject result based on custom text filter
 
@@ -34,7 +34,7 @@ function Invoke-Report {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType([System.Object])]
+    [OutputType('System.Object')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

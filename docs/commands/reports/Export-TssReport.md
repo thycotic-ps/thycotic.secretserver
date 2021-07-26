@@ -26,7 +26,7 @@ Exports report GroupMembershipReportByGroup returning CSV formatted result for E
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Export-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'adrastea.jupiter.com\brittney.poole - 4073'}
+Export-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'ada.jupiter.com\brittney.poole - 4073'}
 ```
 
 Exports report "Filter Name" returning CSV formatted result, based on custom text filter

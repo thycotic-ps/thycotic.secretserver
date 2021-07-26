@@ -22,7 +22,7 @@ function Get-ReportParameter {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssReportParameter')]
+    [OutputType('Thycotic.PowerShell.Reports.Parameter')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -58,7 +58,7 @@ function Get-ReportParameter {
             }
 
             if ($restResponse.defaultParameterValues) {
-                [TssReportParameter[]]$restResponse.defaultParameterValues
+                [Thycotic.PowerShell.Reports.Parameter[]]$restResponse.defaultParameterValues
             }
         } else {
             Write-Warning "No valid session found"

@@ -26,7 +26,7 @@ Executes report GroupMembershipReportByGroup returning PSCustomObject result for
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Invoke-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'adrastea.jupiter.com\brittney.poole - 4073'}
+Invoke-TssReport -TssSession $session -ReportName 'Filter Name' -Parameters @{customtext = 'ada.jupiter.com\brittney.poole - 4073'}
 ```
 
 Executes report "Filter Name" returning PSCustomObject result based on custom text filter

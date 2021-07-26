@@ -28,7 +28,7 @@ function Search-ReportSchedule {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssReportScheduleSummary')]
+    [OutputType('Thycotic.PowerShell.Reports.ScheduleSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -88,7 +88,7 @@ function Search-ReportSchedule {
                 Write-Warning 'No report schedules found'
             }
             if ($restResponse.records) {
-                [TssReportScheduleSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Reports.ScheduleSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
