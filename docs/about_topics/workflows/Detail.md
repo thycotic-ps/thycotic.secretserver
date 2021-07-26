@@ -1,18 +1,18 @@
 ---
-title: "TssWorkflowTemplateDetail"
+title: "Detail"
 ---
 
 # TOPIC
-    This help topic describes the TssWorkflowTemplateDetail class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.WorkflowTemplates.Detail class in the Thycotic.SecretServer module
 
 # CLASS
-    TssWorkflowTemplateDetail
+    Thycotic.PowerShell.WorkflowTemplates.Detail
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssWorkflowTemplateDetail class represents the WorkflowTemplateDetailModel object returned by Secret Server endpoint GET /workflows/templates
+    The Thycotic.PowerShell.WorkflowTemplates.Detail class represents the WorkflowTemplateDetailModel object returned by Secret Server endpoint GET /workflows/templates
 
 # CONSTRUCTORS
     new()
