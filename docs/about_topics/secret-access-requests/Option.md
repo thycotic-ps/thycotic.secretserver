@@ -1,18 +1,18 @@
 ---
-title: "TssSecretAccessRequestOption"
+title: "Option"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretAccessRequestOption class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.AccessRequests.Option class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretAccessRequestOption
+    Thycotic.PowerShell.AccessRequests.Option
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretAccessRequestOption class represents the SecretAccessOptionsModel object returned by Secret Server endpoint GET /secret-access-requests/secrets/{id}/options
+    The Thycotic.PowerShell.AccessRequests.Option class represents the SecretAccessOptionsModel object returned by Secret Server endpoint GET /secret-access-requests/secrets/{id}/options
 
 # CONSTRUCTORS
     new()

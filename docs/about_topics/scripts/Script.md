@@ -1,18 +1,18 @@
 ---
-title: TssScript
+title: Script
 ---
 
 # TOPIC
-    This help topic describes the TssScript class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Scripts.Script class in the Thycotic.SecretServer module
 
 # CLASS
-    TssScript
+    Thycotic.PowerShell.Scripts.Script
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssScript class represents the ScriptModel object returned by Secret Server endpoint GET /userscripts/{id}
+    The Thycotic.PowerShell.Scripts.Script class represents the ScriptModel object returned by Secret Server endpoint GET /userscripts/{id}
 
 # CONSTRUCTORS
     new()

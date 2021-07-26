@@ -1,3 +1,3 @@
-# Secret Access Requests
+# Thycotic.PowerShell.AccessRequests
 
 {% include list.liquid all=true %}

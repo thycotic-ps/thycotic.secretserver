@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssSecretAccessRequest
+### Thycotic.PowerShell.AccessRequests.Request
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

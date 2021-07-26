@@ -1,18 +1,18 @@
 ---
-title: "TssSecretAccessRequest"
+title: "Request"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretAccessRequest class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.AccessRequests.Request class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretAccessRequest
+    Thycotic.PowerShell.AccessRequests.Request
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretAccessRequest class represents the SecretAccessModel object returned by Secret Server endpoint GET /secret-access-requests/secrets/{id}
+    The Thycotic.PowerShell.AccessRequests.Request class represents the SecretAccessModel object returned by Secret Server endpoint GET /secret-access-requests/secrets/{id}
 
 # CONSTRUCTORS
     new()
