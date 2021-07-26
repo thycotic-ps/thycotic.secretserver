@@ -1,4 +1,3 @@
-#requires -Module InvokeBuild, PlatyPS
 [cmdletbinding()]
 param(
     [ValidateSet('Debug','Release')]
