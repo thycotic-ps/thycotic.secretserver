@@ -142,7 +142,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolder
+### Thycotic.PowerShell.Folders.Folder
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

@@ -29,6 +29,6 @@ process {
     }
 
     if ($restResponse) {
-        [TssFolderDetailView]$restResponse
+        [Thycotic.PowerShell.Folders.DetailView]$restResponse
     }
 }

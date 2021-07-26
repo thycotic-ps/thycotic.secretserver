@@ -40,7 +40,7 @@ function Get-Folder {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('TssFolder')]
+    [OutputType('Thycotic.PowerShell.Folders.Folder')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -105,7 +105,7 @@ function Get-Folder {
                     }
 
                     if ($restResponse) {
-                        [TssFolder[]]$restResponse
+                        [Thycotic.PowerShell.Folders.Folder[]]$restResponse
                     }
                 }
             }

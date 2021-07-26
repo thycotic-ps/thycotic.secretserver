@@ -108,7 +108,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### TssFolderSummary
+### Thycotic.PowerShell.Folders.Summary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

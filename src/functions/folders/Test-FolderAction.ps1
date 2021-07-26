@@ -52,7 +52,9 @@ function Test-FolderAction {
             if (-not $folderResult) {
                 Write-Warning "No result returned for folder [$FolderId]"
             } else {
-                $folderResult.TestAction($Action)
+                if ($folderResult.Actions) {
+                    $folderResult.Actions -contains $Action
+                }
             }
         } else {
             Write-Warning "No valid session found"
