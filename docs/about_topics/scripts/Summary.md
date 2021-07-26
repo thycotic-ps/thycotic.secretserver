@@ -1,18 +1,18 @@
 ---
-title: "TssScriptSummary"
+title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the TssScriptSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Scripts.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssScriptSummary
+    Thycotic.PowerShell.Scripts.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssScriptSummary class represents the ScriptSummary object returned by Secret Server endpoint GET /userscripts
+    The Thycotic.PowerShell.Scripts.Summary class represents the ScriptSummary object returned by Secret Server endpoint GET /userscripts
 
 # CONSTRUCTORS
     new()
