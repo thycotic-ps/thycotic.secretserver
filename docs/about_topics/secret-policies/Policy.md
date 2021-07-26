@@ -1,18 +1,18 @@
 ---
-title: "TssSecretPolicy"
+title: "Policy"
 ---
 
 # TOPIC
-    This help topic describes the TssSecretPolicy class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.SecretPolicies.Policy class in the Thycotic.SecretServer module
 
 # CLASS
-    TssSecretPolicy
+    Thycotic.PowerShell.SecretPolicies.Policy
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssSecretPolicy class represents the SecretPolicyModel object returned by Secret Server endpoint GET /secret-policy/search
+    The Thycotic.PowerShell.SecretPolicies.Policy class represents the SecretPolicyModel object returned by Secret Server endpoint GET /secret-policy/search
 
 # CONSTRUCTORS
     new()
