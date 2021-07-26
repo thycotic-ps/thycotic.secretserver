@@ -23,7 +23,8 @@ New-TssSession -SecretServer <Uri> -AccessToken <Object> [-WhatIf] [-Confirm] [<
 
 ### new
 ```
-New-TssSession -SecretServer <Uri> [-Credential] <PSCredential> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-Credential] <PSCredential> [[-OtpCode] <Int32>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -83,6 +84,15 @@ $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Use
 Create a session object utilizing SDK Client configuration, assumes Initialize-TssSdkClient was run with config path of C:\thycotic
 Token request performed via SDK Client meaning that token is good for life of the configuration
 
+### EXAMPLE 7
+```
+$session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred -OtpCode 256380
+Show-TssCurrentUser -TssSession $session
+```
+
+Create a session object using OAuth2 credential and 2FA/OTP code.
+Then output the current user to verify toke is for the specific user credential.
+
 ## PARAMETERS
 
 ### -SecretServer
@@ -111,6 +121,21 @@ Aliases:
 Required: True
 Position: 2
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OtpCode
+Provide 2FA code
+
+```yaml
+Type: Int32
+Parameter Sets: new
+Aliases:
+
+Required: False
+Position: 3
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

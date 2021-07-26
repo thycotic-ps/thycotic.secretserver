@@ -44,6 +44,12 @@ function New-TssSession {
     Create a session object utilizing SDK Client configuration, assumes Initialize-TssSdkClient was run with config path of C:\thycotic
     Token request performed via SDK Client meaning that token is good for life of the configuration
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred -OtpCode 256380
+    Show-TssCurrentUser -TssSession $session
+
+    Create a session object using OAuth2 credential and 2FA/OTP code. Then output the current user to verify toke is for the specific user credential.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession
 
@@ -69,6 +75,11 @@ function New-TssSession {
         [PSCredential]
         [Management.Automation.CredentialAttribute()]
         $Credential,
+
+        # Provide 2FA code
+        [Parameter(ParameterSetName = 'new', Position = 2)]
+        [int]
+        $OtpCode,
 
         # Specify Access Token
         [Parameter(Mandatory, ParameterSetName = 'sdk')]
@@ -125,6 +136,10 @@ function New-TssSession {
                     $oauth2Body.username = $Credential.Username
                     $oauth2Body.password = $Credential.GetNetworkCredential().Password
                     $oauth2Body.grant_type = 'password'
+                }
+
+                if ($newTssParams.ContainsKey('OtpCode')) {
+                    $oauth2Body.otp = $OtpCode
                 }
 
                 $invokeParams.Body = $oauth2Body
