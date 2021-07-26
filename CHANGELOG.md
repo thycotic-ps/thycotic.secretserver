@@ -45,10 +45,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Class - types and format view update [7e4f57c](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e4f57cc3fbcf5cc03ca2ed2375fbcb3f0a44398)
 * RPC Class - correcting file name [dad12a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/dad12a0a8bb521c51cf532904becac139fa3c622)
 * Update-SecretRpdLauncherSetting - correct from test failure [ed745ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/ed745ae11aa4462d14ee2121542a41d94e0115c8)
+* psd1 - remove CommandPrefix, add FunctionsToExport [98ca7af](https://github.com/thycotic-ps/thycotic.secretserver/commit/98ca7af6c1e5815ed2be0ff0f91008a9253fecdf)
+* psm1 - update alias references with Tss prefix [cac7a3a](https://github.com/thycotic-ps/thycotic.secretserver/commit/cac7a3a703012939a4319bd090feac58dd800562)
+* Functions - add Tss prefix [4b2d962](https://github.com/thycotic-ps/thycotic.secretserver/commit/4b2d9620989491ec58f36e5fa3c1aac836a6786d)
+* Logging commands - add Tss prefix [e3bb997](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3bb9975614fe45e12ae359ed7878299dac4e5b8)
 
 ### Tests
 
 * Test - Correct references [bc37232](https://github.com/thycotic-ps/thycotic.secretserver/commit/bc3723289e2639907dc20d31851c964f6d6e6194)
+* Tests - add Tss prefix [fa66d4f](https://github.com/thycotic-ps/thycotic.secretserver/commit/fa66d4f998dbff81504ae90e9af76a5ff61f7c91)
 
 ## [0.48.1] -- 2021-07-23
 
