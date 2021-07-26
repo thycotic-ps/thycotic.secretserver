@@ -18,5 +18,5 @@ jobs:
       shell: pwsh
       run: |
         Install-Module InvokeBuild -Force
-        Invoke-Build -file ./build.ps1 -Configuration CI
-        Import-Module ./release_dir/Thycotic.SecretServer/Thycotic.SecretServer.psd1 -ErrorAction Stop;
+        Invoke-Build -file ./build.ps1 -Configuration Debug
+        Import-Module ./src/Thycotic.SecretServer.psd1 -ErrorAction Stop;
