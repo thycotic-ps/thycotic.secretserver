@@ -1,18 +1,18 @@
 ---
-title: "TssGroupUserSummary"
+title: "UserSummary"
 ---
 
 # TOPIC
-    This help topic describes the TssGroupUserSummary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.Groups.UserSummary class in the Thycotic.SecretServer module
 
 # CLASS
-    TssGroupUserSummary
+    Thycotic.PowerShell.Groups.UserSummary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The TssGroupUserSummary class represents the GroupUserSummary object returned by Secret Server endpoint GET /groups/{id}/users
+    The Thycotic.PowerShell.Groups.UserSummary class represents the GroupUserSummary object returned by Secret Server endpoint GET /groups/{id}/users
 
 # CONSTRUCTORS
     new()

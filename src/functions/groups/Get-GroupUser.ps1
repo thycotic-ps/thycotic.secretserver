@@ -22,7 +22,7 @@ function Get-GroupUser {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssGroupUser')]
+    [OutputType('Thycotic.PowerShell.Groups.GroupUser')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -63,7 +63,7 @@ function Get-GroupUser {
             }
 
             if ($restResponse) {
-                [TssGroupUser]$restResponse
+                [Thycotic.PowerShell.Groups.GroupUser]$restResponse
             }
         } else {
             Write-Warning 'No valid session found'

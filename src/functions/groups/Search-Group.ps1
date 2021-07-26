@@ -22,7 +22,7 @@ function Search-Group {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssGroupSummary')]
+    [OutputType('Thycotic.PowerShell.Groups.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -89,7 +89,7 @@ function Search-Group {
                 Write-Warning 'No groups found'
             }
             if ($restResponse.records) {
-                [TssGroupSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Groups.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
