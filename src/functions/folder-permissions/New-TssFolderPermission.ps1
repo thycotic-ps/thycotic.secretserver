@@ -28,7 +28,7 @@ function New-TssFolderPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('Thycotic.PowerShell.FolderPermission.General')]
+    [OutputType('Thycotic.PowerShell.FolderPermissions.Permission')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -115,7 +115,7 @@ function New-TssFolderPermission {
                     }
 
                     if ($restResponse) {
-                        [Thycotic.PowerShell.FolderPermission.General]$restResponse
+                        [Thycotic.PowerShell.FolderPermissions.Permission]$restResponse
                     }
                 }
             } else {

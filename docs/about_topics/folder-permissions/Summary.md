@@ -3,53 +3,35 @@ title: "Summary"
 ---
 
 # TOPIC
-    This help topic describes the Thycotic.PowerShell.FolderPermission.Summary class in the Thycotic.SecretServer module
+    This help topic describes the Thycotic.PowerShell.FolderPermissions.Summary class in the Thycotic.SecretServer module
 
 # CLASS
-    Thycotic.PowerShell.FolderPermission.Summary
+    Thycotic.PowerShell.FolderPermissions.Summary
 
 # INHERITANCE
     None
 
 # DESCRIPTION
-    The Thycotic.PowerShell.FolderPermission.Summary class represents the FolderPermissionSummary object returned by Secret Server endpoint GET /folder-permissions
+    The Thycotic.PowerShell.FolderPermissions.Summary class represents the FolderPermissionModel object returned by Secret Server endpoint GET /folder-permissions/{id}
 
 # CONSTRUCTORS
     new()
 
 # PROPERTIES
     FolderAccessRoleId
-        Role ID granted on the folder
+        Folder Access Role Id
 
     FolderAccessRoleName
-        Role name granted on the folder
-
-    FolderId
-        Folder ID
+        Permission on the folder
 
     GroupId
-        Group ID having permissions on the folder
-
-    GroupName
-        Group name having permissions on the folder
-
-    Id
-        Folder permission ID
-
-    KnownAs
-        KnownAs
+        Group Id
 
     SecretAccessRoleId
-        Role ID granted on secrets in the folder
+        Secret Access Role Id
 
     SecretAccessRoleName
-        Role name granted on secrets in the folder
-
-    UserId
-        User ID having permissions on the folder
-
-    UserName
-        User name having permissions on the folder
+        Permission on the secrets in the folder
 
 # METHODS
 
