@@ -103,7 +103,7 @@
             "    https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-Tss${1}",
             "",
             "    .LINK",
-            "    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/${7:Folder name}/Search-${1}.ps1",
+            "    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/${7:Folder name}/Search-Tss${1}.ps1",
             "",
             "    .EXAMPLE",
             "    \\$session = New-TssSession -SecretServer https://alpha -Credential \\$ssCred",
