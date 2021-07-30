@@ -72,7 +72,7 @@ title: "Request"
     StartDate: string (date-time)
         The Start Date of the request.
 
-    Status: AccessRequestState
+    Status: string
         The Status of the request, ("WaitingForRequest" "Pending" "Approved" "Denied" "Canceled" "Expired")
 
     StatusDescription: string

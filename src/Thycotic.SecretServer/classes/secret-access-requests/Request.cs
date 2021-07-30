@@ -25,6 +25,7 @@ namespace Thycotic.PowerShell.AccessRequests
         public int SecretId { get; set; }
         public string SecretName { get; set; }
         public DateTime? StartDate { get; set; }
+        public string Status { get; set; }
         public string StatusDescription { get; set; }
         public string TicketNumber { get; set; }
         public int TicketSystemId { get; set; }
