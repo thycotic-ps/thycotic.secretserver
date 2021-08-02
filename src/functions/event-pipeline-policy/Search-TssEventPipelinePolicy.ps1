@@ -1,4 +1,4 @@
-function Get-TssEventPipelineList {
+function Search-TssEventPipelinePolicy {
     <#
     .SYNOPSIS
     Get a list of Event Pipeline Policies
@@ -8,21 +8,21 @@ function Get-TssEventPipelineList {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssEventPipelineList -TssSession $session
+    Search-TssEventPipelinePolicy -TssSession $session
 
     Return a list of all active Event Pipeline Policies
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssEventPipelineList -TssSession $session -IncludeInactive
+    Get-TssEventPipelinePolicy -TssSession $session -IncludeInactive
 
     Return a list of all active and inactive Event Pipeline Policies
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelineList
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Search-TssEventPipelinePolicy
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelineList.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Search-TssEventPipelinePolicy.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -35,6 +35,14 @@ function Get-TssEventPipelineList {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
+        # Event Pipeline ID
+        [int]
+        $PipelineId,
+
+        # Event Pipeline Policy Name
+        [string]
+        $PolicyName,
+
         # Folder ID (target of policy)
         [int]
         $FolderId,
@@ -42,6 +50,10 @@ function Get-TssEventPipelineList {
         # Include inactive policies
         [switch]
         $IncludeInactive,
+
+        # Exclude Active policies
+        [switch]
+        $ExcludeActive,
 
         # Sort by specific property, default EventPipelinePolicyName
         [string]
@@ -61,7 +73,10 @@ function Get-TssEventPipelineList {
 
             $filters = @()
             switch ($tssParams.Keys) {
+                'PipelineId' { $filters += "filter.eventPipelineId=$PipelineId" }
+                'PolicyName' {$fiters += "filter.eventPipelinePolicyName=$PolicyName"}
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
+                'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
                 'FolderId' { $filters += "filter.folderId=$FolderId" }
             }
 
