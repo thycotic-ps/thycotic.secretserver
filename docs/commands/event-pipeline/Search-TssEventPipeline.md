@@ -7,7 +7,7 @@ Get a list of Event Pipeline Policies
 
 ```
 Search-TssEventPipeline [-TssSession] <Session> [-PipelinePolicyId <Int32>] [-PipelineName <String>]
- [-EventEntityType <EventEntityTypeId>] [-IncludeInactive] [-ExcludeActive] [-SortBy <String>]
+ [-EventEntityType <EventEntityType>] [-IncludeInactive] [-ExcludeActive] [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -83,10 +83,10 @@ Accept wildcard characters: False
 Event Entity Type
 
 ```yaml
-Type: EventEntityTypeId
+Type: EventEntityType
 Parameter Sets: (All)
 Aliases:
-Accepted values: User, Folder, Role, RolePermission, Configuration, Group, IpAddressRange, Secret, UnlimitedAdmin, ExportSecrets, ImportSecrets, UserAudit, SecretTemplate, Licenses, ScriptPowerShell, SecretPolicy, ScriptSsh, ScriptSsql, Encryption, Site, Engine, SiteConnector, SecurityAnalyticsConfiguration, DualControl, Tls, PasswordChanger, CharacterSet, PasswordRequirement, Domain, BackupConfiguration, SecretServerSettings, AutoExport
+Accepted values: Unknown, User, Folder, Role, RolePermission, Configuration, Group, IpAddressRange, Secret, UnlimitedAdmin, ExportSecrets, ImportSecrets, UserAudit, SecretTemplate, Licenses, ScriptPowerShell, SecretPolicy, ScriptSsh, ScriptSsql, Encryption, Site, Engine, SiteConnector, SecurityAnalyticsConfiguration, DualControl, Tls, PasswordChanger, CharacterSet, PasswordRequirement, Domain, BackupConfiguration, SecretServerSettings, AutoExport
 
 Required: False
 Position: Named
