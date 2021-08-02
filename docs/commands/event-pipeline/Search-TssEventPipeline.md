@@ -147,7 +147,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.EventPipeline.List
+### Thycotic.PowerShell.EventPipeline.Summary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
