@@ -157,7 +157,8 @@
         'Get-TssEventPipelinePolicy',
         'Search-TssEventPipeline',
         'Enable-TssEventPipeline',
-        'Disable-TssEventPipeline'
+        'Disable-TssEventPipeline',
+        'Get-TssEventPipeline'
     )
     Description          = 'PowerShell Tools for Thycotic Secret Server'
     Guid                 = 'e6b56c5f-41ac-4ba4-8b88-2c063f683176'
