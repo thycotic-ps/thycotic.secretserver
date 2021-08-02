@@ -4,19 +4,24 @@ using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using Thycotic.PowerShell.Enums;
 
-namespace Thycotic.PowerShell.EventPipelinePolicy
+namespace Thycotic.PowerShell.EventPipeline
 {
-    public class Policy
+    public class List
     {
         public bool Active { get; set; }
         public DateTime? CreatedDate { get; set; }
         public EventEntityType EventEntityTypeId { get; set; }
-        public string EventPipelinePolicyDescription { get; set; }
+        public string EventPipelineDescription { get; set; }
+        public int EventPipelineId { get; set; }
+        public string EventPipelineName { get; set; }
         public int EventPipelinePolicyId { get; set; }
-        public string EventPipelinePolicyName { get; set; }
+        public int EventPipelinePolicyMapId { get; set; }
+        public FilterView[] FilterList { get; set; }
         public bool IsSystem { get; set; }
         public DateTime? LastModifiedDate { get; set; }
         public string LastModifiedDisplayName { get; set; }
-        public int SortOrder { get; set;  }
+        public int SortOrder { get; set; }
+        public TaskView[] TaskList { get; set; }
+        public TriggerView[] Triggers { get; set; }
     }
 }
