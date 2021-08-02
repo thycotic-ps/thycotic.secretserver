@@ -102,7 +102,7 @@ function Search-TssEventPipeline {
             }
 
             if ($restResponse.records) {
-                . $NewEventPipelineList $restResponse.records
+                . $SearchEventPipelineList $restResponse.records
             } else {
                 Write-Warning "No valid session found"
             }
