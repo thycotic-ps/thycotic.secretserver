@@ -28,7 +28,7 @@ function Search-TssEventPipeline {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.EventPipeline.List')]
+    [OutputType('Thycotic.PowerShell.EventPipeline.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -70,7 +70,7 @@ function Search-TssEventPipeline {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
-            $uri = $TssSession.ApiUrl, 'event-pipeline', 'list' -join '/'
+            $uri = $TssSession.ApiUrl, 'event-pipeline', 'summaries' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
             $filters = @()
@@ -102,7 +102,7 @@ function Search-TssEventPipeline {
             }
 
             if ($restResponse.records) {
-                . $SearchEventPipelineList $restResponse.records
+                [Thycotic.PowerShell.EventPipeline.Summary[]]$restResponse.records
             } else {
                 Write-Warning "No valid session found"
             }
