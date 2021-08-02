@@ -45,7 +45,8 @@ function Search-TssEventPipeline {
         $PipelineName,
 
         # Event Entity Type
-        [Thycotic.PowerShell.Enums.EventEntityTypeId]
+        [ValidateSet('Secret','User')]
+        [Thycotic.PowerShell.Enums.EventEntityType]
         $EventEntityType,
 
         # Include inactive policies
@@ -75,7 +76,8 @@ function Search-TssEventPipeline {
             $filters = @()
             switch ($tssParams.Keys) {
                 'PipelineId' { $filters += "filter.eventPipelineId=$PipelineId" }
-                'PolicyName' {$fiters += "filter.eventPipelinePolicyName=$PolicyName"}
+                'PolicyName' { $fiters += "filter.eventPipelinePolicyName=$PolicyName" }
+                'EventEntityType' { $filters += "filter.eventEntityTypeId=$EventEntityType"}
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
                 'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
                 'FolderId' { $filters += "filter.folderId=$FolderId" }
@@ -100,10 +102,10 @@ function Search-TssEventPipeline {
             }
 
             if ($restResponse.records) {
-                [Thycotic.PowerShell.EventPipeline.List[]]$restResponse.records
+                . $NewEventPipelineList $restResponse.records
+            } else {
+                Write-Warning "No valid session found"
             }
-        } else {
-            Write-Warning "No valid session found"
         }
     }
 }

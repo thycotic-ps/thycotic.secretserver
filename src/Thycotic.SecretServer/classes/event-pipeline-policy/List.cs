@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.EventPipelinePolicy
 {
@@ -9,7 +10,7 @@ namespace Thycotic.PowerShell.EventPipelinePolicy
     {
         public bool Active { get; set; }
         public DateTime? CreatedDate { get; set; }
-        public int EventEntityTypeId { get; set; }
+        public EventEntityType EventEntityTypeId { get; set; }
         public string EventPipelinePolicyDescription { get; set; }
         public int EventPipelinePolicyId { get; set; }
         public string EventPipelinePolicyName { get; set; }
