@@ -985,7 +985,7 @@
             "    /// <para type=\"description\">${1}</para>",
             "    /// </summary>",
             "    [Cmdlet(${2:VerbClass - VersCommon}, \"${3:Noun}\", HelpUri = \"https://thycotic-ps.github.io/thycotic.secretserver/${4:folder name}/${5:public name}\")]",
-            "    public class ${6:Private name}Cmdlet : PSCmdlet",
+            "    public class ${6:Name}Cmdlet : PSCmdlet",
             "    {",
             "        ///<summary>",
             "        ///<para type=\"description\">TssSession object created by New-TssSession for authentication</para>",
