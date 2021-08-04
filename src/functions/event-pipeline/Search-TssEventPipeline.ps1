@@ -69,7 +69,6 @@ function Search-TssEventPipeline {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $restResponse = $null
             $uri = $TssSession.ApiUrl, 'event-pipeline', 'summaries' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
@@ -92,7 +91,7 @@ function Search-TssEventPipeline {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
-            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
                 $restResponse = . $InvokeApi @invokeParams
             } catch {
@@ -103,9 +102,9 @@ function Search-TssEventPipeline {
 
             if ($restResponse.records) {
                 [Thycotic.PowerShell.EventPipeline.Summary[]]$restResponse.records
-            } else {
-                Write-Warning "No valid session found"
             }
+        } else {
+            Write-Warning "No valid session found"
         }
     }
 }
