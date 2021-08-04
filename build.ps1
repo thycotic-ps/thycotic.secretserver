@@ -16,6 +16,7 @@ if ($PSEdition -eq 'Desktop') {
 }
 
 $moduleName = 'Thycotic.SecretServer'
+$moduleManifest = [IO.Path]::Combine($PSScriptRoot,'src',"$ModuleName.psd1")
 $libraryFolderName = 'Thycotic.SecretServer'
 $staging = [IO.Path]::Combine($PSScriptRoot, 'release_dir')
 $docRoot = [IO.Path]::Combine($PSScriptRoot, 'docs', 'commands')
@@ -31,6 +32,34 @@ $zipFileName = "$($moduleName).zip"
 $moduleTempPath = Join-Path $staging $moduleName
 $changeLog = [IO.Path]::Combine([string]$PSScriptRoot, 'release.md')
 
+task UpdateManifest -Before stage, build, docs {
+    $manifestData = Import-PowerShellDataFile $moduleManifest
+    $functionsToExportList = Get-ChildItem .\src\functions -File -Recurse | Select-Object -ExpandProperty BaseName | Sort-Object
+
+    $updateManifestParams = @{
+        Path                 = $moduleManifest
+        CompatiblePSEditions = $manifestData.CompatiblePSEditions
+        RootModule           = $manifestData.RootModule
+        Guid                 = $manifestData.Guid
+        TypesToProcess       = $manifestData.TypesToProcess
+        CmdletsToExport      = $manifestData.CmdletsToExport
+        PowerShellVersion    = $manifestData.PowerShellVersion
+        CompanyName          = $manifestData.CompanyName
+        ModuleVersion        = $manifestData.ModuleVersion
+        FunctionsToExport    = $functionsToExportList
+        Author               = $manifestData.Author
+        Description          = $manifestData.Description
+        FormatsToProcess     = $manifestData.FormatsToProcess
+        Copyright            = $manifestData.Copyright
+        Tags                 = $manifestData.PrivateData.PSData.Tags
+        IconUri              = $manifestData.PrivateData.PSData.IconUri
+        ProjectUri           = $manifestData.PrivateData.PSData.ProjectUri
+        LicenseUri           = $manifestData.PrivateData.PSData.LicenseUri
+        ReleaseNotes         = $manifestData.PrivateData.PSData.ReleaseNotes
+    }
+    Update-ModuleManifest @updateManifestParams
+}
+
 task library -Before stage, build, docs {
     Invoke-Build -File $libraryBuildScript
 }
@@ -44,14 +73,14 @@ task stage -Before build {
             New-Item -ItemType Directory -Force -Path $staging >$null
         }
 
-        $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
+        $script:imported = Import-Module $moduleManifest -Force -PassThru
 
         Write-Output "Staging directory: $moduleTempPath"
         $imported | Split-Path | Copy-Item -Destination $moduleTempPath -Recurse
 
         # remove project files
         Remove-Item -Recurse "$moduleTempPath\$libraryFolderName" -Force
-        $script:moduleData = Import-PowerShellDataFile "$moduleTempPath\$moduleName.psd1"
+        $script:moduleData = Import-PowerShellDataFile $moduleManifest
     } else {
         Write-Output "Debug mode, skipping staging"
     }
@@ -68,7 +97,7 @@ task docs {
     }
     Import-Module platyPS
 
-    $script:imported = Import-Module "$PSScriptRoot\src\Thycotic.SecretServer.psd1" -Force -PassThru
+    $script:imported = Import-Module $moduleManifest -Force -PassThru
 
     $functionDirectories = [IO.Directory]::GetDirectories($functionsRoot)
     $docFunctionsParams = @{
@@ -123,6 +152,7 @@ task docs {
 
 task build {
     Write-Output "Build started: $(Get-Date -Format FileDateTime)"
+
     if ($Configuration -ne 'Debug') {
         $git = git status
         if ($git[1] -notmatch "Your branch is up to date") {
