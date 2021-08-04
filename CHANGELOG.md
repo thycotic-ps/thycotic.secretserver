@@ -17,11 +17,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Stuff
 
-* Get-EventPipelineList - new command [f029452](https://github.com/thycotic-ps/thycotic.secretserver/commit/f0294529566e2888706062deb5c1dd92dd0a4351)
+* Search-TssEventPipeline - rename of Get-TssEventPipelineList [e9fcf83](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9fcf834c6a43625462737cbf25a04cb80745204)
+* Search-TssSecretAccessRequest - new command [7d7f0c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7d7f0c8ee7df547c870781d399d868e9c6bb2a2b)
+* Get-TssEventPipelinePolicy - new command [466cb26](https://github.com/thycotic-ps/thycotic.secretserver/commit/466cb26e1c839a951eb8cf3fb9d3749bcac46836)
+* Enable/Disable-TssEventPipeline - new commands [30de5c7](https://github.com/thycotic-ps/thycotic.secretserver/commit/30de5c7608a26c311a692139a677b653a1844cfa)
+* Search-TssEventPipelinePolicy - new command [1f2303b](https://github.com/thycotic-ps/thycotic.secretserver/commit/1f2303b6635e2eb31bc8a1a51aca4bc0cd8c1175)
+* Search-TssEventPipeline - new command [46d9263](https://github.com/thycotic-ps/thycotic.secretserver/commit/46d9263d5f76c24b589349fb0884d8f70c227e43)
+* Get-TssEventPipeline - new command [76f5092](https://github.com/thycotic-ps/thycotic.secretserver/commit/76f50927a15a83da92ce852b83a24a7df3a22a45)
+* Get-TssEventPipelineRun - new command [80ff0c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/80ff0c2cb3901285094d6ce450a30cca1b930d38)
+* Get-TssEventPipelinePolicyActivity - new command [793d418](https://github.com/thycotic-ps/thycotic.secretserver/commit/793d418547f1772b978ca269b9e5261df9ca0245)
 
 ### General Updates
 
-* None
+* Search-TssEventPipeline - switched endpoint to summaries [5f3b046](https://github.com/thycotic-ps/thycotic.secretserver/commit/5f3b0468b7e4f06c68f4eaa7b6cced75de517517)
 
 ### Tests
 
