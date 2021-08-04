@@ -13,8 +13,8 @@ function Invoke-TssRestApi {
     Performs request to the URI specified, returning all secrets the current credential has access to view (minimum).
 
     .EXAMPLE
-    $session = tssnts https://alpha $ssCred
-    tssira "$($session.ApiUrl)/secrets" $session.AccessToken
+    $session = nts https://alpha $ssCred
+    ira "$($session.ApiUrl)/secrets" $session.AccessToken
 
     Performs request to the URI specified, returning all secrets the current credential has access to view (minimum) using alias names for each function.
 
