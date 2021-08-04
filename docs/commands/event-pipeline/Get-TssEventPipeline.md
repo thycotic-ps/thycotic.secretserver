@@ -40,7 +40,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Short description for parameter
+Event Pipeline Policy ID
 
 ```yaml
 Type: Int32[]

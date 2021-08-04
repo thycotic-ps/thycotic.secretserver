@@ -29,7 +29,7 @@ function Get-TssEventPipelineRun {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Short description for parameter
+        # Event Pipeline ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("EventPipelineId")]
         [int[]]
