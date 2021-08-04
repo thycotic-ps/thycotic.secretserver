@@ -8,7 +8,7 @@ using System.Management.Automation.Runspaces;
 using CsvHelper;
 using CsvHelper.Configuration;
 
-namespace Thycotic.SecretServer
+namespace Thycotic.SecretServer.Cmdlets
 {
     /// <summary>
     /// <para type="synopsis">Writes message to the log file.</para>
