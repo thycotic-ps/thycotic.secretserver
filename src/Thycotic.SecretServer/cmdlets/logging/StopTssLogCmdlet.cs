@@ -7,7 +7,7 @@ using System.Management.Automation.Runspaces;
 using CsvHelper;
 using CsvHelper.Configuration;
 
-namespace Thycotic.SecretServer
+namespace Thycotic.SecretServer.Cmdlets
 {
     /// <summary>
     /// <para type="synopsis">Adds footer to the end of the log file.</para>
