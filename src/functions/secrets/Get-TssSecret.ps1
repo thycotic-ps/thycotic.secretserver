@@ -43,13 +43,13 @@ function Get-TssSecret {
     Get Secret via absolute path.
 
     .EXAMPLE
-    $session = tssnts https://alpha $ssCred
-    (tssgts $session 330).GetCredential($null,'username','password')
+    $session = nts https://alpha $ssCred
+    (gts $session 330).GetCredential($null,'username','password')
 
     Get PSCredential object for Secret ID 330, using alias for the function names
 
     .EXAMPLE
-    $session = tssnts https://alpha $ssCred
+    $session = nts https://alpha $ssCred
     $secret = Get-TssSecret $session 330
     $secret.GetFileFields().Foreach({Get-TssSecretField -Id $secret.Id -Slug $_.SlugName})
 
@@ -142,7 +142,8 @@ function Get-TssSecret {
                 $pathLeaf = Split-Path (Split-Path $Path -Parent) -Leaf
                 $folderFound = . $SearchFolders $TssSession $pathLeaf | Where-Object FolderPath -EQ $Path
                 $folderId = $folderFound.Id
-                $Id = (. $SearchSecrets $TssSession $folderId $secretName | Where-Object Name -EQ $secretName).Id
+                $searchSecret = Search-TssSecret $TssSession -FolderId $folderId -SearchText $secretName
+                $Id = $searchSecret.Where({ $_.Name -eq $secretName }).Id
 
                 if (-not $Id) {
                     Write-Verbose "No secret found at path [$Path]"
@@ -180,7 +181,8 @@ function Get-TssSecret {
 
                 Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting secret [$secret]"
                     $err = $_

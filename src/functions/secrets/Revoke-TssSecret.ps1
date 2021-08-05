@@ -66,7 +66,7 @@ function Revoke-TssSecret {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -106,7 +106,8 @@ function Revoke-TssSecret {
                 if (-not $PSCmdlet.ShouldProcess($secret, "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue expring Secret [$secret]"
                     $err = $_

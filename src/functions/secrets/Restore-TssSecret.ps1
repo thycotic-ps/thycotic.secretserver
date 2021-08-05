@@ -36,7 +36,7 @@ function Restore-TssSecret {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -51,7 +51,8 @@ function Restore-TssSecret {
                 if ($PSCmdlet.ShouldProcess("Secret Id: $secret", "$($invokeParams.Method) $uri")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue with Secret [$secret]"
                         $err = $_

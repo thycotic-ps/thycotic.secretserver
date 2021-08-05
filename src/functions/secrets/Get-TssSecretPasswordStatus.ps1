@@ -37,7 +37,7 @@ function Get-TssSecretPasswordStatus {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -53,7 +53,8 @@ function Get-TssSecretPasswordStatus {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse @apiResponse
                 } catch {
                     Write-Warning "Issue getting password status on Secret [$secret]"
                     $err = $_

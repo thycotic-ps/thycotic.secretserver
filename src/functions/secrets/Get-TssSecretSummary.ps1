@@ -37,7 +37,7 @@ function Get-TssSecretSummary {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -52,7 +52,8 @@ function Get-TssSecretSummary {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $InvokeApi $apiResponse
                 } catch {
                     Write-Warning "Issue getting summary for Secret [$secret]"
                     $err = $_

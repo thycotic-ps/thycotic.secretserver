@@ -72,7 +72,7 @@ function Update-TssSecretRdpLauncherSetting {
     )
     begin {
         $updateLaunchParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
@@ -148,7 +148,8 @@ function Update-TssSecretRdpLauncherSetting {
                 if ($PSCmdlet.ShouldProcess("description: $Primary Parameter", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
                     Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessApiResponse $apiResponse
                     } catch {
                         Write-Warning 'Issue updating Secret Launcher Settings for [$secret]'
                         $err = $_

@@ -62,7 +62,7 @@ function Update-TssSecret {
     )
     begin {
         $updateParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -99,7 +99,8 @@ function Update-TssSecret {
             if ($PSCmdlet.ShouldProcess("Secret ID: $secretId ", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                 Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    $updateResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $updateResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue updating secret [$secretId]"
                     $err = $_
