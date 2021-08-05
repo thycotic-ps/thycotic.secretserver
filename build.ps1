@@ -135,6 +135,7 @@ task docs {
     }
     $cmdletDocPaths = @()
     foreach ($cDir in $cmdletDirectories) {
+        if ($cDir -match 'private') { continue }
         $categoryFolder = Split-Path $cDir -Leaf
         $docCommandPath = [IO.Path]::Combine($docRoot, $categoryFolder)
 
