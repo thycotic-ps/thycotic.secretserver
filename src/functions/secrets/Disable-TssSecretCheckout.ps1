@@ -85,7 +85,23 @@ function Disable-TssSecretCheckout {
                 $invokeParams.Body = $CheckoutBody | ConvertTo-Json
 
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", 'Pre-check out secret for setting Checkout settings')) {
-                    . $CheckOutSecret $TssSession $tssParams $secret
+                    $writeViewParams = @{
+                        TssSession     = $TssSession
+                        Id             = $secret
+                        Comment        = $Comment
+                        TicketNumber   = $TicketNumber
+                        TicketSystemId = $TicketSystemId
+                    }
+                    Write-TssSecretAccessRequestViewComment @writeViewParams
+
+                    $checkoutParams = @{
+                        TssSession     = $TssSession
+                        Id             = $secret
+                        Comment        = $Comment
+                        TicketNumber   = $TicketNumber
+                        TicketSystemId = $TicketSystemId
+                    }
+                    Open-TssSecret @checkoutParams
                 }
 
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n")) {
