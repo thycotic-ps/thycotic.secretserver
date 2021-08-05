@@ -50,7 +50,7 @@ function Get-TssSecretStub {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -70,7 +70,7 @@ function Get-TssSecretStub {
             Write-Verbose "$($invokeParams.Method) $uri"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
-                $restResponse = . $InvokeApi $apiResponse
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue getting secret stub template [$SecretTemplateId]"
                 $err = $_

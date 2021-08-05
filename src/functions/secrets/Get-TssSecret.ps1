@@ -122,7 +122,7 @@ function Get-TssSecret {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
