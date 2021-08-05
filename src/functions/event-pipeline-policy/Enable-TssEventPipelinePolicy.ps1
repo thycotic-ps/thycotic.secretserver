@@ -1,22 +1,22 @@
-function Enable-TssEventPipeline {
+function Enable-TssEventPipelinePolicy {
     <#
     .SYNOPSIS
-    Enable an Event Pipeline of an Event Pipeline Policy
+    Enable an Event Pipeline Policy
 
     .DESCRIPTION
-    Enable an Event Pipeline of an Event Pipeline Policy
+    Enable an Event Pipeline Policy
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Enable-TssEventPipeline -TssSession $session -Id 43
+    Enable-TssEventPipelinePolicy -TssSession $session -Id 43
 
-    Enable Event Pipeline 43
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Enable-TssEventPipeline
+    Enable Event Pipeline Policy 43
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Enable-TssEventPipeline.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Enable-TssEventPipelinePolicy
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -28,9 +28,9 @@ function Enable-TssEventPipeline {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Event Pipeline ID to enable
+        # Event Pipeline ID to Enable
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
-        [Alias('EventPipelineId')]
+        [Alias('EventPipelinePolicyId')]
         [int[]]
         $Id
     )
@@ -42,27 +42,27 @@ function Enable-TssEventPipeline {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            foreach ($pipeline in $Id) {
-                $uri = $TssSession.ApiUrl, 'event-pipeline', $pipeline, 'activate' -join '/'
+            foreach ($policy in $Id) {
+                $uri = $TssSession.ApiUrl, 'event-pipeline-policy', $policy, 'activate' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'PUT'
 
-                $enablePipelineBody = @{ Activate = $true }
-                $invokeParams.Body = $enablePipelineBody | ConvertTo-Json
-                if ($PSCmdlet.ShouldProcess("description: $pipeline", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
+                $EnablePipelineBody = @{ Activate = $true }
+                $invokeParams.Body = $EnablePipelineBody | ConvertTo-Json
+                if ($PSCmdlet.ShouldProcess("description: $", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
                     Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning "Issue enabling Event Pipeline [$pipeline]"
+                        Write-Warning "Issue disabling Event Pipeline Policy [$policy]"
                         $err = $_
                         . $ErrorHandling $err
                     }
 
-                    if ($restResponse) {
-                        Write-Verbose "Event Pipeline [$pipeline] enabled"
+                    if (-not $restResponse) {
+                        Write-Verbose "Event Pipeline Policy [$policy] Enabled"
                     } else {
-                        Write-Warning "Event Pipeline [$pipeline] not successfully enabled"
+                        Write-Warning "Event Pipeline Policy [$policy] not successfully Enabled"
                     }
                 }
             }
