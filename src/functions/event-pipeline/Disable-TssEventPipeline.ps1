@@ -54,7 +54,7 @@ function Disable-TssEventPipeline {
                     try {
                         $restResponse = . $InvokeApi @invokeParams
                     } catch {
-                        Write-Warning 'Issue warning message'
+                        Write-Warning "Issue disabling Event Pipeline [$pipeline]"
                         $err = $_
                         . $ErrorHandling $err
                     }
