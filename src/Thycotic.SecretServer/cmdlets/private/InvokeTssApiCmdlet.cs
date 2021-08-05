@@ -39,6 +39,12 @@ namespace Thycotic.SecretServer.Cmdlets
         public object Body { get; set; }
 
         ///<summary>
+        ///<para type="description">Provide OTP for authentication.</para>
+        ///</summary>
+        [Parameter(Position = 3)]
+        public int OtpCode { get; set; }
+
+        ///<summary>
         ///<para type="description">Specifies the file path to write the content.</para>
         ///</summary>
         [Parameter(Position = 4)]
@@ -109,6 +115,10 @@ namespace Thycotic.SecretServer.Cmdlets
             apiRequest.AddHeader("Content-Type", ContentType);
             apiRequest.AddHeader("Authorization", "Bearer " + AccessToken);
 
+            if (MyInvocation.BoundParameters.ContainsKey("OtpCode"))
+            {
+                apiRequest.AddParameter("otp", OtpCode.ToString(), ParameterType.HttpHeader);
+            }
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
                 apiRequest.AddParameter("application/json", Body , ParameterType.RequestBody);
