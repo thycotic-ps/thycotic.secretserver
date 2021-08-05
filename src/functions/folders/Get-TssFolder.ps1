@@ -10,25 +10,31 @@ function Get-TssFolder {
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssFolder -TssSession $session -Id 4
 
-    Returns folder associated with the Folder ID, 4
+    Returns the folder object for Folder ID, 4
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssFolder -TssSession $session -Id 93 -GetChildren
 
-    Returns folder associated with the Folder ID, 93 and include child folders
+    Returns the folder object for Folder ID 93, including the child folder details
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssFolder -TssSession $session -Id 93 -IncludeTemplate
+    Get-TssFolder -TssSession $session -Id 93,34 -IncludeTemplate
 
-    Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
+    Returns the folder object for Folder ID 93 and 94, including the Secret Templates associated with each folder
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssFolder -TssSession $session -FolderPath '\ABC Company\Security'
 
-    Returns folder that has a path of ABC Company\Security
+    Returns the folder object for the Security folder
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssFolder -TssSession $session -FolderPath '\ABC Company\Security', 'ABC Company\Vendors'
+
+    Returns the folder object for the Security and Vendors folder
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolder
@@ -53,6 +59,11 @@ function Get-TssFolder {
         [int[]]
         $Id,
 
+        # Folder Path, will retrieve the leaf level folder (see examples)
+        [Parameter(ValueFromPipelineByPropertyName, ParameterSetName = 'filter')]
+        [string[]]
+        $FolderPath,
+
         # Retrieve all child folders within the requested folder
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'id')]
@@ -65,39 +76,52 @@ function Get-TssFolder {
         [Parameter(ParameterSetName = 'id')]
         [Alias('IncludeAssociatedTemplates', 'IncludeTemplates')]
         [switch]
-        $IncludeTemplate,
-
-        # Get folder based on path (e.g. \Parent\child1\child2)
-        [Parameter(ParameterSetName = 'path')]
-        [string]
-        $FolderPath
+        $IncludeTemplate
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-
             if ($tssParams.ContainsKey('FolderPath')) {
-                $pathLeaf = Split-Path $FolderPath -Leaf
-                $folderFound = . $SearchFolders $TssSession $pathLeaf | Where-Object FolderPath -EQ $FolderPath
-                $Id = $folderFound.Id
-            }
-            if ($tssParams.ContainsKey('Id') -or $Id) {
-                foreach ($folder in $Id) {
-                    $restResponse = $null
-                    $uri = $TssSession.ApiUrl, 'folders', $folder -join '/'
-                    $uri = $uri + '?' + "getAllChildren=$GetChildren" + '&' + "includeAssociatedTemplates=$IncludeTemplate"
+                . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
+                foreach ($path in $FolderPath) {
+                    $uri = $TssSession.ApiUrl, 'folders', 0 -join '/'
+                    $uri = $uri, "folderPath=$path&getAllChildren=$([boolean]$GetChildren)&includeAssociatedTemplates=$([boolean]$IncludeTemplate)" -join '?'
 
                     $invokeParams.Uri = $Uri
                     $invokeParams.Method = 'GET'
 
-                    Write-Verbose "$($invokeParams.Method) $uri"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue getting folder [$path]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Folders.Folder[]]$restResponse
+                    }
+                }
+            }
+            if ($tssParams.ContainsKey('Id') -or $Id) {
+                . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+                foreach ($folder in $Id) {
+                    $uri = $TssSession.ApiUrl, 'folders', $folder -join '/'
+                    $uri = $uri, "getAllChildren=$([boolean]$GetChildren)&includeAssociatedTemplates=$([boolean]$IncludeTemplate)" -join '?'
+
+                    $invokeParams.Uri = $Uri
+                    $invokeParams.Method = 'GET'
+
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue getting folder [$folder]"
                         $err = $_
