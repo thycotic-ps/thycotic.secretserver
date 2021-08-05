@@ -26,6 +26,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssEventPipeline - new command [76f5092](https://github.com/thycotic-ps/thycotic.secretserver/commit/76f50927a15a83da92ce852b83a24a7df3a22a45)
 * Get-TssEventPipelineRun - new command [80ff0c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/80ff0c2cb3901285094d6ce450a30cca1b930d38)
 * Get-TssEventPipelinePolicyActivity - new command [793d418](https://github.com/thycotic-ps/thycotic.secretserver/commit/793d418547f1772b978ca269b9e5261df9ca0245)
+* Add/Remove-TssEventPipeline - new command to add/remove pipelines from an Event Pipeline Policy [13ae3d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/13ae3d6d83df3432a01ebc8be11d5fbea9f6c01b)
+* Enable/Disable-TssEventPipelinePolicy - new commands [0ad7fa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0ad7fa7c8b77b04eccfe274bd774bfc7b86c2088)
 
 ### General Updates
 
