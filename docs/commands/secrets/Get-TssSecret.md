@@ -7,20 +7,21 @@ Get a secret from Secret Server
 
 ### all (Default)
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String>] [-Comment <String>]
+Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Path <String[]>] [-Comment <String>]
  [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Path <String[]>] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Comment <String>] [-DoublelockPassword <SecureString>]
- [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Comment <String>]
+ [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
+ [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -72,7 +73,7 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Get-TssSecret -TssSession $session -Path '\ABC Company\Vendors\Temp Secret - 32.178.249.171'
 ```
 
-Get Secret via absolute path.
+Get Secret via path.
 
 ### EXAMPLE 6
 ```
@@ -116,7 +117,7 @@ Type: Int32[]
 Parameter Sets: (All)
 Aliases: SecretId
 
-Required: True
+Required: False
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
@@ -124,10 +125,10 @@ Accept wildcard characters: False
 ```
 
 ### -Path
-Secret ID to retrieve
+Path of Secret to retrieve
 
 ```yaml
-Type: String
+Type: String[]
 Parameter Sets: all, path
 Aliases:
 
