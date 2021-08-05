@@ -6,7 +6,7 @@ Get details on state of the Secret
 ## SYNTAX
 
 ```
-Get-TssSecretState [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretState [-TssSession] <Session> [-Id] <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +48,7 @@ Parameter Sets: (All)
 Aliases: SecretId
 
 Required: True
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False

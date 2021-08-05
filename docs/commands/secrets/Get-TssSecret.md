@@ -76,15 +76,15 @@ Get Secret via absolute path.
 
 ### EXAMPLE 6
 ```
-$session = tssnts https://alpha $ssCred
-(tssgts $session 330).GetCredential($null,'username','password')
+$session = nts https://alpha $ssCred
+(gts $session 330).GetCredential($null,'username','password')
 ```
 
 Get PSCredential object for Secret ID 330, using alias for the function names
 
 ### EXAMPLE 7
 ```
-$session = tssnts https://alpha $ssCred
+$session = nts https://alpha $ssCred
 $secret = Get-TssSecret $session 330
 $secret.GetFileFields().Foreach({Get-TssSecretField -Id $secret.Id -Slug $_.SlugName})
 ```
