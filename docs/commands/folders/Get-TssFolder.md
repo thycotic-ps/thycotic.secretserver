@@ -12,12 +12,8 @@ Get-TssFolder [-TssSession] <Session> [-Id <Int32[]>] [-GetChildren] [-IncludeTe
 
 ### filter
 ```
-Get-TssFolder [-TssSession] <Session> [-GetChildren] [-IncludeTemplate] [<CommonParameters>]
-```
-
-### path
-```
-Get-TssFolder [-TssSession] <Session> [-FolderPath <String>] [<CommonParameters>]
+Get-TssFolder [-TssSession] <Session> [-FolderPath <String[]>] [-GetChildren] [-IncludeTemplate]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -31,7 +27,7 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Get-TssFolder -TssSession $session -Id 4
 ```
 
-Returns folder associated with the Folder ID, 4
+Returns the folder object for Folder ID, 4
 
 ### EXAMPLE 2
 ```
@@ -39,15 +35,15 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Get-TssFolder -TssSession $session -Id 93 -GetChildren
 ```
 
-Returns folder associated with the Folder ID, 93 and include child folders
+Returns the folder object for Folder ID 93, including the child folder details
 
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolder -TssSession $session -Id 93 -IncludeTemplate
+Get-TssFolder -TssSession $session -Id 93,34 -IncludeTemplate
 ```
 
-Returns folder associated with Folder ID, 93 and include Secret Templates associated with the folder
+Returns the folder object for Folder ID 93 and 94, including the Secret Templates associated with each folder
 
 ### EXAMPLE 4
 ```
@@ -55,7 +51,15 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Get-TssFolder -TssSession $session -FolderPath '\ABC Company\Security'
 ```
 
-Returns folder that has a path of ABC Company\Security
+Returns the folder object for the Security folder
+
+### EXAMPLE 5
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssFolder -TssSession $session -FolderPath '\ABC Company\Security', 'ABC Company\Vendors'
+```
+
+Returns the folder object for the Security and Vendors folder
 
 ## PARAMETERS
 
@@ -89,12 +93,27 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -FolderPath
+Folder Path, will retrieve the leaf level folder (see examples)
+
+```yaml
+Type: String[]
+Parameter Sets: filter
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
 ### -GetChildren
 Retrieve all child folders within the requested folder
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: id, filter
+Parameter Sets: (All)
 Aliases: GetAllChildren
 
 Required: False
@@ -109,28 +128,12 @@ Include allowable Secret Templates of the requested folder
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: id, filter
+Parameter Sets: (All)
 Aliases: IncludeAssociatedTemplates, IncludeTemplates
 
 Required: False
 Position: Named
 Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -FolderPath
-Get folder based on path (e.g.
-\Parent\child1\child2)
-
-```yaml
-Type: String
-Parameter Sets: path
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
