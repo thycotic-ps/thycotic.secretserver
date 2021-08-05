@@ -135,7 +135,7 @@ FunctionsToExport = 'Add-TssEventPipeline', 'Add-TssFolderPermission',
                'Update-TssGroupMember', 'Update-TssSecret', 'Update-TssSecretHook', 
                'Update-TssSecretPermission', 'Update-TssSecretRdpLauncherSetting', 
                'Update-TssSecretTemplateField', 'Update-TssUser', 
-               'Update-TssUserPassword'
+               'Update-TssUserPassword', 'Write-TssSecretAccessRequestViewComment'
 
 # Cmdlets to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no cmdlets to export.
 CmdletsToExport = 'Start-TssLog', 'Stop-TssLog', 'Write-TssLog'
