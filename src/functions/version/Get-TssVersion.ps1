@@ -28,7 +28,7 @@ function Get-TssVersion {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('Thycotic.PowerShell.General.VersionSummary')]
+    [OutputType('Thycotic.PowerShell.Common.SemanticVersion')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -37,12 +37,35 @@ function Get-TssVersion {
     )
     begin {
         $tssParams = $PSBoundParameters
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation
+            $uri = $TssSession.ApiUrl, 'version' -join '/'
+            $invokeParams.Uri = $uri
+            $invokeParams.Method = 'GET'
+
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            try {
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
+            } catch {
+                Write-Warning "Issue getting audits for [$secret]"
+                $err = $_
+                . $ErrorHandling $err
+            }
+
+            if ($restResponse.model) {
+                $vString = $restResponse.model.version
+                [Thycotic.PowerShell.Common.SemanticVersion]@{
+                    Version = $vString
+                    Major   = $vString.Split('.')[0]
+                    Minor   = $vString.Split('.')[1]
+                    Build   = $vString.Split('.')[2]
+                }
+            }
         } else {
             Write-Warning 'No valid session found'
         }

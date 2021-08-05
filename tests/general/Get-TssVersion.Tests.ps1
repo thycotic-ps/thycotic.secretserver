@@ -17,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.General.VersionSummary" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.General.VersionSummary'
+        It "$commandName should set OutputType to Thycotic.PowerShell.Common.SemanticVersion" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Common.SemanticVersion'
         }
     }
 }
