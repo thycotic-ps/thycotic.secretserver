@@ -45,7 +45,7 @@ function Get-TssSecretAudit {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -64,7 +64,8 @@ function Get-TssSecretAudit {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting audits for [$secret]"
                     $err = $_

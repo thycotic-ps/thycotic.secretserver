@@ -52,7 +52,8 @@ process {
         if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeViewCommentParams.Method) $uri with: `n$($invokeViewCommentParams.Body)`n")) {
             Write-Verbose "$($invokeViewCommentParams.Method) $uri with:`n$($invokeViewCommentParams.Body)`n"
             try {
-                . $InvokeApi @invokeViewCommentParams >$null
+                $apiResponse = Invoke-TssApi @invokeViewCommentParams
+                . $ProcessResponse $apiResponse >$null
             } catch {
                 Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
                 $err = $_
@@ -68,7 +69,8 @@ process {
     if ($PSCmdlet.ShouldProcess("SecretId: $SecretId", "$($invokeCheckOutParams.Method) $uri")) {
         Write-Verbose "$($invokeCheckOutParams.Method) $uri"
         try {
-            $checkOutResponse = . $InvokeApi @invokeCheckOutParams
+            $apiResponse = Invoke-TssApi @invokeCheckOutParams
+            $checkOutResponse = . $ProcessResponse $apiResponse
         } catch {
             Write-Warning "Issue doing pre-checkout of Secret [$SecretId]"
             $err = $_

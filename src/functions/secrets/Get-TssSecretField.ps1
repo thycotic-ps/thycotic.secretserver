@@ -89,7 +89,7 @@ function Get-TssSecretField {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -98,7 +98,6 @@ function Get-TssSecretField {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
-                $restResponse = $null
 
                 $body = @{}
                 if ($PSCmdlet.ParameterSetName -eq 'restricted') {
@@ -146,15 +145,13 @@ function Get-TssSecretField {
                 }
                 Write-Verbose "$($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
-                    $script:noIrm = $true
-                    $restResponse = . $InvokeApiWeb @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
                     $err = $_
                     . $ErrorHandling $err
                 }
-
-                $restResponse
             }
         } else {
             Write-Warning 'No valid session found'

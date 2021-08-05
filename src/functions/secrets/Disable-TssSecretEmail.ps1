@@ -69,7 +69,7 @@ function Disable-TssSecretEmail {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -125,7 +125,8 @@ function Disable-TssSecretEmail {
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue configuring [$secret] email settings, verify Email Server is configured in Secret Server"
                         $err = $_

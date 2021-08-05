@@ -66,7 +66,7 @@ function Enable-TssSecretCheckout {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -110,7 +110,8 @@ function Enable-TssSecretCheckout {
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "$($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue configuring [$secret] Checkout settings"
                         $err = $_

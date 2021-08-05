@@ -37,7 +37,7 @@ function Remove-TssSecret {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -54,7 +54,8 @@ function Remove-TssSecret {
                 if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue disabling secret [$secret]"
                     $err = $_

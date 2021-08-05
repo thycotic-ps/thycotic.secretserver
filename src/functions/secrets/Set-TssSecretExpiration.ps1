@@ -63,7 +63,7 @@ function Set-TssSecretExpiration {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -114,7 +114,8 @@ function Set-TssSecretExpiration {
                 if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue setting expiration on [$secret]"
                         $err = $_
