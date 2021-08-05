@@ -42,7 +42,7 @@ function Start-TssDiscovery {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -61,7 +61,8 @@ function Start-TssDiscovery {
             if (-not $PSCmdlet.ShouldProcess("SecretId: $user", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) { return }
             Write-Verbose "Performing the operation: $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 $err = $_
                 . $ErrorHandling $err

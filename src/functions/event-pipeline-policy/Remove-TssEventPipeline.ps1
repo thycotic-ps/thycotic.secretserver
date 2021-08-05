@@ -42,7 +42,7 @@ function Remove-TssEventPipeline {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -57,7 +57,8 @@ function Remove-TssEventPipeline {
                 if (-not $PSCmdlet.ShouldProcess($pipeline,"$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue removing Event Pipeline [$pipeline] from Event Pipeline Policy [$PolicyId]"
                     $err = $_

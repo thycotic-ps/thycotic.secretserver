@@ -65,7 +65,7 @@ function Search-TssSecretPermission {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $filterParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'filter'
         $filterParams = @()
@@ -106,7 +106,8 @@ function Search-TssSecretPermission {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on search request'
                 $err = $_

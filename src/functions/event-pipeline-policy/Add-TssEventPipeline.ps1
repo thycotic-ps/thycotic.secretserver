@@ -42,7 +42,7 @@ function Add-TssEventPipeline {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -67,7 +67,8 @@ function Add-TssEventPipeline {
                 if (-not $PSCmdlet.ShouldProcess($pipeline,"$($invokeParams.Method) $uri with body:`n$($invokeParams.Body)`n")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with body:`n$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue adding Event Pipeline [$pipeline] to Event Pipeline Policy [$PolicyId]"
                     $err = $_

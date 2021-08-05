@@ -6,7 +6,7 @@ Get details on a Folder
 ## SYNTAX
 
 ```
-Get-TssFolderState [-TssSession] <Session> -Id <Int32[]> [-NoException] [<CommonParameters>]
+Get-TssFolderState [-TssSession] <Session> [-Id] <Int32[]> [-NoException] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -56,7 +56,7 @@ Parameter Sets: (All)
 Aliases: FolderId
 
 Required: True
-Position: Named
+Position: 2
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False

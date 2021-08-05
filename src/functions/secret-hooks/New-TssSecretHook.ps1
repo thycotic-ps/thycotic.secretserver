@@ -43,14 +43,13 @@ function New-TssSecretHook {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $SecretId) {
-                $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secret-detail', $secret, 'hook' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
@@ -87,7 +86,8 @@ function New-TssSecretHook {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newHookBody"
                 if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue creating report [SecretHook]"
                     $err = $_

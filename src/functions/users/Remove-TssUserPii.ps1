@@ -37,7 +37,7 @@ function Remove-TssUserPii {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -52,7 +52,8 @@ function Remove-TssUserPii {
                 if (-not $PSCmdlet.ShouldProcess($user,"$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue deleting PII for user [$user]"
                     $err = $_

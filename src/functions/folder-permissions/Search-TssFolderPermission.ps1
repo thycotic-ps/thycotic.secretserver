@@ -25,9 +25,7 @@ function Search-TssFolderPermission {
     [OutputType('Thycotic.PowerShell.FolderPermissions.Permission')]
     param (
         # TssSession object created by New-TssSession for authentication
-        [Parameter(Mandatory,
-            ValueFromPipeline,
-            Position = 0)]
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]$TssSession,
 
         # Folder ID
@@ -48,7 +46,7 @@ function Search-TssFolderPermission {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -79,9 +77,10 @@ function Search-TssFolderPermission {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning 'Issue on search request'
                     $err = $_

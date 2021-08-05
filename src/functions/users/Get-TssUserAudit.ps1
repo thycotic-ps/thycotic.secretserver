@@ -37,7 +37,7 @@ function Get-TssUserAudit {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -49,12 +49,12 @@ function Get-TssUserAudit {
                 $uri = $TssSession.ApiUrl, 'users', $user, 'audit' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
-
                 $uri = $uri, "take=$($TssSession.Take)"
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting audit data on user [$user]"
                     $err = $_

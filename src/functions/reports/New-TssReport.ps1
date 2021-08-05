@@ -83,7 +83,7 @@ function New-TssReport {
     )
     begin {
         $tssNewReportParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -111,13 +111,13 @@ function New-TssReport {
                     }
                 }
             }
-
             $invokeParams.Body = ($newReportBody | ConvertTo-Json)
 
-            Write-Verbose "$($invokeParams.Method) $uri with:`n $newReportBody"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newReportBody"
             if (-not $PSCmdlet.ShouldProcess($ReportName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue creating report [$ReportName]"
                 $err = $_

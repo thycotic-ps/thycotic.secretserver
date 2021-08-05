@@ -36,7 +36,7 @@ function Get-TssFolderState {
         $TssSession,
 
         # Folder ID
-        [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory,ValueFromPipelineByPropertyName,Position = 1)]
         [Alias("FolderId")]
         [int[]]
         $Id,
@@ -47,7 +47,7 @@ function Get-TssFolderState {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -65,7 +65,8 @@ function Get-TssFolderState {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting folder details on folder [$folder]"
                     $err = $_

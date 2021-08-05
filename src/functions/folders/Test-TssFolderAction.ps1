@@ -47,13 +47,15 @@ function Test-TssFolderAction {
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-            $folderResult = . $GetFolderState $TssSession $FolderId
+            $folderResult = Get-TssFolderState $TssSession $FolderId -NoException
 
             if (-not $folderResult) {
                 Write-Warning "No result returned for folder [$FolderId]"
             } else {
                 if ($folderResult.Actions) {
                     $folderResult.Actions -contains $Action
+                } else {
+                    $false
                 }
             }
         } else {

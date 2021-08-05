@@ -59,7 +59,7 @@ function Find-TssUser {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -80,19 +80,18 @@ function Find-TssUser {
                     }
                 }
             }
-
             if ($filters) {
                 $uriFilter = $filters -join '&'
                 Write-Verbose "Filters: $uriFilter"
                 $uri = $uri, $uriFilter -join '&'
             }
-
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
-            Write-Verbose "$($invokeParams.Method) $uri with: $body"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: $body"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on Find request'
                 $err = $_

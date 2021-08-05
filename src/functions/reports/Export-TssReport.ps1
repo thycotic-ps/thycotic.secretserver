@@ -65,7 +65,7 @@ function Export-TssReport {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -97,9 +97,10 @@ function Export-TssReport {
                 $exportBody.Add('format', $Format)
             }
             $invokeParams.Body = $exportBody | ConvertTo-Json -Depth 100
-            Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
             try {
-                . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue getting report data'
                 $err = $_

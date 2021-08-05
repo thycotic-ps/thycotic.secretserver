@@ -36,7 +36,7 @@ function Enable-TssUnlimitedAdmin {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -54,9 +54,10 @@ function Enable-TssUnlimitedAdmin {
             }
             $invokeParams.Body = $ulBody | ConvertTo-Json
             if ($PSCmdlet.ShouldProcess("SecretId: $user", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
-                Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    . $ProcessResponse $apiResponse
                     Write-Verbose 'Unlimited Admin mode enabled'
                 } catch {
                     Write-Warning 'Issue enabling Unlimited Admin Mode'

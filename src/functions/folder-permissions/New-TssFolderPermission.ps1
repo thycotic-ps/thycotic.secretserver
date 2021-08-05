@@ -69,7 +69,7 @@ function New-TssFolderPermission {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -97,10 +97,11 @@ function New-TssFolderPermission {
                     }
 
                     $invokeParams.Body = $newBody | ConvertTo-Json
-                    Write-Verbose "$($invokeParams.Method) $uri with:`n $newBody"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
                     if (-not $PSCmdlet.ShouldProcess("Folder ID: $folder", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue creating Folder Permission on Folder [$folder]"
                         $err = $_

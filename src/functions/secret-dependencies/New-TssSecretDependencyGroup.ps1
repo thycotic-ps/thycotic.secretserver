@@ -52,7 +52,7 @@ function New-TssSecretDependencyGroup {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -74,7 +74,8 @@ function New-TssSecretDependencyGroup {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
                 if (-not $PSCmdlet.ShouldProcess('', "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue creating Dependency Group [$Name] on Secret [$secret]"
                     $err = $_

@@ -139,7 +139,7 @@ function Disable-TssSecretEmail {
                     }
                 }
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse

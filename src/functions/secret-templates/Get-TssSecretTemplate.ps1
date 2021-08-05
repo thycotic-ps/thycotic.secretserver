@@ -38,9 +38,8 @@ function Get-TssSecretTemplate {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -51,10 +50,10 @@ function Get-TssSecretTemplate {
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
 
-
-                Write-Verbose "$($invokeParas.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParas.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting template [$template]"
                     $err = $_
