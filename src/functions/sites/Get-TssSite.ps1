@@ -22,7 +22,7 @@ function Get-TssSite {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.General.Site')]
+    [OutputType('Thycotic.PowerShell.Common.Site')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -57,7 +57,7 @@ function Get-TssSite {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.General.Site[]]$restResponse
+                [Thycotic.PowerShell.Common.Site[]]$restResponse
             }
         } else {
             Write-Warning "No valid session found"

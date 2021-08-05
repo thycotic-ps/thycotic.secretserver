@@ -22,7 +22,7 @@ function Remove-TssFolderPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
-    [OutputType('Thycotic.PowerShell.General.Delete')]
+    [OutputType('Thycotic.PowerShell.Common.Delete')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,
@@ -70,7 +70,7 @@ function Remove-TssFolderPermission {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.General.Delete]$restResponse
+                    [Thycotic.PowerShell.Common.Delete]$restResponse
                 }
             }
         } else {
