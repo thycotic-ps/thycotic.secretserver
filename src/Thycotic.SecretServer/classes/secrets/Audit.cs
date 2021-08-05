@@ -20,5 +20,6 @@ namespace Thycotic.PowerShell.Secrets
         public int RecordingStatus { get; set; }
         public string Status { get; set; }
         public string TicketNumber { get; set; }
+        public string Username { get; set; }
     }
 }
