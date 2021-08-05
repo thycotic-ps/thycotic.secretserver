@@ -53,7 +53,7 @@ function Get-TssSecretSummary {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $InvokeApi $apiResponse
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting summary for Secret [$secret]"
                     $err = $_
