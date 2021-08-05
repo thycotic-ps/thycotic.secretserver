@@ -22,7 +22,7 @@ namespace Thycotic.SecretServer.Cmdlets
         ///<summary>
         ///<para type="description">Valid Access Token issued by Secret Server.</para>
         ///</summary>
-        [Parameter(Mandatory = true, Position = 1)]
+        [Parameter(Position = 1)]
         public string AccessToken { get; set; }
 
         ///<summary>
