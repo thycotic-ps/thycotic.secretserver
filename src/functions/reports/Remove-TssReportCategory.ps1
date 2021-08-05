@@ -30,7 +30,7 @@ function Remove-TssReportCategory {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
-    [OutputType('Thycotic.PowerShell.General.Delete')]
+    [OutputType('Thycotic.PowerShell.Common.Delete')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -69,7 +69,7 @@ function Remove-TssReportCategory {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.General.Delete]$restResponse
+                    [Thycotic.PowerShell.Common.Delete]$restResponse
                 }
             }
         } else {
