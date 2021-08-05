@@ -42,7 +42,7 @@ function Remove-TssFolderPermission {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -60,9 +60,10 @@ function Remove-TssFolderPermission {
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission", "$($invokeParams.Method) $uri")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue removing [$folderPermission]"
                     $err = $_

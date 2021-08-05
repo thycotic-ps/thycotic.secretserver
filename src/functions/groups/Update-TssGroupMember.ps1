@@ -41,7 +41,7 @@ function Update-TssGroupMember {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -55,9 +55,10 @@ function Update-TssGroupMember {
             $addBody = @{ userIds = $UserId }
             $invokeParams.Body = $addBody | ConvertTo-Json
             if ($PSCmdlet.ShouldProcess("Group ID: $Id", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning 'Issue updating Group [$Id]'
                     $err = $_

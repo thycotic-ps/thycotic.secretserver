@@ -62,7 +62,7 @@ Upon successful authentication the response from the oauth2/token endpoint is ou
 ### EXAMPLE 4
 ```
 $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
-$session = tssnts https://ssvault.com/SecretServer $secretCred
+$session = nts https://ssvault.com/SecretServer $secretCred
 ```
 
 Create a credential object
@@ -70,7 +70,7 @@ Use the alias nts to create a session object
 
 ### EXAMPLE 5
 ```
-$session = tssnts https://ssvault.com/SecretServer -UseWindowsAuth
+$session = nts https://ssvault.com/SecretServer -UseWindowsAuth
 ```
 
 Create a session object utilizing Windows Integrated Authentication (IWA)

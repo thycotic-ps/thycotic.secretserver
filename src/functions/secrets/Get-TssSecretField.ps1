@@ -143,7 +143,7 @@ function Get-TssSecretField {
                         $invokeParams.OutFile = $OutFile
                     }
                 }
-                Write-Verbose "$($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     . $ProcessResponse $apiResponse

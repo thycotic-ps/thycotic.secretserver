@@ -63,7 +63,7 @@ function Set-TssFolder {
     )
     begin {
         $setFolderParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -139,9 +139,10 @@ function Set-TssFolder {
                 $invokeParams.Body = $setFolderBody | ConvertTo-Json
 
                 if ($PSCmdlet.ShouldProcess("FolderID: $folder", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue setting property on folder [$folder]"
                         $err = $_

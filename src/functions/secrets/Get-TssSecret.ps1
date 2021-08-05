@@ -144,7 +144,7 @@ function Get-TssSecret {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
 
-                    Write-Verbose "$($invokeParams.Method) $uri"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
@@ -190,7 +190,7 @@ function Get-TssSecret {
                         $invokeParams.Method = 'GET'
                     }
 
-                    Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse

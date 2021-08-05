@@ -40,7 +40,7 @@ function Update-TssUserPassword {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -60,7 +60,8 @@ function Update-TssUserPassword {
             if ($PSCmdlet.ShouldProcess('Updating Password', "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning 'Issue updating password for current user'
                     $err = $_

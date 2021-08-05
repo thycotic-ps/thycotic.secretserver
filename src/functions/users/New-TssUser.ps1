@@ -83,7 +83,7 @@ function New-TssUser {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -116,13 +116,13 @@ function New-TssUser {
                     $newBody.Add('radiusUserName', $RadiusUsername)
                 }
             }
-
             $invokeParams.Body = ($newBody | ConvertTo-Json -Depth 100)
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
             if (-not $PSCmdlet.ShouldProcess("User: $Username", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue creating report [User]'
                 $err = $_

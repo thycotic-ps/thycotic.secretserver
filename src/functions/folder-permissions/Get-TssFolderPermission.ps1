@@ -42,7 +42,7 @@ function Get-TssFolderPermission {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -55,9 +55,10 @@ function Get-TssFolderPermission {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
-                Write-Verbose "$($invokeParams.Method) $uri with $body"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting folder permission on [$folderPermission]"
                     $err = $_

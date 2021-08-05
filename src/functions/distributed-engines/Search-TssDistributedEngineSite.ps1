@@ -55,7 +55,7 @@ function Search-TssDistributedEngineSite {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -91,7 +91,8 @@ function Search-TssDistributedEngineSite {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: $body"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on search request'
                 $err = $_

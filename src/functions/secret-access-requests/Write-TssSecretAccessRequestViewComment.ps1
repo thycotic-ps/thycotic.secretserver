@@ -67,7 +67,7 @@ function Write-TssSecretAccessRequestViewComment {
                 }
                 $invokeParams.Body = $writeViewBody | ConvertTo-Json
                 if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse

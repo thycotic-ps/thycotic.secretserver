@@ -36,7 +36,7 @@ function Enable-TssEventPipeline {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -50,9 +50,10 @@ function Enable-TssEventPipeline {
                 $enablePipelineBody = @{ Activate = $true }
                 $invokeParams.Body = $enablePipelineBody | ConvertTo-Json
                 if ($PSCmdlet.ShouldProcess("description: $pipeline", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue enabling Event Pipeline [$pipeline]"
                         $err = $_

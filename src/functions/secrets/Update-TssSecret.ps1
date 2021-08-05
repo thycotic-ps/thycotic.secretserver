@@ -97,7 +97,7 @@ function Update-TssSecret {
             $invokeParams.Body = $updateBody | ConvertTo-Json -Depth 5
 
             if ($PSCmdlet.ShouldProcess("Secret ID: $secretId ", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
-                Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $updateResponse = . $ProcessResponse $apiResponse

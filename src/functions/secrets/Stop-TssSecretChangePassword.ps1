@@ -51,7 +51,7 @@ function Stop-TssSecretChangePassword {
 
 
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri with $body"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse

@@ -146,7 +146,7 @@ function Update-TssSecretRdpLauncherSetting {
                 }
                 $invokeParams.Body = $updateLaunchBody | ConvertTo-Json
                 if ($PSCmdlet.ShouldProcess("description: $Primary Parameter", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessApiResponse $apiResponse

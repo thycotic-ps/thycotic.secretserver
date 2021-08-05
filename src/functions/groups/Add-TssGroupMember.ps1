@@ -42,7 +42,7 @@ function Add-TssGroupMember {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -57,9 +57,10 @@ function Add-TssGroupMember {
                 $addBody = @{ userId = $user }
                 $invokeParams.Body = $addBody | ConvertTo-Json
                 if ($PSCmdlet.ShouldProcess("Group ID: $Id | User ID: $user", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning 'Issue adding user [$User] to Group [$Id]'
                         $err = $_

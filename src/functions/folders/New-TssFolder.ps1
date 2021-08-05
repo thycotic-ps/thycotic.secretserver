@@ -69,7 +69,7 @@ function New-TssFolder {
 
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -106,10 +106,11 @@ function New-TssFolder {
 
             $invokeParams.Body = ($newFolderStub | ConvertTo-Json)
 
-            Write-Verbose "$($invokeParams.Method) $uri with:`n $FolderStub"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $FolderStub"
             if (-not $PSCmdlet.ShouldProcess($FolderStub.FolderName, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue creating folder [$ReportName]"
                 $err = $_

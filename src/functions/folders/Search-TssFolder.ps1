@@ -49,7 +49,7 @@ function Search-TssFolder {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -81,9 +81,10 @@ function Search-TssFolder {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
 
-            Write-Verbose "$($invokeParams.Method) $uri with $body"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on search request'
                 $err = $_
