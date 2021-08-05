@@ -22,7 +22,7 @@ function Test-TssVersion {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.General.VersionSummary')]
+    [OutputType('Thycotic.PowerShell.Common.TestVersion')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -36,7 +36,31 @@ function Test-TssVersion {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $TssVersionObject -TssSession $TssSession -Invocation $PSCmdlet.MyInvocation
+            $getVersion = Get-TssVersion -TssSession $TssSession
+
+            if ($getVersion.Version) {
+                $uri = "https://updates.thycotic.net/secretserver/LatestVersion.aspx?v=$($getVersion.Version)"
+                try {
+                    $apiResponse = Invoke-TssApi -Uri $uri -Method GET
+                    $latestResponse = . $ProcessResponse $apiResponse
+                } catch {
+                    Write-Warning "Issue getting latest version information from [$uri]"
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+            }
+
+            if ($latestResponse) {
+                $isLatest = if ($getVersion.Version -ge $latestResponse) { $true }
+                [Thycotic.PowerShell.Common.TestVersion]@{
+                    Version       = $getVersion.Version
+                    Major         = $getVersion.Major
+                    Minor         = $getVersion.Minor
+                    Build         = $getVersion.Build
+                    LatestVersion = $latestResponse
+                    IsLatest      = $isLatest
+                }
+            }
         } else {
             Write-Warning 'No valid session found'
         }
