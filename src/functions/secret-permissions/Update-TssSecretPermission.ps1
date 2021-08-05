@@ -48,7 +48,7 @@ function Update-TssSecretPermission {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -71,7 +71,8 @@ function Update-TssSecretPermission {
                 if ($PSCmdlet.ShouldProcess("Secret Permission ID: $secretP", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning 'Issue updating secret permission [$secretP]'
                         $err = $_

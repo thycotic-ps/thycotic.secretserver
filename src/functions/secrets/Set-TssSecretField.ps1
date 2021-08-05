@@ -190,7 +190,7 @@ function Set-TssSecretField {
                 $invokeParams.Body = $fieldBody | ConvertTo-Json -Depth 5
 
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
-                    Write-Verbose "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $fieldResponse = . $ProcessResponse $apiResponse

@@ -47,7 +47,7 @@ function Search-TssGroup {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -76,9 +76,10 @@ function Search-TssGroup {
             $invokeParams.Uri = $uri
 
             $invokeParams.Method = 'GET'
-            Write-Verbose "$($invokeParams.Method) $uri"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on search request'
                 $err = $_

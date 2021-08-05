@@ -27,13 +27,13 @@ function New-TssSession {
 
     .EXAMPLE
     $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
-    $session = tssnts https://ssvault.com/SecretServer $secretCred
+    $session = nts https://ssvault.com/SecretServer $secretCred
 
     Create a credential object
     Use the alias nts to create a session object
 
     .EXAMPLE
-    $session = tssnts https://ssvault.com/SecretServer -UseWindowsAuth
+    $session = nts https://ssvault.com/SecretServer -UseWindowsAuth
 
     Create a session object utilizing Windows Integrated Authentication (IWA)
     Use the alias nts to create a session object
@@ -131,24 +131,26 @@ function New-TssSession {
             if ($newTssParams.ContainsKey('Credential')) {
                 $invokeParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
 
-                $oauth2Body = [Ordered]@{ }
-                if ($newTssParams.ContainsKey('Credential')) {
-                    $oauth2Body.username = $Credential.Username
-                    $oauth2Body.password = $Credential.GetNetworkCredential().Password
-                    $oauth2Body.grant_type = 'password'
-                }
+                $oauth2Body = "username=$($Credential.Username)&password=$($Credential.GetNetworkCredential().Password)&grant_type=password"
+                # if ($newTssParams.ContainsKey('Credential')) {
+                #     $oauth2Body.username = $Credential.Username
+                #     $oauth2Body.password = $Credential.GetNetworkCredential().Password
+                #     $oauth2Body.grant_type = "password"
+                # }
 
                 if ($newTssParams.ContainsKey('OtpCode')) {
-                    $oauth2Body.otp = $OtpCode
+                    $invokeParams.OtpCode = $OtpCode
                 }
 
                 $invokeParams.Body = $oauth2Body
+                $invokeParams.ContentType = 'application/x-www-form-urlencoded'
                 $invokeParams.Method = 'POST'
 
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($invokeParams.Uri)]")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue authenticating to [$SecretServer]"
                     $err = $_.ErrorDetails.Message
@@ -238,10 +240,8 @@ function New-TssSession {
             }
             $outputTssSession.StartTime = [datetime]::Now
             try {
-                $uri = $outputTssSession.ApiUrl, 'version' -join '/'
-                $versionResponse = . $InvokeApi -Uri $uri -Method GET -PersonalAccessToken $outputTssSession.AccessToken
-
-                $outputTssSession.SecretServerVersion = $versionResponse.model.version
+                $versionResponse = Get-TssVersion -TssSession $outputTssSession
+                $outputTssSession.SecretServerVersion = $versionResponse.Version
             } catch {
                 Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
             }

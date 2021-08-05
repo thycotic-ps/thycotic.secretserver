@@ -73,7 +73,7 @@ function New-TssSecret {
             }
             $invokeParams.Body = ($SecretStub | ConvertTo-Json)
 
-            Write-Verbose "$($invokeParams.Method) $uri with:`n $SecretStub"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $SecretStub"
             if (-not $PSCmdlet.ShouldProcess($SecretStub.Name, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
                 $apiResponse = Invoke-TssApi @invokeParams

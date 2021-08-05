@@ -69,7 +69,7 @@ function New-TssSecretPermission {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -98,7 +98,8 @@ function New-TssSecretPermission {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
                     if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue creating Secret Permission on secret [$secret]"
                         $err = $_

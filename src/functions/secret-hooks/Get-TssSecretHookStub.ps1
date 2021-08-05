@@ -59,7 +59,7 @@ function Get-TssSecretHookStub {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -72,7 +72,8 @@ function Get-TssSecretHookStub {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting message"
                     $err = $_

@@ -37,7 +37,7 @@ function Remove-TssSecretPermission {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -52,7 +52,8 @@ function Remove-TssSecretPermission {
                 if (-not $PSCmdlet.ShouldProcess("Secret Permission ID: $secretP","$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue removing secret permission [$secretP]"
                     $err = $_

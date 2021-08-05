@@ -57,7 +57,7 @@ function New-TssGroup {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -82,7 +82,8 @@ function New-TssGroup {
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newGroupBody"
             if (-not $PSCmdlet.ShouldProcess("", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue creating group [$Name]"
                 $err = $_

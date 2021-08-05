@@ -60,7 +60,7 @@ function New-TssSecretTemplate {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $newcopyParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'newcopy'
         $templateParams = @()
@@ -103,7 +103,8 @@ function New-TssSecretTemplate {
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $($invokeParams.Body)"
             if (-not $PSCmdlet.ShouldProcess("Secret Template: $TemplateName", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue creating template [$TemplateName]"
                 $err = $_

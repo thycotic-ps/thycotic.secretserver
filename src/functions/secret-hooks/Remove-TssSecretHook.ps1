@@ -42,7 +42,7 @@ function Remove-TssSecretHook {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -56,7 +56,8 @@ function Remove-TssSecretHook {
                 if (-not $PSCmdlet.ShouldProcess("Secret ID: $SecretId | Hook ID: $hook","$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    . $InvokeApi @invokeParams >$null
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    . $ProcessResponse $apiResponse >$null
                     [Thycotic.PowerShell.Common.Delete]@{
                         Id = $hook
                         ObjectType = 'Secret Hook'

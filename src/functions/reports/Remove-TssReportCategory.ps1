@@ -45,7 +45,7 @@ function Remove-TssReportCategory {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -58,10 +58,11 @@ function Remove-TssReportCategory {
                 $invokeParams.Method = 'DELETE'
 
 
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 if (-not $PSCmdlet.ShouldProcess("RemoteCategoryId: $category", "$($invokeParams.Method) $uri")) { return }
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue removing [$category]"
                     $err = $_

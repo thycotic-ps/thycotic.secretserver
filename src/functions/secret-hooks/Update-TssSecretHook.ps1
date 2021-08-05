@@ -126,7 +126,7 @@ function Update-TssSecretHook {
     )
     begin {
         $updateParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -273,9 +273,10 @@ function Update-TssSecretHook {
             }
             $invokeParams.Body = $updateBody | ConvertTo-Json -Depth 100
             if ($PSCmdlet.ShouldProcess("description: $", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning 'Issue updating Secret Hook [$SecretHookId] on Secret [$SecretId]'
                     $err = $_

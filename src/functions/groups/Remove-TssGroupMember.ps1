@@ -42,7 +42,7 @@ function Remove-TssGroupMember {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -56,7 +56,8 @@ function Remove-TssGroupMember {
             if (-not $PSCmdlet.ShouldProcess("Group ID: $Id | User ID: $UserId", "$($invokeParams.Method) $uri")) { return }
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue removing User [$UserId] from Group [$Id]"
                 $err = $_

@@ -48,7 +48,7 @@ function Get-TssReportCategory {
     )
     begin {
         $tssReportCatParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -61,9 +61,10 @@ function Get-TssReportCategory {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
 
-                    Write-Verbose "$($invokeParams.Method) $uri"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue getting details on [$reportCategory]"
                         $err = $_
@@ -81,9 +82,10 @@ function Get-TssReportCategory {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting details on [$reportCategory]"
                     $err = $_

@@ -52,7 +52,7 @@ function Remove-TssSecret {
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse

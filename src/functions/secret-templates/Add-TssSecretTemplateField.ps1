@@ -44,7 +44,7 @@ function Add-TssSecretTemplateField {
     )
     begin {
         $tssNewParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -61,7 +61,8 @@ function Add-TssSecretTemplateField {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $($invokeParams.Body)"
                 if (-not $PSCmdlet.ShouldProcess("Secret Template ID: $template", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue adding field to template [$template]"
                     $err = $_

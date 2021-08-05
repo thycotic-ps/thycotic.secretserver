@@ -42,7 +42,7 @@ function Get-TssGroupUser {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -55,7 +55,8 @@ function Get-TssGroupUser {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue getting User [$UserId] on Group [$Id"
                 $err = $_

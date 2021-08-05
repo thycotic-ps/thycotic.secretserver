@@ -44,7 +44,7 @@ function Search-TssRpcPasswordType {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -72,7 +72,8 @@ function Search-TssRpcPasswordType {
             $invokeParams.Method = 'GET'
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning 'Issue on search request'
                 $err = $_
