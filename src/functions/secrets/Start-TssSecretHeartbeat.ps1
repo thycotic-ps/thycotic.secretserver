@@ -36,7 +36,7 @@ function Start-TssSecretHeartbeat {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -52,7 +52,8 @@ function Start-TssSecretHeartbeat {
                 if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $uri")) { return }
                 Write-Verbose "$($invokeParamsOther.Method) $uri"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     $err = $_
                     . $ErrorHandling $err

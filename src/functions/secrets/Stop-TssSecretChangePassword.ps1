@@ -36,7 +36,7 @@ function Stop-TssSecretChangePassword {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -53,7 +53,8 @@ function Stop-TssSecretChangePassword {
                 if (-not $PSCmdlet.ShouldProcess("$($invokeParams.Method) $uri")) { return }
                 Write-Verbose "$($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     $err = $_
                     . $ErrorHandling $err

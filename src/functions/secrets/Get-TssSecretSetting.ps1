@@ -37,7 +37,7 @@ function Get-TssSecretSetting {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -52,7 +52,8 @@ function Get-TssSecretSetting {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting settings for Secret [$secret]"
                     $err = $_
