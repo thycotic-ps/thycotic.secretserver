@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Stuff
 
+* Invoke-TssApi - internal cmdlet for web request Additional scripts added to accommodate processing web request output [da45da6](https://github.com/thycotic-ps/thycotic.secretserver/commit/da45da6d5b3a65ab622520ffccecdda40d25ea0c)
 * Search-TssEventPipeline - rename of Get-TssEventPipelineList [e9fcf83](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9fcf834c6a43625462737cbf25a04cb80745204)
 * Search-TssSecretAccessRequest - new command [7d7f0c8](https://github.com/thycotic-ps/thycotic.secretserver/commit/7d7f0c8ee7df547c870781d399d868e9c6bb2a2b)
 * Get-TssEventPipelinePolicy - new command [466cb26](https://github.com/thycotic-ps/thycotic.secretserver/commit/466cb26e1c839a951eb8cf3fb9d3749bcac46836)
@@ -28,10 +29,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssEventPipelinePolicyActivity - new command [793d418](https://github.com/thycotic-ps/thycotic.secretserver/commit/793d418547f1772b978ca269b9e5261df9ca0245)
 * Add/Remove-TssEventPipeline - new command to add/remove pipelines from an Event Pipeline Policy [13ae3d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/13ae3d6d83df3432a01ebc8be11d5fbea9f6c01b)
 * Enable/Disable-TssEventPipelinePolicy - new commands [0ad7fa7](https://github.com/thycotic-ps/thycotic.secretserver/commit/0ad7fa7c8b77b04eccfe274bd774bfc7b86c2088)
+* Write-TssSecretAccessRequestViewComment - new command [c537ce5](https://github.com/thycotic-ps/thycotic.secretserver/commit/c537ce5e609cb87328d74db3e338ab7755f9c8cf)
+* Get-TssFolder - add 11.0 support for FolderPath functionality [0c406e3](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c406e39fcf91994d50c539d1717498d8d0e75fd)
+* Get-TssSecret - add 11.0 support for Secret Path functionality [ba44fc3](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba44fc39652d216d7247a7562c72ae3eeb2b5f17)
 
 ### General Updates
 
 * Search-TssEventPipeline - switched endpoint to summaries [5f3b046](https://github.com/thycotic-ps/thycotic.secretserver/commit/5f3b0468b7e4f06c68f4eaa7b6cced75de517517)
+* New-TssSecretPermission - replace parts call with command [fae43be](https://github.com/thycotic-ps/thycotic.secretserver/commit/fae43beaf053ddd9376b0dca08d88a8f7a9eec31)
+* Secrets commands - convert to internal cmdlet Invoke-TssApi [c86ab78](https://github.com/thycotic-ps/thycotic.secretserver/commit/c86ab78fe002442a224c94f0f5db97a79d15ba57)
+* Secret Audit - add username property [085a8b6](https://github.com/thycotic-ps/thycotic.secretserver/commit/085a8b66a72111d35835cb95728b7cc8a2a93108)
+* remove use of CheckOutSecret part [3fdac6e](https://github.com/thycotic-ps/thycotic.secretserver/commit/3fdac6eda2c0dc11e4bfaeb41a07827b5a3448fb)
+* secrets - correct part reference [dc8d55f](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc8d55fe9958e17e448a38bb052d36415f3b8394)
+* Get/Test-TssVersion - rework code, adjust classes (now has major, minor, build properties [e314712](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3147128e463684bc2efce425529d9ea1c8b07db)
+* class rename general --> common [50e158c](https://github.com/thycotic-ps/thycotic.secretserver/commit/50e158c884f31d84a5bd0b97800f1909f6c7c2e0)
+* Convert to web request call [dff37d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/dff37d00452a374fb671fc24653c0cc3c4c8d866)
 
 ### Tests
 
