@@ -119,7 +119,23 @@ function Enable-TssSecretEmail {
 
                 if ($restrictedParams.Count -gt 0) {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", 'Pre-check out secret for setting email settings')) {
-                        . $CheckOutSecret $TssSession $tssParams $secret
+                        $writeViewParams = @{
+                            TssSession     = $TssSession
+                            Id             = $secret
+                            Comment        = $Comment
+                            TicketNumber   = $TicketNumber
+                            TicketSystemId = $TicketSystemId
+                        }
+                        Write-TssSecretAccessRequestViewComment @writeViewParams
+
+                        $checkoutParams = @{
+                            TssSession     = $TssSession
+                            Id             = $secret
+                            Comment        = $Comment
+                            TicketNumber   = $TicketNumber
+                            TicketSystemId = $TicketSystemId
+                        }
+                        Open-TssSecret @checkoutParams
                     }
                 }
                 if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
