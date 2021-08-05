@@ -175,9 +175,9 @@ function Set-TssSecret {
             }
         }
 
-        $invokeParamsGeneral = . $GetInvokeTssParams $TssSession
-        $invokeParamsSecret = . $GetInvokeTssParams $TssSession
-        $invokeParamsCheckIn = . $GetInvokeTssParams $TssSession
+        $invokeParamsGeneral = . $GetInvokeApiParams $TssSession
+        $invokeParamsSecret  = . $GetInvokeApiParams $TssSession
+        $invokeParamsCheckIn = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -256,7 +256,8 @@ function Set-TssSecret {
                             }
                             Write-Verbose "$($invokeParamsSecret.Method) $uri with:`t$($invokeParamsSecret.Body)`n"
                             try {
-                                $otherResponse = Invoke-RestApi @invokeParamsSecret
+                                $apiOtherResponse = Invoke-TssApi @invokeParamsSecret
+                                $otherResponse = . $ProcessResponse $apiOtherResponse
                             } catch {
                                 Write-Warning "Issue setting property on secret [$secret]"
                                 $err = $_
@@ -358,7 +359,8 @@ function Set-TssSecret {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsGeneral.Method) $uri with:`n$($invokeParamsGeneral.Body)`n")) {
                         Write-Verbose "$($invokeParamsGeneral.Method) $uri with:`n$($invokeParamsGeneral.Body)`n"
                         try {
-                            $generalResponse = Invoke-RestApi @invokeParamsGeneral
+                            $apiGeneralResponse = Invoke-TssApi @invokeParamsGeneral
+                            $generalResponse = . $ProcessResponse $apiGeneralResponse
                         } catch {
                             Write-Warning "Issue configuring general settings on [$secret]"
                             $err = $_
@@ -397,7 +399,8 @@ function Set-TssSecret {
                     if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParamsCheckIn.Method) $uri with:`n$($invokeParamsCheckIn.Body)`n")) {
                         Write-Verbose "$($invokeParamsCheckIn.Method) $uri with:`n$checkInBody`n"
                         try {
-                            $checkInResponse = Invoke-RestApi @invokeParamsCheckIn
+                            $apiCheckInResponse = Invoke-TssApi @invokeParamsCheckIn
+                            $checkInResponse = . $ProcessResponse $apiCheckInResponse
                         } catch {
                             Write-Warning "Issue performing check-in on secret [$secret]"
                             $err = $_

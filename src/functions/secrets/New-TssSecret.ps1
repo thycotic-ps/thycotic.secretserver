@@ -55,7 +55,7 @@ function New-TssSecret {
 
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
 
     process {
@@ -76,7 +76,8 @@ function New-TssSecret {
             Write-Verbose "$($invokeParams.Method) $uri with:`n $SecretStub"
             if (-not $PSCmdlet.ShouldProcess($SecretStub.Name, "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }
             try {
-                $restResponse = . $InvokeApi @invokeParams
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue creating secret [$($SecretStub.Name)]"
                 $err = $_

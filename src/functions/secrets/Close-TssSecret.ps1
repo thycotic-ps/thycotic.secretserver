@@ -75,7 +75,7 @@ function Close-TssSecret {
     )
     begin {
         $protectParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -112,7 +112,8 @@ function Close-TssSecret {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
-                    . $InvokeApi @invokeParams >$null
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    . $ProcessResponse $apiResponse >$null
                 } catch {
                     Write-Warning "Issue checking in Secret [$secret]"
                     $err = $_

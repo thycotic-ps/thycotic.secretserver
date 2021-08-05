@@ -60,8 +60,8 @@ function Open-TssSecret {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeViewCommentParams = . $GetInvokeTssParams $TssSession
-        $invokeCheckoutParams = . $GetInvokeTssParams $TssSession
+        $invokeViewCommentParams = . $GetInvokeApiParams $TssSession
+        $invokeCheckoutParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
@@ -87,7 +87,8 @@ function Open-TssSecret {
                     if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeViewCommentParams.Method) $uriViewComment with: `n$($invokeViewCommentParams.Body)`n")) {
                         Write-Verbose "Performing the operation $($invokeViewCommentParams.Method) $uriViewComment with:`n$($invokeViewCommentParams.Body)`n"
                         try {
-                            . $InvokeApi @invokeViewCommentParams >$null
+                            $apiResponse = Invoke-TssApi @invokeViewCommentParams
+                            . $ProcessResponse $apiResponse >$null
                         } catch {
                             Write-Warning "Issue adding view comment for Secret [$secret]"
                             $err = $_
@@ -102,7 +103,8 @@ function Open-TssSecret {
                 if ($PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeCheckoutParams.Method) $uriCheckout")) {
                     Write-Verbose "Performing the operation $($invokeCheckoutParams.Method) $uriCheckout"
                     try {
-                        . $InvokeApi @invokeCheckoutParams >$null
+                        $apiResponse = Invoke-TssApi @invokeCheckoutParams
+                        . $ProcessResponse $apiResponse >$null
                     } catch {
                         Write-Warning "Issue checking out Secret [$secret]"
                         $err = $_

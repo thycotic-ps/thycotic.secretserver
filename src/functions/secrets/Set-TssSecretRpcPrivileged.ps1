@@ -53,7 +53,7 @@ function Set-TssSecretRpcPrivileged {
     )
     begin {
         $setParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
@@ -98,7 +98,8 @@ function Set-TssSecretRpcPrivileged {
                 if ($PSCmdlet.ShouldProcess("Secret Id: $secret", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                     try {
-                        $restResponse = . $InvokeApi @invokeParams
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
                     } catch {
                         Write-Warning "Issue setting privileged account on Secret [$secret]"
                         $err = $_

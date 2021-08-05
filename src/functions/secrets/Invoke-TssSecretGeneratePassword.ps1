@@ -42,9 +42,9 @@ function Invoke-TssSecretGeneratePassword {
         $Slug
     )
     begin {
-        $invokeGenerateParams = . $GetInvokeTssParams $TssSession
+        $invokeGenerateParams = . $GetInvokeApiParams $TssSession
 
-        $invokeValidateParams = . $GetInvokeTssParams $TssSession
+        $invokeValidateParams = . $GetInvokeApiParams $TssSession
     }
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
@@ -57,7 +57,8 @@ function Invoke-TssSecretGeneratePassword {
 
             Write-Verbose "Performing the operation $($invokeGenerateParams.Method) $uri"
             try {
-                $restGeneratedPassword = . $InvokeApi @invokeGenerateParams
+                $apiResponse = Invoke-TssApi @invokeGenerateParams
+                $restGeneratedPassword = . $ProcessResponse $apiResponse
             } catch {
                 Write-Warning "Issue getting generated password for Secret [$Id] and Field Slug [$Slug]"
                 $err = $_
@@ -74,7 +75,8 @@ function Invoke-TssSecretGeneratePassword {
 
                 Write-Verbose "Performing the operation $($invokeValidateParams.Method) $uri"
                 try {
-                    $restValidateResponse = . $InvokeApi @invokeValidateParams
+                    $apiResponse = Invoke-TssApi @invokeValidateParams
+                    $restValidateResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue validating generated password for Secret [$Id] and Field Slug [$Slug]"
                     $err = $_

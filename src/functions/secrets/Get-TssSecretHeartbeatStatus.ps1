@@ -37,7 +37,7 @@ function Get-TssSecretHeartbeatStatus {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeTssParams $TssSession
+        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
@@ -52,7 +52,8 @@ function Get-TssSecretHeartbeatStatus {
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
-                    $restResponse = . $InvokeApi @invokeParams
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue getting heartbeat status on Secret [$secret]"
                     $err = $_
