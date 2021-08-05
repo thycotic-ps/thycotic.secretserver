@@ -40,7 +40,7 @@ function Get-TssSecret {
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecret -TssSession $session -Path '\ABC Company\Vendors\Temp Secret - 32.178.249.171'
 
-    Get Secret via absolute path.
+    Get Secret via path.
 
     .EXAMPLE
     $session = nts https://alpha $ssCred
@@ -73,15 +73,15 @@ function Get-TssSecret {
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, Position = 0)]
+        [Parameter(ValueFromPipelineByPropertyName, Position = 0)]
         [Alias('SecretId')]
         [int[]]
         $Id,
 
-        # Secret ID to retrieve
+        # Path of Secret to retrieve
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'all')]
-        [string]
+        [string[]]
         $Path,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
@@ -135,65 +135,72 @@ function Get-TssSecret {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-
             if ($tssParams.ContainsKey('Path')) {
-                $secretName = Split-Path $Path -Leaf
-                $pathLeaf = Split-Path (Split-Path $Path -Parent) -Leaf
-                $folderFound = . $SearchFolders $TssSession $pathLeaf | Where-Object FolderPath -EQ $Path
-                $folderId = $folderFound.Id
-                $searchSecret = Search-TssSecret $TssSession -FolderId $folderId -SearchText $secretName
-                $Id = $searchSecret.Where({ $_.Name -eq $secretName }).Id
+                . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
+                foreach ($p in $Path) {
+                    $restResponse = $null
+                    $uri = $TssSession.ApiUrl, 'secrets', 0 -join '/'
+                    $uri = $uri, "secretPath=$p" -join '?'
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Method = 'GET'
 
-                if (-not $Id) {
-                    Write-Verbose "No secret found at path [$Path]"
-                    return
+                    Write-Verbose "$($invokeParams.Method) $uri"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue getting secret [$secret]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Secrets.Secret]$restResponse
+                    }
                 }
             }
 
-            foreach ($secret in $Id) {
-                $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
+            if ($tssParams.ContainsKey('Id')) {
+                . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+                foreach ($secret in $Id) {
+                    $restResponse = $null
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
-                $getBody = @{}
-                if ($restrictedParams.Count -gt 0) {
-                    switch ($tssParams.Keys) {
-                        'IncludeInactive' { $getBody.Add('includeInactive', [boolean]$IncludeInactive) }
-                        'Comment' { $getBody.Add('comment', $Comment) }
-                        'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
-                        'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
-                        'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
-                        'DoublelockPassword' {
-                            $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
-                            $getBody.Add('doubleLockPassword', $passwd)
+                    $getBody = @{}
+                    if ($restrictedParams.Count -gt 0) {
+                        switch ($tssParams.Keys) {
+                            'IncludeInactive' { $getBody.Add('includeInactive', [boolean]$IncludeInactive) }
+                            'Comment' { $getBody.Add('comment', $Comment) }
+                            'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
+                            'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
+                            'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
+                            'DoublelockPassword' {
+                                $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
+                                $getBody.Add('doubleLockPassword', $passwd)
+                            }
                         }
+
+                        $uri = $uri, 'restricted' -join '/'
+                        $invokeParams.Uri = $uri
+                        $invokeParams.Method = 'POST'
+                        $invokeParams.Body = $getBody | ConvertTo-Json
+                    } else {
+                        $uri = $uri
+                        $invokeParams.Uri = $uri
+                        $invokeParams.Method = 'GET'
                     }
 
-                    $uri = $uri, 'restricted' -join '/'
-                    $invokeParams.Uri = $uri
-                    $invokeParams.Method = 'POST'
-                    $invokeParams.Body = $getBody | ConvertTo-Json
-                } else {
-                    $uri = $uri
-                    $invokeParams.Uri = $uri
-                    $invokeParams.Method = 'GET'
-                }
+                    Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue getting secret [$secret]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue getting secret [$secret]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
-
-                if ($restResponse) {
-                    if ($restResponse.Code) {
-                        $responseCodeMsg = $restResponse | ConvertTo-Json
-                        Write-Error "Issue accessing secret:`n $responseCodeMsg"
-                    } else {
+                    if ($restResponse) {
                         [Thycotic.PowerShell.Secrets.Secret]$restResponse
                     }
                 }
