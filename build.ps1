@@ -14,6 +14,19 @@ param(
 if ($PSEdition -eq 'Desktop') {
     throw "Build process must be run using PowerShell 7"
 }
+# Ensure and call the module.
+if ($MyInvocation.ScriptName -notlike '*Invoke-Build.ps1') {
+    $InvokeBuildVersion = '5.7.3'
+    $ErrorActionPreference = 'Stop'
+    try {
+        Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
+    } catch {
+        Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope AllUsers -Force
+        Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
+    }
+    Invoke-Build -Task $Tasks -File $MyInvocation.MyCommand.Path @PSBoundParameters
+    return
+}
 
 $moduleName = 'Thycotic.SecretServer'
 $moduleManifest = [IO.Path]::Combine($PSScriptRoot,'src',"$ModuleName.psd1")

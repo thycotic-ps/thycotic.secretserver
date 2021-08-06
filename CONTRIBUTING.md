@@ -1,6 +1,6 @@
 # Contributing to Thycotic.SecretServer
 
-Thycotic.SecretServer is an open-source project and welcomes contributions from the community -- you! There are many ways to contribute, from improving the documentation, submitting bug reports and feature requests, or writing code incorporated into Thycotic.SecretServer itself.
+Thycotic.SecretServer is an open-source project and welcomes contributions from the community -- you! There are many ways to contribute, from improving the documentation, submitting bug reports and feature requests, or writing code incorporated into the module.
 
 ## Bug Reports
 
@@ -14,7 +14,7 @@ Provide as much detail as you can.
 
 If you find yourself wishing for a function or feature that does not exist in Thycotic.SecretServer, you are probably not alone. There are bound to be other Secret Server admins or users with similar needs. Open an issue on our [issues list](https://github.com/thycotic-ps/thycotic.secretserver/issues) on GitHub, which describes the feature you would like to see, why you need it, and how it should work.
 
-Add 👍🏻 reactions to created Feature Request will prioritize where our efforts need to be placed on the feature requests.
+Add 👍🏻 reactions to created Feature Request will prioritize our efforts to be placed on the feature requests.
 
 ## Contributing documentation and code changes
 
@@ -28,9 +28,36 @@ You will need to fork this repository to your local machine. See [github help pa
 
 ## Please Consider Your Commit Messages
 
-The git history of a branch is utilized in building the CHANGELOG for the project. Pleas be considerate of this when you are commiting to your fork to submit a PR.
+The git history of a branch is utilized in building the CHANGELOG for the project. Please be considerate of this when you are committing to your fork to submit a PR.
 
 More info: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
+
+## C# Library
+
+All class types used in the module are in a C# class library. There are a few binary commands (cmdlets) written, but those are rare to change.
+
+The class library is broken into two main namespaces:
+
+- `Thycotic.SecretServer.Cmdlets`
+- `Thycotic.PowerShell.<TagName>`
+
+The classes utilized as output for the commands are named after the tag for the objects. e.g., `Thycotic.PowerShell.Secrets` namespace contains all the objects under the Secrets tag for endpoints such as Get-TssSecret, Get-TssSecretAudit.
+
+The classes are put into their own `cs` file and named based on the class name used. If you want to find the class file for a Secret, you will go to `src\Thycotic.SecretServer\classes\secrets\Secret.cs`.
+
+### Building Library
+
+The `InvokeBuild` module is utilized to automate building the library and publishing the module (both pre-release on GitHub and to the PS Gallery).
+
+The `build.ps1` script is at the root of the project. The `build.library.ps1` hosts the dotnet code used to compile the library itself.
+
+In the main build script, the supported Configurations: Debug, Release, and Prerelease. _The last two are only used by the maintainers._
+
+To build the library for debugging or local testing, simply run the following command at the root of the project:
+
+```powershell
+Invoke-Build -File .\build.ps1 -Configuration Debug
+```
 
 ## Submitting your changes
 
@@ -38,11 +65,11 @@ Once your changes and tests are ready to submit for review:
 
 1. Test your changes
 
-    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. At this time the tests for each command only provide for unit testing the parameters and output type.
+    [Pester](https://pester.dev) (Pester 5.1+) is used as the testing suite for the module. At this time, the tests for each command only provide for unit testing the parameters and output type.
 
-    Secret Server offers the ability to have multiple configuration and environmental limitations. Therefore at this time no integration tests are included for automatic testing. The maintainers will perform manual integration tests as required. Please include screenshots or verbose output of your testing if possible.
+    Secret Server offers the ability to have multiple configuration and environmental limitations. Therefore at this time, no integration tests are included for automatic testing. The maintainers will perform manual integration tests as required. Please include screenshots or verbose output of your testing if possible.
 
-    > If your change is altering the module's functionality or function, this requires explicit approval from maintainer(s) before being submitted as a PR.
+    > If your change alters the module's functionality or function, this requires explicit approval from maintainer(s) before being submitted as a PR.
 
 2. Rebase your changes
 
@@ -50,7 +77,7 @@ Once your changes and tests are ready to submit for review:
 
 3. Submit a pull request
 
-    Push your local changes to your forked copy of the repository and [submit a pull request](https://help.github.com/articles/using-pull-requests). In the pull request, choose a title that sums up the changes you have made, and in the body, provide more details about what your changes do. Also, mention the number of issues where the discussion has taken place, e.g., `Fixes #143` or `Closes #143`.
+    Push your local changes to your forked copy of the repository and [submit a pull request](https://help.github.com/articles/using-pull-requests). In the pull request, choose a title that sums up the changes you have made, and in the body, provide more details about what your changes do. Also, mention the number of issues where the discussion has occurred, e.g., `Fixes #143` or `Closes #143`.
 
     > **Every** pull request requires an associated issue to be linked to it.
 
