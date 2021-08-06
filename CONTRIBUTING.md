@@ -32,6 +32,30 @@ The git history of a branch is utilized in building the CHANGELOG for the projec
 
 More info: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 
+## Project Folder Structure
+
+| Folder   | Description                                                          |
+| -------- | -------------------------------------------------------------------- |
+| examples | PowerShell script files referenced in the Working With doc pages     |
+| src      | C# library source code (`src\Thycotic.SecretServer`) and module code |
+| tests    | Pester test files for module commands                                |
+
+```
+----docs
+----examples
+----src
+-   ----bin
+-   -   ----ClientSdk
+-   ----en-us
+-   ----functions
+-   ----parts
+-   ----Thycotic.SecretServer
+-       ----classes
+-       ----cmdlets
+-       ----enums
+----tests
+```
+
 ## C# Library
 
 All class types used in the module are in a C# class library. There are a few binary commands (cmdlets) written, but those are rare to change.
@@ -45,19 +69,33 @@ The classes utilized as output for the commands are named after the tag for the 
 
 The classes are put into their own `cs` file and named based on the class name used. If you want to find the class file for a Secret, you will go to `src\Thycotic.SecretServer\classes\secrets\Secret.cs`.
 
-### Building Library
+## Software Required
+
+- [Git client](https://git-scm.com/downloads)
+- [VS Code](https://code.visualstudio.com/Download)
+- [GitHub CLI](https://cli.github.com/) (gh)
+
+### Modules Required
+
+- [Pester](https://www.powershellgallery.com/packages/Pester) (5.1.0+)
+- [Platyps](https://www.powershellgallery.com/packages/Platyps)
+- [InvokeBuild](https://www.powershellgallery.com/packages/InvokeBuild)
+
+## Building Library
 
 The `InvokeBuild` module is utilized to automate building the library and publishing the module (both pre-release on GitHub and to the PS Gallery).
 
 The `build.ps1` script is at the root of the project. The `build.library.ps1` hosts the dotnet code used to compile the library itself.
 
-In the main build script, the supported Configurations: Debug, Release, and Prerelease. _The last two are only used by the maintainers._
+The `build.ps1` script, the supported Configurations: Debug, Release, and Prerelease. _The last two are only used by the maintainers._
 
 To build the library for debugging or local testing, simply run the following command at the root of the project:
 
 ```powershell
 Invoke-Build -File .\build.ps1 -Configuration Debug
 ```
+
+The module having a DLL library loaded will mean each time you import the module into a PowerShell session you will need to close and restart a fresh session to do the build again.
 
 ## Submitting your changes
 
