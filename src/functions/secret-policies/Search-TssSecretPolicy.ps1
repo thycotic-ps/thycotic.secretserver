@@ -22,7 +22,7 @@ function Search-TssSecretPolicy {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretPolicies.Policy')]
+    [OutputType('Thycotic.PowerShell.SecretPolicies.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -80,7 +80,7 @@ function Search-TssSecretPolicy {
                 Write-Warning "No SecretPolicy found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.SecretPolicies.Policy[]]$restResponse.records
+                [Thycotic.PowerShell.SecretPolicies.Summary[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"
