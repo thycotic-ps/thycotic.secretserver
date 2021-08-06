@@ -11,5 +11,6 @@ namespace Thycotic.PowerShell.SecretPolicies
         public string SecretPolicyDescription { get; set; }
         public int SecretPolicyId { get; set; }
         public string SecretPolicyName { get; set; }
+        public PolicyItem[] SecretPolicyItems { get; set; }
     }
 }
