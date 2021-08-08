@@ -679,7 +679,7 @@
         ],
         "description": "Generic API call"
     },
-    "Generic API call w/ request body": {
+    "Generic REST API call w/ request body": {
         "scope": "powershell",
         "prefix": "tssapibody",
         "body": [
@@ -688,7 +688,7 @@
             "",
             "\\$Body = @{",
             "    \"grant_type\" = \"password\"",
-            "    \"username\"   = '${2:Username}'",
+            "    \"username\"   = '${2:username}'",
             "    \"password\"   = '${3:password}'",
             "}",
             "\\$token = Invoke-RestMethod -Method Post -Uri \"\\$SecretServerHost/oauth2/token\" -Body \\$Body",
@@ -696,18 +696,18 @@
             "\\$headers.Add(\"Authorization\", \"Bearer \\$(\\$token.access_token)\")",
             "",
             "\\$body = @{",
-            "   data = @{",
-            "       somepropety = @{",
-            "           dirty = \\$true",
-            "           value = \\$true",
-            "       }",
-            "   }",
+            "    data = @{",
+            "        ${6:propertyName} = @{",
+            "            dirty = \\$true",
+            "            value = ${7:value}",
+            "        }",
+            "    }",
             "} | ConvertTo-Json",
             "\\$url = \"\\$apiUrl/${4:endpoint and params}\"",
             "Invoke-RestMethod -Method ${5:Method} -Uri \\$url -Headers \\$headers -Body \\$body -ContentType 'application/json'",
             ""
         ],
-        "description": "Generic API call"
+        "description": "Generic REST API call w/ request body"
     },
     "Changelog release": {
         "scope": "markdown",
