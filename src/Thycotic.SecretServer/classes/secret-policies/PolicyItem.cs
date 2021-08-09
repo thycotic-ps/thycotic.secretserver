@@ -16,11 +16,11 @@ namespace Thycotic.PowerShell.SecretPolicies
         public int SecretPolicyItemMapId { get; set; }
         public string SectionName { get; set; }
         public SshCommandMenuGroupMap[] SshCommandMenuGroupMaps { get; set; }
-        public UserGroupMap UserGroupMaps { get; set; }
+        public UserGroupMap[] UserGroupMaps { get; set; }
         public bool ValueBool { get; set; }
         public int ValueInt { get; set; }
         public int ValueSecretId { get; set; }
         public string ValueString { get; set; }
-        public SecretPolicyType valueType { get; set; }
+        public SecretPolicyType ValueType { get; set; }
     }
 }
