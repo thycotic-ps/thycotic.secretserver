@@ -12,7 +12,7 @@ namespace Thycotic.PowerShell.SecretDependencies
         public bool ChildDependencyStatus { get; set; }
         public int ConditionDependencyId { get; set; }
         public string ConditionMode { get; set; }
-        public Template DependencyTemplate { get; set; }
+        public DependencyTemplate DependencyTemplate { get; set; }
         public string Description { get; set; }
         public int GroupId { get; set; }
         public int Id { get; set; }
@@ -22,7 +22,7 @@ namespace Thycotic.PowerShell.SecretDependencies
         public bool SecretDependencyStatus { get; set; }
         public int SecretId { get; set; }
         public string SecretName { get; set; }
-        public object[] Settings { get; set; }
+        public DependencySetting[] Settings { get; set; }
         public int SortOrder { get; set; }
         public int SshKeySecretId { get; set; }
         public string SshKeySecretName { get; set; }
