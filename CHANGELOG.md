@@ -32,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Write-TssSecretAccessRequestViewComment - new command [c537ce5](https://github.com/thycotic-ps/thycotic.secretserver/commit/c537ce5e609cb87328d74db3e338ab7755f9c8cf)
 * Get-TssFolder - add 11.0 support for FolderPath functionality [0c406e3](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c406e39fcf91994d50c539d1717498d8d0e75fd)
 * Get-TssSecret - add 11.0 support for Secret Path functionality [ba44fc3](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba44fc39652d216d7247a7562c72ae3eeb2b5f17)
+* Get-TssSecretPolicy - new command [ef41109](https://github.com/thycotic-ps/thycotic.secretserver/commit/ef41109fcf2276a0ba94b3c0f6a745406a3f1122)
+* Set-TssSecretPolicy - new command partial as some policy items are excluded [e31b1e2](https://github.com/thycotic-ps/thycotic.secretserver/commit/e31b1e2e51568fb803612948951b25d44489582a)
 
 ### General Updates
 
@@ -44,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get/Test-TssVersion - rework code, adjust classes (now has major, minor, build properties [e314712](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3147128e463684bc2efce425529d9ea1c8b07db)
 * class rename general --> common [50e158c](https://github.com/thycotic-ps/thycotic.secretserver/commit/50e158c884f31d84a5bd0b97800f1909f6c7c2e0)
 * Convert to web request call [dff37d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/dff37d00452a374fb671fc24653c0cc3c4c8d866)
+* Search-TssSecretPolicy - rename class [7b77508](https://github.com/thycotic-ps/thycotic.secretserver/commit/7b775089ade1825db232f6a5b47a29a4a26c1481)
 
 ### Tests
 
