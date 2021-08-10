@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.50.0] -- 2021-xx-xx
+## [0.50.0] -- 2021-08-10
 
 ### Breaking Changes
 
@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssSecret - add 11.0 support for Secret Path functionality [ba44fc3](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba44fc39652d216d7247a7562c72ae3eeb2b5f17)
 * Get-TssSecretPolicy - new command [ef41109](https://github.com/thycotic-ps/thycotic.secretserver/commit/ef41109fcf2276a0ba94b3c0f6a745406a3f1122)
 * Set-TssSecretPolicy - new command partial as some policy items are excluded [e31b1e2](https://github.com/thycotic-ps/thycotic.secretserver/commit/e31b1e2e51568fb803612948951b25d44489582a)
+* Search-TssSystemLog - new command [6ca69de](https://github.com/thycotic-ps/thycotic.secretserver/commit/6ca69de2da9a20c07a91a5a16b0449a3f10347ad)
 
 ### General Updates
 
