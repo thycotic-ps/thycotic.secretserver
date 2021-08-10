@@ -1,6 +1,6 @@
 [cmdletbinding()]
 param(
-    [ValidateSet('Debug','Release','Prerelease')]
+    [ValidateSet('Debug','Release','Prerelease','PSGalleryRetry')]
     [string]
     $Configuration,
 
@@ -181,7 +181,7 @@ task build {
             Invoke-Expression "gh config set prompt disabled"
         }
 
-        if ($Configuration -eq 'Release') {
+        if ($Configuration -eq 'Release' -or ($Configuration -eq 'PSGalleryRetry')) {
             $foundModule = Find-Module -Name $moduleName
             if ($foundModule.Version -ge $imported.Version) {
                 throw "PowerShell Gallery version of $moduleName is more recent ($($foundModule.Version) >= $($imported.Version))"
@@ -210,18 +210,20 @@ task build {
             $ghArgs = $ghArgs + " --prerelease"
         }
 
-        if (Test-Path $changeLog) {
-            Write-Output "gh command to execute: $ghArgs"
-            Invoke-Expression "gh $ghArgs"
-        } else {
-            throw "release.md file not found"
+        if ($Configuration -ne 'PSGalleryRetry') {
+            if (Test-Path $changeLog) {
+                Write-Output "gh command to execute: $ghArgs"
+                Invoke-Expression "gh $ghArgs"
+            } else {
+                throw "release.md file not found"
+            }
         }
 
         if ((gh config get prompt) -eq 'disabled') {
             Invoke-Expression "gh config set prompt enabled"
         }
 
-        if ($Configuration -eq 'Release') {
+        if ($Configuration -eq 'Release' -and ($Configuration -ne 'PSGalleryRetry')) {
             try {
                 $testAzAccount = az account list | ConvertFrom-Json
             } catch {

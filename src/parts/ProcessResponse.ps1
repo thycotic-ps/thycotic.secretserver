@@ -6,7 +6,7 @@ param(
 )
 
 if ($Response.Content.StartsWith("{") -and $Response.Content.EndsWith("}")) {
-    $content = $Response.Content | ConvertFrom-Json -Depth 50
+    $content = $Response.Content | ConvertFrom-Json
 } else {
     $content = $Response.Content
 }
