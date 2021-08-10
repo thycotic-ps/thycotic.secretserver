@@ -5,6 +5,53 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.50.1] -- 2021-08-10
+
+### Breaking Changes
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Bug Fixes
+
+<details>
+    <summary>Click to view </summary>
+
+* Fix Windows PowerShell support for processing API call [b09c145](https://github.com/thycotic-ps/thycotic.secretserver/commit/b09c1455aa1797f41eae94b70e3a86a796bc95b6)
+
+</details>
+
+### New Stuff
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### General Updates
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
+### Tests
+
+<details>
+    <summary>Click to view </summary>
+
+* None
+
+</details>
+
 ## [0.50.0] -- 2021-08-10
 
 ### Breaking Changes
