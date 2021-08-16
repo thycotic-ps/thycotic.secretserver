@@ -23,6 +23,14 @@ Search-TssSystemLog -TssSession $session -SearchText "powershell"
 
 Return Log messages matching the text "powershell"
 
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSystemLog -TssSession $session -SearchText "Azure AD"
+```
+
+Return Log messages matching the text "Azure AD"
+
 ## PARAMETERS
 
 ### -TssSession
@@ -72,7 +80,7 @@ Accept wildcard characters: False
 ```
 
 ### -SortBy
-Sort by specific property, default SystemLogName
+Sort by specific property, default DateRecorded
 
 ```yaml
 Type: String
@@ -81,7 +89,7 @@ Aliases:
 
 Required: False
 Position: Named
-Default value: SystemLogName
+Default value: DateRecorded
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

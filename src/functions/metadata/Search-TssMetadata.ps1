@@ -27,11 +27,11 @@ function Search-TssMetadata {
     [OutputType('Thycotic.PowerShell.Metadata.Summary')]
     param (
         # TssSession object created by New-TssSession for authentication
-        [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
+        [Parameter(Mandatory, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Item ID to return metadata (Secret, Group, User, etc.)
+        # Item ID to return metadata
         [Parameter(Mandatory, ParameterSetName = 'item')]
         [int]
         $ItemId,
@@ -43,8 +43,8 @@ function Search-TssMetadata {
 
         # Metadata Type (Secret, User, Folder, Group)
         [Parameter(Mandatory, ParameterSetName = 'item')]
-        [ValidateSet('Secret','User','Folder','Group')]
-        [string]
+        [Alias('MetadataType')]
+        [Thycotic.PowerShell.Enums.MetadataType]
         $Type,
 
         # Sort by specific property, default ItemId

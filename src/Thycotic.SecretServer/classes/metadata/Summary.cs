@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Metadata
 {
@@ -19,7 +20,7 @@ namespace Thycotic.PowerShell.Metadata
         public string MetadataFieldSectionName { get; set; }
         public string MetadataFieldTypeName { get; set; }
         public int MetadataItemDataId { get; set; }
-        public string MetadataType { get; set; }
+        public MetadataType MetadataType { get; set; }
         public string MetadataTypeName { get; set; }
         public int SortOrder { get; set; }
         public bool ValueBit { get; set; }

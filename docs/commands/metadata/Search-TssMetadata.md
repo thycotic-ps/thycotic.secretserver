@@ -7,7 +7,7 @@ Search metadata
 
 ### item
 ```
-Search-TssMetadata [-TssSession] <Session> -ItemId <Int32> -Type <String> [-SortBy <String>]
+Search-TssMetadata [-TssSession] <Session> -ItemId <Int32> -Type <MetadataType> [-SortBy <String>]
  [<CommonParameters>]
 ```
 
@@ -44,12 +44,12 @@ Aliases:
 Required: True
 Position: 1
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
 ### -ItemId
-Item ID to return metadata (Secret, Group, User, etc.)
+Item ID to return metadata
 
 ```yaml
 Type: Int32
@@ -82,9 +82,10 @@ Accept wildcard characters: False
 Metadata Type (Secret, User, Folder, Group)
 
 ```yaml
-Type: String
+Type: MetadataType
 Parameter Sets: item
-Aliases:
+Aliases: MetadataType
+Accepted values: Secret, User, Folder, Group
 
 Required: True
 Position: Named
