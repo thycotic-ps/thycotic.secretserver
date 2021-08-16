@@ -27,6 +27,7 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 | [Get-TssSecretPolicy]               | 11.0.000000               |
 | [Set-TssSecretPolicy]               | 11.0.000000               |
 | [Search-TssSystemLog]               | 11.0.000000               |
+| [Remove-TssMetadata]               | 11.0.000000               |
 
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
 [Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
@@ -39,3 +40,4 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Get-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicy
 [Set-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy
 [Search-TssSystemLog]:/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog
+[Remove-TssMetadata]:/thycotic.secretserver/commands/diagnostics/Remove-TssMetadata
