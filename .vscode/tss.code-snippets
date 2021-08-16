@@ -1027,5 +1027,25 @@
             "}"
         ],
         "description": "Base C# class library"
+    },
+    "new enum": {
+        "prefix": "tssenum",
+        "body": [
+            "using System;",
+            "using System.Threading.Tasks;",
+            "using System.Management.Automation;",
+            "using System.Management.Automation.Runspaces;",
+            "",
+            "namespace Thycotic.PowerShell.Enums",
+            "{",
+            "    public enum ${1:Name}",
+            "    {",
+            "        ${2:enum},",
+            "        ${3:enum},",
+            "        ${4:enum}",
+            "    }",
+            "}"
+        ],
+        "description": "new enum"
     }
 }
