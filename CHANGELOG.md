@@ -30,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Remove-TssMetadata - new command [64749a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/64749a1023c83c5a12fa01ffed85df964151a48e)
+* Search-TssMetadataFieldSection - new command [4f5ba25](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f5ba2560e6890db1e1754e9b4e4403303359aaa)
 
 </details>
 
@@ -39,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 <details>
     <summary>Click to view </summary>
 
-* None
+* Search-TssMetadata - correction/updates to parameter type and help [028c4f2](https://github.com/thycotic-ps/thycotic.secretserver/commit/028c4f263f5f02495c3e2e28c5a1d2e5dd940586)
 
 </details>
 
