@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Metadata - standardize on ItemType parameter [f0f2279](https://github.com/thycotic-ps/thycotic.secretserver/commit/f0f2279212bb530cb5bda70213d82d01a8b7228a)
 
 ### Bug Fixes
 
@@ -21,6 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssMetadataFieldSection - new command [4f5ba25](https://github.com/thycotic-ps/thycotic.secretserver/commit/4f5ba2560e6890db1e1754e9b4e4403303359aaa)
 * Get-TssMetadataField - new command [cd12a48](https://github.com/thycotic-ps/thycotic.secretserver/commit/cd12a48dd483e1a4a5422aa708d9468286bfacad)
 * New-TssMetadataField - new command [583db9d](https://github.com/thycotic-ps/thycotic.secretserver/commit/583db9dba18e784f24856ffc8a79bafddbb23442)
+* Update-TssMetadataSection - new command [6afe585](https://github.com/thycotic-ps/thycotic.secretserver/commit/6afe5855eff34cd4b3e7e4ff8b6a2eb79cc8fdd8)
+* Update-TssMetadataField - new command [9e1603e](https://github.com/thycotic-ps/thycotic.secretserver/commit/9e1603e5e6473d16a4289791bf99499d1785cbd9)
 
 ### General Updates
 
