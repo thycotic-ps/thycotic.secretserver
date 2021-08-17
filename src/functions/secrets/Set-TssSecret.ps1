@@ -239,7 +239,7 @@ function Set-TssSecret {
                                 }
                             }
                             if ($setSecretParams.ContainsKey('EnableInheritPermission')) {
-                                $putSecretBody.EnableInheritPermissions = $EnableInheritPermission
+                                $putSecretBody.EnableInheritPermissions = [boolean]$EnableInheritPermission
                             }
                             $invokeParamsSecret.Body = $putSecretBody | ConvertTo-Json -Depth 5
 
