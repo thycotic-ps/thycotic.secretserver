@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'ItemId', 'FieldId', 'ItemType', 'SortBy'
+        [object[]]$knownParameters = 'TssSession', 'ItemId', 'SectionFieldId', 'ItemType', 'SortBy'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -17,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.Metadata.Summary" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Metadata.Summary'
+        It "$commandName should set OutputType to Thycotic.PowerShell.Metadata.FieldSectionSummary" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Metadata.FieldSectionSummary'
         }
     }
 }
