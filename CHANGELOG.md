@@ -30,7 +30,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Tests
 
-* None
+* Tests - correct failures [039f56b](https://github.com/thycotic-ps/thycotic.secretserver/commit/039f56b6dda36c854607ee65b312f113416153b1)
 
 ## [0.50.1] -- 2021-08-10
 
