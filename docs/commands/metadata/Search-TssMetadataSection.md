@@ -1,35 +1,34 @@
-# Search-TssMetadata
+# Search-TssMetadataSection
 
 ## SYNOPSIS
-Search metadata
+Search Metadata Field Section that has metadata for a specific item
 
 ## SYNTAX
 
 ### item
 ```
-Search-TssMetadata [-TssSession] <Session> -ItemId <Int32> -ItemType <MetadataType> [-SortBy <String>]
+Search-TssMetadataSection [-TssSession] <Session> -ItemId <Int32> -ItemType <MetadataType> [-SortBy <String>]
  [<CommonParameters>]
 ```
 
 ### field
 ```
-Search-TssMetadata [-TssSession] <Session> [-FieldId <Int32>] [-SortBy <String>] [<CommonParameters>]
+Search-TssMetadataSection [-TssSession] <Session> [-SectionFieldId <Int32>] [-SortBy <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search metadata
-
-When searching based on Item ID the account used must have the proper permissions on that object before metadata data can be returned
+Search Metadata Field Section that has metadata for a specific item
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssMetadata -TssSession $session -ItemId 46 -MetadataFieldId 4
+Search-TssMetadataSection -TssSession $session -ItemId 5
 ```
 
-Return Field ID 4 on object Item ID 46
+Return field sections for Item ID 5
 
 ## PARAMETERS
 
@@ -63,13 +62,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FieldId
+### -SectionFieldId
 Metadata Field ID
 
 ```yaml
 Type: Int32
 Parameter Sets: field
-Aliases:
+Aliases: MetadataSectionFieldId
 
 Required: False
 Position: Named
@@ -116,13 +115,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.Metadata.Summary
+### Thycotic.PowerShell.Metadata.FieldSectionSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssMetadata](https://thycotic-ps.github.io/thycotic.secretserver/commands/Search-TssMetadata)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Search-TssMetadataSection](https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Search-TssMetadataSection)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadata.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadata.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadataSection.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadataSection.ps1)
 

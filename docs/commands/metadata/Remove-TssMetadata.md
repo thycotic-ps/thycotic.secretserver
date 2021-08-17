@@ -6,8 +6,8 @@ Deletes the metadata value and all history for that item
 ## SYNTAX
 
 ```
-Remove-TssMetadata [-TssSession] <Session> -ItemId <Int32> -ItemDataId <Int32> -Type <MetadataType> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Remove-TssMetadata [-TssSession] <Session> -ItemId <Int32> -ItemDataId <Int32> -ItemType <MetadataType>
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -70,7 +70,7 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
-### -Type
+### -ItemType
 Item Type
 
 ```yaml

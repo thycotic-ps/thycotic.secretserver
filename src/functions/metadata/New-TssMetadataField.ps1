@@ -60,7 +60,7 @@ function New-TssMetadataField {
         [int]
         $ItemId,
 
-        # Metadata Type
+        # Item Type
         [Parameter(Mandatory, ParameterSetName = 'currentsection')]
         [Parameter(Mandatory, ParameterSetName = 'newsection')]
         [Thycotic.PowerShell.Enums.MetadataType]
@@ -96,7 +96,7 @@ function New-TssMetadataField {
         # Item Value
         [Parameter(Mandatory, ParameterSetName = 'currentsection')]
         [Parameter(Mandatory, ParameterSetName = 'newsection')]
-        [string]
+        [object]
         $FieldValue,
 
         # Requires Administer Metadata permission to modify

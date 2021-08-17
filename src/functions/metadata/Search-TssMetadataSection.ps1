@@ -1,4 +1,4 @@
-function Search-TssMetadataFieldSection {
+function Search-TssMetadataSection {
     <#
     .SYNOPSIS
     Search Metadata Field Section that has metadata for a specific item
@@ -40,11 +40,11 @@ function Search-TssMetadataFieldSection {
         [int]
         $SectionFieldId,
 
-        # Metadata Type (Secret, User, Folder, Group)
+        # Item Type (Secret, User, Folder, Group)
         [Parameter(Mandatory, ParameterSetName = 'item')]
         [Alias('MetadataType')]
         [Thycotic.PowerShell.Enums.MetadataType]
-        $Type,
+        $ItemType,
 
         # Sort by specific property, default ItemId
         [string]

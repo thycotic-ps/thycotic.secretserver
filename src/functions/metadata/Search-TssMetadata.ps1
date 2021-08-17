@@ -41,11 +41,11 @@ function Search-TssMetadata {
         [int]
         $FieldId,
 
-        # Metadata Type (Secret, User, Folder, Group)
+        # Item Type (Secret, User, Folder, Group)
         [Parameter(Mandatory, ParameterSetName = 'item')]
         [Alias('MetadataType')]
         [Thycotic.PowerShell.Enums.MetadataType]
-        $Type,
+        $ItemType,
 
         # Sort by specific property, default ItemId
         [string]

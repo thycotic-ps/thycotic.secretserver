@@ -44,7 +44,7 @@ function Remove-TssMetadata {
         [Parameter(Mandatory)]
         [Thycotic.PowerShell.Enums.MetadataType]
         [Alias('MetadataType')]
-        $Type
+        $ItemType
     )
     begin {
         $tssParams = $PSBoundParameters
