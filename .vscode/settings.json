@@ -24,7 +24,7 @@
         },
         {
             "label": "Bug Reports",
-            "query": "author:${user} state:open repo:${owner}/${repository} label:bug"
+            "query": "state:open repo:${owner}/${repository} label:bug"
         }
     ],
     "markdownlint.config": {

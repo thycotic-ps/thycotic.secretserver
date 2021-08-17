@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* None
+* Set-TssSecret - EnableInheritPermission logic fixes [#226](https://github.com/thycotic-ps/thycotic.secretserver/issues/226) [c79a7f4](https://github.com/thycotic-ps/thycotic.secretserver/commit/c79a7f46d1df56ddb0bec789a11a3260b6ef00e4)
 
 ### New Stuff
 
