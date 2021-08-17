@@ -57,7 +57,7 @@ function Search-TssMetadataFieldSection {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'metadata', 'field-sections' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
             $invokeParams.Method = 'GET'

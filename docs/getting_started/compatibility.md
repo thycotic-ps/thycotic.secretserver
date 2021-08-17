@@ -22,12 +22,14 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 | [Get-TssSecretState]                | 10.9.000032               |
 | [Get-TssUserRoleAssigned]           | 10.9.000032               |
 | [Search-TssMetadata]                | 10.9.000064               |
+| [Get-TssMetadataField]              | 10.9.000064               |
+| [New-TssMetadataField]              | 10.9.000064               |
 | [Get-TssFolder] (-FolderPath param) | 11.0.000000               |
 | [Get-TssSecret] (-Path param)       | 11.0.000000               |
 | [Get-TssSecretPolicy]               | 11.0.000000               |
 | [Set-TssSecretPolicy]               | 11.0.000000               |
 | [Search-TssSystemLog]               | 11.0.000000               |
-| [Remove-TssMetadata]               | 11.0.000000               |
+| [Remove-TssMetadata]                | 11.0.000000               |
 
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
 [Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
@@ -41,3 +43,5 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Set-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy
 [Search-TssSystemLog]:/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog
 [Remove-TssMetadata]:/thycotic.secretserver/commands/diagnostics/Remove-TssMetadata
+[Get-TssMetadataField]:/thycotic.secretserver/commands/diagnostics/Get-TssMetadataField
+[New-TssMetadataField]:/thycotic.secretserver/commands/diagnostics/New-TssMetadataField
