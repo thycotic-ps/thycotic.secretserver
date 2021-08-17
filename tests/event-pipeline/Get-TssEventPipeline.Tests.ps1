@@ -17,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.EventPipeline.Lis" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.EventPipeline.Lis'
+        It "$commandName should set OutputType to Thycotic.PowerShell.EventPipeline.List" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.EventPipeline.List'
         }
     }
 }
