@@ -8,7 +8,7 @@ function Update-TssMetadataField {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssMetadata -TssSession -ItemId 5 -Type User
+    Search-TssMetadata -TssSession -ItemId 5 -ItemType User
     Update-TssMetadataField -TssSession $session -ItemId 5 -ItemType User -ItemDataId 5 -FieldValue 2
 
     Review output from search command to identify the sequence ID of the metadata field (5 as ItemDataId for this example)
@@ -16,7 +16,7 @@ function Update-TssMetadataField {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssMetadata -TssSession -ItemId 5 -Type User
+    Search-TssMetadata -TssSession -ItemId 5 -ItemType User
     Update-TssMetadataField -TssSession $session -ItemId 5 -ItemType User -ItemDataId 5 -FieldValue 2
 
     Review output from search command to identify the sequence ID of the metadata field (5 as ItemDataId for this example)
