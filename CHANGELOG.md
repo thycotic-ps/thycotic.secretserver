@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.52.0] -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* Metadata - correct issue with ItemType parameter not applying properly [5fbf281](https://github.com/thycotic-ps/thycotic.secretserver/commit/5fbf281640f0bbd42f7b3c745c9f22692537afa9)
+
+### New Stuff
+
+* Search-TssMetadataHistory - new command [8994a53](https://github.com/thycotic-ps/thycotic.secretserver/commit/8994a53b209b534c4e3673fc5f375f2d6acb648e)
+* Close-TssSession - new command [08b420c](https://github.com/thycotic-ps/thycotic.secretserver/commit/08b420c5d3e08a13b91a07ba1f1ff59ba27671ee)
+
+### General Updates
+
+* New-TssSession - adding verbose content [503ee21](https://github.com/thycotic-ps/thycotic.secretserver/commit/503ee21125b3293adfbf5113620a2ea7d2de241b)
+
+### Tests
+
+* None
+
 ## [0.51.0] -- 2021-08-17
 
 ### Breaking Changes
