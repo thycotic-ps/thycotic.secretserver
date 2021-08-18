@@ -55,7 +55,7 @@ function Remove-TssMetadata {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
-            $uri = $TssSession.ApiUrl, 'metadata', $Type, $ItemId, $ItemDataId -join '/'
+            $uri = $TssSession.ApiUrl, 'metadata', $ItemType, $ItemId, $ItemDataId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'DELETE'
 

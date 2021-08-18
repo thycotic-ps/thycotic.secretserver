@@ -68,7 +68,7 @@ function Search-TssMetadata {
             switch ($tssParams.Keys) {
                 'ItemId' { $filters += "filter.itemId=$ItemId" }
                 'FieldId' { $filters += "filter.metaDataFieldId=$FieldId" }
-                'Type' { $filters += "filter.metadataType=$Type" }
+                'ItemType' { $filters += "filter.metadataType=$ItemType" }
             }
             if ($filters) {
                 $uriFilter = $filters -join '&'

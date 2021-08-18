@@ -65,7 +65,7 @@ function Search-TssMetadataSection {
             $filters = @()
             switch ($tssParams.Keys) {
                 'ItemId' { $filters += "filter.ItemId=$ItemId" }
-                'Type' { $filters += "filter.metadataType=$Type"}
+                'ItemType' { $filters += "filter.metadataType=$ItemType"}
                 'SectionFieldId' { $filters += "filter.metadataSectionFilterId=$SectionFieldId"}
             }
             if ($filters) {
