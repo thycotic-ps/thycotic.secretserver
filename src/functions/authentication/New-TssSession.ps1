@@ -106,7 +106,11 @@ function New-TssSession {
         $invokeParams = @{ }
 
         $outputTssSession = [Thycotic.PowerShell.Authentication.Session]::new()
+        $tssExe = [IO.Path]::Combine($clientSdkPath, 'tss.exe')
+    }
 
+    process {
+        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($SecretServer -match '(?:\/api\/v1)|(?:\/oauth2\/token)') {
             throw 'Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided'
             return
@@ -114,31 +118,22 @@ function New-TssSession {
             $outputTssSession.SecretServer = $SecretServer
         }
         if ($newTssParams.ContainsKey('UseWindowsAuth')) {
+            Write-Verbose "UseWindowsAuth provided, setting URL segment to use $($outputTssSession.WindowsAuth)"
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.WindowsAuth, $outputTssSession.ApiVersion -join '/'
             $outputTssSession.TokenType = 'WindowsAuth'
         } else {
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.ApiVersion -join '/'
         }
 
-        $tssExe = [IO.Path]::Combine($clientSdkPath, 'tss.exe')
-    }
-
-    process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
-
         if ($outputTssSession.SecretServer) {
-            Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
             if ($newTssParams.ContainsKey('Credential')) {
                 $invokeParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
 
                 $oauth2Body = "username=$($Credential.Username)&password=$($Credential.GetNetworkCredential().Password)&grant_type=password"
-                # if ($newTssParams.ContainsKey('Credential')) {
-                #     $oauth2Body.username = $Credential.Username
-                #     $oauth2Body.password = $Credential.GetNetworkCredential().Password
-                #     $oauth2Body.grant_type = "password"
-                # }
 
+                Write-Verbose "Uri configured for OAuth2 request: $($invokeParams.Uri)"
                 if ($newTssParams.ContainsKey('OtpCode')) {
+                    Write-Verbose "OtpCode provided"
                     $invokeParams.OtpCode = $OtpCode
                 }
 
@@ -147,7 +142,7 @@ function New-TssSession {
                 $invokeParams.Method = 'POST'
 
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($invokeParams.Uri)]")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
@@ -164,6 +159,7 @@ function New-TssSession {
                 }
 
                 if ($restResponse) {
+                    Write-Verbose "Adding values to TssSession object"
                     $outputTssSession.AccessToken = $restResponse.access_token
                     $outputTssSession.RefreshToken = $restResponse.refresh_token
                     $outputTssSession.ExpiresIn = $restResponse.expires_in
@@ -177,6 +173,7 @@ function New-TssSession {
                 $outputTssSession.TokenType = 'ExternalToken'
             }
             if ($newTssParams.ContainsKey('UseSdkClient')) {
+                Write-Verbose "Processing SDK Client"
                 if (Test-Path $tssExe) {
                     try {
                         $tssStatusArgs = "status --key-directory $ConfigPath --config-directory $ConfigPath"
@@ -239,12 +236,20 @@ function New-TssSession {
                 }
             }
             $outputTssSession.StartTime = [datetime]::Now
+            Write-Verbose "Setting start time for session: $($outputTssSession.StartTime)"
             try {
+                Write-Verbose "Attempting to retrieve Secret Server host version"
                 $versionResponse = Get-TssVersion -TssSession $outputTssSession
                 $outputTssSession.SecretServerVersion = $versionResponse.Version
+                if ($outputTssSession.SecretServerVersion) {
+                    Write-Verbose "Version info received successfully: $($outputTssSession.SecretServerVersion)"
+                }
             } catch {
                 Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
             }
+            Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
+            Write-Verbose "ApiUrl: $($outputTssSession.ApiUrl)"
+            Write-Verbose "Outputing final object"
             return $outputTssSession
         } else {
             Write-Warning 'SecretServer argument not found'
