@@ -73,7 +73,7 @@ function Get-TssSecret {
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(ValueFromPipelineByPropertyName, Position = 0)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, Position = 0)]
         [Alias('SecretId')]
         [int[]]
         $Id,

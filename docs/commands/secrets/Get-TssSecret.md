@@ -7,21 +7,20 @@ Get a secret from Secret Server
 
 ### all (Default)
 ```
-Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Path <String[]>] [-Comment <String>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String[]>] [-Comment <String>]
  [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Path <String[]>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String[]>] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecret [-TssSession] <Session> [[-Id] <Int32[]>] [-Comment <String>]
- [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
- [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Comment <String>] [-DoublelockPassword <SecureString>]
+ [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -117,7 +116,7 @@ Type: Int32[]
 Parameter Sets: (All)
 Aliases: SecretId
 
-Required: False
+Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByPropertyName)
