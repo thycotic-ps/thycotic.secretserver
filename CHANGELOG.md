@@ -19,6 +19,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Search-TssMetadataHistory - new command [8994a53](https://github.com/thycotic-ps/thycotic.secretserver/commit/8994a53b209b534c4e3673fc5f375f2d6acb648e)
 * Close-TssSession - new command [08b420c](https://github.com/thycotic-ps/thycotic.secretserver/commit/08b420c5d3e08a13b91a07ba1f1ff59ba27671ee)
+* Get-TssReportSchedule - new command closes [#46](https://github.com/thycotic-ps/thycotic.secretserver/issues/46) [33822cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/33822cfabf2de25a39119e3e2544ff38f51f6929)
 
 ### General Updates
 
