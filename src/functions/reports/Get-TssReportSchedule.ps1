@@ -42,7 +42,7 @@ function Get-TssReportSchedule {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
             foreach ($schedule in $ScheduleId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'reports', 'schedules', $schedule -join '/'
