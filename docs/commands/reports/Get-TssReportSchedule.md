@@ -40,12 +40,12 @@ Accept wildcard characters: False
 ```
 
 ### -ScheduleId
-Short description for parameter
+Report Schedule ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: ScheduleReportId
+Aliases: ReportScheduleId
 
 Required: True
 Position: Named
