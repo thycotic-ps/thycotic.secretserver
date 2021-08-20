@@ -18,7 +18,7 @@ Update metadata field for an item
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssMetadata -TssSession -ItemId 5 -Type User
+Search-TssMetadata -TssSession -ItemId 5 -ItemType User
 Update-TssMetadataField -TssSession $session -ItemId 5 -ItemType User -ItemDataId 5 -FieldValue 2
 ```
 
@@ -28,7 +28,7 @@ Update the value to 2
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssMetadata -TssSession -ItemId 5 -Type User
+Search-TssMetadata -TssSession -ItemId 5 -ItemType User
 Update-TssMetadataField -TssSession $session -ItemId 5 -ItemType User -ItemDataId 5 -FieldValue 2
 ```
 
