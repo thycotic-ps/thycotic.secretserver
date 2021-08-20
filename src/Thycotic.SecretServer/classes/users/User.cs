@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Users
 {
@@ -16,6 +17,7 @@ namespace Thycotic.PowerShell.Users
         public bool DuoTwoFactor { get; set; }
         public string EmailAddress { get; set; }
         public bool Enabled { get; set; }
+        public UserSourceType ExternalUserSource { get; set; }
         public bool Fido2TwoFactor { get; set; }
         public int Id { get; set; }
         public bool IsApplicationAccount { get; set; }
@@ -34,9 +36,10 @@ namespace Thycotic.PowerShell.Users
         public bool RadiusTwoFactor { get; set; }
         public string RadiusUserName { get; set; }
         public DateTime? ResetSessionStarted { get; set; }
+        public int SlackId { get; set; }
         public int TimeOptionId { get; set; }
         public bool TwoFactor { get; set; }
-        public string UnixAuthenticationMethod { get; set; }
+        public UnixAuthenticationType UnixAuthenticationMethod { get; set; }
         public int UserLcid { get; set; }
         public string Username { get; set; }
         public DateTime? VerifyEmailSentDate { get; set; }
