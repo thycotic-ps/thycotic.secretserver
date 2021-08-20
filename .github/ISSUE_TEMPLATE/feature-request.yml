@@ -1,5 +1,5 @@
 name: Feature Request
-description: Create a bug report to help improve the module
+description: Create a feature request to help improve the module
 labels: ["feature request", "triage required"]
 body:
   - type: markdown
