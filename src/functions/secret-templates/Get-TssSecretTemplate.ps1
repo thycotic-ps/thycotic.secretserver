@@ -50,7 +50,7 @@ function Get-TssSecretTemplate {
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
 
-                Write-Verbose "Performing the operation $($invokeParas.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeParas.Method) $($invokeParams.Uri)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse

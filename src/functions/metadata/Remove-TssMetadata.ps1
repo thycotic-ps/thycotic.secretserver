@@ -59,8 +59,8 @@ function Remove-TssMetadata {
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'DELETE'
 
-            if (-not $PSCmdlet.ShouldProcess("Metadata Item: $ItemId","$($invokeParams.Method) $uri")) { return }
-            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            if (-not $PSCmdlet.ShouldProcess("Metadata Item: $ItemId","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
+            Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse

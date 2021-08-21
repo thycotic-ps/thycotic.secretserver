@@ -49,8 +49,8 @@ function Start-TssSecretHeartbeat {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $uri")) { return }
-                Write-Verbose "$($invokeParamsOther.Method) $uri"
+                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $($invokeParams.Uri)")) { return }
+                Write-Verbose "$($invokeParamsOther.Method) $($invokeParams.Uri)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse

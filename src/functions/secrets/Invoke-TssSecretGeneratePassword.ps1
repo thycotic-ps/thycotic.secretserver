@@ -55,7 +55,7 @@ function Invoke-TssSecretGeneratePassword {
             $invokeGenerateParams.Uri = $uri
             $invokeGenerateParams.Method = 'GET'
 
-            Write-Verbose "Performing the operation $($invokeGenerateParams.Method) $uri"
+            Write-Verbose "Performing the operation $($invokeGenerateParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeGenerateParams
                 $restGeneratedPassword = . $ProcessResponse $apiResponse
@@ -73,7 +73,7 @@ function Invoke-TssSecretGeneratePassword {
                 $validateBody = @{ Password = $restGeneratedPassword } | ConvertTo-Json
                 $invokeValidateParams.Body = $validateBody
 
-                Write-Verbose "Performing the operation $($invokeValidateParams.Method) $uri"
+                Write-Verbose "Performing the operation $($invokeValidateParams.Method) $($invokeParams.Uri)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeValidateParams
                     $restValidateResponse = . $ProcessResponse $apiResponse

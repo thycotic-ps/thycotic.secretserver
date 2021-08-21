@@ -49,7 +49,7 @@ function Remove-TssReport {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("Report ID: $report","$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("Report ID: $report","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

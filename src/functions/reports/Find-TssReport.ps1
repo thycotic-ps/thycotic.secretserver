@@ -84,7 +84,7 @@ function Find-TssReport {
             $uri = $uri, $uriFilter -join '&'
 
             $invokeParams.Uri = $uri
-            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse

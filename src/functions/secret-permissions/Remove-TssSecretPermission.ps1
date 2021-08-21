@@ -49,7 +49,7 @@ function Remove-TssSecretPermission {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("Secret Permission ID: $secretP","$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess("Secret Permission ID: $secretP","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

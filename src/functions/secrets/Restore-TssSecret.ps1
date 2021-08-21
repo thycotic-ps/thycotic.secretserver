@@ -48,8 +48,8 @@ function Restore-TssSecret {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'PUT'
 
-                if ($PSCmdlet.ShouldProcess("Secret Id: $secret", "$($invokeParams.Method) $uri")) {
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                if ($PSCmdlet.ShouldProcess("Secret Id: $secret", "$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse

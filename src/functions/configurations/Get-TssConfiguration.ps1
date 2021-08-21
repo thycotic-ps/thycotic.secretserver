@@ -43,7 +43,6 @@ function Get-TssConfiguration {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
-            $restResponse = $null
             $uri = $TssSession.ApiUrl, 'configuration', 'general' -join '/'
 
             $uriParams = @()
@@ -65,7 +64,7 @@ function Get-TssConfiguration {
             $invokeParams.Uri = $uri, $params -join '?'
             $invokeParams.Method = 'GET'
 
-            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse

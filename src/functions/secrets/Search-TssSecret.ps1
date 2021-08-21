@@ -271,7 +271,7 @@ function Search-TssSecret {
             $invokeParams.Uri = $uri
 
             $invokeParams.Method = 'GET'
-            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse

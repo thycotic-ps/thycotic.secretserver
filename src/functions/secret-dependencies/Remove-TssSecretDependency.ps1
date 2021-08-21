@@ -50,7 +50,7 @@ function Remove-TssSecretDependency {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess($dependency, "$($invokeParams.Method) $uri")) { return }
+                if (-not $PSCmdlet.ShouldProcess($dependency, "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
