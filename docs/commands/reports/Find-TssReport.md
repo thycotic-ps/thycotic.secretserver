@@ -6,8 +6,8 @@ Find a report.
 ## SYNTAX
 
 ```
-Find-TssReport [-TssSession] <Session> [-CategoryId <Int32>] [-IncludeInactive] [-Name <String>]
- [-SearchText <String>] [<CommonParameters>]
+Find-TssReport [-TssSession] <Session> [-Name <String>] [-SearchText <String>] [-CategoryId <Int32>]
+ [-IncludeInactive] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,36 +48,6 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -CategoryId
-Category ID tp search
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: 0
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -IncludeInactive
-Include Inactive Reports
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
 ### -Name
 Name of Report
 
@@ -104,6 +74,36 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -CategoryId
+Category ID tp search
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -IncludeInactive
+Include Inactive Reports
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

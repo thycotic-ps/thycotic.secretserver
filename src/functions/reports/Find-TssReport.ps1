@@ -35,21 +35,22 @@ function Find-TssReport {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Category ID tp search
-        [int]
-        $CategoryId,
-
-        # Include Inactive Reports
-        [switch]
-        $IncludeInactive,
-
         # Name of Report
         [string]
         $Name,
 
         # Search text
         [string]
-        $SearchText
+        $SearchText,
+
+        # Category ID tp search
+        [int]
+        $CategoryId,
+
+        # Include Inactive Reports
+        [switch]
+        $IncludeInactive
+
     )
     begin {
         $tssParams = $PSBoundParameters
