@@ -5,10 +5,9 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.Enums
 {
-    public enum ReportScheduleType
+    public enum ScheduleMonthType
     {
-        Daily,
-        Weekly,
-        Monthly
+        DayOfWeekMonth,
+        DayOfMonth
     }
 }
