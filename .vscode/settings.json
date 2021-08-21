@@ -25,5 +25,24 @@
         "MD041": false,
         "MD047": false,
         "MD028": false
-    }
+    },
+    "cSpell.words": [
+        "Authn",
+        "Cmdlet",
+        "Compatiblity",
+        "Inconsolata",
+        "MANATARMS",
+        "MSSQLSERVER",
+        "Minimap",
+        "Paren",
+        "Pscmdlet",
+        "dbatools",
+        "dbowner",
+        "gitlens",
+        "minimap",
+        "notcontains",
+        "params",
+        "scrollback",
+        "sysnative"
+    ]
 }
