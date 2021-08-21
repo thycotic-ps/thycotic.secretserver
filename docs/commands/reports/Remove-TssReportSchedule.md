@@ -46,7 +46,7 @@ Report Schedule ID
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: ReportScheduleId
+Aliases: ScheduleReportId
 
 Required: True
 Position: Named

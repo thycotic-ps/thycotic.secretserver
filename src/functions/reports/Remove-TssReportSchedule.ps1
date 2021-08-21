@@ -31,7 +31,7 @@ function Remove-TssReportSchedule {
 
         # Report Schedule ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
-        [Alias("ReportScheduleId")]
+        [Alias("ScheduleReportId")]
         [int[]]
         $ScheduleId
     )
