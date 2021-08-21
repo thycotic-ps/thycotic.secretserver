@@ -94,7 +94,7 @@ function Get-TssFolder {
                     $invokeParams.Uri = $Uri
                     $invokeParams.Method = 'GET'
 
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
@@ -118,7 +118,7 @@ function Get-TssFolder {
                     $invokeParams.Uri = $Uri
                     $invokeParams.Method = 'GET'
 
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse

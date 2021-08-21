@@ -59,8 +59,8 @@ function Remove-TssFolderPermission {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission", "$($invokeParams.Method) $uri")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                if (-not $PSCmdlet.ShouldProcess("FolderPermissionId: $folderPermission", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
+                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
