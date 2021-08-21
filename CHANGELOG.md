@@ -14,16 +14,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 
 * Metadata - correct issue with ItemType parameter not applying properly [5fbf281](https://github.com/thycotic-ps/thycotic.secretserver/commit/5fbf281640f0bbd42f7b3c745c9f22692537afa9)
+* User object - 11.0 release new properties added [22e9d12](https://github.com/thycotic-ps/thycotic.secretserver/commit/22e9d12da5173c8a17af1e08f7f88a524d23bc62)
+* Remove-TssReportSchedule - correct piping support [f7cb1cd](https://github.com/thycotic-ps/thycotic.secretserver/commit/f7cb1cdbb76fdfc73899a934a81e4b8e8ae3186d)
+* Get-TssReportSchedule - Correct pipeline support [25c3b63](https://github.com/thycotic-ps/thycotic.secretserver/commit/25c3b6353901ef6f2ff751233cddc287982fdc52)
 
 ### New Stuff
 
 * Search-TssMetadataHistory - new command [8994a53](https://github.com/thycotic-ps/thycotic.secretserver/commit/8994a53b209b534c4e3673fc5f375f2d6acb648e)
 * Close-TssSession - new command [08b420c](https://github.com/thycotic-ps/thycotic.secretserver/commit/08b420c5d3e08a13b91a07ba1f1ff59ba27671ee)
 * Get-TssReportSchedule - new command closes [#46](https://github.com/thycotic-ps/thycotic.secretserver/issues/46) [33822cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/33822cfabf2de25a39119e3e2544ff38f51f6929)
+* Remove-TssReportSchedule - new command closes [#43](https://github.com/thycotic-ps/thycotic.secretserver/issues/43) [87ed599](https://github.com/thycotic-ps/thycotic.secretserver/commit/87ed599c80815f1bb9744823780635b6bce0ee3f)
+* New-TssReportSchedule - new command closes [#45](https://github.com/thycotic-ps/thycotic.secretserver/issues/45) [0c4add9](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c4add951944cca58ded8ed3cf884c6a7889edd4)
 
 ### General Updates
 
 * New-TssSession - adding verbose content [503ee21](https://github.com/thycotic-ps/thycotic.secretserver/commit/503ee21125b3293adfbf5113620a2ea7d2de241b)
+* Find-TssReport - adjust param order [3a229ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/3a229aee65c5ed0ae7f23025d27d3f3f733a42c0)
+* Authentication.Session - change internal class to private [8fb36c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/8fb36c159e9369561eaa0eeec3db09c6f4d76119)
 
 ### Tests
 
