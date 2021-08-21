@@ -9,7 +9,7 @@ namespace Thycotic.PowerShell.Reports
     public class ScheduleView
     {
         public string AdditionalEmailAddresses { get; set; }
-        public ScheduleChangeType ChangeType { get; set; }
+        public ReportScheduleType ChangeType { get; set; }
         public int Days { get; set; }
         public Subscriber[] EmailGroups { get; set; }
         public bool Friday { get; set; }
