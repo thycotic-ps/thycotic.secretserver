@@ -75,7 +75,17 @@ function Get-TssConfiguration {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Configuration.General]$restResponse
+                switch ($Type) {
+                    'All' { [Thycotic.PowerShell.Configuration.General]$restResponse }
+                    'Application' { [Thycotic.PowerShell.Configuration.ApplicationSettings]$restResponse.applicationSettings }
+                    'Email' { [Thycotic.PowerShell.Configuration.EmailSettings]$restResponse.emailSettings }
+                    'Folders' { [Thycotic.PowerShell.Configuration.Folders]$restResponse.folders }
+                    'Launcher' { [Thycotic.PowerShell.Configuration.LauncherSettings]$restResponse.launcherSettings }
+                    'LocalUserPasswords' { [Thycotic.PowerShell.Configuration.LocalUserPasswords]$restResponse.localUserPasswords }
+                    'PermissionOptions' { [Thycotic.PowerShell.Configuration.PermissionOptions]$restResponse.permissionOptions }
+                    'UserExperience' { [Thycotic.PowerShell.Configuration.UserExperience]$restResponse.userExperience }
+                    'UserInterface' { [Thycotic.PowerShell.Configuration.UserInterface]$restResponse.userInterface }
+                }
             }
         } else {
             Write-Warning 'No valid session found'
