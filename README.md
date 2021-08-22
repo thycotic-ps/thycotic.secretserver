@@ -1,6 +1,6 @@
 [![Open in Visual Studio Code](https://open.vscode.dev/badges/open-in-vscode.svg)](https://open.vscode.dev/thycotic-ps/thycotic.secretserver)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/thycotic-ps/thycotic.secretserver?style=flat-square)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/thycotic-ps/thycotic.secretserver?style=flat-square)
+![GitHub Last Commit](https://img.shields.io/github/last-commit/thycotic-ps/thycotic.secretserver?style=flat-square)
 ![GitHub issues by-label](https://img.shields.io/github/issues/thycotic-ps/thycotic.secretserver/bugs?style=flat-square)
 
 <h1 align="center">Thycotic.SecretServer PowerShell Module</h1>
