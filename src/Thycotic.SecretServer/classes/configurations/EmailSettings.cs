@@ -8,6 +8,7 @@ namespace Thycotic.PowerShell.Configuration
     public class EmailSettings
     {
         public string FromEmailAddress { get; set; }
+        public bool SendLegacyEmails { get; set; }
         public bool SmtpCheckCertificateRevocation { get; set; }
         public string SmtpDomain { get; set; }
         public string SmtpPassword { get; set; }

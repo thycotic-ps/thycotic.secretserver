@@ -14,6 +14,7 @@ namespace Thycotic.PowerShell.Configuration
         public bool ForceInactivityTimeout { get; set; }
         public int ForceInactivityTimeoutMinutes { get; set; }
         public bool RequireFolderForSecret { get; set; }
+        public int SearchDelayMs { get; set; }
         public bool SecretPasswordHistoryRestrictionAll { get; set; }
         public int SecretPasswordHistoryRestrictionCount { get; set; }
         public int SecretViewIntervalMinutes { get; set; }
