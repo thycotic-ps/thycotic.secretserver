@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Get-TssConfiguration - adjust output to only output based on Type value [554ed6b](https://github.com/thycotic-ps/thycotic.secretserver/commit/554ed6b4711ac9541f5324e54682cbd100445386)
 
 ### Bug Fixes
 
@@ -25,12 +25,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssReportSchedule - new command closes [#46](https://github.com/thycotic-ps/thycotic.secretserver/issues/46) [33822cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/33822cfabf2de25a39119e3e2544ff38f51f6929)
 * Remove-TssReportSchedule - new command closes [#43](https://github.com/thycotic-ps/thycotic.secretserver/issues/43) [87ed599](https://github.com/thycotic-ps/thycotic.secretserver/commit/87ed599c80815f1bb9744823780635b6bce0ee3f)
 * New-TssReportSchedule - new command closes [#45](https://github.com/thycotic-ps/thycotic.secretserver/issues/45) [0c4add9](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c4add951944cca58ded8ed3cf884c6a7889edd4)
+* Search-TssConfigurationAudit - new command [62c5f5a](https://github.com/thycotic-ps/thycotic.secretserver/commit/62c5f5a8b6659e04c7ac2fdb2ec41a945a8ea13a)
+* Get-TssConfigurationLocalUsePassword - new command [7a4cf49](https://github.com/thycotic-ps/thycotic.secretserver/commit/7a4cf49011e59e34ffc691210ea311e50cf99b16)
+* Get-TssConfigurationLogin - new command [1b353b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/1b353b39bdfedb694d2d776366662b24a98c02fd)
+* Get-TssConfigurationSaml - new command [991a940](https://github.com/thycotic-ps/thycotic.secretserver/commit/991a9401bed4620ed25d66db030a35343032c1f0)
+* Get-TssConfigurationSecurity - new command [184dc0d](https://github.com/thycotic-ps/thycotic.secretserver/commit/184dc0db06935c09dcde51432f26e390efb424d4)
+* Get-TssConfigurationRpc - new command [b771ac0](https://github.com/thycotic-ps/thycotic.secretserver/commit/b771ac091f318ca1ec1213e0a0c67ee5d3259685)
+* Set-TssConfigurationGeneral - new command covers folders, permission options and user experience settings [cebf3df](https://github.com/thycotic-ps/thycotic.secretserver/commit/cebf3df61083bb86f34af79652df2d17bc587e1f)
 
 ### General Updates
 
 * New-TssSession - adding verbose content [503ee21](https://github.com/thycotic-ps/thycotic.secretserver/commit/503ee21125b3293adfbf5113620a2ea7d2de241b)
 * Find-TssReport - adjust param order [3a229ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/3a229aee65c5ed0ae7f23025d27d3f3f733a42c0)
 * Authentication.Session - change internal class to private [8fb36c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/8fb36c159e9369561eaa0eeec3db09c6f4d76119)
+* module - changing verbose URI reference [e7fe007](https://github.com/thycotic-ps/thycotic.secretserver/commit/e7fe0079834ea0663aeb3ad91454e5356af30dc6)
 
 ### Tests
 
