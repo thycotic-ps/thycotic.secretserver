@@ -16,6 +16,7 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 
 | **Function Name**                   | **Secret Server Version** |
 | ----------------------------------- | ------------------------- |
+| [Export-TssAutoExportStorageItem]   | 11.0.000005               |
 | [Get-TssConfigurationAutoExport]    | 11.0.000005               |
 | [Get-TssConfiguration]              | 10.9.000032               |
 | [Get-TssFolder] (-FolderPath param) | 11.0.000005               |
@@ -29,12 +30,13 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 | [New-TssMetadataField]              | 10.9.000064               |
 | [Remove-TssMetadata]                | 11.0.000005               |
 | [Remove-TssReportSchedule]          | 10.9.000033               |
+| [Search-TssAutoExportStorage]       | 11.0.000005               |
 | [Search-TssDistributedEngineSite]   | 10.9.000032               |
 | [Search-TssMetadata]                | 10.9.000064               |
+| [Search-TssMetadataHistory]         | 10.9.000064               |
+| [Search-TssSystemLog]               | 11.0.000005               |
 | [Set-TssSecretPolicy]               | 11.0.000005               |
 | [Set-TssConfigurationAutoExport]    | 11.0.000005               |
-| [Search-TssSystemLog]               | 11.0.000005               |
-| [Search-TssMetadataHistory]         | 10.9.000064               |
 
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
 [Get-TssUserRoleAssigned]:/thycotic.secretserver/commands/users/Get-TssUserRoleAssigned
@@ -47,11 +49,13 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Get-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicy
 [Set-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy
 [Search-TssSystemLog]:/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog
-[Remove-TssMetadata]:/thycotic.secretserver/commands/diagnostics/Remove-TssMetadata
-[Get-TssMetadataField]:/thycotic.secretserver/commands/diagnostics/Get-TssMetadataField
-[New-TssMetadataField]:/thycotic.secretserver/commands/diagnostics/New-TssMetadataField
-[Search-TssMetadataHistory]:/thycotic.secretserver/commands/diagnostics/Search-TssMetadataHistory
-[Remove-TssReportSchedule]:/thycotic.secretserver/commands/diagnostics/Remove-TssReportSchedule
-[Get-TssReportSchedule]:/thycotic.secretserver/commands/diagnostics/Get-TssReportSchedule
-[Get-TssConfigurationAutoExport]:/thycotic.secretserver/commands/diagnostics/Get-TssConfigurationAutoExport
-[Set-TssConfigurationAutoExport]:/thycotic.secretserver/commands/diagnostics/Set-TssConfigurationAutoExport
+[Remove-TssMetadata]:/thycotic.secretserver/commands/metadata/Remove-TssMetadata
+[Get-TssMetadataField]:/thycotic.secretserver/commands/metadata/Get-TssMetadataField
+[New-TssMetadataField]:/thycotic.secretserver/commands/metadata/New-TssMetadataField
+[Search-TssMetadataHistory]:/thycotic.secretserver/commands/metadata/Search-TssMetadataHistory
+[Remove-TssReportSchedule]:/thycotic.secretserver/commands/reports/Remove-TssReportSchedule
+[Get-TssReportSchedule]:/thycotic.secretserver/commands/reports/Get-TssReportSchedule
+[Get-TssConfigurationAutoExport]:/thycotic.secretserver/commands/configurations/Get-TssConfigurationAutoExport
+[Set-TssConfigurationAutoExport]:/thycotic.secretserver/commands/configurations/Set-TssConfigurationAutoExport
+[Search-TssAutoExportStorage]:/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage
+[Export-TssAutoExportStorageItem]:/thycotic.secretserver/commands/configurations/Export-TssAutoExportStorageItem

@@ -4,15 +4,6 @@ param(
     [RestSharp.RestResponse]
     $Response
 )
-
-if ($Response.Content.StartsWith("{") -and $Response.Content.EndsWith("}")) {
-    $content = $Response.Content | ConvertFrom-Json
-} elseif ($Response.Content.StartsWith("[") -and $Response.Content.EndsWith("]")) {
-    $content = $Response.Content | ConvertFrom-Json
-} else {
-    $content = $Response.Content
-}
-
 $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
     StatusCode        = [int]$Response.StatusCode
     StatusDescription = $Response.StatusDescription
@@ -21,10 +12,18 @@ $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
     ResponseUri       = $Response.ResponseUri
 }
 New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force
-
 if (-not $Response.IsSuccessful) {
     $errorContent = $Response.Content
     $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new($errorContent),"ResultError", "NotSpecified", $invokeParams.Uri))
 } else {
+    if ($Response.Content.StartsWith("{") -and $Response.Content.EndsWith("}")) {
+        $content = $Response.Content | ConvertFrom-Json
+    } elseif ($Response.Content.StartsWith("[") -and $Response.Content.EndsWith("]")) {
+        $content = $Response.Content | ConvertFrom-Json
+    } else {
+        if ($Response.ContentType -ne 'application/octet-stream') {
+            $content = $Response.Content
+        }
+    }
     return $content
 }
