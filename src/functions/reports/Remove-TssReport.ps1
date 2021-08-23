@@ -13,7 +13,7 @@ function Remove-TssReport {
     Remove Report ID 4.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Remove-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/repors/Remove-TssReport.ps1

@@ -67,7 +67,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportParameter](https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportParameter)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportParameter](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportParameter)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReportParameter.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReportParameter.ps1)
 

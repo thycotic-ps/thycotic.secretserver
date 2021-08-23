@@ -28,11 +28,11 @@ Creates a new report with minimum requirements Name, CategoryId, ReportSql and D
 ```
 $session = New-TssSession -SecretServer 'https://alpha/SecretServer' -Credential $ssCred
 $params = @{
->> ReportName = 'Tss Test Report from SQL File'
->> Category = (Get-TssReportCategory -TssSession $session -All | Where-Object Name -eq 'TssCategory').CategoryId
->> Description = 'Test report using SQL file'
->> ReportSql = (Get-Content .\tests\exports\testReport.sql | Out-String)
->> }
+    ReportName = 'Tss Test Report from SQL File'
+    Category = (Get-TssReportCategory -TssSession $session -All | Where-Object Name -eq 'TssCategory').CategoryId
+    Description = 'Test report using SQL file'
+    ReportSql = (Get-Content .\tests\exports\testReport.sql | Out-String)
+}
 New-TssReport -TssSession $session @params
 ```
 
