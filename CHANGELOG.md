@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [0.52.0] -- 2021-xx-xx
+## [0.52.0] -- 2021-08-23
 
 ### Breaking Changes
 
@@ -37,6 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssConfigurationSecretIndexer - new command [7e47c36](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e47c367bfc3fe5dce3443d52178dfa2aa9f3ad2)
 * Get-TssConfigurationAutoExport - new command [5649af6](https://github.com/thycotic-ps/thycotic.secretserver/commit/5649af615d4d795a3d14e896ab043125031c4e15)
 * Set-TssConfigurationAutoExport - new command [52f6299](https://github.com/thycotic-ps/thycotic.secretserver/commit/52f629943c0df136d29fbe831717cc8b78b0f75b)
+* Export-TssAutoExportStorageItem - new command [929f371](https://github.com/thycotic-ps/thycotic.secretserver/commit/929f37136247f9679481c600700f19ba4304d1a4)
 
 ### General Updates
 
@@ -45,6 +46,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Authentication.Session - change internal class to private [8fb36c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/8fb36c159e9369561eaa0eeec3db09c6f4d76119)
 * module - changing verbose URI reference [e7fe007](https://github.com/thycotic-ps/thycotic.secretserver/commit/e7fe0079834ea0663aeb3ad91454e5356af30dc6)
 * Set-TssConfigurationGeneral - correct doc links [ad76461](https://github.com/thycotic-ps/thycotic.secretserver/commit/ad764614e5be6953601d68c067798078f8fd18b1)
+* report commands - fix help link [10f04c2](https://github.com/thycotic-ps/thycotic.secretserver/commit/10f04c277c906fd3a50be04191a34cd438eafe2c)
+* Search-TssAutoExportStorage - new command [40aa723](https://github.com/thycotic-ps/thycotic.secretserver/commit/40aa7232307f3bb3f601cb6410d32f17d80e645d)
 
 ### Tests
 
