@@ -447,7 +447,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationGeneral](https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationGeneral)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationGeneral](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationGeneral)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationGeneral.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationGeneral.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationGeneral.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationGeneral.ps1)
 

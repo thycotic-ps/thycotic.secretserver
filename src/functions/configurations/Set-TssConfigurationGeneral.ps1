@@ -19,10 +19,10 @@ function Set-TssConfigurationGeneral {
     Set Secret Server Time Zone to the current user's Windows' default TimeZone.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationGeneral
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationGeneral
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationGeneral.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationGeneral.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
