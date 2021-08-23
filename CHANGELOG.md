@@ -32,6 +32,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssConfigurationSecurity - new command [184dc0d](https://github.com/thycotic-ps/thycotic.secretserver/commit/184dc0db06935c09dcde51432f26e390efb424d4)
 * Get-TssConfigurationRpc - new command [b771ac0](https://github.com/thycotic-ps/thycotic.secretserver/commit/b771ac091f318ca1ec1213e0a0c67ee5d3259685)
 * Set-TssConfigurationGeneral - new command covers folders, permission options and user experience settings [cebf3df](https://github.com/thycotic-ps/thycotic.secretserver/commit/cebf3df61083bb86f34af79652df2d17bc587e1f)
+* Test-TssSession - new command also closes [#229](https://github.com/thycotic-ps/thycotic.secretserver/issues/229) [515d2f7](https://github.com/thycotic-ps/thycotic.secretserver/commit/515d2f75ba62143e6768fbf61a3e385a70fb64d2)
+* Get-TssConfigurationSiteConnector - new command [af22ef6](https://github.com/thycotic-ps/thycotic.secretserver/commit/af22ef6726e0922914f1635445407502511b8bdc)
+* Get-TssConfigurationSecretIndexer - new command [7e47c36](https://github.com/thycotic-ps/thycotic.secretserver/commit/7e47c367bfc3fe5dce3443d52178dfa2aa9f3ad2)
+* Get-TssConfigurationAutoExport - new command [5649af6](https://github.com/thycotic-ps/thycotic.secretserver/commit/5649af615d4d795a3d14e896ab043125031c4e15)
+* Set-TssConfigurationAutoExport - new command [52f6299](https://github.com/thycotic-ps/thycotic.secretserver/commit/52f629943c0df136d29fbe831717cc8b78b0f75b)
 
 ### General Updates
 
@@ -39,6 +44,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Find-TssReport - adjust param order [3a229ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/3a229aee65c5ed0ae7f23025d27d3f3f733a42c0)
 * Authentication.Session - change internal class to private [8fb36c1](https://github.com/thycotic-ps/thycotic.secretserver/commit/8fb36c159e9369561eaa0eeec3db09c6f4d76119)
 * module - changing verbose URI reference [e7fe007](https://github.com/thycotic-ps/thycotic.secretserver/commit/e7fe0079834ea0663aeb3ad91454e5356af30dc6)
+* Set-TssConfigurationGeneral - correct doc links [ad76461](https://github.com/thycotic-ps/thycotic.secretserver/commit/ad764614e5be6953601d68c067798078f8fd18b1)
 
 ### Tests
 
