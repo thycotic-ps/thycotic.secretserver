@@ -1,6 +1,6 @@
 .VSCodeCounter/*
 *.xlsx
-debug.log
+*.[Ll]og
 release*
 .vs/
 
