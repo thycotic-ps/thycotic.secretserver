@@ -7,6 +7,8 @@ param(
 
 if ($Response.Content.StartsWith("{") -and $Response.Content.EndsWith("}")) {
     $content = $Response.Content | ConvertFrom-Json
+} elseif ($Response.Content.StartsWith("[") -and $Response.Content.EndsWith("]")) {
+    $content = $Response.Content | ConvertFrom-Json
 } else {
     $content = $Response.Content
 }
@@ -16,7 +18,7 @@ $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
     StatusDescription = $Response.StatusDescription
     IsSuccessful      = $Response.IsSuccessful
     ResponseStatus    = $Response.ResponseStatus
-    ResponseUri = $Response.ResponseUri
+    ResponseUri       = $Response.ResponseUri
 }
 New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force
 

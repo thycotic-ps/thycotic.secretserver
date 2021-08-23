@@ -93,8 +93,7 @@ Accept wildcard characters: False
 
 ### -Ttl
 Check token TTL (time-to-live), provide value in minutes
-   Verifies timespan of TimeOfDeath is within span of provided minutes
-   Returns true if TotalMinutes is \<= Minutes provided, else false.
+   Returns true if TotalMinutes \<= (Get-Date).AddMinutes(\<Ttl value\>), else false.
 
 ```yaml
 Type: Int32
