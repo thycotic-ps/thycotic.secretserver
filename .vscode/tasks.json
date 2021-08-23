@@ -10,16 +10,30 @@
             "problemMatcher": "$msCompile"
         },
         {
+            "label": "build-docs",
+            "type": "shell",
+            "command": "Invoke-Build -File ./build.ps1 -Task docs",
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "build-debug",
+            "type": "shell",
+            "command": "Invoke-Build -File ./build.ps1 -Configuration Debug",
+            "problemMatcher": "$msCompile",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
             "label": "build",
             "command": "dotnet",
             "type": "shell",
             "args": [
                 "build",
                 "${workspaceFolder}/src/Thycotic.SecretServer",
-                // Ask dotnet build to generate full paths for file names.
                 "/property:GenerateFullPaths=true",
-                // Do not generate summary otherwise it leads to duplicate errors in Problems panel
-                "/consoleloggerparameters:NoSummary",
+                "/consoleloggerparameters:NoSummary"
             ],
             "group": "build",
             "presentation": {
