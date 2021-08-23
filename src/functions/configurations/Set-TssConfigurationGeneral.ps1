@@ -425,7 +425,7 @@ function Set-TssConfigurationGeneral {
                 }
             }
             if ($restResponse) {
-                [Thycotic.PowerShell.Configuration.General]$restResponse
+                Write-Verbose "Setting updated successfully"
             }
         } else {
             Write-Warning "No valid session found"
