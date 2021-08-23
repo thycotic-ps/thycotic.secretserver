@@ -108,11 +108,7 @@ namespace Thycotic.PowerShell.Authentication
 
         public bool CheckTokenTtl(int Value)
         {
-            //timespan of current time to TimeOfDeath
-            TimeSpan ttl = this.TimeOfDeath - DateTime.Now;
-
-            //check if ttl in minutes is less than or equal Value
-            if (ttl.TotalMinutes <= Value)
+            if (this.TimeOfDeath <= DateTime.Now.AddMinutes(Value))
             {
                 return true;
             }
