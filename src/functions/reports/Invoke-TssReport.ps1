@@ -25,7 +25,7 @@ function Invoke-TssReport {
     Executes report 60 (Changed90DaysReportName) returning PSCustomObject result
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Invoke-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Invoke-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Invoke-TssReport.ps1

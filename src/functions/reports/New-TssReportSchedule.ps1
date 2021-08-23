@@ -6,12 +6,6 @@ function New-TssReportSchedule {
     .DESCRIPTION
     Create a Report Schedule for aTSS report.
 
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/New-TssReportSchedule
-
-    .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/New-TssReportSchedule.ps1
-
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $newSchedule = @{
@@ -107,6 +101,12 @@ function New-TssReportSchedule {
     New-TssReportSchedule @newSchedule
 
     Create a weekly schedule for every 4 weeks on Monday and Thursday of each week for Report ID 93
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/New-TssReportSchedule
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/New-TssReportSchedule.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

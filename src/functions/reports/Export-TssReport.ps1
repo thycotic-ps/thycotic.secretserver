@@ -25,7 +25,7 @@ function Export-TssReport {
     Exports report 60 (Changed90DaysReportName) in CSV format, delimited by pipe character ("|")
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Export-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Export-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Export-TssReport.ps1

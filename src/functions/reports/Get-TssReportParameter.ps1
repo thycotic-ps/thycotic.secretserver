@@ -13,7 +13,7 @@ function Get-TssReportParameter {
     Get report parameters for Report 34.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Get-TssReportParameter
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReportParameter
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReportParameter.ps1

@@ -19,7 +19,7 @@ function Find-TssReport {
     Return a list of Reports found with "secret" in the name.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Find-TssReport
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Find-TssReport
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Find-TssReport.ps1
