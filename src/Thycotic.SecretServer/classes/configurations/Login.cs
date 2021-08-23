@@ -18,7 +18,7 @@ namespace Thycotic.PowerShell.Configuration
         public int MaxLoginFailuresBeforeCAPTCHA { get; set; }
         public int RememberMeTimeOutMinutes { get; set; }
         public LoginSshKeyIntegration SshKeyIntegration { get; set; } // object (ConfigurationLoginSshKeyIntegrationModel)
-        public LoginTwoFactor twoFactor { get; set; } //object (ConfigurationLoginTwoFactorModel)
+        public LoginTwoFactor TwoFactor { get; set; } //object (ConfigurationLoginTwoFactorModel)
         public int UserLockoutTimeMinutes { get; set; }
         public bool VisualEncryptedKeyboardEnabled { get; set; }
         public bool VisualEncryptedKeyboardRequired { get; set; }
