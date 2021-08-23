@@ -2,6 +2,7 @@ using System;
 using System.Management.Automation;
 using System.Net;
 using RestSharp;
+using System.IO;
 
 namespace Thycotic.SecretServer.Cmdlets
 {
@@ -121,10 +122,22 @@ namespace Thycotic.SecretServer.Cmdlets
             }
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
-                apiRequest.AddParameter("application/json", Body , ParameterType.RequestBody);
+                apiRequest.AddParameter("application/json", Body, ParameterType.RequestBody);
             }
 
             IRestResponse apiResponse = apiClient.Execute(apiRequest);
+            if (MyInvocation.BoundParameters.ContainsKey("OutFile"))
+            {
+                try
+                {
+                    string content = apiResponse.Content;
+                    File.WriteAllText(OutFile, content);
+                }
+                catch
+                {
+                    throw new System.Exception("Unable to write content to file: " + OutFile);
+                }
+            }
             WriteObject(apiResponse);
         }
     }
