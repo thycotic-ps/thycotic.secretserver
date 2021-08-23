@@ -13,10 +13,10 @@ function Get-TssConfigurationSecretIndexer {
     Return configuration of the Secret Search Indexer
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/configuration/Get-TssConfigurationSecretIndexer
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configuration/Get-TssConfigurationSecretIndexer.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

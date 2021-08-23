@@ -1,26 +1,26 @@
-# Get-TssConfigurationSecretIndexer
+# Search-TssAutoExportStorage
 
 ## SYNOPSIS
-Get Secret Indexer configuration
+Search list of items in Automatic Export Storage
 
 ## SYNTAX
 
 ```
-Get-TssConfigurationSecretIndexer [-TssSession] <Session> [<CommonParameters>]
+Search-TssAutoExportStorage [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get Secret Indexer configuration
+Search list of items in Automatic Export Storage
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssConfigurationIndexer -TssSession $session - some test value
+Search-TssAutoExportStorage -TssSession $session
 ```
 
-Return configuration of the Secret Search Indexer
+Returns a list of items in Automatic Export Storage
 
 ## PARAMETERS
 
@@ -46,13 +46,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.Configuration.SearchIndexer
+### Thycotic.PowerShell.Configuration.AutomaticExportItem
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssAutoExportStorage.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssAutoExportStorage.ps1)
 
