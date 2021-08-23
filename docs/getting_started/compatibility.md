@@ -16,22 +16,24 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 
 | **Function Name**                   | **Secret Server Version** |
 | ----------------------------------- | ------------------------- |
+| [Get-TssConfigurationAutoExport]    | 11.0.000005               |
 | [Get-TssConfiguration]              | 10.9.000032               |
-| [Get-TssFolder] (-FolderPath param) | 11.0.000000               |
+| [Get-TssFolder] (-FolderPath param) | 11.0.000005               |
 | [Get-TssMetadataField]              | 10.9.000064               |
 | [Get-TssReportSchedule]             | 10.9.000032               |
-| [Get-TssSecret] (-Path param)       | 11.0.000000               |
+| [Get-TssSecret] (-Path param)       | 11.0.000005               |
 | [Get-TssSecretAudit]                | 10.9.000032               |
-| [Get-TssSecretPolicy]               | 11.0.000000               |
+| [Get-TssSecretPolicy]               | 11.0.000005               |
 | [Get-TssSecretState]                | 10.9.000032               |
 | [Get-TssUserRoleAssigned]           | 10.9.000032               |
 | [New-TssMetadataField]              | 10.9.000064               |
-| [Remove-TssMetadata]                | 11.0.000000               |
+| [Remove-TssMetadata]                | 11.0.000005               |
 | [Remove-TssReportSchedule]          | 10.9.000033               |
 | [Search-TssDistributedEngineSite]   | 10.9.000032               |
 | [Search-TssMetadata]                | 10.9.000064               |
-| [Set-TssSecretPolicy]               | 11.0.000000               |
-| [Search-TssSystemLog]               | 11.0.000000               |
+| [Set-TssSecretPolicy]               | 11.0.000005               |
+| [Set-TssConfigurationAutoExport]    | 11.0.000005               |
+| [Search-TssSystemLog]               | 11.0.000005               |
 | [Search-TssMetadataHistory]         | 10.9.000064               |
 
 [Get-TssSecretAudit]:/thycotic.secretserver/commands/secrets/Get-TssSecretAudit
@@ -51,3 +53,5 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Search-TssMetadataHistory]:/thycotic.secretserver/commands/diagnostics/Search-TssMetadataHistory
 [Remove-TssReportSchedule]:/thycotic.secretserver/commands/diagnostics/Remove-TssReportSchedule
 [Get-TssReportSchedule]:/thycotic.secretserver/commands/diagnostics/Get-TssReportSchedule
+[Get-TssConfigurationAutoExport]:/thycotic.secretserver/commands/diagnostics/Get-TssConfigurationAutoExport
+[Set-TssConfigurationAutoExport]:/thycotic.secretserver/commands/diagnostics/Set-TssConfigurationAutoExport
