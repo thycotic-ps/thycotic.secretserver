@@ -13,7 +13,7 @@ namespace Thycotic.PowerShell.Scripts
         public string Description { get; set; }
         public string Name { get; set; }
         public string OdbcConnectionStringArgs { get; set; }
-        public string[] ScriptText { get; set; }
+        public string[] ScriptContent { get; set; }
         public int ScriptCategoryId { get; set; }
         public string ScriptCategoryName { get; set; }
         public int ScriptId { get; set; }
