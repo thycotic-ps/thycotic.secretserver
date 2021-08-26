@@ -35,11 +35,10 @@ function Search-TssSecretAccessRequest {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Status of the request
-        [Parameter(Mandatory, Position = 1)]
-        [ValidateSet('WaitingForRequest','Pending','Approved','Denied','Canceled','Expired')]
-        [string]
-        $Status,
+        # Status of the request (Pending, Approved, Denied, Canceled), defaults to Pending
+        [Parameter(Position = 1)]
+        [Thycotic.PowerShell.Enums.SecretAccessStatus]
+        $Status = 'Pending',
 
         # Is request submitted by connecting user
         [switch]
@@ -62,9 +61,9 @@ function Search-TssSecretAccessRequest {
             $invokeParams.Method = 'GET'
 
             $filters = @()
-            switch ($tssParams.Keys) {
-                'IsMyRequest' { $filters += "filter.IsMyRequest=$([boolean]$IsMyRequest)" }
-                'Status' { $filters += "filter.status=$Status" }
+            $filters += "filter.status=$([string]$Status)"
+            if ($tssParams.ContainsKey('IsMyRequest')) {
+                $filters += "filter.IsMyRequest=$([boolean]$IsMyRequest)"
             }
             if ($filters) {
                 $uriFilter = $filters -join '&'
