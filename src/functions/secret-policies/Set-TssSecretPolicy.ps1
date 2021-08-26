@@ -63,7 +63,7 @@ function Set-TssSecretPolicy {
 
         # Secret Policy Item Type
         [Parameter(ParameterSetName = 'item')]
-        [Thycotic.PowerShell.Enums.SecretPolicyType]
+        [Thycotic.PowerShell.Enums.SecretPolicyValueType]
         $ItemType,
 
         # Secret Policy Item Apply Type (NotSet, Default, Enforced)
