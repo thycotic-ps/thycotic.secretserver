@@ -5,7 +5,7 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.Enums
 {
-    public enum SecretPolicyType
+    public enum SecretPolicyValueType
     {
         Bool,
         Int,
