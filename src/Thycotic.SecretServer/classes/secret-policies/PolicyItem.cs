@@ -21,6 +21,6 @@ namespace Thycotic.PowerShell.SecretPolicies
         public int ValueInt { get; set; }
         public int ValueSecretId { get; set; }
         public string ValueString { get; set; }
-        public SecretPolicyType ValueType { get; set; }
+        public SecretPolicyValueType ValueType { get; set; }
     }
 }
