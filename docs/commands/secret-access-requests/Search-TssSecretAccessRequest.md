@@ -6,8 +6,8 @@ Search Access Request for Secrets by status for current user.
 ## SYNTAX
 
 ```
-Search-TssSecretAccessRequest [-TssSession] <Session> [-Status] <String> [-IsMyRequest] [-SortBy <String>]
- [<CommonParameters>]
+Search-TssSecretAccessRequest [-TssSession] <Session> [[-Status] <SecretAccessStatus>] [-IsMyRequest]
+ [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -49,16 +49,17 @@ Accept wildcard characters: False
 ```
 
 ### -Status
-Status of the request
+Status of the request (Pending, Approved, Denied, Canceled), defaults to Pending
 
 ```yaml
-Type: String
+Type: SecretAccessStatus
 Parameter Sets: (All)
 Aliases:
+Accepted values: Approved, Canceled, Denied, Pending
 
-Required: True
+Required: False
 Position: 2
-Default value: None
+Default value: Pending
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
