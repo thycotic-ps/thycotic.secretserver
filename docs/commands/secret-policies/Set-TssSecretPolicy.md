@@ -14,7 +14,7 @@ Set-TssSecretPolicy [-TssSession] <Session> -Id <Int32> [-Name <String>] [-Descr
 ### item
 ```
 Set-TssSecretPolicy [-TssSession] <Session> -Id <Int32> [-ItemName <SecretPolicyItem>]
- [-ItemType <SecretPolicyType>] [-ItemApplyType <SecretPolicyApplyType>] [-ItemValue <Object>]
+ [-ItemType <SecretPolicyValueType>] [-ItemApplyType <SecretPolicyApplyType>] [-ItemValue <Object>]
  [-UserGroupMap <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -136,7 +136,7 @@ Accept wildcard characters: False
 Secret Policy Item Type
 
 ```yaml
-Type: SecretPolicyType
+Type: SecretPolicyValueType
 Parameter Sets: item
 Aliases:
 Accepted values: Bool, Int, SecretId, Group, Schedule, SshMenuGroup, SshBlocklist
