@@ -5,6 +5,31 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* New-TssScript - new command [efb4871](https://github.com/thycotic-ps/thycotic.secretserver/commit/efb4871f975d4d23249de529164232984e320c0c)
+* Get-TssSecretAccessRequest - new command [a858c90](https://github.com/thycotic-ps/thycotic.secretserver/commit/a858c90af3d610ecbb6a8ebc04fbb6e2e440ff94)
+* Update-TssSecretAccessRequest - new command [ca09f56](https://github.com/thycotic-ps/thycotic.secretserver/commit/ca09f5685a401e445cf60deb65f70eaf2e54b5fb)
+* New-TssSecretPolicy - new command [45bfda9](https://github.com/thycotic-ps/thycotic.secretserver/commit/45bfda92ce155355f6c21e043056890e54cdde41)
+
+### General Updates
+
+* Set-TssSecretPolicy - correct Items param type [15621d3](https://github.com/thycotic-ps/thycotic.secretserver/commit/15621d3c9c793b5aa46ff56ec64dd53d281d8cb7)
+
+### Tests
+
+* None
+
 ## [0.52.0] -- 2021-08-23
 
 ### Breaking Changes
