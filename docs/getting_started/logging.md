@@ -1,9 +1,9 @@
 ---
-title: "Logging Commands"
+title: "Logging"
 sort: 5
 ---
 
-# Logging Commands
+# Logging
 
 The module is packaged with three binary commands (C# cmdlets) that provide the option for script authors to having logging in their workflows if needed. These included the following commands:
 

@@ -1,16 +1,15 @@
 ---
-title: "Logging"
+title: "Logging Commands"
 sort: 1
 ---
 
-In release [0.40.0](https://github.com/thycotic-ps/thycotic.secretserver/releases/tag/v0.40.0) a nested module was added to the Thycotic.SecretServer module called `Thycotic.Logging`.
-The nested module includes the following commands:
+The below example is a script to showcase how the logging commands can be used for your scripts to easily generate a nicely formatted file.
 
-- Start-TssLog
-- Stop-TssLog
-- Write-TssLog
+The logging commands included in the module:
 
-The below example is a script to showcase how this can be used for your scripts to easily generate a nicely formatted file.
+- [Start-TssLog]
+- [Stop-TssLog]
+- [Write-TssLog]
 
 # Example
 
@@ -88,3 +87,7 @@ foreach ($secret in $secrets) {
 
 Stop-TssLog
 ```
+
+[Start-TssLog]:/thycotic.secretserver/commands/logging/Start-TssLog
+[Stop-TssLog]:/thycotic.secretserver/commands/logging/Stop-TssLog
+[Write-TssLog]:/thycotic.secretserver/commands/logging/Write-TssLog
