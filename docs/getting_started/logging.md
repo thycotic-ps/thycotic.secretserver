@@ -1,15 +1,17 @@
 ---
-title: "Thycotic.Logging module"
+title: "Logging Commands"
 sort: 5
 ---
 
-# Logging Module
+# Logging Commands
 
-A nested logging module is included that gives you access to the following commands:
+The module is packaged with three binary commands (C# cmdlets) that provide the option for script authors to having logging in their workflows if needed. These included the following commands:
 
 - [Start-TssLog]
 - [Stop-TssLog]
 - [Write-TssLog]
+
+You can find more details using these commands in the working with section on logging.
 
 [More details](/thycotic.secretserver/getting_started/working_with/workignwith_logging)
 
