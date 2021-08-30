@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssSecretAccessRequest - new command [a858c90](https://github.com/thycotic-ps/thycotic.secretserver/commit/a858c90af3d610ecbb6a8ebc04fbb6e2e440ff94)
 * Update-TssSecretAccessRequest - new command [ca09f56](https://github.com/thycotic-ps/thycotic.secretserver/commit/ca09f5685a401e445cf60deb65f70eaf2e54b5fb)
 * New-TssSecretPolicy - new command [45bfda9](https://github.com/thycotic-ps/thycotic.secretserver/commit/45bfda92ce155355f6c21e043056890e54cdde41)
+* Get-TssConfigurationBackup - new command [7316419](https://github.com/thycotic-ps/thycotic.secretserver/commit/731641946843756a5cda1691b3b5c4d2512c00e1)
+* Search-TssConfigurationBackupLog - new command [7c5bb0c](https://github.com/thycotic-ps/thycotic.secretserver/commit/7c5bb0c106c501a5686bb13ab9789f457ddba418)
+* Start-TssConfigurationBackup - new command [2991b7e](https://github.com/thycotic-ps/thycotic.secretserver/commit/2991b7e4277b79eced652659c6d9e26b79dbfc41)
 
 ### General Updates
 
