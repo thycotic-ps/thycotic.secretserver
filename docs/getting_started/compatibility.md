@@ -31,6 +31,7 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 | [Remove-TssMetadata]                | 11.0.000005               |
 | [Remove-TssReportSchedule]          | 10.9.000033               |
 | [Search-TssAutoExportStorage]       | 11.0.000005               |
+| [Search-TssConfigurationBackupLog]  | 11.0.000005               |
 | [Search-TssDistributedEngineSite]   | 10.9.000032               |
 | [Search-TssMetadata]                | 10.9.000064               |
 | [Search-TssMetadataHistory]         | 10.9.000064               |
@@ -59,3 +60,4 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Set-TssConfigurationAutoExport]:/thycotic.secretserver/commands/configurations/Set-TssConfigurationAutoExport
 [Search-TssAutoExportStorage]:/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage
 [Export-TssAutoExportStorageItem]:/thycotic.secretserver/commands/configurations/Export-TssAutoExportStorageItem
+[Get-TssConfigurationBackupLog]:/thycotic.secretserver/commands/configurations/Get-TssConfigurationBackupLog
