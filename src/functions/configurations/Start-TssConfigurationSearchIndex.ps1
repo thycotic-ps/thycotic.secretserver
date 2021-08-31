@@ -1,22 +1,22 @@
-function Start-TssConfigurationBackup {
+function Start-TssConfigurationSearchIndex {
     <#
     .SYNOPSIS
-    Start the database and application backup for Secret Server
+    Start a rebuild for the Secret Search Index
 
     .DESCRIPTION
-    Start the database and application backup for Secret Server
+    Start a rebuild for the Secret Search Index
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Start-TssConfigurationBackup -TssSession $session
+    Start-TssConfigurationSearchIndex -TssSession $session
 
-    Run the backup for the Secret Server as configured
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationBackup
+    Start a rebuild for the Secret Search Index
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationBackup.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationSearchIndex
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationSearchIndex.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -36,11 +36,11 @@ function Start-TssConfigurationBackup {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
-            $uri = $TssSession.ApiUrl, 'configuration', 'backup', 'run-now' -join '/'
+            $uri = $TssSession.ApiUrl, 'configuration', 'secret-search-indexer', 'rebuild-index' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
 
-            if (-not $PSCmdlet.ShouldProcess("Backup", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
+            if (-not $PSCmdlet.ShouldProcess("Search Index", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
             Write-Verbose "Performing the operation: $($invokeParams.Method) $($invokeParams.Uri)"
             try {
                 $apiResponse = Invoke-TssApi @invokeParams
@@ -51,7 +51,7 @@ function Start-TssConfigurationBackup {
             }
 
             if ($restResponse) {
-                Write-Verbose "Backup started successfully"
+                Write-Verbose "Secret Search Index rebuild started successfully"
             }
         } else {
             Write-Warning 'No valid session found'

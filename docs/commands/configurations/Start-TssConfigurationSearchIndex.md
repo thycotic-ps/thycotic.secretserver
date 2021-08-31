@@ -1,26 +1,26 @@
-# Start-TssConfigurationBackup
+# Start-TssConfigurationSearchIndex
 
 ## SYNOPSIS
-Start the database and application backup for Secret Server
+Start a rebuild for the Secret Search Index
 
 ## SYNTAX
 
 ```
-Start-TssConfigurationBackup [-TssSession] <Session> [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-TssConfigurationSearchIndex [-TssSession] <Session> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Start the database and application backup for Secret Server
+Start a rebuild for the Secret Search Index
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Start-TssConfigurationBackup -TssSession $session
+Start-TssConfigurationSearchIndex -TssSession $session
 ```
 
-Run the backup for the Secret Server as configured
+Start a rebuild for the Secret Search Index
 
 ## PARAMETERS
 
@@ -82,7 +82,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationBackup](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationBackup)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationSearchIndex](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationSearchIndex)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationBackup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationBackup.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationSearchIndex.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationSearchIndex.ps1)
 
