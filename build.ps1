@@ -133,6 +133,7 @@ task docs {
 
         if (Test-Path $docCommandPath) {
             $helpNames = Get-ChildItem $fDir -File
+            Get-ChildItem $docCommandPath -Filter *.md -Exclude readme.md | Remove-Item -Force -ErrorAction SilentlyContinue
             $helpCommands = $functions.Where({ $_.Name -in $helpNames.BaseName })
             $helpCommands.foreach({
                     New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null

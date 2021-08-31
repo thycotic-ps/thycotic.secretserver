@@ -1,22 +1,22 @@
-function Get-TssConfigurationSecretIndexer {
+function Get-TssConfigurationSearchIndex {
     <#
     .SYNOPSIS
-    Get Secret Indexer configuration
+    Get the Secret Search Index configuration
 
     .DESCRIPTION
-    Get Secret Indexer configuration
+    Get the Secret Search Index configuration
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssConfigurationIndexer -TssSession $session - some test value
+    Get-TssConfigurationSearchIndex -TssSession $session
 
-    Return configuration of the Secret Search Indexer
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer
+    Returns configuration for Secret Search Indexer
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSearchIndex
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSearchIndex.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -46,13 +46,13 @@ function Get-TssConfigurationSecretIndexer {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
                 } catch {
-                    Write-Warning "Issue getting Search Indexer configuration"
+                    Write-Warning "Issue getting Secret Search Indexer configuration"
                     $err = $_
                     . $ErrorHandling $err
                 }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Configuration.SearchIndexer]$restResponse
+                if ($restResponse.records) {
+                    [Thycotic.PowerShell.Configuration.SearchIndexer]$restResponse.records
                 }
         } else {
             Write-Warning "No valid session found"

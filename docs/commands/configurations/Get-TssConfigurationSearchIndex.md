@@ -1,26 +1,26 @@
-# Get-TssConfigurationSecretIndexer
+# Get-TssConfigurationSearchIndex
 
 ## SYNOPSIS
-Get Secret Indexer configuration
+Get the Secret Search Index configuration
 
 ## SYNTAX
 
 ```
-Get-TssConfigurationSecretIndexer [-TssSession] <Session> [<CommonParameters>]
+Get-TssConfigurationSearchIndex [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get Secret Indexer configuration
+Get the Secret Search Index configuration
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssConfigurationIndexer -TssSession $session - some test value
+Get-TssConfigurationSearchIndex -TssSession $session
 ```
 
-Return configuration of the Secret Search Indexer
+Returns configuration for Secret Search Indexer
 
 ## PARAMETERS
 
@@ -52,7 +52,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSecretIndexer)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSearchIndex](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSearchIndex)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSecretIndexer.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSearchIndex.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSearchIndex.ps1)
 
