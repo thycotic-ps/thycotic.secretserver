@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Get-TssConfigurationSearchIndex - rename of Get-TssConfigurationSecretIndexer -- breaking change [348343d](https://github.com/thycotic-ps/thycotic.secretserver/commit/348343d14a9aba14092e7d704470484bc6fd3d50)
 
 ### Bug Fixes
 
@@ -24,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssConfigurationBackup - new command [7316419](https://github.com/thycotic-ps/thycotic.secretserver/commit/731641946843756a5cda1691b3b5c4d2512c00e1)
 * Search-TssConfigurationBackupLog - new command [7c5bb0c](https://github.com/thycotic-ps/thycotic.secretserver/commit/7c5bb0c106c501a5686bb13ab9789f457ddba418)
 * Start-TssConfigurationBackup - new command [2991b7e](https://github.com/thycotic-ps/thycotic.secretserver/commit/2991b7e4277b79eced652659c6d9e26b79dbfc41)
+* Start-TssConfigurationSearch - new command [6a724f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/6a724f170334e1b64c61b064eaef2a8898c8e97a)
 
 ### General Updates
 
