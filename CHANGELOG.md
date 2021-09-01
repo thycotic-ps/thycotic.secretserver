@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* New-TssSession - convert OAuth call to internal binary command fixes [#233](https://github.com/thycotic-ps/thycotic.secretserver/issues/233) [06e6477](https://github.com/thycotic-ps/thycotic.secretserver/commit/06e6477b27d73f60f460572f8992e67b8c62f08c)
+
+### New Stuff
+
+* Get-TssSecretDependencyScript - new command [8cf4332](https://github.com/thycotic-ps/thycotic.secretserver/commit/8cf433278dec51c15b3ac20da78a7e76d4dec99b)
+
+### General Updates
+
+* None
+
+### Tests
+
+* None
+
 ## [0.53.0] -- 2021-08-30
 
 ### Breaking Changes
