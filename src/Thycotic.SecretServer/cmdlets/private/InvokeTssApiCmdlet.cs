@@ -10,7 +10,7 @@ namespace Thycotic.SecretServer.Cmdlets
     /// <para type="synopsis">Invokes the Secret Server Rest API.</para>
     /// <para type="description">Invokes the Secret Server Rest API.</para>
     /// </summary>
-    [Cmdlet(VerbsLifecycle.Invoke, "TssApi", HelpUri = "https://thycotic-ps.github.io/thycotic.secretserver/common/Invoke-TssApi")]
+    [Cmdlet(VerbsLifecycle.Invoke, "TssApi")]
     public class InvokeTssApiCmdlet : PSCmdlet
     {
         ///<summary>
@@ -38,12 +38,6 @@ namespace Thycotic.SecretServer.Cmdlets
         ///</summary>
         [Parameter(Position = 3)]
         public object Body { get; set; }
-
-        ///<summary>
-        ///<para type="description">Provide OTP for authentication.</para>
-        ///</summary>
-        [Parameter(Position = 3)]
-        public int OtpCode { get; set; }
 
         ///<summary>
         ///<para type="description">Specifies the file path to write the content.</para>
@@ -99,7 +93,7 @@ namespace Thycotic.SecretServer.Cmdlets
             apiClient.BaseUrl = requestUri;
             apiClient.Timeout = Timeout;
 
-            if (string.IsNullOrEmpty(Proxy))
+            if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {
                 apiClient.Proxy = new WebProxy(Proxy);
                 if (ProxyUseDefaultCredentials.IsPresent)
@@ -116,13 +110,9 @@ namespace Thycotic.SecretServer.Cmdlets
             apiRequest.AddHeader("Content-Type", ContentType);
             apiRequest.AddHeader("Authorization", "Bearer " + AccessToken);
 
-            if (MyInvocation.BoundParameters.ContainsKey("OtpCode"))
-            {
-                apiRequest.AddParameter("otp", OtpCode.ToString(), ParameterType.HttpHeader);
-            }
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
-                apiRequest.AddParameter("application/json", Body, ParameterType.RequestBody);
+                apiRequest.AddParameter(ContentType, Body, ParameterType.RequestBody);
             }
 
             IRestResponse apiResponse = apiClient.Execute(apiRequest);

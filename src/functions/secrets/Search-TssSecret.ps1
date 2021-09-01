@@ -195,7 +195,6 @@ function Search-TssSecret {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -269,7 +268,6 @@ function Search-TssSecret {
             }
 
             $invokeParams.Uri = $uri
-
             $invokeParams.Method = 'GET'
             Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {

@@ -127,24 +127,23 @@ function New-TssSession {
 
         if ($outputTssSession.SecretServer) {
             if ($newTssParams.ContainsKey('Credential')) {
-                $invokeParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
+                $newTokenParams = @{}
+                $newTokenParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
 
-                $oauth2Body = "username=$($Credential.Username)&password=$($Credential.GetNetworkCredential().Password)&grant_type=password"
 
-                Write-Verbose "Uri configured for OAuth2 request: $($invokeParams.Uri)"
+                Write-Verbose "Uri configured for OAuth2 request: $($newTokenParams.Uri)"
                 if ($newTssParams.ContainsKey('OtpCode')) {
                     Write-Verbose "OtpCode provided"
-                    $invokeParams.OtpCode = $OtpCode
+                    $newTokenParams.OtpCode = $OtpCode
                 }
 
-                $invokeParams.Body = $oauth2Body
-                $invokeParams.ContentType = 'application/x-www-form-urlencoded'
-                $invokeParams.Method = 'POST'
+                $newTokenParams.Username = $Credential.Username
+                $newTokenParams.Password = $Credential.Password
 
-                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($invokeParams.Uri)]")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri) with:`n$($invokeParams.Body)`n"
+                if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($newTokenParams.Uri)]")) { return }
+                Write-Verbose "Performing the operation POST $($newTokenParams.Uri)"
                 try {
-                    $apiResponse = Invoke-TssApi @invokeParams
+                    $apiResponse = New-TssApiToken @newTokenParams
                     $restResponse = . $ProcessResponse $apiResponse
                 } catch {
                     Write-Warning "Issue authenticating to [$SecretServer]"
