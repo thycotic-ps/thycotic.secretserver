@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Stuff
 
 * Get-TssSecretDependencyScript - new command [8cf4332](https://github.com/thycotic-ps/thycotic.secretserver/commit/8cf433278dec51c15b3ac20da78a7e76d4dec99b)
+* Set-TssConfigurationLocalUserPassword - new command [7b6ab4b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7b6ab4bd1ae4489b1f6d7eb16cca27df23d2acd1)
 
 ### General Updates
 
