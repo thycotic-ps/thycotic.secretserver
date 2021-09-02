@@ -27,7 +27,7 @@ function Set-TssConfigurationGeneral {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(SupportsShouldProcess, DefaultParameterSetName = 'all')]
+    [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -181,7 +181,7 @@ function Set-TssConfigurationGeneral {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.0000' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'general' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PATCH'
