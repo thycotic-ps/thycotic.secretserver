@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased] -- 2021-xx-xx
+## [0.54.0] -- 2021-09-03
 
 ### Breaking Changes
 
@@ -19,6 +19,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Get-TssSecretDependencyScript - new command [8cf4332](https://github.com/thycotic-ps/thycotic.secretserver/commit/8cf433278dec51c15b3ac20da78a7e76d4dec99b)
 * Set-TssConfigurationLocalUserPassword - new command [7b6ab4b](https://github.com/thycotic-ps/thycotic.secretserver/commit/7b6ab4bd1ae4489b1f6d7eb16cca27df23d2acd1)
+* Set-TssConfigurationSecurity - new command [8c0c4e8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c0c4e81371d252e545e227cfb5bde1c4e5692d0)
+* Set-TssConfigurationLogin - new command [6cbdec2](https://github.com/thycotic-ps/thycotic.secretserver/commit/6cbdec2cdfd7137ccc9f966d294f75323b49ae43)
+* Set-TssConfigurationRpc - new command [1bbe020](https://github.com/thycotic-ps/thycotic.secretserver/commit/1bbe020219dcdfcafe0d0c50d3d12bcd3006ce42)
 
 ### General Updates
 
