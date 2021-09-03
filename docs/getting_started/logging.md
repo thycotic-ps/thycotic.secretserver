@@ -13,7 +13,7 @@ The module is packaged with three binary commands (C# cmdlets) that provide the 
 
 You can find more details using these commands in the working with section on logging.
 
-[More details](/thycotic.secretserver/getting_started/working_with/workignwith_logging)
+[More details](/thycotic.secretserver/getting_started/working_with/logging)
 
 [Start-TssLog]:/thycotic.secretserver/commands/logging/Start-TssLog
 [Stop-TssLog]:/thycotic.secretserver/commands/logging/Stop-TssLog
