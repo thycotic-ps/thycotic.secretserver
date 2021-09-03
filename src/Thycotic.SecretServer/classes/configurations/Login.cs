@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Configuration
 {
@@ -11,7 +12,7 @@ namespace Thycotic.PowerShell.Configuration
         public bool AllowRememberMe { get; set; }
         public bool CacheADCredentials { get; set; }
         public string DefaultLoginDomain { get; set; }
-        public int EnableDomainSelector { get; set; }
+        public DomainSelectorOption EnableDomainSelector { get; set; }
         public bool EnableLoginFailureCAPTCHA { get; set; }
         public int MaxConcurrentLoginsPerUser { get; set; }
         public int MaximumLoginFailures { get; set; }

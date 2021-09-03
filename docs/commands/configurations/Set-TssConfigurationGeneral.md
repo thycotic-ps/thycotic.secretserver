@@ -5,11 +5,6 @@ Set general configuration
 
 ## SYNTAX
 
-### all (Default)
-```
-Set-TssConfigurationGeneral [-TssSession] <Session> [-WhatIf] [-Confirm] [<CommonParameters>]
-```
-
 ### folders
 ```
 Set-TssConfigurationGeneral [-TssSession] <Session> [-EnablePersonalFolders] [-PersonalFolderName]

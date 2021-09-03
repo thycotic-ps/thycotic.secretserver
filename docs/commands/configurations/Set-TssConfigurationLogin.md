@@ -1,37 +1,29 @@
-# Set-TssConfigurationSecurity
+# Set-TssConfigurationLogin
 
 ## SYNOPSIS
-Set Security Configuration
+Set Login Configuration
 
 ## SYNTAX
 
 ```
-Set-TssConfigurationSecurity [-TssSession] <Session> [-AuditTlsErrors] [-AuditTlsErrorsDebug]
- [-CertificatePolicyOption <String>] [-CertificateId <String>] [-FileRestriction] [-FileExtension <String>]
- [-FileMaxSize <String>] [-FileMaxSizeSupported] [-FrameBlocking] [-Fips] [-ForceHttps] [-HideVersion]
- [-WpfRequireDomainMatch] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssConfigurationLogin [-TssSession] <Session> [-AutoComplete] [-RememberMe] [-CacheADCredential]
+ [-DefaultDomain <String>] [-DomainSelector <DomainSelectorOption>] [-FailureCaptcha]
+ [-MaxFailureBeforeCaptcha <Int32>] [-MaxConcurrentLogin <Int32>] [-MaxLoginFailure <Int32>]
+ [-RememberMeTimeout <Int32>] [-LockoutTime <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Set Security Configuration
+Set Login Configuration
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssConfigurationSecurity -TssSession $session -ForceHttps
+Set-TssConfigurationLogin -TssSession session -AutoComplete:$false
 ```
 
-Enable Force HTTPS
-
-### EXAMPLE 2
-```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssConfigurationSecurity -TssSession $session -ForceHttps:$false
-```
-
-Disabling Force HTTPS
+Disable Allow Auto Complete option
 
 ## PARAMETERS
 
@@ -50,8 +42,8 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -AuditTlsErrors
-Apply TLS Certificate Chain Policy and Error Auditing
+### -AutoComplete
+Allow Auto Complete
 
 ```yaml
 Type: SwitchParameter
@@ -65,8 +57,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -AuditTlsErrorsDebug
-Enable TLS Debugging and connection tracking
+### -RememberMe
+Allow Remember Me
 
 ```yaml
 Type: SwitchParameter
@@ -80,8 +72,23 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CertificatePolicyOption
-Certificate chain policy options
+### -CacheADCredential
+Cache AD Credentials for when Engines are offline
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -DefaultDomain
+Default Login Domain
 
 ```yaml
 Type: String
@@ -95,13 +102,14 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -CertificateId
-Client Certificate ID
+### -DomainSelector
+Enable Domain Selector (ShowDropdown, DomainLabel, HideDomain)
 
 ```yaml
-Type: String
+Type: DomainSelectorOption
 Parameter Sets: (All)
 Aliases:
+Accepted values: DomainLabel, ShowDropdown, HideDomain
 
 Required: False
 Position: Named
@@ -110,8 +118,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileRestriction
-Enable file restrictions
+### -FailureCaptcha
+Enable Login Failure CAPTCHA
 
 ```yaml
 Type: SwitchParameter
@@ -125,122 +133,77 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileExtension
-File extensions to restrict
+### -MaxFailureBeforeCaptcha
+Max Login Failures before CAPTCHA
 
 ```yaml
-Type: String
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileMaxSize
-Max file size in bytes
+### -MaxConcurrentLogin
+Maximum concurrent logins per user
 
 ```yaml
-Type: String
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FileMaxSizeSupported
-Max allowed by ASP.NET
+### -MaxLoginFailure
+Maximum Login Failures
 
 ```yaml
-Type: SwitchParameter
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FrameBlocking
-Enable frame blocking
+### -RememberMeTimeout
+Remember Me timeout, in minutes (0 = Unlimited)
 
 ```yaml
-Type: SwitchParameter
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -Fips
-Enable FIPS compliance
+### -LockoutTime
+User Lockout Time (Minutes)
 
 ```yaml
-Type: SwitchParameter
+Type: Int32
 Parameter Sets: (All)
 Aliases:
 
 Required: False
 Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ForceHttps
-Enable Force HTTPS
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -HideVersion
-Hide Version number
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -WpfRequireDomainMatch
-Web Password Filler (WPF) requires full domain match
-
-```yaml
-Type: SwitchParameter
-Parameter Sets: (All)
-Aliases:
-
-Required: False
-Position: Named
-Default value: False
+Default value: 0
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -288,7 +251,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationSecurity](https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationSecurity)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationLogin](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationLogin)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationSecurity.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationLogin.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationLogin.ps1)
 
