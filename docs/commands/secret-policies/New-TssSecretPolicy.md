@@ -6,8 +6,8 @@ Create a new Secret Policy
 ## SYNTAX
 
 ```
-New-TssSecretPolicy [-TssSession] <Session> -Name <String> [-Description <String>] [-Active] [-WhatIf]
- [-Confirm] [<CommonParameters>]
+New-TssSecretPolicy [-TssSession] <Session> -Name <String> [-Description <String>] [-Active]
+ [-PolicyItem <PolicyItem[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,6 +22,18 @@ New-TssSecretPolicy -TssSession $session -Name 'Require Checkout'
 ```
 
 Create a new secret policy setting enforcing various policy items
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$policyItem1 = Get-TssSecretPolicyItemStub -TssSession $session -ItemName AssociatedSecretId1 -ApplyType Enforced
+$policyItem1.ValueSecretId = 54
+$policyItem2 = Get-TssSecretPolicyItemStub -TssSession $session -ItemName AssociatedSecretId2 -ApplyType Enforced
+$policyItem2.ValueSecretId = 65
+New-TssSecretPolicy -TssSession $session -Name 'Policy - Associated Secrets Enforced' -Active -PolicyItem $policyItem1, $policyItem2
+```
+
+Create a new secret policy, configuring Associated Secret 1 and 2 policy items.
 
 ## PARAMETERS
 
@@ -81,6 +93,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PolicyItem
+Policy Item(s) to add (utilize Get-TssSecretPolicyItemStub to create each object)
+
+```yaml
+Type: PolicyItem[]
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

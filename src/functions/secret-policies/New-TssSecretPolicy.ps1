@@ -18,6 +18,16 @@ function New-TssSecretPolicy {
 
     Create a new secret policy setting enforcing various policy items
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $policyItem1 = Get-TssSecretPolicyItemStub -TssSession $session -ItemName AssociatedSecretId1 -ApplyType Enforced
+    $policyItem1.ValueSecretId = 54
+    $policyItem2 = Get-TssSecretPolicyItemStub -TssSession $session -ItemName AssociatedSecretId2 -ApplyType Enforced
+    $policyItem2.ValueSecretId = 65
+    New-TssSecretPolicy -TssSession $session -Name 'Policy - Associated Secrets Enforced' -Active -PolicyItem $policyItem1, $policyItem2
+
+    Create a new secret policy, configuring Associated Secret 1 and 2 policy items.
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
@@ -40,7 +50,11 @@ function New-TssSecretPolicy {
 
         # Activate the policy after creation
         [switch]
-        $Active
+        $Active,
+
+        # Policy Item(s) to add (utilize Get-TssSecretPolicyItemStub to create each object)
+        [Thycotic.PowerShell.SecretPolicies.PolicyItem[]]
+        $PolicyItem
     )
     begin {
         $tssNewParams = $PSBoundParameters
@@ -49,7 +63,7 @@ function New-TssSecretPolicy {
     process {
         Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'secret-policy' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
@@ -60,6 +74,26 @@ function New-TssSecretPolicy {
                 'Description' { $newBody.data.Add('secretPolicyDescription',$Description) }
                 'Active' { $newBody.data.Add('active',[boolean]$Active) }
             }
+
+            if ($tssNewParams.ContainsKey('PolicyItem')) {
+                $bodyItems = @()
+                foreach ($item in $PolicyItem) {
+                    $item | ConvertTo-Json -Depth 80 | ConvertFrom-Json
+
+                    $bodyItems += [pscustomobject]@{
+                        policyApplyType = $item.PolicyApplyType
+                        secretPolicyItemId = $item.SecretPolicyItemId
+                        valueBool = $item.ValueBool
+                        valueInt = $item.ValueInt
+                        valueSecretId = $item.ValueSecretId
+                        valueString = $item.ValueString
+                        userGroupMaps = $item.UserGroupMaps
+                        sshCommandMenuGroupMaps = $item.SshCommandMenuGroupMaps
+                    }
+                }
+                $newBody.data.Add('secretPolicyItems',$bodyItems)
+            }
+
             $invokeParams.Body = $newBody | ConvertTo-Json -Depth 100
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri) with:`n $newBody"
