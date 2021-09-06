@@ -25,9 +25,11 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 | [Get-TssSecret] (-Path param)       | 11.0.000005               |
 | [Get-TssSecretAudit]                | 10.9.000032               |
 | [Get-TssSecretPolicy]               | 11.0.000005               |
+| [Get-TssSecretPolicyStub]           | 11.0.000005               |
 | [Get-TssSecretState]                | 10.9.000032               |
 | [Get-TssUserRoleAssigned]           | 10.9.000032               |
 | [New-TssMetadataField]              | 10.9.000064               |
+| [New-TssSecretPolicy]               | 11.0.000005               |
 | [Remove-TssMetadata]                | 11.0.000005               |
 | [Remove-TssReportSchedule]          | 10.9.000033               |
 | [Search-TssAutoExportStorage]       | 11.0.000005               |
@@ -48,6 +50,7 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Get-TssFolder]:/thycotic.secretserver/commands/folders/Get-TssFolder
 [Get-TssSecret]:/thycotic.secretserver/commands/secrets/Get-TssSecret
 [Get-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicy
+[Get-TssSecretPolicyStub]:/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicyStub
 [Set-TssSecretPolicy]:/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy
 [Search-TssSystemLog]:/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog
 [Remove-TssMetadata]:/thycotic.secretserver/commands/metadata/Remove-TssMetadata
@@ -61,3 +64,4 @@ Secret Server REST API was first released with version 9.0. The API has grown si
 [Search-TssAutoExportStorage]:/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage
 [Export-TssAutoExportStorageItem]:/thycotic.secretserver/commands/configurations/Export-TssAutoExportStorageItem
 [Search-TssConfigurationBackupLog]:/thycotic.secretserver/commands/configurations/Search-TssConfigurationBackupLog
+[New-TssSecretPolicy]:/thycotic.secretserver/commands/configurations/New-TssSecretPolicy

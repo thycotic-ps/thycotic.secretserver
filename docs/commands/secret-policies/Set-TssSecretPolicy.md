@@ -8,14 +8,13 @@ Set a Secret Policy property
 ### policy (Default)
 ```
 Set-TssSecretPolicy [-TssSession] <Session> -Id <Int32> [-Name <String>] [-Description <String>] [-Active]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-PolicyItem <PolicyItem[]>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ### item
 ```
-Set-TssSecretPolicy [-TssSession] <Session> -Id <Int32> [-ItemName <SecretPolicyItem>]
- [-ItemType <SecretPolicyValueType>] [-ItemApplyType <SecretPolicyApplyType>] [-ItemValue <Object>]
- [-UserGroupMap <Object>] [-WhatIf] [-Confirm] [<CommonParameters>]
+Set-TssSecretPolicy [-TssSession] <Session> -Id <Int32> [-PolicyItem <PolicyItem[]>] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -34,10 +33,12 @@ Set Secret Policy ID 52 to inactive, changing Active property to false
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential ssCred
-Set-TssSecretPolicy -TssSession $session -Id 52 -Active -Name 'Set Auto Change Enabled'
+$cPolicy = Get-TssSecretPolicy -TssSession $session -Id 1
+$cPolicy.SecretPolicyItems[0].ValueSecretId = 43
+Set-TssSecretPolicy -TssSession $session -Id 1 -PolicyItem $cPolicy.SecretPolicyItems[0]
 ```
 
-Set Secret Policy ID 52 to active and change the name
+Get current Secret Policy ID 1, set the ValueSecretId to 43 (for the AssociatedSecretId1 item)
 
 ## PARAMETERS
 
@@ -116,75 +117,12 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -ItemName
-Secret Policy Item Name
+### -PolicyItem
+Policy Item(s) to add (utilize Get-TssSecretPolicyItemStub to create each object)
 
 ```yaml
-Type: SecretPolicyItem
-Parameter Sets: item
-Aliases:
-Accepted values: AutoChangeOnExpiration, HeartBeatEnabled, SiteId, PrivilegedSecretId, AssociatedSecretId1, AutoChangeSchedule, PasswordTypeWebScriptId, CheckOutEnabled, CheckOutIntervalMinutes, CheckOutChangePassword, RequireApprovalForAccess, RequireApprovalForAccessForOwnersAndApprovers, RequireApprovalForAccessForEditors, RequireViewComment, IsSessionRecordingEnabled, HideLauncherPassword, ApprovalGroup, AssociatedSecretId2, IsProxyEnabled, EnableSshCommandRestrictions, SshCommandMenuGroups, AllowOwnersUnrestrictedSshCommands, ApprovalWorkflow, EventPipelinePolicy, RunLauncherUsingSSHKey, WebLauncherRequiresIncognitoMode, SshCommandRestrictionType, SshCommandBlocklistOwners, SshCommandBlocklistEditors, SshCommandBlocklistViewers
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ItemType
-Secret Policy Item Type
-
-```yaml
-Type: SecretPolicyValueType
-Parameter Sets: item
-Aliases:
-Accepted values: Bool, Int, SecretId, Group, Schedule, SshMenuGroup, SshBlocklist
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ItemApplyType
-Secret Policy Item Apply Type (NotSet, Default, Enforced)
-
-```yaml
-Type: SecretPolicyApplyType
-Parameter Sets: item
-Aliases:
-Accepted values: NotSet, Default, Enforced
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -ItemValue
-Secret Policy Item Value (based on ItemType what object you have to pass in)
-
-```yaml
-Type: Object
-Parameter Sets: item
-Aliases:
-
-Required: False
-Position: Named
-Default value: None
-Accept pipeline input: False
-Accept wildcard characters: False
-```
-
-### -UserGroupMap
-User and Group Mapping, hashtable of UserGroupId and UserGroupMapType (User or Group)
-
-```yaml
-Type: Object
-Parameter Sets: item
+Type: PolicyItem[]
+Parameter Sets: (All)
 Aliases:
 
 Required: False

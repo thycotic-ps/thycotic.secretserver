@@ -14,9 +14,11 @@ function Set-TssSecretPolicy {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential ssCred
-    Set-TssSecretPolicy -TssSession $session -Id 52 -Active -Name 'Set Auto Change Enabled'
+    $cPolicy = Get-TssSecretPolicy -TssSession $session -Id 1
+    $cPolicy.SecretPolicyItems[0].ValueSecretId = 43
+    Set-TssSecretPolicy -TssSession $session -Id 1 -PolicyItem $cPolicy.SecretPolicyItems[0]
 
-    Set Secret Policy ID 52 to active and change the name
+    Get current Secret Policy ID 1, set the ValueSecretId to 43 (for the AssociatedSecretId1 item)
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy
@@ -56,30 +58,9 @@ function Set-TssSecretPolicy {
         [switch]
         $Active,
 
-        # Secret Policy Item Name
-        [Parameter(ParameterSetName = 'item')]
-        [Thycotic.PowerShell.Enums.SecretPolicyItem]
-        $ItemName,
-
-        # Secret Policy Item Type
-        [Parameter(ParameterSetName = 'item')]
-        [Thycotic.PowerShell.Enums.SecretPolicyValueType]
-        $ItemType,
-
-        # Secret Policy Item Apply Type (NotSet, Default, Enforced)
-        [Parameter(ParameterSetName = 'item')]
-        [Thycotic.PowerShell.Enums.SecretPolicyApplyType]
-        $ItemApplyType,
-
-        # Secret Policy Item Value (based on ItemType what object you have to pass in)
-        [Parameter(ParameterSetName = 'item')]
-        [object]
-        $ItemValue,
-
-        # User and Group Mapping, hashtable of UserGroupId and UserGroupMapType (User or Group)
-        [Parameter(ParameterSetName = 'item')]
-        [object]
-        $UserGroupMap
+        # Policy Item(s) to add (utilize Get-TssSecretPolicyItemStub to create each object)
+        [Thycotic.PowerShell.SecretPolicies.PolicyItem[]]
+        $PolicyItem
     )
     begin {
         $setParams = $PSBoundParameters
@@ -95,7 +76,6 @@ function Set-TssSecretPolicy {
             $invokeParams.Method = 'PATCH'
 
             $setPolicyBody = @{data = @{} }
-            $secretPolicyItem = @{}
             switch ($setParams.Keys) {
                 'Name' {
                     $setName = @{
@@ -118,68 +98,59 @@ function Set-TssSecretPolicy {
                     }
                     $setPolicyBody.Add('Active',$setActive)
                 }
-                'ItemName' { $secretPolicyItem.Add('secretPolicyItemId',[int]$ItemName) }
-                'ItemApplyType' { $secretPolicyItem.Add('policyApplyType',[string]$ItemApplyType) }
-                'ItemType' {
-                    switch ($ItemType) {
-                        'Bool' {
-                            $valueBool = @{
-                                dirty = $true
-                                value = $ItemValue
-                            }
-                            $secretPolicyItem.Add('valueBool',$valueBool)
-                        }
-                        'Int' {
-                            $valueInt = @{
-                                dirty = $true
-                                value = $ItemValue
-                            }
-                            $secretPolicyItem.Add('valueInt',$valueInt)
-                        }
-                        'SecretId' {
-                            $valueSecretId = @{
-                                dirty = $true
-                                value = $ItemValue
-                            }
-                            $secretPolicyItem.Add('valueSecretId',$valueSecretId)
-                        }
-                        'Group' {
-                            if ($setParams.ContainsKey('UserGroupMap')){
-                                $userGroupMapObj = @()
-                                foreach ($map in $UserGroupMap) {
-                                    $userGroupMapObj += @{
-                                        userGroupId      = $map.UserGroupId
-                                        userGroupMapType = $map.UserGroupMapType
-                                    }
-                                }
-                                if ($userGroupMapObj.Count -gt 0) {
-                                    $userGroupMapping = @{
-                                        dirty = $true
-                                        value = $userGroupMapObj
-                                    }
-                                }
-                                $secretPolicyItem.Add('userGroupMaps',$userGroupMapping)
-                            } else {
-                                Write-Warning 'ItemType of Group requires the -UserGroupMap to be provided'
-                            }
-                        }
-                        'Schedule' {
-                            Write-Warning "Support for this option is pending"
-                        }
-                        'SshMenuGroup' {
-                            Write-Warning "Support for this option is pending"
-                        }
-                        'SshBlocklist' {
-                            Write-Warning "Support for this option is pending"
-                        }
-                    }
-                }
             }
 
-            if ($secretPolicyItem) {
-                $setPolicyBody.data.Add('secretPolicyItems',@($secretPolicyItem))
-            } else {
-                Write-Verbose "No policy item settings to process"
+            if ($setParams.ContainsKey('PolicyItem')) {
+                $bodyItems = @()
+                foreach ($item in $PolicyItem) {
+                    $cPolicyItem = @{}
+                    $applyType = @{
+                        dirty = $true
+                        value = [string]$item.PolicyApplyType
+                    }
+                    $cPolicyItem.Add('policyApplyType',$applyType)
+
+                    $cPolicyItem.Add('secretPolicyItemId',[string]$item.SecretPolicyItemId)
+
+                    if ($item.SshCommandMenuGroupMaps) {
+                        $sshCommandMenu = @{
+                            dirty = $true
+                            value = $item.SshCommandMenuGroupMaps | ConvertTo-Json -Depth 25 | ConvertFrom-Json
+                        }
+                        $cPolicyItem.Add('sshCommandMenuGroupMaps',$sshCommandMenu)
+                    }
+                    $ugMaps = @{
+                        dirty = $true
+                        value = $item.UserGroupMaps | ConvertTo-Json -Depth 25 | ConvertFrom-Json
+                    }
+                    $cPolicyItem.Add('userGroupMaps',$ugMaps)
+
+                    $vBool = @{
+                        dirty = $true
+                        value = $item.ValueBool
+                    }
+                    $cPolicyItem.Add('valueBool',$vBool)
+
+                    $vInt = @{
+                        dirty = $true
+                        value = $item.ValueInt
+                    }
+                    $cPolicyItem.Add('valueInt',$vInt)
+
+                    $vSecretId = @{
+                        dirty = $true
+                        value = $item.ValueSecretId
+                    }
+                    $cPolicyItem.Add('valueSecretId',$vSecretId)
+
+                    $vString = @{
+                        dirty = $true
+                        value = $item.ValueString
+                    }
+                    $cPolicyItem.Add('valueString',$vString)
+                    $bodyItems += $cPolicyItem
+                }
+                $setPolicyBody.data.Add('secretPolicyItems',$bodyItems)
             }
             $invokeParams.Body = $setPolicyBody | ConvertTo-Json -Depth 100
 
@@ -195,7 +166,7 @@ function Set-TssSecretPolicy {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretPolicies.Policy]$restResponse
+                    Write-Verbose "Secret Policy [$Id] set successfully"
                 } else {
                     Write-Warning "No change made to Secret Policy [$Id], see previous output for errors"
                 }

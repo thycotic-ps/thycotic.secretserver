@@ -14,7 +14,7 @@ param(
 
 $cmdText = $Invocation.InvocationName
 foreach ($param in $Invocation.BoundParameters.GetEnumerator()) {
-    $name = $param.Key
+    $pName = $param.Key
     $paramValue = switch ($param.Value) {
         { $_ -is [Thycotic.PowerShell.Authentication.Session] } {
             "TssSessionObject"
@@ -40,7 +40,7 @@ foreach ($param in $Invocation.BoundParameters.GetEnumerator()) {
         }
     }
 
-    $cmdText += " -${name}:${paramValue}"
+    $cmdText += " -${pName}:${paramValue}"
 }
 
 $cmdText
