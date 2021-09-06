@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] -- 2021-xx-xx
+
+### Breaking Changes
+
+* Set-TssSecretPolicy - updated to accept Policy Item object [a63f059](https://github.com/thycotic-ps/thycotic.secretserver/commit/a63f059108adf4e9cbb012bf970fde19a84fb63a)
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* New-TssSecretPolicy - add support for Policy Items [3795366](https://github.com/thycotic-ps/thycotic.secretserver/commit/37953660c20cf79e7c5fc29fc186b8548b30e912)
+* Get-TssSecretPolicyStub - new command [ab76896](https://github.com/thycotic-ps/thycotic.secretserver/commit/ab76896845023cab4c99fc00e2407988afbf48c6)
+* Get-TssSecretPolicyItemStub - new command [ba42045](https://github.com/thycotic-ps/thycotic.secretserver/commit/ba42045e840ff33fa5152f93440be12525bd2889)
+
+### General Updates
+
+* None
+
+### Tests
+
+* None
+
 ## [0.54.0] -- 2021-09-03
 
 ### Breaking Changes
