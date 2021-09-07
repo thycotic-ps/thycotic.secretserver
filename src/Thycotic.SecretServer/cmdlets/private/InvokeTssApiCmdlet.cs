@@ -108,8 +108,14 @@ namespace Thycotic.SecretServer.Cmdlets
 
             var apiRequest = new RestRequest(Method);
             apiRequest.AddHeader("Content-Type", ContentType);
-            apiRequest.AddHeader("Authorization", "Bearer " + AccessToken);
-
+            if (MyInvocation.BoundParameters.ContainsKey("AccessToken"))
+            {
+                apiRequest.AddHeader("Authorization", "Bearer " + AccessToken);
+            }
+            if (MyInvocation.BoundParameters.ContainsKey("UseDefaultCredential"))
+            {
+                apiRequest.UseDefaultCredentials = true;
+            }
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
                 apiRequest.AddParameter(ContentType, Body, ParameterType.RequestBody);
