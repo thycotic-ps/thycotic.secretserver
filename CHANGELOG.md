@@ -23,7 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
-* None
+* bump library to netstandard 2.1 [aba7931](https://github.com/thycotic-ps/thycotic.secretserver/commit/aba79312997ea0876e1a65f7337e553730baf977)
 
 ### Tests
 
