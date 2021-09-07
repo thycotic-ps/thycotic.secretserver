@@ -40,7 +40,7 @@ More info: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-
 | src      | C# library source code (`src\Thycotic.SecretServer`) and module code |
 | tests    | Pester test files for module commands                                |
 
-```
+```console
 ----docs
 ----examples
 ----src
@@ -69,33 +69,45 @@ The classes utilized as output for the commands are named after the tag for the 
 
 The classes are put into their own `cs` file and named based on the class name used. If you want to find the class file for a Secret, you will go to `src\Thycotic.SecretServer\classes\secrets\Secret.cs`.
 
-## Software Required
+## Development Setup
+
+This section covers at a high-level the pieces that have to be setup on your development machine before you can build this project.
+
+> Install these in order listed
+
+### Software Required
+
+- Windows 10 development machine/VM
+- [PowerShell 7+](https://github.com/powershell/powershell/releases) (_PowerShell-x.x.x-win-x64.zip_)
+- [.NET Core 3.1 SDK (x64)](https://dotnet.microsoft.com/download/visual-studio-sdks)
+- [VS Code](https://code.visualstudio.com/Download) (extensions included)
+
+    - [PowerShell](https://marketplace.visualstudio.com/items?itemName=ms-vscode.PowerShell)
+    - [C#](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp))
+    - [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+    - [XML Tools](https://marketplace.visualstudio.com/items?itemName=DotJoshJohnson.xml)
+    - [Nuget Package Manager](https://marketplace.visualstudio.com/items?itemName=jmrog.vscode-nuget-package-manager) (_optional_)
 
 - [Git client](https://git-scm.com/downloads)
-- [VS Code](https://code.visualstudio.com/Download)
-- [GitHub CLI](https://cli.github.com/) (gh)
+- [GitHub CLI](https://cli.github.com/)
 
 ### Modules Required
 
+PowerShell modules the project depends on for build and testing.
+
 - [Pester](https://www.powershellgallery.com/packages/Pester) (5.1.0+)
-- [Platyps](https://www.powershellgallery.com/packages/Platyps)
+- [platyPS](https://www.powershellgallery.com/packages/platyps)
 - [InvokeBuild](https://www.powershellgallery.com/packages/InvokeBuild)
+
+```powershell
+Install-Module Pester, platyPS, InvokeBuild -Force
+```
 
 ## Building Library
 
-The `InvokeBuild` module is utilized to automate building the library and publishing the module (both pre-release on GitHub and to the PS Gallery).
+Once you have cloned the repository into VS Code, you can use `Run Build Task` command or <kbd>CTRL</kbd> + <kbd>SHIFT</kbd> + <kbd>SHIFT</kbd> shortcut. This will call the `build.ps1` script at the root of the project. The `build.library.ps1` is a second script used in primary build script to run the dotnet build commands to generate the DLL files.
 
-The `build.ps1` script is at the root of the project. The `build.library.ps1` hosts the dotnet code used to compile the library itself.
-
-The `build.ps1` script, the supported Configurations: Debug, Release, and Prerelease. _The last two are only used by the maintainers._
-
-To build the library for debugging or local testing, simply run the following command at the root of the project:
-
-```powershell
-Invoke-Build -File .\build.ps1 -Configuration Debug
-```
-
-The module having a DLL library loaded will mean each time you import the module into a PowerShell session you will need to close and restart a fresh session to do the build again.
+The module having a DLL library, this file is locked when you import the module into a PowerShell session. Before performing a build again you will need to close all PowerShell sessions that you imported it into.
 
 ## Submitting your changes
 
