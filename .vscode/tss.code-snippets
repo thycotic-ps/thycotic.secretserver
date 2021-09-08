@@ -691,7 +691,7 @@
         "scope": "markdown",
         "prefix": "tsschangelog",
         "body": [
-            "## [Unreleased] -- 2021-xx-xx",
+            "## Unreleased -- 2021-xx-xx",
             "",
             "### Breaking Changes",
             "",
