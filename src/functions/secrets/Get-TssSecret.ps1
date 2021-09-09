@@ -64,7 +64,7 @@ function Get-TssSecret {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [cmdletbinding(DefaultParameterSetName = 'all')]
+    [cmdletbinding()]
     [OutputType('Thycotic.PowerShell.Secrets.Secret')]
     param(
         # TssSession object created by New-TssSession for authentication
@@ -73,49 +73,60 @@ function Get-TssSecret {
         $TssSession,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, Position = 0)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
         [Alias('SecretId')]
         [int[]]
         $Id,
 
         # Path of Secret to retrieve
-        [Parameter(ParameterSetName = 'path')]
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'path')]
         [string[]]
         $Path,
 
+        # Do not automatically check out the secret
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
+        [switch]
+        $NoAutoCheckout,
+
         # Comment to provide for restricted secret (Require Comment is enabled)
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
 
         # Double lock password, provie as a secure string
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [securestring]
         $DoublelockPassword,
 
         # Check in the secret if it is checked out
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $ForceCheckIn,
 
         # Include secrets that are inactive/disabled
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $IncludeInactive,
 
         # Associated ticket number (required for ticket integrations)
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $TicketNumber,
 
         # Associated ticket system ID (required for ticket integrations)
-        [Parameter(ParameterSetName = 'all')]
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [int]
         $TicketSystemId
@@ -140,7 +151,7 @@ function Get-TssSecret {
                 foreach ($p in $Path) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', 0 -join '/'
-                    $uri = $uri, "secretPath=$p" -join '?'
+                    $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)&secretPath=$p" -join '?'
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
 
@@ -165,6 +176,10 @@ function Get-TssSecret {
                 foreach ($secret in $Id) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
+
+                    if ($tssParams.ContainsKey('NoAutoCheckout')) {
+                        $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
+                    }
 
                     $getBody = @{}
                     if ($restrictedParams.Count -gt 0) {

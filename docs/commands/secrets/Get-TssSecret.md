@@ -5,22 +5,24 @@ Get a secret from Secret Server
 
 ## SYNTAX
 
-### all (Default)
+### id
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String[]>] [-Comment <String>]
+Get-TssSecret [-TssSession] <Session> -Id <Int32[]> [-NoAutoCheckout] [-Comment <String>]
  [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
  [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Path <String[]>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> -Path <String[]> [-NoAutoCheckout] [-Comment <String>]
+ [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>]
+ [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecret [-TssSession] <Session> [-Id] <Int32[]> [-Comment <String>] [-DoublelockPassword <SecureString>]
- [-ForceCheckIn] [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecret [-TssSession] <Session> [-Comment <String>] [-DoublelockPassword <SecureString>] [-ForceCheckIn]
+ [-IncludeInactive] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -113,11 +115,11 @@ Secret ID to retrieve
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: id
 Aliases: SecretId
 
 Required: True
-Position: 1
+Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
@@ -128,12 +130,27 @@ Path of Secret to retrieve
 
 ```yaml
 Type: String[]
-Parameter Sets: all, path
+Parameter Sets: path
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -NoAutoCheckout
+Do not automatically check out the secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: id, path
 Aliases:
 
 Required: False
 Position: Named
-Default value: None
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -143,7 +160,7 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -158,7 +175,7 @@ Double lock password, provie as a secure string
 
 ```yaml
 Type: SecureString
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -173,7 +190,7 @@ Check in the secret if it is checked out
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -188,7 +205,7 @@ Include secrets that are inactive/disabled
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -203,7 +220,7 @@ Associated ticket number (required for ticket integrations)
 
 ```yaml
 Type: String
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
@@ -218,7 +235,7 @@ Associated ticket system ID (required for ticket integrations)
 
 ```yaml
 Type: Int32
-Parameter Sets: all, restricted
+Parameter Sets: (All)
 Aliases:
 
 Required: False
