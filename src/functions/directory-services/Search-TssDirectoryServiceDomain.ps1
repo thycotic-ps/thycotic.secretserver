@@ -52,14 +52,11 @@ function Search-TssDirectoryServiceDomain {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'directory-services', 'domains' -join '/'
-            $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
+            $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)&filter.includeInactive=$([boolean]$IncludeInactive)" -join '?'
 
             $filters = @()
             if ($tssParams.ContainsKey('DomainName')) {
                 $filters += "filter.DomainName=$DomainName"
-            }
-            if ($tssParams.ContainsKey('IncludeInactive')) {
-                $filters += "filter.includeInactive=$([boolean]$IncludeInactive)"
             }
             if ($filters) {
                 $uriFilter = $filters -join '&'
