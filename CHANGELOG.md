@@ -26,6 +26,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * New-TssFolder - correcting examples [717e2be](https://github.com/thycotic-ps/thycotic.secretserver/commit/717e2beb69ec78c033f3687d62180613a4120bc2)
 * Invoke-TssReport - update help description [80330a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/80330a14b33752bae71c46954d89a2a3ca985380)
+* Start-TssSecretChangePassword - correct verbose output [11996cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/11996cfc4577e1d241e6262d018abd17f4f98914)
 
 ### Tests
 
