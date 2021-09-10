@@ -131,16 +131,16 @@ task docs {
         $categoryFolderName = Split-Path $fDir -Leaf
         $docCommandPath = [IO.Path]::Combine($docRoot,$categoryFolderName)
 
-        if (Test-Path $docCommandPath) {
-            $helpNames = Get-ChildItem $fDir -File
-            Get-ChildItem $docCommandPath -Filter *.md -Exclude readme.md | Remove-Item -Force -ErrorAction SilentlyContinue
-            $helpCommands = $functions.Where({ $_.Name -in $helpNames.BaseName })
-            $helpCommands.foreach({
-                    New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
-                })
-        } else {
-            Write-Error "Doc path does not exist: $docCommandPath"
+        if (-not (Test-Path $docCommandPath)) {
+            Write-Output "Doc path does not exist: [$docCommandPath], creating"
+            New-Item $docCommandPath -ItemType Directory >$null
         }
+        $helpNames = Get-ChildItem $fDir -File
+        Get-ChildItem $docCommandPath -Filter *.md -Exclude readme.md | Remove-Item -Force -ErrorAction SilentlyContinue
+        $helpCommands = $functions.Where({ $_.Name -in $helpNames.BaseName })
+        $helpCommands.foreach({
+                New-MarkdownHelp -OutputFolder $docCommandPath -Command $_.Name -NoMetadata -Force >$null
+            })
     }
 
     Write-Output "Working on cmdlets [$($cmdlets.Count)]"
