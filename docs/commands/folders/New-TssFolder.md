@@ -18,17 +18,21 @@ Create a new folder
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'tssNewFolder' -ParentFolderId -1
+New-TssFolder -TssSession $session -FolderName 'tssNewFolder'
 ```
 
-Creates a folder named "tssNewFolder" at the root of Secret Server application
+Creates a root folder named "tssNewFolder"
 
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-$folderStub = Get-TssFolderStub -TssSession $session
-New-TssFolder -TssSession $session -FolderStub $folderStub -FolderName 'IT Dept' -ParentFolderId 27 -InheritPermissions:$false
+$folderParams = @{
+    TssSession = $session
+    FolderName 'IT Dept'
+    ParentFolderId = 27
+    InheritPermissions = $false
+}
+New-TssFolder @folderParams
 ```
 
 Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins disabled (set to No if viewed in the UI)
@@ -36,7 +40,7 @@ Creates a folder named "IT Dept" under parent folder 27 with Inherit Permissins 
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssFolderStub -TssSession $session | New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
+New-TssFolder -TssSession $session -FolderName 'Marketing Dept' -ParentFolderId 27 -InheritPermissions -InheritSecretPolicy
 ```
 
 Creates a folder named "Marketing Dept" under parent folder 27 with inheritance enabled for Permissions and Secret Policy
