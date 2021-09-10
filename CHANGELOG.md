@@ -14,14 +14,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 
 * Get-TssSecret - fixes #236 [639e810](https://github.com/thycotic-ps/thycotic.secretserver/commit/639e81008c3dde5dbb693f1b7ed0668610ce7fdc)
+* Search-TssDirectoryServiceDomain - fixed inactive results when param not provided [e2632cc](https://github.com/thycotic-ps/thycotic.secretserver/commit/e2632cc00ed96c03a53efec4b80b2dbca911bdb1)
 
 ### New Stuff
 
-* None
+* Get-TssDirectoryServiceSyncStatus - new command [0a8dd94](https://github.com/thycotic-ps/thycotic.secretserver/commit/0a8dd944b196909125bbdeaf86cf347a99448854)
+* Start-TssDirectoryServiceSync - new command [fb4edce](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb4edce2ccdbe44e5584eeb2756754a73ea53041)
+* Get-TssDirectoryServiceDomain - new command [86523d9](https://github.com/thycotic-ps/thycotic.secretserver/commit/86523d9b902c6b70ce73f2c7d1a82ba621dd353b)
 
 ### General Updates
 
-* None
+* New-TssFolder - correcting examples [717e2be](https://github.com/thycotic-ps/thycotic.secretserver/commit/717e2beb69ec78c033f3687d62180613a4120bc2)
 
 ### Tests
 
