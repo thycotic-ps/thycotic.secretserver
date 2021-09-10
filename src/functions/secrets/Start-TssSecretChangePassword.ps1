@@ -83,8 +83,8 @@ function Start-TssSecretChangePassword {
                 }
                 $invokeParams.Body = $rpcBody | ConvertTo-Json
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n")) { return }
-                Write-Verbose "$($invokeParamsOther.Method) $uri with:`t$($invokeParamsOther.Body)`n"
+                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n")) { return }
+                Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
