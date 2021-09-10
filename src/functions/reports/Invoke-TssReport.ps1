@@ -1,10 +1,10 @@
 function Invoke-TssReport {
     <#
     .SYNOPSIS
-    Executes returns the results of a Report.
+    Executes a report, returning the results as a PSCustomObject
 
     .DESCRIPTION
-    Executes returns the results of a Report.
+    Executes a report, returning the results as a PSCustomObject
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
