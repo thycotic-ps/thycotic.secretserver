@@ -1,7 +1,7 @@
 # Invoke-TssReport
 
 ## SYNOPSIS
-Executes returns the results of a Report.
+Executes a report, returning the results as a PSCustomObject
 
 ## SYNTAX
 
@@ -11,7 +11,7 @@ Invoke-TssReport [-TssSession] <Session> [-ReportId <Int32>] [-ReportName <Strin
 ```
 
 ## DESCRIPTION
-Executes returns the results of a Report.
+Executes a report, returning the results as a PSCustomObject
 
 ## EXAMPLES
 
