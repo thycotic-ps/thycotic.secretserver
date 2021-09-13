@@ -21,6 +21,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssDirectoryServiceSyncStatus - new command [0a8dd94](https://github.com/thycotic-ps/thycotic.secretserver/commit/0a8dd944b196909125bbdeaf86cf347a99448854)
 * Start-TssDirectoryServiceSync - new command [fb4edce](https://github.com/thycotic-ps/thycotic.secretserver/commit/fb4edce2ccdbe44e5584eeb2756754a73ea53041)
 * Get-TssDirectoryServiceDomain - new command [86523d9](https://github.com/thycotic-ps/thycotic.secretserver/commit/86523d9b902c6b70ce73f2c7d1a82ba621dd353b)
+* Remote-TssDirectoryServiceGroup - new command Remove a group from the Directory Service sync [4dd8f5e](https://github.com/thycotic-ps/thycotic.secretserver/commit/4dd8f5eb264a9cd7bd4e8d4e7325f21ba8a22e68)
+* Add-TssDirectoryServiceGroup - new command Add a Domain Group to Directory Service for sync [947e2b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/947e2b390a72d0dac289a8cfad7eb9010754cc81)
+* Search-TssDirectoryServiceGroup - new command Return groups that can be added for sync in a Directory Service [48c0935](https://github.com/thycotic-ps/thycotic.secretserver/commit/48c093575d4c98ece758474727f23644d3cd5efd)
 
 ### General Updates
 
