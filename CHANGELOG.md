@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased -- 2021-xx-xx
+## 0.57.0 -- 2021-09-15
 
 ### Breaking Changes
 
@@ -13,9 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* Get-TssSecret - fixes #236 [639e810](https://github.com/thycotic-ps/thycotic.secretserver/commit/639e81008c3dde5dbb693f1b7ed0668610ce7fdc)
+* Get-TssSecret - fixes [#236](https://github.com/thycotic-ps/thycotic.secretserver/issues/236) [639e810](https://github.com/thycotic-ps/thycotic.secretserver/commit/639e81008c3dde5dbb693f1b7ed0668610ce7fdc)
 * Search-TssDirectoryServiceDomain - fixed inactive results when param not provided [e2632cc](https://github.com/thycotic-ps/thycotic.secretserver/commit/e2632cc00ed96c03a53efec4b80b2dbca911bdb1)
-* New-TssSession - fixes #241 [90343b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/90343b37979e8cf79d9831dbec1424e2a55bdf28)
+* New-TssSession - fixes [#241](https://github.com/thycotic-ps/thycotic.secretserver/issues/241) [90343b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/90343b37979e8cf79d9831dbec1424e2a55bdf28)
 
 ### New Stuff
 
@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Remote-TssDirectoryServiceGroup - new command Remove a group from the Directory Service sync [4dd8f5e](https://github.com/thycotic-ps/thycotic.secretserver/commit/4dd8f5eb264a9cd7bd4e8d4e7325f21ba8a22e68)
 * Add-TssDirectoryServiceGroup - new command Add a Domain Group to Directory Service for sync [947e2b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/947e2b390a72d0dac289a8cfad7eb9010754cc81)
 * Search-TssDirectoryServiceGroup - new command Return groups that can be added for sync in a Directory Service [48c0935](https://github.com/thycotic-ps/thycotic.secretserver/commit/48c093575d4c98ece758474727f23644d3cd5efd)
+* Search-TssDirectoryServiceGroupMember - new command searching for member of Directory Service Group [02a10f4](https://github.com/thycotic-ps/thycotic.secretserver/commit/02a10f430afdd5b62429a91705b6a406eaaa23d9)
+* New-TssDirectoryService - new command to create domains [8b99a38](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b99a38de1a35330783baf205049d025d8bd3713)
 
 ### General Updates
 
