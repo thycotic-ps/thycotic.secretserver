@@ -138,7 +138,7 @@ function New-TssSession {
                 }
 
                 $newTokenParams.Username = $Credential.Username
-                $newTokenParams.Password = $Credential.Password
+                $newTokenParams.Password = $Credential.GetNetworkCredential().Password
 
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($newTokenParams.Uri)]")) { return }
                 Write-Verbose "Performing the operation POST $($newTokenParams.Uri)"

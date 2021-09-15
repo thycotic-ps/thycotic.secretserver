@@ -22,7 +22,7 @@ namespace Thycotic.SecretServer
         public string Username { get; set; }
 
         [Parameter(Mandatory = true, Position = 2)]
-        public SecureString Password { get; set; }
+        public string Password { get; set; }
 
         [Parameter(Position = 3)]
         public int OtpCode { get; set; }
@@ -70,9 +70,8 @@ namespace Thycotic.SecretServer
                 apiRequest.AddParameter("otp", OtpCode.ToString(), ParameterType.HttpHeader);
             }
 
-            var dPassword = Marshal.PtrToStringAuto(Marshal.SecureStringToBSTR(Password));
             apiRequest.AddParameter("username", Username);
-            apiRequest.AddParameter("password", dPassword);
+            apiRequest.AddParameter("password", Password);
             apiRequest.AddParameter("grant_type", "password");
 
             IRestResponse apiResponse = apiClient.Execute(apiRequest);
