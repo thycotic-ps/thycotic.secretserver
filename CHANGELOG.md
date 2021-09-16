@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* Get-TssDiscoveryStatus - new command to retrieve start/end date for discovery processing [33cf27f](https://github.com/thycotic-ps/thycotic.secretserver/commit/33cf27fe08dc3058457114a823909fe820b2d3b6)
+
+### General Updates
+
+* None
+
+### Tests
+
+* None
+
 ## 0.57.0 -- 2021-09-15
 
 ### Breaking Changes
