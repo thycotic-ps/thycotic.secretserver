@@ -940,7 +940,7 @@
             "using System.Management.Automation;",
             "using System.Management.Automation.Runspaces;",
             "",
-            "namespace Thycotic.SecretServer",
+            "namespace Thycotic.SecretServer.Cmdlets",
             "{",
             "    /// <summary>",
             "    /// <para type=\"synopsis\">${1:synopsis summary}</para>",
