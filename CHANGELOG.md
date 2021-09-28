@@ -18,6 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Stuff
 
 * Get-TssDiscoveryStatus - new command to retrieve start/end date for discovery processing [33cf27f](https://github.com/thycotic-ps/thycotic.secretserver/commit/33cf27fe08dc3058457114a823909fe820b2d3b6)
+* Search-TssIpRestriction - new command to search IP Address Restrictions [aa34f65](https://github.com/thycotic-ps/thycotic.secretserver/commit/aa34f656c2ed5716b37880031d3af2cde4f02c5c)
+* Search-TssIpRestrictionGroup - new command to search IP Address Restrictions assigned to Groups [446b7cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/446b7cfffe8e1e4850ab8c4796350affb77c9174)
+* **Session - Add use of global variable, `$tss_ignoreversioncheck`, for disabling version check** [2c0ba2a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c0ba2ac42a7d985143f2227fe32d5ed1bef1a86)
 
 ### General Updates
 
