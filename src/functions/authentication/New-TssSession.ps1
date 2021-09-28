@@ -130,7 +130,6 @@ function New-TssSession {
                 $newTokenParams = @{}
                 $newTokenParams.Uri = $outputTssSession.SecretServer.TrimEnd('/'), 'oauth2', 'token' -join '/'
 
-
                 Write-Verbose "Uri configured for OAuth2 request: $($newTokenParams.Uri)"
                 if ($newTssParams.ContainsKey('OtpCode')) {
                     Write-Verbose "OtpCode provided"
@@ -158,7 +157,7 @@ function New-TssSession {
                 }
 
                 if ($restResponse) {
-                    Write-Verbose "Adding values to TssSession object"
+                    Write-Verbose "Configuring TssSession object"
                     $outputTssSession.AccessToken = $restResponse.access_token
                     $outputTssSession.RefreshToken = $restResponse.refresh_token
                     $outputTssSession.ExpiresIn = $restResponse.expires_in
@@ -236,15 +235,19 @@ function New-TssSession {
             }
             $outputTssSession.StartTime = [datetime]::Now
             Write-Verbose "Setting start time for session: $($outputTssSession.StartTime)"
-            try {
-                Write-Verbose "Attempting to retrieve Secret Server host version"
-                $versionResponse = Get-TssVersion -TssSession $outputTssSession
-                $outputTssSession.SecretServerVersion = $versionResponse.Version
-                if ($outputTssSession.SecretServerVersion) {
-                    Write-Verbose "Version info received successfully: $($outputTssSession.SecretServerVersion)"
+            if ($ignoreVersion -or ((Test-Path variable:tss_ignoreversioncheck) -and $tss_ignoreversioncheck)) {
+                Write-Verbose "tss_ignoreversioncheck set to true, module will not perform Secret Server version check"
+            } else {
+                try {
+                    Write-Verbose "Attempting to retrieve Secret Server host version"
+                    $versionResponse = Get-TssVersion -TssSession $outputTssSession
+                    $outputTssSession.SecretServerVersion = $versionResponse.Version
+                    if ($outputTssSession.SecretServerVersion) {
+                        Write-Verbose "Version info received successfully: $($outputTssSession.SecretServerVersion)"
+                    }
+                } catch {
+                    Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
                 }
-            } catch {
-                Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
             }
             Write-Verbose "SecretServer host: $($outputTssSession.SecretServer)"
             Write-Verbose "ApiUrl: $($outputTssSession.ApiUrl)"

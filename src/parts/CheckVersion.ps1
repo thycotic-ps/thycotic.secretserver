@@ -19,10 +19,12 @@ param(
     $Invocation
 )
 process {
-    $source = $Invocation.MyCommand
-    $currentVersion = $TssSession.SecretServerVersion
+    if (-not $ignoreVersion -or (Test-Path variable:tss_ignoreversioncheck -and -not $tss_ignoreversioncheck)) {
+        $source = $Invocation.MyCommand
+        $currentVersion = $TssSession.SecretServerVersion
 
-    if ($currentVersion -lt $MinimumSupported) {
-        Write-Verbose "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
+        if ($currentVersion -lt $MinimumSupported) {
+            Write-Verbose "[$source] is only supported on [$MinimumSupported]+ of Secret Server. Secret Server host [$($TssSession.SecretServer)] version: [$currentVersion]"
+        }
     }
 }

@@ -49,16 +49,22 @@ namespace Thycotic.SecretServer
             apiClient.BaseUrl = requestUri;
             apiClient.Timeout = Timeout;
 
-            if (string.IsNullOrEmpty(Proxy))
+            WriteVerbose("Base URL set to: " + requestUri);
+            WriteVerbose("Request timeout set to : " + Timeout);
+
+            if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {
                 apiClient.Proxy = new WebProxy(Proxy);
+                WriteVerbose("Configuring Proxy for request");
                 if (ProxyUseDefaultCredentials.IsPresent)
                 {
                     apiClient.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+                    WriteVerbose("Default Credentials being used for Proxy");
                 }
                 if (MyInvocation.BoundParameters.ContainsKey("ProxyCredential"))
                 {
                     apiClient.Proxy.Credentials = new NetworkCredential(ProxyCredential.UserName, ProxyCredential.Password);
+                    WriteVerbose("Proxy credential username being set to: " + ProxyCredential.UserName);
                 }
             }
 
@@ -68,12 +74,15 @@ namespace Thycotic.SecretServer
             if (MyInvocation.BoundParameters.ContainsKey("OtpCode"))
             {
                 apiRequest.AddParameter("otp", OtpCode.ToString(), ParameterType.HttpHeader);
+                WriteVerbose("OTP Code added to request: " + OtpCode.ToString());
             }
 
             apiRequest.AddParameter("username", Username);
+            WriteVerbose("Username: " + Username);
             apiRequest.AddParameter("password", Password);
             apiRequest.AddParameter("grant_type", "password");
 
+            WriteVerbose("Performing the operation " + apiRequest.Method + " " + apiClient.BaseUrl);
             IRestResponse apiResponse = apiClient.Execute(apiRequest);
             WriteObject(apiResponse);
         }

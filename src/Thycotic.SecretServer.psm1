@@ -36,11 +36,8 @@ if ($partsDirectory) {
 $script:PSModuleRoot = $PSScriptRoot
 $script:binRoot = [IO.Path]::Combine($PSModuleRoot,'bin')
 $script:clientSdkPath = [IO.Path]::Combine($binRoot,'ClientSdk')
-<#
-    Secret Server does not delete secrets, just disables them.
-    Remove is a common term though and one used by SecretManagement module from Microsoft.
-    Creating an alias to map to Disable function of the module to keep things simplified.
-#>
+$script:ignoreVersion = $tss_ignoreversioncheck
+
 $aliases = @{
     'gts' = 'Get-TssSecret'
     'nts' = 'New-TssSession'
