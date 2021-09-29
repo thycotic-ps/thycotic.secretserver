@@ -45,7 +45,7 @@ function Search-TssDirectoryServiceGroupMember {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'directory-services', 'domains', $DomainId, 'members' -join '/'

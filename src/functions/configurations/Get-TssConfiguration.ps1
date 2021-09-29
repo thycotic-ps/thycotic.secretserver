@@ -40,7 +40,7 @@ function Get-TssConfiguration {
     }
 
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'general' -join '/'

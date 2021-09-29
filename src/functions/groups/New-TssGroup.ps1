@@ -60,7 +60,7 @@ function New-TssGroup {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null

@@ -34,7 +34,7 @@ function Test-TssVersion {
     }
 
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $getVersion = Get-TssVersion -TssSession $TssSession
 

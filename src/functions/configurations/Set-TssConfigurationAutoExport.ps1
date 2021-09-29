@@ -77,7 +77,7 @@ function Set-TssConfigurationAutoExport {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '11.0.0005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export' -join '/'

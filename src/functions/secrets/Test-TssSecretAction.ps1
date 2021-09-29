@@ -49,7 +49,7 @@ function Test-TssSecretAction {
     }
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+            Get-TssInvocation $PSCmdlet.MyInvocation
             $secretResult = Get-TssSecretState $TssSession $SecretId
 
             if (-not $secretResult) {

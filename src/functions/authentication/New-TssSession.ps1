@@ -110,7 +110,7 @@ function New-TssSession {
     }
 
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($SecretServer -match '(?:\/api\/v1)|(?:\/oauth2\/token)') {
             throw 'Invalid argument on parameter SecretServer. Please ensure [/api/v1] or [/oauth2/token] are not provided'
             return

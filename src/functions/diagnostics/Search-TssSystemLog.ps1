@@ -52,7 +52,7 @@ function Search-TssSystemLog {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
             $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'diagnostics', 'system-logs' -join '/'

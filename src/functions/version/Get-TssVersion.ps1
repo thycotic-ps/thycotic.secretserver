@@ -41,7 +41,7 @@ function Get-TssVersion {
     }
 
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $uri = $TssSession.ApiUrl, 'version' -join '/'
             $invokeParams.Uri = $uri

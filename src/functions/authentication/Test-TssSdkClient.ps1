@@ -52,7 +52,7 @@ function Test-TssSdkClient {
         }
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
 
         $tssArgs = [ordered]@{}
         $tssArgs.ConfigDirectory = "--key-directory $ConfigPath --config-directory $ConfigPath"

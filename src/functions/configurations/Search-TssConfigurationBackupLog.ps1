@@ -38,7 +38,7 @@ function Search-TssConfigurationBackupLog {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'configuration', 'backup-logs' -join '/'

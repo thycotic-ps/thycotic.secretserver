@@ -48,7 +48,7 @@ function Invoke-TssSecretGeneratePassword {
     }
     process {
         . $InternalEndpointUsed $PSCmdlet.MyInvocation
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($PSBoundParameters.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $Id, 'generate-password', $Slug -join '/'

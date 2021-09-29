@@ -46,7 +46,7 @@ function Test-TssFolderAction {
     }
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+            Get-TssInvocation $PSCmdlet.MyInvocation
             $folderResult = Get-TssFolderState $TssSession $FolderId -NoException
 
             if (-not $folderResult) {

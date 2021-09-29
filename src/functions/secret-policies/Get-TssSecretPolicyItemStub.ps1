@@ -42,7 +42,7 @@ function Get-TssSecretPolicyItemStub {
         $tssParams = $PSBoundParameters
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $policyStub = Get-TssSecretPolicyStub -TssSession $TssSession
             if ($policyStub) {

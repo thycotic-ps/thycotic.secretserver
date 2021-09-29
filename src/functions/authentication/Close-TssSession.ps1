@@ -29,7 +29,7 @@ function Close-TssSession {
         $TssSession
     )
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         switch ($TssSession.TokenType) {
             'WindowsAuth' { Write-Warning "Not supported token type for closing" }
             'SdkClient' { Write-Warning "Not supported token type for closing" }

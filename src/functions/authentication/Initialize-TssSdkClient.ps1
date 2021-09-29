@@ -64,7 +64,7 @@ function Initialize-TssSdkClient {
         }
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
 
         if ($tssParams.ContainsKey('Force')) {
             $tssRemoveArgs = "remove --confirm --key-directory $ConfigPath --config-directory $ConfigPath"

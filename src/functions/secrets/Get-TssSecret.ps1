@@ -144,7 +144,7 @@ function Get-TssSecret {
         }
     }
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams.ContainsKey('Path')) {
                 . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation

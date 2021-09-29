@@ -89,7 +89,7 @@ function New-TssSecretTemplateField {
         $SortOrder = 0
     )
     process {
-        Write-Verbose "Provided command parameters: $(. $GetInvocation $PSCmdlet.MyInvocation)"
+        Get-TssInvocation $PSCmdlet.MyInvocation
 
         switch ($EditRequire) {
             'Owner' { $editablePermission = 3 }
