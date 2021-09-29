@@ -47,7 +47,7 @@ function Invoke-TssSecretGeneratePassword {
         $invokeValidateParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        . $InternalEndpointUsed $PSCmdlet.MyInvocation
+        Write-TssInternalNote $PSCmdlet.MyInvocation
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($PSBoundParameters.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation

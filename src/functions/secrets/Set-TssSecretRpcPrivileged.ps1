@@ -56,7 +56,7 @@ function Set-TssSecretRpcPrivileged {
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
-        . $InternalEndpointUsed $PSCmdlet.MyInvocation
+        Write-TssInternalNote $PSCmdlet.MyInvocation
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
