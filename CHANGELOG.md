@@ -25,7 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
-* None
+* module GetInvocation - converting private binary command, Get-TssInvocation [2e5ceac](https://github.com/thycotic-ps/thycotic.secretserver/commit/2e5ceac826eb5d3e47b418f8ac97fb789611ac9f)
+* module CheckVersion - convert to private binary command, Compare-TssVersion [0568794](https://github.com/thycotic-ps/thycotic.secretserver/commit/0568794fc7feb0e9ce90564629e095c9db9055df)
 
 ### Tests
 
