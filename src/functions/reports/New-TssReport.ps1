@@ -88,7 +88,7 @@ function New-TssReport {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewReportParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'reports' -join '/'
             $invokeParams.Uri = $uri

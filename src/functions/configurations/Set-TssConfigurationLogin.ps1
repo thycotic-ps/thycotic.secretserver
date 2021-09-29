@@ -79,7 +79,7 @@ function Set-TssConfigurationLogin {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'login' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PATCH'

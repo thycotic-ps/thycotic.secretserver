@@ -58,7 +58,7 @@ function Update-TssSecretAccessRequest {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($updateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'secret-access-requests' -join '/'
             $invokeParams.Uri = $uri

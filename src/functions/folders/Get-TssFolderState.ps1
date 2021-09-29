@@ -52,7 +52,7 @@ function Get-TssFolderState {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($folder in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'folder-details', $folder -join '/'

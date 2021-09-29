@@ -41,7 +41,7 @@ function Disable-TssEventPipelinePolicy {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($policy in $Id) {
                 $uri = $TssSession.ApiUrl, 'event-pipeline-policy', $policy, 'activate' -join '/'
                 $invokeParams.Uri = $uri

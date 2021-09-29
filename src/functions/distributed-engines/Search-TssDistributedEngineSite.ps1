@@ -61,7 +61,7 @@ function Search-TssDistributedEngineSite {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'distributed-engine', 'sites' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'

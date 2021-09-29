@@ -63,7 +63,7 @@ function New-TssSecretPolicy {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'secret-policy' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'

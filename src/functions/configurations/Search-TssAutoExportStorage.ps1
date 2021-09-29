@@ -36,7 +36,7 @@ function Search-TssAutoExportStorage {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage' -join '/'
             $uri = $uri, "sortBy[0].direction=desc&sortBy[0].name=Id&take=$($TssSession.Take)" -join '?'
             $invokeParams.Uri = $uri

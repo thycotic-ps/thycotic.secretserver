@@ -42,7 +42,7 @@ function Remove-TssReportSchedule {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000033' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000033' $PSCmdlet.MyInvocation
             foreach ($schedule in $ScheduleId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'reports', 'schedules', $schedule -join '/'

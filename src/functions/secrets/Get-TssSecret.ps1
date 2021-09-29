@@ -147,7 +147,7 @@ function Get-TssSecret {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams.ContainsKey('Path')) {
-                . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
+                Compare-TssVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
                 foreach ($p in $Path) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', 0 -join '/'
@@ -172,7 +172,7 @@ function Get-TssSecret {
             }
 
             if ($tssParams.ContainsKey('Id')) {
-                . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+                Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
                 foreach ($secret in $Id) {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'

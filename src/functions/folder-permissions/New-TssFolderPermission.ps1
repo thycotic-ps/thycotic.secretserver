@@ -74,7 +74,7 @@ function New-TssFolderPermission {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             if ($tssNewParams.ContainsKey('UserId') -or $tssNewParams.ContainsKey('GroupId')) {
                 foreach ($folder in $FolderId) {
                     $restResponse = $null

@@ -53,7 +53,7 @@ function Write-TssSecretAccessRequestViewComment {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $uri = $TssSession.ApiUrl, 'secret-access-requests', 'secrets', $secret, 'view-comment' -join '/'
                 $invokeParams.Uri = $uri

@@ -182,7 +182,7 @@ function Set-TssSecret {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setSecretParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 if ($secretParams.Count -gt 0) {
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'

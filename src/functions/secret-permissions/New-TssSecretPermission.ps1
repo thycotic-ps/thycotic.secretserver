@@ -74,7 +74,7 @@ function New-TssSecretPermission {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $SecretId) {
                 $searchSecrets = Search-TssSecret $TssSession
                 $secretInheritsPerm = $searchSecrets.Where({ $_.SecretId -eq $secret}).InheritsPermissions

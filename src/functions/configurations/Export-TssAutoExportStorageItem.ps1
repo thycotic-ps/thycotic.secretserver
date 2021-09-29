@@ -58,7 +58,7 @@ function Export-TssAutoExportStorageItem {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage', 'item', $Id -join '/'
             $itemFilename = $Filename + '.zip'
             $outFile = [System.IO.Path]::Combine($Output, $itemFilename)

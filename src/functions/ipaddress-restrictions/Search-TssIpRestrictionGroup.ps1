@@ -54,7 +54,7 @@ function Search-TssIpRestrictionGroup {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             if ($tssParams.ContainsKey('IpAddressRestrictionId')) {
                 $uri = $TssSession.ApiUrl, 'ipaddress-restrictions', $IpAddressRestrictionId, 'groups' -join '/'
             }

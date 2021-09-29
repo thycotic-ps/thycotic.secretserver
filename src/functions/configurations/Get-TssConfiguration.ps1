@@ -42,7 +42,7 @@ function Get-TssConfiguration {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'general' -join '/'
 
             $uriParams = @()

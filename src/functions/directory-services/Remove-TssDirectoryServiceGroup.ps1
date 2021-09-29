@@ -52,7 +52,7 @@ function Remove-TssDirectoryServiceGroup {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             foreach ($group in $GroupId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'directory-services', 'domains', $DomainId, 'group', $group -join '/'

@@ -46,7 +46,7 @@ function Set-TssSecretTemplate {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($template in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secret-templates', $template -join '/'

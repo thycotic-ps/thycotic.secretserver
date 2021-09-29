@@ -42,7 +42,7 @@ function Get-TssSecretAccessRequest {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             foreach ($request in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secret-access-requests', $request -join '/'

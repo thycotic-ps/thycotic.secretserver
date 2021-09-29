@@ -44,7 +44,7 @@ function Get-TssUserRoleAssigned {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000032' $PSCmdlet.MyInvocation
             foreach ($user in $UserId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'users', $user, 'roles-assigned' -join '/'

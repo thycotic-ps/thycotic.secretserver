@@ -55,7 +55,7 @@ function Get-TssGroupMember {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($group in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'groups', $group, 'users' -join '/'

@@ -36,7 +36,7 @@ function Get-TssConfigurationAutoExport {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $restResponse = $null
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export' -join '/'
             $invokeParams.Uri = $uri

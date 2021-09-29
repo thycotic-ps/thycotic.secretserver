@@ -48,7 +48,7 @@ function Get-TssSecretPolicy {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             foreach ($policy in $Id) {
                 $uri = $TssSession.ApiUrl, 'secret-policy', $policy -join '/'
                 $invokeParams.Uri = $uri

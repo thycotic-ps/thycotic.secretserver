@@ -52,7 +52,7 @@ function Search-TssDirectoryServiceGroup {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'directory-services', 'domains', $DomainId, 'groups', 'search-directory' -join '/'
             $uri = $uri, "searchText=$SearchText" -join '?'
             $invokeParams.Uri = $uri

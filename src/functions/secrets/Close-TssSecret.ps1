@@ -88,7 +88,7 @@ function Close-TssSecret {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($protectParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'check-in' -join '/'
                 $invokeParams.Uri = $uri

@@ -955,6 +955,12 @@
             "        [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]",
             "        public Thycotic.PowerShell.Authentication.Session TssSession {get; set;}",
             "    }",
+            "",
+            "",
+            "    protected override void ProcessRecord()",
+            "    {",
+            "        base.ProcessRecord();",
+            "    }",
             "}"
         ],
         "description": "cmdlet base"

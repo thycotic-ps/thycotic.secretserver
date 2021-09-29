@@ -54,7 +54,7 @@ function Search-TssSystemLog {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
             $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'diagnostics', 'system-logs' -join '/'
             $uri = $uri, "sortBy[0].direction=desc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
             $invokeParams.Method = 'GET'

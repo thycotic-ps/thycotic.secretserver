@@ -51,7 +51,7 @@ function Remove-TssReportCategory {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($category in $ReportCategoryId) {
                 $uri = $TssSession.ApiUrl, 'reports/categories', $category -join '/'
                 $invokeParams.Uri = $uri

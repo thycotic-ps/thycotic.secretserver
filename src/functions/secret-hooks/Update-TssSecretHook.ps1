@@ -131,7 +131,7 @@ function Update-TssSecretHook {
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($updateParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'secret-detail', $SecretId, 'hook', $SecretHookId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'PUT'

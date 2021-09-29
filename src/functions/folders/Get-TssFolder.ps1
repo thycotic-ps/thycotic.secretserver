@@ -86,7 +86,7 @@ function Get-TssFolder {
     process {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             if ($tssParams.ContainsKey('FolderPath')) {
-                . $CheckVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
+                Compare-TssVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
                 foreach ($path in $FolderPath) {
                     $uri = $TssSession.ApiUrl, 'folders', 0 -join '/'
                     $uri = $uri, "folderPath=$path&getAllChildren=$([boolean]$GetChildren)&includeAssociatedTemplates=$([boolean]$IncludeTemplate)" -join '?'
@@ -110,7 +110,7 @@ function Get-TssFolder {
                 }
             }
             if ($tssParams.ContainsKey('Id') -or $Id) {
-                . $CheckVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+                Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
                 foreach ($folder in $Id) {
                     $uri = $TssSession.ApiUrl, 'folders', $folder -join '/'
                     $uri = $uri, "getAllChildren=$([boolean]$GetChildren)&includeAssociatedTemplates=$([boolean]$IncludeTemplate)" -join '?'
