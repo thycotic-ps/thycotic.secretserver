@@ -24,6 +24,9 @@ if (-not $Response.IsSuccessful) {
         if ($Response.ContentType -ne 'application/octet-stream') {
             $content = $Response.Content
         }
+        if ($Response.Content -is [System.String]) {
+            $content = $Response.Content
+        }
     }
     return $content
 }
