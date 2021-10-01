@@ -22,7 +22,7 @@ function Search-TssIpRestriction {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.IpRestrictions.Summary')]
+    [OutputType('Thycotic.PowerShell.IpRestrictions.IpRestriction')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -61,7 +61,7 @@ function Search-TssIpRestriction {
                 Write-Warning "No records found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.IpRestrictions.Summary[]]$restResponse.records
+                [Thycotic.PowerShell.IpRestrictions.IpRestriction[]]$restResponse.records
             }
         } else {
             Write-Warning "No valid session found"

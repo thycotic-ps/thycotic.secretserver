@@ -61,7 +61,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.IpRestrictions.Summary
+### Thycotic.PowerShell.IpRestrictions.IpRestriction
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
