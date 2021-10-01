@@ -342,7 +342,7 @@
             "",
             "    .EXAMPLE",
             "    \\$session = New-TssSession -SecretServer https://alpha -Credential \\$ssCred",
-            "    Set-Tss${1} -TssSession $session -${3:initial parameter}:\\$false",
+            "    Set-Tss${1} -TssSession $session -${3:initial parameter} ",
             "",
             "    ${4:example description}",
             "",
