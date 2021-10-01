@@ -12,7 +12,7 @@
 RootModule = 'Thycotic.SecretServer.psm1'
 
 # Version number of this module.
-ModuleVersion = '0.57.0'
+ModuleVersion = '0.58.0'
 
 # Supported PSEditions
 CompatiblePSEditions = 'Desktop', 'Core'
