@@ -22,12 +22,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssIpRestrictionGroup - new command to search IP Address Restrictions assigned to Groups [446b7cf](https://github.com/thycotic-ps/thycotic.secretserver/commit/446b7cfffe8e1e4850ab8c4796350affb77c9174)
 * **Session - Add use of global variable, `$tss_ignoreversioncheck`, for disabling version check** [2c0ba2a](https://github.com/thycotic-ps/thycotic.secretserver/commit/2c0ba2ac42a7d985143f2227fe32d5ed1bef1a86)
 * Remove-TssIpRestriction - new command to delete IP Address Restrictions [d63d657](https://github.com/thycotic-ps/thycotic.secretserver/commit/d63d657e9475c0d1f7cdefc896ffd5097221e052)
+* Remove-TssIpRestrictionGroup - new command to remove IP assignments from Groups [b41b8e6](https://github.com/thycotic-ps/thycotic.secretserver/commit/b41b8e644abc6fedc9d1352d60bc3b0bbaae96c8)
+* Remove-TssIpRestrictionUser - new command to remove IP restriction from Users [6edf4bb](https://github.com/thycotic-ps/thycotic.secretserver/commit/6edf4bb09915a2b426156a2fd4f9b38eb80e28d1)
+* Search-TssIpRestrictionUser - new command to search IP Restrictions assigned to Users [e07a5c3](https://github.com/thycotic-ps/thycotic.secretserver/commit/e07a5c37bf67d9734136d9d078057c1c486ed707)
+* New-TssIpRestriction - new command to create IP Address Restrictions [1af98a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/1af98a195e72a8d0ed9e5ce8a12bd74ef0fe9b30)
 
 ### General Updates
 
 * module GetInvocation - converting private binary command, Get-TssInvocation [2e5ceac](https://github.com/thycotic-ps/thycotic.secretserver/commit/2e5ceac826eb5d3e47b418f8ac97fb789611ac9f)
 * module CheckVersion - convert to private binary command, Compare-TssVersion [0568794](https://github.com/thycotic-ps/thycotic.secretserver/commit/0568794fc7feb0e9ce90564629e095c9db9055df)
 * module InternalEndpointUsed - converting to private binary command, Write-TssInternalNote [d3b19f9](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3b19f98ef37adbeaf9f4947f0a6a6de43c2b4f3)
+* Template classes - added enumerators [3289f90](https://github.com/thycotic-ps/thycotic.secretserver/commit/3289f9096a5513ca401a3e7e75574ef14b11645c)
+* Format - cleaning up, fixing references [e219f1a](https://github.com/thycotic-ps/thycotic.secretserver/commit/e219f1aee2120a2c80703ab84b037ef4697bf2f7)
 
 ### Tests
 
