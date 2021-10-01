@@ -26,6 +26,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Remove-TssIpRestrictionUser - new command to remove IP restriction from Users [6edf4bb](https://github.com/thycotic-ps/thycotic.secretserver/commit/6edf4bb09915a2b426156a2fd4f9b38eb80e28d1)
 * Search-TssIpRestrictionUser - new command to search IP Restrictions assigned to Users [e07a5c3](https://github.com/thycotic-ps/thycotic.secretserver/commit/e07a5c37bf67d9734136d9d078057c1c486ed707)
 * New-TssIpRestriction - new command to create IP Address Restrictions [1af98a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/1af98a195e72a8d0ed9e5ce8a12bd74ef0fe9b30)
+* Set-TssIpRestrictionGroup - new command to set the IP Restriction for a Group(s) [6e40023](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e4002383bad42d5768d336bcb6bfbe3d610f143)
+* Set-TssIpRestrictionUser - new command to set the IP Restriction for a User(s) [668a567](https://github.com/thycotic-ps/thycotic.secretserver/commit/668a567b00be3e74fb1d9c455d482f62b9ba4330)
+* Update-TssIpRestriction - new command to update name or range of an IP Address Restriction [02c046a](https://github.com/thycotic-ps/thycotic.secretserver/commit/02c046a57043d3f2db0244b0ce05d28112e0401b)
 
 ### General Updates
 
