@@ -68,7 +68,7 @@ function Get-TssFolderState {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
                 } catch {
-                    Write-Warning "Issue getting folder details on folder [$folder]"
+                    Write-Warning "Issue getting folder state on folder [$folder]"
                     $err = $_
                     . $ErrorHandling $err
                 }
