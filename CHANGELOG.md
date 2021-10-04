@@ -5,6 +5,29 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* None
+
+### New Stuff
+
+* Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
+
+### General Updates
+
+* module - fix WhatIf output for internal code [8b88fe8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b88fe8ea0e07c25427ac87e809f6fef83d118aa)
+* Get-TssFolderState - update warning message [9907d60](https://github.com/thycotic-ps/thycotic.secretserver/commit/9907d60b9c1fbaaa08b58c1b9b4a1e52bb639519)
+
+### Tests
+
+* None
+
 ## 0.58.0 -- 2021-10-01
 
 ### Breaking Changes
