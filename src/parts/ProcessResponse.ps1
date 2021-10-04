@@ -11,7 +11,7 @@ $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
     ResponseStatus    = $Response.ResponseStatus
     ResponseUri       = $Response.ResponseUri
 }
-New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force
+New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force -WhatIf:$false
 if (-not $Response.IsSuccessful) {
     $errorContent = $Response.Content
     $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new($errorContent),"ResultError", "NotSpecified", $invokeParams.Uri))
