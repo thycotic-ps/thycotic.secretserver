@@ -63,7 +63,6 @@ function Search-TssDistributedEngineSite {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
