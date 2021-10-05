@@ -19,6 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
 * Search-TssDistributedEngine - new command to search for Engines [5113b7c](https://github.com/thycotic-ps/thycotic.secretserver/commit/5113b7c05bb889ae4cfbb4e88206d9312196f0c3)
+* Get-TssDistributedEngineConfiguration - new command to pull the configuration details [370cb33](https://github.com/thycotic-ps/thycotic.secretserver/commit/370cb33b6495b7f6a95ffebe2243e6a4611d960f)
+* Get-TssDistributeEngineConnectorCredential - new command to pull username/password for the connector [67c14d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/67c14d60a9537e697dd0fd74cb2487af27a823a6)
+* Get-TssDistributedEngineSite - new command to retrieve config and details of a Site [028a0aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/028a0aa20b9db6ff0eda16e55c509e6b17fa6cba)
+* Set-TssDistributedEngineSite - new command to adjust configuration of a Site [e9bd322](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9bd3221a51c2fb11790cede556d95f3cfee6a35)
 
 ### General Updates
 
