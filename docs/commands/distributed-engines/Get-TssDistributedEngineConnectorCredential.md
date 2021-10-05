@@ -41,7 +41,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteConnectorId
-Short description for parameter
+Site Connector ID
 
 ```yaml
 Type: Int32

@@ -29,7 +29,7 @@ function Get-TssDistributedEngineConnectorCredential {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Short description for parameter
+        # Site Connector ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("Id")]
         [int]

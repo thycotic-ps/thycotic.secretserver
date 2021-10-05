@@ -40,7 +40,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Short description for parameter
+Site ID
 
 ```yaml
 Type: Int32[]

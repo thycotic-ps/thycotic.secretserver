@@ -29,7 +29,7 @@ function Get-TssDistributedEngineSite {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Short description for parameter
+        # Site ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias("SiteId")]
         [int[]]
