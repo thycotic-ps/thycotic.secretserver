@@ -11,6 +11,7 @@ namespace Thycotic.PowerShell.DistributedEngines
         public bool IsLocal { get; set; }
         public DateTime? LastActivity { get; set; }
         public int NumEnginesMissingNetFramework { get; set; }
+        public int numEnginesWithoutAbilityToRestartService { get; set; }
         public int OfflineEngineCount { get; set; }
         public int OnlineEngineCount { get; set; }
         public int SiteId { get; set; }
