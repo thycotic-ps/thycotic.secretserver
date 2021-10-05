@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* Search-TssDistributedEngineSite - rename SiteName param to SearchText to standardize search commands [d1b18a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/d1b18a06e0da8aee2ebe7306936df88b824d8210)
 
 ### Bug Fixes
 
@@ -18,11 +18,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Stuff
 
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
+* Search-TssDistributedEngine - new command to search for Engines [5113b7c](https://github.com/thycotic-ps/thycotic.secretserver/commit/5113b7c05bb889ae4cfbb4e88206d9312196f0c3)
 
 ### General Updates
 
 * module - fix WhatIf output for internal code [8b88fe8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b88fe8ea0e07c25427ac87e809f6fef83d118aa)
 * Get-TssFolderState - update warning message [9907d60](https://github.com/thycotic-ps/thycotic.secretserver/commit/9907d60b9c1fbaaa08b58c1b9b4a1e52bb639519)
+* DistributedEngines - SiteSummary class add new property for v11 [7cdb432](https://github.com/thycotic-ps/thycotic.secretserver/commit/7cdb432f08a6a2657ab3f6958cb9d709d3a17864)
 
 ### Tests
 
