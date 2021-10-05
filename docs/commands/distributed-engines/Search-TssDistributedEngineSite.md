@@ -6,7 +6,7 @@ Search Distributed Engine Sites in Secret Server
 ## SYNTAX
 
 ```
-Search-TssDistributedEngineSite [-TssSession] <Session> [-SiteId <Int32>] [-SiteName <String>]
+Search-TssDistributedEngineSite [-TssSession] <Session> [-SiteId <Int32>] [-SearchText <String>]
  [-IncludeSiteMetrics] [-IncludeSitesAddNewEngines] [-IncludeInactive] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -18,10 +18,18 @@ Search Distributed Engine Sites in Secret Server
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssDistributedEngineSite -TssSession $session - some test value
+Search-TssDistributedEngineSite -TssSession $session
 ```
 
-Add minimum example for each parameter
+Return list of all active Sites
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssDistributedEngineSite -TssSession $session -IncludeInactive
+```
+
+Return list of all Sites
 
 ## PARAMETERS
 
@@ -55,8 +63,8 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -SiteName
-Site Name
+### -SearchText
+Return sites that partially match this name
 
 ```yaml
 Type: String

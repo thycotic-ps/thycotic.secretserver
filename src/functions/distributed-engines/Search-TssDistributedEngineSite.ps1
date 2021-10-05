@@ -14,9 +14,15 @@ function Search-TssDistributedEngineSite {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssDistributedEngineSite -TssSession $session - some test value
+    Search-TssDistributedEngineSite -TssSession $session
 
-    Add minimum example for each parameter
+    Return list of all active Sites
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssDistributedEngineSite -TssSession $session -IncludeInactive
+
+    Return list of all Sites
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -33,9 +39,9 @@ function Search-TssDistributedEngineSite {
         [int]
         $SiteId,
 
-        # Site Name
+        # Return sites that partially match this name
         [string]
-        $SiteName,
+        $SearchText,
 
         # Include Site Metrics (e.g. how many inactive or active sites)
         [switch]
@@ -69,7 +75,7 @@ function Search-TssDistributedEngineSite {
             $filters = @()
             switch ($tssParams.Keys) {
                 'SiteId' { $filters += "filter.siteId=$SiteId" }
-                'SiteName' { $filters += "filter.siteName=$SiteName" }
+                'SearchText' { $filters += "filter.siteName=$SearchText" }
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
                 'IncludeSiteMetrics' { $filters += "filter.includeSiteMetrics=$([boolean]$IncludeSiteMetrics)" }
                 'IncludeSitesAddNewEngines' { $filters += "filter.onlyIncludeSitesThatCanAddNewEngines=$([boolean]$IncludeSitesAddNewEngines)" }
