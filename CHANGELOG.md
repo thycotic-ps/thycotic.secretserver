@@ -5,32 +5,41 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased -- 2021-xx-xx
+# Unreleased -- 2021-xx-xx
 
-### Breaking Changes
+## Breaking Changes
 
 * Search-TssDistributedEngineSite - rename SiteName param to SearchText to standardize search commands [d1b18a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/d1b18a06e0da8aee2ebe7306936df88b824d8210)
 
-### Bug Fixes
+## Bug Fixes
 
 * None
 
-### New Stuff
+## New Stuff
 
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
+* Get-TssDiagnosticConnectivityReport - new command to get the Internet connection test [a5b3425](https://github.com/thycotic-ps/thycotic.secretserver/commit/a5b3425daa40144a3c8af22a7ef5f580db25cd7a)
+* Get-TssDiagnosticBackgroundProcess - new command to get the background process details [bd91027](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd91027ca194040affa6e4dc1eb672b4a3d6ef5b)
+
+### Distributed Engine
+
 * Search-TssDistributedEngine - new command to search for Engines [5113b7c](https://github.com/thycotic-ps/thycotic.secretserver/commit/5113b7c05bb889ae4cfbb4e88206d9312196f0c3)
 * Get-TssDistributedEngineConfiguration - new command to pull the configuration details [370cb33](https://github.com/thycotic-ps/thycotic.secretserver/commit/370cb33b6495b7f6a95ffebe2243e6a4611d960f)
 * Get-TssDistributeEngineConnectorCredential - new command to pull username/password for the connector [67c14d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/67c14d60a9537e697dd0fd74cb2487af27a823a6)
 * Get-TssDistributedEngineSite - new command to retrieve config and details of a Site [028a0aa](https://github.com/thycotic-ps/thycotic.secretserver/commit/028a0aa20b9db6ff0eda16e55c509e6b17fa6cba)
 * Set-TssDistributedEngineSite - new command to adjust configuration of a Site [e9bd322](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9bd3221a51c2fb11790cede556d95f3cfee6a35)
+* Search-TssDistributedEngineConnector - new command to get list of Site Connectors [0052393](https://github.com/thycotic-ps/thycotic.secretserver/commit/005239329c3ed01c00e9de76d935ce68cd5b2bd9)
+* Test-TssDistributedEngineCloudAccess - **new command to verify port access from DE to Secret Server Cloud** [0228004](https://github.com/thycotic-ps/thycotic.secretserver/commit/0228004971937311cf1e5073aa9ed332dbed528e)
 
-### General Updates
+## General Updates
 
 * module - fix WhatIf output for internal code [8b88fe8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b88fe8ea0e07c25427ac87e809f6fef83d118aa)
 * Get-TssFolderState - update warning message [9907d60](https://github.com/thycotic-ps/thycotic.secretserver/commit/9907d60b9c1fbaaa08b58c1b9b4a1e52bb639519)
 * DistributedEngines - SiteSummary class add new property for v11 [7cdb432](https://github.com/thycotic-ps/thycotic.secretserver/commit/7cdb432f08a6a2657ab3f6958cb9d709d3a17864)
+* Templates - Summary class add new property for 11.0.8 release [980d53d](https://github.com/thycotic-ps/thycotic.secretserver/commit/980d53d4043a9c94d4aa03427ba563f6e5a6780d)
+* Get-TssDiagnostic - new command to get diagnostic info for on-premises [608485a](https://github.com/thycotic-ps/thycotic.secretserver/commit/608485adee4734feaa737b33556457b190c3c911)
 
-### Tests
+## Tests
 
 * None
 
