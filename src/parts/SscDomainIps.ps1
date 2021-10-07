@@ -1,0 +1,10 @@
+"secretservercloud.com,52.224.253.7",
+"secretservercloud.com,52.224.253.4",
+"secretservercloud.com.au,20.37.251.37",
+"secretservercloud.com.au,20.37.251.120",
+"secretservercloud.ca,52.228.117.246",
+"secretservercloud.ca,52.228.113.119",
+"secretservercloud.eu,20.79.64.213",
+"secretservercloud.eu,20.79.65.3",
+"secretservercloud.com.sg,20.195.97.220",
+"secretservercloud.com.sg,20.195.98.154" | ConvertFrom-Csv -Header 'Domain', 'HostAddress'
