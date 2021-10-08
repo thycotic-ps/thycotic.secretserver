@@ -22,7 +22,7 @@ namespace Thycotic.SecretServer.Cmdlets
         ///<para type="description">Minimum supported version for the command</para>
         ///</summary>
         [Parameter(Mandatory = true, Position = 1)]
-        public Version MinimumSupported { get; set; }
+        public string MinimumSupported { get; set; }
 
         ///<summary>
         ///<para type="description">Invocation from calling command</para>
@@ -34,15 +34,16 @@ namespace Thycotic.SecretServer.Cmdlets
         {
             var ignoreVersion = SessionState.PSVariable.GetValue("ignoreVersion");
             var tssIgnoreVersionCheck = SessionState.PSVariable.GetValue("tss_ignoreversioncheck");
-            if (!Convert.ToBoolean(ignoreVersion) || !Convert.ToBoolean(tssIgnoreVersionCheck))
+            if ((!Convert.ToBoolean(ignoreVersion) || !Convert.ToBoolean(tssIgnoreVersionCheck)) && !String.IsNullOrEmpty(TssSession.SecretServerVersion))
             {
+                var minSupproted = new Version(MinimumSupported);
                 string sourceCommand = Invocation.MyCommand.ToString();
                 var currentVersion = new Version(TssSession.SecretServerVersion.ToString());
-                var result = currentVersion.CompareTo(MinimumSupported);
+                var result = currentVersion.CompareTo(minSupproted);
 
                 if (result < 0)
                 {
-                    WriteVerbose("[" + sourceCommand + "]: Detected version, [" + currentVersion + "], lower than command's supported version of [" + MinimumSupported + "].");
+                    WriteVerbose("[" + sourceCommand + "]: Detected version, [" + currentVersion + "], lower than command's supported version of [" + minSupproted + "].");
                     return;
                 }
             }

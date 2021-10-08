@@ -52,7 +52,7 @@ function Get-TssVersion {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning "Issue getting audits for [$secret]"
+                Write-Warning "Issue getting version details for [$($TssSession.SecretServer)]"
                 $err = $_
                 . $ErrorHandling $err
             }

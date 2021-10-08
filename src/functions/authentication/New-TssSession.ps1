@@ -238,14 +238,12 @@ function New-TssSession {
             if ($ignoreVersion -or ((Test-Path variable:tss_ignoreversioncheck) -and $tss_ignoreversioncheck)) {
                 Write-Verbose "tss_ignoreversioncheck set to true, module will not perform Secret Server version check"
             } else {
-                try {
-                    Write-Verbose "Attempting to retrieve Secret Server host version"
-                    $versionResponse = Get-TssVersion -TssSession $outputTssSession
-                    $outputTssSession.SecretServerVersion = $versionResponse.Version
-                    if ($outputTssSession.SecretServerVersion) {
-                        Write-Verbose "Version info received successfully: $($outputTssSession.SecretServerVersion)"
-                    }
-                } catch {
+                Write-Verbose "Attempting to retrieve Secret Server host version"
+                $versionResponse = Get-TssVersion -TssSession $outputTssSession -ErrorAction SilentlyContinue
+                $outputTssSession.SecretServerVersion = $versionResponse.Version
+                if ($outputTssSession.SecretServerVersion) {
+                    Write-Verbose "Version info received successfully: $($outputTssSession.SecretServerVersion)"
+                } else {
                     Write-Warning "Issue reading version of [$SecretServer], this may be due to Hide Secret Server Version Numbers being disabled. Version support is limited in the module and may affect functionality of some functions."
                 }
             }
