@@ -30,6 +30,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-TssDistributedEngineSite - new command to adjust configuration of a Site [e9bd322](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9bd3221a51c2fb11790cede556d95f3cfee6a35)
 * Search-TssDistributedEngineConnector - new command to get list of Site Connectors [0052393](https://github.com/thycotic-ps/thycotic.secretserver/commit/005239329c3ed01c00e9de76d935ce68cd5b2bd9)
 * Test-TssDistributedEngineCloudAccess - **new command to verify port access from DE to Secret Server Cloud** [0228004](https://github.com/thycotic-ps/thycotic.secretserver/commit/0228004971937311cf1e5073aa9ed332dbed528e)
+* Set-TssDistributedEngine - new command to set configuration options for Distributed Engine global configuration [cb5f132](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb5f132620f8b11da0f1184b48cb99dec9a2d3fc)
+* Get-TssDistributedEngineServerCapabilities - new command to pull the OS details of a DE [8e77a5a](https://github.com/thycotic-ps/thycotic.secretserver/commit/8e77a5aa96a0a6764eb470868ff00aa5b9c449bf)
+* Get-TssDistributedEngineSiteConnector - new command to get Site Connector details [282b503](https://github.com/thycotic-ps/thycotic.secretserver/commit/282b503683a29751d7fa289238afeccf0284c766)
 
 ## General Updates
 
