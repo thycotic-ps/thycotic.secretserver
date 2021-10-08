@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Bug Fixes
 
-* None
+* Compare-TssVersion (internal command) - fixes [#243](https://github.com/thycotic-ps/thycotic.secretserver/issues/243) [28f64d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/28f64d1dbc80a57075e146b269662058bb93d6f7)
 
 ## New Stuff
 
@@ -33,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-TssDistributedEngine - new command to set configuration options for Distributed Engine global configuration [cb5f132](https://github.com/thycotic-ps/thycotic.secretserver/commit/cb5f132620f8b11da0f1184b48cb99dec9a2d3fc)
 * Get-TssDistributedEngineServerCapabilities - new command to pull the OS details of a DE [8e77a5a](https://github.com/thycotic-ps/thycotic.secretserver/commit/8e77a5aa96a0a6764eb470868ff00aa5b9c449bf)
 * Get-TssDistributedEngineSiteConnector - new command to get Site Connector details [282b503](https://github.com/thycotic-ps/thycotic.secretserver/commit/282b503683a29751d7fa289238afeccf0284c766)
+* Set-TssDistributedEngineSiteConnector - new command to update configuration of a Site Connector [a4ff768](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4ff768fcc3af533e4a87fe477681f475abce810)
 
 ## General Updates
 
