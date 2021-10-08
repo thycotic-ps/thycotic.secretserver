@@ -73,10 +73,6 @@ function Search-TssDistributedEngine {
                 'ConnectionStatus' { filters += "filter.connectionStatus = $([string]$ConnectionStatus)" }
                 'SearchText' { $filters += "filter.friendlyName = $SearchText" }
                 'RequireActivation' { $filters += "filter.onlyIncludeRequiringAction=$([boolean]$RequireActivation)" }
-                default {
-                    Write-Error "[-SiteId] or [-RequiredActivation] parameter must be provided!"
-                    return
-                }
             }
             if ($filters) {
                 $uriFilter = $filters -join '&'
