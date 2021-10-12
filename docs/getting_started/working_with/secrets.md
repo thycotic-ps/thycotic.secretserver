@@ -174,8 +174,7 @@ $session.SessionExpire()
 
 Once you have secrets created there will be times where they need to be updated for some reason.
 
-The examples below utilize the secrets created in the previous examples. Filtering is done using the color that is in the Notes field of the secrets.
-{: .notice--info}
+> **Note** The examples below utilize the secrets created in the previous examples. Filtering is done using the color that is in the Notes field of the secrets.
 
 ## Move Secrets to another Folder
 

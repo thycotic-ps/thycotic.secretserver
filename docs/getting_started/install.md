@@ -35,11 +35,9 @@ PowerShell Gallery is the preferred method for installing the module.
 Install-Module -Name Thycotic.SecretServer -Scope CurrentUser
 ```
 
-**Windows PowerShell 5.1 or PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
-{: .notice--warning}
+> **Warning** **Windows PowerShell 5.1 or PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
 
-**Windows PowerShell 5.1** TLS error: PowerShell Gallery only supports TLS 1.2 and above, errors noted [here](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support/#errors-i-might-see) may be observed. You will need to start a new PowerShell session and set TLS to 1.2: `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12`
-{: .notice--warning}
+> **Warning** **Windows PowerShell 5.1** TLS error: PowerShell Gallery only supports TLS 1.2 and above, errors noted [here](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support/#errors-i-might-see) may be observed. You will need to start a new PowerShell session and set TLS to 1.2: `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12`
 
 ## Option 2: Manual Install
 
@@ -85,8 +83,7 @@ Import-Module c:\temp\Thycotic.SecretServer\<version>\Thycotic.SecretServer.psd1
 2. Unblock & Extract the archive
 3. Copy the `Thycotic.SecretServer` folder to your "Powershell Modules" directory of choice.
 
-**Thycotic.SecretServer.zip SHA256:** [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt)
-{: .notice--warning}
+> **Warning** **Thycotic.SecretServer.zip SHA256:** [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt)
 
 ## Verification
 

@@ -19,7 +19,7 @@ You can do a search for the dependencies found on a given Secret to return all o
 
 ```powershell
 $params = @{
-    SecretServer = 'http://argos/SecretServer'
+    SecretServer = 'http://company.local/SecretServer'
     Credential = Get-Secret apidemo
 }
 $session = New-TssSession @params
@@ -39,10 +39,8 @@ Search-TssSecret -TssSession $session -FolderId 42 | Search-TssSecretDependency 
 To delete the Dependencies on any given Secret first requires that you search for those Secrets. Pipeline support in the module allows you to stitch the functions together to delete **all** dependencies on each Secret.
 
 Removing a Secret Dependency is not reversible. It will permanently delete the object.
-{: .notice--warning}
 
-To get the enable and disabled dependencies, use the `-IncludeInactive` parameter shown in the examples below.
-{: .notice--info}
+> **Note** To get the enable and disabled dependencies, use the `-IncludeInactive` parameter shown in the examples below.
 
 ## Remove all based on Secret Template
 
@@ -50,17 +48,15 @@ To get the enable and disabled dependencies, use the `-IncludeInactive` paramete
 
 To delete the Dependencies on any given Secret first requires that you search for those Secrets. Pipeline support in the module then allows you to stitch the functions together in order to delete **all** dependencies on each Secret.
 
-Removing a Secret Dependency is not reversable, it will permanently delete the object.
-{: .notice--warning}
+> **Warning** Removing a Secret Dependency is not reversable, it will permanently delete the object.
 
-To remove enable and disabled use `-IncludeInactive` parameter as shown in below examples.
-{: .notice--info}
+> **Note** To remove enable and disabled use `-IncludeInactive` parameter as shown in below examples.
 
 ### Remove all based on Secret Template
 
 ```powershell
 $params = @{
-    SecretServer = 'http://argos/SecretServer'
+    SecretServer = 'http://company.local/SecretServer'
     Credential = Get-Secret apidemo
 }
 $session = New-TssSession @params
@@ -68,14 +64,36 @@ $session = New-TssSession @params
 Search-TssSecret -TssSession $session -SecretTemplateId 6001 | Search-TssSecretDependency -TssSession $session -IncludeInactive -WarningAction SilentlyContinue | Remove-TssSecretDependency -TssSession $session -Confirm:$false
 ```
 
-## Remove all based on Folder
+### Remove all based on Folder
 
 ```powershell
 $params = @{
-    SecretServer = 'http://argos/SecretServer'
+    SecretServer = 'http://company.local/SecretServer'
     Credential = Get-Secret apidemo
 }
 $session = New-TssSession @params
 
 Search-TssSecret -TssSession $session -FolderId 42 | Search-TssSecretDependency -TssSession $session -IncludeInactive -WarningAction SilentlyContinue | Remove-TssSecretDependency -TssSession $session -Confirm:$false
+```
+
+# Examples - Find Duplicates
+
+```powershell
+$params = @{
+    SecretServer = 'http://company.local/SecretServer'
+    Credential = Get-Secret apidemo
+}
+$session = New-TssSession @params
+
+$secretDependencies = Search-TssSecret -TssSession $session | Search-TssSecretDependency -TssSession $session -IncludeInactive -WarningAction SilentlyContinue
+$secretDependencies | Group-Object -Property MachineName, ServiceName | Where-Object Count -gt 1 | Select-Object -Expand Group
+```
+
+## Sample Output
+
+```console
+SecretId Id GroupId Enabled Order MachineName ServiceName TypeName
+-------- -- ------- ------- ----- ----------- ----------- --------
+162      38 25      True    1     machine1    Service 1   Windows Service
+163      39 26      True    1     machine1    Service 1   Windows Service
 ```
