@@ -42,6 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * DistributedEngines - SiteSummary class add new property for v11 [7cdb432](https://github.com/thycotic-ps/thycotic.secretserver/commit/7cdb432f08a6a2657ab3f6958cb9d709d3a17864)
 * Templates - Summary class add new property for 11.0.8 release [980d53d](https://github.com/thycotic-ps/thycotic.secretserver/commit/980d53d4043a9c94d4aa03427ba563f6e5a6780d)
 * Get-TssDiagnostic - new command to get diagnostic info for on-premises [608485a](https://github.com/thycotic-ps/thycotic.secretserver/commit/608485adee4734feaa737b33556457b190c3c911)
+* docs - authentication - updates, add PS Profile snippet [971b0b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/971b0b734bf47fd3510be1805c6cec51fefa0592)
 
 ## Tests
 
