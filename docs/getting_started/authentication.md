@@ -6,34 +6,19 @@ sort: 2
 
 ## TssSession Object
 
-The [TssSession](/thycotic.secretserver/about_topics/authentication/about_tsssession) is utilized by the functions to authenticate to Secret Server when making an call to the endpoints used in each function. `New-TssSession` creates an instance of this object in your PowerShell session.
+The `TssSession` is the output from calling [New-TssSession](/thycotic.secretserver/commands/authentication/New-TssSession). All functions in the module depend on that object being provided and have a matching `-TssSession` parameter.
 
 ## Windows Integrated Authentication (IWA)
 
 To utilize Windows Authentication with Secret Server, your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/ss/10.9.0/api-scripting/webservice-iwa-powershell/index.md).
 
-As of **version `0.30.0`**, Windows Authentication is supported with the module. A parameter, `-UseWindowsAuth` is available in `New-TssSession`. See examples of this use via the command help [New-TssSession](/thycotic.secretserver/commands/authentication/New-TssSession).
+As of **version `0.30.0`**, Windows Authentication is supported with the module. `New-TssSession` now has the parameter `-UseWindowsAuth` for this purpose. See examples of this use via the command help
 
 ## OAuth2 Authentication
 
-`New-TssSession` is used to request an OAuth token to Secret Server. On successful authentication, the function returns an object with type: `TssSession`. Capturing this object into a variable and providing functions in the module is required for authenticating.
+Authenticating with a username and password creates creating that as a `PSCredential` object and then providing that to the `-Credential` parameter of `New-TssSession`.
 
-The mandatory parameters:
-
-- SecretServer - provide the URL used to access your Secret Server web application
-- Credential - provide a PSCredential object that contains the Secret Server username and password
-
-## Client SDK Authentication
-
-The Client SDK is a console application (`tss.exe`) published by Thyctoic. This is now packaged with the module and can be utilized to both initialize a configuration and authenticate to Secret Server via the token (`tss.exe token`).
-
-[Invoke-TssSdkClient](../commands/authentication/Initialize-TssSdkClient) function can be utilized to create the configuration. This function requires that you have [configured Secret Server](https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#task_1__configuring_secret_server) with an Application User and then created the Client Onboarding rule. You can view the examples on the function to see how it is used.
-
-Once you have initialized a configuration, the [path to that configuration](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession.html#example-6) is provided to `New-TssSession` where it will use that to request a token for API authentication.
-
-[More details on the Client SDK](https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli#how_it_works)
-
-## Interactive Login
+### Interactive Login
 
 Use of `Get-Credential` will provide a prompt to enter the username and password for interactive login:
 
@@ -65,7 +50,7 @@ TokenType    : bearer
 ExpiresIn    : 1199
 ```
 
-## Automated Login
+### Automated Login
 
 In automation scenarios, a credential object is created without prompting by utilizing: `[pscredential]::new()`.
 
@@ -77,11 +62,11 @@ $cred = [pscredential]::new($username,$password)
 $session = New-TssSession -SecretServer https://vault.company/SecretServer -Credential $session
 ```
 
-### SecretManagement Module
+## SecretManagement Module
 
 Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the credential needed for authenticating to Secret Server.
 
-#### Example Usage
+### Create the local Secret Store
 
 ```powershell
 # Install-Module Microsoft.PowerShell.SecretManagement -Scope AllUsers -Force
@@ -98,6 +83,11 @@ Set-SecretVaultDefault -Name scripts
 
 <# Unregistered/remove a vault #>
 UnRegister-SecretVault SecretStore
+```
+
+### Create a Secret
+
+```powershell
 
 # Store a password
 Set-Secret -Name apidemoPwd -SecureStringSecret (ConvertTo-SecureString 'P@ssword$01' -AsPlainText -Force)
@@ -124,50 +114,63 @@ More:
 - [PowerShell SecretManagement](https://github.com/PowerShell/SecretManagement)
 - [PowerShell SecretStore](https://github.com/PowerShell/SecretStore)
 
-# Alias
 
-A 3-character alias, `nts`, exists in the module for use in an interactive session to help save typing.
+## PowerShell Profile
+
+Using the details in this article to this point we can build a shortcut in our PowerShell profile. Your profile in PowerShell allows you to add repeatable code or functions that can make your life much easier. A common practice with system management is adding a quick function in your profile to login you into your applications that you use day-to-day. One of these can be Secret Server, and the below is a snippet the maintainers of the module utilize.
+
+### Creating the Profile script
+
+If you have never used your profile in PowerShell before you may need to create the file, this can be done with the following command:
 
 ```powershell
-$cred = Get-Credential
-$session = nts 'https://tenant.secretservercloud.com' $cred
+New-Item $PROFILE -ItemType File -Force
+```
+
+After the above you can then open the file up in your favorite code editor:
+
+```powershell
+code-insiders $PROFILE
+```
+
+### Login Snippet for Secret Server
+
+Below script can be added to your profile script, adjust as you need for your environment:
+
+```powershell
+function Login-SS {
+   $ssUrl = 'https://vault.company.com/SecretServer'
+   Import-Module Thycotic.SecretServer -Force
+   $cred = Get-Secret secretserverCred
+   $s = New-TssSession -SecretServer $ssUrl -Credential $cred
+   New-Variable -Name session -Value $s -Scope Global -Force
+   if (-not $ignoreDefault) {
+      $PSDefaultParameterValues.Remove("*:TssSession")
+      $PSDefaultParameterValues.Remove("*:PersonalAccessToken")
+      $PSDefaultParameterValues.Add("*:TssSession",$session)
+      $PSDefaultParameterValues.Add("*:PersonalAccessToken",$session.AccessToken)
+   }
+}
+```
+
+The use of `$PSDefaultParameterValues` allows you to set the default values for those parameters and applies to all commands in the module. You can see in the below example that `-TssSession` is not directly provided.
+
+```powershell
+Login-SS
+$ad = Get-TssSecretStub -SecretTemplateId 6001 -FolderId 37
+$ad.Name = 'Test Secret with Incognito Policy 1'
+$ad.SetFieldValue('Domain','somedomain');$ad.SetFieldValue('Username','someuser');$ad.SetFieldValue('Password','somepassword');
+$ad.WebLauncherRequiresIncognitoMode
+New-TssSecret -SecretStub $ad
 ```
 
 # Methods
 
-Methods are available on the `New-TssSession` object to help with session management in your automation process. You can find these by piping to `Get-Member`.
+The `TssSession` object contains custom methods that allow you to easily perform certain actions with the object. You can find these by piping to `Get-Member`.
 
 ```powershell
 $session | Get-Member
 ```
-
-Sample output:
-
-```console
-   TypeName: TssSession
-
-Name           MemberType Definition
-----           ---------- ----------
-Equals         Method     bool Equals(System.Object obj)
-GetHashCode    Method     int GetHashCode()
-GetType        Method     type GetType()
-IsValidSession Method     bool IsValidSession()
-IsValidToken   Method     bool IsValidToken()
-SessionExpire  Method     bool SessionExpire()
-SessionRefresh Method     bool SessionRefresh()
-ToString       Method     string ToString()
-AccessToken    Property   string AccessToken {get;set;}
-ApiUrl         Property   string ApiUrl {get;set;}
-ApiVersion     Property   string ApiVersion {get;set;}
-ExpiresIn      Property   int ExpiresIn {get;set;}
-RefreshToken   Property   string RefreshToken {get;set;}
-SecretServer   Property   string SecretServer {get;set;}
-Take           Property   int Take {get;set;}
-TokenType      Property   string TokenType {get;set;}
-```
-
-Note that these methods are defined as `boolean`, so they will only return true or false; the intent is to utilize them in workflow validation (e.g., `if/else`).
-{: .notice--info}
 
 ## IsValidToken
 
@@ -202,12 +205,12 @@ This method is utilizing the refresh token according to the Secret Server Webser
 
 Secret Server's default for Webservices:
 
-**Setting** | **Value** |
----------------- | -------- |
-Enable Webservices | Yes
-Session Timeout for Webservices | 20 minutes
-Enable Refresh Tokens for Web Services | Yes
-Maximum Token Refreshes Allowed | 3
+| **Setting**                            | **Value**  |
+| -------------------------------------- | ---------- |
+| Enable Webservices                     | Yes        |
+| Session Timeout for Webservices        | 20 minutes |
+| Enable Refresh Tokens for Web Services | Yes        |
+| Maximum Token Refreshes Allowed        | 3          |
 
 The default configuration translates to having the ability to request a session token four times in total (initial auth, then three refreshes). After you reach the refresh limit, you will begin receiving errors from the endpoint on an invalid request.
 
