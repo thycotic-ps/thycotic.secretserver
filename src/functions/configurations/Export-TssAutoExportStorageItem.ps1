@@ -69,8 +69,7 @@ function Export-TssAutoExportStorageItem {
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
             try {
-                $apiResponse = Invoke-TssApi @invokeParams
-                . $ProcessResponse $apiResponse
+                Invoke-TssApi @invokeParams
             } catch {
                 Write-Warning 'Issue getting Export Storage Item [$itemId]'
                 $err = $_
