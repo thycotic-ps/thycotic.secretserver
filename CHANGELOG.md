@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Bug Fixes
 
 * Compare-TssVersion (internal command) - fixes [#243](https://github.com/thycotic-ps/thycotic.secretserver/issues/243) [28f64d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/28f64d1dbc80a57075e146b269662058bb93d6f7)
+* Export-TssAutoExportStorageItem - correct issue with downloading zip file for auto export [3510feb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3510febf5c9d3cab9d42c40ff7aa4f1c07061d10)
 
 ## New Stuff
 
@@ -34,6 +35,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssDistributedEngineServerCapabilities - new command to pull the OS details of a DE [8e77a5a](https://github.com/thycotic-ps/thycotic.secretserver/commit/8e77a5aa96a0a6764eb470868ff00aa5b9c449bf)
 * Get-TssDistributedEngineSiteConnector - new command to get Site Connector details [282b503](https://github.com/thycotic-ps/thycotic.secretserver/commit/282b503683a29751d7fa289238afeccf0284c766)
 * Set-TssDistributedEngineSiteConnector - new command to update configuration of a Site Connector [a4ff768](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4ff768fcc3af533e4a87fe477681f475abce810)
+* Get-TssDistributedEngineDownload - new command to download the installer for Site's DE [de7f664](https://github.com/thycotic-ps/thycotic.secretserver/commit/de7f664ff021dbd1e912fb0c5878bf9dc6383f7a)
+* New-TssDistributedEngineSiteConnector - new command to create a Site Connector [05db5d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/05db5d6809e4b73c7014750505b8862ac11a41d0)
 
 ## General Updates
 
@@ -43,6 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Templates - Summary class add new property for 11.0.8 release [980d53d](https://github.com/thycotic-ps/thycotic.secretserver/commit/980d53d4043a9c94d4aa03427ba563f6e5a6780d)
 * Get-TssDiagnostic - new command to get diagnostic info for on-premises [608485a](https://github.com/thycotic-ps/thycotic.secretserver/commit/608485adee4734feaa737b33556457b190c3c911)
 * docs - authentication - updates, add PS Profile snippet [971b0b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/971b0b734bf47fd3510be1805c6cec51fefa0592)
+* docs - update, additions finding duplicate dependencies [f93ee34](https://github.com/thycotic-ps/thycotic.secretserver/commit/f93ee3467be25e30cd736581fce1fd2001e51ddd)
 
 ## Tests
 
