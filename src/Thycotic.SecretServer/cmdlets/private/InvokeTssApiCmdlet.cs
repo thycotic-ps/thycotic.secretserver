@@ -2,6 +2,7 @@ using System;
 using System.Management.Automation;
 using System.Net;
 using RestSharp;
+using RestSharp.Extensions;
 using System.IO;
 
 namespace Thycotic.SecretServer.Cmdlets
@@ -121,20 +122,17 @@ namespace Thycotic.SecretServer.Cmdlets
                 apiRequest.AddParameter(ContentType, Body, ParameterType.RequestBody);
             }
 
-            IRestResponse apiResponse = apiClient.Execute(apiRequest);
-            if (MyInvocation.BoundParameters.ContainsKey("OutFile"))
+            if (!String.IsNullOrEmpty(OutFile))
             {
-                try
-                {
-                    string content = apiResponse.Content;
-                    File.WriteAllText(OutFile, content);
-                }
-                catch
-                {
-                    throw new System.Exception("Unable to write content to file: " + OutFile);
-                }
+                // stream file content out
+                IRestResponse apiResponse = apiClient.Execute(apiRequest);
+                File.WriteAllBytes(OutFile, apiResponse.RawBytes);
             }
-            WriteObject(apiResponse);
+            else
+            {
+                IRestResponse apiResponse = apiClient.Execute(apiRequest);
+                WriteObject(apiResponse);
+            }
         }
     }
 }
