@@ -233,6 +233,9 @@ function New-TssSession {
                     return
                 }
             }
+            if (-not $outputTssSession.AccessToken) {
+                return
+            }
             $outputTssSession.StartTime = [datetime]::Now
             Write-Verbose "Setting start time for session: $($outputTssSession.StartTime)"
             if ($ignoreVersion -or ((Test-Path variable:tss_ignoreversioncheck) -and $tss_ignoreversioncheck)) {
