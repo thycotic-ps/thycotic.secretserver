@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Compare-TssVersion (internal command) - fixes [#243](https://github.com/thycotic-ps/thycotic.secretserver/issues/243) [28f64d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/28f64d1dbc80a57075e146b269662058bb93d6f7)
 * Export-TssAutoExportStorageItem - correct issue with downloading zip file for auto export [3510feb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3510febf5c9d3cab9d42c40ff7aa4f1c07061d10)
+* New-TssSession - bug fix when login failure stop throwing warning about version [aefa624](https://github.com/thycotic-ps/thycotic.secretserver/commit/aefa624a03f726a04feeda9104e06d6a094a3e21)
 
 ## New Stuff
 
@@ -37,6 +38,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-TssDistributedEngineSiteConnector - new command to update configuration of a Site Connector [a4ff768](https://github.com/thycotic-ps/thycotic.secretserver/commit/a4ff768fcc3af533e4a87fe477681f475abce810)
 * Get-TssDistributedEngineDownload - new command to download the installer for Site's DE [de7f664](https://github.com/thycotic-ps/thycotic.secretserver/commit/de7f664ff021dbd1e912fb0c5878bf9dc6383f7a)
 * New-TssDistributedEngineSiteConnector - new command to create a Site Connector [05db5d6](https://github.com/thycotic-ps/thycotic.secretserver/commit/05db5d6809e4b73c7014750505b8862ac11a41d0)
+* Test-TssDistributedEngineSiteConnector - new command to validate the Site Connector [a48e482](https://github.com/thycotic-ps/thycotic.secretserver/commit/a48e48270547da6c8046ad2ee1a65ab60b7040f9)
+* Register-TssDistributedEngine - new command to activate a DE for a Site [0c9334b](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c9334bbb6bf5d1b41b974783c9939f099c0fe6f)
+* Update-TssDistributedEngine - new command to change the status of an Engine (e.g. activate, delete) [a340f72](https://github.com/thycotic-ps/thycotic.secretserver/commit/a340f720ec1dcae4402499a40e9ae02bd3914682)
+* Remove-TssDistributedEngine - new command to delete a Distributed Engine (not reversible) [f5f560b](https://github.com/thycotic-ps/thycotic.secretserver/commit/f5f560be199c3ba0cc085db2abc6afabf490b782)
+* Unregister-TssDistributedEngine - new command to deactivate a Distributed Engine for a Site [d7a3f55](https://github.com/thycotic-ps/thycotic.secretserver/commit/d7a3f55ab8f8754fdeaa916f35ecf23e536d8893)
 
 ## General Updates
 
@@ -47,6 +53,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssDiagnostic - new command to get diagnostic info for on-premises [608485a](https://github.com/thycotic-ps/thycotic.secretserver/commit/608485adee4734feaa737b33556457b190c3c911)
 * docs - authentication - updates, add PS Profile snippet [971b0b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/971b0b734bf47fd3510be1805c6cec51fefa0592)
 * docs - update, additions finding duplicate dependencies [f93ee34](https://github.com/thycotic-ps/thycotic.secretserver/commit/f93ee3467be25e30cd736581fce1fd2001e51ddd)
+* Register-TssDistributedEngine - rewrite [bd8fb30](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd8fb30e58f879160c07fe96b52c9b1060df700c)
 
 ## Tests
 
