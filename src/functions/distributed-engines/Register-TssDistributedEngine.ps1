@@ -42,53 +42,10 @@ function Register-TssDistributedEngine {
     )
     begin {
         $tssParams = $PSBoundParameters
-        $invokeParams = . $GetInvokeApiParams $TssSession
     }
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
-        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
-            Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
-            $uri = $TssSession.ApiUrl, 'distributed-engine', 'update-engine-status' -join '/'
-            $invokeParams.Uri = $uri
-            $invokeParams.Method = 'POST'
-
-            $registerBody = @{data = @{} }
-            $allEngines = @()
-            foreach ($engine in $Id) {
-                $cEngine = @{}
-                $cEngine.Add('changeType','Activate')
-                $cEngine.Add('engineId',$engine)
-                $cEngine.Add('siteId',$SiteId)
-                $allEngines += $cEngine
-            }
-            $registerBody.data.Add('engines',$allEngines)
-
-            $invokeParams.Body = $registerBody | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("description: $", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)")) {
-                Write-Verbose "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning 'Issue warning message'
-                    $err = $_
-                    . $ErrorHandling $err
-                }
-
-                if ($restResponse.results) {
-                    foreach ($record in $restResponse.results) {
-                        [Thycotic.PowerShell.DistributedEngines.EngineActivation]@{
-                            EngineId     = $record.engineId
-                            EngineName   = $record.engineName
-                            Error        = $record.error
-                            IsSuccessful = $record.success
-                        }
-                    }
-
-                }
-            }
-        } else {
-            Write-Warning 'No valid session found'
-        }
+        $tssParams.Add('Status','Activate')
+        Update-TssDistributedEngine @tssParams
     }
 }
