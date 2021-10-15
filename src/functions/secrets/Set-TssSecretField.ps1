@@ -89,7 +89,7 @@ function Set-TssSecretField {
         # Path of file to attach to field
         [Parameter(ParameterSetName = 'io')]
         [ValidateScript( {
-                if (-not (Test-Path $_ -PathType Container)) {
+                if (Test-Path $_ -PathType Container) {
                     throw "Path [$_] is a directory, provide full file path"
                 } else {
                     $true
