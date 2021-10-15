@@ -3,6 +3,87 @@ title: "Secrets"
 sort: 5
 ---
 
+## Examples - Getting
+
+The examples below offer various ways of getting a Secret and the details in it (aka fields or files).
+
+### Get a Secret
+
+#### By ID
+
+```powershell
+Get-TssSecret -TssSession $session -Id 642
+```
+
+#### By Path
+
+```powershell
+Get-TssSecret -TssSession $session -Path '\Testing\Secret Policies\Test Secret W/ Web Launcher 1'
+```
+
+In this example the folder path is `\Testing\Secret Policies` with the Secret Name being `Test Secret W/ Web Launcher 1`.
+
+### Get a Secret as PSCredential
+
+```powershell
+$secret = Get-TssSecret -TssSession $session -Path '\Testing\Secret Policies\Test Secret W/ Web Launcher 1'
+$psCred = $secret.GetCredential('domain','username','password')
+```
+
+In the above example, an Active Directory account is used so it requires passing in the slug names for Domain and Username. This will create the username as `domain\username` format. You can also use other fields for things like Windows Accounts. If you do not need the domain position in the username just pass in `$null`.
+
+```powershell
+$secret = Get-TssSecret -TssSession $session -Path '\Testing\Windows Local\Test Secret 2'
+$psCred = $secret.GetCredential($null,'username','password')
+```
+
+### Get a Secret File/Attachment
+
+In scenarios where you may not know the field containing the file you can use the method `GetFileFields()` to output those slug names:
+
+```powershell
+$secret = Get-TssSecret -TssSession $session -Id 1084
+$secret.GetFileFields()
+```
+
+Sample output:
+
+```console
+PS > $secret.GetFileFields()
+
+SlugName   Filename
+--------   --------
+attachment testfile.csv
+```
+
+When you have the slug name and file name you can download the attaching or simply retrieve the content of the file. The latter works if they are basic text files, if you have binary files like PDFs those have to be written to disk before the content can be viewed properly.
+
+```powershell
+Get-TssSecretField -TssSession $session -Id 1084 -Slug attachment
+```
+
+The above example will output the raw contents of the file on the Secret. This is useful if you wanted to get any key files for things like SSH.
+
+To download the file to disk:
+
+```powershell
+Get-TssSecretAttachment -TssSession -Id 1084 -Slug attachment -Path c:\temp\
+```
+
+The command automatically pulls the filename of the attachment and will create that file at `c:\temp\testfile.csv` (in this example).
+
+Sample output:
+
+```console
+PS > Get-TssSecretAttachment -Id 1084 -Slug attachment -Path c:\temp\
+
+    Directory: C:\temp
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a---          10/14/2021  8:12 PM         223993 testfile.csv
+```
+
 ## Examples - Creating
 
 ### Identify Secret Template Requirements
@@ -176,7 +257,7 @@ Once you have secrets created there will be times where they need to be updated 
 
 > **Note** The examples below utilize the secrets created in the previous examples. Filtering is done using the color that is in the Notes field of the secrets.
 
-## Move Secrets to another Folder
+### Move Secrets to another Folder
 
 ```powershell
 $params = @{
