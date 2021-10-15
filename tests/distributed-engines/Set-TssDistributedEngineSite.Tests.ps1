@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Id','SiteName','WinRmEndpoint','EnableCredSsp','PowerShellRunAsSecret','EnableRdpProxy','RdpProxyPort','EnableSshProxy','SshProxyPort','CallbackInterval','SiteConnectorId'
+        [object[]]$knownParameters = 'TssSession','Id','SiteName','Active','WinRmEndpoint','EnableCredSsp','PowerShellRunAsSecret','EnableRdpProxy','RdpProxyPort','EnableSshProxy','SshProxyPort','CallbackInterval','SiteConnectorId'
 
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')

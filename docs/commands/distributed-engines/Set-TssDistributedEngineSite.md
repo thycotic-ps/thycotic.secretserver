@@ -6,7 +6,7 @@ Adjust Site configuration options
 ## SYNTAX
 
 ```
-Set-TssDistributedEngineSite [-TssSession] <Session> [-Id] <Int32[]> [-SiteName <String>]
+Set-TssDistributedEngineSite [-TssSession] <Session> [-Id] <Int32[]> [-SiteName <String>] [-Active]
  [-WinRmEndpoint <String>] [-EnableCredSsp] [-PowerShellRunAsSecret <Int32>] [-EnableRdpProxy]
  [-RdpProxyPort <Int32>] [-EnableSshProxy] [-SshProxyPort <Int32>] [-CallbackInterval <Int32>]
  [-SiteConnectorId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -20,10 +20,18 @@ Adjust Site configuration options
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssDistributedEngineSite -TssSession session -Id
+Set-TssDistributedEngineSite -TssSession session -Id 5 -EnableCredSsp:$false
 ```
 
 Disable CredSSP for Site ID 5
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Set-TssDistributedEngineSite -TssSession session -Id 10 -Active:$false
+```
+
+Disable Site 10
 
 ## PARAMETERS
 
@@ -68,6 +76,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Active
+Activate the Site
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -193,7 +216,7 @@ Accept wildcard characters: False
 ```
 
 ### -SiteConnectorId
-{{ Fill SiteConnectorId Description }}
+Site Connector ID
 
 ```yaml
 Type: Int32

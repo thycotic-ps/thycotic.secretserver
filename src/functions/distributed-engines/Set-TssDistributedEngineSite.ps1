@@ -8,9 +8,15 @@ function Set-TssDistributedEngineSite {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssDistributedEngineSite -TssSession session -Id
+    Set-TssDistributedEngineSite -TssSession session -Id 5 -EnableCredSsp:$false
 
     Disable CredSSP for Site ID 5
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Set-TssDistributedEngineSite -TssSession session -Id 10 -Active:$false
+
+    Disable Site 10
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Set-TssDistributedEngineSite
@@ -37,6 +43,10 @@ function Set-TssDistributedEngineSite {
         # Site Name
         [string]
         $SiteName,
+
+        # Activate the Site
+        [switch]
+        $Active,
 
         # WinRM Endpoint URL
         [string]
@@ -71,6 +81,7 @@ function Set-TssDistributedEngineSite {
         [int]
         $CallbackInterval,
 
+        # Site Connector ID
         [int]
         $SiteConnectorId
     )
@@ -89,6 +100,7 @@ function Set-TssDistributedEngineSite {
 
                 $setBody = @{ data = @{ } }
                 switch ($setParams.Keys) {
+                    'TssSession' { <# do nothing, added for performance #> }
                     'Active' {
                         $activeValue = @{
                             dirty = $true
