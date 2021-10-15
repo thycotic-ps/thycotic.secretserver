@@ -8,13 +8,13 @@ function Test-TssDistributedEngineCloudAccess {
     This function would be used from your Distributed Engine to verify the proper outputbound access is in place for a Distributed Engine to communicate with SSC.
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
     Test-TssDistributedEngineCloudAccess -TssSession $session -TransportType AMQP -Timeout 30
 
     Run Hostname and IP port test for SSC URL and Service Bus with ports 5671 and 5672 for AMQP, with a timeout of 30 seconds
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $session = New-TssSession -SecretServer https://tenant.secretservercloud.eu -Credential $ssCred
     Test-TssDistributedEngineCloudAccess -TssSession $session
 
     Run Hostname and IP port test for SSC URL and Service Bus with port 443 (Web Sockets), with a default timeout of 5 seconds

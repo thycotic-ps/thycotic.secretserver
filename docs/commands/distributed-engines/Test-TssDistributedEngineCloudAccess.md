@@ -19,7 +19,7 @@ This function would be used from your Distributed Engine to verify the proper ou
 
 ### EXAMPLE 1
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
 Test-TssDistributedEngineCloudAccess -TssSession $session -TransportType AMQP -Timeout 30
 ```
 
@@ -27,7 +27,7 @@ Run Hostname and IP port test for SSC URL and Service Bus with ports 5671 and 56
 
 ### EXAMPLE 2
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.eu -Credential $ssCred
 Test-TssDistributedEngineCloudAccess -TssSession $session
 ```
 
