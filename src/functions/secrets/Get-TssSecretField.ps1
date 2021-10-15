@@ -146,7 +146,9 @@ function Get-TssSecretField {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
-                    . $ProcessResponse $apiResponse
+                    if (-not $tssParams.ContainsKey('OutFile')) {
+                        . $ProcessResponse $apiResponse
+                    }
                 } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
                     $err = $_
