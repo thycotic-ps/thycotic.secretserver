@@ -49,6 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Update-TssDistributedEngine - new command to change the status of an Engine (e.g. activate, delete) [a340f72](https://github.com/thycotic-ps/thycotic.secretserver/commit/a340f720ec1dcae4402499a40e9ae02bd3914682)
 * Remove-TssDistributedEngine - new command to delete a Distributed Engine (not reversible) [f5f560b](https://github.com/thycotic-ps/thycotic.secretserver/commit/f5f560be199c3ba0cc085db2abc6afabf490b782)
 * Unregister-TssDistributedEngine - new command to deactivate a Distributed Engine for a Site [d7a3f55](https://github.com/thycotic-ps/thycotic.secretserver/commit/d7a3f55ab8f8754fdeaa916f35ecf23e536d8893)
+* New-TssDistributedEngineSite - new command to create a Site [9ada9ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ada9edbc752b331fae1328c1cff7daa467f9a2d)
 
 ## General Updates
 
@@ -61,6 +62,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * docs - update, additions finding duplicate dependencies [f93ee34](https://github.com/thycotic-ps/thycotic.secretserver/commit/f93ee3467be25e30cd736581fce1fd2001e51ddd)
 * Register-TssDistributedEngine - rewrite [bd8fb30](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd8fb30e58f879160c07fe96b52c9b1060df700c)
 * docs - expanding working with secrets content [6e75b7f](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e75b7fda8229b0ccf921c759768758cf556b386)
+* Set-TssDistributedEngineSite - corrections [1952309](https://github.com/thycotic-ps/thycotic.secretserver/commit/1952309204093d8024bdf339b7a4f69c7ed51620)
 
 ## Tests
 
