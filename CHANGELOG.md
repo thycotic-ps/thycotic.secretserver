@@ -16,12 +16,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Compare-TssVersion (internal command) - fixes [#243](https://github.com/thycotic-ps/thycotic.secretserver/issues/243) [28f64d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/28f64d1dbc80a57075e146b269662058bb93d6f7)
 * Export-TssAutoExportStorageItem - correct issue with downloading zip file for auto export [3510feb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3510febf5c9d3cab9d42c40ff7aa4f1c07061d10)
 * New-TssSession - bug fix when login failure stop throwing warning about version [aefa624](https://github.com/thycotic-ps/thycotic.secretserver/commit/aefa624a03f726a04feeda9104e06d6a094a3e21)
+* Get-TssSecretField - correct error when called by Get-TssSecretAttachment [13d86b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/13d86b33dc714d81e3e60fea895ccbf07ce0e234)
 
 ## New Stuff
 
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
 * Get-TssDiagnosticConnectivityReport - new command to get the Internet connection test [a5b3425](https://github.com/thycotic-ps/thycotic.secretserver/commit/a5b3425daa40144a3c8af22a7ef5f580db25cd7a)
 * Get-TssDiagnosticBackgroundProcess - new command to get the background process details [bd91027](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd91027ca194040affa6e4dc1eb672b4a3d6ef5b)
+
+### Server Nodes
+
+* Search-TssServerNode - new command to get a list of all Server Nodes [fc97335](https://github.com/thycotic-ps/thycotic.secretserver/commit/fc97335a86f14c7540596aaf4b4420306fcb82a9)
+* Update-TssServerNode - new command to update worker roles, readonly mode, and in cluster configuration for a server node [725cb59](https://github.com/thycotic-ps/thycotic.secretserver/commit/725cb59775aa6f2c1b0b12393edf9545db809e16)
 
 ### Distributed Engine
 
@@ -54,6 +60,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * docs - authentication - updates, add PS Profile snippet [971b0b7](https://github.com/thycotic-ps/thycotic.secretserver/commit/971b0b734bf47fd3510be1805c6cec51fefa0592)
 * docs - update, additions finding duplicate dependencies [f93ee34](https://github.com/thycotic-ps/thycotic.secretserver/commit/f93ee3467be25e30cd736581fce1fd2001e51ddd)
 * Register-TssDistributedEngine - rewrite [bd8fb30](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd8fb30e58f879160c07fe96b52c9b1060df700c)
+* docs - expanding working with secrets content [6e75b7f](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e75b7fda8229b0ccf921c759768758cf556b386)
 
 ## Tests
 
