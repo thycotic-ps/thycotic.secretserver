@@ -8,7 +8,7 @@ function Get-TssConfigurationAutoExport {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssConfigurationAutomaticExport -TssSession $session -Id 42
+    Get-TssConfigurationAutoExport -TssSession $session -Id 42
 
     Return the Automatic Export configuration settings
 
