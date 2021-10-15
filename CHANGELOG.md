@@ -17,6 +17,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Export-TssAutoExportStorageItem - correct issue with downloading zip file for auto export [3510feb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3510febf5c9d3cab9d42c40ff7aa4f1c07061d10)
 * New-TssSession - bug fix when login failure stop throwing warning about version [aefa624](https://github.com/thycotic-ps/thycotic.secretserver/commit/aefa624a03f726a04feeda9104e06d6a094a3e21)
 * Get-TssSecretField - correct error when called by Get-TssSecretAttachment [13d86b3](https://github.com/thycotic-ps/thycotic.secretserver/commit/13d86b33dc714d81e3e60fea895ccbf07ce0e234)
+* Get-TssConfigurationAutoExport - correct examples fixes [#244](https://github.com/thycotic-ps/thycotic.secretserver/issues/244) [485e872](https://github.com/thycotic-ps/thycotic.secretserver/commit/485e87253be4ee4fc721b560d38ff8945d58d4c3)
+* Auto Export - added check for SSC on Search and Export (these won't work with on-premises SS) [da50bff](https://github.com/thycotic-ps/thycotic.secretserver/commit/da50bfffa1ec5db8295a195ad057501c4dbc0c3a)
 
 ## New Stuff
 
@@ -63,6 +65,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Register-TssDistributedEngine - rewrite [bd8fb30](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd8fb30e58f879160c07fe96b52c9b1060df700c)
 * docs - expanding working with secrets content [6e75b7f](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e75b7fda8229b0ccf921c759768758cf556b386)
 * Set-TssDistributedEngineSite - corrections [1952309](https://github.com/thycotic-ps/thycotic.secretserver/commit/1952309204093d8024bdf339b7a4f69c7ed51620)
+* Test-TssDistributedEngineCloudAccess - updated example URLs to show SSC [0c2db0a](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c2db0abfa2ae46ff981fb7209fc6a988672b888)
 
 ## Tests
 
