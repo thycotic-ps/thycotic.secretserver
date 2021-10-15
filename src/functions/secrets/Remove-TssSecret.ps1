@@ -46,9 +46,7 @@ function Remove-TssSecret {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
-
                 $invokeParams.Uri = $Uri
-
                 $invokeParams.Method = 'DELETE'
 
                 if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
