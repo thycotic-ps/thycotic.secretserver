@@ -1,7 +1,7 @@
 # Search-TssAutoExportStorage
 
 ## SYNOPSIS
-Search list of items in Automatic Export Storage
+Search list of items in Automatic Export Storage for Secret Server Cloud
 
 ## SYNTAX
 
@@ -10,13 +10,13 @@ Search-TssAutoExportStorage [-TssSession] <Session> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Search list of items in Automatic Export Storage
+Search list of items in Automatic Export Storage for Secret Server Cloud
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$session = New-TssSession -SecretServer https://tenant.secretservecloud.com -Credential $ssCred
 Search-TssAutoExportStorage -TssSession $session
 ```
 

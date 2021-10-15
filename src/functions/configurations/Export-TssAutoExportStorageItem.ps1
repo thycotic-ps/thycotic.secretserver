@@ -7,14 +7,14 @@ function Export-TssAutoExportStorageItem {
     Export the Automatic Export Storage Item, output will show the latest as the first object
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
     $item = Search-TssAutoExportStorage -TssSession $session
     Export-TssAutoExportStorageItem -TssSession $session -Id $item[0].Id -Filename $item[0].Filename -Output C:\temp\backup
 
     Exports the latest automatic secret export zip file to C:\temp\backup\<filename>.zip
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $session = New-TssSession -SecretServer https://tenant.secretservercloud.au -Credential $ssCred
     Search-TssAutoExportStorage -TssSession $session | select -First 1 | Export-TssAutoExportStorageItem -TssSession $session -Output C:\temp\backup
 
     Exports the latest automatic secret export zip file to C:\temp\backup\<filename>.zip
@@ -57,6 +57,7 @@ function Export-TssAutoExportStorageItem {
     }
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
+        try { Compare-TssUrl $TssSession } catch { throw $_ }
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage', 'item', $Id -join '/'

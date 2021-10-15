@@ -1,10 +1,10 @@
 function Search-TssAutoExportStorage {
     <#
     .SYNOPSIS
-    Search list of items in Automatic Export Storage
+    Search list of items in Automatic Export Storage for Secret Server Cloud
 
     .DESCRIPTION
-    Search list of items in Automatic Export Storage
+    Search list of items in Automatic Export Storage for Secret Server Cloud
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage
@@ -13,7 +13,7 @@ function Search-TssAutoExportStorage {
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssAutoExportStorage.ps1
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $session = New-TssSession -SecretServer https://tenant.secretservecloud.com -Credential $ssCred
     Search-TssAutoExportStorage -TssSession $session
 
     Returns a list of items in Automatic Export Storage
@@ -35,6 +35,7 @@ function Search-TssAutoExportStorage {
     }
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
+        try { Compare-TssUrl $TssSession } catch { throw $_ }
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage' -join '/'

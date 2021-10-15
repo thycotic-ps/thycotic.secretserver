@@ -17,7 +17,7 @@ Export the Automatic Export Storage Item, output will show the latest as the fir
 
 ### EXAMPLE 1
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
 $item = Search-TssAutoExportStorage -TssSession $session
 Export-TssAutoExportStorageItem -TssSession $session -Id $item[0].Id -Filename $item[0].Filename -Output C:\temp\backup
 ```
@@ -26,7 +26,7 @@ Exports the latest automatic secret export zip file to C:\temp\backup\\\<filenam
 
 ### EXAMPLE 2
 ```
-$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.au -Credential $ssCred
 Search-TssAutoExportStorage -TssSession $session | select -First 1 | Export-TssAutoExportStorageItem -TssSession $session -Output C:\temp\backup
 ```
 
