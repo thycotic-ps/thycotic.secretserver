@@ -89,11 +89,8 @@ function Set-TssSecretField {
         # Path of file to attach to field
         [Parameter(ParameterSetName = 'io')]
         [ValidateScript( {
-                if (-not (Test-Path $_ -PathType Container)) {
-                    throw "Path [$_] is a directory, provide full file path"
-                } else {
-                    $true
-                }
+                if (-not (Test-Path $_ -PathType Leaf)) { throw "Path [$_] is a directory, provide full file path" }
+                return $true
             })]
         $Path,
 
@@ -133,19 +130,6 @@ function Set-TssSecretField {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($setParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-
-            if ($setParams.ContainsKey('Clear') -and $setParams.ContainsKey('Value')) {
-                Write-Warning 'Clear and Value provided, only one is supported'
-                return
-            }
-            if ($setParams.ContainsKey('Filename') -and $setParams.ContainsKey('Path')) {
-                Write-Warning 'Filename and Path provided, only one is supported'
-                return
-            }
-            if ($setParams.ContainsKey('Filename') -and -not $setParams.ContainsKey('Value')) {
-                Write-Warning 'Value must be provided when using Filename'
-                return
-            }
 
             foreach ($secret in $Id) {
                 $fieldBody = @{}
