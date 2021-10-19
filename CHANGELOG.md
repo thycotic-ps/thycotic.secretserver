@@ -5,13 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Unreleased -- 2021-xx-xx
+## 0.59.0 -- 2021-10-19
 
-## Breaking Changes
+### Breaking Changes
 
 * Search-TssDistributedEngineSite - rename SiteName param to SearchText to standardize search commands [d1b18a0](https://github.com/thycotic-ps/thycotic.secretserver/commit/d1b18a06e0da8aee2ebe7306936df88b824d8210)
 
-## Bug Fixes
+### Bug Fixes
 
 * Compare-TssVersion (internal command) - fixes [#243](https://github.com/thycotic-ps/thycotic.secretserver/issues/243) [28f64d1](https://github.com/thycotic-ps/thycotic.secretserver/commit/28f64d1dbc80a57075e146b269662058bb93d6f7)
 * Export-TssAutoExportStorageItem - correct issue with downloading zip file for auto export [3510feb](https://github.com/thycotic-ps/thycotic.secretserver/commit/3510febf5c9d3cab9d42c40ff7aa4f1c07061d10)
@@ -20,7 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssConfigurationAutoExport - correct examples fixes [#244](https://github.com/thycotic-ps/thycotic.secretserver/issues/244) [485e872](https://github.com/thycotic-ps/thycotic.secretserver/commit/485e87253be4ee4fc721b560d38ff8945d58d4c3)
 * Auto Export - added check for SSC on Search and Export (these won't work with on-premises SS) [da50bff](https://github.com/thycotic-ps/thycotic.secretserver/commit/da50bfffa1ec5db8295a195ad057501c4dbc0c3a)
 
-## New Stuff
+### New Stuff
 
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
 * Get-TssDiagnosticConnectivityReport - new command to get the Internet connection test [a5b3425](https://github.com/thycotic-ps/thycotic.secretserver/commit/a5b3425daa40144a3c8af22a7ef5f580db25cd7a)
@@ -28,12 +28,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssSecretWebTemplate - new command to check Web Templates available, endpoint used by WPF [e9962a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9962a15a507749e8a10595ce4df8ea29f2bd965)
 * Search-TssSecretsByUrl - new command to check which Secret(s) is returned for a given URL, endpoint used by WPF [20dc14c](https://github.com/thycotic-ps/thycotic.secretserver/commit/20dc14c2af4f4cda61dff2b6c2edb30e7263c79c)
 
-### Server Nodes
+#### Server Nodes
 
 * Search-TssServerNode - new command to get a list of all Server Nodes [fc97335](https://github.com/thycotic-ps/thycotic.secretserver/commit/fc97335a86f14c7540596aaf4b4420306fcb82a9)
 * Update-TssServerNode - new command to update worker roles, readonly mode, and in cluster configuration for a server node [725cb59](https://github.com/thycotic-ps/thycotic.secretserver/commit/725cb59775aa6f2c1b0b12393edf9545db809e16)
 
-### Distributed Engine
+#### Distributed Engine
 
 * Search-TssDistributedEngine - new command to search for Engines [5113b7c](https://github.com/thycotic-ps/thycotic.secretserver/commit/5113b7c05bb889ae4cfbb4e88206d9312196f0c3)
 * Get-TssDistributedEngineConfiguration - new command to pull the configuration details [370cb33](https://github.com/thycotic-ps/thycotic.secretserver/commit/370cb33b6495b7f6a95ffebe2243e6a4611d960f)
@@ -55,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Unregister-TssDistributedEngine - new command to deactivate a Distributed Engine for a Site [d7a3f55](https://github.com/thycotic-ps/thycotic.secretserver/commit/d7a3f55ab8f8754fdeaa916f35ecf23e536d8893)
 * New-TssDistributedEngineSite - new command to create a Site [9ada9ed](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ada9edbc752b331fae1328c1cff7daa467f9a2d)
 
-## General Updates
+### General Updates
 
 * module - fix WhatIf output for internal code [8b88fe8](https://github.com/thycotic-ps/thycotic.secretserver/commit/8b88fe8ea0e07c25427ac87e809f6fef83d118aa)
 * Get-TssFolderState - update warning message [9907d60](https://github.com/thycotic-ps/thycotic.secretserver/commit/9907d60b9c1fbaaa08b58c1b9b4a1e52bb639519)
@@ -69,7 +69,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Set-TssDistributedEngineSite - corrections [1952309](https://github.com/thycotic-ps/thycotic.secretserver/commit/1952309204093d8024bdf339b7a4f69c7ed51620)
 * Test-TssDistributedEngineCloudAccess - updated example URLs to show SSC [0c2db0a](https://github.com/thycotic-ps/thycotic.secretserver/commit/0c2db0abfa2ae46ff981fb7209fc6a988672b888)
 
-## Tests
+### Tests
 
 * None
 
