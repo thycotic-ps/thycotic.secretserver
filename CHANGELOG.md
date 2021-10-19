@@ -25,6 +25,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Move-TssFolder - new command to use for moving child folder [02ac0bf](https://github.com/thycotic-ps/thycotic.secretserver/commit/02ac0bf958470c5285a4ff86091409e6304e7f52)
 * Get-TssDiagnosticConnectivityReport - new command to get the Internet connection test [a5b3425](https://github.com/thycotic-ps/thycotic.secretserver/commit/a5b3425daa40144a3c8af22a7ef5f580db25cd7a)
 * Get-TssDiagnosticBackgroundProcess - new command to get the background process details [bd91027](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd91027ca194040affa6e4dc1eb672b4a3d6ef5b)
+* Get-TssSecretWebTemplate - new command to check Web Templates available, endpoint used by WPF [e9962a1](https://github.com/thycotic-ps/thycotic.secretserver/commit/e9962a15a507749e8a10595ce4df8ea29f2bd965)
+* Search-TssSecretsByUrl - new command to check which Secret(s) is returned for a given URL, endpoint used by WPF [20dc14c](https://github.com/thycotic-ps/thycotic.secretserver/commit/20dc14c2af4f4cda61dff2b6c2edb30e7263c79c)
 
 ### Server Nodes
 
