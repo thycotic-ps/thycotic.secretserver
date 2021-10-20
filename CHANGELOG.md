@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+# Unreleased -- 2021-xx-xx
+
+## Breaking Changes
+
+* None
+
+## Bug Fixes
+
+* Search-TssSecretsByUrl - fixes [#246](https://github.com/thycotic-ps/thycotic.secretserver/issues/246) [57ff52d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57ff52d9aa68ea9c2ee6f0f0edbb1e27d6b7f36a)
+
+## New Stuff
+
+* None
+
+## General Updates
+
+* None
+
+## Tests
+
+* None
+
 ## 0.59.0 -- 2021-10-19
 
 ### Breaking Changes
