@@ -56,7 +56,7 @@ function Search-TssSecretsByUrl {
                 . $ErrorHandling $err
             }
 
-            if ($restResponse.records.Count -le 0 -and $restResponse.records.Length -eq 0) {
+            if ($restResponse.model.Count -le 0 -and $restResponse.model.Length -eq 0) {
                 Write-Warning "No records found"
             }
             if ($restResponse.model) {
