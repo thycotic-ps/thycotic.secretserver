@@ -17,7 +17,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## New Stuff
 
-* None
+### Lists
+
+* Search-TssList - new command to return summary of the Lists created [d22d861](https://github.com/thycotic-ps/thycotic.secretserver/commit/d22d8617d46cf931fb982c2fcd620a8e0d7a6b4f)
+* Get-TssListItem - new command to return the Items in a given Lists [7310b22](https://github.com/thycotic-ps/thycotic.secretserver/commit/7310b224b7285414625774000d98279c77373d90)
+* Get-TssListCategory - new command to return the categories on a List [d3cce97](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3cce97d7b06406c265748c7762def3d9223b342)
+* Add-TssListOption - new command to load Options for each category of a List [b0885f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b0885f12d4eab0fb7bb7e4e0f80468f2403bac80)
 
 ## General Updates
 
