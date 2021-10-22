@@ -46,6 +46,7 @@
         "Paren",
         "Pscmdlet",
         "scrollback",
-        "sysnative"
+        "sysnative",
+        "Uncategorized"
     ]
 }
