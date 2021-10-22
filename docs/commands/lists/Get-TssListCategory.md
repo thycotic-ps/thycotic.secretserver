@@ -48,7 +48,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Short description for parameter
+Categorized List ID
 
 ```yaml
 Type: String[]

@@ -46,7 +46,7 @@ function Get-TssDiagnosticConnectivityReport {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning 'Issue warning message'
+                Write-Warning 'Issue with request'
                 $err = $_
                 . $ErrorHandling $err
             }

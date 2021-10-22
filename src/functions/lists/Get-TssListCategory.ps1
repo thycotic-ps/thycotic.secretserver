@@ -35,7 +35,7 @@ function Get-TssListCategory {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Short description for parameter
+        # Categorized List ID
         [Parameter(Mandatory,ValueFromPipelineByPropertyName)]
         [Alias('CategorizedListId')]
         [string[]]
