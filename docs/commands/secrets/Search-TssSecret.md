@@ -9,10 +9,10 @@ Search for a secret
 ```
 Search-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
  [-SearchText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
- [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>] [-HeartbeatStatus <String>]
- [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe] [-PasswordTypeIds <Int32[]>]
- [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
- [<CommonParameters>]
+ [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
+ [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
+ [-PasswordTypeIds <Int32[]>] [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock]
+ [-DoubleLockId <Int32>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ### folder
@@ -31,7 +31,7 @@ Search-TssSecret [-TssSession] <Session> [-Field <String>] [-SearchText <String>
 ### secret
 ```
 Search-TssSecret [-TssSession] <Session> [-SecretTemplateId <Int32>] [-SiteId <Int32>]
- [-HeartbeatStatus <String>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
+ [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
  [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
  [<CommonParameters>]
 ```
@@ -262,9 +262,10 @@ Accept wildcard characters: False
 Return only secrets with a certain heartbeat status
 
 ```yaml
-Type: String
+Type: SecretHeartbeatStatus
 Parameter Sets: filter, secret
 Aliases:
+Accepted values: Failed, Success, Pending, Disabled, UnableToConnect, UnknownError, IncompatibleHost, AccountLockedOut, DnsMismatch, UnableToValidateServerPublicKey, Processing, ArgumentError, AccessDenied
 
 Required: False
 Position: Named

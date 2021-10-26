@@ -128,8 +128,7 @@ function Search-TssSecret {
         # Return only secrets with a certain heartbeat status
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'secret')]
-        [ValidateSet('Failed', 'Success', 'Pending', 'Disabled', 'UnableToConnect', 'UnknownError', 'IncompatibleHost', 'AccountLockedOut', 'DnsMismatch', 'UnableToValidateServerPublicKey', 'Processing', 'ArgumentError', 'AccessDenied')]
-        [string]
+        [Thycotic.PowerShell.Enums.SecretHeartbeatStatus]
         $HeartbeatStatus,
 
         # Include inactive/disabled secrets
@@ -213,6 +212,9 @@ function Search-TssSecret {
                 }
                 'SearchText' {
                     $filters += "filter.searchText=$($tssParams['SearchText'])"
+                }
+                'HeartbeatStatus' {
+                    $filters += "filter.heartbeatStatus=$([string]$HeartbeatStatus)"
                 }
                 'ExactMatch' {
                     $filters += "filter.isExactmatch=$($tssParams['ExactMatch'])"

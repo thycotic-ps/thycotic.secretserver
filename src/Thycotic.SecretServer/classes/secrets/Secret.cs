@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Secrets
 {
@@ -32,7 +33,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool IsRestricted { get; set; }
         public Items[] Items { get; set; }
         public DateTime? LastHeartBeatCheck { get; set; }
-        public string LastHeartBeatStatus { get; set; }
+        public HeartbeatStatus LastHeartBeatStatus { get; set; }
         public DateTime? LastPasswordChangeAttempt { get; set; }
         public int LauncherConnectAsSecretId { get; set; }
         public string Name { get; set; }

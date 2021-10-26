@@ -39,7 +39,6 @@ function Get-TssRpcAssociatedSecret {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Write-TssInternalNote $PSCmdlet.MyInvocation
         Get-TssInvocation $PSCmdlet.MyInvocation

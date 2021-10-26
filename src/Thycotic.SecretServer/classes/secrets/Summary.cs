@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Secrets
 {
@@ -23,7 +24,7 @@ namespace Thycotic.PowerShell.Secrets
         public string OutOfSyncReason { get; set; }
         public bool IsRestricted { get; set; }
         public DateTime? LastAccessed { get; set; }
-        public string LastHeartbeatStatus { get; set; }
+        public SecretHeartbeatStatus LastHeartbeatStatus { get; set; }
         public DateTime? LastPasswordChangeAttempt { get; set; }
         public string Name { get; set; }
         public bool RequiresApproval { get; set; }
