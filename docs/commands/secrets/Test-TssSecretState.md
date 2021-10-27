@@ -6,7 +6,7 @@ Test for a State on a Secret
 ## SYNTAX
 
 ```
-Test-TssSecretState [-TssSession] <Session> -SecretId <Int32> -State <String> [<CommonParameters>]
+Test-TssSecretState [-TssSession] <Session> -SecretId <Int32> -State <SecretStates> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,9 +58,10 @@ Accept wildcard characters: False
 State to test for
 
 ```yaml
-Type: String
+Type: SecretStates
 Parameter Sets: (All)
 Aliases:
+Accepted values: None, RequiresApproval, RequiresCheckout, RequiresComment, RequiresDoubleLockPassword, CreateDoubleLockPassword, DoubleLockNoAccess, CannotView, RequiresUndelete, RequiresCheckoutPendingRPC, RequiresCheckoutAndComment
 
 Required: True
 Position: Named

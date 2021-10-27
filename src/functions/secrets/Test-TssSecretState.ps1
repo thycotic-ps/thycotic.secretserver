@@ -40,8 +40,7 @@ function Test-TssSecretState {
 
         # State to test for
         [Parameter(Mandatory)]
-        [ValidateSet('None','RequiresApproval','RequiresCheckout','RequiresComment','RequiresDoubleLockPassword','CreateDoubleLockPassword','DoubleLockNoAccess','CannotView','RequiresUndelete','RequiresCheckoutPendingRPC','RequiresCheckoutAndComment')]
-        [string]
+        [Thycotic.PowerShell.Enums.SecretStates]
         $State
     )
     begin {
@@ -55,7 +54,7 @@ function Test-TssSecretState {
             if (-not $SecretResult) {
                 Write-Warning "No result returned for Secret [$SecretId]"
             } else {
-                $SecretResult.TestState($State)
+                $SecretResult.TestState([string]$State)
             }
         } else {
             Write-Warning "No valid session found"

@@ -2,6 +2,7 @@ using System;
 using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
+using Thycotic.PowerShell.Enums;
 
 namespace Thycotic.PowerShell.Secrets
 {
@@ -21,7 +22,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool PasswordChangePending { get; set; }
         public string Role { get; set; }
         public string SecretName { get; set; }
-        public string SecretState { get; set; }
+        public SecretStates SecretState { get; set; }
 
         public bool TestAction(string ActionName)
         {
@@ -45,7 +46,8 @@ namespace Thycotic.PowerShell.Secrets
 
         public bool TestState(string State)
         {
-            if (this.SecretState.Equals(State, StringComparison.OrdinalIgnoreCase))
+            var actualState = this.SecretState.ToString();
+            if (actualState.Equals(State, StringComparison.OrdinalIgnoreCase))
             {
                 return true;
             }
