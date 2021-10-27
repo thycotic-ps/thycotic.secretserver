@@ -52,8 +52,7 @@ function New-TssSecretTemplateField {
         $FieldName,
 
         # Field Type: Notes, Text, File, Url, or Password
-        [ValidateSet('Notes', 'Text', 'File', 'Url', 'Password')]
-        [string]
+        [Thycotic.PowerShell.Enums.TemplateFieldTypes]
         $Type = 'Text',
 
         # Edit permission: Owner, Edit, NotEditable
@@ -96,7 +95,7 @@ function New-TssSecretTemplateField {
             'Edit' { $editablePermission = 2 }
             'NotEditable' { $editablePermission = -1 }
         }
-        switch ($Type) {
+        switch ([string]$Type) {
             'Text' {
                 $isUrl = $isPassword = $isNotes = $isFile = $false
             }

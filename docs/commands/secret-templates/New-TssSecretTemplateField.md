@@ -6,7 +6,7 @@ Create a new field object for the TssSecretTemplate object
 ## SYNTAX
 
 ```
-New-TssSecretTemplateField [-FieldName] <String> [-Type <String>] [-EditRequire <String>]
+New-TssSecretTemplateField [-FieldName] <String> [-Type <TemplateFieldTypes>] [-EditRequire <String>]
  [-Description <String>] [-IsRequired] [-ViewRequiresEdit] [-HistoryLength <Int32>] [-Searchable]
  [-ExposeForDisplay] [-SortOrder <Int32>] [<CommonParameters>]
 ```
@@ -70,9 +70,10 @@ Accept wildcard characters: False
 Field Type: Notes, Text, File, Url, or Password
 
 ```yaml
-Type: String
+Type: TemplateFieldTypes
 Parameter Sets: (All)
 Aliases:
+Accepted values: Notes, Text, File, Url, Password
 
 Required: False
 Position: Named
