@@ -6,8 +6,8 @@ Search Workflow Templates
 ## SYNTAX
 
 ```
-Search-TssWorkflowTemplate [-TssSession] <Session> [-IncludeInactive] [-Type <String>] [-SortBy <String>]
- [<CommonParameters>]
+Search-TssWorkflowTemplate [-TssSession] <Session> [-IncludeInactive] [-Type <WorkflowTypes>]
+ [-SortBy <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -59,9 +59,10 @@ Accept wildcard characters: False
 Workflow Type (AccessRequest, SecretEraseRequest)
 
 ```yaml
-Type: String
+Type: WorkflowTypes
 Parameter Sets: (All)
 Aliases:
+Accepted values: AccessRequest, SecretEraseRequest
 
 Required: False
 Position: Named

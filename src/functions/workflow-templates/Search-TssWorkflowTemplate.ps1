@@ -34,9 +34,7 @@ function Search-TssWorkflowTemplate {
         $IncludeInactive,
 
         # Workflow Type (AccessRequest, SecretEraseRequest)
-        [Parameter()]
-        [ValidateSet('AccessRequest','SecretEraseRequest')]
-        [string]
+        [Thycotic.PowerShell.Enums.WorkflowTypes]
         $Type,
 
         # Sort by specific property, default Name
@@ -57,7 +55,7 @@ function Search-TssWorkflowTemplate {
             $uri = $uri, "filter.includeInactive=$([boolean]$IncludeInactive)" -join '&'
 
             if ($tssParams.ContainsKey('Type')) {
-                $uri = $uri, "filter.workflowType=$Type" -join '&'
+                $uri = $uri, "filter.workflowType=$([string]$Type)" -join '&'
             }
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
