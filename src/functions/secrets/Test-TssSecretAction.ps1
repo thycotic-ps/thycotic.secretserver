@@ -40,8 +40,7 @@ function Test-TssSecretAction {
 
         # Action to test for
         [Parameter(Mandatory)]
-        [ValidateSet('ChangePasswordNow','ConvertTemplate','Copy','Delete','Edit','EditExpiration','EditRpc','EditSecurity','Expire','Heartbeat','EditShare','ShowSshProxyCredentials','StopChangePasswordNow','ViewAudit','ViewDependencies','ViewLaunchers','ViewExpiration','ViewHooks','ViewRpc','ViewSecurity','ViewSettings','Undelete','ForceCheckIn','ViewShare','EditHooks','EditDependencies','ViewGeneralDetails','ViewHeartbeatStatus','CheckIn','Checkout','GenerateOneTimePassword','ShowSshTerminalDetails','ShowRdpProxyCredentials','ViewMetadata')]
-        [string]
+        [Thycotic.PowerShell.Enums.SecretActions]
         $Action
     )
     begin {
@@ -55,7 +54,7 @@ function Test-TssSecretAction {
             if (-not $secretResult) {
                 Write-Warning "No result returned for Secret [$SecretId]"
             } else {
-                $secretResult.TestAction($Action)
+                $secretResult.TestAction([string]$Action)
             }
         } else {
             Write-Warning "No valid session found"

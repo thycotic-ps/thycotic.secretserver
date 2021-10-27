@@ -6,7 +6,7 @@ Test for an allowed action on a Secret
 ## SYNTAX
 
 ```
-Test-TssSecretAction [-TssSession] <Session> -SecretId <Int32> -Action <String> [<CommonParameters>]
+Test-TssSecretAction [-TssSession] <Session> -SecretId <Int32> -Action <SecretActions> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -58,9 +58,10 @@ Accept wildcard characters: False
 Action to test for
 
 ```yaml
-Type: String
+Type: SecretActions
 Parameter Sets: (All)
 Aliases:
+Accepted values: ChangePasswordNow, ConvertTemplate, Copy, Delete, Edit, EditExpiration, EditRpc, EditSecurity, Expire, Heartbeat, EditShare, ShowSshProxyCredentials, StopChangePasswordNow, ViewAudit, ViewDependencies, ViewLaunchers, ViewExpiration, ViewHooks, ViewRpc, ViewSecurity, ViewSettings, Undelete, ForceCheckIn, ViewShare, EditHooks, EditDependencies, ViewGeneralDetails, ViewHeartbeatStatus, CheckIn, Checkout, GenerateOneTimePassword, ShowSshTerminalDetails, ShowRdpProxyCredentials, ViewMetadata
 
 Required: True
 Position: Named
