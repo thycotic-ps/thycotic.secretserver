@@ -8,7 +8,7 @@ Create a new Secret Server User
 ```
 New-TssUser [-TssSession] <Session> -Username <String> -DisplayName <String> -Password <SecureString> [-Active]
  [-IsApplicationAccount] [-EmailAddress <String>] [-DomainId <Int32>] [-AdGuid <String>]
- [-TwoFactorType <String>] [-RadiusUsername <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-TwoFactorType <TwoFactorTypes>] [-RadiusUsername <String>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -170,12 +170,13 @@ Accept wildcard characters: False
 ```
 
 ### -TwoFactorType
-2FA type
+2FA type (DUO, FIDO, RADIUS, OATH)
 
 ```yaml
-Type: String
+Type: TwoFactorTypes
 Parameter Sets: (All)
 Aliases:
+Accepted values: DUO, FIDO, RADIUS, OATH
 
 Required: False
 Position: Named

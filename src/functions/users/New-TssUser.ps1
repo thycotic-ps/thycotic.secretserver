@@ -72,9 +72,8 @@ function New-TssUser {
         [string]
         $AdGuid,
 
-        # 2FA type
-        [ValidateSet('DUO', 'FIDO', 'RADIUS', 'OATH')]
-        [string]
+        # 2FA type (DUO, FIDO, RADIUS, OATH)
+        [Thycotic.PowerShell.Enums.TwoFactorTypes]
         $TwoFactorType,
 
         # Username for RADIUS
@@ -108,7 +107,7 @@ function New-TssUser {
                 'DomainId' { $newBody.Add('domainId', $DomainId) }
                 'AdGuid' { $newBody.Add('adGuid', $AdGuid) }
                 'TwoFactorType' {
-                    if ($TwoFactorType -eq 'RADIUS' -and -not $tssNewParams.ContainsKey('RadiusUsername')) {
+                    if ([string]$TwoFactorType -eq 'RADIUS' -and -not $tssNewParams.ContainsKey('RadiusUsername')) {
                         Write-Warning 'Radius Username is required to create a user with RADIUS 2FA'
                         return
                     }
