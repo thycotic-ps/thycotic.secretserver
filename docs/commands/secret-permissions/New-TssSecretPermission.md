@@ -6,8 +6,9 @@ Create a new Secret Permission
 ## SYNTAX
 
 ```
-New-TssSecretPermission [-TssSession] <Session> -SecretId <Int32[]> -AccessRole <String> [-DomainName <String>]
- [-GroupName <String>] [-Username <String>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSecretPermission [-TssSession] <Session> -SecretId <Int32[]> -AccessRole <SecretPermissions>
+ [-DomainName <String>] [-GroupName <String>] [-Username <String>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -65,12 +66,13 @@ Accept wildcard characters: False
 ```
 
 ### -AccessRole
-Secret Access Role Name
+Secret Access Role Name (List, View, Edit, Owner)
 
 ```yaml
-Type: String
+Type: SecretPermissions
 Parameter Sets: (All)
 Aliases:
+Accepted values: List, View, Edit, Owner
 
 Required: True
 Position: Named

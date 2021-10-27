@@ -11,7 +11,7 @@ Search-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders
  [-SearchText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
- [-PasswordTypeIds <Int32[]>] [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock]
+ [-PasswordTypeIds <Int32[]>] [-Permission <SecretPermissions>] [-Scope <String>] [-ExcludeDoubleLock]
  [-DoubleLockId <Int32>] [-SortBy <String>] [<CommonParameters>]
 ```
 
@@ -353,9 +353,10 @@ Accept wildcard characters: False
 Filter based on permission (List, View, Edit or Owner)
 
 ```yaml
-Type: String
+Type: SecretPermissions
 Parameter Sets: filter
 Aliases:
+Accepted values: List, View, Edit, Owner
 
 Required: False
 Position: Named

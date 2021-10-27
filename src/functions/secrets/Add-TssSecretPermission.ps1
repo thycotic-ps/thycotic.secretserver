@@ -48,10 +48,9 @@ function Add-TssSecretPermission {
         [int[]]
         $SecretId,
 
-        # Secret Access Role Name
+        # Secret Access Role Name (List, View, Edit, Owner)
         [Parameter(Mandatory, ValueFromPipeline)]
-        [ValidateSet('List', 'View', 'Edit', 'Owner')]
-        [string]
+        [Thycotic.PowerShell.Enums.SecretPermissions]
         $AccessRole,
 
         #  Domain Name (the friendly name), if user or group is an Directory Service domain
@@ -104,7 +103,7 @@ function Add-TssSecretPermission {
                     TssSession = $TssSession
                     SecretId   = $SecretId
                     DomainName = $DomainName
-                    AccessRole = $AccessRole
+                    AccessRole = [string]$AccessRole
                 }
                 if ($username) {
                     $newSecretPermParams.Add('Username',$username)

@@ -139,8 +139,7 @@ function Find-TssSecret {
 
         # Filter based on permission (List, View, Edit or Owner)
         [Parameter(ParameterSetName = 'filter')]
-        [ValidateSet('List', 'View', 'Edit', 'Owner')]
-        [string]
+        [Thycotic.PowerShell.Enums.SecretPermissions]
         $Permission,
 
         # Filter All Secrets, Recent or Favorites
@@ -206,12 +205,7 @@ function Find-TssSecret {
                         }
                     }
                     'Permission' {
-                        $filters += switch ($tssParams['Permission']) {
-                            'List' { 'filter.permissionRequired=1' }
-                            'View' { 'filter.permissionRequired=2' }
-                            'Edit' { 'filter.permissionRequired=3' }
-                            'Owner' { 'filter.permissionRequired=4' }
-                        }
+                        $filters += "filter.permissionRequired=$Permission"
                     }
                     'Scope' {
                         $filters += switch ($tssParams['Scope']) {

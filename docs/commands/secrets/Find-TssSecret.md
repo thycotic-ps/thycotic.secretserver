@@ -11,7 +11,7 @@ Find-TssSecret [-TssSession] <Session> [-Id <Int32>] [-FolderId <Int32>] [-Inclu
  [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
- [-PasswordTypeIds <Int32[]>] [-Permission <String>] [-Scope <String>] [-ExcludeDoubleLock]
+ [-PasswordTypeIds <Int32[]>] [-Permission <SecretPermissions>] [-Scope <String>] [-ExcludeDoubleLock]
  [-DoubleLockId <Int32>] [<CommonParameters>]
 ```
 
@@ -325,9 +325,10 @@ Accept wildcard characters: False
 Filter based on permission (List, View, Edit or Owner)
 
 ```yaml
-Type: String
+Type: SecretPermissions
 Parameter Sets: filter
 Aliases:
+Accepted values: List, View, Edit, Owner
 
 Required: False
 Position: Named
