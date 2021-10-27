@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Bug Fixes
 
 * Search-TssSecretsByUrl - fixes [#246](https://github.com/thycotic-ps/thycotic.secretserver/issues/246) [57ff52d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57ff52d9aa68ea9c2ee6f0f0edbb1e27d6b7f36a)
+* Search-TssEventPipeline - correct PipelineName filter not working [8849345](https://github.com/thycotic-ps/thycotic.secretserver/commit/8849345591f929a7ec343df185ee6892ae7d68f5)
 
 ## New Stuff
 
@@ -26,7 +27,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## General Updates
 
-* None
+* HeartbeatStatus enum - adjust params and property to use enumerator [45f3fb4](https://github.com/thycotic-ps/thycotic.secretserver/commit/45f3fb463f4f434deb7b6d29faed86e2ee733622)
+* New-TssSecretTemplateField - convert Type param to enum [ac17a5f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ac17a5f55efb0e371564175855989983ad93e6d0)
+* Various commands - convert secret permissions param to enum [57307a4](https://github.com/thycotic-ps/thycotic.secretserver/commit/57307a48050510eff97ac47329e9915cdd2d1fa1)
+* New-TssUser - convert TwoFactorType param to enum [e3414ba](https://github.com/thycotic-ps/thycotic.secretserver/commit/e3414ba97259894765a341dc0eaaae93671cd9d2)
+* Test-TssSecretAction - convert Action param to enum [406b75c](https://github.com/thycotic-ps/thycotic.secretserver/commit/406b75cafccfc68dcf35eaed44ae70ed5603ee81)
+* Test-TssSecretState - convert State param to enum [658106f](https://github.com/thycotic-ps/thycotic.secretserver/commit/658106f1be5e6f4b6574f89b5901741248479f05)
+* Search-TssWorkflowTemplate - convert Type param to enum [6e98c79](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e98c79c8e0c5d2de8c272b5997e44ce39a02ef3)
 
 ## Tests
 
