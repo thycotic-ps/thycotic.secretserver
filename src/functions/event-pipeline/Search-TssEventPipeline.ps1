@@ -40,7 +40,6 @@ function Search-TssEventPipeline {
         $PipelinePolicyId,
 
         # Event Pipeline Name
-        [Parameter()]
         [string]
         $PipelineName,
 
@@ -75,7 +74,7 @@ function Search-TssEventPipeline {
             $filters = @()
             switch ($tssParams.Keys) {
                 'PipelineId' { $filters += "filter.eventPipelineId=$PipelineId" }
-                'PolicyName' { $fiters += "filter.eventPipelinePolicyName=$PolicyName" }
+                'PipelineName' { $filters += "filter.eventPipelineName=$PipelineName" }
                 'EventEntityType' { $filters += "filter.eventEntityTypeId=$EventEntityType"}
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
                 'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
