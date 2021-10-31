@@ -54,19 +54,20 @@ function Remove-TssEventPipeline {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess($pipeline,"$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue removing Event Pipeline [$pipeline] from Event Pipeline Policy [$PolicyId]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess($pipeline,"$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue removing Event Pipeline [$pipeline] from Event Pipeline Policy [$PolicyId]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    Write-Verbose "Event Pipeline [$pipeline] successfully removed from Event Pipeline Policy [$PolicyId]"
+                    if ($restResponse) {
+                        Write-Verbose "Event Pipeline [$pipeline] successfully removed from Event Pipeline Policy [$PolicyId]"
+                    }
                 }
             }
         } else {

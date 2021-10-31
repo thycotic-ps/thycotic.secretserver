@@ -49,19 +49,20 @@ function Remove-TssSecret {
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue disabling secret [$secret]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess("SecretId: $secret", "$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue disabling secret [$secret]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Common.Delete]$restResponse
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Common.Delete]$restResponse
+                    }
                 }
             }
         } else {

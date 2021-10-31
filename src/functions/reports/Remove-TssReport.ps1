@@ -49,21 +49,22 @@ function Remove-TssReport {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("Report ID: $report","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue removing report [$report]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess("Report ID: $report","$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue removing report [$report]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Common.Delete]@{
-                        Id = $report
-                        ObjectType = 'Report'
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Common.Delete]@{
+                            Id         = $report
+                            ObjectType = 'Report'
+                        }
                     }
                 }
             }

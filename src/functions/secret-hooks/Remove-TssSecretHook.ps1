@@ -53,19 +53,20 @@ function Remove-TssSecretHook {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $SecretId | Hook ID: $hook","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    . $ProcessResponse $apiResponse >$null
-                    [Thycotic.PowerShell.Common.Delete]@{
-                        Id = $hook
-                        ObjectType = 'Secret Hook'
+                if ($PSCmdlet.ShouldProcess("Secret ID: $SecretId | Hook ID: $hook","$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        . $ProcessResponse $apiResponse >$null
+                        [Thycotic.PowerShell.Common.Delete]@{
+                            Id         = $hook
+                            ObjectType = 'Secret Hook'
+                        }
+                    } catch {
+                        Write-Warning "Issue removing hook [$hook] on Secret $SecretId"
+                        $err = $_
+                        . $ErrorHandling $err
                     }
-                } catch {
-                    Write-Warning "Issue removing hook [$hook] on Secret $SecretId"
-                    $err = $_
-                    . $ErrorHandling $err
                 }
             }
         } else {

@@ -66,21 +66,22 @@ function Remove-TssIpRestrictionGroup {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'DELETE'
 
-                    if (-not $PSCmdlet.ShouldProcess("IP Restriction: $restriction","$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri) with $body"
-                    try {
-                        $apiResponse = Invoke-TssApi @invokeParams
-                        $restResponse = . $ProcessResponse $apiResponse
-                    } catch {
-                        Write-Warning "Issue removing IP Address Restriction [$restriction] from Group [$group]"
-                        $err = $_
-                        . $ErrorHandling $err
-                    }
+                    if ($PSCmdlet.ShouldProcess("IP Restriction: $restriction","$($invokeParams.Method) $($invokeParams.Uri)")) {
+                        Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri) with $body"
+                        try {
+                            $apiResponse = Invoke-TssApi @invokeParams
+                            $restResponse = . $ProcessResponse $apiResponse
+                        } catch {
+                            Write-Warning "Issue removing IP Address Restriction [$restriction] from Group [$group]"
+                            $err = $_
+                            . $ErrorHandling $err
+                        }
 
-                    if ($restResponse) {
-                        [Thycotic.PowerShell.Common.Delete]@{
-                            Id         = $restResponse.id
-                            ObjectType = $restResponse.objectType
+                        if ($restResponse) {
+                            [Thycotic.PowerShell.Common.Delete]@{
+                                Id         = $restResponse.id
+                                ObjectType = $restResponse.objectType
+                            }
                         }
                     }
                 }

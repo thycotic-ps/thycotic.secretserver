@@ -59,18 +59,19 @@ function Remove-TssReportCategory {
 
 
                 Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
-                if (-not $PSCmdlet.ShouldProcess("RemoteCategoryId: $category", "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue removing [$category]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess("RemoteCategoryId: $category", "$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue removing [$category]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Common.Delete]$restResponse
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Common.Delete]$restResponse
+                    }
                 }
             }
         } else {

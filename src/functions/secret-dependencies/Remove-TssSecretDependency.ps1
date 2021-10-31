@@ -50,21 +50,22 @@ function Remove-TssSecretDependency {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
 
-                if (-not $PSCmdlet.ShouldProcess($dependency, "$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue removing Secret Dependency [$dependency]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess($dependency, "$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue removing Secret Dependency [$dependency]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Common.Delete]@{
-                        Id         = $restResponse.id
-                        ObjectType = $restResponse.objectType
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Common.Delete]@{
+                            Id         = $restResponse.id
+                            ObjectType = $restResponse.objectType
+                        }
                     }
                 }
             }

@@ -49,21 +49,22 @@ function Remove-TssUserPii {
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'POST'
 
-                if (-not $PSCmdlet.ShouldProcess($user,"$($invokeParams.Method) $($invokeParams.Uri)")) { return }
-                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
-                try {
-                    $apiResponse = Invoke-TssApi @invokeParams
-                    $restResponse = . $ProcessResponse $apiResponse
-                } catch {
-                    Write-Warning "Issue deleting PII for user [$user]"
-                    $err = $_
-                    . $ErrorHandling $err
-                }
+                if ($PSCmdlet.ShouldProcess($user,"$($invokeParams.Method) $($invokeParams.Uri)")) {
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue deleting PII for user [$user]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
 
-                if ($restResponse) {
-                    [Thycotic.PowerShell.Common.Delete]@{
-                        Id = $user
-                        ObjectType = 'PII'
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Common.Delete]@{
+                            Id         = $user
+                            ObjectType = 'PII'
+                        }
                     }
                 }
             }
