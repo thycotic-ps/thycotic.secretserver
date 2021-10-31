@@ -15,6 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Search-TssSecretsByUrl - fixes [#246](https://github.com/thycotic-ps/thycotic.secretserver/issues/246) [57ff52d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57ff52d9aa68ea9c2ee6f0f0edbb1e27d6b7f36a)
 * Search-TssEventPipeline - correct PipelineName filter not working [8849345](https://github.com/thycotic-ps/thycotic.secretserver/commit/8849345591f929a7ec343df185ee6892ae7d68f5)
+* Secret class - correct LastHeartbeatStatus type [2269e80](https://github.com/thycotic-ps/thycotic.secretserver/commit/2269e80e4d96a618479a42da4a0c9675331824eb)
+* Find-TssSecret - adjusting parameter use and docs [2e48727](https://github.com/thycotic-ps/thycotic.secretserver/commit/2e4872762fd4a92e79ee9a5da271bbd0c8e900f3)
+* Search-TssSecret - correcting issue where parameters were not being applied properly [9ddd3ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ddd3ae53af854aedc06df9cba9f627be6d09d48)
+* Search-TssSecret - fix syntax error on IncludeSubFolders param [f57b366](https://github.com/thycotic-ps/thycotic.secretserver/commit/f57b366d3a7d72cc7fef891f2c6e68e4fa8d30c1)
+* Remove commands - correcting WhatIf support [8c74f6c](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c74f6c0250da807cf25be421108959dfab806ee)
 
 ## New Stuff
 
@@ -34,6 +39,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Test-TssSecretAction - convert Action param to enum [406b75c](https://github.com/thycotic-ps/thycotic.secretserver/commit/406b75cafccfc68dcf35eaed44ae70ed5603ee81)
 * Test-TssSecretState - convert State param to enum [658106f](https://github.com/thycotic-ps/thycotic.secretserver/commit/658106f1be5e6f4b6574f89b5901741248479f05)
 * Search-TssWorkflowTemplate - convert Type param to enum [6e98c79](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e98c79c8e0c5d2de8c272b5997e44ce39a02ef3)
+* Add support for NoAutoCheckout - option added in 11.0+ to not automatically checkout a secret [3b450cc](https://github.com/thycotic-ps/thycotic.secretserver/commit/3b450cc230a4e7fb758093f9e08929703d8d4cf6)
 
 ## Tests
 
