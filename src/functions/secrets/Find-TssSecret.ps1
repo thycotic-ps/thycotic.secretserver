@@ -4,13 +4,55 @@ function Find-TssSecret {
     Find a secret
 
     .DESCRIPTION
-    Find secrets using the filter parameters provided
+    Find secrets using various filters provided by each parameter
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Find-TssSecret -TssSession $session -FolderId 50 -RpcEnabled
 
     Return secrets found in folder 50 where RPC is enabled on the secret templates
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -FolderId 50 -SecretTemplateId 6001
+
+    Return all secrets using Secret Template 6001 that are found in FolderID 50.
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
+
+    Return all secrets using Secret Template 6047 that are active **and** inactive.
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -SecretName 'Azure'
+
+    Return all secrets that have Azure in the name of the Secret (wildcard search)
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -SecretName 'Azure Test Account' -ExactMatch
+
+    Return all secret(s) that have the exact name "Azure Test Account"
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -Field username -SearchText 'root'
+
+    Return all secret(s) that contain "root" in the username field value
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -FolderId 85
+
+    Return all secret(s) contained in Folder ID 85
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Find-TssSecret -TssSession $session -FolderId 85 -IncludeSubFolders
+
+    Return all secret(s) contained in Folder ID 85 and any child folders.
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Find-TssSecret
@@ -36,13 +78,13 @@ function Find-TssSecret {
         [int]
         $Id,
 
-        # Return only secrets within a certain folder
+        # Returns only secrets within the specified folder.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'folder')]
         [int]
         $FolderId,
 
-        # Include secrets in subfolders of the specified FolderId
+        # Whether to include secrets in subfolders of the specified folder.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'folder')]
         [Alias('IncludeSubFolder')]
@@ -58,10 +100,11 @@ function Find-TssSecret {
         # Text of the field to filter on
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'field')]
+        [Alias('SecretName')]
         [string]
-        $FieldText,
+        $SearchText,
 
-        # Match the exact text of the FieldText
+        # Whether to do an exact match of the search text or a partial match. If an exact match, the entire secret name, field value, or list option in a list field must match the search text.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'field')]
         [switch]
@@ -74,15 +117,14 @@ function Find-TssSecret {
         [string]
         $FieldSlug,
 
-        # Secret Template fields to return
-        # Only exposed fields can be returned
+        # An array of names of Secret Template fields to return. Only exposed fields can be returned.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'field')]
         [Alias('ExtendedFields')]
         [string[]]
         $ExtendedField,
 
-        # Return only secrets matching a certain extended type
+        # If not null, return only secrets matching the specified extended mapping type as defined on the secret’s template.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'field')]
         [int]
@@ -155,17 +197,20 @@ function Find-TssSecret {
         [switch]
         $ExcludeDoubleLock,
 
-        # Include only secrets with a specific DoubleLock ID assigned
+        # Only include Secrets with this DoubleLock ID assigned in the search results.
         [Parameter(ParameterSetName = 'filter')]
         [Parameter(ParameterSetName = 'secret')]
         [int]
-        $DoubleLockId
+        $DoubleLockId,
+
+        # Sort by specific property, default Name
+        [string]
+        $SortBy = 'Name'
     )
     begin {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -174,25 +219,33 @@ function Find-TssSecret {
                 $uri = $TssSession.ApiUrl , 'secrets/lookup', $Id -join '/'
             } else {
                 $uri = $TssSession.ApiUrl, 'secrets/lookup' -join '/'
-                $uri += "?take=$($TssSession.Take)"
+                $uri += "?sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)"
                 $uri += '&filter.includeRestricted=true'
 
                 $filters = @()
                 switch ($tssParams.Keys) {
-                    'Field' {
-                        $filters += "filter.searchField=$($tssParams['Field'])"
-                    }
-                    'FieldSlug' {
-                        $filters += "filter.searchFieldSlug=$($tssParams['FieldSlug'])"
-                    }
-                    'FieldText' {
-                        $filters += "filter.searchText=$($tssParams['FieldText'])"
-                    }
-                    'ExactMatch' {
-                        $filters += "filter.isExactmatch=$($tssParams['ExactMatch'])"
-                    }
-                    'HeartbeatStatus' {
-                        $filters += "filter.heartbeatStatus=$([string]$HeartbeatStatus)"
+                    'TssSession' { <# do nothing, added for performance #> }
+                    'Id' { <# do nothing, added for performance #> }
+                    'SiteId' { $filters += "filter.siteId=$SiteId" }
+                    'FolderId' { $filters += "filter.folderId=$FolderId" }
+                    'IncludeSubFolders' { $filters += "filter.includeSubFolders=$([boolean]$IncludeSubFolders))" }
+                    'Field' { $filters += "filter.searchField=$($Field)" }
+                    'FieldSlug' { $filters += "filter.searchFieldSlug=$FieldSlug" }
+                    'SearchText' { $filters += "filter.searchText=$SearchText" }
+                    'SecretTemplateId' { $filters += "filter.secretTemplateId=$SecretTemplateId" }
+                    'HeartbeatStatus' { $filters += "filter.heartbeatStatus=$([string]$HeartbeatStatus)" }
+                    'ExactMatch' { $filters += "filter.isExactmatch=$([boolean]$ExactMatch)" }
+                    'Permission' { $filters += "filter.permissionRequired=$Permission" }
+                    'RpcEnabled' { $filters += "filter.onlyRPCEnabled=$([boolean]$RpcEnabled)" }
+                    'SharedWithMe' { $filters += "filter.onlySharedWithMe=$([boolean]$SharedWithMe)" }
+                    'ExcludeDoubleLock' { $filters += "filter.allowDoubleLocks=$([boolean]$ExcludeDoubleLock)" }
+                    'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
+                    'Scope' {
+                        $filters += switch ($tssParams['Scope']) {
+                            'All' { 'filter.scope=1' }
+                            'Recent' { 'filter.scope=2' }
+                            'Favorite' { 'filter.scope=3' }
+                        }
                     }
                     'ExtendedField' {
                         foreach ($v in $tssParams['ExtendedField']) {
@@ -204,37 +257,12 @@ function Find-TssSecret {
                             $filters += "filter.passwordTypeIds=$v"
                         }
                     }
-                    'Permission' {
-                        $filters += "filter.permissionRequired=$Permission"
-                    }
-                    'Scope' {
-                        $filters += switch ($tssParams['Scope']) {
-                            'All' { 'filter.scope=1' }
-                            'Recent' { 'filter.scope=2' }
-                            'Favorite' { 'filter.scope=3' }
-                        }
-                    }
-                    'RpcEnabled' {
-                        $filters += "filter.onlyRPCEnabled=$($tssParams['RpcEnabled'])"
-                    }
-                    'SharedWithMe' {
-                        $filters += "filter.onlySharedWithMe=$($tssParams['SharedWithMe'])"
-                    }
-                    'ExcludeDoubleLock' {
-                        $filters += "filter.allowDoubleLocks=$($tssParams['ExcludeDoubleLock'])"
-                    }
-                    'ExcludeActive' {
-                        $filters += "filter.includeActive=$($tssParams['ExcludeActive'])"
-                    }
-                    default {
-                        if ($_ -in 'Verbose', 'TssSession', 'Raw') { continue } else {
-                            $filters += "filter.$($_)=$($tssParams[$_])"
-                        }
-                    }
                 }
-                $uriFilter = $filters -join '&'
-                Write-Verbose "Filters: $uriFilter"
-                $uri = $uri, $uriFilter -join '&'
+                if ($filters) {
+                    $uriFilter = $filters -join '&'
+                    Write-Verbose "Filters: $uriFilter"
+                    $uri = $uri, $uriFilter -join '&'
+                }
             }
 
             $invokeParams.Uri = $uri

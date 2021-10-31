@@ -8,33 +8,36 @@ Find a secret
 ### filter (Default)
 ```
 Find-TssSecret [-TssSession] <Session> [-Id <Int32>] [-FolderId <Int32>] [-IncludeSubFolders] [-Field <String>]
- [-FieldText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
+ [-SearchText <String>] [-ExactMatch] [-FieldSlug <String>] [-ExtendedField <String[]>]
  [-ExtendedTypeId <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
  [-PasswordTypeIds <Int32[]>] [-Permission <SecretPermissions>] [-Scope <String>] [-ExcludeDoubleLock]
- [-DoubleLockId <Int32>] [<CommonParameters>]
+ [-DoubleLockId <Int32>] [-SortBy <String>] [<CommonParameters>]
 ```
 
 ### secret
 ```
 Find-TssSecret [-TssSession] <Session> [-Id <Int32>] [-SecretTemplateId <Int32>] [-SiteId <Int32>]
  [-HeartbeatStatus <SecretHeartbeatStatus>] [-IncludeInactive] [-ExcludeActive] [-RpcEnabled] [-SharedWithMe]
- [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [<CommonParameters>]
+ [-PasswordTypeIds <Int32[]>] [-ExcludeDoubleLock] [-DoubleLockId <Int32>] [-SortBy <String>]
+ [<CommonParameters>]
 ```
 
 ### folder
 ```
-Find-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [<CommonParameters>]
+Find-TssSecret [-TssSession] <Session> [-FolderId <Int32>] [-IncludeSubFolders] [-SortBy <String>]
+ [<CommonParameters>]
 ```
 
 ### field
 ```
-Find-TssSecret [-TssSession] <Session> [-Field <String>] [-FieldText <String>] [-ExactMatch]
- [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [<CommonParameters>]
+Find-TssSecret [-TssSession] <Session> [-Field <String>] [-SearchText <String>] [-ExactMatch]
+ [-FieldSlug <String>] [-ExtendedField <String[]>] [-ExtendedTypeId <Int32>] [-SortBy <String>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Find secrets using the filter parameters provided
+Find secrets using various filters provided by each parameter
 
 ## EXAMPLES
 
@@ -45,6 +48,62 @@ Find-TssSecret -TssSession $session -FolderId 50 -RpcEnabled
 ```
 
 Return secrets found in folder 50 where RPC is enabled on the secret templates
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -FolderId 50 -SecretTemplateId 6001
+```
+
+Return all secrets using Secret Template 6001 that are found in FolderID 50.
+
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -SecretTemplateId 6047 -IncludeInactive
+```
+
+Return all secrets using Secret Template 6047 that are active **and** inactive.
+
+### EXAMPLE 4
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -SecretName 'Azure'
+```
+
+Return all secrets that have Azure in the name of the Secret (wildcard search)
+
+### EXAMPLE 5
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -SecretName 'Azure Test Account' -ExactMatch
+```
+
+Return all secret(s) that have the exact name "Azure Test Account"
+
+### EXAMPLE 6
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -Field username -SearchText 'root'
+```
+
+Return all secret(s) that contain "root" in the username field value
+
+### EXAMPLE 7
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -FolderId 85
+```
+
+Return all secret(s) contained in Folder ID 85
+
+### EXAMPLE 8
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Find-TssSecret -TssSession $session -FolderId 85 -IncludeSubFolders
+```
+
+Return all secret(s) contained in Folder ID 85 and any child folders.
 
 ## PARAMETERS
 
@@ -79,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderId
-Return only secrets within a certain folder
+Returns only secrets within the specified folder.
 
 ```yaml
 Type: Int32
@@ -94,7 +153,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeSubFolders
-Include secrets in subfolders of the specified FolderId
+Whether to include secrets in subfolders of the specified folder.
 
 ```yaml
 Type: SwitchParameter
@@ -123,13 +182,13 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -FieldText
+### -SearchText
 Text of the field to filter on
 
 ```yaml
 Type: String
 Parameter Sets: filter, field
-Aliases:
+Aliases: SecretName
 
 Required: False
 Position: Named
@@ -139,7 +198,8 @@ Accept wildcard characters: False
 ```
 
 ### -ExactMatch
-Match the exact text of the FieldText
+Whether to do an exact match of the search text or a partial match.
+If an exact match, the entire secret name, field value, or list option in a list field must match the search text.
 
 ```yaml
 Type: SwitchParameter
@@ -170,8 +230,8 @@ Accept wildcard characters: False
 ```
 
 ### -ExtendedField
-Secret Template fields to return
-Only exposed fields can be returned
+An array of names of Secret Template fields to return.
+Only exposed fields can be returned.
 
 ```yaml
 Type: String[]
@@ -186,7 +246,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtendedTypeId
-Return only secrets matching a certain extended type
+If not null, return only secrets matching the specified extended mapping type as defined on the secret's template.
 
 ```yaml
 Type: Int32
@@ -368,7 +428,7 @@ Accept wildcard characters: False
 ```
 
 ### -DoubleLockId
-Include only secrets with a specific DoubleLock ID assigned
+Only include Secrets with this DoubleLock ID assigned in the search results.
 
 ```yaml
 Type: Int32
@@ -378,6 +438,21 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SortBy
+Sort by specific property, default Name
+
+```yaml
+Type: String
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: Name
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
