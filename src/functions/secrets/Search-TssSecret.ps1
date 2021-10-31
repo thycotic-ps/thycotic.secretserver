@@ -217,7 +217,7 @@ function Search-TssSecret {
                 'TssSession' { <# do nothing, added for performance #> }
                 'SiteId' { $filters += "filter.siteId=$SiteId"}
                 'FolderId' { $filters += "filter.folderId=$FolderId" }
-                'IncludeSubFolders' { $filters += "filter.includeSubFolders=$([boolean]$IncludeSubFolders))" }
+                'IncludeSubFolders' { $filters += "filter.includeSubFolders=$([boolean]$IncludeSubFolders)" }
                 'Field' { $filters += "filter.searchField=$($Field)" }
                 'FieldSlug' { $filters += "filter.searchFieldSlug=$FieldSlug" }
                 'SearchText' { $filters += "filter.searchText=$SearchText" }
