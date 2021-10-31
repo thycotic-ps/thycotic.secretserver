@@ -33,7 +33,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool IsRestricted { get; set; }
         public Items[] Items { get; set; }
         public DateTime? LastHeartBeatCheck { get; set; }
-        public HeartbeatStatus LastHeartBeatStatus { get; set; }
+        public SecretHeartbeatStatus LastHeartBeatStatus { get; set; }
         public DateTime? LastPasswordChangeAttempt { get; set; }
         public int LauncherConnectAsSecretId { get; set; }
         public string Name { get; set; }
