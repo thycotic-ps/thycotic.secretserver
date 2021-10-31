@@ -5,9 +5,22 @@ Get a Secret attachment
 
 ## SYNTAX
 
+### id
 ```
-Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> -Path <String> [-Comment <String>]
- [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-NoAutoCheckout]
+ [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+```
+
+### path
+```
+Get-TssSecretAttachment [-TssSession] <Session> -Slug <String> -Path <String> [-NoAutoCheckout]
+ [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+```
+
+### restricted
+```
+Get-TssSecretAttachment [-TssSession] <Session> -Slug <String> [-Comment <String>] [-ForceCheckIn]
+ [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -48,7 +61,7 @@ Secret ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: id
 Aliases: SecretId
 
 Required: True
@@ -78,12 +91,27 @@ Write contents to a file (for file attachments and SSH public/private keys)
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: path
 Aliases:
 
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -NoAutoCheckout
+Don't check out the secret automatically (added in 11.0+)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: id, path
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

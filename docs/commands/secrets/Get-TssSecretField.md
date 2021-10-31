@@ -7,13 +7,13 @@ Get data of a field
 
 ### field (Default)
 ```
-Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
+Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-NoAutoCheckout] [-OutFile <FileInfo>]
  [<CommonParameters>]
 ```
 
 ### restricted
 ```
-Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-OutFile <FileInfo>]
+Get-TssSecretField [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-NoAutoCheckout] [-OutFile <FileInfo>]
  [-Comment <String>] [-DoublelockPassword <SecureString>] [-ForceCheckIn] [-IncludeInactive]
  [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
 ```
@@ -95,6 +95,21 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -NoAutoCheckout
+Don't check out the secret automatically (added in 11.0+)
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

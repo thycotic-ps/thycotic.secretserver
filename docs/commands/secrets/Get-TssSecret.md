@@ -141,7 +141,7 @@ Accept wildcard characters: False
 ```
 
 ### -NoAutoCheckout
-Do not automatically check out the secret
+Don't check out the secret automatically (added in 11.0+)
 
 ```yaml
 Type: SwitchParameter

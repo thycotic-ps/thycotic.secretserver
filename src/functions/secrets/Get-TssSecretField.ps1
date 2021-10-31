@@ -43,13 +43,17 @@ function Get-TssSecretField {
         $Id,
 
         # Secret ID to retrieve
-        [Parameter(Mandatory,
-            ValueFromPipelineByPropertyName,
-            ParameterSetName = 'field')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'field')]
         [Parameter(Mandatory, ParameterSetName = 'restricted')]
         [Alias('FieldName')]
         [string]
         $Slug,
+
+        # Don't check out the secret automatically (added in 11.0+)
+        [Parameter(ParameterSetName = 'field')]
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]
+        $NoAutoCheckout,
 
         # Write contents to a file (for file attachments and SSH public/private keys)
         [Parameter(ParameterSetName = 'field')]
@@ -105,6 +109,9 @@ function Get-TssSecretField {
                         'Comment' {
                             $body.Add('comment', $Comment)
                         }
+                        'NoAutoCheckout' {
+                            $body.Add('noAutoCheckout',[boolean]$NoAutoCheckout)
+                        }
                         'DoublelockPassword' {
                             $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
                             $body.Add('doubleLockPassword', $passwd)
@@ -128,6 +135,9 @@ function Get-TssSecretField {
                     $invokeParams.Body = $body | ConvertTo-Json
                 } else {
                     $uri = $uri, 'fields', $Slug -join '/'
+                    if ($tssParams.ContainsKey('NoAutoCheckout')) {
+                        $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
+                    }
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'GET'
                 }

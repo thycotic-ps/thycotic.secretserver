@@ -31,7 +31,7 @@ function Get-TssSecretAttachment {
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
         [Alias('SecretId')]
         [int[]]
         $Id,
@@ -43,27 +43,41 @@ function Get-TssSecretAttachment {
         $Slug,
 
         # Write contents to a file (for file attachments and SSH public/private keys)
-        [Parameter(Mandatory)]
+        [Parameter(Mandatory, ParameterSetName = 'path')]
         [ValidateScript( { Test-Path $_ -PathType Container })]
         [string]
         $Path,
 
+        # Don't check out the secret automatically (added in 11.0+)
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
+        [switch]
+        $NoAutoCheckout,
+
         # Comment to provide for restricted secret (Require Comment is enabled)
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
 
         # Check in the secret if it is checked out
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $ForceCheckIn,
 
         # Associated ticket number (required for ticket integrations)
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $TicketNumber,
 
         # Associated ticket system ID (required for ticket integrations)
+        [Parameter(ParameterSetName = 'id')]
+        [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [int]
         $TicketSystemId
@@ -79,7 +93,6 @@ function Get-TssSecretAttachment {
             }
         }
     }
-
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
@@ -88,8 +101,9 @@ function Get-TssSecretAttachment {
                 $currentSecret = $null
 
                 $getSecretParams = @{
-                    TssSession = $TssSession
-                    Id         = $secret
+                    TssSession     = $TssSession
+                    Id             = $secret
+                    NoAutoCheckout = $NoAutoCheckout
                 }
                 if ($restrictedParams.Count -gt 0) {
                     $getSecretParams.Add('Comment', $Comment)
@@ -98,35 +112,37 @@ function Get-TssSecretAttachment {
                     $getSecretParams.Add('TicketSystemId', $TicketSystemId)
                 }
                 $currentSecret = Get-TssSecret @getSecretParams
-                $currentSecretFileItem = $currentSecret.Items.Where( { $_.Slug -eq $Slug })
+                if ($currentSecret) {
+                    $currentSecretFileItem = $currentSecret.Items.Where( { $_.Slug -eq $Slug })
 
-                if ($currentSecretFileItem.IsFile) {
-                    $attachmentFilename = $currentSecretFileItem.Filename
-                } else {
-                    Write-Warning "Secert [$secret] and slug [$slug] is not found to be a file field"
-                    continue
-                }
-
-                if ($attachmentFilename) {
-                    $fileAttachment = [IO.Path]::Combine($Path, $attachmentFilename)
-                    $getSecretFieldParams = @{
-                        TssSession = $TssSession
-                        Id         = $secret
-                        Slug       = $Slug
-                        OutFile    = $fileAttachment
+                    if ($currentSecretFileItem.IsFile) {
+                        $attachmentFilename = $currentSecretFileItem.Filename
+                    } else {
+                        Write-Warning "Secert [$secret] and slug [$slug] is not found to be a file field"
+                        continue
                     }
-                    if ($restrictedParams.Count -gt 0) {
-                        $getSecretFieldParams.Add('Comment', $Comment)
-                        $getSecretFieldParams.Add('ForceCheckIn', $ForceCheckIn)
-                        $getSecretFieldParams.Add('TicketNumber', $TicketNumber)
-                        $getSecretFieldParams.Add('TicketSystemId', $TicketSystemId)
-                    }
-                    Write-Verbose "Secret Attachment file name: $fileAttachment"
-                    Get-TssSecretField @getSecretFieldParams
 
-                    if (Test-Path $fileAttachment) {
-                        Write-Verbose "Secret [$secret] file [$attachmentFilename] successfully written to the path [$fileAttachment]"
-                        Get-ChildItem $fileAttachment
+                    if ($attachmentFilename) {
+                        $fileAttachment = [IO.Path]::Combine($Path, $attachmentFilename)
+                        $getSecretFieldParams = @{
+                            TssSession = $TssSession
+                            Id         = $secret
+                            Slug       = $Slug
+                            OutFile    = $fileAttachment
+                        }
+                        if ($restrictedParams.Count -gt 0) {
+                            $getSecretFieldParams.Add('Comment', $Comment)
+                            $getSecretFieldParams.Add('ForceCheckIn', $ForceCheckIn)
+                            $getSecretFieldParams.Add('TicketNumber', $TicketNumber)
+                            $getSecretFieldParams.Add('TicketSystemId', $TicketSystemId)
+                        }
+                        Write-Verbose "Secret Attachment file name: $fileAttachment"
+                        Get-TssSecretField @getSecretFieldParams
+
+                        if (Test-Path $fileAttachment) {
+                            Write-Verbose "Secret [$secret] file [$attachmentFilename] successfully written to the path [$fileAttachment]"
+                            Get-ChildItem $fileAttachment
+                        }
                     }
                 } else {
                     Write-Warning "Unable to find a filename for Secret [$secret] and slug [$slug]"

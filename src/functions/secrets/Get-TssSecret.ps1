@@ -83,7 +83,7 @@ function Get-TssSecret {
         [string[]]
         $Path,
 
-        # Do not automatically check out the secret
+        # Don't check out the secret automatically (added in 11.0+)
         [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [switch]
