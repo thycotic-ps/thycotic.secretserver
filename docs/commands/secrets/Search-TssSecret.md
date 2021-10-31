@@ -87,7 +87,23 @@ $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
 Search-TssSecret -TssSession $session -Field username -SearchText 'root'
 ```
 
-Return all secret(s) that have the username "root"
+Return all secret(s) that contain "root" in the username field value
+
+### EXAMPLE 7
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSecret -TssSession $session -FolderId 85
+```
+
+Return all secret(s) contained in Folder ID 85
+
+### EXAMPLE 8
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssSecret -TssSession $session -FolderId 85 -IncludeSubFolders
+```
+
+Return all secret(s) contained in Folder ID 85 and any child folders.
 
 ## PARAMETERS
 
@@ -107,7 +123,7 @@ Accept wildcard characters: False
 ```
 
 ### -FolderId
-Return only secrets within a certain folder
+Returns only secrets within the specified folder.
 
 ```yaml
 Type: Int32
@@ -122,7 +138,7 @@ Accept wildcard characters: False
 ```
 
 ### -IncludeSubFolders
-Include secrets in subfolders of the specified FolderId
+Whether to include secrets in subfolders of the specified folder.
 
 ```yaml
 Type: SwitchParameter
@@ -167,7 +183,8 @@ Accept wildcard characters: False
 ```
 
 ### -ExactMatch
-Match the exact text of the SearchText
+Whether to do an exact match of the search text or a partial match.
+If an exact match, the entire secret name, field value, or list option in a list field must match the search text.
 
 ```yaml
 Type: SwitchParameter
@@ -198,8 +215,8 @@ Accept wildcard characters: False
 ```
 
 ### -ExtendedField
-Secret Template fields to return
-Only exposed fields can be returned
+An array of names of Secret Template fields to return.
+Only exposed fields can be returned.
 
 ```yaml
 Type: String[]
@@ -214,7 +231,7 @@ Accept wildcard characters: False
 ```
 
 ### -ExtendedTypeId
-Return only secrets matching a certain extended type
+If not null, return only secrets matching the specified extended mapping type as defined on the secret's template.
 
 ```yaml
 Type: Int32
@@ -396,7 +413,7 @@ Accept wildcard characters: False
 ```
 
 ### -DoubleLockId
-Include only secrets with a specific DoubleLock ID assigned
+Only include Secrets with this DoubleLock ID assigned in the search results.
 
 ```yaml
 Type: Int32
