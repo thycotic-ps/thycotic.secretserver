@@ -29,7 +29,7 @@ function Get-TssRpcPasswordType {
         [Thycotic.PowerShell.Authentication.Session]
         $TssSession,
 
-        # Short description for parameter
+        # Password Type ID
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('PasswordTypeId')]
         [int[]]
@@ -39,14 +39,13 @@ function Get-TssRpcPasswordType {
         $tssParams = $PSBoundParameters
         $invokeParams = . $GetInvokeApiParams $TssSession
     }
-
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($passwordType in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl, 'rpc', 'password-types', $passwordType -join '/'
+                $uri = $TssSession.ApiUrl, 'remote-password-changing', 'password-types', $passwordType -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 
