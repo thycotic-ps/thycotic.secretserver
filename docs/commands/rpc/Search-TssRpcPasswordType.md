@@ -46,7 +46,7 @@ Search based on text in Name
 ```yaml
 Type: String
 Parameter Sets: (All)
-Aliases: SearchTerm
+Aliases:
 
 Required: False
 Position: Named

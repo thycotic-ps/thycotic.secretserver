@@ -30,7 +30,6 @@ function Search-TssRpcPasswordType {
         $TssSession,
 
         # Search based on text in Name
-        [Alias('SearchTerm')]
         [string]
         $SearchText,
 
@@ -52,7 +51,7 @@ function Search-TssRpcPasswordType {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $restResponse = $null
-            $uri = $TssSession.ApiUrl, 'rpc', 'password-types' -join '/'
+            $uri = $TssSession.ApiUrl, 'remote-password-changing', 'password-types' -join '/'
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
             $filters = @()
@@ -84,7 +83,7 @@ function Search-TssRpcPasswordType {
                 Write-Warning 'No RpcPasswordType found'
             }
             if ($restResponse.records) {
-                [TThycotic.PowerShell.Rpc.PasswordTypeSummary[]]$restResponse.records
+                [Thycotic.PowerShell.Rpc.PasswordTypeSummary[]]$restResponse.records
             }
         } else {
             Write-Warning 'No valid session found'
