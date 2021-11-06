@@ -5,13 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-# Unreleased -- 2021-xx-xx
+## 0.60.0 -- 2021-11-06
 
-## Breaking Changes
+### Breaking Changes
 
 * None
 
-## Bug Fixes
+### Bug Fixes
 
 * Search-TssSecretsByUrl - fixes [#246](https://github.com/thycotic-ps/thycotic.secretserver/issues/246) [57ff52d](https://github.com/thycotic-ps/thycotic.secretserver/commit/57ff52d9aa68ea9c2ee6f0f0edbb1e27d6b7f36a)
 * Search-TssEventPipeline - correct PipelineName filter not working [8849345](https://github.com/thycotic-ps/thycotic.secretserver/commit/8849345591f929a7ec343df185ee6892ae7d68f5)
@@ -25,9 +25,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * SecretPolicyItem type - mapping update for HideLauncherPassword -> ViewingPasswordRequiresEdit [2f4e9d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/2f4e9d01552fccea9ec6d439977d555b25525ac6)
 * New-TssSession - issue with UseWindowsAuth param fixes [#247](https://github.com/thycotic-ps/thycotic.secretserver/issues/247) [2e66725](https://github.com/thycotic-ps/thycotic.secretserver/commit/2e66725d763297688d2f00f8a3af59aecdf69172)
 
-## New Stuff
+### New Stuff
 
-### Lists
+#### Lists
 
 * Search-TssList - new command to return summary of the Lists created [d22d861](https://github.com/thycotic-ps/thycotic.secretserver/commit/d22d8617d46cf931fb982c2fcd620a8e0d7a6b4f)
 * Get-TssListCategory - new command to return the categories on a List [d3cce97](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3cce97d7b06406c265748c7762def3d9223b342)
@@ -41,7 +41,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Show-TssListCurrentUser - new command to retrieve the Lists the current user session can access [05c32ef](https://github.com/thycotic-ps/thycotic.secretserver/commit/05c32eff3a18f79930fc406edefbd519edacad36)
 * New-TssList - new command to create a List(s) [a253fa2](https://github.com/thycotic-ps/thycotic.secretserver/commit/a253fa2199d095a362f954218a83121115807995)
 
-## General Updates
+### General Updates
 
 * HeartbeatStatus enum - adjust params and property to use enumerator [45f3fb4](https://github.com/thycotic-ps/thycotic.secretserver/commit/45f3fb463f4f434deb7b6d29faed86e2ee733622)
 * New-TssSecretTemplateField - convert Type param to enum [ac17a5f](https://github.com/thycotic-ps/thycotic.secretserver/commit/ac17a5f55efb0e371564175855989983ad93e6d0)
@@ -52,7 +52,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssWorkflowTemplate - convert Type param to enum [6e98c79](https://github.com/thycotic-ps/thycotic.secretserver/commit/6e98c79c8e0c5d2de8c272b5997e44ce39a02ef3)
 * Add support for NoAutoCheckout - option added in 11.0+ to not automatically checkout a secret [3b450cc](https://github.com/thycotic-ps/thycotic.secretserver/commit/3b450cc230a4e7fb758093f9e08929703d8d4cf6)
 
-## Tests
+### Tests
 
 * None
 
