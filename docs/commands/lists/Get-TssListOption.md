@@ -1,42 +1,42 @@
-# Get-TssListItem
+# Get-TssListOption
 
 ## SYNOPSIS
-Return the List's items
+Return the List's options
 
 ## SYNTAX
 
 ```
-Get-TssListItem [-TssSession] <Session> -Id <String[]> [-Category <String>] [<CommonParameters>]
+Get-TssListOption [-TssSession] <Session> -Id <String[]> [-Category <String>] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Return the List's items
+Return the List's options
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssListItem -TssSession $session -Id 'df0b8746-581f-4ac2-a9b2-5a2b7a679f3e'
+Get-TssListOption -TssSession $session -Id 'df0b8746-581f-4ac2-a9b2-5a2b7a679f3e'
 ```
 
-Return details on the list by ID
+Return options on the List by ID
 
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssList -SearchText 'IT' | Get-TssListItem -TssSession $session
+Search-TssList -SearchText 'IT' | Get-TssListOption -TssSession $session
 ```
 
-Return items for all Lists that have "IT" in their name
+Return options for all Lists that have "IT" in their name
 
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssList -SearchText 'Servers' | Get-TssListItem -TssSession $session -Category $null
+Search-TssList -SearchText 'Servers' | Get-TssListOption -TssSession $session -Category $null
 ```
 
-Return the uncategorized item for any list with "Servers" in the name
+Return the uncategorized options for any list with "Servers" in the name
 
 ## PARAMETERS
 
@@ -98,7 +98,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListItem](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListItem)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListOption](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListOption)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListItem.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListItem.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListOption.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListOption.ps1)
 

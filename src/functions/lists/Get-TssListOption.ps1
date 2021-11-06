@@ -1,34 +1,34 @@
-function Get-TssListItem {
+function Get-TssListOption {
     <#
     .SYNOPSIS
-    Return the List's items
+    Return the List's options
 
     .DESCRIPTION
-    Return the List's items
+    Return the List's options
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssListItem -TssSession $session -Id 'df0b8746-581f-4ac2-a9b2-5a2b7a679f3e'
+    Get-TssListOption -TssSession $session -Id 'df0b8746-581f-4ac2-a9b2-5a2b7a679f3e'
 
-    Return details on the list by ID
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssList -SearchText 'IT' | Get-TssListItem -TssSession $session
-
-    Return items for all Lists that have "IT" in their name
+    Return options on the List by ID
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssList -SearchText 'Servers' | Get-TssListItem -TssSession $session -Category $null
+    Search-TssList -SearchText 'IT' | Get-TssListOption -TssSession $session
 
-    Return the uncategorized item for any list with "Servers" in the name
+    Return options for all Lists that have "IT" in their name
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssList -SearchText 'Servers' | Get-TssListOption -TssSession $session -Category $null
+
+    Return the uncategorized options for any list with "Servers" in the name
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListItem
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListOption
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListItem.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListOption.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
