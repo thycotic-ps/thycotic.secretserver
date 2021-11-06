@@ -1,7 +1,7 @@
 # Clear-TssList
 
 ## SYNOPSIS
-Clear all List options from the list
+Clear all List categories and options from the list.
 
 ## SYNTAX
 
@@ -10,7 +10,7 @@ Clear-TssList [-TssSession] <Session> -Id <String[]> [-WhatIf] [-Confirm] [<Comm
 ```
 
 ## DESCRIPTION
-Clear all List options from the list.
+Clear all List categories and options from the list.
 
 ## EXAMPLES
 
