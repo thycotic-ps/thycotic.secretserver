@@ -108,7 +108,6 @@ function New-TssSession {
         $outputTssSession = [Thycotic.PowerShell.Authentication.Session]::new()
         $tssExe = [IO.Path]::Combine($clientSdkPath, 'tss.exe')
     }
-
     process {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($SecretServer -match '(?:\/api\/v1)|(?:\/oauth2\/token)') {
@@ -143,7 +142,7 @@ function New-TssSession {
                 Write-Verbose "Performing the operation POST $($newTokenParams.Uri)"
                 try {
                     $apiResponse = New-TssApiToken @newTokenParams
-                    $restResponse = . $ProcessResponse $apiResponse
+                    $restResponse = . $ProcessResponse $apiResponse -ErrorAction Stop
                 } catch {
                     Write-Warning "Issue authenticating to [$SecretServer]"
                     $err = $_.ErrorDetails.Message
@@ -233,7 +232,8 @@ function New-TssSession {
                     return
                 }
             }
-            if (-not $outputTssSession.AccessToken) {
+            if (-not $outputTssSession.AccessToken -and $outputTssSession.TokenType -ne 'WindowsAuth') {
+                Write-Warning "Unable to retrieve an Access Token"
                 return
             }
             $outputTssSession.StartTime = [datetime]::Now

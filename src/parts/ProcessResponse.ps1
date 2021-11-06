@@ -13,8 +13,19 @@ $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
 }
 New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force -WhatIf:$false
 if (-not $Response.IsSuccessful) {
-    $errorContent = $Response.Content
-    $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new($errorContent),"ResultError", "NotSpecified", $invokeParams.Uri))
+    if ($Response.ErrorException -is [System.Net.WebException]) {
+        $exc = [Exception]::new($Response.ErrorException)
+        $err = [System.Management.Automation.ErrorRecord]::new(
+            $exc,
+            $Response.ErrorException.HResult,
+            [System.Management.Automation.ErrorCategory]::ConnectionError,
+            $invokeParams.Uri
+        )
+        $PSCmdlet.ThrowTerminatingError($err)
+    } else {
+        $errorContent = $Response.Content
+        $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new($errorContent),"ResultError", "NotSpecified", $invokeParams.Uri))
+    }
 } else {
     if ($Response.Content.StartsWith("{") -and $Response.Content.EndsWith("}")) {
         $content = $Response.Content | ConvertFrom-Json
