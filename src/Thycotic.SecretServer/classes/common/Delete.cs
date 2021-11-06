@@ -7,7 +7,7 @@ namespace Thycotic.PowerShell.Common
 {
     public class Delete
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string ObjectType { get; set; }
         public string[] ResponseCodes { get; set; }
     }
