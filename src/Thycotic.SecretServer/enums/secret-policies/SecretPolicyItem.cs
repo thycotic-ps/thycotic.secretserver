@@ -22,7 +22,7 @@ namespace Thycotic.PowerShell.Enums
         RequireApprovalForAccessForEditors = 13,
         RequireViewComment = 14,
         IsSessionRecordingEnabled = 15,
-        HideLauncherPassword = 16,
+        ViewingPasswordRequiresEdit = 16,
         ApprovalGroup = 17,
         AssociatedSecretId2 = 18,
         IsProxyEnabled = 19,

@@ -47,7 +47,7 @@ Secret Policy Item
 Type: SecretPolicyItem
 Parameter Sets: (All)
 Aliases:
-Accepted values: AutoChangeOnExpiration, HeartBeatEnabled, SiteId, PrivilegedSecretId, AssociatedSecretId1, AutoChangeSchedule, PasswordTypeWebScriptId, CheckOutEnabled, CheckOutIntervalMinutes, CheckOutChangePassword, RequireApprovalForAccess, RequireApprovalForAccessForOwnersAndApprovers, RequireApprovalForAccessForEditors, RequireViewComment, IsSessionRecordingEnabled, HideLauncherPassword, ApprovalGroup, AssociatedSecretId2, IsProxyEnabled, EnableSshCommandRestrictions, SshCommandMenuGroups, AllowOwnersUnrestrictedSshCommands, ApprovalWorkflow, EventPipelinePolicy, RunLauncherUsingSSHKey, WebLauncherRequiresIncognitoMode, SshCommandRestrictionType, SshCommandBlocklistOwners, SshCommandBlocklistEditors, SshCommandBlocklistViewers
+Accepted values: AutoChangeOnExpiration, HeartBeatEnabled, SiteId, PrivilegedSecretId, AssociatedSecretId1, AutoChangeSchedule, PasswordTypeWebScriptId, CheckOutEnabled, CheckOutIntervalMinutes, CheckOutChangePassword, RequireApprovalForAccess, RequireApprovalForAccessForOwnersAndApprovers, RequireApprovalForAccessForEditors, RequireViewComment, IsSessionRecordingEnabled, ViewingPasswordRequiresEdit, ApprovalGroup, AssociatedSecretId2, IsProxyEnabled, EnableSshCommandRestrictions, SshCommandMenuGroups, AllowOwnersUnrestrictedSshCommands, ApprovalWorkflow, EventPipelinePolicy, RunLauncherUsingSSHKey, WebLauncherRequiresIncognitoMode, SshCommandRestrictionType, SshCommandBlocklistOwners, SshCommandBlocklistEditors, SshCommandBlocklistViewers
 
 Required: True
 Position: Named
