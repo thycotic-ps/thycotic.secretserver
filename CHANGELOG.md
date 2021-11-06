@@ -20,6 +20,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Search-TssSecret - correcting issue where parameters were not being applied properly [9ddd3ae](https://github.com/thycotic-ps/thycotic.secretserver/commit/9ddd3ae53af854aedc06df9cba9f627be6d09d48)
 * Search-TssSecret - fix syntax error on IncludeSubFolders param [f57b366](https://github.com/thycotic-ps/thycotic.secretserver/commit/f57b366d3a7d72cc7fef891f2c6e68e4fa8d30c1)
 * Remove commands - correcting WhatIf support [8c74f6c](https://github.com/thycotic-ps/thycotic.secretserver/commit/8c74f6c0250da807cf25be421108959dfab806ee)
+* Get-TssRpcPasswordType - correct endpoint, parameter help [8a84435](https://github.com/thycotic-ps/thycotic.secretserver/commit/8a844356feeea28404bf8b02d479319c6510b7f6)
+* Search-TssRpcPasswordType - correct endpoint and class reference [8be9347](https://github.com/thycotic-ps/thycotic.secretserver/commit/8be9347e03938a6f98689a1fde251e8ce90c9566)
+* SecretPolicyItem type - mapping update for HideLauncherPassword -> ViewingPasswordRequiresEdit [2f4e9d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/2f4e9d01552fccea9ec6d439977d555b25525ac6)
 
 ## New Stuff
 
@@ -29,6 +32,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssListItem - new command to return the Items in a given Lists [7310b22](https://github.com/thycotic-ps/thycotic.secretserver/commit/7310b224b7285414625774000d98279c77373d90)
 * Get-TssListCategory - new command to return the categories on a List [d3cce97](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3cce97d7b06406c265748c7762def3d9223b342)
 * Add-TssListOption - new command to load Options for each category of a List [b0885f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b0885f12d4eab0fb7bb7e4e0f80468f2403bac80)
+* Get-TssList - new command to get a given List object [dc70611](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc70611ce26d06cf8689c3416b124bb23be06f87)
+* Update-TssList - new command to update Active, Name and Description of a List [78a2774](https://github.com/thycotic-ps/thycotic.secretserver/commit/78a277479a6e4711bc555610a0a03976fffc3423)
 
 ## General Updates
 
