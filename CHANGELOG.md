@@ -29,11 +29,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Lists
 
 * Search-TssList - new command to return summary of the Lists created [d22d861](https://github.com/thycotic-ps/thycotic.secretserver/commit/d22d8617d46cf931fb982c2fcd620a8e0d7a6b4f)
-* Get-TssListItem - new command to return the Items in a given Lists [7310b22](https://github.com/thycotic-ps/thycotic.secretserver/commit/7310b224b7285414625774000d98279c77373d90)
 * Get-TssListCategory - new command to return the categories on a List [d3cce97](https://github.com/thycotic-ps/thycotic.secretserver/commit/d3cce97d7b06406c265748c7762def3d9223b342)
 * Add-TssListOption - new command to load Options for each category of a List [b0885f1](https://github.com/thycotic-ps/thycotic.secretserver/commit/b0885f12d4eab0fb7bb7e4e0f80468f2403bac80)
 * Get-TssList - new command to get a given List object [dc70611](https://github.com/thycotic-ps/thycotic.secretserver/commit/dc70611ce26d06cf8689c3416b124bb23be06f87)
 * Update-TssList - new command to update Active, Name and Description of a List [78a2774](https://github.com/thycotic-ps/thycotic.secretserver/commit/78a277479a6e4711bc555610a0a03976fffc3423)
+* Remove-TssList - new command to "delete" a List [e731f42](https://github.com/thycotic-ps/thycotic.secretserver/commit/e731f427d7983eec28b12454c0077feffad3a93a)
+* Clear-TssList - new command to clear the categories and options for a given List [fcbba21](https://github.com/thycotic-ps/thycotic.secretserver/commit/fcbba2196f1f05faf02514f2fe152a7687493e64)
+* Get-TssListOption - new command to get Options from a List [2f611bc](https://github.com/thycotic-ps/thycotic.secretserver/commit/2f611bc0c51fc790e5a9265fa5bfffe0e7d89666)
+* Clear-TssListOption - new command to clear specific options from a List [1d8bdba](https://github.com/thycotic-ps/thycotic.secretserver/commit/1d8bdbae9175520178ca6eb404d0d5b5da494976)
+* Show-TssListCurrentUser - new command to retrieve the Lists the current user session can access [05c32ef](https://github.com/thycotic-ps/thycotic.secretserver/commit/05c32eff3a18f79930fc406edefbd519edacad36)
+* New-TssList - new command to create a List(s) [a253fa2](https://github.com/thycotic-ps/thycotic.secretserver/commit/a253fa2199d095a362f954218a83121115807995)
 
 ## General Updates
 
