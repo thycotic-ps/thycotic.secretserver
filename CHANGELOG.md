@@ -23,6 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * Get-TssRpcPasswordType - correct endpoint, parameter help [8a84435](https://github.com/thycotic-ps/thycotic.secretserver/commit/8a844356feeea28404bf8b02d479319c6510b7f6)
 * Search-TssRpcPasswordType - correct endpoint and class reference [8be9347](https://github.com/thycotic-ps/thycotic.secretserver/commit/8be9347e03938a6f98689a1fde251e8ce90c9566)
 * SecretPolicyItem type - mapping update for HideLauncherPassword -> ViewingPasswordRequiresEdit [2f4e9d0](https://github.com/thycotic-ps/thycotic.secretserver/commit/2f4e9d01552fccea9ec6d439977d555b25525ac6)
+* New-TssSession - issue with UseWindowsAuth param fixes [#247](https://github.com/thycotic-ps/thycotic.secretserver/issues/247) [2e66725](https://github.com/thycotic-ps/thycotic.secretserver/commit/2e66725d763297688d2f00f8a3af59aecdf69172)
 
 ## New Stuff
 
