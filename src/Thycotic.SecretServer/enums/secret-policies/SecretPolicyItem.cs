@@ -11,6 +11,7 @@ namespace Thycotic.PowerShell.Enums
         HeartBeatEnabled = 2,
         SiteId = 3,
         PrivilegedSecretId = 4,
+        PriveledgedSecretId = 4,
         AssociatedSecretId1 = 5,
         AutoChangeSchedule = 6,
         PasswordTypeWebScriptId = 7,
