@@ -12,7 +12,7 @@ $requestStatus = [Thycotic.PowerShell.Common.RequestStatus]@{
     ResponseUri       = $Response.ResponseUri
 }
 New-Variable -Name tssLastResponse -Value $requestStatus -Description "Contains request status object for the command's last web request" -Visibility Public -Scope Global -Force -WhatIf:$false
-if (-not $Response.IsSuccessful) {
+if (-not $Response.IsSuccessful -or ($Response.StatusCode -ne 200)) {
     if ($Response.ErrorException -is [System.Net.WebException]) {
         $exc = [Exception]::new($Response.ErrorException)
         $err = [System.Management.Automation.ErrorRecord]::new(
@@ -20,6 +20,15 @@ if (-not $Response.IsSuccessful) {
             $Response.ErrorException.HResult,
             [System.Management.Automation.ErrorCategory]::ConnectionError,
             $invokeParams.Uri
+        )
+        $PSCmdlet.ThrowTerminatingError($err)
+    } elseif ($Response.StatusCode -eq 500) {
+        $exc = [Exception]::new($Response.StatusDescription)
+        $err = [System.Management.Automation.ErrorRecord]::new(
+            $exc,
+            $Response.StatusCode,
+            [System.Management.Automation.ErrorCategory]::InvalidOperation,
+            $Response.ResponseUri
         )
         $PSCmdlet.ThrowTerminatingError($err)
     } else {
