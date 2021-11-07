@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.60.4 -- 2021-11-07
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* Secret Policy Item enum - update Item name to match API output [5772c82](https://github.com/thycotic-ps/thycotic.secretserver/commit/5772c8261bd7018c7f6fa9bc6fef4c78249f7187)
+* Get-TssSecretPolicyItemStub - fixes error setting PolicyApplyType [ec35713](https://github.com/thycotic-ps/thycotic.secretserver/commit/ec35713a5dcf186973f933bf32c5b4c751b1ab7a)
+* error handling - fix output 500 error content [eb23200](https://github.com/thycotic-ps/thycotic.secretserver/commit/eb2320029429b46120ba07084419066c71bc81f9)
+
+### New Stuff
+
+* None
+
+### General Updates
+
+* PolicyItem - Set Name to SecretPolicyItem Enum [bd8d67d](https://github.com/thycotic-ps/thycotic.secretserver/commit/bd8d67d2b7a569a288c2682c105d6befef02152a)
+
+### Tests
+
+* None
+
 ## 0.60.0 -- 2021-11-06
 
 ### Breaking Changes
