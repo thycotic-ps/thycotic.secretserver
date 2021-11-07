@@ -46,11 +46,15 @@ function Get-TssSecretPolicyItemStub {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             $policyStub = Get-TssSecretPolicyStub -TssSession $TssSession
             if ($policyStub) {
-                $item = $policyStub.SecretPolicyItems.Where({$_.Name -eq $ItemName})
-                if ($tssParams.ContainsKey('ApplyType')) {
-                    $item.PolicyApplyType = $ApplyType
+                $item = $policyStub.SecretPolicyItems | Where-Object Name -eq $ItemName
+                if ($item) {
+                    if ($tssParams.ContainsKey('ApplyType')) {
+                        $item.PolicyApplyType = $ApplyType
+                    }
+                    return $item
+                } else {
+                    Write-Warning "Policy Item [$ItemName] not found on Secret Policy Stub"
                 }
-                return $item
             }
         } else {
             Write-Warning "No valid session found"
