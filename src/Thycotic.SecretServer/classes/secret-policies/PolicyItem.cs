@@ -9,7 +9,7 @@ namespace Thycotic.PowerShell.SecretPolicies
     public class PolicyItem
     {
         public string Description { get; set; }
-        public string Name { get; set; }
+        public SecretPolicyItem Name { get; set; }
         public int ParentSecretPolicyItemId { get; set; }
         public SecretPolicyApplyType PolicyApplyType { get; set; }
         public int SecretPolicyItemId { get; set; }
