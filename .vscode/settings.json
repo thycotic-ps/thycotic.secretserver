@@ -48,5 +48,6 @@
         "scrollback",
         "sysnative",
         "Uncategorized"
-    ]
+    ],
+    "editor.bracketPairColorization.enabled": true
 }
