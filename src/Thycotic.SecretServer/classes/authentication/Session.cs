@@ -10,42 +10,6 @@ using Newtonsoft.Json;
 
 namespace Thycotic.PowerShell.Authentication
 {
-    public class Request
-    {
-        public static IRestResponse AccessToken(string SecretServerHost, string Username, string Password, string ProxyServer, int Timeout = 0)
-        {
-            var client = new RestClient(SecretServerHost + "/oauth2/token");
-            client.Timeout = Timeout;
-            if (string.IsNullOrEmpty(ProxyServer))
-            {
-                client.Proxy = new WebProxy(ProxyServer);
-            }
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("username", Username);
-            request.AddParameter("password", Password);
-            request.AddParameter("grant_type", "password");
-            IRestResponse response = client.Execute(request);
-            return response;
-        }
-
-        public static IRestResponse RefreshToken(string SecretServerHost, string TokenValue, string ProxyServer, int Timeout = 0)
-        {
-            var client = new RestClient(SecretServerHost + "/oauth2/token");
-            client.Timeout = Timeout;
-            if (string.IsNullOrEmpty(ProxyServer))
-            {
-                client.Proxy = new WebProxy(ProxyServer);
-            }
-            var request = new RestRequest(Method.POST);
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddParameter("refresh_token", TokenValue);
-            request.AddParameter("grant_type", "refresh_token");
-            IRestResponse response = client.Execute(request);
-            return response;
-        }
-    }
-
     public class Session
     {
         public string SecretServer { get; set; }
@@ -151,6 +115,8 @@ namespace Thycotic.PowerShell.Authentication
                 this.RefreshToken = jsonObj.refresh_token;
                 this.ExpiresIn = jsonObj.expires_in;
                 this.TokenType = jsonObj.token_type;
+                this.StartTime = DateTime.Now;
+                this.TimeOfDeath = DateTime.Now.Add(TimeSpan.FromSeconds(jsonObj.expires_in));
                 return true;
             }
             catch
@@ -167,4 +133,40 @@ namespace Thycotic.PowerShell.Authentication
             public int expires_in { get; set; }
         }
     }
+    public class Request
+    {
+        public static IRestResponse AccessToken(string SecretServerHost, string Username, string Password, string ProxyServer, int Timeout = 0)
+        {
+            var client = new RestClient(SecretServerHost + "/oauth2/token");
+            client.Timeout = Timeout;
+            if (string.IsNullOrEmpty(ProxyServer))
+            {
+                client.Proxy = new WebProxy(ProxyServer);
+            }
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("username", Username);
+            request.AddParameter("password", Password);
+            request.AddParameter("grant_type", "password");
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
+
+        public static IRestResponse RefreshToken(string SecretServerHost, string TokenValue, string ProxyServer, int Timeout = 0)
+        {
+            var client = new RestClient(SecretServerHost + "/oauth2/token");
+            client.Timeout = Timeout;
+            if (string.IsNullOrEmpty(ProxyServer))
+            {
+                client.Proxy = new WebProxy(ProxyServer);
+            }
+            var request = new RestRequest(Method.POST);
+            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+            request.AddParameter("refresh_token", TokenValue);
+            request.AddParameter("grant_type", "refresh_token");
+            IRestResponse response = client.Execute(request);
+            return response;
+        }
+    }
+
 }
