@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased -- 2021-xx-xx
+
+### Breaking Changes
+
+* None
+
+### Bug Fixes
+
+* 2b0d11f5 Session class - set StartTime and TimeOfDeath in SessionRefresh method, fixes #253
+
+### New Stuff
+
+* None
+
+### General Updates
+
+*
+
+### Tests
+
+* None
+
 ## 0.60.4 -- 2021-11-07
 
 ### Breaking Changes
