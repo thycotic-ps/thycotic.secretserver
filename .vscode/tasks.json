@@ -4,6 +4,12 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "changelog commits",
+            "type":"shell",
+            "command": "git reflog --pretty=format:'* %h %s' | clip",
+            "problemMatcher": "$msCompile"
+        },
+        {
             "label": "build-library",
             "type": "shell",
             "command": "Invoke-Build -File ./build.library.ps1",
@@ -40,6 +46,13 @@
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "commitcount",
+            "type": "promptString",
+            "description": "Number of your commits to copy to the clipboard"
         }
     ]
 }

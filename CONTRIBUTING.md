@@ -32,6 +32,8 @@ The git history of a branch is utilized in building the CHANGELOG for the projec
 
 More info: [How to Write a Git Commit Message](https://chris.beams.io/posts/git-commit/)
 
+A task, `changelog commits`, is available in Code for this project that allows you to copy the formatted commit messages used in our CHANGELOG.
+
 ## Project Folder Structure
 
 | Folder   | Description                                                          |
