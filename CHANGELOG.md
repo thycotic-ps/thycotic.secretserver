@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* 2b0d11f5 Session class - set StartTime and TimeOfDeath in SessionRefresh method, fixes #253
+* [2b0d11f5](https://github.com/thycotic-ps/thycotic.secretserver/commits/2b0d11f573a1c61e14737adee037ddd2a7322a4b) Session class - set StartTime and TimeOfDeath in SessionRefresh method, fixes #253
 
 ### New Stuff
 
@@ -21,7 +21,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
-*
+* [16b0a72e](https://github.com/thycotic-ps/thycotic.secretserver/commits/16b0a72e07d6cc5272cb52412baa85b916b0fa3f) contributing guide - added Code task for formatting commit messages
+* [4196aa42](https://github.com/thycotic-ps/thycotic.secretserver/commits/4196aa421d1793837b05edbe51afc63c292aaf42) vscode - adjusting extensions and enabling new color bracket setting
 
 ### Tests
 

@@ -6,7 +6,7 @@
         {
             "label": "changelog commits",
             "type":"shell",
-            "command": "git reflog --pretty=format:'* %h %s' | clip",
+            "command": "git reflog --pretty=format:'* [%h](https://github.com/thycotic-ps/thycotic.secretserver/commits/%H) %s' | clip",
             "problemMatcher": "$msCompile"
         },
         {
