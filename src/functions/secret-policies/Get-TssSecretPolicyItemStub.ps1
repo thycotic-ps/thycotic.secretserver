@@ -13,10 +13,10 @@ function Get-TssSecretPolicyItemStub {
     Add minimum example for each parameter
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder Name/Get-TssSecretPolicyItemStub
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicyItemStub
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder Name/Get-TssSecretPolicyItemStub.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Get-TssSecretPolicyItemStub.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

@@ -19,10 +19,10 @@ function Get-TssEventPipelinePolicyActivity {
     Output the activity for Event Pipeline ID 20 and the noted Run ID GUID.
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Get-TssEventPipelinePolicyActivity
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicyActivity
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Get-TssEventPipelinePolicyActivity.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicyActivity.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession

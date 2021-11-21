@@ -91,7 +91,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Get-TssEventPipelinePolicyActivity](https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Get-TssEventPipelinePolicyActivity)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicyActivity](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicyActivity)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Get-TssEventPipelinePolicyActivity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Get-TssEventPipelinePolicyActivity.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicyActivity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicyActivity.ps1)
 

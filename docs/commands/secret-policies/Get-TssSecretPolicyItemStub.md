@@ -85,7 +85,7 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder Name/Get-TssSecretPolicyItemStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder Name/Get-TssSecretPolicyItemStub)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicyItemStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicyItemStub)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder Name/Get-TssSecretPolicyItemStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder Name/Get-TssSecretPolicyItemStub.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Get-TssSecretPolicyItemStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Get-TssSecretPolicyItemStub.ps1)
 

@@ -19,10 +19,10 @@ function Set-TssConfigurationSecurity {
     Disabling Force HTTPS
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/Folder name/Set-TssConfigurationSecurity
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationSecurity
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/Folder name/Set-TssConfigurationSecurity.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationSecurity.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
