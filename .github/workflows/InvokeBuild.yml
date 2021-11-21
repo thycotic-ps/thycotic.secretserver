@@ -16,19 +16,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v2
     - name: Cache Dependent PowerShell Modules
       id: pwsh-cache
       uses: potatoqualitee/psmodulecache@v4
       with:
         modules-to-cache: InvokeBuild,platyPS
         shell: pwsh
-    - uses: actions/checkout@v2
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1
-    - name: Restore dependencies
-      run: dotnet restore
     - name: InvokeBuild - PreRelease
       if: github.event.inputs.config == 'PreRelease'
       shell: pwsh
