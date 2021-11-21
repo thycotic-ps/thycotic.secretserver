@@ -7,18 +7,10 @@ function New-TssSession {
     Create a new TssSession for working with a Secret Server
 
     .EXAMPLE
-    $cred = [PSCredential]::new('apiuser',(ConvertTo-SecureString -String "Fancy%$#Passwod" -AsPlainText -Force))
+    $cred = [PSCredential]::new('apiuser',(ConvertTo-SecureString -String 'Fancy%$#Pa33w0rd' -AsPlainText -Force))
     $session = New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential $cred
 
     A PSCredential is created for the apiuser account. The internal TssSession is updated upon successful authentication, and then output to the console.
-
-    .EXAMPLE
-    $token = .\tss.exe -kd c:\secretserver\module_testing\ -cd c:\secretserver\module_testing
-    $session = New-TssSession -SecretServer https://ssvault.com/SecretServer -AccessToken $token
-
-    A token is requested via Client SDK (after proper init has been done)
-    TssSession object is created with minimum properties required by the module.
-    Note that this use case, SessionRefresh and SessionExpire are not supported
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://ssvault.com/SecretServer -Credential (Get-Credential apiuser)
@@ -26,11 +18,17 @@ function New-TssSession {
     A prompt to enter the password for the apiuser is given by PowerShell. Upon successful authentication the response from the oauth2/token endpoint is output to the console.
 
     .EXAMPLE
-    $secretCred = [pscredential]::new('ssadmin',(ConvertTo-SecureString -String 'F@#R*(@#$SFSDF1234' -AsPlainText -Force)))
-    $session = nts https://ssvault.com/SecretServer $secretCred
+    $tssSdkParams = @{
+        SecretServer = 'https://ssvault.com/SecretServer'
+        RuleName = 'tss_module'
+        ConfigPath = 'c:\thycotic'
+        Force = $true
+    }
+    Initialize-TssSdk @tssSdkParams
+    $session = New-TssSession -SecretServer https://ssvault.com/SecretServer -UseSdkClient -ConfigPath c:\thycotic
 
-    Create a credential object
-    Use the alias nts to create a session object
+    Use packaged Client SDK and initialize for vault using Onboarding Client rule and configuration path.
+    Create a new TssSession object that uses the initialized Client SDK under the configuration path "c:\thycotic"
 
     .EXAMPLE
     $session = nts https://ssvault.com/SecretServer -UseWindowsAuth
@@ -39,16 +37,23 @@ function New-TssSession {
     Use the alias nts to create a session object
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -UseSdkClient -ConfigPath c:\thycotic
-
-    Create a session object utilizing SDK Client configuration, assumes Initialize-TssSdkClient was run with config path of C:\thycotic
-    Token request performed via SDK Client meaning that token is good for life of the configuration
-
-    .EXAMPLE
     $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred -OtpCode 256380
     Show-TssCurrentUser -TssSession $session
 
     Create a session object using OAuth2 credential and 2FA/OTP code. Then output the current user to verify toke is for the specific user credential.
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred
+    $secrets = Search-TssSecret -TssSession $session
+    foreach ($s in $secrets) {
+        if ($session.CheckTokenTtl(3)) { $session.SessionRefresh() }
+        # code to execute against each Secret
+    }
+    $session.SessionExpire()
+
+    Creates a session object and pulls a list of Secrets to process.
+    Uses method CheckTokenTtl() on the TssSession object if the TimeOfDeath is within 3 minutes of expiring will run the SessionRefresh() method to request a new access token.
+    Once processing is complete, run the SessionExpire() method to expire the access token.
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession
