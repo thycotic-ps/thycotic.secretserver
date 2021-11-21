@@ -21,6 +21,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
+* [33c1e41c](https://github.com/thycotic-ps/thycotic.secretserver/commits/33c1e41c7b09476c7be7df732e2ec260eba3cb0c) docs - correct links in command help
 * [24654579](https://github.com/thycotic-ps/thycotic.secretserver/commits/246545798d5ff5be5ea4e0166a704a578edd5667) New-TssSession - Rework and add examples
 
 ### Tests
