@@ -16,18 +16,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: PowerShell Cache Directory
+    - name: Cache Dependent PowerShell Modules
       id: pwsh-cache
-    - uses: actions/cache@v2
+      uses: potatoqualitee/psmodulecache@v4
       with:
-        path: "~/.local/share/powershell/Modules"
-        key: ${{ runner.os }}-ps-invokebuild-platyps
-    - name: Install Dependent Modules
-      if: steps.pwsh-cache.outputs.cache-hit != 'true'
-      shell: pwsh
-      run: |
-        Set-PSRepository PSGallery -InstallationPolicy Trusted
-        Install-Module InvokeBuild,platyPS -ErrorAction Stop -Force
+        modules-to-cache: InvokeBuild,platyPS
+        shell: pwsh
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
