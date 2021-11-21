@@ -27,4 +27,4 @@ jobs:
       if: github.event.inputs.config == 'PreRelease'
       shell: pwsh
       run: |
-        Invoke-Build -File .\build.ps1 -Configuration ${{ github.event.inputs.config }} -GitHubPreTag ${{ github.events.inputs.pretag }}
+        Invoke-Build -File .\build.ps1 -Configuration ${{ github.event.inputs.config }} -GitHubPreTag ${{ github.event.inputs.pretag }}
