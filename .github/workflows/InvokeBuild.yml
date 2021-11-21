@@ -1,0 +1,42 @@
+name: .NET
+
+on:
+  workflow_dispatch:
+    inputs:
+      config:
+        description: 'Build configuration to run, options: Prerelease'
+        required: true
+        default: 'Prerelease'
+      pretag:
+        description: 'Tag used for Prerelease on GitHub releases'
+        required: true
+        default: 'alpha'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: PowerShell Cache Directory
+      id: pwsh-cache
+    - uses: actions/cache@v2
+      with:
+        path: "~/.local/share/powershell/Modules"
+        key: ${{ runner.os }}-ps-invokebuild-platyps
+    - name: Install Dependent Modules
+      if: steps.pwsh-cache.outputs.cache-hit != 'true'
+      shell: pwsh
+      run: |
+        Set-PSRepository PSGallery -InstallationPolicy Trusted
+        Install-Module InvokeBuild,platyPS -ErrorAction Stop -Force
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: InvokeBuild - PreRelease
+      if: github.event.inputs.config = 'PreRelease'
+      shell: pwsh
+      run: |
+        Invoke-Build -File .\build.ps1 -Configuration ${{ github.event.inputs.config }} -GitHubPreTag ${{ github.events.inputs.pretag }}
