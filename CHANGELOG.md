@@ -13,7 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* None
+* [24c83225](https://github.com/thycotic-ps/thycotic.secretserver/commits/24c832251a252946809de5f92b74f58a6f0f63fe) Get-TssSecretAttachment - resolve parameter set issue fixes #256
 
 ### New Stuff
 
