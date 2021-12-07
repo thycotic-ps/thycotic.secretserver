@@ -23,7 +23,7 @@ function Get-TssSecretAttachment {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSet = 'path')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -31,7 +31,7 @@ function Get-TssSecretAttachment {
         $TssSession,
 
         # Secret ID
-        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('SecretId')]
         [int[]]
         $Id,
@@ -49,34 +49,29 @@ function Get-TssSecretAttachment {
         $Path,
 
         # Don't check out the secret automatically (added in 11.0+)
-        [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [switch]
         $NoAutoCheckout,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
-        [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $Comment,
 
         # Check in the secret if it is checked out
-        [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [switch]
         $ForceCheckIn,
 
         # Associated ticket number (required for ticket integrations)
-        [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]
         $TicketNumber,
 
         # Associated ticket system ID (required for ticket integrations)
-        [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [int]
