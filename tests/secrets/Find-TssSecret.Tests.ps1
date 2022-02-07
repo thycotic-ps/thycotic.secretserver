@@ -3,11 +3,11 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Permission','Scope',
+        [object[]]$knownParameters = 'TssSession','Permission','Scope', 'SortBy',
         # Folder param set
         'FolderId','IncludeSubFolders',
         # field param set
-        'Field','FieldText','ExactMatch','FieldSlug','ExtendedField','ExtendedTypeId',
+        'Field','ExactMatch','FieldSlug','ExtendedField','ExtendedTypeId','SearchText',
         # secret param set
         'Id','SecretTemplateId','SiteId','HeartbeatStatus','IncludeInactive','ExcludeActive','RpcEnabled','SharedWithMe','PasswordTypeIds','ExcludeDoubleLock','DoubleLockId'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
