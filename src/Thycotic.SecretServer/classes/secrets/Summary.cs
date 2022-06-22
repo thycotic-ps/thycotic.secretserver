@@ -17,6 +17,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool DoubleLockEnabled { get; set; }
         public SummaryExtendedField[] ExtendedFields { get; set; }
         public int FolderId { get; set; }
+        public bool HasLauncher { get; set; }
         public bool HidePassword { get; set; }
         public int Id { get; set; }
         public bool InheritsPermissions { get; set; }
