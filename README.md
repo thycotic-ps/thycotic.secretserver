@@ -49,7 +49,7 @@ If a customer desires more in-depth assistance implementing the module in their 
 This project strives to cover all types of environments. We understand that some do not allow pulling PowerShell modules from every resource. The following sources are available for downloading each release of the module:
 
 - [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
-- [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest) (latest)
+- [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
 - [Direct Download](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer.zip)
 
 Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
