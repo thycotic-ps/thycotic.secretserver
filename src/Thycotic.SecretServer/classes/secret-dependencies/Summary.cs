@@ -17,5 +17,6 @@ namespace Thycotic.PowerShell.SecretDependencies
         public string ServiceName { get; set; }
         public int TypeId { get; set; }
         public string TypeName { get; set; }
+        public bool canTest { get; set; }
     }
 }

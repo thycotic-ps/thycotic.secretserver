@@ -21,5 +21,6 @@ namespace Thycotic.PowerShell.Users
         public int LoginFailures { get; set; }
         public string Username { get; set; }
         public string TwoFactorMethod { get; set; }
+        public string platformIntegrationType { get; set; }
     }
 }

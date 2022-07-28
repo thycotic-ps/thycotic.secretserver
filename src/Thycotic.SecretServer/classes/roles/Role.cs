@@ -11,5 +11,6 @@ namespace Thycotic.PowerShell.Roles
         public bool Enabled { get; set; }
         public int Id { get; set; }
         public string Name { get; set; }
+        public bool isSystem { get; set; }
     }
 }
