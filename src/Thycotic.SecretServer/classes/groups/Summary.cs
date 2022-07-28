@@ -17,5 +17,6 @@ namespace Thycotic.PowerShell.Groups
         public string Name { get; set; }
         public bool Synchronized { get; set; }
         public bool SynchronizeNow { get; set; }
+        public bool isPlatform { get; set; }
     }
 }
