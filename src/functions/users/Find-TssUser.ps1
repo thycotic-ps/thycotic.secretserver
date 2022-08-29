@@ -73,10 +73,10 @@ function Find-TssUser {
             switch ($tssParams.Keys) {
                 'DomainId' { $filters += "filter.domainId=$DomainId" }
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
-                'FindText' { $filters += "filter.FindText=$FindText" }
+                'FindText' { $filters += "filter.searchText=$FindText" }
                 'Field' {
                     foreach ($f in $Field) {
-                        $filters += "filter.FindFields=$f"
+                        $filters += "filter.searchFields=$f"
                     }
                 }
             }
