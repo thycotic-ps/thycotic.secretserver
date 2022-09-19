@@ -65,7 +65,12 @@ function Get-TssSecretPolicy {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretPolicies.Policy[]]$restResponse
+                    # Ignore the nuull values while converting it to Thycotic.PowerShell.SecretPolicies 
+                    $restResponse | ForEach-Object {
+                        $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                        $_ | Select-Object -Property $NonEmptyProperties
+                    }
+                    [Thycotic.PowerShell.SecretPolicies.Policy[]]$NonEmptyProperties
                 }
             }
         } else {
