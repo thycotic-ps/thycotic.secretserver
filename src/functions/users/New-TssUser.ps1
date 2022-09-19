@@ -6,18 +6,6 @@ function New-TssUser {
     .DESCRIPTION
     Create a new Secret Server User
 
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
-    New-TssUser -TssSession $session -Username 'testuser' -DisplayName 'My Test User' -Password (ConvertTo-SecureString 'pass!' -AsPlainText -Force) -Active
-
-    Create testuser with a DisplayName of "My Test User", and enable on creation.
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha/SecretServer -Credential $ssCred
-    New-TssUser -TssSession $session -Username 'apiuser' -DisplayName 'Dev Test App User' -Password (ConvertTo-SecureString 'pass$' -AsPlainText -Force) -IsApplicationAccount -Active
-
-    Create apiuser as an Application Account and enable on creation.
-
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/users/New-TssUser
 
