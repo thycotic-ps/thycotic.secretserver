@@ -32,6 +32,7 @@ function Get-TssSecretAttachment {
 
         # Secret ID
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'path')]
         [Alias('SecretId')]
         [int[]]
         $Id,
