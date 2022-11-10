@@ -177,9 +177,6 @@ function Get-TssSecret {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
-                    if ($tssParams.ContainsKey('NoAutoCheckout')) {
-                        $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
-                    }
 
                     $getBody = @{}
                     if ($restrictedParams.Count -gt 0) {
@@ -196,10 +193,16 @@ function Get-TssSecret {
                         }
 
                         $uri = $uri, 'restricted' -join '/'
+                        if ($tssParams.ContainsKey('NoAutoCheckout')) {
+                            $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
+                        }
                         $invokeParams.Uri = $uri
                         $invokeParams.Method = 'POST'
                         $invokeParams.Body = $getBody | ConvertTo-Json
                     } else {
+                        if ($tssParams.ContainsKey('NoAutoCheckout')) {
+                            $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
+                        }
                         $uri = $uri
                         $invokeParams.Uri = $uri
                         $invokeParams.Method = 'GET'
