@@ -86,15 +86,15 @@ function Get-TssSecret {
         # Don't check out the secret automatically (added in 11.0+)
         [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
-        [switch]
-        $NoAutoCheckout,
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]$NoAutoCheckout,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
         [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
-        [string]
-        $Comment,
+        [string]$Comment,
+                
 
         # Double lock password, provie as a secure string
         [Parameter(ParameterSetName = 'id')]
@@ -159,7 +159,8 @@ function Get-TssSecret {
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
-                    } catch {
+                    }
+                    catch {
                         Write-Warning "Issue getting secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
@@ -186,6 +187,7 @@ function Get-TssSecret {
                             'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                             'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
                             'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
+                            'noAutoCheckout' { $getBody.Add('noAutoCheckout', [Boolean]$NoAutoCheckout) }
                             'DoublelockPassword' {
                                 $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
                                 $getBody.Add('doubleLockPassword', $passwd)
@@ -193,16 +195,11 @@ function Get-TssSecret {
                         }
 
                         $uri = $uri, 'restricted' -join '/'
-                        if ($tssParams.ContainsKey('NoAutoCheckout')) {
-                            $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
-                        }
                         $invokeParams.Uri = $uri
                         $invokeParams.Method = 'POST'
                         $invokeParams.Body = $getBody | ConvertTo-Json
-                    } else {
-                        if ($tssParams.ContainsKey('NoAutoCheckout')) {
-                            $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
-                        }
+                    }
+                    else {
                         $uri = $uri
                         $invokeParams.Uri = $uri
                         $invokeParams.Method = 'GET'
@@ -212,7 +209,8 @@ function Get-TssSecret {
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
-                    } catch {
+                    }
+                    catch {
                         Write-Warning "Issue getting secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
@@ -223,7 +221,8 @@ function Get-TssSecret {
                     }
                 }
             }
-        } else {
+        }
+        else {
             Write-Warning 'No valid session found'
         }
     }
