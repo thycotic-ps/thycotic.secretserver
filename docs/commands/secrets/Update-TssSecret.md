@@ -7,7 +7,7 @@ Update a Secret
 
 ```
 Update-TssSecret [-TssSession] <Session> [-Secret] <Secret> [-IncludeInactive] [-Comment <String>]
- [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ForceCheckIn] [-noAutoCheckout] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -89,6 +89,21 @@ Accept wildcard characters: False
 
 ### -ForceCheckIn
 Force check-in of the Secret
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -noAutoCheckout
+Do not check-out Secret automatically
 
 ```yaml
 Type: SwitchParameter
