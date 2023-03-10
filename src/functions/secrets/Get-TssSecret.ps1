@@ -86,15 +86,15 @@ function Get-TssSecret {
         # Don't check out the secret automatically (added in 11.0+)
         [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
-        [switch]
-        $NoAutoCheckout,
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]$NoAutoCheckout,
 
         # Comment to provide for restricted secret (Require Comment is enabled)
         [Parameter(ParameterSetName = 'id')]
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
-        [string]
-        $Comment,
+        [string]$Comment,
+                
 
         # Double lock password, provie as a secure string
         [Parameter(ParameterSetName = 'id')]
@@ -150,16 +150,40 @@ function Get-TssSecret {
                 Compare-TssVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
                 foreach ($p in $Path) {
                     $restResponse = $null
+                    $queryParams = @() 
                     $uri = $TssSession.ApiUrl, 'secrets', 0 -join '/'
-                    $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)&secretPath=$p" -join '?'
-                    $invokeParams.Uri = $uri
-                    $invokeParams.Method = 'GET'
+                    
+                    $queryParams += @("secretPath=$p")
+                    
+                    $getBody = @{}
+                    if ($restrictedParams.Count -gt 0) {
+                        switch ($tssParams.Keys) {
+                            'IncludeInactive' { $getBody.Add('includeInactive', [boolean]$IncludeInactive) }
+                            'Comment' { $getBody.Add('comment', $Comment) }
+                            'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
+                            'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
+                            'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
+                            'noAutoCheckout' { $getBody.Add('noAutoCheckout', [Boolean]$NoAutoCheckout) }
+                            'DoublelockPassword' {
+                                $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
+                                $getBody.Add('doubleLockPassword', $passwd)
+                            }
+                        }
 
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                        $uri = $uri, 'restricted' -join '/'
+                        $invokeParams.Method = 'POST'
+                        $invokeParams.Body = $getBody | ConvertTo-Json
+                    }
+                    else {
+                        $invokeParams.Method = 'GET'
+                    }
+                    $invokeParams.Uri = $uri, ($queryParams -join '&') -join '?'
+                    Write-Verbose "Performing the operation $($invokeParams.Method)  $($invokeParams.Uri) with:`t$($invokeParams.Body)`n"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
-                    } catch {
+                    }
+                    catch {
                         Write-Warning "Issue getting secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
@@ -177,9 +201,6 @@ function Get-TssSecret {
                     $restResponse = $null
                     $uri = $TssSession.ApiUrl, 'secrets', $secret -join '/'
 
-                    if ($tssParams.ContainsKey('NoAutoCheckout')) {
-                        $uri = $uri, "noAutoCheckout=$([boolean]$NoAutoCheckout)" -join '?'
-                    }
 
                     $getBody = @{}
                     if ($restrictedParams.Count -gt 0) {
@@ -189,27 +210,27 @@ function Get-TssSecret {
                             'ForceCheckIn' { $getBody.Add('forceCheckIn', [boolean]$ForceCheckIn) }
                             'TicketNumber' { $getBody.Add('ticketNumber', $TicketNumber) }
                             'TicketSystemId' { $getBody.Add('ticketSystemId', $TicketSystemId) }
+                            'noAutoCheckout' { $getBody.Add('noAutoCheckout', [Boolean]$NoAutoCheckout) }
                             'DoublelockPassword' {
                                 $passwd = [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($DoublelockPassword))
                                 $getBody.Add('doubleLockPassword', $passwd)
                             }
                         }
-
-                        $uri = $uri, 'restricted' -join '/'
-                        $invokeParams.Uri = $uri
+                        $invokeParams.Uri = $uri, "restricted" -join '/'
                         $invokeParams.Method = 'POST'
                         $invokeParams.Body = $getBody | ConvertTo-Json
-                    } else {
-                        $uri = $uri
+                    }
+                    else {
                         $invokeParams.Uri = $uri
                         $invokeParams.Method = 'GET'
                     }
 
-                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                    Write-Verbose "Performing the operation $($invokeParams.Method)  $($invokeParams.Uri) with:`t$($invokeParams.Body)`n"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams
                         $restResponse = . $ProcessResponse $apiResponse
-                    } catch {
+                    }
+                    catch {
                         Write-Warning "Issue getting secret [$secret]"
                         $err = $_
                         . $ErrorHandling $err
@@ -220,7 +241,8 @@ function Get-TssSecret {
                     }
                 }
             }
-        } else {
+        }
+        else {
             Write-Warning 'No valid session found'
         }
     }

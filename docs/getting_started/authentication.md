@@ -50,18 +50,6 @@ TokenType    : bearer
 ExpiresIn    : 1199
 ```
 
-### Automated Login
-
-In automation scenarios, a credential object is created without prompting by utilizing: `[pscredential]::new()`.
-
-```powershell
-$username = 'ssadmin'
-$password = ConvertTo-SecureString -String 'Y02$r(0m#l3xP@ssw%rd' -AsPlainText -Force
-$cred = [pscredential]::new($username,$password)
-
-$session = New-TssSession -SecretServer https://vault.company/SecretServer -Credential $session
-```
-
 ## SecretManagement Module
 
 Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the credential needed for authenticating to Secret Server.
