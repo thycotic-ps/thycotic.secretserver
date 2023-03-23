@@ -102,7 +102,12 @@ function Find-TssUser {
                 Write-Warning 'No Users found'
             }
             if ($restResponse.records) {
-                foreach ($user in $restResponse.records) {
+                $restResponse | ForEach-Object {
+                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                    $_ | Select-Object -Property $NonEmptyProperties
+            }
+
+                foreach ($user in $NonEmptyProperties.records) {
                     $parsedValue = $user.value.Split('-', 2).Trim()
                     [Thycotic.PowerShell.Users.Lookup]@{
                         Id       = $user.id
