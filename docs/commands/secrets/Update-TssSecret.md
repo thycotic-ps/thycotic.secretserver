@@ -7,7 +7,7 @@ Update a Secret
 
 ```
 Update-TssSecret [-TssSession] <Session> [-Secret] <Secret> [-IncludeInactive] [-Comment <String>]
- [-ForceCheckIn] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-ForceCheckIn] [-noAutoCheckout] [-TicketNumber <Int32>] [-TicketSystemId <Int32>] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -102,6 +102,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -noAutoCheckout
+Do not check-out Secret automatically
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### -TicketNumber
 Associated Ticket Number
 
@@ -179,4 +194,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Update-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Update-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-TssSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Update-TssSecret.ps1)
-
