@@ -42,7 +42,7 @@ This module is managed and maintained by Thycotic Professional Services.
 
 See the Disclaimer at the bottom of this page for other legal jargon. This module is an open-source project. Maintenance and support are provided using the standard GitHub measures via [GitHub Issues](https://github.com/thycotic-ps/thycotic.secretserver/issues/new) or [GitHub Discussion](https://github.com/thycotic-ps/thycotic.secretserver/discussions/new).
 
-If a customer desires more in-depth assistance implementing the module in their environment, please reach out to your Thycotic Account Rep to engage [Thycotic Professional Services](https://thycotic.com/products/professional-services-training/).
+If a customer desires more in-depth assistance implementing the module in their environment, please reach out to your Thycotic Account Rep to engage [Thycotic Professional Services](https://delinea.com/training).
 
 ## Install Options
 
@@ -50,7 +50,7 @@ This project strives to cover all types of environments. We understand that some
 
 - [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
 - [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
-- [Direct Download](https://delineamarketplace01prod.blob.core.windows.net/integrations/Downloads/PowershellModule/0.60.8/Thycotic.SecretServer.zip)
+- [Direct Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.60.9/Thycotic.SecretServer.zip)
 
 Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
 
