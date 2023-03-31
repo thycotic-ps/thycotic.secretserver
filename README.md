@@ -42,7 +42,7 @@ This module is managed and maintained by Thycotic Professional Services.
 
 See the Disclaimer at the bottom of this page for other legal jargon. This module is an open-source project. Maintenance and support are provided using the standard GitHub measures via [GitHub Issues](https://github.com/thycotic-ps/thycotic.secretserver/issues/new) or [GitHub Discussion](https://github.com/thycotic-ps/thycotic.secretserver/discussions/new).
 
-If a customer desires more in-depth assistance implementing the module in their environment, please reach out to your Delinea Account Rep to engage [Delinea Professional Services](https://delinea.com/training).
+If a customer desires more in-depth assistance implementing the module in their environment, please reach out to your Delinea Account Rep to engage [Delinea Professional Services](https://delinea.com/professional-services/).
 
 ## Install Options
 
