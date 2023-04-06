@@ -28,6 +28,7 @@ namespace Thycotic.PowerShell.Secrets
         public SecretHeartbeatStatus LastHeartbeatStatus { get; set; }
         public DateTime? LastPasswordChangeAttempt { get; set; }
         public string Name { get; set; }
+        public string folderPath { get; set; }
         public bool RequiresApproval { get; set; }
         public bool RequiresComment { get; set; }
         public int SecretTemplateId { get; set; }
