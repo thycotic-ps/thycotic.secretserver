@@ -60,10 +60,15 @@ function Show-TssCurrentUser {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Users.CurrentUser]$restResponse
+                $restResponse | ForEach-Object {
+                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                    $_ | Select-Object -Property $NonEmptyProperties
+            }
+            [Thycotic.PowerShell.Users.CurrentUser]$NonEmptyProperties
             }
         } else {
             Write-Warning 'No valid session found'
         }
+
     }
 }

@@ -50,6 +50,11 @@ function Update-TssSecret {
         [switch]
         $ForceCheckIn,
 
+        # Disable Forced check-out of the Secret
+        [Parameter(ParameterSetName = 'restricted')]
+        [switch]
+        $noAutoCheckout,
+
         # Associated Ticket Number
         [Parameter(ParameterSetName = 'restricted')]
         [int]
@@ -90,6 +95,7 @@ function Update-TssSecret {
                 switch ($updateParams.Keys) {
                     'Comment' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('comment', $Comment)) }
                     'ForceCheckIn' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('forceCheckIn', [boolean]$ForceCheckIn)) }
+                    'NoAutoCheckOut' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('NoAutoCheckOut', [boolean]$NoAutoCheckOut)) }
                     'TicketNumber' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketNumber', $TicketNumber)) }
                     'TicketSystemId' { $updateBody.PSObject.Properties.Add([PSNoteProperty]::new('ticketSystemId', $TicketSystemId)) }
                 }
@@ -115,4 +121,5 @@ function Update-TssSecret {
             Write-Warning 'No valid session found'
         }
     }
+    
 }
