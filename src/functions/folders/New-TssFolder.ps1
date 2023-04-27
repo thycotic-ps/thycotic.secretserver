@@ -19,6 +19,7 @@ function New-TssFolder {
         FolderName 'IT Dept'
         ParentFolderId = 27
         InheritPermissions = $false
+        InheritSecretPolicy =$false
     }
     New-TssFolder @folderParams
 
@@ -106,6 +107,9 @@ function New-TssFolder {
             }
             if ($tssParams.ContainsKey('InheritSecretPolicy')) {
                 $newFolderStub.InheritSecretPolicy = [boolean]$InheritSecretPolicy
+            }
+            else{
+                $newFolderStub.InheritSecretPolicy = $false
             }
 
             $invokeParams.Body = ($newFolderStub | ConvertTo-Json)

@@ -156,13 +156,12 @@ function Get-TssSecretField {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri $(if ($body) {"with:`n$($invokeParams.Body)"})"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
-                    # Srtip the first and last double qutote from the Content.
-                    $content = $apiResponse.Content
-                    $apiResponse.Content = $content.Substring(1,$content.Length-2)
                     if (-not $tssParams.ContainsKey('OutFile')) {
+						$content = $apiResponse.Content
+						$apiResponse.Content = $content.Substring(1,$content.Length-2)
                         . $ProcessResponse $apiResponse
                     }
-                } catch {
+                }catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
                     $err = $_
                     . $ErrorHandling $err
