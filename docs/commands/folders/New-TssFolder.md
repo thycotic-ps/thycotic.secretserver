@@ -31,6 +31,7 @@ $folderParams = @{
     FolderName 'IT Dept'
     ParentFolderId = 27
     InheritPermissions = $false
+    InheritSecretPolicy = $false
 }
 New-TssFolder @folderParams
 ```
