@@ -57,7 +57,7 @@ function New-TssDistributedEngineSite {
 
         # Site Connector ID
         [int]
-        $SiteConnectorId,
+        $SiteConnectorId =1,
 
         # WinRM Endpoint URL, defaults to [http://localhost:5985/wsman]
         [string]
@@ -102,6 +102,7 @@ function New-TssDistributedEngineSite {
             $newBody = @{ data = @{} }
             $newBody.data.Add('heartbeatInterval',$CallbackInterval)
             $newBody.data.Add('winRmEndPointUrl',$WinRmEndPoint)
+            $newBody.data.Add('siteConnectorId',$SiteConnectorId)
             switch ($tssNewParams.Keys) {
                 'TssSession' { <# do nothing, added for performance #> }
                 'SiteName' { $newBody.data.Add('siteName',$SiteName) }
@@ -128,7 +129,11 @@ function New-TssDistributedEngineSite {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.DistributedEngines.Site]$restResponse
+                $restResponse | ForEach-Object {
+                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                    $_ | Select-Object -Property $NonEmptyProperties
+                [Thycotic.PowerShell.DistributedEngines.Site]$NonEmptyProperties
+                }
             }
         } else {
             Write-Warning "No valid session found"
