@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
 using RestSharp;
-using Newtonsoft.Json;
+using RestSharp.Serialization.Json;
 
 namespace Thycotic.PowerShell.Authentication
 {
@@ -110,7 +110,8 @@ namespace Thycotic.PowerShell.Authentication
             try
             {
                 var obj = Request.RefreshToken(this.SecretServer, this.RefreshToken, null);
-                var jsonObj = JsonConvert.DeserializeObject<ApiTokenResponse>(obj.Content);
+                JsonDeserializer deserial = new JsonDeserializer();
+                var jsonObj = deserial.Deserialize<ApiTokenResponse>(obj);
                 this.AccessToken = jsonObj.access_token;
                 this.RefreshToken = jsonObj.refresh_token;
                 this.ExpiresIn = jsonObj.expires_in;
