@@ -12,5 +12,7 @@ namespace Thycotic.PowerShell.SecretTemplates
         public string Name { get; set; }
         public int PasswordTypeId { get; set; }
         public int SecretCount { get; set; }
+        public bool heartbeatEnabled { get; set; }
+        public bool passwordTypeReady { get; set; }
     }
 }
