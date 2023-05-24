@@ -91,12 +91,9 @@ function Search-TssSecretTemplate {
                 Write-Warning 'No Secret Templates found'
             }
             if ($restResponse.records) {
-                $restResponse | ForEach-Object {
-                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
-                    $_ | Select-Object -Property $NonEmptyProperties
+                [Thycotic.PowerShell.SecretTemplates.Summary[]]$restResponse.records
             }
-                [Thycotic.PowerShell.SecretTemplates.Summary[]]$NonEmptyProperties.records
-            }
+
         } else {
             Write-Warning 'No valid session found'
         }
