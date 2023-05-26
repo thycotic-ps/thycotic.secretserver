@@ -23,5 +23,6 @@ namespace Thycotic.PowerShell.ServerNodes
         public bool ReadonlyModeEnabled { get; set; }
         public string ReadonlyModeStatus { get; set; }
         public string SessionRecordingWorkerError { get; set; }
+        public string loglevel { get; set; }
     }
 }

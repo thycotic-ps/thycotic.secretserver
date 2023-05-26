@@ -16,5 +16,12 @@ namespace Thycotic.PowerShell.DistributedEngines
         public string Hostname { get; set; }
         public bool IsBlockedByNet48 { get; set; }
         public DateTime? LastConnected { get; set; }
+        public bool canCancelUpdateVersion { get; set; }
+        public bool canUpdateVersion { get; set; }
+        public string currentVersion { get; set; }
+        public string latestVersion { get; set; }
+        public bool pendingUpdate { get; set; }
+        public bool timeMismatch { get; set; }
+        public int timeMismatchSeconds { get; set; }
     }
 }
