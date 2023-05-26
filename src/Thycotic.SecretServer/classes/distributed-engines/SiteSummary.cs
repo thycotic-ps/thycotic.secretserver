@@ -17,5 +17,6 @@ namespace Thycotic.PowerShell.DistributedEngines
         public int SiteId { get; set; }
         public SiteMetrics[] SiteMetrics { get; set; }
         public string SiteName { get; set; }
+        public bool showEngineVersionUpdateBlocklistBannerMessage{ get; set; }
     }
 }

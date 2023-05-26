@@ -20,5 +20,8 @@ namespace Thycotic.PowerShell.Rpc
         public string RunnerType { get; set; }
         public int ScanItemTemplateId { get; set; }
         public bool UseSsl { get; set; }
+        public string scanItemTemplateName { get; set; }
+        public bool scanItemTemplateActive { get; set; }
+        public string requiredEditionMessage { get; set; }
     }
 }
