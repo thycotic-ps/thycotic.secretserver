@@ -14,6 +14,7 @@ namespace Thycotic.PowerShell.SecretHooks
         public string PrePostOption { get; set; }
         public string ScriptName { get; set; }
         public string ScriptTypeName { get; set; }
+        public int scriptID { get; set; }
         public int SecretHookId { get; set; }
         public int SortOrder { get; set; }
         public bool Status { get; set; }

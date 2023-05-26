@@ -29,5 +29,6 @@ namespace Thycotic.PowerShell.Metadata
         public int ValueNumber { get; set; }
         public string ValueString { get; set; }
         public string ValueUserDisplayName { get; set; }
+        public bool containsPersonalInformation { get; set; }
     }
 }
