@@ -22,7 +22,7 @@ function Get-TssGroupRole {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('TssRoleSummary')]
+    [OutputType('Thycotic.PowerShell.Groups.RoleSummary')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -60,7 +60,7 @@ function Get-TssGroupRole {
                 }
 
                 if ($restResponse.records) {
-                    [TssRoleSummary[]]$restResponse.records
+                    [Thycotic.PowerShell.Groups.RoleSummary[]]$restResponse.records
                 }
             }
         } else {

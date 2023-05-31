@@ -33,5 +33,6 @@ namespace Thycotic.PowerShell.Rpc
         public bool UseUsernameAndPassword { get; set; }
         public bool ValidForTakeover { get; set; }
         public string WindowsCustomPorts { get; set; }
+        public bool allowsPrivilegedAccount { get; set; }
     }
 }

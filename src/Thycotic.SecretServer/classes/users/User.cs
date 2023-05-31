@@ -42,6 +42,9 @@ namespace Thycotic.PowerShell.Users
         public UnixAuthenticationType UnixAuthenticationMethod { get; set; }
         public int UserLcid { get; set; }
         public string Username { get; set; }
-        public DateTime? VerifyEmailSentDate { get; set; }
+        public string ipAddressRestrictions { get; set; }
+        public int personalGroupId { get; set; }
+        public string platformIntegrationType { get; set; }
+        public DateTime? verifyEmailSentDate { get; set; }
     }
 }
