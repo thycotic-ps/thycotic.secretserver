@@ -10,5 +10,6 @@ namespace Thycotic.PowerShell.Rpc
         public string Name { get; set; }
         public int PasswordTypeFieldId { get; set; }
         public int ScanItemFieldId { get; set; }
+        public bool isOptional { get; set; }
     }
 }

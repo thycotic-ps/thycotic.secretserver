@@ -19,5 +19,10 @@ namespace Thycotic.PowerShell.DistributedEngines
         public int SecretHeartbeatMessageRetryMinutes { get; set; }
         public int SecretPasswordChangeMessageMinutesToLive { get; set; }
         public int SecretPasswordChangeMessageRetryMinutes { get; set; }
+        public bool engineVersionUpdateAvailable { get; set; }
+        public string latestDistributedEnginesVersion { get; set; }
+        public bool autoUpdateEnginesVersion { get; set; }
+        public string updateEnginesBannerMessage { get; set; }
+        public string minimumRequiredDistributedEnginesVersion { get; set; }
     }
 }

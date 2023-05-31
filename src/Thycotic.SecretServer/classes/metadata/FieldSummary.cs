@@ -14,5 +14,6 @@ namespace Thycotic.PowerShell.Metadata
         public string MetadataFieldName { get; set; }
         public int MetadataFieldSectionId { get; set; }
         public string MetadataFieldSectionName { get; set; }
+        public bool containsPersonalInformation { get; set; }
     }
 }

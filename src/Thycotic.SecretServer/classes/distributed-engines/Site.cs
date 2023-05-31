@@ -25,5 +25,6 @@ namespace Thycotic.PowerShell.DistributedEngines
         public bool SshProxyPortInherited { get; set; }
         public bool SystemSite { get; set; }
         public string WinRmEndPointUrl { get; set; }
+        public string jumpBoxAvailablePortRange { get; set; }
     }
 }
