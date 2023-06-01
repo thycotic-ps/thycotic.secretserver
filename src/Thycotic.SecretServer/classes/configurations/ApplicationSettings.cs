@@ -24,8 +24,11 @@ namespace Thycotic.PowerShell.Configuration
         public int MaxSecretLogLength { get; set; }
         public int MobileMaxOfflineDays { get; set; }
         public int MobileMaxOfflineHours { get; set; }
+        public bool obfuscatePersonallyIdentifiableInformation { get; set; }
+        public int piiObfuscationLevel { get; set; }
         public bool PreventApplicationFromSleeping { get; set; }
         public bool PreventDirectApiAuthentication { get; set; }
+        public string syslogCefDateTimeFormat{ get; set; }
         public int SyslogCefLogSite { get; set; }
         public int SyslogCefPort { get; set; }
         public string SyslogCefProtocol { get; set; }

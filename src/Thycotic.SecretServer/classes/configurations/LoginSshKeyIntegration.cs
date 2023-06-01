@@ -12,5 +12,6 @@ namespace Thycotic.PowerShell.Configuration
         public int ExpirationInHours { get; set; }
         public bool KeyExpires { get; set; }
         public bool TwoFactorBypass { get; set; }
+        public bool isPublicSshPassphraseRequired { get; set; }
     }
 }
