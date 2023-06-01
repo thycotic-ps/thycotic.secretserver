@@ -10,6 +10,7 @@ namespace Thycotic.PowerShell.Configuration
         public bool AddNewUsersToThycoticOne { get; set; }
         public string ClientId { get; set; }
         public string ClientSecret { get; set; }
+        public bool ClientSecretExists { get; set; }
         public bool Enable { get; set; }
         public string LogoutUrl { get; set; }
         public string ServerUrl { get; set; }

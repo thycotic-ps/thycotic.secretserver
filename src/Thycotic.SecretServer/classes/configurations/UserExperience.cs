@@ -20,5 +20,8 @@ namespace Thycotic.PowerShell.Configuration
         public int SecretViewIntervalMinutes { get; set; }
         public string ServerTimeZoneId { get; set; }
         public int UiInactivitySleepMinutes { get; set; }
+        public int checkoutNotificationThreshold { get; set; }
+        public bool enableSecretCheckOutExtension { get; set; }
+        public int maxCheckOutExtensionInMinutes { get; set; }
     }
 }

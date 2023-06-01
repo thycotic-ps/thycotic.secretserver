@@ -8,6 +8,8 @@ namespace Thycotic.PowerShell.Configuration
     public class LoginRadius
     {
         public bool AttemptUserPassword { get; set; }
+        public bool AttemptSilentAnswer { get; set; }
+        public string SilentAnswerValue { get; set; }
         public string ClientPortRange { get; set; }
         public string DefaultUsername { get; set; }
         public bool DisableNasIpAddressAttribute { get; set; }

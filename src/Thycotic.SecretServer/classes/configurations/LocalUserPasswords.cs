@@ -18,6 +18,7 @@ namespace Thycotic.PowerShell.Configuration
         public int MinimumPasswordAgeHours { get; set; }
         public int MinimumPasswordAgeMinutes { get; set; }
         public int PasswordHistoryItems { get; set; }
+        public bool passwordHistoryItemsAll { get; set; }
         public int PasswordMinimumLength { get; set; }
         public bool PasswordRequireLowercase { get; set; }
         public bool PasswordRequireNumbers { get; set; }

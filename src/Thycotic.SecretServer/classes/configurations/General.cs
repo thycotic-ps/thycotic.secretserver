@@ -16,5 +16,7 @@ namespace Thycotic.PowerShell.Configuration
         public ProtocolHandlerSettings ProtocolHandlerSettings { get; set; }
         public UserExperience UserExperience { get; set; }
         public UserInterface UserInterface { get; set; }
+        public SessionRecording sessionRecording { get; set; }
+        public UnlimitedAdmin unlimitedAdmin { get; set; }
     }
 }
