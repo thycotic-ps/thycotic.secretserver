@@ -10,7 +10,7 @@ The `TssSession` is the output from calling [New-TssSession](/thycotic.secretser
 
 ## Windows Integrated Authentication (IWA)
 
-To utilize Windows Authentication with Secret Server, your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/ss/10.9.0/api-scripting/webservice-iwa-powershell/index.md).
+To utilize Windows Authentication with Secret Server, your administrator will need to go through [configuring Webservers to support IWA](https://docs.thycotic.com/secrets/current/webservices/windows-integrated-authentication-webservice/index.md).
 
 As of **version `0.30.0`**, Windows Authentication is supported with the module. `New-TssSession` now has the parameter `-UseWindowsAuth` for this purpose. See examples of this use via the command help
 
@@ -164,7 +164,6 @@ $session | Get-Member
 
 This method utilizes a hidden properties on the `TssObject` called `TimeOfDeath` (`datetime` type). This property's value is calculated based on the `expires_in` value returned by the OAuth2 endpoint and based on the machine's local time calling the function.
 
-More details: [TssSession source code](https://github.com/thycotic-ps/thycotic.secretserver/blob/master/src/classes/TssSession.class.ps1)
 
 ## IsValidSession
 

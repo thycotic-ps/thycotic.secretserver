@@ -130,7 +130,7 @@ FolderId FolderName     FolderPath                    InheritSecretPolicy Inheri
 
 ## Create a Full Folder Structure
 
-This example will create a folder structure loosly based on the [Secret Server Best Practices - Folder Structure](https://docs.thycotic.com/ss/10.9.0/best-practices#folder_structure).
+This example will create a folder structure loosly based on the [Secret Server Best Practices - Folder Structure](https://docs.delinea.com/secrets/current/best-practices/index.md#folder_structure).
 
 ### Folder Structure
 
