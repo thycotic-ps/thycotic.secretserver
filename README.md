@@ -16,7 +16,7 @@ Secret Server provides a management tool for those privileged accounts. Thycotic
 
 The module utilizes C# based classes to provide a unique object and type with each endpoint. In addition, certain classes may include Methods that provide "shortcuts" for performing specific actions in PowerShell or manipulating the object output by a function.
 
-Documentation for the classes can be found on the documentation site here: [about topics](https://thycotic-ps.github.io/thycotic.secretserver/about_topics/)
+Documentation for the classes can be found on the documentation site here: [about topics](https://thycotic-ps.github.io/thycotic.secretserver/commands/)
 
 ### Library Build
 
@@ -56,7 +56,7 @@ Documentation on installing the module can be found on the documentation site [h
 
 ## Changelog
 
-A formal changelog is provided in the repository ([CHANGELOG](CHANGELOG.md)) and with each GitHub release.
+A changelog can be found in the [GitHub Releases](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
 
 ## Documentation
 
