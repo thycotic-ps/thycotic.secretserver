@@ -44,32 +44,33 @@ namespace Thycotic.SecretServer
 
         protected override void ProcessRecord()
         {
-            Uri requestUri = new Uri(Uri);
-            var apiClient = new RestClient();
-            apiClient.BaseUrl = requestUri;
-            apiClient.Timeout = Timeout;
+			var options = new RestClientOptions();
+			Uri requestUri = new Uri(Uri);
+			options.BaseUrl = requestUri;
+			options.MaxTimeout = Timeout;
 
-            WriteVerbose("Base URL set to: " + requestUri);
+			WriteVerbose("Base URL set to: " + requestUri);
             WriteVerbose("Request timeout set to : " + Timeout);
 
             if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {
-                apiClient.Proxy = new WebProxy(Proxy);
+				options.Proxy = new WebProxy(Proxy);
                 WriteVerbose("Configuring Proxy for request");
                 if (ProxyUseDefaultCredentials.IsPresent)
                 {
-                    apiClient.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+					options.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
                     WriteVerbose("Default Credentials being used for Proxy");
                 }
                 if (MyInvocation.BoundParameters.ContainsKey("ProxyCredential"))
                 {
-                    apiClient.Proxy.Credentials = new NetworkCredential(ProxyCredential.UserName, ProxyCredential.Password);
+					options.Proxy.Credentials = new NetworkCredential(ProxyCredential.UserName, ProxyCredential.Password);
                     WriteVerbose("Proxy credential username being set to: " + ProxyCredential.UserName);
                 }
             }
 
-            var apiRequest = new RestRequest(Method.POST);
-            apiRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
+			var apiClient = new RestClient(options);
+			var apiRequest = new RestRequest() { Method = Method.Post };
+			apiRequest.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
             if (MyInvocation.BoundParameters.ContainsKey("OtpCode"))
             {
@@ -82,8 +83,8 @@ namespace Thycotic.SecretServer
             apiRequest.AddParameter("password", Password);
             apiRequest.AddParameter("grant_type", "password");
 
-            WriteVerbose("Performing the operation " + apiRequest.Method + " " + apiClient.BaseUrl);
-            IRestResponse apiResponse = apiClient.Execute(apiRequest);
+            WriteVerbose("Performing the operation " + apiRequest.Method + " " + options.BaseUrl);
+            RestResponse apiResponse = apiClient.Execute(apiRequest);
             WriteObject(apiResponse);
         }
     }
