@@ -89,48 +89,48 @@ namespace Thycotic.SecretServer.Cmdlets
 
         protected override void ProcessRecord()
         {
-            Uri requestUri = new Uri(Uri);
-            var apiClient = new RestClient();
-            apiClient.BaseUrl = requestUri;
-            apiClient.Timeout = Timeout;
+			var options = new RestClientOptions();
+			Uri requestUri = new Uri(Uri);
+			options.BaseUrl = requestUri;
+			options.MaxTimeout = Timeout;
 
-            if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
+			if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {
-                apiClient.Proxy = new WebProxy(Proxy);
+				options.Proxy = new WebProxy(Proxy);
                 if (ProxyUseDefaultCredentials.IsPresent)
                 {
-                    apiClient.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
+					options.Proxy.Credentials = System.Net.CredentialCache.DefaultCredentials;
                 }
                 if (MyInvocation.BoundParameters.ContainsKey("ProxyCredential"))
                 {
-                    apiClient.Proxy.Credentials = new NetworkCredential(ProxyCredential.UserName, ProxyCredential.Password);
+					options.Proxy.Credentials = new NetworkCredential(ProxyCredential.UserName, ProxyCredential.Password);
                 }
             }
 
-            var apiRequest = new RestRequest(Method);
-            apiRequest.AddHeader("Content-Type", ContentType);
+			var apiRequest = new RestRequest() { Method = Method };
+			apiRequest.AddHeader("Content-Type", ContentType);
             if (MyInvocation.BoundParameters.ContainsKey("AccessToken"))
             {
                 apiRequest.AddHeader("Authorization", "Bearer " + AccessToken);
             }
             if (MyInvocation.BoundParameters.ContainsKey("UseDefaultCredential"))
             {
-                apiRequest.UseDefaultCredentials = true;
-            }
+				options.UseDefaultCredentials = true;
+			}
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
                 apiRequest.AddParameter(ContentType, Body, ParameterType.RequestBody);
             }
-
-            if (!String.IsNullOrEmpty(OutFile))
+			var apiClient = new RestClient(options);
+			if (!String.IsNullOrEmpty(OutFile))
             {
                 // stream file content out
-                IRestResponse apiResponse = apiClient.Execute(apiRequest);
+                RestResponse apiResponse = apiClient.Execute(apiRequest);
                 File.WriteAllBytes(OutFile, apiResponse.RawBytes);
             }
             else
             {
-                IRestResponse apiResponse = apiClient.Execute(apiRequest);
+                RestResponse apiResponse = apiClient.Execute(apiRequest);
                 WriteObject(apiResponse);
             }
         }
