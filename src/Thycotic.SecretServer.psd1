@@ -33,7 +33,7 @@ Copyright = '(c) Delinea Professional Services. All rights reserved.'
 Description = 'Interact with the Secret Server REST API'
 
 # Minimum version of the PowerShell engine required by this module
-PowerShellVersion = '7.3.4'
+PowerShellVersion = '7.2.11'
 
 # Name of the PowerShell host required by this module
 # PowerShellHostName = ''
