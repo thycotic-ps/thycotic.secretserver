@@ -18,8 +18,8 @@ sort: 1
 `Thycotic.SecretServer` is available to download from the following locations:
 
 - [GitHub Releases](https://github.com/thycotic-ps/thycotic.secretserver/releases/latest)
-- **[Direct download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.0/Thycotic.SecretServer.zip) Current Release**
-- *[PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) Release 61.0*
+- **[Direct download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.1/Thycotic.SecretServer.zip) Current Release**
+- *[PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) Release 61.1*
 
 Choose one of the following methods to obtain & install the module:
 
@@ -48,7 +48,7 @@ There are multiple options for downloading the module files:
 
 ### Direct File Download
 
-1. [Download the latest release file](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.0/Thycotic.SecretServer.zip)
+1. [Download the latest release file](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.1/Thycotic.SecretServer.zip)
 2. Unblock & Extract the archive
 3. Copy the `Thycotic.SecretServer` folder to your "Powershell Modules" directory of choice.
 
