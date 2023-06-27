@@ -35,5 +35,7 @@ namespace Thycotic.PowerShell.Secrets
         public string SecretTemplateName { get; set; }
         public int SiteId { get; set; }
         public string[] ResponseCodes { get; set; }
+        public int checkOutUserId { get; set; }
+        public string checkOutUserName { get; set; }
     }
 }
