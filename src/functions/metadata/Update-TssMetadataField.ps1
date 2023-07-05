@@ -133,7 +133,11 @@ function Update-TssMetadataField {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Metadata.Field]$restResponse
+                    $restResponse | ForEach-Object {
+                        $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                        $_ | Select-Object -Property $NonEmptyProperties
+                    }
+                    [Thycotic.PowerShell.Metadata.Field]$NonEmptyProperties
                 }
             }
         } else {

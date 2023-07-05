@@ -93,7 +93,7 @@ namespace Thycotic.SecretServer.Cmdlets
 			Uri requestUri = new Uri(Uri);
 			options.BaseUrl = requestUri;
 			options.MaxTimeout = Timeout;
-
+            
 			if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {
 				options.Proxy = new WebProxy(Proxy);
@@ -119,14 +119,14 @@ namespace Thycotic.SecretServer.Cmdlets
 			}
             if (MyInvocation.BoundParameters.ContainsKey("Body"))
             {
-                apiRequest.AddParameter(ContentType, Body, ParameterType.RequestBody);
+				apiRequest.AddParameter(ContentType, ((PSObject)Body).BaseObject, ParameterType.RequestBody);
             }
 			var apiClient = new RestClient(options);
 			if (!String.IsNullOrEmpty(OutFile))
             {
                 // stream file content out
                 RestResponse apiResponse = apiClient.Execute(apiRequest);
-                File.WriteAllBytes(OutFile, apiResponse.RawBytes);
+				File.WriteAllBytes(OutFile, apiResponse.RawBytes);
             }
             else
             {
