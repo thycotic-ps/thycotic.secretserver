@@ -50,7 +50,7 @@ This project strives to cover all types of environments. We understand that some
 
 - [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
 - [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
-- [Direct Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.1/Thycotic.SecretServer.zip)
+- [Direct Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.2/Thycotic.SecretServer.zip)
 
 Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
 
