@@ -5,7 +5,7 @@ sort: 1
 # Installation
 
 {% capture notice-text %}
-- Windows Powershell v5.1, or PowerShell 7+
+- Windows Powershell PowerShell 7+
 - Thycotic Secret Server Web Service enabled
 - A user to authenticate with appropriate permissions to access desired objects.
 {% endcapture %}
@@ -95,6 +95,6 @@ Get-Help Get-TssSecret -Full
 Install-Module -Name Thycotic.SecretServer -Scope CurrentUser
 ```
 
-> **Warning** **Windows PowerShell 5.1 or PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
+> **Warning** **Windows PowerShell PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
 
 > **Warning** **Windows PowerShell 5.1** TLS error: PowerShell Gallery only supports TLS 1.2 and above, errors noted [here](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support/#errors-i-might-see) may be observed. You will need to start a new PowerShell session and set TLS to 1.2: `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12`
