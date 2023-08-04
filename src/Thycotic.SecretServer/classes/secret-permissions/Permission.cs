@@ -7,6 +7,7 @@ namespace Thycotic.PowerShell.SecretPermissions
 {
     public class Permission
     {
+        public string DomainName { get; set; }
         public int GroupId { get; set; }
         public string GroupName { get; set; }
         public int Id { get; set; }
