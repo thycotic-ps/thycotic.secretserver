@@ -116,7 +116,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## NOTES
 Secret Server docs cover configuring Application Account and SDK Client rule
-https://docs.thycotic.com/ss/10.9.0/api-scripting/sdk-cli/index.md#task_1__configuring_secret_server
+https://docs.delinea.com/online-help/secret-server/api-scripting/sdk-cli/index.htm#Task1ConfiguringSecretServer
 
 ## RELATED LINKS
 
