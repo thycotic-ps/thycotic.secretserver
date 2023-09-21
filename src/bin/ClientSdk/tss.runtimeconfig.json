@@ -1,9 +1,13 @@
 {
   "runtimeOptions": {
+    "tfm": "netcoreapp2.1",
     "runtimeOptions": {
       "configProperties": {
         "System.Globalization.Invariant": true
       }
+    },
+    "configProperties": {
+      "System.Reflection.Metadata.MetadataUpdater.IsSupported": false
     }
   }
 }
