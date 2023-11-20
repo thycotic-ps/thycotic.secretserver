@@ -18,7 +18,7 @@ Search Access Request for Secrets by status for current user.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssAccessRequest -TssSession $session -IsMyRequest
+Search-TssSecretAccessRequest -TssSession $session -IsMyRequest
 ```
 
 Return all Access Requests that the connected user submitted
@@ -26,7 +26,7 @@ Return all Access Requests that the connected user submitted
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssAccessRequest -TssSession $session -Status Pending
+Search-TssSecretAccessRequest -TssSession $session -Status Pending
 ```
 
 Return all pending Access Requests where connected user is submitter or an approver
