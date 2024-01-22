@@ -37,5 +37,6 @@ namespace Thycotic.PowerShell.Secrets
         public string[] ResponseCodes { get; set; }
         public int checkOutUserId { get; set; }
         public string checkOutUserName { get; set; }
+        public string hsmKeyIdentifier { get; set; }
     }
 }
