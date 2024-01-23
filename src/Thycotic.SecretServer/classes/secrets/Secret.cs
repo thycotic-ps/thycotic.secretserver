@@ -51,6 +51,7 @@ namespace Thycotic.PowerShell.Secrets
         public bool WebLauncherRequiresIncognitoMode { get; set; }
         public string[] ResponseCodes { get; set; }
         public int? JumpboxRouteId { get; set; }
+        public string hsmKeyIdentifier { get; set; }
 
         public PSCredential GetCredential(string DomainField, string UserField, string PasswordField)
         {
