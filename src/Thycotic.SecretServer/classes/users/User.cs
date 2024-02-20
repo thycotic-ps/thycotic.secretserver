@@ -46,5 +46,6 @@ namespace Thycotic.PowerShell.Users
         public int personalGroupId { get; set; }
         public string platformIntegrationType { get; set; }
         public DateTime? verifyEmailSentDate { get; set; }
+        public bool platformServiceUser { get; set; }
     }
 }
