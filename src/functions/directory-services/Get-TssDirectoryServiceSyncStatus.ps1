@@ -52,7 +52,11 @@ function Get-TssDirectoryServiceSyncStatus {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.DirectoryServices.SyncStatus]$restResponse
+                    $restResponse | ForEach-Object {
+                        $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                        $_ | Select-Object -Property $NonEmptyProperties
+                    }
+                    [Thycotic.PowerShell.DirectoryServices.SyncStatus]$NonEmptyProperties
                 }
         } else {
             Write-Warning "No valid session found"
