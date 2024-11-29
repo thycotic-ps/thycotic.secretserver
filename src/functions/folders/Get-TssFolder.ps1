@@ -105,7 +105,11 @@ function Get-TssFolder {
                     }
 
                     if ($restResponse) {
-                        [Thycotic.PowerShell.Folders.Folder[]]$restResponse
+                        $restResponse | ForEach-Object {
+                            $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                            $_ | Select-Object -Property $NonEmptyProperties
+                        }
+                        [Thycotic.PowerShell.Folders.Folder[]]$NonEmptyProperties
                     }
                 }
             }
@@ -129,7 +133,11 @@ function Get-TssFolder {
                     }
 
                     if ($restResponse) {
-                        [Thycotic.PowerShell.Folders.Folder[]]$restResponse
+                        $restResponse | ForEach-Object {
+                            $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
+                            $_ | Select-Object -Property $NonEmptyProperties
+                        }
+                        [Thycotic.PowerShell.Folders.Folder[]]$NonEmptyProperties
                     }
                 }
             }
