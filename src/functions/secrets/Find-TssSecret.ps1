@@ -239,6 +239,7 @@ function Find-TssSecret {
                     'RpcEnabled' { $filters += "filter.onlyRPCEnabled=$([boolean]$RpcEnabled)" }
                     'SharedWithMe' { $filters += "filter.onlySharedWithMe=$([boolean]$SharedWithMe)" }
                     'ExcludeDoubleLock' { $filters += "filter.allowDoubleLocks=$([boolean]$ExcludeDoubleLock)" }
+                    'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
                     'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
                     'Scope' {
                         $filters += switch ($tssParams['Scope']) {
