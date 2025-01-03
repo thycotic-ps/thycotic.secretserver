@@ -8,6 +8,7 @@ namespace Thycotic.PowerShell.Secrets
     public class Audit
     {
         public string Action { get; set; }
+        public string Application { get; set; }
         public string ActionForDisplay { get; set; }
         public string ByUserDisplayName { get; set; }
         public string DatabaseName { get; set; }
