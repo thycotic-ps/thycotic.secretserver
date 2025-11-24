@@ -5,7 +5,7 @@ release*
 .vs/
 .claude/*
 .calude
-
+thycotic.secretserver.sln
 # ignoring doc works for now
 /docs/_site
 
