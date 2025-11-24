@@ -81,7 +81,8 @@ function Search-TssDirectoryServiceDomain {
                 Write-Warning 'No Directory Domain found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.DirectoryServices.DomainSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.DirectoryServices.DomainSummary].GetProperties().Name
+                [Thycotic.PowerShell.DirectoryServices.DomainSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

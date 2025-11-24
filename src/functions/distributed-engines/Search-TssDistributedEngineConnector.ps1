@@ -80,7 +80,8 @@ function Search-TssDistributedEngineConnector {
                 Write-Warning "No records found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.DistributedEngines.SiteConnectorSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.DistributedEngines.SiteConnectorSummary].GetProperties().Name
+                [Thycotic.PowerShell.DistributedEngines.SiteConnectorSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

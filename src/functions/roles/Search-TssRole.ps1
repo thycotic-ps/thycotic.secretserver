@@ -98,7 +98,8 @@ function Search-TssRole {
                 Write-Warning 'No Roles found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Roles.Role[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Roles.Role].GetProperties().Name
+                [Thycotic.PowerShell.Roles.Role[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

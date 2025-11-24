@@ -95,7 +95,8 @@ function Search-TssDistributedEngine {
                 Write-Warning "No records found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.DistributedEngines.EngineSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.DistributedEngines.EngineSummary].GetProperties().Name
+                [Thycotic.PowerShell.DistributedEngines.EngineSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

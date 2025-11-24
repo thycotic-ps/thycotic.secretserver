@@ -63,7 +63,8 @@ function Get-TssUserRole {
                 }
 
                 if ($restResponse.records.Count -gt 0) {
-                    [Thycotic.PowerShell.Users.RoleSummary[]]$restResponse.records
+                    $typeProps = [Thycotic.PowerShell.Users.RoleSummary].GetProperties().Name
+                    [Thycotic.PowerShell.Users.RoleSummary[]]($restResponse.records | Select-Object -Property $typeProps)
                 } else {
                     Write-Warning "User ID [$user] not found"
                 }

@@ -62,7 +62,8 @@ function Get-TssFolderAudit {
                 }
 
                 if ($restResponse.records) {
-                    [Thycotic.PowerShell.Folders.AuditSummary[]]$restResponse.records
+                    $typeProps = [Thycotic.PowerShell.Folders.AuditSummary].GetProperties().Name
+                    [Thycotic.PowerShell.Folders.AuditSummary[]]($restResponse.records | Select-Object -Property $typeProps)
                 }
             }
         } else {

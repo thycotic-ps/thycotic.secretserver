@@ -89,7 +89,8 @@ function Search-TssReportSchedule {
                 Write-Warning 'No report schedules found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Reports.ScheduleSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Reports.ScheduleSummary].GetProperties().Name
+                [Thycotic.PowerShell.Reports.ScheduleSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

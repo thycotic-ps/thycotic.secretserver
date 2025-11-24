@@ -80,7 +80,8 @@ function Search-TssList {
                 Write-Warning "No records found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Lists.Summary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Lists.Summary].GetProperties().Name
+                [Thycotic.PowerShell.Lists.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

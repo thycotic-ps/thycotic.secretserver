@@ -57,7 +57,8 @@ function Search-TssAutoExportStorage {
                 Write-Warning "No AutomaticStorage found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Configuration.AutomaticExportItem[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Configuration.AutomaticExportItem].GetProperties().Name
+                [Thycotic.PowerShell.Configuration.AutomaticExportItem[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

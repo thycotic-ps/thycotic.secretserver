@@ -65,7 +65,8 @@ function Get-TssDirectoryServiceDomain {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.DirectoryServices.Domain[]]$restResponse
+                    $typeProps = [Thycotic.PowerShell.DirectoryServices.Domain].GetProperties().Name
+                    [Thycotic.PowerShell.DirectoryServices.Domain[]]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

@@ -91,7 +91,8 @@ function Search-TssSecretTemplate {
                 Write-Warning 'No Secret Templates found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.SecretTemplates.Summary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.SecretTemplates.Summary].GetProperties().Name
+                [Thycotic.PowerShell.SecretTemplates.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
 
         } else {
