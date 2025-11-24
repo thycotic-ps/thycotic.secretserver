@@ -95,7 +95,8 @@ function Find-TssReport {
             }
 
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Reports.Lookup[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Reports.Lookup].GetProperties().Name
+                [Thycotic.PowerShell.Reports.Lookup[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

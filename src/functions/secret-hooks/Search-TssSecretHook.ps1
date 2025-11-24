@@ -60,7 +60,8 @@ function Search-TssSecretHook {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretHooks.Summary[]]$restResponse
+                    $typeProps = [Thycotic.PowerShell.SecretHooks.Summary].GetProperties().Name
+                    [Thycotic.PowerShell.SecretHooks.Summary[]]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

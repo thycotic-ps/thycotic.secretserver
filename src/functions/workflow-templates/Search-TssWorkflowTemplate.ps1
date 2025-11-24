@@ -74,7 +74,8 @@ function Search-TssWorkflowTemplate {
                 Write-Warning "No Workflow(s) found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.WorkflowTemplates.Detail[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.WorkflowTemplates.Detail].GetProperties().Name
+                [Thycotic.PowerShell.WorkflowTemplates.Detail[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

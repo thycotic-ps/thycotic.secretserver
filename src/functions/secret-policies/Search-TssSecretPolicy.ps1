@@ -80,7 +80,8 @@ function Search-TssSecretPolicy {
                 Write-Warning "No SecretPolicy found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.SecretPolicies.Summary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.SecretPolicies.Summary].GetProperties().Name
+                [Thycotic.PowerShell.SecretPolicies.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

@@ -102,7 +102,8 @@ function Search-TssUser {
                 Write-Warning 'No Users found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Users.Summary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Users.Summary].GetProperties().Name
+                [Thycotic.PowerShell.Users.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

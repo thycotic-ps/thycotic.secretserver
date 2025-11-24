@@ -101,7 +101,8 @@ function Find-TssFolder {
                 Write-Warning 'No Folder found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Folders.Lookup[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Folders.Lookup].GetProperties().Name
+                [Thycotic.PowerShell.Folders.Lookup[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

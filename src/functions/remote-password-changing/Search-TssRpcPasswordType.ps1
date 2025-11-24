@@ -83,7 +83,8 @@ function Search-TssRpcPasswordType {
                 Write-Warning 'No RpcPasswordType found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Rpc.PasswordTypeSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Rpc.PasswordTypeSummary].GetProperties().Name
+                [Thycotic.PowerShell.Rpc.PasswordTypeSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

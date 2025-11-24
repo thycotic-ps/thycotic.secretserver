@@ -52,7 +52,8 @@ function Get-TssSecretWebTemplate {
             }
 
             if ($restResponse.records) {
-                [Thycotic.PowerShell.SecretTemplates.Template[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.SecretTemplates.Template].GetProperties().Name
+                [Thycotic.PowerShell.SecretTemplates.Template[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

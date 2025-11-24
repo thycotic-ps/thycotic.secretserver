@@ -52,7 +52,8 @@ function Get-TssDiagnosticBackgroundProcess {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Diagnostics.BackgroundProcess[]]$restResponse
+                $typeProps = [Thycotic.PowerShell.Diagnostics.BackgroundProcess].GetProperties().Name
+                [Thycotic.PowerShell.Diagnostics.BackgroundProcess[]]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

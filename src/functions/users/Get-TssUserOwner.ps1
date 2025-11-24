@@ -65,7 +65,8 @@ function Get-TssUserOwner {
                 }
 
                 if ($restResponse.records) {
-                    [Thycotic.PowerShell.Users.OwnerSummary[]]$restResponse.records
+                    $typeProps = [Thycotic.PowerShell.Users.OwnerSummary].GetProperties().Name
+                    [Thycotic.PowerShell.Users.OwnerSummary[]]($restResponse.records | Select-Object -Property $typeProps)
                 }
             }
         } else {

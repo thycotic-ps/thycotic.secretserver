@@ -73,7 +73,8 @@ function Get-TssSecretDependencyTemplate {
             }
 
             if ($restResponse.model) {
-                $depTemplates = [Thycotic.PowerShell.SecretDependencies.Template[]]$restResponse.model
+                $typeProps = [Thycotic.PowerShell.SecretDependencies.Template].GetProperties().Name
+                $depTemplates = [Thycotic.PowerShell.SecretDependencies.Template[]]($restResponse.model | Select-Object -Property $typeProps)
                 if ($tssParams.ContainsKey('Template')) {
                     $depTemplates.Where( { $_.Name -eq $Template })
                 } elseif ($tssParams.ContainsKey('Id')) {

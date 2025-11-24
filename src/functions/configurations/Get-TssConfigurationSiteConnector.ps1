@@ -57,7 +57,8 @@ function Get-TssConfigurationSiteConnector {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Configuration.SiteConnector[]]$restResponse
+                $typeProps = [Thycotic.PowerShell.Configuration.SiteConnector].GetProperties().Name
+                [Thycotic.PowerShell.Configuration.SiteConnector[]]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

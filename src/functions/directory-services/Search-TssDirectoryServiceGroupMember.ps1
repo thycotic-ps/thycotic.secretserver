@@ -67,7 +67,8 @@ function Search-TssDirectoryServiceGroupMember {
                 Write-Warning "No DirectoryServiceGroupMember found"
             }
             if ($restResponse.members) {
-                [Thycotic.PowerShell.DirectoryServices.GroupMember[]]$restResponse.members
+                $typeProps = [Thycotic.PowerShell.DirectoryServices.GroupMember].GetProperties().Name
+                [Thycotic.PowerShell.DirectoryServices.GroupMember[]]($restResponse.members | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

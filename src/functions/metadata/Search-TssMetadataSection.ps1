@@ -89,7 +89,8 @@ function Search-TssMetadataSection {
                 Write-Warning "No MetadataSection found"
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Metadata.FieldSectionSummary[]]$restResponse.records
+                $typeProps = [Thycotic.PowerShell.Metadata.FieldSectionSummary].GetProperties().Name
+                [Thycotic.PowerShell.Metadata.FieldSectionSummary[]]($restResponse.records | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"
