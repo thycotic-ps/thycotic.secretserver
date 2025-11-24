@@ -63,7 +63,8 @@ function Update-TssFolder {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Folders.Folder]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Folders.Folder].GetProperties().Name
+                    [Thycotic.PowerShell.Folders.Folder]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

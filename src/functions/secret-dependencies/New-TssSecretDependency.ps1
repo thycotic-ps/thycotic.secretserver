@@ -61,7 +61,8 @@ function New-TssSecretDependency {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.SecretDependencies.Dependency]$restResponse
+                $typeProps = [Thycotic.PowerShell.SecretDependencies.Dependency].GetProperties().Name
+                [Thycotic.PowerShell.SecretDependencies.Dependency]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

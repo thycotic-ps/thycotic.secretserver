@@ -52,7 +52,8 @@ function Get-TssDiagnostic {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Diagnostics.Diagnostic]$restResponse
+                $typeProps = [Thycotic.PowerShell.Diagnostics.Diagnostic].GetProperties().Name
+                [Thycotic.PowerShell.Diagnostics.Diagnostic]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

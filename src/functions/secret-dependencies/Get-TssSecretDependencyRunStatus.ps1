@@ -61,7 +61,8 @@ function Get-TssSecretDependencyRunStatus {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretDependencies.TaskProgress]$restResponse
+                    $typeProps = [Thycotic.PowerShell.SecretDependencies.TaskProgress].GetProperties().Name
+                    [Thycotic.PowerShell.SecretDependencies.TaskProgress]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

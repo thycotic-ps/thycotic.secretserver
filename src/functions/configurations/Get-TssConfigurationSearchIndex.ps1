@@ -52,7 +52,8 @@ function Get-TssConfigurationSearchIndex {
                 }
 
                 if ($restResponse.records) {
-                    [Thycotic.PowerShell.Configuration.SearchIndexer]$restResponse.records
+                    $typeProps = [Thycotic.PowerShell.Configuration.SearchIndexer].GetProperties().Name
+                    [Thycotic.PowerShell.Configuration.SearchIndexer]($restResponse.records | Select-Object -Property $typeProps)
                 }
         } else {
             Write-Warning "No valid session found"

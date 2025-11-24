@@ -3,6 +3,8 @@
 *.[Ll]og
 release*
 .vs/
+.claude/*
+.calude
 
 # ignoring doc works for now
 /docs/_site

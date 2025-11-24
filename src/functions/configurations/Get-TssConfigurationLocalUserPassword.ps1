@@ -52,7 +52,8 @@ function Get-TssConfigurationLocalUserPassword {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Configuration.LocalUserPasswords]$restResponse
+                $typeProps = [Thycotic.PowerShell.Configuration.LocalUserPasswords].GetProperties().Name
+                [Thycotic.PowerShell.Configuration.LocalUserPasswords]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

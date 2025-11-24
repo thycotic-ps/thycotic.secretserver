@@ -61,7 +61,8 @@ function Get-TssSecretSummary {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Secrets.Summary]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Secrets.Summary].GetProperties().Name
+                    [Thycotic.PowerShell.Secrets.Summary]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

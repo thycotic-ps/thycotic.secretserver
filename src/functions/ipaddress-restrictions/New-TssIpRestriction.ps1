@@ -77,7 +77,8 @@ function New-TssIpRestriction {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.IpRestrictions.IpRestriction]$restResponse
+                $typeProps = [Thycotic.PowerShell.IpRestrictions.IpRestriction].GetProperties().Name
+                [Thycotic.PowerShell.IpRestrictions.IpRestriction]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

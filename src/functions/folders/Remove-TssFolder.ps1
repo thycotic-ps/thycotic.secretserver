@@ -63,7 +63,8 @@ function Remove-TssFolder {
                     }
 
                     if ($restResponse) {
-                        [Thycotic.PowerShell.Common.Delete]$restResponse
+                        $typeProps = [Thycotic.PowerShell.Common.Delete].GetProperties().Name
+                        [Thycotic.PowerShell.Common.Delete]($restResponse | Select-Object -Property $typeProps)
                     }
                 }
             }
