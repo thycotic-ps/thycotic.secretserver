@@ -66,7 +66,8 @@ function Update-TssSecretTemplateField {
                     . $ErrorHandling $err
                 }
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretTemplates.Field]$restResponse
+                    $typeProps = [Thycotic.PowerShell.SecretTemplates.Field].GetProperties().Name
+                    [Thycotic.PowerShell.SecretTemplates.Field]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

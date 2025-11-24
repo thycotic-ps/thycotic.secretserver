@@ -52,7 +52,8 @@ function Get-TssConfigurationBackup {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Configuration.Backup]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Configuration.Backup].GetProperties().Name
+                    [Thycotic.PowerShell.Configuration.Backup]($restResponse | Select-Object -Property $typeProps)
                 }
         } else {
             Write-Warning "No valid session found"

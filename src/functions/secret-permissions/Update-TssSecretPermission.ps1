@@ -80,7 +80,8 @@ function Update-TssSecretPermission {
                     }
                 }
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretPermissions.Permission]$restResponse
+                    $typeProps = [Thycotic.PowerShell.SecretPermissions.Permission].GetProperties().Name
+                    [Thycotic.PowerShell.SecretPermissions.Permission]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

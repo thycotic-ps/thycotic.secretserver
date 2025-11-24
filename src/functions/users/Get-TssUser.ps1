@@ -64,7 +64,8 @@ function Get-TssUser {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Users.User]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Users.User].GetProperties().Name
+                    [Thycotic.PowerShell.Users.User]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

@@ -108,7 +108,8 @@ function New-TssSecretPolicy {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.SecretPolicies.Policy]$restResponse
+                $typeProps = [Thycotic.PowerShell.SecretPolicies.Policy].GetProperties().Name
+                [Thycotic.PowerShell.SecretPolicies.Policy]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

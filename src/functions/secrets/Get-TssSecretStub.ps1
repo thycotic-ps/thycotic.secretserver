@@ -78,7 +78,8 @@ function Get-TssSecretStub {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Secrets.Secret]$restResponse
+                $typeProps = [Thycotic.PowerShell.Secrets.Secret].GetProperties().Name
+                [Thycotic.PowerShell.Secrets.Secret]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

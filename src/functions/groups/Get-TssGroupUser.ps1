@@ -64,7 +64,8 @@ function Get-TssGroupUser {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Groups.User]$restResponse
+                $typeProps = [Thycotic.PowerShell.Groups.User].GetProperties().Name
+                [Thycotic.PowerShell.Groups.User]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning 'No valid session found'

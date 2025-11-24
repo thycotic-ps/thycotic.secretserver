@@ -60,7 +60,8 @@ function Get-TssSecretAccessRequestOption {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.AccessRequests.Option]$restResponse
+                    $typeProps = [Thycotic.PowerShell.AccessRequests.Option].GetProperties().Name
+                    [Thycotic.PowerShell.AccessRequests.Option]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

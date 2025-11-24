@@ -99,7 +99,8 @@ function New-TssList {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Lists.List]$restResponse
+                $typeProps = [Thycotic.PowerShell.Lists.List].GetProperties().Name
+                [Thycotic.PowerShell.Lists.List]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

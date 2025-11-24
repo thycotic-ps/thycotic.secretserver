@@ -62,7 +62,8 @@ function Get-TssSecretPasswordStatus {
                 }
 
                 if ($restResponse.status -ne 'None') {
-                    [Thycotic.PowerShell.Secrets.PasswordStatus]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Secrets.PasswordStatus].GetProperties().Name
+                    [Thycotic.PowerShell.Secrets.PasswordStatus]($restResponse | Select-Object -Property $typeProps)
                 } else {
                     Write-Host "No active password change found on Secret [$secret]"
                 }

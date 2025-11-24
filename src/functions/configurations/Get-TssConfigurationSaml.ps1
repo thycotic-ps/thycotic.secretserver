@@ -52,7 +52,8 @@ function Get-TssConfigurationSaml {
             }
 
             if ($restResponse) {
-                [Thycotic.PowerShell.Configuration.Saml]$restResponse
+                $typeProps = [Thycotic.PowerShell.Configuration.Saml].GetProperties().Name
+                [Thycotic.PowerShell.Configuration.Saml]($restResponse | Select-Object -Property $typeProps)
             }
         } else {
             Write-Warning "No valid session found"

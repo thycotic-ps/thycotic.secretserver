@@ -52,7 +52,8 @@ function Get-TssDistributedEngineConfiguration {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.DistributedEngines.Configuration]$restResponse
+                    $typeProps = [Thycotic.PowerShell.DistributedEngines.Configuration].GetProperties().Name
+                    [Thycotic.PowerShell.DistributedEngines.Configuration]($restResponse | Select-Object -Property $typeProps)
                 }
         } else {
             Write-Warning "No valid session found"

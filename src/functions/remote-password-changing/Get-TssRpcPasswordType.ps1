@@ -60,7 +60,8 @@ function Get-TssRpcPasswordType {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Rpc.PasswordType]$restResponse
+                    $typeProps = [Thycotic.PowerShell.Rpc.PasswordType].GetProperties().Name
+                    [Thycotic.PowerShell.Rpc.PasswordType]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {

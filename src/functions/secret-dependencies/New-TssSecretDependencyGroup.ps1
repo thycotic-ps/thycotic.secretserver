@@ -83,7 +83,8 @@ function New-TssSecretDependencyGroup {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretDependencies.Group]$restResponse
+                    $typeProps = [Thycotic.PowerShell.SecretDependencies.Group].GetProperties().Name
+                    [Thycotic.PowerShell.SecretDependencies.Group]($restResponse | Select-Object -Property $typeProps)
                 }
             }
         } else {
