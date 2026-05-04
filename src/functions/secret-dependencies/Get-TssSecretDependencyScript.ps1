@@ -52,8 +52,7 @@ function Get-TssSecretDependencyScript {
                 }
 
                 if ($restResponse.model) {
-                    $typeProps = [Thycotic.PowerShell.SecretDependencies.Script].GetProperties().Name
-                    [Thycotic.PowerShell.SecretDependencies.Script[]]($restResponse.model | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.SecretDependencies.Script[]](. $FilterTssResponse $restResponse.model ([Thycotic.PowerShell.SecretDependencies.Script]))
                 }
         } else {
             Write-Warning "No valid session found"

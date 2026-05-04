@@ -116,8 +116,7 @@ function New-TssFolderPermission {
                     }
 
                     if ($restResponse) {
-                        $typeProps = [Thycotic.PowerShell.FolderPermissions.Permission].GetProperties().Name
-                        [Thycotic.PowerShell.FolderPermissions.Permission]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.FolderPermissions.Permission](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.FolderPermissions.Permission]))
                     }
                 }
             } else {

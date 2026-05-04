@@ -61,8 +61,7 @@ function Search-TssIpRestriction {
                 Write-Warning "No records found"
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.IpRestrictions.IpRestriction].GetProperties().Name
-                [Thycotic.PowerShell.IpRestrictions.IpRestriction[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.IpRestrictions.IpRestriction[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.IpRestrictions.IpRestriction]))
             }
         } else {
             Write-Warning "No valid session found"

@@ -60,8 +60,7 @@ function Get-TssGroupRole {
                 }
 
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.Groups.RoleSummary].GetProperties().Name
-                    [Thycotic.PowerShell.Groups.RoleSummary[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Groups.RoleSummary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Groups.RoleSummary]))
                 }
             }
         } else {

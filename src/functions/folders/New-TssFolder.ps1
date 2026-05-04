@@ -125,8 +125,7 @@ function New-TssFolder {
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Folders.Folder].GetProperties().Name
-                [Thycotic.PowerShell.Folders.Folder]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Folders.Folder](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Folders.Folder]))
             }
         } else {
             Write-Warning 'No valid session found'

@@ -95,8 +95,7 @@ function Update-TssList {
                     }
 
                     if ($restResponse) {
-                        $typeProps = [Thycotic.PowerShell.Lists.List].GetProperties().Name
-                        [Thycotic.PowerShell.Lists.List[]]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Lists.List[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Lists.List]))
                     }
                 }
             }

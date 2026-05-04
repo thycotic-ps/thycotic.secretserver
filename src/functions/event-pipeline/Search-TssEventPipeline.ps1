@@ -101,8 +101,7 @@ function Search-TssEventPipeline {
             }
 
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.EventPipeline.Summary].GetProperties().Name
-                [Thycotic.PowerShell.EventPipeline.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.EventPipeline.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.EventPipeline.Summary]))
             }
         } else {
             Write-Warning "No valid session found"

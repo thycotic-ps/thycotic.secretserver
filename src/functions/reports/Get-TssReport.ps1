@@ -61,8 +61,7 @@ function Get-TssReport {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Reports.Report].GetProperties().Name
-                    [Thycotic.PowerShell.Reports.Report]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Reports.Report](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Reports.Report]))
                 }
             }
         } else {

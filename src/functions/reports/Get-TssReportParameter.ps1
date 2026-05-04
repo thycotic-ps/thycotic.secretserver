@@ -59,8 +59,7 @@ function Get-TssReportParameter {
             }
 
             if ($restResponse.defaultParameterValues) {
-                $typeProps = [Thycotic.PowerShell.Reports.Parameter].GetProperties().Name
-                [Thycotic.PowerShell.Reports.Parameter[]]($restResponse.defaultParameterValues | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Reports.Parameter[]](. $FilterTssResponse $restResponse.defaultParameterValues ([Thycotic.PowerShell.Reports.Parameter]))
             }
         } else {
             Write-Warning "No valid session found"

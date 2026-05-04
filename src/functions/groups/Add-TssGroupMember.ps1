@@ -68,8 +68,7 @@ function Add-TssGroupMember {
                     }
 
                     if ($restResponse) {
-                        $typeProps = [Thycotic.PowerShell.Groups.User].GetProperties().Name
-                        [Thycotic.PowerShell.Groups.User]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Groups.User](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Groups.User]))
                     }
                 }
             }

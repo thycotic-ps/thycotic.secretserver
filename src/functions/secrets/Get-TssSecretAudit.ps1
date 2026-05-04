@@ -73,8 +73,7 @@ function Get-TssSecretAudit {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Secrets.Audit].GetProperties().Name
-                    [Thycotic.PowerShell.Secrets.Audit[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Secrets.Audit[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Secrets.Audit]))
                 }
             }
         } else {

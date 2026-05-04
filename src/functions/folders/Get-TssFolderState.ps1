@@ -74,8 +74,7 @@ function Get-TssFolderState {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Folders.DetailView].GetProperties().Name
-                    [Thycotic.PowerShell.Folders.DetailView]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Folders.DetailView](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Folders.DetailView]))
                 }
             }
         } else {

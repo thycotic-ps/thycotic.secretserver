@@ -91,8 +91,7 @@ function Search-TssMetadata {
                 Write-Warning "No Metadata found"
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Metadata.Summary].GetProperties().Name
-                [Thycotic.PowerShell.Metadata.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Metadata.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Metadata.Summary]))
             }
         } else {
             Write-Warning "No valid session found"

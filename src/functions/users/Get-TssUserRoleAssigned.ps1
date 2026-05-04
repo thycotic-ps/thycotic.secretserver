@@ -63,8 +63,7 @@ function Get-TssUserRoleAssigned {
                 }
 
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.Users.UserRoleSummary].GetProperties().Name
-                    [Thycotic.PowerShell.Users.UserRoleSummary[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Users.UserRoleSummary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Users.UserRoleSummary]))
                 }
             }
         } else {

@@ -59,8 +59,7 @@ function Get-TssDistributedEngineSite {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.DistributedEngines.Site].GetProperties().Name
-                    [Thycotic.PowerShell.DistributedEngines.Site]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.DistributedEngines.Site](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DistributedEngines.Site]))
                 }
             }
         } else {

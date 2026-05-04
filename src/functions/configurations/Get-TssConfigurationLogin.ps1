@@ -52,8 +52,7 @@ function Get-TssConfigurationLogin {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Configuration.Login].GetProperties().Name
-                [Thycotic.PowerShell.Configuration.Login]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Configuration.Login](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.Login]))
             }
         } else {
             Write-Warning "No valid session found"

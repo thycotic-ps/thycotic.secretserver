@@ -81,8 +81,7 @@ function Search-TssConfigurationAudit {
                 Write-Warning "No ConfigurationAudit found"
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Configuration.Audit].GetProperties().Name
-                [Thycotic.PowerShell.Configuration.Audit[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Configuration.Audit[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Configuration.Audit]))
             }
         } else {
             Write-Warning "No valid session found"

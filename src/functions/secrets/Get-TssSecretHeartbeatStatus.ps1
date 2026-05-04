@@ -61,8 +61,7 @@ function Get-TssSecretHeartbeatStatus {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Secrets.HeartbeatStatus].GetProperties().Name
-                    [Thycotic.PowerShell.Secrets.HeartbeatStatus]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Secrets.HeartbeatStatus](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Secrets.HeartbeatStatus]))
                 }
             }
         } else {

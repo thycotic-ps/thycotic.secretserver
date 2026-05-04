@@ -61,8 +61,7 @@ function Remove-TssSecret {
                     }
 
                     if ($restResponse) {
-                        $typeProps = [Thycotic.PowerShell.Common.Delete].GetProperties().Name
-                        [Thycotic.PowerShell.Common.Delete]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Common.Delete](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Common.Delete]))
                     }
                 }
             }
