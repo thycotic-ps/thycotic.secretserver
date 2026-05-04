@@ -22,3 +22,15 @@ $sidebar-search-background: lighten($purple-dark, 8%);
 // Base button
 $base-button-color:       $purple-dark;
 $feedback-color:          darken($purple-dark, 3%);
+
+// Sidebar text must be light against dark purple background
+.site-title,
+.site-title:hover,
+.nav-list .nav-list-item .nav-list-link,
+.nav-list .nav-list-item .nav-list-link:hover {
+  color: #ffffff;
+}
+
+.site-title:hover {
+  background-color: lighten($purple-dark, 8%);
+}
