@@ -1,3 +1,8 @@
+---
+title: Set-TssSecretSecurity
+parent: Secrets
+grand_parent: Commands
+---
 # Set-TssSecretSecurity
 
 ## SYNOPSIS
@@ -192,4 +197,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretSecurity](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretSecurity)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretSecurity.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretHook
+parent: Secret Hooks
+grand_parent: Commands
+---
 # Get-TssSecretHook
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Get-TssSecretHook](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Get-TssSecretHook)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Get-TssSecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Get-TssSecretHook.ps1)
-

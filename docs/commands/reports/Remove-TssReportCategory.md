@@ -1,3 +1,8 @@
+---
+title: Remove-TssReportCategory
+parent: Reports
+grand_parent: Commands
+---
 # Remove-TssReportCategory
 
 ## SYNOPSIS
@@ -112,4 +117,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReportCategory](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReportCategory)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-TssReportCategory.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-TssReportCategory.ps1)
-

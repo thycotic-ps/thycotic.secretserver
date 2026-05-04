@@ -1,3 +1,8 @@
+---
+title: Search-TssEventPipelinePolicy
+parent: Event Pipeline Policies
+grand_parent: Commands
+---
 # Search-TssEventPipelinePolicy
 
 ## SYNOPSIS
@@ -154,4 +159,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Search-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Search-TssEventPipelinePolicy)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Search-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Search-TssEventPipelinePolicy.ps1)
-

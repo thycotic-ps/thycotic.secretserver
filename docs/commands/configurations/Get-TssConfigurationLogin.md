@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationLogin
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationLogin
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationLogin](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationLogin)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationLogin.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationLogin.ps1)
-

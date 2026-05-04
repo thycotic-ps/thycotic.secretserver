@@ -1,5 +1,8 @@
 ---
-sort: 2
+title: Working With
+parent: Getting Started
+has_children: true
+nav_order: 6
 ---
 
 # Working With

@@ -1,3 +1,8 @@
+---
+title: Remove-TssMetadata
+parent: Metadata
+grand_parent: Commands
+---
 # Remove-TssMetadata
 
 ## SYNOPSIS
@@ -133,4 +138,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Remove-TssMetadata](https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Remove-TssMetadata)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Remove-TssMetadata.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Remove-TssMetadata.ps1)
-

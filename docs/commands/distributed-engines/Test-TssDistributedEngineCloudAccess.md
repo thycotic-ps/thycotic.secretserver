@@ -1,3 +1,8 @@
+---
+title: Test-TssDistributedEngineCloudAccess
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Test-TssDistributedEngineCloudAccess
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Details on IP and Hostnames used:
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Test-TssDistributedEngineCloudAccess](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Test-TssDistributedEngineCloudAccess)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Test-TssDistributedEngineCloudAccess.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Test-TssDistributedEngineCloudAccess.ps1)
-

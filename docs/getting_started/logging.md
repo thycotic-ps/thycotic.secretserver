@@ -1,6 +1,6 @@
 ---
-title: "Logging"
-sort: 5
+parent: Getting Started
+nav_order: 5
 ---
 
 # Logging

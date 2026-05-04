@@ -1,3 +1,8 @@
+---
+title: Set-TssConfigurationGeneral
+parent: Configurations
+grand_parent: Commands
+---
 # Set-TssConfigurationGeneral
 
 ## SYNOPSIS
@@ -445,4 +450,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationGeneral](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationGeneral)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationGeneral.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationGeneral.ps1)
-

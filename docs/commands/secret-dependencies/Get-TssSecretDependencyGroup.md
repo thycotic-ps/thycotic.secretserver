@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretDependencyGroup
+parent: Secret Dependencies
+grand_parent: Commands
+---
 # Get-TssSecretDependencyGroup
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyGroup.ps1)
-

@@ -3,12 +3,27 @@ lang: en
 description: Thycotic Secret Server PowerShell Module
 
 remote_theme: just-the-docs/just-the-docs
-
-readme_index:
-  with_frontmatter: true
+color_scheme: delinea
 
 google:
   gtag: "UA-189117162-1"
+
+nav_sort: case_insensitive
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 2
+  preview_words_before: 3
+  preview_words_after: 5
+  tokenizer_separator: /[\s/]+/
+
+heading_anchors: true
+
+aux_links:
+  "GitHub":
+    - "https://github.com/thycotic-ps/thycotic.secretserver"
+
+footer_content: "Thycotic.SecretServer PowerShell Module &mdash; Not supported under any Delinea support agreement."
 
 exclude:
   - Makefile

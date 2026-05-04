@@ -1,3 +1,8 @@
+---
+title: Get-TssFolderAudit
+parent: Folders
+grand_parent: Commands
+---
 # Get-TssFolderAudit
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolderAudit)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-FolderAudit.ps1)
-

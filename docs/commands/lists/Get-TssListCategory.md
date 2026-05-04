@@ -1,3 +1,8 @@
+---
+title: Get-TssListCategory
+parent: Lists
+grand_parent: Commands
+---
 # Get-TssListCategory
 
 ## SYNOPSIS
@@ -78,4 +83,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListCategory](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssListCategory)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListCategory.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssListCategory.ps1)
-

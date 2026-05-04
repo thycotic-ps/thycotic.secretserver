@@ -1,3 +1,8 @@
+---
+title: Clear-TssListOption
+parent: Lists
+grand_parent: Commands
+---
 # Clear-TssListOption
 
 ## SYNOPSIS
@@ -136,4 +141,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Clear-TssListOption](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Clear-TssListOption)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Clear-TssListOption.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Clear-TssListOption.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Remove-TssIpRestriction
+parent: IP Address Restrictions
+grand_parent: Commands
+---
 # Remove-TssIpRestriction
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Remove-TssIpRestriction](https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Remove-TssIpRestriction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Remove-TssIpRestriction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Remove-TssIpRestriction.ps1)
-

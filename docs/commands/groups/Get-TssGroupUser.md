@@ -1,3 +1,8 @@
+---
+title: Get-TssGroupUser
+parent: Groups
+grand_parent: Commands
+---
 # Get-TssGroupUser
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupUser.ps1)
-

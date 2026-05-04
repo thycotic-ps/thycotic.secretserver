@@ -1,3 +1,8 @@
+---
+title: Update-TssDistributedEngine
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Update-TssDistributedEngine
 
 ## SYNOPSIS
@@ -141,4 +146,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Update-TssDistributedEngine](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Update-TssDistributedEngine)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Update-TssDistributedEngine.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Update-TssDistributedEngine.ps1)
-

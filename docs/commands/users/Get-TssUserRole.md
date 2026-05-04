@@ -1,3 +1,8 @@
+---
+title: Get-TssUserRole
+parent: Users
+grand_parent: Commands
+---
 # Get-TssUserRole
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Get-TssUserRole)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-TssUserRole.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Get-TssUserRole.ps1)
-

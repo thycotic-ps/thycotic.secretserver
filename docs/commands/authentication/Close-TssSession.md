@@ -1,3 +1,8 @@
+---
+title: Close-TssSession
+parent: Authentication
+grand_parent: Commands
+---
 # Close-TssSession
 
 ## SYNOPSIS
@@ -54,4 +59,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Close-TssSession](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Close-TssSession)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Close-TssSession.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Close-TssSession.ps1)
-

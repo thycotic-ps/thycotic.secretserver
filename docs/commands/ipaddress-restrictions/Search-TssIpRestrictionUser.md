@@ -1,3 +1,8 @@
+---
+title: Search-TssIpRestrictionUser
+parent: IP Address Restrictions
+grand_parent: Commands
+---
 # Search-TssIpRestrictionUser
 
 ## SYNOPSIS
@@ -110,4 +115,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Search-TssIpRestrictionUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Search-TssIpRestrictionUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Search-TssIpRestrictionUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Search-TssIpRestrictionUser.ps1)
-

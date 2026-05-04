@@ -1,3 +1,8 @@
+---
+title: Remove-TssGroupMember
+parent: Groups
+grand_parent: Commands
+---
 # Remove-TssGroupMember
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Remove-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Remove-TssGroupMember)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Remove-TssGroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Remove-TssGroupMember.ps1)
-

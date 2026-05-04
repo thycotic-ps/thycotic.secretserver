@@ -1,3 +1,8 @@
+---
+title: Test-TssSdkClient
+parent: Authentication
+grand_parent: Commands
+---
 # Test-TssSdkClient
 
 ## SYNOPSIS
@@ -80,4 +85,3 @@ https://docs.delinea.com/online-help/secret-server/api-scripting/sdk-cli/index.h
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSdkClient](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSdkClient)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSdkClient.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSdkClient.ps1)
-

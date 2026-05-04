@@ -1,3 +1,8 @@
+---
+title: Get-TssGroup
+parent: Groups
+grand_parent: Commands
+---
 # Get-TssGroup
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroup.ps1)
-

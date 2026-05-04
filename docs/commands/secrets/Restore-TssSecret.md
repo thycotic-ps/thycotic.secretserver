@@ -1,3 +1,8 @@
+---
+title: Restore-TssSecret
+parent: Secrets
+grand_parent: Commands
+---
 # Restore-TssSecret
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Restore-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Restore-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Restore-TssSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Restore-TssSecret.ps1)
-

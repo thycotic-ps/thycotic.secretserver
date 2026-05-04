@@ -1,3 +1,8 @@
+---
+title: Update-TssMetadataField
+parent: Metadata
+grand_parent: Commands
+---
 # Update-TssMetadataField
 
 ## SYNOPSIS
@@ -176,4 +181,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssMetadataField](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssMetadataField)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssMetadataField.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssMetadataField.ps1)
-

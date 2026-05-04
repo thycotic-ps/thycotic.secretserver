@@ -1,3 +1,8 @@
+---
+title: Set-TssDistributedEngine
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Set-TssDistributedEngine
 
 ## SYNOPSIS
@@ -242,4 +247,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Set-TssDistributedEngine](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Set-TssDistributedEngine)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Set-TssDistributedEngine.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Set-TssDistributedEngine.ps1)
-

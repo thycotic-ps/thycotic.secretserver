@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretAttachment
+parent: Secrets
+grand_parent: Commands
+---
 # Get-TssSecretAttachment
 
 ## SYNOPSIS
@@ -191,4 +196,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretAttachment](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretAttachment)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretAttachment.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretAttachment.ps1)
-

@@ -1,6 +1,10 @@
-{% assign command_pages = site.pages | where_exp: "item", "item.path contains 'commands'" | sort: "title" %}
+{% assign path_parts = page.path | split: "/" %}
+{% assign current_dir = path_parts | slice: 0, 3 | join: "/" %}
+{% assign command_pages = site.pages
+    | where_exp: "item", "item.path contains current_dir"
+    | sort: "title" %}
 {% for command in command_pages %}
-  {% if command.title and command.title != "Commands" %}
+  {% if command.title and command.title != page.title %}
 - [{{ command.title }}]({{ command.url | relative_url }})
   {% endif %}
 {% endfor %}

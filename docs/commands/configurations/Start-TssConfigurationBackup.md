@@ -1,3 +1,8 @@
+---
+title: Start-TssConfigurationBackup
+parent: Configurations
+grand_parent: Commands
+---
 # Start-TssConfigurationBackup
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationBackup](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Start-TssConfigurationBackup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationBackup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Start-TssConfigurationBackup.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Test-TssFolderAction
+parent: Folders
+grand_parent: Commands
+---
 # Test-TssFolderAction
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Test-TssFolderAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Test-TssFolderAction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Test-TssFolderAction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Test-TssFolderAction.ps1)
-

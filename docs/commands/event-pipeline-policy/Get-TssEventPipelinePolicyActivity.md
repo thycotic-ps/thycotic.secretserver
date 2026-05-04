@@ -1,3 +1,8 @@
+---
+title: Get-TssEventPipelinePolicyActivity
+parent: Event Pipeline Policies
+grand_parent: Commands
+---
 # Get-TssEventPipelinePolicyActivity
 
 ## SYNOPSIS
@@ -94,4 +99,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicyActivity](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicyActivity)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicyActivity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicyActivity.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Update-TssServerNode
+parent: Server Nodes
+grand_parent: Commands
+---
 # Update-TssServerNode
 
 ## SYNOPSIS
@@ -192,4 +197,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/server-nodes/Update-TssServerNode](https://thycotic-ps.github.io/thycotic.secretserver/commands/server-nodes/Update-TssServerNode)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/server-nodes/Update-TssServerNode.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/server-nodes/Update-TssServerNode.ps1)
-

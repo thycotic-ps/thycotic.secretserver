@@ -1,3 +1,8 @@
+---
+title: Search-TssDirectoryServiceDomain
+parent: Directory Services
+grand_parent: Commands
+---
 # Search-TssDirectoryServiceDomain
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceDomain](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceDomain)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceDomain.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceDomain.ps1)
-

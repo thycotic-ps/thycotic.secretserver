@@ -1,3 +1,8 @@
+---
+title: Search-TssSecretTemplate
+parent: Secret Templates
+grand_parent: Commands
+---
 # Search-TssSecretTemplate
 
 ## SYNOPSIS
@@ -116,4 +121,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Search-TssSecretTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Search-TssSecretTemplate)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Search-TssSecretTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Search-TssSecretTemplate.ps1)
-

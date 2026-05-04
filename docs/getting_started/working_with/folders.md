@@ -1,6 +1,6 @@
 ---
-title: "Folders"
-sort: 2
+parent: Working With
+grand_parent: Getting Started
 ---
 
 These are example scripts that can also be found on the repository under the [examples folder]. The code and data in the examples is free to use.

@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationLocalUserPassword
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationLocalUserPassword
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationLocalUserPassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationLocalUserPassword)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationLocalUserPassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationLocalUserPassword.ps1)
-

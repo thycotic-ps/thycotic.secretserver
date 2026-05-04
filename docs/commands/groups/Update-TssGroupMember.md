@@ -1,3 +1,8 @@
+---
+title: Update-TssGroupMember
+parent: Groups
+grand_parent: Commands
+---
 # Update-TssGroupMember
 
 ## SYNOPSIS
@@ -116,4 +121,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Update-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Update-TssGroupMember)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-TssGroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Update-TssGroupMember.ps1)
-

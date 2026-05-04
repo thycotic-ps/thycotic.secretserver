@@ -1,3 +1,8 @@
+---
+title: Update-TssUserPassword
+parent: Users
+grand_parent: Commands
+---
 # Update-TssUserPassword
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Update-TssUserPassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Update-TssUserPassword)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Update-TssUserPassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Update-TssUserPassword.ps1)
-

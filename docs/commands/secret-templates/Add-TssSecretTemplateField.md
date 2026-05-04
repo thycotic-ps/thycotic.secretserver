@@ -1,3 +1,8 @@
+---
+title: Add-TssSecretTemplateField
+parent: Secret Templates
+grand_parent: Commands
+---
 # Add-TssSecretTemplateField
 
 ## SYNOPSIS
@@ -119,4 +124,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Add-TssSecretTemplateField](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Add-TssSecretTemplateField)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Add-TssSecretTemplateField](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Add-TssSecretTemplateField)
-

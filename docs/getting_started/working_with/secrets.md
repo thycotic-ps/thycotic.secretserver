@@ -1,6 +1,6 @@
 ---
-title: "Secrets"
-sort: 5
+parent: Working With
+grand_parent: Getting Started
 ---
 
 ## Examples - Getting

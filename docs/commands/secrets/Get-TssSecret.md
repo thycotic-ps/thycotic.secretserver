@@ -1,3 +1,8 @@
+---
+title: Get-TssSecret
+parent: Secrets
+grand_parent: Commands
+---
 # Get-TssSecret
 
 ## SYNOPSIS
@@ -261,4 +266,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecret.ps1)
-

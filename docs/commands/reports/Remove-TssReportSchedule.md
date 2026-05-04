@@ -1,3 +1,8 @@
+---
+title: Remove-TssReportSchedule
+parent: Reports
+grand_parent: Commands
+---
 # Remove-TssReportSchedule
 
 ## SYNOPSIS
@@ -102,4 +107,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReportSchedule](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Remove-TssReportSchedule)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-TssReportSchedule.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Remove-TssReportSchedule.ps1)
-

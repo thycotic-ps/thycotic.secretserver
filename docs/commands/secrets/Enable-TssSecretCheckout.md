@@ -1,3 +1,8 @@
+---
+title: Enable-TssSecretCheckout
+parent: Secrets
+grand_parent: Commands
+---
 # Enable-TssSecretCheckout
 
 ## SYNOPSIS
@@ -185,4 +190,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Enable-TssSecretCheckout](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Enable-TssSecretCheckout)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-TssSecretCheckout.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Enable-TssSecretCheckout.ps1)
-

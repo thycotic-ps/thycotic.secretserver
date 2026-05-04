@@ -1,3 +1,8 @@
+---
+title: New-TssSession
+parent: Authentication
+grand_parent: Commands
+---
 # New-TssSession
 
 ## SYNOPSIS
@@ -249,4 +254,3 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/New-TssSession)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/New-TssSession.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/New-TssSession.ps1)
-

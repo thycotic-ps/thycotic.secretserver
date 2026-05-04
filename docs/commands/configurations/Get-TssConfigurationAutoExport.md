@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationAutoExport
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationAutoExport
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationAutoExport](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationAutoExport)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationAutoExport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationAutoExport.ps1)
-

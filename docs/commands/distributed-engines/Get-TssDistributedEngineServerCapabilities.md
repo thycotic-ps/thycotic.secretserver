@@ -1,3 +1,8 @@
+---
+title: Get-TssDistributedEngineServerCapabilities
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Get-TssDistributedEngineServerCapabilities
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Get-TssDistributedEngineServerCapabilities](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Get-TssDistributedEngineServerCapabilities)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Get-TssDistributedEngineServerCapabilities.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Get-TssDistributedEngineServerCapabilities.ps1)
-

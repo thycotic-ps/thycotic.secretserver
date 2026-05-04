@@ -1,3 +1,8 @@
+---
+title: Search-TssGroup
+parent: Groups
+grand_parent: Commands
+---
 # Search-TssGroup
 
 ## SYNOPSIS
@@ -116,4 +121,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Search-TssGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Search-TssGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Search-TssGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Search-TssGroup.ps1)
-

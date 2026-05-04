@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationSiteConnector
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationSiteConnector
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSiteConnector](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSiteConnector)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSiteConnector.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSiteConnector.ps1)
-

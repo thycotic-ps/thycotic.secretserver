@@ -1,3 +1,8 @@
+---
+title: Get-TssFolder
+parent: Folders
+grand_parent: Commands
+---
 # Get-TssFolder
 
 ## SYNOPSIS
@@ -154,4 +159,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Get-TssFolder)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-TssFolder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Get-TssFolder.ps1)
-

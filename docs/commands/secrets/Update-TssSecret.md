@@ -1,3 +1,8 @@
+---
+title: Update-TssSecret
+parent: Secrets
+grand_parent: Commands
+---
 # Update-TssSecret
 
 ## SYNOPSIS

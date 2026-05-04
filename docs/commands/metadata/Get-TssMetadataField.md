@@ -1,3 +1,8 @@
+---
+title: Get-TssMetadataField
+parent: Metadata
+grand_parent: Commands
+---
 # Get-TssMetadataField
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Get-TssMetadataField](https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Get-TssMetadataField)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Get-TssMetadataField.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Get-TssMetadataField.ps1)
-

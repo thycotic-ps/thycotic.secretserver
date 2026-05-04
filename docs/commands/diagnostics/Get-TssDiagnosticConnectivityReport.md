@@ -1,3 +1,8 @@
+---
+title: Get-TssDiagnosticConnectivityReport
+parent: Diagnostics
+grand_parent: Commands
+---
 # Get-TssDiagnosticConnectivityReport
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Get-TssDiagnosticConnectivityReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Get-TssDiagnosticConnectivityReport)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Get-TssDiagnosticConnectivityReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Get-TssDiagnosticConnectivityReport.ps1)
-

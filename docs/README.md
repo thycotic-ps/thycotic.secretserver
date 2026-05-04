@@ -1,5 +1,6 @@
 ---
-sort: 1
+title: Home
+nav_order: 1
 ---
 
 # Secret Server PowerShell Module

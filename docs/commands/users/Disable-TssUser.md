@@ -1,3 +1,8 @@
+---
+title: Disable-TssUser
+parent: Users
+grand_parent: Commands
+---
 # Disable-TssUser
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Disable-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Disable-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Disable-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Disable-TssUser.ps1)
-

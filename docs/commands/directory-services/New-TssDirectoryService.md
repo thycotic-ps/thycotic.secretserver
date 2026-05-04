@@ -1,3 +1,8 @@
+---
+title: New-TssDirectoryService
+parent: Directory Services
+grand_parent: Commands
+---
 # New-TssDirectoryService
 
 ## SYNOPSIS
@@ -337,4 +342,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/New-TssDirectoryService](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/New-TssDirectoryService)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/New-TssDirectoryService.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/New-TssDirectoryService.ps1)
-

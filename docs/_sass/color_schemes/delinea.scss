@@ -1,0 +1,24 @@
+// Delinea brand colors
+// Purple: #231556  Green: #00FF5A
+
+$purple-dark:   #231556;
+$purple-mid:    #3d2a99;
+$purple-light:  #c4b8e8;
+$green-brand:   #00FF5A;
+$green-link:    #1a8f42;  // darkened for readability on white
+
+// Links and interactive elements
+$link-color:              $green-link;
+$btn-primary-color:       $green-brand;
+
+// Headings
+$body-heading-color:      $purple-dark;
+
+// Sidebar
+$sidebar-color:           $purple-dark;
+$nav-child-link-color:    $purple-light;
+$sidebar-search-background: lighten($purple-dark, 8%);
+
+// Base button
+$base-button-color:       $purple-dark;
+$feedback-color:          darken($purple-dark, 3%);

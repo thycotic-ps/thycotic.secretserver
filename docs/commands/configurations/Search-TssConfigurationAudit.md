@@ -1,3 +1,8 @@
+---
+title: Search-TssConfigurationAudit
+parent: Configurations
+grand_parent: Commands
+---
 # Search-TssConfigurationAudit
 
 ## SYNOPSIS
@@ -94,4 +99,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssConfigurationAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssConfigurationAudit)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssConfigurationAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssConfigurationAudit.ps1)
-

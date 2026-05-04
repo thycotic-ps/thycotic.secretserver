@@ -1,3 +1,8 @@
+---
+title: Search-TssRole
+parent: Roles
+grand_parent: Commands
+---
 # Search-TssRole
 
 ## SYNOPSIS
@@ -123,4 +128,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/roles/Search-TssRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/roles/Search-TssRole)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/roles/Search-TssRole.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/roles/Search-TssRole.ps1)
-

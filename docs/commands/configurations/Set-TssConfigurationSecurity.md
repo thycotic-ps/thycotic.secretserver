@@ -1,3 +1,8 @@
+---
+title: Set-TssConfigurationSecurity
+parent: Configurations
+grand_parent: Commands
+---
 # Set-TssConfigurationSecurity
 
 ## SYNOPSIS
@@ -291,4 +296,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationSecurity](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Set-TssConfigurationSecurity)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationSecurity.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Set-TssConfigurationSecurity.ps1)
-

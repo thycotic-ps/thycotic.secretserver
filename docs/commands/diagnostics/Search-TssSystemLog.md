@@ -1,3 +1,8 @@
+---
+title: Search-TssSystemLog
+parent: Diagnostics
+grand_parent: Commands
+---
 # Search-TssSystemLog
 
 ## SYNOPSIS
@@ -110,4 +115,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog](https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Search-TssSystemLog)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Search-TssSystemLog.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Search-TssSystemLog.ps1)
-

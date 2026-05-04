@@ -1,3 +1,8 @@
+---
+title: Test-TssSecretAction
+parent: Secrets
+grand_parent: Commands
+---
 # Test-TssSecretAction
 
 ## SYNOPSIS
@@ -89,4 +94,3 @@ Possible Secret Actions:
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretAction](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Test-TssSecretAction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-TssSecretAction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Test-TssSecretAction.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Set-TssIpRestrictionGroup
+parent: IP Address Restrictions
+grand_parent: Commands
+---
 # Set-TssIpRestrictionGroup
 
 ## SYNOPSIS
@@ -132,4 +137,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Set-TssIpRestrictionGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Set-TssIpRestrictionGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Set-TssIpRestrictionGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Set-TssIpRestrictionGroup.ps1)
-

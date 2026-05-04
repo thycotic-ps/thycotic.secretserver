@@ -1,3 +1,8 @@
+---
+title: Update-TssMetadataSection
+parent: Metadata
+grand_parent: Commands
+---
 # Update-TssMetadataSection
 
 ## SYNOPSIS
@@ -206,4 +211,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssMetadataSection](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Update-TssMetadataSection)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssMetadataSection.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Update-TssMetadataSection.ps1)
-

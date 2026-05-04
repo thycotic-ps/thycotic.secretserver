@@ -1,3 +1,8 @@
+---
+title: Remove-TssDistributedEngine
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Remove-TssDistributedEngine
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Remove-TssDistributedEngine](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Remove-TssDistributedEngine)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Remove-TssDistributedEngine.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Remove-TssDistributedEngine.ps1)
-

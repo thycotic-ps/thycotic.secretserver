@@ -1,3 +1,8 @@
+---
+title: Start-TssSecretHeartbeat
+parent: Secrets
+grand_parent: Commands
+---
 # Start-TssSecretHeartbeat
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretHeartbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretHeartbeat)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Start-SecretHeartbeat.ps1)
-

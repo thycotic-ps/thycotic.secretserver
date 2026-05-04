@@ -1,3 +1,8 @@
+---
+title: Test-TssSession
+parent: Authentication
+grand_parent: Commands
+---
 # Test-TssSession
 
 ## SYNOPSIS
@@ -122,4 +127,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSession](https://thycotic-ps.github.io/thycotic.secretserver/commands/authentication/Test-TssSession)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSession.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/authentication/Test-TssSession.ps1)
-

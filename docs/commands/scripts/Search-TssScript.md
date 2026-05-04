@@ -1,3 +1,8 @@
+---
+title: Search-TssScript
+parent: Scripts
+grand_parent: Commands
+---
 # Search-TssScript
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/Search-TssScript](https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/Search-TssScript)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Search-TssScript.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/Search-TssScript.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretState
+parent: Secrets
+grand_parent: Commands
+---
 # Get-TssSecretState
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretState](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretState)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretState.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretState.ps1)
-

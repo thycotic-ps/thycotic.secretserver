@@ -1,3 +1,8 @@
+---
+title: Add-TssDirectoryServiceGroup
+parent: Directory Services
+grand_parent: Commands
+---
 # Add-TssDirectoryServiceGroup
 
 ## SYNOPSIS
@@ -141,4 +146,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Add-TssDirectoryServiceGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Add-TssDirectoryServiceGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Add-TssDirectoryServiceGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Add-TssDirectoryServiceGroup.ps1)
-

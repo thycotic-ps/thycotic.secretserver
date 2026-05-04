@@ -1,3 +1,8 @@
+---
+title: Get-TssReport
+parent: Reports
+grand_parent: Commands
+---
 # Get-TssReport
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReport](https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Get-TssReport)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReport.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/reports/Get-TssReport.ps1)
-

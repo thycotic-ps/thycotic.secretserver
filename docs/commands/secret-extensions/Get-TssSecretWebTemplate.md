@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretWebTemplate
+parent: Secret Extensions
+grand_parent: Commands
+---
 # Get-TssSecretWebTemplate
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-extensions/Get-TssSecretWebTemplate](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-extensions/Get-TssSecretWebTemplate)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-extensions/Get-TssSecretWebTemplate.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-extensions/Get-TssSecretWebTemplate.ps1)
-

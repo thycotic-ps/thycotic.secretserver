@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretDependencyStub
+parent: Secret Dependencies
+grand_parent: Commands
+---
 # Get-TssSecretDependencyStub
 
 ## SYNOPSIS
@@ -124,4 +129,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyStub)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyStub.ps1)
-

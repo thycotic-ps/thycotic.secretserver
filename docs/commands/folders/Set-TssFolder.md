@@ -1,3 +1,8 @@
+---
+title: Set-TssFolder
+parent: Folders
+grand_parent: Commands
+---
 # Set-TssFolder
 
 ## SYNOPSIS
@@ -192,4 +197,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Set-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Set-TssFolder)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Set-TssFolder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Set-TssFolder.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: New-TssScript
+parent: Scripts
+grand_parent: Commands
+---
 # New-TssScript
 
 ## SYNOPSIS
@@ -165,4 +170,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/New-TssScript](https://thycotic-ps.github.io/thycotic.secretserver/commands/scripts/New-TssScript)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/New-TssScript.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/scripts/New-TssScript.ps1)
-

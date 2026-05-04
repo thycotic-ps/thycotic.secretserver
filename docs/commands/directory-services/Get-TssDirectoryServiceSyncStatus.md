@@ -1,3 +1,8 @@
+---
+title: Get-TssDirectoryServiceSyncStatus
+parent: Directory Services
+grand_parent: Commands
+---
 # Get-TssDirectoryServiceSyncStatus
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceSyncStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceSyncStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceSyncStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceSyncStatus.ps1)
-

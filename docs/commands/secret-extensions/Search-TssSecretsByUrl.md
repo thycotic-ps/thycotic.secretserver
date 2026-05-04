@@ -1,3 +1,8 @@
+---
+title: Search-TssSecretsByUrl
+parent: Secret Extensions
+grand_parent: Commands
+---
 # Search-TssSecretsByUrl
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-extensions/Search-TssSecretsByUrl](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-extensions/Search-TssSecretsByUrl)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-extensions/Search-TssSecretsByUrl.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-extensions/Search-TssSecretsByUrl.ps1)
-

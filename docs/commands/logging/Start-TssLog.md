@@ -1,7 +1,7 @@
 ---
-external help file: Thycotic.SecretServer.dll-Help.xml
-Module Name: Thycotic.SecretServer
-schema: 2.0.0
+title: Start-TssLog
+parent: Logging
+grand_parent: Commands
 ---
 
 # Start-TssLog

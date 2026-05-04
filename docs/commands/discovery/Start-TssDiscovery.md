@@ -1,3 +1,8 @@
+---
+title: Start-TssDiscovery
+parent: Discovery
+grand_parent: Commands
+---
 # Start-TssDiscovery
 
 ## SYNOPSIS
@@ -108,4 +113,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Start-TssSecretHearbeat](https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Start-TssSecretHearbeat)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Start-TssSecretHearbeat.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Start-TssSecretHearbeat.ps1)
-

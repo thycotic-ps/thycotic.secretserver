@@ -1,3 +1,8 @@
+---
+title: Add-TssGroupMember
+parent: Groups
+grand_parent: Commands
+---
 # Add-TssGroupMember
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Add-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Add-TssGroupMember)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-TssGroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Add-TssGroupMember.ps1)
-

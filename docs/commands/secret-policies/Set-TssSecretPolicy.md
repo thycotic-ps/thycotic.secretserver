@@ -1,3 +1,8 @@
+---
+title: Set-TssSecretPolicy
+parent: Secret Policies
+grand_parent: Commands
+---
 # Set-TssSecretPolicy
 
 ## SYNOPSIS
@@ -178,4 +183,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Set-TssSecretPolicy)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Set-TssSecretPolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Set-TssSecretPolicy.ps1)
-

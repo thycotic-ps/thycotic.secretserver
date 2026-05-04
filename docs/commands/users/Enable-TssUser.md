@@ -1,3 +1,8 @@
+---
+title: Enable-TssUser
+parent: Users
+grand_parent: Commands
+---
 # Enable-TssUser
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Enable-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Enable-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Enable-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Enable-TssUser.ps1)
-

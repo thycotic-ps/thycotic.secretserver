@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretPolicy
+parent: Secret Policies
+grand_parent: Commands
+---
 # Get-TssSecretPolicy
 
 ## SYNOPSIS
@@ -78,4 +83,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-policies/Get-TssSecretPolicy)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Get-TssSecretPolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-policies/Get-TssSecretPolicy.ps1)
-

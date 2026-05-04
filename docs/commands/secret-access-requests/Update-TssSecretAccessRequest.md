@@ -1,3 +1,8 @@
+---
+title: Update-TssSecretAccessRequest
+parent: Secret Access Requests
+grand_parent: Commands
+---
 # Update-TssSecretAccessRequest
 
 ## SYNOPSIS
@@ -163,4 +168,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-access-requests/Update-TssSecretAccessRequest](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-access-requests/Update-TssSecretAccessRequest)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Update-TssSecretAccessRequest.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Update-TssSecretAccessRequest.ps1)
-

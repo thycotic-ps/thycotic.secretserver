@@ -1,3 +1,8 @@
+---
+title: Update-TssSecretPermission
+parent: Secret Permissions
+grand_parent: Commands
+---
 # Update-TssSecretPermission
 
 ## SYNOPSIS
@@ -132,4 +137,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Set-TssSecretPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-permissions/Set-TssSecretPermission)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permission/Set-TssSecretPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-permission/Set-TssSecretPermission.ps1)
-

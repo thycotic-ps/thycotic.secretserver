@@ -1,3 +1,8 @@
+---
+title: Remove-TssSecretDependency
+parent: Secret Dependencies
+grand_parent: Commands
+---
 # Remove-TssSecretDependency
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Remove-TssSecretDependency](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Remove-TssSecretDependency)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-TssSecretDependency.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Remove-TssSecretDependency.ps1)
-

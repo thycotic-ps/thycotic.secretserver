@@ -1,3 +1,8 @@
+---
+title: Add-TssListOption
+parent: Lists
+grand_parent: Commands
+---
 # Add-TssListOption
 
 ## SYNOPSIS
@@ -143,4 +148,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Add-TssListOption](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Add-TssListOption)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Add-TssListOption.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Add-TssListOption.ps1)
-

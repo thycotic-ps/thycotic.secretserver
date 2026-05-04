@@ -1,3 +1,8 @@
+---
+title: Remove-TssDirectoryServiceGroup
+parent: Directory Services
+grand_parent: Commands
+---
 # Remove-TssDirectoryServiceGroup
 
 ## SYNOPSIS
@@ -125,4 +130,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Remove-TssDirectoryServiceGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Remove-TssDirectoryServiceGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Remove-TssDirectoryServiceGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Remove-TssDirectoryServiceGroup.ps1)
-

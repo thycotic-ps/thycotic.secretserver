@@ -1,3 +1,8 @@
+---
+title: Write-TssSecretAccessRequestViewComment
+parent: Secret Access Requests
+grand_parent: Commands
+---
 # Write-TssSecretAccessRequestViewComment
 
 ## SYNOPSIS
@@ -146,4 +151,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-access-requests/Write-TssSecretAccessRequestViewComment](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-access-requests/Write-TssSecretAccessRequestViewComment)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Write-TssSecretAccessRequestViewComment.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-access-requests/Write-TssSecretAccessRequestViewComment.ps1)
-

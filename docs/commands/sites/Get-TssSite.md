@@ -1,3 +1,8 @@
+---
+title: Get-TssSite
+parent: Sites
+grand_parent: Commands
+---
 # Get-TssSite
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/sites/Get-TssSite](https://thycotic-ps.github.io/thycotic.secretserver/commands/sites/Get-TssSite)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/sites/Get-TssSite.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/sites/Get-TssSite.ps1)
-

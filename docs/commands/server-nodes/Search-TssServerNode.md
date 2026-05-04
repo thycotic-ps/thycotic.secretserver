@@ -1,3 +1,8 @@
+---
+title: Search-TssServerNode
+parent: Server Nodes
+grand_parent: Commands
+---
 # Search-TssServerNode
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/server-nodes/Search-TssServerNode](https://thycotic-ps.github.io/thycotic.secretserver/commands/server-nodes/Search-TssServerNode)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/server-nodes/Search-TssServerNode.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/server-nodes/Search-TssServerNode.ps1)
-

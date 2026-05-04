@@ -1,3 +1,8 @@
+---
+title: Enable-TssEventPipeline
+parent: Event Pipeline
+grand_parent: Commands
+---
 # Enable-TssEventPipeline
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Enable-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Enable-TssEventPipeline)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Enable-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Enable-TssEventPipeline.ps1)
-

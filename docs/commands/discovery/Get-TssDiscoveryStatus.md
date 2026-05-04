@@ -1,3 +1,8 @@
+---
+title: Get-TssDiscoveryStatus
+parent: Discovery
+grand_parent: Commands
+---
 # Get-TssDiscoveryStatus
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Get-TssDiscoveryStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/discovery/Get-TssDiscoveryStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Get-TssDiscoveryStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/discovery/Get-TssDiscoveryStatus.ps1)
-

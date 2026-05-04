@@ -1,3 +1,8 @@
+---
+title: Unlock-TssUser
+parent: Users
+grand_parent: Commands
+---
 # Unlock-TssUser
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Unlock-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Unlock-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Unlock-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Unlock-TssUser.ps1)
-

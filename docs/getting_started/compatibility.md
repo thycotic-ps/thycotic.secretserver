@@ -1,5 +1,6 @@
 ---
-sort: 3
+parent: Getting Started
+nav_order: 3
 ---
 
 # Compatibility

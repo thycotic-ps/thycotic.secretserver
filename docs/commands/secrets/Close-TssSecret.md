@@ -1,3 +1,8 @@
+---
+title: Close-TssSecret
+parent: Secrets
+grand_parent: Commands
+---
 # Close-TssSecret
 
 ## SYNOPSIS
@@ -164,4 +169,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Close-TssSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Close-TssSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-TssSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Close-TssSecret.ps1)
-

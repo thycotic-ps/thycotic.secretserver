@@ -1,3 +1,8 @@
+---
+title: Enable-TssUnlimitedAdmin
+parent: Configurations
+grand_parent: Commands
+---
 # Enable-TssUnlimitedAdmin
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Enable-TssUnlimitedAdmin](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Enable-TssUnlimitedAdmin)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Enable-TssUnlimitedAdmin.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Enable-TssUnlimitedAdmin.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Unregister-TssDistributedEngine
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Unregister-TssDistributedEngine
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Unregister-TssDistributedEngine](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Unregister-TssDistributedEngine)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Unregister-TssDistributedEngine.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Unregister-TssDistributedEngine.ps1)
-

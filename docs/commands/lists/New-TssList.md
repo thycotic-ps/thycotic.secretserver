@@ -1,3 +1,8 @@
+---
+title: New-TssList
+parent: Lists
+grand_parent: Commands
+---
 # New-TssList
 
 ## SYNOPSIS
@@ -140,4 +145,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/New-TssList](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/New-TssList)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/New-TssList.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/New-TssList.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretSummary
+parent: Secrets
+grand_parent: Commands
+---
 # Get-TssSecretSummary
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSummary](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretSummary)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretSummary.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretSummary.ps1)
-

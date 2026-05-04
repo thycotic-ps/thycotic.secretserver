@@ -1,3 +1,8 @@
+---
+title: Enable-TssEventPipelinePolicy
+parent: Event Pipeline Policies
+grand_parent: Commands
+---
 # Enable-TssEventPipelinePolicy
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Enable-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Enable-TssEventPipelinePolicy)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1)
-

@@ -1,6 +1,6 @@
 ---
-title: "Logging Commands"
-sort: 1
+parent: Working With
+grand_parent: Getting Started
 ---
 
 The below example is a script to showcase how the logging commands can be used for your scripts to easily generate a nicely formatted file.

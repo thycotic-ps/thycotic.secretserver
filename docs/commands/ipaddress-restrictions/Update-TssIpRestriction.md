@@ -1,3 +1,8 @@
+---
+title: Update-TssIpRestriction
+parent: IP Address Restrictions
+grand_parent: Commands
+---
 # Update-TssIpRestriction
 
 ## SYNOPSIS
@@ -104,4 +109,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Update-TssIpRestriction](https://thycotic-ps.github.io/thycotic.secretserver/commands/ipaddress-restrictions/Update-TssIpRestriction)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Update-TssIpRestriction.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/ipaddress-restrictions/Update-TssIpRestriction.ps1)
-

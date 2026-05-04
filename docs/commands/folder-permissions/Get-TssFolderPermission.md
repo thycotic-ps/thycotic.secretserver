@@ -1,3 +1,8 @@
+---
+title: Get-TssFolderPermission
+parent: Folder Permissions
+grand_parent: Commands
+---
 # Get-TssFolderPermission
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Get-TssFolderPermission](https://thycotic-ps.github.io/thycotic.secretserver/commands/folder-permissions/Get-TssFolderPermission)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Get-TssFolderPermission.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folder-permissions/Get-TssFolderPermission.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Remove-TssEventPipeline
+parent: Event Pipeline Policies
+grand_parent: Commands
+---
 # Remove-TssEventPipeline
 
 ## SYNOPSIS
@@ -116,4 +121,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Remove-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Remove-TssEventPipeline)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Remove-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Remove-TssEventPipeline.ps1)
-

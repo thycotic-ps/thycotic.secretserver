@@ -1,3 +1,8 @@
+---
+title: Search-TssMetadataSection
+parent: Metadata
+grand_parent: Commands
+---
 # Search-TssMetadataSection
 
 ## SYNOPSIS
@@ -124,4 +129,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Search-TssMetadataSection](https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/Search-TssMetadataSection)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadataSection.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/metadata/Search-TssMetadataSection.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Search-TssAutoExportStorage
+parent: Configurations
+grand_parent: Commands
+---
 # Search-TssAutoExportStorage
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Search-TssAutoExportStorage)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssAutoExportStorage.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Search-TssAutoExportStorage.ps1)
-

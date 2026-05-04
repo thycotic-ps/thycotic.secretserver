@@ -1,3 +1,8 @@
+---
+title: Search-TssDistributedEngine
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Search-TssDistributedEngine
 
 ## SYNOPSIS
@@ -150,4 +155,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Search-TssDistributedEngine](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Search-TssDistributedEngine)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Search-TssDistributedEngine.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Search-TssDistributedEngine.ps1)
-

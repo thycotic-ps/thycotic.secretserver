@@ -1,3 +1,8 @@
+---
+title: New-TssSecretDependencyGroup
+parent: Secret Dependencies
+grand_parent: Commands
+---
 # New-TssSecretDependencyGroup
 
 ## SYNOPSIS
@@ -140,4 +145,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/New-TssSecretDependencyGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/New-TssSecretDependencyGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-TssSecretDependencyGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/New-TssSecretDependencyGroup.ps1)
-

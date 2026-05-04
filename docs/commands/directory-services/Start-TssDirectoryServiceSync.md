@@ -1,3 +1,8 @@
+---
+title: Start-TssDirectoryServiceSync
+parent: Directory Services
+grand_parent: Commands
+---
 # Start-TssDirectoryServiceSync
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/active-directory/Start-TssDirectoryServiceSync](https://thycotic-ps.github.io/thycotic.secretserver/commands/active-directory/Start-TssDirectoryServiceSync)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/active-directory/Start-TssDirectoryServiceSync.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/active-directory/Start-TssDirectoryServiceSync.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Set-TssDistributedEngineSiteConnector
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Set-TssDistributedEngineSiteConnector
 
 ## SYNOPSIS
@@ -200,4 +205,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Set-TssDistributedEngineSiteConnector](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Set-TssDistributedEngineSiteConnector)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Set-TssDistributedEngineSiteConnector.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Set-TssDistributedEngineSiteConnector.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Search-TssUser
+parent: Users
+grand_parent: Commands
+---
 # Search-TssUser
 
 ## SYNOPSIS
@@ -139,4 +144,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Search-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Search-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Search-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Search-TssUser.ps1)
-

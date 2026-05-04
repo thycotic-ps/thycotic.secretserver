@@ -1,3 +1,8 @@
+---
+title: Search-TssDirectoryServiceGroup
+parent: Directory Services
+grand_parent: Commands
+---
 # Search-TssDirectoryServiceGroup
 
 ## SYNOPSIS
@@ -95,4 +100,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceGroup](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceGroup)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceGroup.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceGroup.ps1)
-

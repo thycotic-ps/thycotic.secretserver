@@ -1,3 +1,8 @@
+---
+title: Get-TssList
+parent: Lists
+grand_parent: Commands
+---
 # Get-TssList
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssList](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Get-TssList)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssList.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Get-TssList.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Update-TssSecretHook
+parent: Secret Hooks
+grand_parent: Commands
+---
 # Update-TssSecretHook
 
 ## SYNOPSIS
@@ -421,4 +426,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Update-TssSecretHook](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-hooks/Update-TssSecretHook)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Update-TssSecretHook.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-hooks/Update-TssSecretHook.ps1)
-

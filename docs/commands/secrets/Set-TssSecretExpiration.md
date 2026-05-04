@@ -1,3 +1,8 @@
+---
+title: Set-TssSecretExpiration
+parent: Secrets
+grand_parent: Commands
+---
 # Set-TssSecretExpiration
 
 ## SYNOPSIS
@@ -175,4 +180,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretExpiration](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretExpiration)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretExpiration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretExpiration.ps1)
-

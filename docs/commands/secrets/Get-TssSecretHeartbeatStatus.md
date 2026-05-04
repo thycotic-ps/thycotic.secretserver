@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretHeartbeatStatus
+parent: Secrets
+grand_parent: Commands
+---
 # Get-TssSecretHeartbeatStatus
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretHeartbeatStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretHeartbeatStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretHeartbeatStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Get-TssSecretHeartbeatStatus.ps1)
-

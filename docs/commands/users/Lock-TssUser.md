@@ -1,3 +1,8 @@
+---
+title: Lock-TssUser
+parent: Users
+grand_parent: Commands
+---
 # Lock-TssUser
 
 ## SYNOPSIS
@@ -100,4 +105,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Lock-TssUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Lock-TssUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Lock-TssUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Lock-TssUser.ps1)
-

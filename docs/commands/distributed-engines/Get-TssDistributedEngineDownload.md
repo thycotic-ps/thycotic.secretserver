@@ -1,3 +1,8 @@
+---
+title: Get-TssDistributedEngineDownload
+parent: Distributed Engines
+grand_parent: Commands
+---
 # Get-TssDistributedEngineDownload
 
 ## SYNOPSIS
@@ -84,4 +89,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Get-TssDistributedEngineDownload](https://thycotic-ps.github.io/thycotic.secretserver/commands/distributed-engines/Get-TssDistributedEngineDownload)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Get-TssDistributedEngineDownload.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/distributed-engines/Get-TssDistributedEngineDownload.ps1)
-

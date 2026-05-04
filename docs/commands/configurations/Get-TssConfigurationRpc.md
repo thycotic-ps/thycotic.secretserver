@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationRpc
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationRpc
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationRpc](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationRpc)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationRpc.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationRpc.ps1)
-

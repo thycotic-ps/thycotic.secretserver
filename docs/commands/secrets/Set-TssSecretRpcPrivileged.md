@@ -1,3 +1,8 @@
+---
+title: Set-TssSecretRpcPrivileged
+parent: Secrets
+grand_parent: Commands
+---
 # Set-TssSecretRpcPrivileged
 
 ## SYNOPSIS
@@ -146,4 +151,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcPrivileged](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Set-TssSecretRpcPrivileged)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretRpcPrivileged.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Set-TssSecretRpcPrivileged.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Invoke-TssSecretGeneratePassword
+parent: Secrets
+grand_parent: Commands
+---
 # Invoke-TssSecretGeneratePassword
 
 ## SYNOPSIS
@@ -85,4 +90,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Invoke-TssSecretGeneratePassword](https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Invoke-TssSecretGeneratePassword)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Invoke-TssSecretGeneratePassword.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Invoke-TssSecretGeneratePassword.ps1)
-

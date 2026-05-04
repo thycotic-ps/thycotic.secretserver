@@ -1,3 +1,8 @@
+---
+title: Get-TssConfigurationSearchIndex
+parent: Configurations
+grand_parent: Commands
+---
 # Get-TssConfigurationSearchIndex
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSearchIndex](https://thycotic-ps.github.io/thycotic.secretserver/commands/configurations/Get-TssConfigurationSearchIndex)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSearchIndex.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/configurations/Get-TssConfigurationSearchIndex.ps1)
-

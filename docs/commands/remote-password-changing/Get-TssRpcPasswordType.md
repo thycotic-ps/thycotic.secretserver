@@ -1,3 +1,8 @@
+---
+title: Get-TssRpcPasswordType
+parent: Remote Password Changing
+grand_parent: Commands
+---
 # Get-TssRpcPasswordType
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcPasswordType](https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcPasswordType)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-TssRpcPasswordType.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-TssRpcPasswordType.ps1)
-

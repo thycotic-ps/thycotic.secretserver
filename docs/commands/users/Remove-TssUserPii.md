@@ -1,3 +1,8 @@
+---
+title: Remove-TssUserPii
+parent: Users
+grand_parent: Commands
+---
 # Remove-TssUserPii
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Remove-TssUserPii](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Remove-TssUserPii)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Remove-TssUserPii.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Remove-TssUserPii.ps1)
-

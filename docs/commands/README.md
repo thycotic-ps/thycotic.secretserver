@@ -1,5 +1,7 @@
 ---
-sort: 2
+title: Commands
+nav_order: 3
+has_children: true
 ---
 
 # Commands

@@ -1,3 +1,8 @@
+---
+title: Get-TssSecretDependencyRunStatus
+parent: Secret Dependencies
+grand_parent: Commands
+---
 # Get-TssSecretDependencyRunStatus
 
 ## SYNOPSIS
@@ -71,4 +76,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyRunStatus](https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-dependencies/Get-TssSecretDependencyRunStatus)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyRunStatus.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-dependencies/Get-TssSecretDependencyRunStatus.ps1)
-

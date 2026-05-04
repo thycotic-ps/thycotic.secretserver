@@ -1,3 +1,8 @@
+---
+title: Search-TssList
+parent: Lists
+grand_parent: Commands
+---
 # Search-TssList
 
 ## SYNOPSIS
@@ -101,4 +106,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Search-TssList](https://thycotic-ps.github.io/thycotic.secretserver/commands/lists/Search-TssList)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Search-TssList.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/lists/Search-TssList.ps1)
-

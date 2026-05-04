@@ -1,3 +1,8 @@
+---
+title: Show-TssCurrentUser
+parent: Users
+grand_parent: Commands
+---
 # Show-TssCurrentUser
 
 ## SYNOPSIS
@@ -64,4 +69,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Show-TssCurrentUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/users/Show-TssCurrentUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Show-TssCurrentUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/users/Show-TssCurrentUser.ps1)
-

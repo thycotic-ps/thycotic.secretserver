@@ -1,3 +1,8 @@
+---
+title: Get-TssGroupRole
+parent: Groups
+grand_parent: Commands
+---
 # Get-TssGroupRole
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupRole](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupRole)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupRole.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupRole.ps1)
-

@@ -1,3 +1,8 @@
+---
+title: Get-TssRpcAssociatedSecret
+parent: Remote Password Changing
+grand_parent: Commands
+---
 # Get-TssRpcAssociatedSecret
 
 ## SYNOPSIS
@@ -70,4 +75,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcAssociatedSecret](https://thycotic-ps.github.io/thycotic.secretserver/commands/rpc/Get-TssRpcAssociatedSecret)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-TssRpcAssociatedSecret.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/rpc/Get-TssRpcAssociatedSecret.ps1)
-

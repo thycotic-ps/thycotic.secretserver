@@ -1,3 +1,8 @@
+---
+title: Get-TssDiagnosticBackgroundProcess
+parent: Diagnostics
+grand_parent: Commands
+---
 # Get-TssDiagnosticBackgroundProcess
 
 ## SYNOPSIS
@@ -55,4 +60,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Get-TssDiagnosticBackgroundProcess](https://thycotic-ps.github.io/thycotic.secretserver/commands/diagnostics/Get-TssDiagnosticBackgroundProcess)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Get-TssDiagnosticBackgroundProcess.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/diagnostics/Get-TssDiagnosticBackgroundProcess.ps1)
-

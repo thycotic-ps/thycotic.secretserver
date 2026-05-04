@@ -1,3 +1,8 @@
+---
+title: Search-TssFolder
+parent: Folders
+grand_parent: Commands
+---
 # Search-TssFolder
 
 ## SYNOPSIS
@@ -117,4 +122,3 @@ Requires TssSession object returned by New-TssSession
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Search-TssFolder](https://thycotic-ps.github.io/thycotic.secretserver/commands/folders/Search-TssFolder)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-TssFolder.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/folders/Search-TssFolder.ps1)
-
