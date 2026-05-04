@@ -23,14 +23,22 @@ $sidebar-search-background: lighten($purple-dark, 8%);
 $base-button-color:       $purple-dark;
 $feedback-color:          darken($purple-dark, 3%);
 
-// Sidebar text must be light against dark purple background
+// Sidebar text must be light against dark purple background.
+// just-the-docs sets .site-title with !important so we must match it.
 .site-title,
-.site-title:hover,
-.nav-list .nav-list-item .nav-list-link,
-.nav-list .nav-list-item .nav-list-link:hover {
-  color: #ffffff;
+.site-title:hover {
+  color: #ffffff !important;
 }
 
 .site-title:hover {
   background-color: lighten($purple-dark, 8%);
+}
+
+.nav-list .nav-list-item .nav-list-link {
+  color: #ffffff;
+}
+
+.nav-list .nav-list-item .nav-list-link:hover,
+.nav-list .nav-list-item .nav-list-link.active {
+  color: $green-brand;
 }
