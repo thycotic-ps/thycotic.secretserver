@@ -108,8 +108,7 @@ function Search-TssDistributedEngineSite {
                 Write-Warning 'No Distributed Engine Sites found'
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.DistributedEngines.SiteSummary].GetProperties().Name
-                [Thycotic.PowerShell.DistributedEngines.SiteSummary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.DistributedEngines.SiteSummary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.DistributedEngines.SiteSummary]))
             }
         } else {
             Write-Warning 'No valid session found'

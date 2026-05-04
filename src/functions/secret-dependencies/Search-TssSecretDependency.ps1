@@ -106,8 +106,7 @@ function Search-TssSecretDependency {
                     Write-Warning "No Secret Dependencies found on Secret [$secret]"
                 }
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.SecretDependencies.Summary].GetProperties().Name
-                    [Thycotic.PowerShell.SecretDependencies.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.SecretDependencies.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.SecretDependencies.Summary]))
                 }
             }
         } else {

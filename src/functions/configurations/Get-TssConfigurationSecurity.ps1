@@ -52,8 +52,7 @@ function Get-TssConfigurationSecurity {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Configuration.Security].GetProperties().Name
-                [Thycotic.PowerShell.Configuration.Security]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Configuration.Security](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.Security]))
             }
         } else {
             Write-Warning "No valid session found"

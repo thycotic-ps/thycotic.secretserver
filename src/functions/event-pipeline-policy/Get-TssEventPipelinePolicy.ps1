@@ -60,8 +60,7 @@ function Get-TssEventPipelinePolicy {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.EventPipelinePolicy.Policy].GetProperties().Name
-                    [Thycotic.PowerShell.EventPipelinePolicy.Policy]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.EventPipelinePolicy.Policy](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.EventPipelinePolicy.Policy]))
                 }
             }
         } else {

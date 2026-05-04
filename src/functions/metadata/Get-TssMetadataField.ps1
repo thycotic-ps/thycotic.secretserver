@@ -52,8 +52,7 @@ function Get-TssMetadataField {
             }
 
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Metadata.FieldSummary].GetProperties().Name
-                [Thycotic.PowerShell.Metadata.FieldSummary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Metadata.FieldSummary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Metadata.FieldSummary]))
             }
         } else {
             Write-Warning "No valid session found"

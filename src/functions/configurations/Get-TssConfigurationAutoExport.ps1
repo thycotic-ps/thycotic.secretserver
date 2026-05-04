@@ -53,8 +53,7 @@ function Get-TssConfigurationAutoExport {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Configuration.AutomaticExport].GetProperties().Name
-                [Thycotic.PowerShell.Configuration.AutomaticExport]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Configuration.AutomaticExport](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.AutomaticExport]))
             }
         } else {
             Write-Warning "No valid session found"

@@ -85,8 +85,7 @@ function Search-TssSystemLog {
                 Write-Warning "No messages found in the System Log"
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Diagnostics.SystemLog].GetProperties().Name
-                [Thycotic.PowerShell.Diagnostics.SystemLog[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Diagnostics.SystemLog[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Diagnostics.SystemLog]))
             }
         } else {
             Write-Warning "No valid session found"

@@ -90,8 +90,7 @@ function Search-TssGroup {
                 Write-Warning 'No groups found'
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Groups.Summary].GetProperties().Name
-                [Thycotic.PowerShell.Groups.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Groups.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Groups.Summary]))
             }
         } else {
             Write-Warning 'No valid session found'

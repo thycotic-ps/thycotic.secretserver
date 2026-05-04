@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased -- 2021-xx-xx
+## 0.62.0 -- Unreleased
 
 ### Breaking Changes
 
@@ -13,11 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Bug Fixes
 
-* None
+* REST response handling: all functions now strip unknown properties from API responses before casting to typed objects, preventing `Cannot convert value` errors when Secret Server Cloud adds new response fields not yet reflected in module class definitions. Unknown properties are reported via `Write-Verbose`. Fixes #392, #398, #400, #406, #407, #408, #409, #410, #419.
 
 ### New Stuff
 
-* None
+* `FilterTssResponse` parts utility — centralised helper called by all functions to filter and verbose-log unknown response properties before type cast.
 
 ### General Updates
 

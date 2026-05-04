@@ -284,8 +284,7 @@ function Update-TssSecretHook {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.SecretHooks.Hook].GetProperties().Name
-                    [Thycotic.PowerShell.SecretHooks.Hook]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.SecretHooks.Hook](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretHooks.Hook]))
                 }
             }
         } else {

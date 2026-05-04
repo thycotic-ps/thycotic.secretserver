@@ -131,8 +131,7 @@ function Update-TssMetadataSection {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Metadata.FieldSectionSummary].GetProperties().Name
-                    [Thycotic.PowerShell.Metadata.FieldSectionSummary]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Metadata.FieldSectionSummary](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Metadata.FieldSectionSummary]))
                 }
             }
         } else {

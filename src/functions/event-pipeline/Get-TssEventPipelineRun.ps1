@@ -65,8 +65,7 @@ function Get-TssEventPipelineRun {
                 }
 
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.EventPipeline.RunView].GetProperties().Name
-                    [Thycotic.PowerShell.EventPipeline.RunView[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.EventPipeline.RunView[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.EventPipeline.RunView]))
                 }
             }
         } else {

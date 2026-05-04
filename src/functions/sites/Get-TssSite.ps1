@@ -57,8 +57,7 @@ function Get-TssSite {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Common.Site].GetProperties().Name
-                [Thycotic.PowerShell.Common.Site[]]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Common.Site[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Common.Site]))
             }
         } else {
             Write-Warning "No valid session found"

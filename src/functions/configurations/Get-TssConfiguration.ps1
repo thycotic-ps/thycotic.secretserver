@@ -77,40 +77,31 @@ function Get-TssConfiguration {
             if ($restResponse) {
                 switch ($Type) {
                     'All' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.General].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.General]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.General](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.General]))
                     }
                     'Application' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.ApplicationSettings].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.ApplicationSettings]($restResponse.applicationSettings | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.ApplicationSettings](. $FilterTssResponse $restResponse.applicationSettings ([Thycotic.PowerShell.Configuration.ApplicationSettings]))
                     }
                     'Email' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.EmailSettings].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.EmailSettings]($restResponse.emailSettings | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.EmailSettings](. $FilterTssResponse $restResponse.emailSettings ([Thycotic.PowerShell.Configuration.EmailSettings]))
                     }
                     'Folders' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.Folders].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.Folders]($restResponse.folders | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.Folders](. $FilterTssResponse $restResponse.folders ([Thycotic.PowerShell.Configuration.Folders]))
                     }
                     'Launcher' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.LauncherSettings].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.LauncherSettings]($restResponse.launcherSettings | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.LauncherSettings](. $FilterTssResponse $restResponse.launcherSettings ([Thycotic.PowerShell.Configuration.LauncherSettings]))
                     }
                     'LocalUserPasswords' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.LocalUserPasswords].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.LocalUserPasswords]($restResponse.localUserPasswords | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.LocalUserPasswords](. $FilterTssResponse $restResponse.localUserPasswords ([Thycotic.PowerShell.Configuration.LocalUserPasswords]))
                     }
                     'PermissionOptions' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.PermissionOptions].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.PermissionOptions]($restResponse.permissionOptions | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.PermissionOptions](. $FilterTssResponse $restResponse.permissionOptions ([Thycotic.PowerShell.Configuration.PermissionOptions]))
                     }
                     'UserExperience' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.UserExperience].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.UserExperience]($restResponse.userExperience | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.UserExperience](. $FilterTssResponse $restResponse.userExperience ([Thycotic.PowerShell.Configuration.UserExperience]))
                     }
                     'UserInterface' {
-                        $typeProps = [Thycotic.PowerShell.Configuration.UserInterface].GetProperties().Name
-                        [Thycotic.PowerShell.Configuration.UserInterface]($restResponse.userInterface | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.Configuration.UserInterface](. $FilterTssResponse $restResponse.userInterface ([Thycotic.PowerShell.Configuration.UserInterface]))
                     }
                 }
             }

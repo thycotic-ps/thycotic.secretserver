@@ -106,8 +106,7 @@ function New-TssSecretPermission {
                     }
 
                     if ($restResponse) {
-                        $typeProps = [Thycotic.PowerShell.SecretPermissions.Permission].GetProperties().Name
-                        [Thycotic.PowerShell.SecretPermissions.Permission]($restResponse | Select-Object -Property $typeProps)
+                        [Thycotic.PowerShell.SecretPermissions.Permission](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretPermissions.Permission]))
                     }
                 } else {
                     Write-Error "Secret [$secret] has InheritPermissions enabled, use -Force parameter to break inheritance."

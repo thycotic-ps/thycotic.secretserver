@@ -60,8 +60,7 @@ function Search-TssSecretsByUrl {
                 Write-Warning "No records found"
             }
             if ($restResponse.model) {
-                $typeProps = [Thycotic.PowerShell.SecretExtensions.Secret].GetProperties().Name
-                [Thycotic.PowerShell.SecretExtensions.Secret[]]($restResponse.model | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.SecretExtensions.Secret[]](. $FilterTssResponse $restResponse.model ([Thycotic.PowerShell.SecretExtensions.Secret]))
             }
         } else {
             Write-Warning "No valid session found"

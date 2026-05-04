@@ -85,8 +85,7 @@ function Get-TssListOption {
                 }
 
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.Lists.Item].GetProperties().Name
-                    [Thycotic.PowerShell.Lists.Item[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Lists.Item[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Lists.Item]))
                 }
             }
         } else {

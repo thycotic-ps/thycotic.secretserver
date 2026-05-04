@@ -52,8 +52,7 @@ function Get-TssConfigurationRpc {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Configuration.Rpc].GetProperties().Name
-                [Thycotic.PowerShell.Configuration.Rpc]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Configuration.Rpc](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.Rpc]))
             }
         } else {
             Write-Warning "No valid session found"

@@ -93,8 +93,7 @@ function Get-TssReportCategory {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.Reports.Category].GetProperties().Name
-                    [Thycotic.PowerShell.Reports.Category[]]($restResponse.model | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Reports.Category[]](. $FilterTssResponse $restResponse.model ([Thycotic.PowerShell.Reports.Category]))
                 }
             }
         } else {

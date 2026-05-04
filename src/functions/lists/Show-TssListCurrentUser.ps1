@@ -52,8 +52,7 @@ function Show-TssListCurrentUser {
                 }
 
                 if ($restResponse.records) {
-                    $typeProps = [Thycotic.PowerShell.Lists.SummaryList].GetProperties().Name
-                    [Thycotic.PowerShell.Lists.SummaryList[]]($restResponse.records | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.Lists.SummaryList[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Lists.SummaryList]))
                 }
             } else {
                 Write-Warning "No valid session found"

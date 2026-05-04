@@ -68,8 +68,7 @@ function Update-TssIpRestriction {
                 }
 
                 if ($restResponse) {
-                    $typeProps = [Thycotic.PowerShell.IpRestrictions.IpRestriction].GetProperties().Name
-                    [Thycotic.PowerShell.IpRestrictions.IpRestriction]($restResponse | Select-Object -Property $typeProps)
+                    [Thycotic.PowerShell.IpRestrictions.IpRestriction](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.IpRestrictions.IpRestriction]))
                 }
             }
         } else {

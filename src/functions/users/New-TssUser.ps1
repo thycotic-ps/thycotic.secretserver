@@ -117,8 +117,7 @@ function New-TssUser {
             }
 
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.Users.User].GetProperties().Name
-                [Thycotic.PowerShell.Users.User]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Users.User](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Users.User]))
             }
         } else {
             Write-Warning 'No valid session found'

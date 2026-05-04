@@ -79,8 +79,7 @@ function Search-TssScript {
                 Write-Warning "No Script found"
             }
             if ($restResponse.records) {
-                $typeProps = [Thycotic.PowerShell.Scripts.Summary].GetProperties().Name
-                [Thycotic.PowerShell.Scripts.Summary[]]($restResponse.records | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.Scripts.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Scripts.Summary]))
             }
         } else {
             Write-Warning "No valid session found"

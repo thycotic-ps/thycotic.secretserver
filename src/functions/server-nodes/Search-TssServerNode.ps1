@@ -55,8 +55,7 @@ function Search-TssServerNode {
                 Write-Warning "No records found"
             }
             if ($restResponse) {
-                $typeProps = [Thycotic.PowerShell.ServerNodes.List].GetProperties().Name
-                [Thycotic.PowerShell.ServerNodes.List[]]($restResponse | Select-Object -Property $typeProps)
+                [Thycotic.PowerShell.ServerNodes.List[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.ServerNodes.List]))
             }
         } else {
             Write-Warning "No valid session found"
