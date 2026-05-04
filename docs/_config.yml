@@ -5,6 +5,9 @@ description: Thycotic Secret Server PowerShell Module
 remote_theme: just-the-docs/just-the-docs
 color_scheme: delinea
 
+readme_index:
+  with_frontmatter: true
+
 google:
   gtag: "UA-189117162-1"
 
