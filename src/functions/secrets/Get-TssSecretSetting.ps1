@@ -61,11 +61,7 @@ function Get-TssSecretSetting {
                 }
 
                 if ($restResponse) {
-					$restResponse | ForEach-Object {
-                        $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
-                        $_ | Select-Object -Property $NonEmptyProperties
-                    }
-                    [Thycotic.PowerShell.Secrets.DetailSettings]$NonEmptyProperties
+                    [Thycotic.PowerShell.Secrets.DetailSettings](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Secrets.DetailSettings]))
                 }
             }
         } else {

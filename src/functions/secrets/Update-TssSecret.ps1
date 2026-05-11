@@ -114,7 +114,7 @@ function Update-TssSecret {
                 }
 
                 if ($updateResponse.id -eq $secretId) {
-                    [Thycotic.PowerShell.Secrets.Secret]$updateResponse
+                    [Thycotic.PowerShell.Secrets.Secret](. $FilterTssResponse $updateResponse ([Thycotic.PowerShell.Secrets.Secret]))
                 }
             }
         } else {

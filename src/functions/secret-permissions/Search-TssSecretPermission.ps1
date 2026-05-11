@@ -118,7 +118,7 @@ function Search-TssSecretPermission {
                 Write-Warning 'No SecretPermission found'
             }
             if ($restResponse.records) {
-                [Thycotic.PowerShell.SecretPermissions.Permission[]]$restResponse.records
+                [Thycotic.PowerShell.SecretPermissions.Permission[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.SecretPermissions.Permission]))
             }
         } else {
             Write-Warning 'No valid session found'

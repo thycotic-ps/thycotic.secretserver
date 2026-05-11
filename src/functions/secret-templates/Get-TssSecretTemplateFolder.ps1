@@ -59,7 +59,7 @@ function Get-TssSecretTemplateFolder {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretTemplates.View[]]$restResponse
+                    [Thycotic.PowerShell.SecretTemplates.View[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretTemplates.View]))
                 }
             }
         } else {

@@ -65,7 +65,7 @@ function Get-TssUserGroup {
                 }
 
                 if ($restResponse.records) {
-                    [Thycotic.PowerShell.Groups.UserSummary[]]$restREsponse.records
+                    [Thycotic.PowerShell.Groups.UserSummary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Groups.UserSummary]))
                 }
             }
         } else {

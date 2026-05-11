@@ -271,11 +271,7 @@ function Search-TssSecret {
             }
 
             if ($restResponse.records) {
-                $restResponse | ForEach-Object {
-                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
-                    ($_ | Select-Object -Property $NonEmptyProperties).records
-                }
-                [Thycotic.PowerShell.Secrets.Summary[]]$NonEmptyProperties.records
+                [Thycotic.PowerShell.Secrets.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Secrets.Summary]))
             }
         } else {
             Write-Warning 'No valid session found'
