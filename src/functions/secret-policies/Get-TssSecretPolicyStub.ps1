@@ -52,7 +52,7 @@ function Get-TssSecretPolicyStub {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.SecretPolicies.Policy[]]$restResponse
+                    [Thycotic.PowerShell.SecretPolicies.Policy[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretPolicies.Policy]))
                 }
         } else {
             Write-Warning "No valid session found"

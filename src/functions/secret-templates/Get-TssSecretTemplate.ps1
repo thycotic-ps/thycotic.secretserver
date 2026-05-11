@@ -61,11 +61,7 @@ function Get-TssSecretTemplate {
                 }
 
                 if ($restResponse) {
-                        $restResponse | ForEach-Object {
-                            $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
-                            $_ | Select-Object -Property $NonEmptyProperties
-                        }
-                        [Thycotic.PowerShell.SecretTemplates.Template]$NonEmptyProperties
+                    [Thycotic.PowerShell.SecretTemplates.Template](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretTemplates.Template]))
                 }
             }
         } else {

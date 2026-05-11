@@ -91,7 +91,7 @@ function Search-TssFolderPermission {
                     Write-Warning 'No Folder Permissions found'
                 }
                 if ($restResponse.records) {
-                    [Thycotic.PowerShell.FolderPermissions.Permission[]]$restResponse.records
+                    [Thycotic.PowerShell.FolderPermissions.Permission[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.FolderPermissions.Permission]))
                 }
             } else {
                 Write-Error 'Please provide one of the following parameters: -FolderId, -GroupId or -UserId'

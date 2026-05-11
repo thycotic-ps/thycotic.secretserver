@@ -129,11 +129,7 @@ function New-TssDistributedEngineSite {
             }
 
             if ($restResponse) {
-                $restResponse | ForEach-Object {
-                    $NonEmptyProperties = $_.restResponse.Properties | Where-Object {$_.Value} | Select-Object -ExpandProperty Name
-                    $_ | Select-Object -Property $NonEmptyProperties
-                [Thycotic.PowerShell.DistributedEngines.Site]$NonEmptyProperties
-                }
+                [Thycotic.PowerShell.DistributedEngines.Site](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DistributedEngines.Site]))
             }
         } else {
             Write-Warning "No valid session found"
