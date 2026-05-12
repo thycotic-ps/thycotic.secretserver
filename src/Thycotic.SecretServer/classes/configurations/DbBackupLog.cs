@@ -5,7 +5,7 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.Configuration
 {
-    public class BackupLog
+    public class DbBackupLog
     {
         public DateTime? BackupTime {get;set;}
         public string DisplayName {get;set;}
