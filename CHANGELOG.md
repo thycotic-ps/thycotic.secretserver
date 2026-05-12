@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### New Stuff
 
 * `FilterTssResponse` parts utility — centralised helper called by all functions to filter and verbose-log unknown response properties before type cast.
+* Bundled Secret Server SDK CLI (`src/bin/ClientSdk/tss.exe`) updated from 1.0.0.0 to 1.6.1. Fixes #382.
 
 ### General Updates
 
