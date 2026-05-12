@@ -240,6 +240,7 @@ function Find-TssSecret {
                     'SharedWithMe' { $filters += "filter.onlySharedWithMe=$([boolean]$SharedWithMe)" }
                     'ExcludeDoubleLock' { $filters += "filter.allowDoubleLocks=$([boolean]$ExcludeDoubleLock)" }
                     'ExcludeActive' { $filters += "filter.includeActive=$([boolean]$ExcludeActive)" }
+                    'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
                     'Scope' {
                         $filters += switch ($tssParams['Scope']) {
                             'All' { 'filter.scope=1' }

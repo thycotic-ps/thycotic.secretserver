@@ -238,7 +238,7 @@ function Search-TssSecret {
                 }
                 'ExtendedField' {
                     foreach ($v in $tssParams['ExtendedField']) {
-                        $filters += "filter.extendedField=$v"
+                        $filters += "filter.extendedFields=$v"
                     }
                 }
                 'PasswordTypeIds' {
