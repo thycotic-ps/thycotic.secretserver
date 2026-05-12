@@ -75,33 +75,88 @@ function Get-TssConfiguration {
             }
 
             if ($restResponse) {
+                # SS 12.0 renamed 'emailSettings' to 'email' on the v1 configuration/general response; accept either.
+                $emailRaw = if ($null -ne $restResponse.email) { $restResponse.email } else { $restResponse.emailSettings }
+
                 switch ($Type) {
                     'All' {
-                        [Thycotic.PowerShell.Configuration.General](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Configuration.General]))
+                        # Pre-filter each nested sub-object before assignment so unknown SS 12.0 fields
+                        # (e.g. EmailSettings.sendEmailMethod) don't break the outer [General] cast.
+                        $general = [Thycotic.PowerShell.Configuration.General]::new()
+                        if ($null -ne $restResponse.applicationSettings) {
+                            $general.ApplicationSettings = [Thycotic.PowerShell.Configuration.ApplicationSettings](. $FilterTssResponse $restResponse.applicationSettings ([Thycotic.PowerShell.Configuration.ApplicationSettings]))
+                        }
+                        if ($null -ne $emailRaw) {
+                            $general.Email = [Thycotic.PowerShell.Configuration.EmailSettings](. $FilterTssResponse $emailRaw ([Thycotic.PowerShell.Configuration.EmailSettings]))
+                        }
+                        if ($null -ne $restResponse.folders) {
+                            $general.Folders = [Thycotic.PowerShell.Configuration.Folders](. $FilterTssResponse $restResponse.folders ([Thycotic.PowerShell.Configuration.Folders]))
+                        }
+                        if ($null -ne $restResponse.launcherSettings) {
+                            $general.LauncherSettings = [Thycotic.PowerShell.Configuration.LauncherSettings](. $FilterTssResponse $restResponse.launcherSettings ([Thycotic.PowerShell.Configuration.LauncherSettings]))
+                        }
+                        if ($null -ne $restResponse.localUserPasswords) {
+                            $general.LocalUserPasswords = [Thycotic.PowerShell.Configuration.LocalUserPasswords](. $FilterTssResponse $restResponse.localUserPasswords ([Thycotic.PowerShell.Configuration.LocalUserPasswords]))
+                        }
+                        if ($null -ne $restResponse.permissionOptions) {
+                            $general.PermissionOptions = [Thycotic.PowerShell.Configuration.PermissionOptions](. $FilterTssResponse $restResponse.permissionOptions ([Thycotic.PowerShell.Configuration.PermissionOptions]))
+                        }
+                        if ($null -ne $restResponse.protocolHandlerSettings) {
+                            $general.ProtocolHandlerSettings = [Thycotic.PowerShell.Configuration.ProtocolHandlerSettings](. $FilterTssResponse $restResponse.protocolHandlerSettings ([Thycotic.PowerShell.Configuration.ProtocolHandlerSettings]))
+                        }
+                        if ($null -ne $restResponse.userExperience) {
+                            $general.UserExperience = [Thycotic.PowerShell.Configuration.UserExperience](. $FilterTssResponse $restResponse.userExperience ([Thycotic.PowerShell.Configuration.UserExperience]))
+                        }
+                        if ($null -ne $restResponse.userInterface) {
+                            $general.UserInterface = [Thycotic.PowerShell.Configuration.UserInterface](. $FilterTssResponse $restResponse.userInterface ([Thycotic.PowerShell.Configuration.UserInterface]))
+                        }
+                        if ($null -ne $restResponse.sessionRecording) {
+                            $general.sessionRecording = [Thycotic.PowerShell.Configuration.SessionRecording](. $FilterTssResponse $restResponse.sessionRecording ([Thycotic.PowerShell.Configuration.SessionRecording]))
+                        }
+                        if ($null -ne $restResponse.unlimitedAdmin) {
+                            $general.unlimitedAdmin = [Thycotic.PowerShell.Configuration.UnlimitedAdmin](. $FilterTssResponse $restResponse.unlimitedAdmin ([Thycotic.PowerShell.Configuration.UnlimitedAdmin]))
+                        }
+                        $general
                     }
                     'Application' {
-                        [Thycotic.PowerShell.Configuration.ApplicationSettings](. $FilterTssResponse $restResponse.applicationSettings ([Thycotic.PowerShell.Configuration.ApplicationSettings]))
+                        if ($null -ne $restResponse.applicationSettings) {
+                            [Thycotic.PowerShell.Configuration.ApplicationSettings](. $FilterTssResponse $restResponse.applicationSettings ([Thycotic.PowerShell.Configuration.ApplicationSettings]))
+                        }
                     }
                     'Email' {
-                        [Thycotic.PowerShell.Configuration.EmailSettings](. $FilterTssResponse $restResponse.emailSettings ([Thycotic.PowerShell.Configuration.EmailSettings]))
+                        if ($null -ne $emailRaw) {
+                            [Thycotic.PowerShell.Configuration.EmailSettings](. $FilterTssResponse $emailRaw ([Thycotic.PowerShell.Configuration.EmailSettings]))
+                        }
                     }
                     'Folders' {
-                        [Thycotic.PowerShell.Configuration.Folders](. $FilterTssResponse $restResponse.folders ([Thycotic.PowerShell.Configuration.Folders]))
+                        if ($null -ne $restResponse.folders) {
+                            [Thycotic.PowerShell.Configuration.Folders](. $FilterTssResponse $restResponse.folders ([Thycotic.PowerShell.Configuration.Folders]))
+                        }
                     }
                     'Launcher' {
-                        [Thycotic.PowerShell.Configuration.LauncherSettings](. $FilterTssResponse $restResponse.launcherSettings ([Thycotic.PowerShell.Configuration.LauncherSettings]))
+                        if ($null -ne $restResponse.launcherSettings) {
+                            [Thycotic.PowerShell.Configuration.LauncherSettings](. $FilterTssResponse $restResponse.launcherSettings ([Thycotic.PowerShell.Configuration.LauncherSettings]))
+                        }
                     }
                     'LocalUserPasswords' {
-                        [Thycotic.PowerShell.Configuration.LocalUserPasswords](. $FilterTssResponse $restResponse.localUserPasswords ([Thycotic.PowerShell.Configuration.LocalUserPasswords]))
+                        if ($null -ne $restResponse.localUserPasswords) {
+                            [Thycotic.PowerShell.Configuration.LocalUserPasswords](. $FilterTssResponse $restResponse.localUserPasswords ([Thycotic.PowerShell.Configuration.LocalUserPasswords]))
+                        }
                     }
                     'PermissionOptions' {
-                        [Thycotic.PowerShell.Configuration.PermissionOptions](. $FilterTssResponse $restResponse.permissionOptions ([Thycotic.PowerShell.Configuration.PermissionOptions]))
+                        if ($null -ne $restResponse.permissionOptions) {
+                            [Thycotic.PowerShell.Configuration.PermissionOptions](. $FilterTssResponse $restResponse.permissionOptions ([Thycotic.PowerShell.Configuration.PermissionOptions]))
+                        }
                     }
                     'UserExperience' {
-                        [Thycotic.PowerShell.Configuration.UserExperience](. $FilterTssResponse $restResponse.userExperience ([Thycotic.PowerShell.Configuration.UserExperience]))
+                        if ($null -ne $restResponse.userExperience) {
+                            [Thycotic.PowerShell.Configuration.UserExperience](. $FilterTssResponse $restResponse.userExperience ([Thycotic.PowerShell.Configuration.UserExperience]))
+                        }
                     }
                     'UserInterface' {
-                        [Thycotic.PowerShell.Configuration.UserInterface](. $FilterTssResponse $restResponse.userInterface ([Thycotic.PowerShell.Configuration.UserInterface]))
+                        if ($null -ne $restResponse.userInterface) {
+                            [Thycotic.PowerShell.Configuration.UserInterface](. $FilterTssResponse $restResponse.userInterface ([Thycotic.PowerShell.Configuration.UserInterface]))
+                        }
                     }
                 }
             }
