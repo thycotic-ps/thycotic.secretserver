@@ -31,7 +31,7 @@ function Search-TssDirectoryServiceDomain {
 
         # Domain Name
         [Alias('Domain')]
-        [int]
+        [string]
         $DomainName,
 
         # Include inactive domains
