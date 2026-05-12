@@ -8,7 +8,7 @@ namespace Thycotic.PowerShell.Secrets
 {
     public class HeartbeatStatus
     {
-        public HeartbeatStatus Status { get; set; }
+        public SecretHeartbeatStatus Status { get; set; }
         public DateTime? LastHeartbeatCheck { get; set; }
     }
 }
