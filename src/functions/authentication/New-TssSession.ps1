@@ -37,10 +37,10 @@ function New-TssSession {
     Use the alias nts to create a session object
 
     .EXAMPLE
-    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred -OtpCode 256380
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred -OtpCode '012345'
     Show-TssCurrentUser -TssSession $session
 
-    Create a session object using OAuth2 credential and 2FA/OTP code. Then output the current user to verify toke is for the specific user credential.
+    Create a session object using OAuth2 credential and 2FA/OTP code. Then output the current user to verify toke is for the specific user credential. Quote the OtpCode to preserve any leading zeros.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://vault.secretservercloud.com -Credential $cred
@@ -83,7 +83,7 @@ function New-TssSession {
 
         # Provide 2FA code
         [Parameter(ParameterSetName = 'new', Position = 2)]
-        [int]
+        [string]
         $OtpCode,
 
         # Specify Access Token

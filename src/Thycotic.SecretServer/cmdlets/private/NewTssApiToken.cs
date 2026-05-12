@@ -25,7 +25,7 @@ namespace Thycotic.SecretServer
         public string Password { get; set; }
 
         [Parameter(Position = 3)]
-        public int OtpCode { get; set; }
+        public string OtpCode { get; set; }
 
         [Parameter(Position = 4)]
         public SwitchParameter UseDefaultCredential { get; set; }
