@@ -17,6 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssSecretHeartbeatStatus` - fix enum cast failure where the API returns a string status like `"Pending"`; `Thycotic.PowerShell.Secrets.HeartbeatStatus.Status` was self-typed instead of the `SecretHeartbeatStatus` enum. Fixes #433.
 * `Search-TssConfigurationBackupLog` - fix `Unable to find type [Thycotic.PowerShell.Configuration.DbBackupLog]` error. The C# class file was named `BackupLog` while the cmdlet's `OutputType` and cast referenced `DbBackupLog`. Renamed the class (and its file) to match the cmdlet's contract. Fixes #431.
 * `New-TssSession` - `OtpCode` parameter is now `[string]` instead of `[int]`. OTP codes with leading zeros (e.g. `012345`) were being truncated by the integer coercion before reaching the API. Existing scripts that pass a numeric literal continue to work via PowerShell's implicit conversion. Fixes #316.
+* `Get-TssConfiguration` - fix `Cannot convert value ... to type Thycotic.PowerShell.Configuration.General` cast failure on SS 12.0. The outer `[General]` cast was applied to a response whose nested sub-objects (e.g. `email`, `applicationSettings`) still contained SS 12.0 fields not modeled by the C# classes. The cmdlet now constructs the `General` result by drilling into each known sub-object and running `FilterTssResponse` against it before assignment, so unknown nested fields are stripped instead of breaking the cast. Also handles the SS 12.0 rename of the `emailSettings` response property to `email`. Fixes #432.
 
 ### New Stuff
 
