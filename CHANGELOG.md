@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 
 * REST response handling: all functions now strip unknown properties from API responses before casting to typed objects, preventing `Cannot convert value` errors when Secret Server Cloud adds new response fields not yet reflected in module class definitions. Unknown properties are reported via `Write-Verbose`. Fixes #392, #398, #400, #406, #407, #408, #409, #410, #419.
+* `Get-TssSecretHeartbeatStatus` - fix enum cast failure where the API returns a string status like `"Pending"`; `Thycotic.PowerShell.Secrets.HeartbeatStatus.Status` was self-typed instead of the `SecretHeartbeatStatus` enum. Fixes #433.
 
 ### New Stuff
 
