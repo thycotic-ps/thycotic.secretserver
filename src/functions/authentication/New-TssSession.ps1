@@ -166,6 +166,13 @@ function New-TssSession {
                         throw $err
                     } elseif ($_ -like '*<html*') {
                         $PSCmdlet.WriteError([Management.Automation.ErrorRecord]::new([Exception]::new('Response was HTML, Request Failed.'), 'ResultWasHTML', 'NotSpecified', $invokeParams.Uri))
+                    } elseif ([string]::IsNullOrEmpty($_.Exception.Message)) {
+                        $hint = if ($newTssParams.ContainsKey('SkipCertificateCheck')) {
+                            "Connection to [$SecretServer] failed with no error detail. Check network connectivity and that the URL is correct."
+                        } else {
+                            "Connection to [$SecretServer] failed with no error detail. If the server uses a self-signed or untrusted TLS certificate, add -SkipCertificateCheck to New-TssSession."
+                        }
+                        throw [Exception]::new($hint)
                     } else {
                         throw $_.Exception
                     }

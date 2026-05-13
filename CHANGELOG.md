@@ -9,7 +9,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Breaking Changes
 
-* None
+* **RestSharp upgraded from 110.2.0 to 112.0.0.** One confirmed breaking change plus one behaviour difference that may affect some environments:
+
+  1. **`MaxTimeout = 0` now means zero timeout, not "no timeout" — affects all users.** In RestSharp 110, setting `MaxTimeout = 0` on `RestClientOptions` was treated as "wait indefinitely". In RestSharp 112, `MaxTimeout` is deprecated and writing it maps to the new `Timeout` property as `TimeSpan.FromMilliseconds(0)` — `TimeSpan.Zero` — which `HttpClient` interprets as an immediate cancellation. Every request threw `TaskCanceledException` with no useful diagnostic. The library now defaults to `TimeSpan.FromSeconds(100)` (matching `HttpClient`'s own default) when no explicit timeout is provided.
+
+  2. **TLS certificate validation behaviour may differ — affects environments with self-signed certs.** If your Secret Server endpoint uses a certificate not trusted by the OS certificate store, requests may fail with an empty error response. A new `-SkipCertificateCheck` switch has been added to `New-TssSession` to handle this (see *New Stuff* below). Environments whose certificates are trusted by the OS do not need to change anything.
+
+  **Action required if you see empty or `TaskCanceledException` authentication errors:** add `-SkipCertificateCheck` to your `New-TssSession` call if using a self-signed certificate, or check that your server URL is reachable:
+  ```powershell
+  $session = New-TssSession -SecretServer https://vault.example.com -Credential $cred -SkipCertificateCheck
+  ```
+  The flag is stored on the session object and applied automatically to all subsequent API calls — no other changes are needed. Fixes #442.
 
 ### Bug Fixes
 
@@ -18,9 +28,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Search-TssConfigurationBackupLog` - fix `Unable to find type [Thycotic.PowerShell.Configuration.DbBackupLog]` error. The C# class file was named `BackupLog` while the cmdlet's `OutputType` and cast referenced `DbBackupLog`. Renamed the class (and its file) to match the cmdlet's contract. Fixes #431.
 * `New-TssSession` - `OtpCode` parameter is now `[string]` instead of `[int]`. OTP codes with leading zeros (e.g. `012345`) were being truncated by the integer coercion before reaching the API. Existing scripts that pass a numeric literal continue to work via PowerShell's implicit conversion. Fixes #316.
 * `Get-TssConfiguration` - fix `Cannot convert value ... to type Thycotic.PowerShell.Configuration.General` cast failure on SS 12.0. The outer `[General]` cast was applied to a response whose nested sub-objects (e.g. `email`, `applicationSettings`) still contained SS 12.0 fields not modeled by the C# classes. The cmdlet now constructs the `General` result by drilling into each known sub-object and running `FilterTssResponse` against it before assignment, so unknown nested fields are stripped instead of breaking the cast. Also handles the SS 12.0 rename of the `emailSettings` response property to `email`. Fixes #432.
+* `New-TssSession` - authentication failures that return no error detail (e.g. TLS certificate rejection) now surface a descriptive message. When the certificate is likely the cause, the error text explicitly suggests adding `-SkipCertificateCheck`. Fixes #442.
 
 ### New Stuff
 
+* `New-TssSession` - new `-SkipCertificateCheck` switch parameter. When specified, the TLS certificate of the Secret Server endpoint is not validated. Equivalent to `Invoke-RestMethod -SkipCertificateCheck`. The setting is persisted on the `TssSession` object and automatically applied to all API calls made with that session — callers do not need to pass the flag individually to each cmdlet. Intended for on-premises environments using self-signed certificates. Fixes #442.
 * `FilterTssResponse` parts utility — centralised helper called by all functions to filter and verbose-log unknown response properties before type cast.
 * Bundled Secret Server SDK CLI (`src/bin/ClientSdk/tss.exe`) updated from 1.0.0.0 to 1.6.1. Fixes #382.
 
