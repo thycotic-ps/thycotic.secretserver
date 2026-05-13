@@ -60,6 +60,16 @@ function Get-TssRpcPasswordType {
                 }
 
                 if ($restResponse) {
+                    # Pre-coerce each element of the nested Fields array so SS 12.0's wider PasswordTypeField
+                    # shape doesn't break the outer [PasswordType] cast. FilterTssResponse only filters the
+                    # outer object's properties; nested array element coercion needs to happen explicitly.
+                    if ($restResponse.fields) {
+                        $restResponse.fields = @(
+                            $restResponse.fields | ForEach-Object {
+                                [Thycotic.PowerShell.Rpc.PasswordTypeField](. $FilterTssResponse $_ ([Thycotic.PowerShell.Rpc.PasswordTypeField]))
+                            }
+                        )
+                    }
                     [Thycotic.PowerShell.Rpc.PasswordType](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Rpc.PasswordType]))
                 }
             }
