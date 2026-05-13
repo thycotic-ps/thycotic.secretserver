@@ -87,12 +87,19 @@ namespace Thycotic.SecretServer.Cmdlets
         [Parameter(Position = 10)]
         public int Timeout { get; set; } = 0;
 
+        [Parameter(Position = 11)]
+        public SwitchParameter SkipCertificateCheck { get; set; }
+
         protected override void ProcessRecord()
         {
 			var options = new RestClientOptions();
 			Uri requestUri = new Uri(Uri);
 			options.BaseUrl = requestUri;
-			options.MaxTimeout = Timeout;
+			options.Timeout = Timeout > 0 ? TimeSpan.FromMilliseconds(Timeout) : TimeSpan.FromSeconds(100);
+            if (SkipCertificateCheck.IsPresent)
+            {
+                options.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            }
             
 			if (MyInvocation.BoundParameters.ContainsKey("Proxy"))
             {

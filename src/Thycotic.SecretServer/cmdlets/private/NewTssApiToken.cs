@@ -42,12 +42,19 @@ namespace Thycotic.SecretServer
         [Parameter(Position = 8)]
         public int Timeout { get; set; } = 0;
 
+        [Parameter(Position = 9)]
+        public SwitchParameter SkipCertificateCheck { get; set; }
+
         protected override void ProcessRecord()
         {
 			var options = new RestClientOptions();
 			Uri requestUri = new Uri(Uri);
 			options.BaseUrl = requestUri;
-			options.MaxTimeout = Timeout;
+			options.Timeout = Timeout > 0 ? TimeSpan.FromMilliseconds(Timeout) : TimeSpan.FromSeconds(100);
+            if (SkipCertificateCheck.IsPresent)
+            {
+                options.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
+            }
 
 			WriteVerbose("Base URL set to: " + requestUri);
             WriteVerbose("Request timeout set to : " + Timeout);

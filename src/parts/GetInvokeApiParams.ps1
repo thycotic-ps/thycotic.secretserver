@@ -14,5 +14,8 @@ process {
             $getInvokeParams.AccessToken = $TssSession.AccessToken
         }
     }
+    if ($TssSession.SkipCertificateCheck) {
+        $getInvokeParams.SkipCertificateCheck = $true
+    }
     return $getInvokeParams
 }

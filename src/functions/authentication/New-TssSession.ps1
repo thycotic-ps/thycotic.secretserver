@@ -104,7 +104,11 @@ function New-TssSession {
         [Parameter(ParameterSetName = 'clientSdk', Mandatory)]
         [ValidateScript( { Test-Path $_ -PathType Container })]
         [string]
-        $ConfigPath
+        $ConfigPath,
+
+        # Skip SSL/TLS certificate validation (use for self-signed certificates)
+        [switch]
+        $SkipCertificateCheck
     )
     begin {
         $newTssParams = $PSBoundParameters
@@ -129,6 +133,10 @@ function New-TssSession {
             $outputTssSession.ApiUrl = $outputTssSession.SecretServer.TrimEnd('/'), $outputTssSession.ApiVersion -join '/'
         }
 
+        if ($newTssParams.ContainsKey('SkipCertificateCheck')) {
+            $outputTssSession.SkipCertificateCheck = $true
+        }
+
         if ($outputTssSession.SecretServer) {
             if ($newTssParams.ContainsKey('Credential')) {
                 $newTokenParams = @{}
@@ -142,6 +150,9 @@ function New-TssSession {
 
                 $newTokenParams.Username = $Credential.Username
                 $newTokenParams.Password = $Credential.GetNetworkCredential().Password
+                if ($newTssParams.ContainsKey('SkipCertificateCheck')) {
+                    $newTokenParams.SkipCertificateCheck = $true
+                }
 
                 if (-not $PSCmdlet.ShouldProcess($outputTssSession.SecretServer, "Requesting OAuth2 token from $($outputTssSession.SecretServer) with URI of [$($newTokenParams.Uri)]")) { return }
                 Write-Verbose "Performing the operation POST $($newTokenParams.Uri)"

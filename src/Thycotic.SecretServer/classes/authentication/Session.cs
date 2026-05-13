@@ -24,6 +24,7 @@ namespace Thycotic.PowerShell.Authentication
         public DateTime StartTime { get; set; }
         public DateTime TimeOfDeath { get; set; }
         public int Take { get; set; } = int.MaxValue;
+        public bool SkipCertificateCheck { get; set; } = false;
 
         public bool IsValidSession()
         {
@@ -139,7 +140,7 @@ namespace Thycotic.PowerShell.Authentication
         public static RestResponse AccessToken(string SecretServerHost, string Username, string Password, string ProxyServer, int Timeout = 0)
         {
 			var options = new RestClientOptions(SecretServerHost + "/oauth2/token");
-			options.MaxTimeout = Timeout;
+			options.Timeout = Timeout > 0 ? TimeSpan.FromMilliseconds(Timeout) : TimeSpan.FromSeconds(100);
 
 			if (string.IsNullOrEmpty(ProxyServer))
 			{
@@ -158,7 +159,7 @@ namespace Thycotic.PowerShell.Authentication
         public static RestResponse RefreshToken(string SecretServerHost, string TokenValue, string ProxyServer, int Timeout = 0)
         {
 			var options = new RestClientOptions(SecretServerHost + "/oauth2/token");
-			options.MaxTimeout = Timeout;
+			options.Timeout = Timeout > 0 ? TimeSpan.FromMilliseconds(Timeout) : TimeSpan.FromSeconds(100);
 
 			if (string.IsNullOrEmpty(ProxyServer))
 			{
