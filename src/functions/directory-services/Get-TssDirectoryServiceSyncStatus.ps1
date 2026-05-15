@@ -52,6 +52,16 @@ function Get-TssDirectoryServiceSyncStatus {
                 }
 
                 if ($restResponse) {
+                    # Pre-coerce each element of the nested DomainStatus array so SS 12.0's wider
+                    # DomainSyncStatus shape doesn't break the outer [SyncStatus] cast. Same pattern
+                    # as Get-TssRpcPasswordType (#440).
+                    if ($restResponse.domainStatus) {
+                        $restResponse.domainStatus = @(
+                            $restResponse.domainStatus | ForEach-Object {
+                                [Thycotic.PowerShell.DirectoryServices.DomainSyncStatus](. $FilterTssResponse $_ ([Thycotic.PowerShell.DirectoryServices.DomainSyncStatus]))
+                            }
+                        )
+                    }
                     [Thycotic.PowerShell.DirectoryServices.SyncStatus](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.SyncStatus]))
                 }
         } else {
