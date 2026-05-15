@@ -5,7 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.62.0 -- Unreleased
+## 0.62.0 -- 2026-05-15
 
 ### Breaking Changes
 
@@ -29,11 +29,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `New-TssSession` - `OtpCode` parameter is now `[string]` instead of `[int]`. OTP codes with leading zeros (e.g. `012345`) were being truncated by the integer coercion before reaching the API. Existing scripts that pass a numeric literal continue to work via PowerShell's implicit conversion. Fixes #316.
 * `Get-TssConfiguration` - fix `Cannot convert value ... to type Thycotic.PowerShell.Configuration.General` cast failure on SS 12.0. The outer `[General]` cast was applied to a response whose nested sub-objects (e.g. `email`, `applicationSettings`) still contained SS 12.0 fields not modeled by the C# classes. The cmdlet now constructs the `General` result by drilling into each known sub-object and running `FilterTssResponse` against it before assignment, so unknown nested fields are stripped instead of breaking the cast. Also handles the SS 12.0 rename of the `emailSettings` response property to `email`. Fixes #432.
 * `New-TssSession` - authentication failures that return no error detail (e.g. TLS certificate rejection) now surface a descriptive message. When the certificate is likely the cause, the error text explicitly suggests adding `-SkipCertificateCheck`. Fixes #442.
-<<<<<<< HEAD
 * `Get-TssRpcPasswordType` - fix `Cannot convert value ... to type Thycotic.PowerShell.Rpc.PasswordTypeField` cast failure on SS 12.0. The outer `[PasswordType]` cast left the nested `fields` array as untyped `PSCustomObject` elements, which PowerShell could not coerce. The cmdlet now pre-coerces each `fields` element through `FilterTssResponse` before the outer cast. Fixes #440.
-=======
 * `Get-TssDirectoryServiceSyncStatus` - fix `Cannot convert value ... to type Thycotic.PowerShell.DirectoryServices.DomainSyncStatus` cast failure on SS 12.0. The outer `[SyncStatus]` cast left the nested `domainStatus` array as untyped `PSCustomObject` elements that PowerShell could not coerce. The cmdlet now pre-coerces each `domainStatus` element through `FilterTssResponse` before the outer cast. Same pattern as #440. Fixes #441.
->>>>>>> eb679611 (fix: Get-TssDirectoryServiceSyncStatus DomainStatus array cast failure)
 
 ### New Stuff
 
