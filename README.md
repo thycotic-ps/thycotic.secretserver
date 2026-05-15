@@ -12,11 +12,11 @@ This module provides a secure method that Secret Server Administrators and Users
 
 Secret Server provides a management tool for those privileged accounts. Thycotic.SecretServer module allows you to access those accounts securely and utilize them in your scripts and automation in a secure manner.
 
-## Classes
+## Classes and enums
 
 The module utilizes C# based classes to provide a unique object and type with each endpoint. In addition, certain classes may include Methods that provide "shortcuts" for performing specific actions in PowerShell or manipulating the object output by a function.
 
-Documentation for the classes can be found on the documentation site here: [about topics](https://thycotic-ps.github.io/thycotic.secretserver/about_topics/)
+Per-type reference (properties, methods, enum values) is published at [Types](https://thycotic-ps.github.io/thycotic.secretserver/types/). The pages are auto-generated from the C# source under `src/Thycotic.SecretServer/`; re-run `scripts/docs/Generate-TypeDocs.ps1` after any class or enum change.
 
 ### Library Build
 
