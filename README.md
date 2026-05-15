@@ -36,7 +36,7 @@ Invoke-Build -File .\build.ps1 -Configuration Debug
 
 ## Maintainers
 
-This module is managed and maintained by Thycotic Professional Services.
+This module is managed and maintained by The Thycotic.SecretServer community.
 
 ## Support
 
