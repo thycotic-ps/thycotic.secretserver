@@ -46,9 +46,9 @@ See the Disclaimer at the bottom of this page for other legal jargon. This modul
 
 This project strives to cover all types of environments. We understand that some do not allow pulling PowerShell modules from every resource. The following sources are available for downloading each release of the module:
 
-- [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)
+- ~~PowerShell Gallery <!-- (https://www.powershellgallery.com/packages/Thycotic.SecretServer/) --> (recommended)~~ Temporarily unavailable
 - [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
-- [Direct Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.8/Thycotic.SecretServer.zip)
+- ~~[Direct Download] <!-- (https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.61.8/Thycotic.SecretServer.zip) -->~~  Temporarily unavailable
 
 Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
 
