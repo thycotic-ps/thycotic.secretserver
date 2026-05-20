@@ -51,7 +51,7 @@ This project strives to cover all types of environments. We understand that some
 - [CDN Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.62.0/Thycotic.SecretServer.zip)
 - [Direct Download](https://delineamarketplace01qa.blob.core.windows.net/integrations/Downloads/PowershellModule/0.62.0/Thycotic.SecretServer.zip)
 
-Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/docs/install)
+Documentation on installing the module can be found on the documentation site [here](https://thycotic-ps.github.io/thycotic.secretserver/getting_started/install.html)
 
 ## Changelog
 
