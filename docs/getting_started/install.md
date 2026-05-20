@@ -6,7 +6,7 @@ nav_order: 1
 # Installation
 
 {% capture notice-text %}
-- Windows Powershell PowerShell 7+
+- PowerShell 7+ (required for new installs). Windows PowerShell 5.1 is still supported for users running older module releases — see the [Troubleshooting](troubleshooting.md) page for the TLS 1.2 setup required on 5.1.
 - Thycotic Secret Server Web Service enabled
 - A user to authenticate with appropriate permissions to access desired objects.
 {% endcapture %}
@@ -18,10 +18,10 @@ nav_order: 1
 
 `Thycotic.SecretServer` is available to download from the following locations:
 
-- ~~[PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) (recommended)~~ Temporarily unavailable
-- [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/)
+- [GitHub Release](https://github.com/thycotic-ps/thycotic.secretserver/releases/) (current: v0.62.0)
 - [CDN Download](https://downloads.marketplace.delinea.com/integrations/Downloads/PowershellModule/0.62.0/Thycotic.SecretServer.zip)
 - [Direct Download](https://delineamarketplace01qa.blob.core.windows.net/integrations/Downloads/PowershellModule/0.62.0/Thycotic.SecretServer.zip)
+- [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/) — **not updated past 0.60.4** (tracking: [#450](https://github.com/thycotic-ps/thycotic.secretserver/issues/450))
 
 Choose one of the following methods to obtain & install the module:
 
@@ -60,7 +60,15 @@ There are multiple options for downloading the module files:
 2. Unblock & Extract the archive
 3. Copy the `Thycotic.SecretServer` folder to your "Powershell Modules" directory of choice.
 
-> **Warning** **Thycotic.SecretServer.zip SHA256:** [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt)
+### Integrity verification
+
+The published SHA256 hash for each release is at [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt). Verify the downloaded zip before extracting:
+
+```powershell
+Get-FileHash -Algorithm SHA256 .\Thycotic.SecretServer.zip
+```
+
+Compare the output to the hash file above.
 
 ## Verification
 
@@ -72,6 +80,12 @@ Get-Module -ListAvailable Thycotic.SecretServer
 # or
 
 Get-InstalledModule Thycotic.SecretServer
+```
+
+Confirm the installed version matches the release you downloaded:
+
+```powershell
+(Get-Module -ListAvailable Thycotic.SecretServer).Version
 ```
 
 Import the module:
@@ -93,7 +107,7 @@ Get-Help Get-TssSecret -Full
 ```
 ## Option 2: Install from PowerShell Gallery
 
-*PowerShell Gallery does not contain releases after v60.4*
+> **Warning** **PowerShell Gallery is not updated past 0.60.4.** Installing from PSGallery will give you an outdated module missing the fixes and features in 0.61.x and 0.62.0. Use Option 1 (Manual Install) to get the current release. Tracking: [#450](https://github.com/thycotic-ps/thycotic.secretserver/issues/450).
 
 1. Open a PowerShell prompt
 
@@ -103,6 +117,6 @@ Get-Help Get-TssSecret -Full
 Install-Module -Name Thycotic.SecretServer -Scope CurrentUser
 ```
 
-> **Warning** **Windows PowerShell PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
+> **Warning** **PowerShell 7+** must be used to download the module from the [PowerShell Gallery](https://www.powershellgallery.com/packages/Thycotic.SecretServer/).
 
-> **Warning** **Windows PowerShell 5.1** TLS error: PowerShell Gallery only supports TLS 1.2 and above, errors noted [here](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support/#errors-i-might-see) may be observed. You will need to start a new PowerShell session and set TLS to 1.2: `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12`
+> **Warning** **Windows PowerShell 5.1** TLS error: PowerShell Gallery only supports TLS 1.2 and above, errors noted [here](https://devblogs.microsoft.com/powershell/powershell-gallery-tls-support/#errors-i-might-see) may be observed. You will need to start a new PowerShell session and set TLS to 1.2: `[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12`. PowerShell 7 negotiates TLS automatically and does not need this step. See [Troubleshooting](troubleshooting.md) for more.

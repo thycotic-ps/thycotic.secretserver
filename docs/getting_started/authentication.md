@@ -15,9 +15,24 @@ To utilize Windows Authentication with Secret Server, your administrator will ne
 
 As of **version `0.30.0`**, Windows Authentication is supported with the module. `New-TssSession` now has the parameter `-UseWindowsAuth` for this purpose. See examples of this use via the command help
 
+## Self-signed certificates / TLS
+
+As of **version `0.62.0`**, the module's underlying HTTP client (RestSharp 112) no longer trusts self-signed certificates by default. If your Secret Server instance uses a self-signed or otherwise untrusted certificate, you will see a `TaskCanceledException` or an empty error response when calling `New-TssSession`.
+
+Use the `-SkipCertificateCheck` switch to bypass certificate validation for that session:
+
+```powershell
+$cred = Get-Credential
+$session = New-TssSession -SecretServer https://vault.lab.local -Credential $cred -SkipCertificateCheck
+```
+
+> **Warning** `-SkipCertificateCheck` disables TLS certificate validation for the session and exposes you to man-in-the-middle attacks. Only use it against lab/test instances or where you have other means of verifying the endpoint. For production, install a trusted certificate on your Secret Server host.
+
+See the [Troubleshooting](troubleshooting.md) page for related TLS errors.
+
 ## OAuth2 Authentication
 
-Authenticating with a username and password creates creating that as a `PSCredential` object and then providing that to the `-Credential` parameter of `New-TssSession`.
+Authenticating with a username and password is done by creating a `PSCredential` object and providing it to the `-Credential` parameter of `New-TssSession`.
 
 ### Interactive Login
 
@@ -127,13 +142,14 @@ code-insiders $PROFILE
 Below script can be added to your profile script, adjust as you need for your environment:
 
 ```powershell
-function Login-SS {
+function Connect-SS {
+   param([switch]$IgnoreDefault)
    $ssUrl = 'https://vault.company.com/SecretServer'
    Import-Module Thycotic.SecretServer -Force
    $cred = Get-Secret secretserverCred
    $s = New-TssSession -SecretServer $ssUrl -Credential $cred
    New-Variable -Name session -Value $s -Scope Global -Force
-   if (-not $ignoreDefault) {
+   if (-not $IgnoreDefault) {
       $PSDefaultParameterValues.Remove("*:TssSession")
       $PSDefaultParameterValues.Remove("*:PersonalAccessToken")
       $PSDefaultParameterValues.Add("*:TssSession",$session)
@@ -142,10 +158,12 @@ function Login-SS {
 }
 ```
 
+`Connect-SS` uses the approved PowerShell verb `Connect`. The `-IgnoreDefault` switch lets you skip the `$PSDefaultParameterValues` population — useful when running ad-hoc commands that need a session but should not change the global defaults.
+
 The use of `$PSDefaultParameterValues` allows you to set the default values for those parameters and applies to all commands in the module. You can see in the below example that `-TssSession` is not directly provided.
 
 ```powershell
-Login-SS
+Connect-SS
 $ad = Get-TssSecretStub -SecretTemplateId 6001 -FolderId 37
 $ad.Name = 'Test Secret with Incognito Policy 1'
 $ad.SetFieldValue('Domain','somedomain');$ad.SetFieldValue('Username','someuser');$ad.SetFieldValue('Password','somepassword');

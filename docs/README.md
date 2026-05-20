@@ -5,11 +5,13 @@ nav_order: 1
 
 # Secret Server PowerShell Module
 
-Welcome to the documentation site for the `Thycotic.SecretServer` module. You can use this module for automating your workflows in your environment to retrieve needed credentials securely. The module supports cross-platform use and can be used on Windows PowerShell and version PowerShell 7 or higher.
+Welcome to the documentation site for the `Thycotic.SecretServer` module. You can use this module for automating your workflows in your environment to retrieve needed credentials securely. The module supports cross-platform use and runs on PowerShell 7+; Windows PowerShell 5.1 is supported for older module releases.
 
 You can browse the [Getting Started](https://thycotic-ps.github.io/thycotic.secretserver/getting_started/) section to find details on installation, how to authenticate and working examples using the module.
 
 The [Commands](https://thycotic-ps.github.io/thycotic.secretserver/commands/) section contains the help content on each function that can also be accessed using `Get-Help` in your PowerShell session.
+
+See the [release notes](https://github.com/thycotic-ps/thycotic.secretserver/blob/dev/CHANGELOG.md) for the latest changes, including breaking changes and new features per release.
 
 # Support & Disclaimer
 
