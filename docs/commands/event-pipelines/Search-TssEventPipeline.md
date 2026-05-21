@@ -1,7 +1,9 @@
 ---
 title: Search-TssEventPipeline
-parent: Event Pipeline
+parent: Event Pipelines
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline/Search-TssEventPipeline
 ---
 # Search-TssEventPipeline
 
@@ -158,6 +160,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Search-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Search-TssEventPipeline)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipelines/Search-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipelines/Search-TssEventPipeline)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Search-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Search-TssEventPipeline.ps1)
