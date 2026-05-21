@@ -2,6 +2,8 @@
 title: Add-TssEventPipeline
 parent: Event Pipeline Policies
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline-policy/Add-TssEventPipeline
 ---
 # Add-TssEventPipeline
 
@@ -118,6 +120,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Add-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Add-TssEventPipeline)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Add-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Add-TssEventPipeline)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Add-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Add-TssEventPipeline.ps1)

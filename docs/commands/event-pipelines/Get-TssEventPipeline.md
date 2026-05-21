@@ -1,31 +1,33 @@
 ---
-title: Get-TssEventPipelinePolicy
-parent: Event Pipeline Policies
+title: Get-TssEventPipeline
+parent: Event Pipelines
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline/Get-TssEventPipeline
 ---
-# Get-TssEventPipelinePolicy
+# Get-TssEventPipeline
 
 ## SYNOPSIS
-Get an Event Pipeline Policy by ID
+Get an Event Pipeline by ID
 
 ## SYNTAX
 
 ```
-Get-TssEventPipelinePolicy [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssEventPipeline [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get an Event Pipeline Policy by ID
+Get an Event Pipeline by ID
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssEventPipelinePolicy -TssSession $session -Id 4
+Get-TssEventPipeline -TssSession $session -Id 43
 ```
 
-Get Event Pipeline Policy ID 4
+Output details on Event Pipeline 43
 
 ## PARAMETERS
 
@@ -50,7 +52,7 @@ Event Pipeline Policy ID
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: EventPipelinePolicyId
+Aliases: EventPipelineId
 
 Required: True
 Position: Named
@@ -66,12 +68,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.EventPipelinePolicy.Policy
+### Thycotic.PowerShell.EventPipeline.List
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Get-TssEventPipelinePolicy)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipelines/Get-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipelines/Get-TssEventPipeline)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicy.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Get-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Get-TssEventPipeline.ps1)
