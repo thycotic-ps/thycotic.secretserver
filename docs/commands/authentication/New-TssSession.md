@@ -12,24 +12,26 @@ Create new session
 
 ### clientSdk
 ```
-New-TssSession -SecretServer <Uri> [-UseSdkClient] -ConfigPath <String> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-UseSdkClient] -ConfigPath <String> [-SkipCertificateCheck] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ### winauth
 ```
-New-TssSession -SecretServer <Uri> [-UseWindowsAuth] [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-UseWindowsAuth] [-SkipCertificateCheck] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### sdk
 ```
-New-TssSession -SecretServer <Uri> -AccessToken <Object> [-WhatIf] [-Confirm] [<CommonParameters>]
+New-TssSession -SecretServer <Uri> -AccessToken <Object> [-SkipCertificateCheck] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ### new
 ```
-New-TssSession -SecretServer <Uri> [-Credential] <PSCredential> [[-OtpCode] <Int32>] [-WhatIf] [-Confirm]
- [<CommonParameters>]
+New-TssSession -SecretServer <Uri> [-Credential] <PSCredential> [[-OtpCode] <String>] [-SkipCertificateCheck]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -134,16 +136,17 @@ Accept wildcard characters: False
 ```
 
 ### -OtpCode
-Provide 2FA code
+Provide 2FA code.
+Quote the value to preserve any leading zeros (e.g. `'012345'`).
 
 ```yaml
-Type: Int32
+Type: String
 Parameter Sets: new
 Aliases:
 
 Required: False
 Position: 3
-Default value: 0
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -204,6 +207,24 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SkipCertificateCheck
+Skip TLS certificate validation for the session.
+Use only against lab/test Secret Server instances with self-signed certificates; this disables a key TLS protection and should not be used in production.
+
+Available in all parameter sets as of v0.62.0 (RestSharp 112 no longer trusts self-signed certificates by default).
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
