@@ -1,32 +1,33 @@
 ---
-title: Remove-TssEventPipeline
+title: Enable-TssEventPipelinePolicy
 parent: Event Pipeline Policies
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline-policy/Enable-TssEventPipelinePolicy
 ---
-# Remove-TssEventPipeline
+# Enable-TssEventPipelinePolicy
 
 ## SYNOPSIS
-Remove an Event Pipeline from a specific Event Pipeline Policy
+Enable an Event Pipeline Policy
 
 ## SYNTAX
 
 ```
-Remove-TssEventPipeline [-TssSession] <Session> [-PolicyId] <Int32> [-PipelineId] <Int32[]> [-WhatIf]
- [-Confirm] [<CommonParameters>]
+Enable-TssEventPipelinePolicy [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Remove an Event Pipeline from a specific Event Pipeline Policy
+Enable an Event Pipeline Policy
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Remove-TssEventPipeline -TssSession $session -PipelineId 42 -PolicyId 3
+Enable-TssEventPipelinePolicy -TssSession $session -Id 43
 ```
 
-Remove Event Pipeline 42 from the Event Pipeline Policy 3
+Enable Event Pipeline Policy 43
 
 ## PARAMETERS
 
@@ -45,33 +46,18 @@ Accept pipeline input: True (ByValue)
 Accept wildcard characters: False
 ```
 
-### -PolicyId
-Event Pipeline Policy ID
-
-```yaml
-Type: Int32
-Parameter Sets: (All)
-Aliases: EventPipelinePolicyId
-
-Required: True
-Position: 2
-Default value: 0
-Accept pipeline input: True (ByValue)
-Accept wildcard characters: False
-```
-
-### -PipelineId
-Event Pipeline ID
+### -Id
+Event Pipeline ID to Enable
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: EventPipelineId
+Aliases: EventPipelinePolicyId
 
 Required: True
-Position: 3
+Position: Named
 Default value: None
-Accept pipeline input: True (ByValue)
+Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
@@ -118,6 +104,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Remove-TssEventPipeline](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Remove-TssEventPipeline)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Enable-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Enable-TssEventPipelinePolicy)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Remove-TssEventPipeline.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Remove-TssEventPipeline.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1)
