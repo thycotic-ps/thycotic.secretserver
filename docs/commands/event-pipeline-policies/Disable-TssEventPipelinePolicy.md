@@ -1,31 +1,33 @@
 ---
-title: Enable-TssEventPipelinePolicy
+title: Disable-TssEventPipelinePolicy
 parent: Event Pipeline Policies
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline-policy/Disable-TssEventPipelinePolicy
 ---
-# Enable-TssEventPipelinePolicy
+# Disable-TssEventPipelinePolicy
 
 ## SYNOPSIS
-Enable an Event Pipeline Policy
+Disable an Event Pipeline Policy
 
 ## SYNTAX
 
 ```
-Enable-TssEventPipelinePolicy [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Disable-TssEventPipelinePolicy [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Enable an Event Pipeline Policy
+Disable an Event Pipeline Policy
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Enable-TssEventPipelinePolicy -TssSession $session -Id 43
+Disable-TssEventPipelinePolicy -TssSession $session -Id 43
 ```
 
-Enable Event Pipeline Policy 43
+Disable Event Pipeline Policy 43
 
 ## PARAMETERS
 
@@ -45,7 +47,7 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Event Pipeline ID to Enable
+Event Pipeline ID to Disable
 
 ```yaml
 Type: Int32[]
@@ -102,6 +104,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Enable-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policy/Enable-TssEventPipelinePolicy)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Disable-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Disable-TssEventPipelinePolicy)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Enable-TssEventPipelinePolicy.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Disable-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Disable-TssEventPipelinePolicy.ps1)

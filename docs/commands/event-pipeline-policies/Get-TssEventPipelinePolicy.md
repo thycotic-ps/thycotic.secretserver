@@ -1,31 +1,33 @@
 ---
-title: Get-TssEventPipelineRun
-parent: Event Pipeline
+title: Get-TssEventPipelinePolicy
+parent: Event Pipeline Policies
 grand_parent: Commands
+redirect_from:
+  - /commands/event-pipeline-policy/Get-TssEventPipelinePolicy
 ---
-# Get-TssEventPipelineRun
+# Get-TssEventPipelinePolicy
 
 ## SYNOPSIS
-Get all of the runs for an Event Pipeline
+Get an Event Pipeline Policy by ID
 
 ## SYNTAX
 
 ```
-Get-TssEventPipelineRun [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssEventPipelinePolicy [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
 ```
 
 ## DESCRIPTION
-Get all of the runs for an Event Pipeline
+Get an Event Pipeline Policy by ID
 
 ## EXAMPLES
 
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssEventPipelineRun -TssSession $session -Id 42
+Get-TssEventPipelinePolicy -TssSession $session -Id 4
 ```
 
-Outputs the Activity details for Event Pipeline 42
+Get Event Pipeline Policy ID 4
 
 ## PARAMETERS
 
@@ -45,12 +47,12 @@ Accept wildcard characters: False
 ```
 
 ### -Id
-Event Pipeline ID
+Event Pipeline Policy ID
 
 ```yaml
 Type: Int32[]
 Parameter Sets: (All)
-Aliases: EventPipelineId
+Aliases: EventPipelinePolicyId
 
 Required: True
 Position: Named
@@ -66,12 +68,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.EventPipeline.RunView
+### Thycotic.PowerShell.EventPipelinePolicy.Policy
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Get-TssEventPipelineRun](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Get-TssEventPipelineRun)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Get-TssEventPipelinePolicy](https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline-policies/Get-TssEventPipelinePolicy)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Get-TssEventPipelineRun.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline/Get-TssEventPipelineRun.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicy.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/event-pipeline-policy/Get-TssEventPipelinePolicy.ps1)
