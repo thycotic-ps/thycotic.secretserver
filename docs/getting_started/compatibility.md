@@ -5,21 +5,22 @@ nav_order: 3
 
 # Compatibility
 
-Secret Server REST API was first released with version 9.0. The API has grown since then and continues to grow as the product evolves. The module is tested through **Secret Server 12.0** as of module v0.62.0. This page lists endpoints that are only available in specific build versions of Secret Server.
+Secret Server REST API was first released with version 9.0. The API has grown since then and continues to grow as the product evolves. This page lists endpoints that are only available in specific build versions of Secret Server.
 
 > The starting version for maintaining this content is Secret Server 10.9.
 
 > Each function included below has a version check on Secret Server before the endpoint is called.
 
-## Secret Server 12.0 notes
+## Response handling improvements in 0.62.0
 
-Module v0.62.0 introduced response-filtering fixes for several cmdlets that broke against Secret Server 12.0 when the API added new response fields not yet modeled in the module:
+Secret Server has added and renamed REST response properties across many releases. When the module's typed C# classes don't yet model a newly-added property, cmdlets that cast the response into one of those types fail with `Cannot convert value ... to type Thycotic.PowerShell.<...>`. The errors are not specific to any one Secret Server release — they show up whenever the deployed Secret Server returns fields the module's class definitions don't recognize.
 
-- `Get-TssConfiguration` — handles the SS 12.0 `emailSettings` → `email` property rename and unknown nested fields
-- `Get-TssRpcPasswordType` — pre-coerces nested `fields` array elements before cast
-- `Get-TssDirectoryServiceSyncStatus` — pre-coerces nested `domainStatus` array elements before cast
+Module v0.62.0 addresses this in two ways:
 
-Other cmdlets received a general response-filtering pass (`FilterTssResponse`) that strips unknown properties before type cast — if you saw `Cannot convert value ... to type Thycotic.PowerShell.<...>` errors on SS 12.0 in older module releases, upgrading to v0.62.0 should resolve them. See [CHANGELOG](https://github.com/thycotic-ps/thycotic.secretserver/blob/dev/CHANGELOG.md) for the full list.
+- A general `FilterTssResponse` pass is now applied by all functions before the type cast. Unknown properties are stripped (and reported via `Write-Verbose`) instead of breaking the cast.
+- Three cmdlets received targeted fixes for nested-object cast failures that the general pass alone couldn't handle: `Get-TssConfiguration`, `Get-TssRpcPasswordType`, and `Get-TssDirectoryServiceSyncStatus`.
+
+If you've been seeing `Cannot convert value` errors on older module releases, upgrading to v0.62.0 should resolve them regardless of which Secret Server version you're running. See [CHANGELOG](https://github.com/thycotic-ps/thycotic.secretserver/blob/dev/CHANGELOG.md) for the full list of fixes.
 
 ## Function List
 
