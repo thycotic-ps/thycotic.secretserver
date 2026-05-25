@@ -62,13 +62,17 @@ There are multiple options for downloading the module files:
 
 ### Integrity verification
 
-The published SHA256 hash for each release is at [thycotic.secretserver_hash.txt](https://thyproservices.z20.web.core.windows.net/Thycotic.SecretServer_hash.txt). Verify the downloaded zip before extracting:
+Each GitHub Release includes a `Thycotic.SecretServer_hash.txt` asset with the SHA256 of that release's zip. For v0.62.0:
+
+- https://github.com/thycotic-ps/thycotic.secretserver/releases/download/v0.62.0/Thycotic.SecretServer_hash.txt
+
+For other releases, browse to the [Releases page](https://github.com/thycotic-ps/thycotic.secretserver/releases) and grab the hash asset attached to that release. Verify your downloaded zip:
 
 ```powershell
 Get-FileHash -Algorithm SHA256 .\Thycotic.SecretServer.zip
 ```
 
-Compare the output to the hash file above.
+Compare the output to the contents of the hash file.
 
 ## Verification
 
