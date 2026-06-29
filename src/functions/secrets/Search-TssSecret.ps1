@@ -70,7 +70,15 @@ function Search-TssSecret {
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secrets/Search-TssSecret.ps1
 
     .NOTES
-    Requires TssSession object returned by New-TssSession
+    Requires TssSession object returned by New-TssSession.
+
+    Returns Thycotic.PowerShell.Secrets.Summary[] (always a typed array, including the
+    empty case). Scripts that ran on v0.62.0 with a singular [Summary] receiver relied
+    on PowerShell auto-unwrap and will need to switch to [Summary[]] or index the first
+    element. 0.62.1 also corrected [OutputType()] metadata on roughly 70 other
+    collection cmdlets (no behavior change). See docs/getting_started/troubleshooting.md
+    for migration patterns, and for instructions to open an issue and roll back to
+    0.62.0 if you hit a regression this page does not cover.
     #>
     [cmdletbinding(DefaultParameterSetName = 'filter')]
     [OutputType('Thycotic.PowerShell.Secrets.Summary[]')]
