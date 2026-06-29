@@ -34,7 +34,7 @@ function Get-TssListOption {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Lists.Item')]
+    [OutputType('Thycotic.PowerShell.Lists.Item[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

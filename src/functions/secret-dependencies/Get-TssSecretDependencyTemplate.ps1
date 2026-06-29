@@ -34,7 +34,7 @@ function Get-TssSecretDependencyTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretDependencies.Template')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Template[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

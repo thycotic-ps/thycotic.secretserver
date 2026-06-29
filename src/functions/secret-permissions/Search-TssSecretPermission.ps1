@@ -22,7 +22,7 @@ function Search-TssSecretPermission {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretPermissions.Permission')]
+    [OutputType('Thycotic.PowerShell.SecretPermissions.Permission[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

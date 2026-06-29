@@ -28,7 +28,7 @@ function Search-TssReportSchedule {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding()]
-    [OutputType('Thycotic.PowerShell.Reports.ScheduleSummary')]
+    [OutputType('Thycotic.PowerShell.Reports.ScheduleSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

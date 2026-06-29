@@ -28,7 +28,7 @@ function Search-TssConfigurationAudit {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Configuration.Audit')]
+    [OutputType('Thycotic.PowerShell.Configuration.Audit[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

@@ -22,7 +22,7 @@ function Search-TssFolder {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Folders.Summary')]
+    [OutputType('Thycotic.PowerShell.Folders.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

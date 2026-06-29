@@ -24,7 +24,7 @@ function Search-TssMetadata {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Metadata.Summary')]
+    [OutputType('Thycotic.PowerShell.Metadata.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, Position = 0)]

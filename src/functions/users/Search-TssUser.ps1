@@ -28,7 +28,7 @@ function Search-TssUser {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Users.Summary')]
+    [OutputType('Thycotic.PowerShell.Users.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

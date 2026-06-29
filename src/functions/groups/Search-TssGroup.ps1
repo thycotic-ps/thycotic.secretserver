@@ -22,7 +22,7 @@ function Search-TssGroup {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Groups.Summary')]
+    [OutputType('Thycotic.PowerShell.Groups.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

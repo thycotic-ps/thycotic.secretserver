@@ -22,7 +22,7 @@ function Search-TssScript {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Scripts.Summary')]
+    [OutputType('Thycotic.PowerShell.Scripts.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

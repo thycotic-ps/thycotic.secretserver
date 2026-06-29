@@ -28,7 +28,7 @@ function Search-TssSecretAccessRequest {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.AccessRequests.Request')]
+    [OutputType('Thycotic.PowerShell.AccessRequests.Request[]')]
     param (
         # TssSession object created by New-TssSession for auth
         [Parameter(Mandatory,ValueFromPipeline, Position = 0)]

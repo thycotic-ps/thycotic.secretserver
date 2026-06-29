@@ -22,7 +22,7 @@ function Search-TssRpcPasswordType {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Rpc.PasswordTypeSummary')]
+    [OutputType('Thycotic.PowerShell.Rpc.PasswordTypeSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

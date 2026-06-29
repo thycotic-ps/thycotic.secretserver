@@ -28,7 +28,7 @@ function Search-TssIpRestrictionGroup {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.IpRestrictions.Group')]
+    [OutputType('Thycotic.PowerShell.IpRestrictions.Group[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

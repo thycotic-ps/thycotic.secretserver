@@ -54,6 +54,15 @@ function Search-TssSecret {
 
     Return all secret(s) contained in Folder ID 85 and any child folders.
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    [Thycotic.PowerShell.Secrets.Summary[]] $secrets = Search-TssSecret -TssSession $session -FolderId 50
+
+    Strongly-type the receiving variable. The result is always an array
+    (0, 1, or many elements). Use [Thycotic.PowerShell.Secrets.Summary[]],
+    not [Thycotic.PowerShell.Secrets.Summary] - the latter cannot hold
+    multiple records.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Search-TssSecret
 
@@ -64,7 +73,7 @@ function Search-TssSecret {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(DefaultParameterSetName = 'filter')]
-    [OutputType('Thycotic.PowerShell.Secrets.Summary')]
+    [OutputType('Thycotic.PowerShell.Secrets.Summary[]')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -270,8 +279,14 @@ function Search-TssSecret {
                 Write-Warning 'No secrets found'
             }
 
+            # Emit a typed array even when empty so the contract is consistent:
+            # `[Thycotic.PowerShell.Secrets.Summary[]] $x = Search-TssSecret ...`
+            # yields a Summary[] for 0/1/many results. The unary comma preserves
+            # the array across pipeline unrolling. See issue #459.
             if ($restResponse.records) {
-                [Thycotic.PowerShell.Secrets.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Secrets.Summary]))
+                , [Thycotic.PowerShell.Secrets.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Secrets.Summary]))
+            } else {
+                , [Thycotic.PowerShell.Secrets.Summary[]]@()
             }
         } else {
             Write-Warning 'No valid session found'

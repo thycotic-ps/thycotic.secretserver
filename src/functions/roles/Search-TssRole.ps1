@@ -22,7 +22,7 @@ function Search-TssRole {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(DefaultParameterSetName = 'user')]
-    [OutputType('Thycotic.PowerShell.Roles.Role')]
+    [OutputType('Thycotic.PowerShell.Roles.Role[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

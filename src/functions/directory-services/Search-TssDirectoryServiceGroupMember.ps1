@@ -22,7 +22,7 @@ function Search-TssDirectoryServiceGroupMember {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.DirectoryServices.GroupMember')]
+    [OutputType('Thycotic.PowerShell.DirectoryServices.GroupMember[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

@@ -22,7 +22,7 @@ function Get-TssUserOwner {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Users.OwnerSummary')]
+    [OutputType('Thycotic.PowerShell.Users.OwnerSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

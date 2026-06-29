@@ -22,7 +22,7 @@ function Search-TssServerNode {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.ServerNodes.List')]
+    [OutputType('Thycotic.PowerShell.ServerNodes.List[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

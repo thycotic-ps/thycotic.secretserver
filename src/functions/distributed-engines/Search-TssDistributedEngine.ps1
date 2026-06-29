@@ -22,7 +22,7 @@ function Search-TssDistributedEngine {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.DistributedEngines.EngineSummary')]
+    [OutputType('Thycotic.PowerShell.DistributedEngines.EngineSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

@@ -28,7 +28,7 @@ function Get-TssDirectoryServiceDomain {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.DirectoryServices.Domain')]
+    [OutputType('Thycotic.PowerShell.DirectoryServices.Domain[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

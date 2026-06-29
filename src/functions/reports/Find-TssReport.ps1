@@ -28,7 +28,7 @@ function Find-TssReport {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Reports.Lookup')]
+    [OutputType('Thycotic.PowerShell.Reports.Lookup[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

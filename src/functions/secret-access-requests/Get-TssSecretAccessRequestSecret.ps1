@@ -22,7 +22,7 @@ function Get-TssSecretAccessRequestSecret {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.AccessRequests.Request')]
+    [OutputType('Thycotic.PowerShell.AccessRequests.Request[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

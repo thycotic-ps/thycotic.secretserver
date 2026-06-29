@@ -22,7 +22,7 @@ function Get-TssSecretWebTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretTemplates.Template')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Template[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
