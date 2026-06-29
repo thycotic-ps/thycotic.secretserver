@@ -5,6 +5,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.62.1 -- 2026-06-29
+
+### Breaking Changes
+
+* `Search-TssSecret` now always emits a `Thycotic.PowerShell.Secrets.Summary[]` typed array, including an empty array when no records are returned. Scripts that relied on the 0.62.0 single-result auto-unwrap (e.g. `[Thycotic.PowerShell.Secrets.Summary] $secret = Search-TssSecret -SecretName 'unique'`) need to switch to `[Thycotic.PowerShell.Secrets.Summary[]]` for the receiver or index the first element with `(Search-TssSecret …)[0]`. The always-array contract makes the return shape independent of result count. Fixes #459.
+
+### Bug Fixes
+
+* `Search-TssSecret` - fix `Cannot convert "System.Object[]" to type Thycotic.PowerShell.Secrets.Summary` when assigning the result to a typed receiver against folders with multiple secrets. The cmdlet now uses the unary comma operator to preserve the typed array across PowerShell's pipeline unrolling. Fixes #459.
+
+### General Updates
+
+* `[OutputType]` declarations corrected on 70+ cmdlets where the function emits an array (`[Type[]]` cast) but the metadata declared singular `[Type]`. Get-Help and IntelliSense now report the correct collection contract for cmdlets including `Get-TssFolder`, `Search-TssGroup`, `Search-TssUser`, `Get-TssSecretAudit`, and others.
+
+### Tests
+
+* `Search-TssSecret.Tests.ps1` - updated `OutputType` assertion to expect `Summary[]`.
+* 68 additional cmdlet test files updated to match corrected `OutputType` declarations.
+
 ## 0.62.0 -- 2026-05-15
 
 ### Breaking Changes

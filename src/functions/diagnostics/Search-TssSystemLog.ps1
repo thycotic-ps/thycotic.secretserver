@@ -28,7 +28,7 @@ function Search-TssSystemLog {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Diagnostics.SystemLog')]
+    [OutputType('Thycotic.PowerShell.Diagnostics.SystemLog[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

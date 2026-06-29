@@ -40,7 +40,7 @@ function Update-TssList {
     Requires TssSession object returned by New-TssSession
     #>
     [cmdletbinding(SupportsShouldProcess)]
-    [OutputType('Thycotic.PowerShell.Lists.List')]
+    [OutputType('Thycotic.PowerShell.Lists.List[]')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

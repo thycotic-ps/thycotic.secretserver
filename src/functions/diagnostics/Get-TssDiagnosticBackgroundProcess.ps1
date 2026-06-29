@@ -22,7 +22,7 @@ function Get-TssDiagnosticBackgroundProcess {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Diagnostics.BackgroundProcess')]
+    [OutputType('Thycotic.PowerShell.Diagnostics.BackgroundProcess[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

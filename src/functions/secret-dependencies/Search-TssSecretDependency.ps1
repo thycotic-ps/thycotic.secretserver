@@ -22,7 +22,7 @@ function Search-TssSecretDependency {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretDependencies.Summary')]
+    [OutputType('Thycotic.PowerShell.SecretDependencies.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

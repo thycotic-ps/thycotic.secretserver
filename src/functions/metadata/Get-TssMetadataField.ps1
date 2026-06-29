@@ -22,7 +22,7 @@ function Get-TssMetadataField {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Metadata.FieldSummary')]
+    [OutputType('Thycotic.PowerShell.Metadata.FieldSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

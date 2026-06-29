@@ -22,7 +22,7 @@ function Get-TssFolderAudit {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Folders.AuditSummary')]
+    [OutputType('Thycotic.PowerShell.Folders.AuditSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

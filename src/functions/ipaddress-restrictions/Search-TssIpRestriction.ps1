@@ -22,7 +22,7 @@ function Search-TssIpRestriction {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.IpRestrictions.IpRestriction')]
+    [OutputType('Thycotic.PowerShell.IpRestrictions.IpRestriction[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

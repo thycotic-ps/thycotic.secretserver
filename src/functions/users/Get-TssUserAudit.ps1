@@ -22,7 +22,7 @@ function Get-TssUserAudit {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Users.AuditSummary')]
+    [OutputType('Thycotic.PowerShell.Users.AuditSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

@@ -22,7 +22,7 @@ function Search-TssWorkflowTemplate {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.WorkflowTemplates.Detail')]
+    [OutputType('Thycotic.PowerShell.WorkflowTemplates.Detail[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

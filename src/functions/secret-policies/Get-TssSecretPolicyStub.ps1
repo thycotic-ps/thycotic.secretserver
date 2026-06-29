@@ -22,7 +22,7 @@ function Get-TssSecretPolicyStub {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretPolicies.Policy')]
+    [OutputType('Thycotic.PowerShell.SecretPolicies.Policy[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

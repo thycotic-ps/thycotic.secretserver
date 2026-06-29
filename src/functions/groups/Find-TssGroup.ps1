@@ -28,7 +28,7 @@ function Find-TssGroup {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Groups.Lookup')]
+    [OutputType('Thycotic.PowerShell.Groups.Lookup[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

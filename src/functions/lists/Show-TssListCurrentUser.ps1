@@ -22,7 +22,7 @@ function Show-TssListCurrentUser {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Lists.SummaryList')]
+    [OutputType('Thycotic.PowerShell.Lists.SummaryList[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

@@ -22,7 +22,7 @@ function Search-TssSecretHook {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.SecretHooks.Summary')]
+    [OutputType('Thycotic.PowerShell.SecretHooks.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

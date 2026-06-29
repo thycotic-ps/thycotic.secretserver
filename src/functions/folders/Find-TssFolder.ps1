@@ -22,7 +22,7 @@ function Find-TssFolder {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Folders.Lookup')]
+    [OutputType('Thycotic.PowerShell.Folders.Lookup[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]

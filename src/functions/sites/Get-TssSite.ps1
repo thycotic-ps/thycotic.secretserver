@@ -22,7 +22,7 @@ function Get-TssSite {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Common.Site')]
+    [OutputType('Thycotic.PowerShell.Common.Site[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

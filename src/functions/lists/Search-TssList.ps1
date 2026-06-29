@@ -22,7 +22,7 @@ function Search-TssList {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Lists.Summary')]
+    [OutputType('Thycotic.PowerShell.Lists.Summary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

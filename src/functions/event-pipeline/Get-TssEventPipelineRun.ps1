@@ -22,7 +22,7 @@ function Get-TssEventPipelineRun {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.EventPipeline.RunView')]
+    [OutputType('Thycotic.PowerShell.EventPipeline.RunView[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]

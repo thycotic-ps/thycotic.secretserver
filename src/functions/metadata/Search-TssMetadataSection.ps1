@@ -22,7 +22,7 @@ function Search-TssMetadataSection {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Metadata.FieldSectionSummary')]
+    [OutputType('Thycotic.PowerShell.Metadata.FieldSectionSummary[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, Position = 0)]

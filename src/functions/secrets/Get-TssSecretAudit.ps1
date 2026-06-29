@@ -22,7 +22,7 @@ function Get-TssSecretAudit {
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.Secrets.Audit')]
+    [OutputType('Thycotic.PowerShell.Secrets.Audit[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
