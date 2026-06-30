@@ -84,13 +84,13 @@ function New-TssSecretPermission {
                     $invokeParams.Method = 'POST'
 
                     $newBody = [ordered]@{
-                        SecretAccessRoleName = [string]$AccessRole
-                        SecretId             = $secret
+                        secretAccessRoleName = [string]$AccessRole
+                        secretId             = $secret
                     }
                     switch ($tssNewParams.Keys) {
                         'DomainName' { $newBody.Add('domainName', $DomainName) }
-                        'Username' { $newBody.Add('Username', $Username) }
-                        'GroupName' { $newBody.Add('GroupName', $GroupName) }
+                        'Username' { $newBody.Add('username', $Username) }
+                        'GroupName' { $newBody.Add('groupName', $GroupName) }
                     }
                     $invokeParams.Body = ($newBody | ConvertTo-Json)
 

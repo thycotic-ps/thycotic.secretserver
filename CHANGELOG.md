@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 
 * `Search-TssSecret` - fix `Cannot convert "System.Object[]" to type Thycotic.PowerShell.Secrets.Summary` when assigning the result to a typed receiver against folders with multiple secrets. The cmdlet now uses the unary comma operator to preserve the typed array across PowerShell's pipeline unrolling. Fixes #459.
+* `New-TssSecretPermission` - fix `API_GenericException: The server was unable to determine which SecretAccessRole to use` when granting any access to a secret. The cmdlet was building the JSON body with PascalCase keys (`SecretAccessRoleName`, `SecretId`, `Username`, `GroupName`) while Secret Server's REST API expects camelCase (matching what `Update-TssSecretPermission` and `New-TssFolderPermission` already use). All four keys lowered, both user-grant and group-grant paths now succeed. Fixes #326.
 
 ### General Updates
 
