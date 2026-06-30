@@ -44,10 +44,9 @@ function Initialize-TssSdkClient {
         [string]
         $OnboardingKey,
 
-        # Config path for the key/config files, no folder names with spaces allowed
+        # Config path for the key/config files
         [Parameter(Mandatory, ParameterSetName = 'init')]
         [ValidateScript( { Test-Path $_ -PathType Container })]
-        [ValidateScript( { $_ -notmatch '\s' })]
         [string]
         $ConfigPath,
 
@@ -67,15 +66,19 @@ function Initialize-TssSdkClient {
         Get-TssInvocation $PSCmdlet.MyInvocation
 
         if ($tssParams.ContainsKey('Force')) {
-            $tssRemoveArgs = "remove --confirm --key-directory $ConfigPath --config-directory $ConfigPath"
-            Write-Verbose "arguments for tss init: $tssRemoveArgs"
+            $tssRmInfo = New-Object System.Diagnostics.ProcessStartInfo
+            $tssRmInfo.FileName = $tssExe
+            $tssRmInfo.ArgumentList.Add('remove')
+            $tssRmInfo.ArgumentList.Add('--confirm')
+            $tssRmInfo.ArgumentList.Add('--key-directory')
+            $tssRmInfo.ArgumentList.Add($ConfigPath)
+            $tssRmInfo.ArgumentList.Add('--config-directory')
+            $tssRmInfo.ArgumentList.Add($ConfigPath)
+            $tssRmInfo.RedirectStandardError = $true
+            $tssRmInfo.RedirectStandardOutput = $true
+            $tssRmInfo.UseShellExecute = $false
+            Write-Verbose "arguments for tss init: $($tssRmInfo.ArgumentList -join ' ')"
             try {
-                $tssRmInfo = New-Object System.Diagnostics.ProcessStartInfo
-                $tssRmInfo.FileName = $tssExe
-                $tssRmInfo.Arguments = $tssRemoveArgs
-                $tssRmInfo.RedirectStandardError = $true
-                $tssRmInfo.RedirectStandardOutput = $true
-                $tssRmInfo.UseShellExecute = $false
                 $tssRmProcess = New-Object System.Diagnostics.Process
                 $tssRmProcess.StartInfo = $tssRmInfo
                 $tssRmProcess.Start() | Out-Null
@@ -87,7 +90,7 @@ function Initialize-TssSdkClient {
                 if ($tssRmOutput -match 'Your configuration settings have been removed.') {
                     Write-Verbose 'SDK Client configuration has been removed'
                 } else {
-                    Write-Waring "Issue removing configuration files for [$SecretServer]: $tssRmProcessOutput"
+                    Write-Warning "Issue removing configuration files for [$SecretServer]: $tssRmOutput"
                     return
                 }
             } catch {
@@ -97,23 +100,32 @@ function Initialize-TssSdkClient {
             }
         }
 
-        $tssArgs = [ordered]@{}
-        switch ($tssParams.Keys) {
-            'SecretServer' { $tssArgs.SecretServer = "--url $SecretServer" }
-            'RuleName' { $tssArgs.RuleName = "--rule-name $RuleName" }
-            'OnboardingKey' { $tssArgs.OnboardingKey = "--onboarding-key $OnboardingKey" }
-            'ConfigPath' { $tssArgs.ConfigDirectory = "--key-directory $ConfigPath --config-directory $ConfigPath" }
+        $tssInitInfo = New-Object System.Diagnostics.ProcessStartInfo
+        $tssInitInfo.FileName = $tssExe
+        $tssInitInfo.ArgumentList.Add('init')
+        if ($tssParams.ContainsKey('SecretServer')) {
+            $tssInitInfo.ArgumentList.Add('--url')
+            $tssInitInfo.ArgumentList.Add($SecretServer)
         }
-
-        $tssInitArgs = "init $($tssArgs['SecretServer']) $($tssArgs['RuleName']) $($tssArgs['OnboardingKey']) $($tssArgs['ConfigDirectory'])"
-        Write-Verbose "arguments for tss init: $tssInitArgs"
+        if ($tssParams.ContainsKey('RuleName')) {
+            $tssInitInfo.ArgumentList.Add('--rule-name')
+            $tssInitInfo.ArgumentList.Add($RuleName)
+        }
+        if ($tssParams.ContainsKey('OnboardingKey')) {
+            $tssInitInfo.ArgumentList.Add('--onboarding-key')
+            $tssInitInfo.ArgumentList.Add($OnboardingKey)
+        }
+        if ($tssParams.ContainsKey('ConfigPath')) {
+            $tssInitInfo.ArgumentList.Add('--key-directory')
+            $tssInitInfo.ArgumentList.Add($ConfigPath)
+            $tssInitInfo.ArgumentList.Add('--config-directory')
+            $tssInitInfo.ArgumentList.Add($ConfigPath)
+        }
+        $tssInitInfo.RedirectStandardError = $true
+        $tssInitInfo.RedirectStandardOutput = $true
+        $tssInitInfo.UseShellExecute = $false
+        Write-Verbose "arguments for tss init: $($tssInitInfo.ArgumentList -join ' ')"
         try {
-            $tssInitInfo = New-Object System.Diagnostics.ProcessStartInfo
-            $tssInitInfo.FileName = $tssExe
-            $tssInitInfo.Arguments = $tssInitArgs
-            $tssInitInfo.RedirectStandardError = $true
-            $tssInitInfo.RedirectStandardOutput = $true
-            $tssInitInfo.UseShellExecute = $false
             $tssProcess = New-Object System.Diagnostics.Process
             $tssProcess.StartInfo = $tssInitInfo
             $tssProcess.Start() | Out-Null
