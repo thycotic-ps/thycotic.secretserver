@@ -6,6 +6,20 @@ function New-TssUser {
     .DESCRIPTION
     Create a new Secret Server User
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $password = Read-Host -AsSecureString -Prompt 'New user password'
+    New-TssUser -TssSession $session -Username 'jdoe' -DisplayName 'Jane Doe' -EmailAddress 'jane@example.com' -Password $password -Active
+
+    Create a local Secret Server user 'jdoe' with the provided password and an enabled account.
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $password = ConvertTo-SecureString 'StrongPwd!' -AsPlainText -Force
+    New-TssUser -TssSession $session -Username 'svcAccount' -DisplayName 'Service Account' -Password $password -IsApplicationAccount
+
+    Create an application account (used for API integrations) with a pre-set password.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/users/New-TssUser
 
