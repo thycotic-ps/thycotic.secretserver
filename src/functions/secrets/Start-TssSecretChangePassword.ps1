@@ -10,7 +10,15 @@ function Start-TssSecretChangePassword {
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Start-TssSecretChangePassword -TssSession $session -Id 46
 
-    Start a current password change operation on secret 46
+    Start an immediate random password rotation on secret 46. The default for
+    -Type is 'Random' when not specified.
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    $secure = Read-Host -AsSecureString -Prompt 'New password'
+    Start-TssSecretChangePassword -TssSession $session -Id 46 -Type Manual -NextPassword $secure
+
+    Rotate secret 46 to a caller-supplied password.
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Start-TssSecretChangePassword
@@ -34,11 +42,10 @@ function Start-TssSecretChangePassword {
         [int[]]
         $Id,
 
-        # Next Password Type, allowed Manual or Random
-        [Parameter(Mandatory)]
+        # Next Password Type, allowed Manual or Random. Defaults to Random.
         [ValidateSet('Manual', 'Random')]
         [string]
-        $Type,
+        $Type = 'Random',
 
         # Manual Next Password to use
         [securestring]
