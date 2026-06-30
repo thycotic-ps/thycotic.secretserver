@@ -1,10 +1,13 @@
 function Get-TssGroupMember {
     <#
     .SYNOPSIS
-    Get a Group's membership
+    Get all users that are members of a Group
 
     .DESCRIPTION
-    Get a Group's membership
+    Get a Group's membership - lists all users that are members of the given Group, with optional
+    filtering (inactive users, user domain) and sorting.
+
+    To get the details of a single, specific user within a Group, use Get-TssGroupUser instead.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -18,8 +21,14 @@ function Get-TssGroupMember {
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/TssGet-GroupMember.ps1
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser
+
     .NOTES
     Requires TssSession object returned by New-TssSession
+
+    This command lists all members of a Group via the groups/{id}/users endpoint.
+    To target a single user within a Group use Get-TssGroupUser.
     #>
     [CmdletBinding()]
     [OutputType('Thycotic.PowerShell.Groups.UserSummary[]')]

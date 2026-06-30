@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### General Updates
 
 * `[OutputType]` declarations corrected on 70+ cmdlets where the function emits an array (`[Type[]]` cast) but the metadata declared singular `[Type]`. Get-Help and IntelliSense now report the correct collection contract for cmdlets including `Get-TssFolder`, `Search-TssGroup`, `Search-TssUser`, `Get-TssSecretAudit`, and others.
+* `Get-TssGroupUser` / `Get-TssGroupMember` - clarified help, synopsis, parameter descriptions, and the failure warning to distinguish their use cases: `Get-TssGroupUser` targets a single, specific user within a Group (`-UserId` is mandatory), while `Get-TssGroupMember` lists all members of a Group. The two commands now cross-reference each other in their `.LINK`/RELATED LINKS. No interface change (rename avoided to prevent a breaking change). Fixes #434.
 
 ### Tests
 

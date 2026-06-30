@@ -6,7 +6,7 @@ grand_parent: Commands
 # Get-TssGroupUser
 
 ## SYNOPSIS
-Get a user in a Group
+Get a specific user's membership in a Group
 
 ## SYNTAX
 
@@ -15,7 +15,10 @@ Get-TssGroupUser [-TssSession] <Session> -Id <Int32> -UserId <Int32> [<CommonPar
 ```
 
 ## DESCRIPTION
-Get a user in a Group
+Get the details of a single, specific user within a Group.
+Both the Group ID (-Id) and the User ID (-UserId) are required; this command verifies and returns one user's membership in the given Group.
+
+To list ALL users that are members of a Group, use [Get-TssGroupMember](Get-TssGroupMember) instead.
 
 ## EXAMPLES
 
@@ -26,6 +29,14 @@ Get-TssGroupUser -TssSession $session -Id 8 -UserId 43
 ```
 
 Get User Id 43 details in Group ID 8
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssGroupMember -TssSession $session -Id 8
+```
+
+To list every member of a Group, use Get-TssGroupMember (not Get-TssGroupUser, which targets a single user)
 
 ## PARAMETERS
 
@@ -60,7 +71,8 @@ Accept wildcard characters: False
 ```
 
 ### -UserId
-User ID
+User ID of the specific user to look up within the Group.
+Mandatory; to list all members of a Group use Get-TssGroupMember.
 
 ```yaml
 Type: Int32
@@ -85,8 +97,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
+This command targets a single user via the groups/{id}/users/{userId} endpoint, so -UserId is mandatory.
+To enumerate all members of a Group use Get-TssGroupMember.
+
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupUser.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupUser.ps1)
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember)
