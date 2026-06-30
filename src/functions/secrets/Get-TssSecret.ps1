@@ -94,7 +94,7 @@ function Get-TssSecret {
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [string]$Comment,
-                
+
 
         # Double lock password, provie as a secure string
         [Parameter(ParameterSetName = 'id')]
@@ -150,11 +150,11 @@ function Get-TssSecret {
                 Compare-TssVersion $TssSession '11.0.000000' $PSCmdlet.MyInvocation
                 foreach ($p in $Path) {
                     $restResponse = $null
-                    $queryParams = @() 
+                    $queryParams = @()
                     $uri = $TssSession.ApiUrl, 'secrets', 0 -join '/'
-                    
+
                     $queryParams += @("secretPath=$p")
-                    
+
                     $getBody = @{}
                     if ($restrictedParams.Count -gt 0) {
                         switch ($tssParams.Keys) {
