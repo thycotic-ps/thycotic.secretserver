@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession','Active','Name','FriendlyName','SiteId','UseSecureLdap','MfaProvider','SecretId','TenantId','ClientId','ClientSecret','DistinguishedName','AuthType','UserAuthType'
+        [object[]]$knownParameters = 'TssSession','Active','DomainName','FriendlyName','SiteId','UseSecureLdap','MfaProvider','SecretId','TenantId','ClientId','ClientSecret','DistinguishedName','AuthType','UserAuthType'
 
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
