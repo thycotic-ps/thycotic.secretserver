@@ -1,10 +1,13 @@
 function Get-TssGroupUser {
     <#
     .SYNOPSIS
-    Get a user in a Group
+    Get a specific user's membership in a Group
 
     .DESCRIPTION
-    Get a user in a Group
+    Get the details of a single, specific user within a Group. Both the Group ID (-Id) and the User ID
+    (-UserId) are required; this command verifies and returns one user's membership in the given Group.
+
+    To list ALL users that are members of a Group, use Get-TssGroupMember instead.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -12,14 +15,26 @@ function Get-TssGroupUser {
 
     Get User Id 43 details in Group ID 8
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssGroupMember -TssSession $session -Id 8
+
+    To list every member of a Group, use Get-TssGroupMember (not Get-TssGroupUser, which targets a single user)
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser
 
     .LINK
     https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/Get-TssGroupUser.ps1
 
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember
+
     .NOTES
     Requires TssSession object returned by New-TssSession
+
+    This command targets a single user via the groups/{id}/users/{userId} endpoint, so -UserId is mandatory.
+    To enumerate all members of a Group use Get-TssGroupMember.
     #>
     [CmdletBinding()]
     [OutputType('Thycotic.PowerShell.Groups.User')]
@@ -35,7 +50,7 @@ function Get-TssGroupUser {
         [int]
         $Id,
 
-        # User ID
+        # User ID of the specific user to look up within the Group. Mandatory; to list all members of a Group use Get-TssGroupMember.
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [int]
         $UserId
@@ -58,7 +73,7 @@ function Get-TssGroupUser {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning "Issue getting User [$UserId] on Group [$Id"
+                Write-Warning "Issue getting User [$UserId] on Group [$Id]. To list all members of a Group, use Get-TssGroupMember instead."
                 $err = $_
                 . $ErrorHandling $err
             }

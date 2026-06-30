@@ -6,7 +6,7 @@ grand_parent: Commands
 # Get-TssGroupMember
 
 ## SYNOPSIS
-Get a Group's membership
+Get all users that are members of a Group
 
 ## SYNTAX
 
@@ -16,7 +16,9 @@ Get-TssGroupMember [-TssSession] <Session> -Id <Int32[]> [-IncludeInactive] [-Us
 ```
 
 ## DESCRIPTION
-Get a Group's membership
+Get a Group's membership - lists all users that are members of the given Group, with optional filtering (inactive users, user domain) and sorting.
+
+To get the details of a single, specific user within a Group, use [Get-TssGroupUser](Get-TssGroupUser) instead.
 
 ## EXAMPLES
 
@@ -116,8 +118,13 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
+This command lists all members of a Group via the groups/{id}/users endpoint.
+To target a single user within a Group use Get-TssGroupUser.
+
 ## RELATED LINKS
 
 [https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupMember)
 
 [https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/TssGet-GroupMember.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/groups/TssGet-GroupMember.ps1)
+
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser](https://thycotic-ps.github.io/thycotic.secretserver/commands/groups/Get-TssGroupUser)
