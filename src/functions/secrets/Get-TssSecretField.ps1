@@ -157,11 +157,17 @@ function Get-TssSecretField {
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     if (-not $tssParams.ContainsKey('OutFile')) {
-						$content = $apiResponse.Content
-						$apiResponse.Content = $content.Substring(1,$content.Length-2)
+                        # Field-value endpoint returns a JSON-encoded scalar string.
+                        # ConvertFrom-Json handles outer-quote stripping, backslash escapes
+                        # (\", \\, \n, \uXXXX), and the empty-content boundary case.
+                        # Replaces a Substring(1, length-2) approach that crashed on empty
+                        # content (#370) and left escapes in the result (#336).
+                        if ($apiResponse.Content) {
+                            $apiResponse.Content = $apiResponse.Content | ConvertFrom-Json
+                        }
                         . $ProcessResponse $apiResponse
                     }
-                }catch {
+                } catch {
                     Write-Warning "Issue getting field [$Slug] on secret [$secret]"
                     $err = $_
                     . $ErrorHandling $err
