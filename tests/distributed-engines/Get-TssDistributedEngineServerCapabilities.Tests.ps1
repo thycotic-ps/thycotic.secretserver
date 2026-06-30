@@ -17,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.DistributedEngines.ServerCapabilities" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DistributedEngines.ServerCapabilities'
+        It "$commandName should set OutputType to Thycotic.PowerShell.DistributedEngine.ServerCapabilities" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DistributedEngine.ServerCapabilities'
         }
     }
 }

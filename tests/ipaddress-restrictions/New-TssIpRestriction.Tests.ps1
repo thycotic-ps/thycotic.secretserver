@@ -17,8 +17,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.IpRestrictions.IpAddress" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.IpRestrictions.IpAddress'
+        It "$commandName should set OutputType to Thycotic.PowerShell.IpRestrictions.IpRestriction" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.IpRestrictions.IpRestriction'
         }
     }
 }

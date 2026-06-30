@@ -31,7 +31,7 @@ function Update-TssMetadataField {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [OutputType('Thycotic.PowerShell.Folders.Folder')]
+    [OutputType('Thycotic.PowerShell.Metadata.Field')]
     [cmdletbinding(SupportsShouldProcess)]
     param(
         # TssSession object created by New-TssSession for authentication
