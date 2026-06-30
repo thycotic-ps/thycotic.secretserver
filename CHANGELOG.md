@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * `Search-TssSecret` - fix `Cannot convert "System.Object[]" to type Thycotic.PowerShell.Secrets.Summary` when assigning the result to a typed receiver against folders with multiple secrets. The cmdlet now uses the unary comma operator to preserve the typed array across PowerShell's pipeline unrolling. Fixes #459.
 * `New-TssSecretPermission` - fix `API_GenericException: The server was unable to determine which SecretAccessRole to use` when granting any access to a secret. The cmdlet was building the JSON body with PascalCase keys (`SecretAccessRoleName`, `SecretId`, `Username`, `GroupName`) while Secret Server's REST API expects camelCase (matching what `Update-TssSecretPermission` and `New-TssFolderPermission` already use). All four keys lowered, both user-grant and group-grant paths now succeed. Fixes #326.
+* `Get-TssSecretField` - fix two long-standing field-value handling bugs. The cmdlet previously stripped the API response's outer quotes with `Substring(1, length-2)`, which crashed with `startIndex cannot be larger than length of string` when the field value was empty (#370) and left backslash-escaped quotes (`\"`) embedded in returned passwords that contained quote characters (#336). The Substring trim is replaced with `ConvertFrom-Json`, which handles outer-quote stripping, all JSON backslash escapes (`\"`, `\\`, `\n`, `\uXXXX`), and the empty-content boundary case. Fixes #370, #336.
 
 ### General Updates
 
