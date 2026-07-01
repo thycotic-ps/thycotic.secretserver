@@ -77,7 +77,7 @@ function Initialize-TssSdkClient {
             $tssRmInfo.RedirectStandardError = $true
             $tssRmInfo.RedirectStandardOutput = $true
             $tssRmInfo.UseShellExecute = $false
-            Write-Verbose "arguments for tss init: $($tssRmInfo.ArgumentList -join ' ')"
+            Write-Verbose "arguments for tss remove: $($tssRmInfo.ArgumentList -join ' ')"
             try {
                 $tssRmProcess = New-Object System.Diagnostics.Process
                 $tssRmProcess.StartInfo = $tssRmInfo
@@ -124,7 +124,18 @@ function Initialize-TssSdkClient {
         $tssInitInfo.RedirectStandardError = $true
         $tssInitInfo.RedirectStandardOutput = $true
         $tssInitInfo.UseShellExecute = $false
-        Write-Verbose "arguments for tss init: $($tssInitInfo.ArgumentList -join ' ')"
+
+        # Redact the value following '--onboarding-key' before writing to the verbose stream,
+        # so users capturing -Verbose transcripts for support tickets don't leak the key.
+        $argsForLog = @()
+        for ($i = 0; $i -lt $tssInitInfo.ArgumentList.Count; $i++) {
+            if ($i -gt 0 -and $tssInitInfo.ArgumentList[$i - 1] -eq '--onboarding-key') {
+                $argsForLog += '***REDACTED***'
+            } else {
+                $argsForLog += $tssInitInfo.ArgumentList[$i]
+            }
+        }
+        Write-Verbose "arguments for tss init: $($argsForLog -join ' ')"
         try {
             $tssProcess = New-Object System.Diagnostics.Process
             $tssProcess.StartInfo = $tssInitInfo
