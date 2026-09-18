@@ -99,7 +99,7 @@ Import-Module '.\Thycotic.SecretServer-0.62.0\Thycotic.SecretServer\Thycotic.Sec
 (Get-Module Thycotic.SecretServer).Version  # should report 0.62.0
 ```
 
-The 0.62.0 zip is the last known-good build that does not change `Search-TssSecret`'s return shape. PowerShell Gallery is not an option for 0.62.x rollback - see [issue #450](https://github.com/thycotic-ps/thycotic.secretserver/issues/450).
+The 0.62.0 zip is the last known-good build that does not change `Search-TssSecret`'s return shape. The PowerShell Gallery holds 0.62.1 and 0.61.8 but no 0.62.0, so a 0.62.0 rollback must come from the GitHub release zip above.
 
 ## Capturing a verbose session for bug reports
 
