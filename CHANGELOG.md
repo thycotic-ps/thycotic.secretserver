@@ -5,6 +5,1180 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.63.0 -- unreleased
+
+### New Stuff
+
+#### Active Directory
+
+* `New-TssActiveDirectoryDomain` - Create a directory domain through the legacy Active Directory endpoint (POST v1/active-directory/domains).
+* `Search-TssActiveDirectoryDomain` - Search directory domains through the legacy Active Directory endpoint (GET v1/active-directory/domains).
+* `Start-TssActiveDirectorySync` - Start the Active Directory group and user synchronization (POST v1/active-directory/synchronize).
+
+#### Advanced Config Settings
+
+* `New-TssAdvancedConfigurationSetting` - Create an advanced configuration setting value (POST v1/advanced-config-settings).
+* `Remove-TssAdvancedConfigurationSetting` - Remove an advanced configuration setting value (DELETE v1/advanced-config-settings/{id}).
+* `Search-TssAdvancedConfigurationSetting` - Search advanced configuration settings (GET v1/advanced-config-settings).
+* `Update-TssAdvancedConfigurationSetting` - Update an advanced configuration setting value (PUT v1/advanced-config-settings).
+
+#### Api Token
+
+* `Get-TssApiToken` - Generate a new API token for the current user (GET v1/api-token/generate-token).
+
+#### App Clients
+
+* `Get-TssAppClient` - Get an OAuth app client by ID (GET v1/app-clients/{id}).
+* `Get-TssAppClientStub` - Get the default values for a new OAuth app client (GET v1/app-clients/stub).
+* `New-TssAppClient` - Create a new OAuth app client (POST v1/app-clients).
+* `Remove-TssAppClient` - Delete an OAuth app client (DELETE v1/app-clients/{id}).
+* `Update-TssAppClient` - Update the redirect URI of an OAuth app client (PUT v1/app-clients/{id}).
+
+#### App State
+
+* `Get-TssAppState` - Get the application state of Secret Server (GET v1/app-state).
+
+#### Application Access Requests
+
+* `Get-TssApplicationAccessRequest` - Get an application access request by device ID (GET v1/application-access-request/{deviceId}).
+* `Search-TssApplicationAccessRequest` - Search application access requests by status (GET v1/application-access-requests).
+* `Search-TssApplicationAccessRequestAudit` - Search the audit records of application access requests (GET v1/application-access-request-audits).
+* `Set-TssApplicationAccessRequest` - Approve or deny an application access request (PATCH v1/application-access-request/{deviceId}).
+
+#### Application Accounts
+
+* `Find-TssApplicationAccount` - Find application accounts by name (GET v1/application-accounts/lookup).
+
+#### Bulk Operations
+
+* `Get-TssBulkOperation` - Get a bulk operation (GET v1/bulk-operations/{id}).
+* `Get-TssBulkOperationAudit` - Get the audit records of a bulk operation (GET v1/bulk-operations/{id}/audits).
+* `Get-TssBulkOperationProgress` - Get the progress of a bulk operation (GET v1/bulk-operations/{taskId}/progress).
+* `Search-TssBulkOperation` - Search bulk operations (GET v1/bulk-operations).
+* `Stop-TssBulkOperation` - Stop a running bulk operation (PUT v1/bulk-operations/{taskId}/stop).
+
+#### Bulk Password Changer Operations
+
+* `Disable-TssBulkPasswordChanger` - Disable password changers in bulk (POST v1/bulk-password-changer-operations/disable).
+* `Enable-TssBulkPasswordChanger` - Enable password changers in bulk (POST v1/bulk-password-changer-operations/enable).
+
+#### Bulk Secret Operations
+
+* `Invoke-TssBulkSecretAction` - Run a bulk action on secrets (POST v1/bulk-secret-operations/activate, POST v1/bulk-secret-operations/deactivate, POST v1/bulk-secret-operations/enable-autochange, POST v1/bulk-secret-operations/disable-autochange, POST v1/bulk-secret-operations/enable-checkout, POST v1/bulk-secret-operations/disable-checkout, POST v1/bulk-secret-operations/enable-heartbeat, POST v1/bulk-secret-operations/disable-heartbeat, POST v1/bulk-secret-operations/run-heartbeat, POST v1/bulk-secret-operations/enable-hide-launcher-password, POST v1/bulk-secret-operations/disable-hide-launcher-password, POST v1/bulk-secret-operations/enable-require-view-comment, POST v1/bulk-secret-operations/disable-require-view-comment, POST v1/bulk-secret-operations/enable-inherit-permissions).
+* `Move-TssSecret` - Move secrets to a folder (POST v1/bulk-secret-operations/move-to-folder).
+
+#### Bulk User Operations
+
+* `Invoke-TssBulkUserAction` - Run a bulk action on users (POST v1/bulk-user-operations/lock, POST v1/bulk-user-operations/unlock, POST v1/bulk-user-operations/enable, POST v1/bulk-user-operations/disable, POST v1/bulk-user-operations/force-logout, POST v1/bulk-user-operations/add-to-group, POST v1/bulk-user-operations/remove-from-group, POST v1/bulk-user-operations/add-to-team, POST v1/bulk-user-operations/remove-from-team).
+* `Set-TssUserTwoFactor` - Enable, disable, or reset a two-factor method for users in bulk (POST v1/bulk-user-operations/enable-email-two-factor, POST v1/bulk-user-operations/disable-email-two-factor, POST v1/bulk-user-operations/enable-radius-two-factor, POST v1/bulk-user-operations/disable-radius-two-factor, POST v1/bulk-user-operations/enable-totp-auth, POST v1/bulk-user-operations/disable-totp-auth, POST v1/bulk-user-operations/reset-totp-auth, POST v1/bulk-user-operations/enable-duo-auth, POST v1/bulk-user-operations/disable-duo-auth, POST v1/bulk-user-operations/enable-fido2-two-factor, POST v1/bulk-user-operations/disable-fido2-two-factor, POST v1/bulk-user-operations/reset-fido2-two-factor).
+
+#### Bundle
+
+* `Export-TssBundle` - Export a discovery bundle (POST v1/bundle/export).
+
+#### Change History
+
+* `Search-TssChangeHistory` - Search the change history of an audited item (GET v1/change-history).
+
+#### Character Sets
+
+* `Get-TssCharacterSet` - Get a character set (GET v1/character-sets/{id}).
+* `Get-TssCharacterSetAudit` - Get audit entries for a character set (GET v1/character-sets/{id}/audit).
+* `New-TssCharacterSet` - Create a character set (POST v1/character-sets).
+* `Search-TssCharacterSet` - Search character sets (GET v1/character-sets).
+* `Set-TssCharacterSet` - Update a character set (PATCH v1/character-sets/{id}).
+
+#### Configurations
+
+* `Add-TssSamlIdentityProviderCertificate` - Add a certificate to a SAML identity provider (POST v1/configuration/saml/identity-provider/{identityProviderId}/certificate).
+* `Clear-TssConfigurationAdCredential` - Clear cached Active Directory credentials (POST v1/configuration/login/clear-ad-credentials).
+* `Complete-TssManualUpgrade` - Mark a manual upgrade as finished (POST v1/configuration/finish-manual-upgrade).
+* `Get-TssConfigurationLoginPolicy` - Get the login policy configuration (GET v1/configuration/login-policy).
+* `Get-TssConfigurationSettingsMenu` - Get the settings menu configuration (GET v1/configuration/settings-menu).
+* `Get-TssConfigurationState` - Get the configuration section access of the current user (GET v1/configuration/state).
+* `Get-TssDatabaseConfiguration` - Get the database configuration (GET v1/configuration/database).
+* `Get-TssDcm` - Get the Delinea Credential Manager configuration (GET v1/configuration/dcm/{type}, GET v1/configuration/dcm/current-user, GET v1/configuration/dcmmobile/current-user).
+* `Get-TssDpapiState` - Get the DPAPI encryption state (GET v1/configuration/dpapi/state).
+* `Get-TssFolderSyncConfiguration` - Get the folder synchronization configuration (GET v1/configuration/folder-synchronization).
+* `Get-TssInternalSiteConnectorConfiguration` - Get the internal site connector configuration (GET v1/configuration/internal-site-connector).
+* `Get-TssMdiIntegrationAudit` - Get the audit of the MDI integration configuration (GET v1/configuration/mdi-integration-audits).
+* `Get-TssMdiIntegrationConfiguration` - Get the MDI integration configuration (GET v1/configuration/mdi-integration).
+* `Get-TssPlatformConfiguration` - Get the Delinea Platform configuration (GET v1/configuration/platform).
+* `Get-TssPublicSshKeyConfiguration` - Get the public SSH key configuration (GET v1/configuration/public-ssh-key).
+* `Get-TssReadOnlyMode` - Get the Read-Only Mode setting (GET v1/configuration/read-only-mode).
+* `Get-TssSamlIdentityProvider` - Get a SAML identity provider (GET v2/configuration/saml/identity-provider/{id}).
+* `Get-TssSecretKeyRotationStatus` - Get the status of the secret key rotation (GET v1/configuration/security/rotate-secret-keys-status).
+* `Get-TssSessionRecordingAdvanced` - Get the advanced session recording configuration (GET v1/configuration/sessionrecording-advanced).
+* `Get-TssSystemLogConfiguration` - Get the system log configuration (GET v1/configuration/system-log).
+* `Get-TssTicketSystemConfiguration` - Get the configured ticket systems (GET v1/configuration/ticket-system).
+* `Get-TssUnlimitedAdmin` - Get the Unlimited Admin Mode state (GET v1/configuration/unlimited-admin).
+* `Get-TssUnlimitedAdminAudit` - Get the Unlimited Admin Mode audit log (GET v1/configuration/unlimited-admin/audit).
+* `Invoke-TssDpapiDecrypt` - Turn off DPAPI protection of the encryption key file (POST v1/configuration/dpapi/decrypt).
+* `Invoke-TssDpapiEncrypt` - Encrypt the Secret Server encryption key file with DPAPI (POST v1/configuration/dpapi/encrypt).
+* `New-TssEmailHeader` - Create a custom email message header (POST v1/configuration/email/email-message-header).
+* `Remove-TssEmailHeader` - Remove a custom email message header (DELETE v1/configuration/email/email-message-header/{id}).
+* `Remove-TssSamlIdentityProviderCertificate` - Remove a certificate from a SAML identity provider (DELETE v1/configuration/saml/identity-provider/{identityProviderId}/certificate/{id}).
+* `Search-TssAutoExportAudit` - Search automatic export configuration audits (GET v1/configuration/auto-export-audits).
+* `Search-TssAutoExportLog` - Search automatic export logs (GET v1/configuration/auto-export-logs).
+* `Search-TssEmailHeader` - Search custom email message headers (GET v1/configuration/email/email-message-header).
+* `Search-TssMfaProfile` - Search the MFA authentication profiles (GET v1/configuration/mfa/get-auth-profiles).
+* `Search-TssPlatformConfigurationAudit` - Search the audit records of the Platform integration configuration (GET v1/configuration/platform-audits).
+* `Set-TssBackupConfiguration` - Set the Secret Server backup configuration (PATCH v1/configuration/backup).
+* `Set-TssConfigurationApplication` - Set the application settings configuration (PATCH v1/configuration/application-settings).
+* `Set-TssConfigurationLoginPolicy` - Set the login policy configuration (PATCH v1/configuration/login-policy).
+* `Set-TssConfigurationPermissionOption` - Set the permission options configuration (PATCH v2/configuration/permission-options).
+* `Set-TssConfigurationSaml` - Set the global SAML configuration (PATCH v1/configuration/saml).
+* `Set-TssConfigurationSearchIndex` - Set the secret search indexer configuration (PATCH v1/configuration/secret-search-indexer).
+* `Set-TssConfigurationUserExperience` - Set the user experience configuration (PATCH v1/configuration/user-experience).
+* `Set-TssConfigurationUserInterface` - Set the user interface configuration (PATCH v2/configuration/user-interface).
+* `Set-TssDatabaseConfiguration` - Set the database configuration (PATCH v1/configuration/database).
+* `Set-TssDcm` - Set the Delinea Credential Manager configuration (PATCH v1/configuration/dcm).
+* `Set-TssEmailConfiguration` - Set the outgoing email configuration (PATCH v1/configuration/email).
+* `Set-TssEmailHeader` - Set a custom email message header (PATCH v1/configuration/email/email-message-header/{id}).
+* `Set-TssFolderConfiguration` - Set the folder configuration (PATCH v1/configuration/folder).
+* `Set-TssFolderSyncConfiguration` - Set the folder synchronization configuration (PATCH v1/configuration/folder-synchronization).
+* `Set-TssInternalSiteConnectorConfiguration` - Set the internal site connector configuration (PATCH v1/configuration/internal-site-connector).
+* `Set-TssLauncherSettings` - Update the launcher settings configuration (PATCH v1/configuration/launcher-settings).
+* `Set-TssMdiIntegrationConfiguration` - Set the MDI integration configuration (PATCH v1/configuration/mdi-integration).
+* `Set-TssPlatformConfiguration` - Set the Delinea Platform configuration (PATCH v1/configuration/platform).
+* `Set-TssProtocolHandlerSettings` - Update the Protocol Handler install-time settings (PATCH v1/configuration/protocol-handler-settings).
+* `Set-TssRdsSessionConnector` - Update the RDS Session Connector configuration (PATCH v1/configuration/rds-session-connector).
+* `Set-TssReadOnlyMode` - Enable or disable Read-Only Mode (PATCH v1/configuration/read-only-mode).
+* `Set-TssSessionRecording` - Set the session recording configuration (PATCH v1/configuration/sessionrecording).
+* `Set-TssSessionRecordingAdvanced` - Set the advanced session recording configuration (PATCH v1/configuration/sessionrecording-advanced).
+* `Set-TssSystemLogConfiguration` - Set the system log configuration (PATCH v1/configuration/system-log).
+* `Set-TssUpgradeIgnoreVersionMismatch` - Turn the ignore version mismatch on upgrade setting on or off (POST v1/configuration/set-ignore-version-mismatch-on-upgrade).
+* `Start-TssAutoExport` - Run the automatic export now (POST v1/configuration/auto-export/run-now).
+* `Start-TssConfigurationRpc` - Run Remote Password Changing now (POST v1/configuration/rpc/run-now).
+* `Start-TssHeartbeat` - Run the heartbeat scheduler now (POST v1/configuration/heartbeat/run-now).
+* `Start-TssSecretKeyRotation` - Start a secret key rotation (POST v1/configuration/security/rotate-secret-keys).
+* `Stop-TssSecretKeyRotation` - Cancel a running secret key rotation (POST v1/configuration/security/cancel-rotate-secret-keys).
+* `Test-TssConfigurationRadius` - Test a RADIUS login (POST v1/configuration/login/radius/test).
+* `Test-TssEmailConfiguration` - Send a test email (POST v1/configuration/email/test).
+* `Test-TssSessionRecordingArchive` - Test the session recording archive location (POST v1/configuration/sessionrecording/archive/test).
+* `Test-TssSyslogConfiguration` - Send a test syslog message (POST v1/configuration/syslog/test).
+* `Update-TssMfaProfile` - Update the MFA authentication profile in use (PUT v1/configuration/mfa/set-auth-profile).
+
+#### Connection Manager Settings
+
+* `Get-TssConnectionManagerSettings` - Get the Connection Manager client settings (GET v1/connection-manager-settings).
+
+#### Dashboard Services
+
+* `Get-TssDashboardInfo` - Get the dashboard load information for the current user (GET v1/dashboard-services/info).
+* `Get-TssDashboardLastSelectedTab` - Get the dashboard tab the current user selected last (GET v1/dashboard-services/tabs/last-selected).
+* `Get-TssDashboardLoggedIn` - Check whether the session is still logged in (GET v1/dashboard-services/logged-in).
+* `Get-TssDashboardTab` - Get a dashboard tab and its widgets (GET v1/dashboard-services/tabs/{tabId}).
+* `Get-TssDashboardTabWidgetState` - Get the saved state of a dashboard widget (GET v1/dashboard-services/tab-widgets/{tabWidgetId}/state).
+* `Search-TssDashboardReport` - List the reports available to the dashboard (GET v1/dashboard-services/reports).
+* `Search-TssDashboardTab` - List the dashboard tabs of the current user (GET v1/dashboard-services/tabs/pinned).
+* `Search-TssDashboardTabWidget` - List the widgets on a dashboard tab (GET v1/dashboard-services/tabs/{tabId}/widgets).
+* `Search-TssDashboardToolboxWidget` - List the widgets that can be added to a dashboard tab (GET v1/dashboard-services/tabs/{tabId}/toolbox-widgets).
+* `Update-TssDashboardTabWidgetState` - Replace the saved state of a dashboard widget (PUT v1/dashboard-services/tab-widgets/{tabWidgetId}/state).
+
+#### Dependency Changers
+
+* `Get-TssDependencyChanger` - Get a dependency changer (GET v1/dependency-changers/dependency-changer/{id}).
+* `New-TssDependencyChanger` - Create a dependency changer (POST v1/dependency-changers/dependency-changer).
+* `Search-TssDependencyChanger` - List dependency changers (GET v1/dependency-changers/dependency-changers).
+* `Search-TssDependencyChangerScript` - List the scripts a dependency changer can use (GET v1/dependency-changers/dependency-changer-scripts).
+* `Search-TssDependencyChangerSetting` - List dependency changer settings (GET v1/dependency-changers/dependency-changer-settings).
+* `Search-TssDependencyScanField` - List the scan fields of a discovery scan template (GET v1/dependency-changers/scan-fields).
+* `Set-TssDependencyChanger` - Update a dependency changer (PATCH v1/dependency-changers/dependency-changer/{id}).
+
+#### DevOps Secrets Vault
+
+* `Add-TssDsvSync` - Create a sync between a secret and a DevOps Secrets Vault tenant (POST v1/devops-secrets-vault/add-sync).
+* `Get-TssDsvSyncStatus` - Get the DevOps Secrets Vault sync status of secrets (GET v1/devops-secrets-vault/sync/status, GET v1/devops-secrets-vault/sync/status/{syncMapId}).
+* `Get-TssDsvTenant` - Get a DevOps Secrets Vault tenant (GET v1/devops-secrets-vault/tenant/{id}).
+* `Get-TssDsvTenantStub` - Get an empty DevOps Secrets Vault tenant (GET v1/devops-secrets-vault/tenant/stub).
+* `Invoke-TssDsvSync` - Sync secrets to DevOps Secrets Vault now (POST v1/devops-secrets-vault/sync).
+* `New-TssDsvTenant` - Create a DevOps Secrets Vault tenant (POST v1/devops-secrets-vault/tenant).
+* `Search-TssDsvTenant` - Search DevOps Secrets Vault tenants (GET v1/devops-secrets-vault/tenant).
+* `Search-TssDsvTenantAudit` - Search DevOps Secrets Vault tenant audits (GET v1/devops-secrets-vault/tenant/audits).
+* `Update-TssDsvSync` - Update a sync between a secret and a DevOps Secrets Vault tenant (PUT v1/devops-secrets-vault/sync/{syncSecretMapId}).
+* `Update-TssDsvTenant` - Update a DevOps Secrets Vault tenant (PUT v1/devops-secrets-vault/tenant/{id}).
+
+#### Diagnostics
+
+* `Clear-TssCache` - Clear the Secret Server application cache (POST v1/diagnostics/clear-cache).
+* `Clear-TssLogCollection` - Clear the collected logs (POST v1/diagnostics/log-collections/clear).
+* `Clear-TssLongRunningTask` - Clear a long-running task (POST v1/diagnostics/long-running-tasks/clear/{taskName}).
+* `Clear-TssQuartzJobError` - Clear the errors of the scheduled background jobs (POST v1/diagnostics/clear-quartz-job-errors).
+* `Clear-TssSystemLog` - Clear the system log (GET v1/configuration/system-log/clear).
+* `Clear-TssUpgradeInProgress` - Clear the upgrade in progress flag (POST v1/diagnostics/clear-upgrade-in-progress).
+* `Export-TssDiagnosticLog` - Export the Secret Server logs to a zip file (GET v1/diagnostics/export-logs).
+* `Get-TssComputerScanLog` - Get the computer scan log (GET v1/diagnostics/computer-scan-logs).
+* `Get-TssDiagnosticAppSetting` - Get the Secret Server application settings (GET v2/diagnostics/app-settings, GET v1/diagnostics/app-settings).
+* `Get-TssDiscoveryLog` - Get the discovery log (GET v1/diagnostics/discovery-logs).
+* `Get-TssGeneralLog` - Get the general diagnostics log (GET v1/diagnostics/general-logs).
+* `Get-TssHeartbeatLog` - Get the heartbeat log (GET v1/diagnostics/heartbeat-logs).
+* `Get-TssLogCollection` - Get the status of the log collection (GET v1/diagnostics/log-collections).
+* `Get-TssPasswordChangeLog` - Get the password change log (RPC log) (GET v1/diagnostics/rpc-logs).
+* `Get-TssServiceBusStatus` - Get the service buses of a Secret Server Cloud tenant (GET v1/diagnostics/service-bus).
+* `Restart-TssBackgroundProcess` - Recycle the Secret Server background processes (POST v1/diagnostics/recycle-background-processes).
+* `Search-TssLongRunningTask` - List the long-running tasks (GET v1/diagnostics/long-running-tasks).
+* `Search-TssQuartzJob` - List the scheduled background jobs (GET v1/diagnostics/quartz-jobs).
+* `Start-TssLogCollection` - Start a log collection (POST v1/diagnostics/log-collections/collect).
+* `Test-TssEventLog` - Write a test entry to the Secret Server event log (POST v1/diagnostics/test-event-log).
+
+#### Directory Services
+
+* `Get-TssDirectoryConfiguration` - Get the Directory Services configuration (GET v1/directory-services/configuration).
+* `Get-TssDirectoryConfigurationAudit` - Get the audit trail of Directory Services configuration changes (GET v1/directory-services/configuration/audits).
+* `Get-TssDirectoryDomainStub` - Get a template for a new Directory Services domain (GET v1/directory-services/domains/stub, GET v2/directory-services/domains/stub).
+* `Search-TssDirectorySyncLog` - Search the Directory Services synchronization log (GET v1/directory-services/synchronization/logs).
+* `Search-TssDomain` - Search the domains a user can log in with (GET v1/domains).
+* `Set-TssDirectoryConfiguration` - Update the Directory Services configuration (PATCH v1/directory-services/configuration).
+* `Set-TssDirectoryDomain` - Update a Directory Services domain (PATCH v1/directory-services/domains/{domainId}, PATCH v2/directory-services/domains/{domainId}).
+
+#### Disaster Recovery
+
+* `Get-TssDataReplication` - Get a Disaster Recovery data replica (GET v1/disaster-recovery/data-replication/{replicaId}).
+* `Get-TssDrIntegrityCheck` - Run a Disaster Recovery data integrity check (GET v1/disaster-recovery/integrity-check).
+* `Get-TssIncomingDrConfiguration` - Get the Disaster Recovery incoming configuration (GET v1/disaster-recovery/incoming-configuration).
+* `Get-TssOutgoingDrConfiguration` - Get the Disaster Recovery outgoing configuration (GET v1/disaster-recovery/outgoing-configuration).
+* `Remove-TssDataReplication` - Remove a Disaster Recovery data replica (DELETE v1/disaster-recovery/data-replication/{replicaId}).
+* `Search-TssDisasterRecoveryAudit` - Search Disaster Recovery configuration audits (GET v1/disaster-recovery/audits).
+* `Set-TssDataReplication` - Update a Disaster Recovery data replica (PATCH v1/disaster-recovery/data-replication/{replicaId}).
+* `Set-TssIncomingDrConfiguration` - Update the Disaster Recovery incoming configuration (PATCH v1/disaster-recovery/incoming-configuration).
+* `Start-TssDataReplication` - Start Disaster Recovery data replication now (POST v1/disaster-recovery/data-replication/run-now).
+* `Test-TssDataReplication` - Test the Disaster Recovery data replication connection (POST v1/disaster-recovery/data-replication/test).
+
+#### Discovery
+
+* `Add-TssDiscoverySourceScanner` - Add a scanner to a discovery source (POST v1/discovery/source/{discoverySourceId}/scanners).
+* `Copy-TssDiscoveryScanner` - Copy a Discovery scanner (POST v1/discovery/scanners/duplicate).
+* `Get-TssDiscoveryAccountRule` - Get a Discovery account rule (GET v1/discovery/rules/accounts/{id}).
+* `Get-TssDiscoveryAccountRuleInfo` - Get Discovery account rule options for a secret template (GET v1/discovery/rules/accounts/info/{secretTemplateId}).
+* `Get-TssDiscoveryAccountRuleMatch` - Get computer accounts that match a Discovery account rule (GET v1/discovery/rules/accounts/{accountRuleId}/matches).
+* `Get-TssDiscoveryAccountRuleState` - Get the global state Discovery account rules depend on (GET v1/discovery/rules/accounts/state).
+* `Get-TssDiscoveryCommandSet` - Get a Discovery command set (GET v1/discovery/command-sets/{commandSetId}).
+* `Get-TssDiscoveryComputer` - Get a discovered computer (GET v1/discovery/network/item/computer/{id}, GET v1/discovery/network/item/computer/{id}/services).
+* `Get-TssDiscoveryComputerAccount` - Get a discovered computer account (GET v1/discovery/network/item/computer-account/{id}).
+* `Get-TssDiscoveryComputerScanLog` - Get Discovery computer scan logs (GET v1/discovery/network/item/computer/scan/logs).
+* `Get-TssDiscoveryConfiguration` - Get the Discovery configuration (GET v1/discovery/configuration).
+* `Get-TssDiscoveryDependencyRule` - Get a Discovery dependency rule (GET v1/discovery/rules/dependencies/{id}).
+* `Get-TssDiscoveryDependencyRuleInfo` - Get the options for a Discovery dependency rule (GET v1/discovery/rules/dependencies/info/{scanTemplateId}).
+* `Get-TssDiscoveryDependencyTemplate` - Get a Discovery dependency template (GET v1/discovery/scanners/dependency-template/{id}).
+* `Get-TssDiscoveryDirectoryAccount` - Get a discovered directory account (GET v1/discovery/network/item/directory-account/{id}, GET v1/discovery/network/item/directory-account/{id}/services).
+* `Get-TssDiscoveryFolderRule` - Get the Discovery import rules that target a folder (GET v1/discovery/rules/folder/{folderId}).
+* `Get-TssDiscoveryNetworkTree` - Get the Discovery network tree (GET v1/discovery/network/tree).
+* `Get-TssDiscoveryPublicKey` - Get a discovered public key (GET v1/discovery/network/item/public-key/{id}).
+* `Get-TssDiscoveryScanItemField` - Get the scan item fields of a Discovery scan template (GET v1/discovery/rules/scan-item-fields/{scanTemplateId}).
+* `Get-TssDiscoveryScanner` - Get a Discovery scanner (GET v1/discovery/scanners/{itemScannerId}).
+* `Get-TssDiscoveryScanTemplate` - Get a Discovery scan template (GET v1/discovery/scan-templates/{scanTemplateId}).
+* `Get-TssDiscoverySecretSearchFilter` - Get a discovery secret search filter (GET v1/discovery/secret-search-filters/{secretSearchFilterId}).
+* `Get-TssDiscoverySecretTemplate` - Get the secret templates a discovery rule can use for a scan template (GET v1/discovery/rules/secret-templates/{scanTemplateId}).
+* `Get-TssDiscoveryServiceAccount` - Get a discovered service account (GET v1/discovery/network/item/service-account/{id}).
+* `Get-TssDiscoverySource` - Get a discovery source (GET v1/discovery/source/{id}).
+* `Get-TssDiscoverySourceAudit` - Get discovery source audit records (GET v1/discovery-source/audit).
+* `Get-TssDiscoverySourceAvailableScanner` - Get the scanners that can be added to a discovery source (GET v1/discovery/source/{discoverySourceId}/available-scanners).
+* `Get-TssDiscoverySourceFilter` - Get the OU filters of a discovery source (GET v1/discovery/source/{id}/filter).
+* `Get-TssDiscoverySourceOu` - Search the organizational units of an Active Directory discovery source (GET v1/discovery/source/{discoverySourceId}/ou).
+* `Get-TssDiscoverySourceScanner` - Get a scanner of a discovery source (GET v1/discovery/source/{discoverySourceId}/scanners/{discoveryItemScannerId}).
+* `Get-TssDiscoverySourceStub` - Get the default settings of a new discovery source (GET v1/discovery/source/stub/{typeId}).
+* `Import-TssDiscoveryAccountRule` - Import discovered accounts as secrets (POST v1/discovery/rules/account/import).
+* `Import-TssDiscoveryDependencyRule` - Import discovered dependencies (POST v1/discovery/rules/dependencies/import).
+* `Invoke-TssDiscoveryComputerScan` - Scan discovered computers now (POST v1/discovery/network/item/computer/scan).
+* `New-TssDiscoveryAccountRule` - Create a Discovery account rule (POST v1/discovery/rules/accounts).
+* `New-TssDiscoveryCommandSet` - Create a Discovery command set (POST v1/discovery/command-sets).
+* `New-TssDiscoveryDependencyRule` - Create a Discovery dependency rule (POST v1/discovery/rules/dependencies).
+* `New-TssDiscoveryDependencyTemplate` - Create a Discovery dependency template (POST v1/discovery/scanners/dependency-template).
+* `New-TssDiscoveryScanner` - Create a Discovery scanner (POST v1/discovery/scanners).
+* `New-TssDiscoveryScanTemplate` - Create a Discovery scan template (POST v1/discovery/scan-templates).
+* `New-TssDiscoverySecretSearchFilter` - Create a discovery secret search filter (POST v1/discovery/secret-search-filters).
+* `New-TssDiscoverySource` - Create a discovery source (POST v2/discovery/source, POST v1/discovery/source/active-directory).
+* `New-TssDiscoverySourceScannerSetting` - Add a scanner to an Active Directory discovery source (POST v1/discovery/source/{discoverySourceId}/scanner-settings).
+* `Remove-TssDiscoveryAccountRule` - Remove a Discovery account rule (DELETE v1/discovery/rules/accounts/{id}).
+* `Remove-TssDiscoveryComputer` - Remove discovered computers (POST v1/discovery/network/item/computer/delete).
+* `Remove-TssDiscoveryDependencyRule` - Remove a Discovery dependency rule (DELETE v1/discovery/rules/dependencies/{id}).
+* `Remove-TssDiscoveryScanTemplate` - Remove a Discovery scan template (DELETE v1/discovery/scan-templates/{scanTemplateId}).
+* `Remove-TssDiscoverySourceScanner` - Remove a scanner from a discovery source (DELETE v1/discovery/source/{discoverySourceId}/scanners/{discoveryItemScannerId}).
+* `Search-TssDiscoveryAccountRule` - Search Discovery account rules (GET v1/discovery/rules/accounts).
+* `Search-TssDiscoveryBaseScanner` - Search Discovery base scanners (GET v1/discovery/base-scanners).
+* `Search-TssDiscoveryCommandSet` - Search Discovery command sets (GET v1/discovery/command-sets).
+* `Search-TssDiscoveryDependencyRule` - Search Discovery dependency rules (GET v1/discovery/rules/dependencies).
+* `Search-TssDiscoveryDependencyTemplate` - Search Discovery dependency templates (GET v1/discovery/scanners/dependency-templates).
+* `Search-TssDiscoveryDependencyType` - Search Discovery dependency types (GET v1/discovery/scanners/dependency-types).
+* `Search-TssDiscoveryNetworkItem` - Search items found by Discovery (GET v1/discovery/network/items).
+* `Search-TssDiscoveryScanner` - Search Discovery scanners (GET v1/discovery/scanners).
+* `Search-TssDiscoveryScanTemplate` - Search Discovery scan templates (GET v1/discovery/scan-templates).
+* `Search-TssDiscoveryScanType` - Search Discovery scan types (GET v1/discovery/scan-types).
+* `Search-TssDiscoverySecretSearchFilter` - Search discovery secret search filters (GET v1/discovery/secret-search-filters).
+* `Search-TssDiscoverySource` - Search discovery sources (GET v1/discovery/sources).
+* `Search-TssDiscoverySourceScannerSetting` - Get the scanners configured on a discovery source (GET v1/discovery/source/{discoverySourceId}/scanner-settings/search).
+* `Set-TssDiscoveryAccountRule` - Update a Discovery account rule (PATCH v1/discovery/rules/accounts/{id}).
+* `Set-TssDiscoveryAccountRuleOrder` - Set the evaluation order of Discovery account rules (POST v1/discovery/rules/accounts/sort).
+* `Set-TssDiscoveryCommandSet` - Update a Discovery command set (PATCH v1/discovery/command-sets/{commandSetId}).
+* `Set-TssDiscoveryConfiguration` - Set the Discovery configuration (PATCH v1/discovery/configuration).
+* `Set-TssDiscoveryDependencyRule` - Update a Discovery dependency rule (PATCH v1/discovery/rules/dependencies/{id}).
+* `Set-TssDiscoveryDependencyRuleOrder` - Set the order of the Discovery dependency rules (POST v1/discovery/rules/dependencies/sort).
+* `Set-TssDiscoveryDependencyTemplate` - Update a Discovery dependency template (PATCH v1/discovery/scanners/dependency-template/{id}).
+* `Set-TssDiscoveryScanner` - Update a discovery scanner (PATCH v1/discovery/scanners/{itemScannerId}).
+* `Set-TssDiscoveryScanTemplate` - Update a Discovery scan template (PATCH v1/discovery/scan-templates/{scanTemplateId}).
+* `Set-TssDiscoverySecretSearchFilter` - Update a discovery secret search filter (PATCH v1/discovery/secret-search-filters/{secretSearchFilterId}).
+* `Set-TssDiscoverySource` - Update a discovery source (PATCH v1/discovery/source/{id}).
+* `Set-TssDiscoverySourceFilter` - Update an OU filter of a discovery source (PATCH v1/discovery/source/{discoverySourceId}/filter/{memberId}).
+* `Set-TssDiscoverySourceScannerOrder` - Set the run order of the scanners of a discovery source (POST v1/discovery/source/{discoverySourceId}/scanners/sort).
+* `Update-TssDiscoverySourceFilter` - Replace the OU filters of a discovery source (PUT v1/discovery/source/{discoverySourceId}/filters).
+* `Update-TssDiscoverySourceScannerCredential` - Replace the credentials of a discovery source scanner (PUT v1/discovery/source/{discoverySourceId}/scanners/{discoveryItemScannerId}/credentials).
+* `Update-TssDiscoverySourceScannerSetting` - Replace the settings of a discovery source scanner (PUT v1/discovery/source/{discoverySourceId}/scanners/{discoveryItemScannerId}/settings).
+
+#### Distributed Engines
+
+* `Get-TssDistributedEngineSettings` - Get the feature settings of a Distributed Engine or the default settings of a site (GET v1/distributed-engine/engine-settings/{engineId}, GET v1/distributed-engine/engine-settings/site/{siteId}).
+* `Get-TssDistributedEngineSiteAudit` - Get the audit history of a Distributed Engine site (GET v1/distributed-engine/site/{id}/audit).
+* `Get-TssDistributedEngineSiteConnectorDownload` - Download the MemoryMQ site connector installer (GET v1/distributed-engine/site-connector/{id}/download-memorymq).
+* `Get-TssDistributedEngineSiteConnectorStub` - Get the default values for a new site connector (GET v1/distributed-engine/site-connector/stub).
+* `Get-TssDistributedEngineSiteStub` - Get the default values for a new Distributed Engine site (GET v1/distributed-engine/site/stub).
+* `Move-TssDistributedEngine` - Migrate a Distributed Engine to the Delinea Platform engine pool (POST v1/distributed-engine/engine/{engineId}/migrate).
+* `Move-TssDistributedEngineSiteSecret` - Move every secret on a Distributed Engine site to another site (POST v1/distributed-engine/site/{id}/reassign).
+* `Search-TssDistributedEngineAudit` - Search the audit history of Distributed Engines (GET v1/distributed-engine/site/{siteId}/engine-audits).
+* `Search-TssDistributedEngineSiteLog` - Search the logs of a Distributed Engine site (GET v1/distributed-engine/site/{id}/logs).
+* `Set-TssDistributedEngineLatestVersion` - Refresh the latest Distributed Engine version stored in the Distributed Engine configuration (PATCH v1/distributed-engine/configuration/engine-latest-version).
+* `Set-TssDistributedEngineSettings` - Update the feature settings of a Distributed Engine or of a site default (PATCH v1/distributed-engine/engine-settings/{engineSettingsId}, PATCH v1/distributed-engine/engine-settings/engine/{engineId}).
+* `Test-TssDistributedEngineSiteConnectivity` - Test the round trip from Secret Server to the engines of a site (POST v1/distributed-engine/site/{siteId}/validate-connectivity).
+
+#### Domain Index
+
+* `Clear-TssDomainIndex` - Delete every entry in the domain name index (DELETE v1/domain-index/delete-all).
+* `Invoke-TssDomainIndexExpire` - Expire domain name index entries so Discovery re-indexes them (POST v1/domain-index/expire-all, POST v1/domain-index/expire/{id}).
+* `New-TssDomainIndex` - Add a domain to the domain name index (POST v1/domain-index/create).
+* `Remove-TssDomainIndex` - Delete a domain name index entry (PUT v1/domain-index/delete/{id}).
+* `Search-TssDomainIndex` - Search the domain name index (GET v1/domain-index).
+* `Set-TssDomainIndex` - Update a domain name index entry (PATCH v1/domain-index/{id}).
+
+#### Dual Controls
+
+* `Approve-TssDualControl` - Authorize a dual control as an approver (POST v1/dual-controls/auth/{dualControlType}/{id}).
+* `Get-TssDualControl` - Get a dual control by ID (GET v1/dual-controls/{id}).
+* `Get-TssDualControlState` - Get the dual control state of an item for the current user (GET v1/dual-controls/state/{dualControlType}/{id}).
+* `Get-TssDualControlStub` - Get a dual control stub (GET v1/dual-controls/stub).
+* `New-TssDualControl` - Create a dual control (POST v1/dual-controls).
+* `Remove-TssDualControl` - Remove a dual control (DELETE v1/dual-controls/{id}).
+* `Search-TssDualControl` - Search dual controls (GET v1/dual-controls).
+* `Search-TssDualControlType` - List the dual control types (GET v1/dual-controls/types).
+* `Update-TssDualControl` - Update a dual control (PUT v1/dual-controls/{id}).
+
+#### Enterprise
+
+* `Get-TssEnterpriseSearchRequest` - Get the result of an enterprise search request (GET v1/enterprise/search-request/{requestId}).
+* `New-TssEnterpriseSearchRequest` - Start an enterprise search request (POST v1/enterprise/search-request).
+
+#### Event Pipeline Policies
+
+* `Copy-TssEventPipelinePolicy` - Copy an event pipeline policy (POST v1/event-pipeline-policy/duplicate).
+* `Export-TssEventPipelinePolicy` - Export an event pipeline policy (GET v1/event-pipeline-policy/export/{id}).
+* `Get-TssEventPipelinePolicyFolderChild` - Get child folder data for a folder of an event pipeline policy (GET v1/event-pipeline-policy/{id}/folders/{folderId}/childdata).
+* `Get-TssEventPipelinePolicyGroupCount` - Get the number of groups an event pipeline policy is assigned to (GET v1/event-pipeline-policy/{id}/groups/count).
+* `Import-TssEventPipelinePolicy` - Import an event pipeline policy (POST v1/event-pipeline-policy/import).
+* `New-TssEventPipelinePolicy` - Create a new event pipeline policy (POST v1/event-pipeline-policy).
+* `Search-TssEventPipelinePolicyFolder` - Get the folders an event pipeline policy is assigned to (GET v1/event-pipeline-policy/{id}/folders).
+* `Search-TssEventPipelinePolicyGroup` - Get the groups an event pipeline policy is assigned to (GET v1/event-pipeline-policy/{id}/groups).
+* `Search-TssEventPipelinePolicyRun` - Search event pipeline policy runs (GET v1/event-pipeline-policy/runs).
+* `Search-TssEventPipelinePolicySecretPolicy` - Get the secret policies that use an event pipeline policy (GET v1/event-pipeline-policy/{id}/secretpolicies).
+* `Update-TssEventPipelinePolicy` - Update an event pipeline policy (PUT v1/event-pipeline-policy/{id}).
+* `Update-TssEventPipelinePolicyFolder` - Set the folders an event pipeline policy is assigned to (PUT v1/event-pipeline-policy/{id}/folders).
+* `Update-TssEventPipelinePolicyGroup` - Set the groups an event pipeline policy is assigned to (PUT v1/event-pipeline-policy/{id}/groups).
+* `Update-TssEventPipelinePolicyOrder` - Move an event pipeline policy to a new position (PUT v1/event-pipeline-policy/{id}/order).
+
+#### Event Pipelines
+
+* `Get-TssEventPipelineFilterOption` - Get the filters available to event pipelines (GET v1/event-pipeline-settings/filter/options).
+* `Get-TssEventPipelineFilterSetting` - Get the settings of an event pipeline filter (GET v1/event-pipeline-settings/filter-settings/list/{id}).
+* `Get-TssEventPipelineStub` - Get an empty event pipeline (GET v1/event-pipeline/stub).
+* `Get-TssEventPipelineTaskOption` - Get the tasks available to event pipelines (GET v1/event-pipeline-settings/tasks/options).
+* `Get-TssEventPipelineTaskSetting` - Get the settings of an event pipeline task (GET v1/event-pipeline-settings/task-settings/list/{id}).
+* `Get-TssEventPipelineTrigger` - Get the triggers of an event pipeline (GET v1/event-pipeline/{id}/trigger).
+* `Get-TssEventPipelineTriggerOption` - Get the triggers available to event pipelines (GET v1/event-pipeline/trigger/options).
+* `Get-TssEventPipelineTriggerStub` - Get an empty event pipeline trigger (GET v1/event-pipeline/trigger/stub).
+* `New-TssEventPipeline` - Create a new event pipeline (POST v1/event-pipeline).
+* `Search-TssEventPipelineAudit` - Search event pipeline and event pipeline policy audit entries (GET v1/event-pipeline-audit).
+* `Search-TssEventPipelineTask` - Search event pipeline task definitions (GET v1/event-pipeline-settings/task/list).
+* `Update-TssEventPipeline` - Update an event pipeline (PUT v1/event-pipeline/{id}).
+* `Update-TssEventPipelineOrder` - Move an event pipeline within its event pipeline policy (PUT v1/event-pipeline/{id}/order).
+
+#### Event Subscriptions
+
+* `Get-TssEventSubscription` - Get an event subscription (GET v1/event-subscriptions/{eventSubscriptionId}).
+* `Get-TssEventSubscriptionStub` - Get the default values for a new event subscription (GET v1/event-subscriptions/stub).
+* `New-TssEventSubscription` - Create a new event subscription (POST v1/event-subscriptions).
+* `Search-TssEventSubscription` - Search event subscriptions (GET v1/event-subscriptions).
+* `Search-TssEventType` - Search the event types available to event subscriptions (GET v1/event-subscriptions/event-types).
+* `Set-TssEventSubscription` - Update an event subscription (PATCH v1/event-subscriptions/{eventSubscriptionId}).
+
+#### Extended Fields
+
+* `Get-TssExtendedFieldRegex` - Get the extended field regex values of a secret (GET v1/extended-fields/regex/{secretId}).
+
+#### External Vaults
+
+* `Get-TssExternalVault` - Get an external vault (GET v1/external-vaults/vaults/{externalVaultId}).
+* `Get-TssExternalVaultLinkSettings` - Get the settings needed to link an external vault (GET v1/external-vaults/link-settings).
+* `Get-TssExternalVaultMetric` - Get metrics for an external vault (GET v1/external-vaults/vaults/{externalVaultId}/metrics).
+* `Get-TssExternalVaultPermissionHistory` - Get the permission change history of an external vault (GET v1/external-vaults/vaults/{externalVaultId}/permission-history).
+* `Get-TssExternalVaultSecret` - Get an external vault secret (GET v1/external-vaults/vaults/secrets/{externalVaultSecretId}).
+* `Get-TssExternalVaultSecretPermissionHistory` - Get the permission change history of an external vault secret (GET v1/external-vaults/vaults/secrets/{externalVaultSecretId}/permission-history).
+* `Get-TssExternalVaultSecretRemoteValue` - Get the value of an external vault secret from the external vault (GET v1/external-vaults/vaults/secrets/{externalVaultSecretId}/remote-value).
+* `Get-TssExternalVaultStatus` - Get the external vault status for the current user (GET v1/external-vaults/status).
+* `Invoke-TssExternalVaultSync` - Push, pull or sync external vault secrets (POST v1/external-vaults/sync).
+* `New-TssExternalVault` - Create an external vault (POST v1/external-vaults/vaults).
+* `New-TssExternalVaultBulk` - Create several external vaults at once (POST v1/external-vaults/vaults/bulk-create).
+* `New-TssExternalVaultSecret` - Create an external vault secret (POST v1/external-vaults/secrets).
+* `Search-TssExternalVault` - Search external vaults (GET v1/external-vaults/vaults/search).
+* `Search-TssExternalVaultLog` - Search the log of an external vault (GET v1/external-vaults/vaults/{externalVaultId}/logs).
+* `Search-TssExternalVaultPermission` - Search the permissions of an external vault (GET v1/external-vaults/vaults/{externalVaultId}/permissions).
+* `Search-TssExternalVaultSecret` - Search external vault secrets (GET v1/external-vaults/secrets/search).
+* `Search-TssExternalVaultSecretLog` - Search the log of an external vault secret (GET v1/external-vaults/vaults/secrets/{externalVaultSecretId}/logs).
+* `Search-TssExternalVaultSecretPermission` - Search the permissions of an external vault secret (GET v1/external-vaults/vaults/secrets/{externalVaultSecretId}/permissions).
+* `Set-TssExternalVault` - Update an external vault (PATCH v1/external-vaults/vaults/{externalVaultId}).
+* `Set-TssExternalVaultBulk` - Update several external vaults at once (PATCH v1/external-vaults/vaults/bulk-update).
+* `Set-TssExternalVaultSecret` - Set properties of an external vault secret (PATCH v1/external-vaults/vaults/secrets/{externalVaultSecretId}).
+* `Set-TssExternalVaultSecretBulk` - Set properties of several external vault secrets (PATCH v1/external-vaults/vaults/secrets/bulk-update).
+* `Set-TssExternalVaultSecretRemoteValue` - Set the value of an external vault secret in the external vault (POST v1/external-vaults/vaults/secrets/{externalVaultSecretId}/remote-value).
+* `Update-TssExternalVaultPermission` - Update the permissions of an external vault (PUT v1/external-vaults/vaults/{externalVaultId}/permissions).
+* `Update-TssExternalVaultSecretPermission` - Update the permissions of an external vault secret (PUT v1/external-vaults/vaults/secrets/{externalVaultSecretId}/permissions).
+
+#### Featureflag
+
+* `Get-TssFeatureFlag` - Get whether a feature flag is enabled (GET v1/featureflag/{key}).
+
+#### Folder Permissions
+
+* `Get-TssFolderPermissionStub` - Get the default values for a new folder permission (GET v1/folder-permissions/stub).
+
+#### Folders
+
+* `Add-TssFolderTemplate` - Associate a secret template with a folder (POST v1/folders/{id}/templates).
+* `Get-TssFolderPinned` - Get the folders the current user has pinned (GET v1/folders/pinned).
+* `Get-TssFolderStub` - Get the default values for a new folder (GET v1/folders/stub).
+* `Remove-TssFolderPinned` - Unpin a folder for the current user (DELETE v1/folder/{id}/pinned).
+* `Set-TssFolderPermission` - Add, update or remove permissions on a folder in one call (PATCH v1/folder/{folderId}/permissions).
+* `Set-TssFolderPinned` - Pin a folder or update its pin settings for the current user (PATCH v1/folder/{id}/pinned).
+
+#### Groups
+
+* `Add-TssGroupRole` - Add roles to a group (POST v1/groups/{id}/roles).
+* `Find-TssGroupUser` - Get the display names of the members of a group (GET v1/groups/{id}/users-lookup).
+* `Get-TssGroupAudit` - Get the audit records for groups (GET v1/groups/audit).
+* `Get-TssGroupPlatform` - Get a group by its Platform or directory identifier (GET v1/groups/platform/{adGuid}).
+* `Get-TssGroupStub` - Get the default values for a new group (GET v1/groups/stub).
+* `Remove-TssGroup` - Disable a group (DELETE v1/groups/{id}).
+* `Remove-TssGroupRole` - Remove roles from a group (DELETE v1/groups/{id}/roles).
+* `Search-TssGroupUser` - Search users for a group, members and non-members (GET v1/groups/{id}/users/search).
+* `Set-TssGroup` - Update a group (PATCH v1/groups/{groupId}).
+* `Set-TssGroupMember` - Add and remove group members in one request (PATCH v1/groups/{id}/users).
+* `Update-TssGroup` - Update a group with the full group model (PUT v1/groups/{id}).
+* `Update-TssGroupRole` - Replace all roles of a group (PUT v2/groups/{id}/roles).
+
+#### Healthcheck
+
+* `Get-TssHealthCheck` - Get the health check of Secret Server (GET v1/healthcheck).
+
+#### Hsm Configuration
+
+* `Get-TssHsmAudit` - Get the HSM configuration audit trail (GET v1/hsm-configuration/audit).
+
+#### Icon
+
+* `Get-TssIcon` - Save an icon to a file (GET v1/icon/{id}).
+
+#### Inbox
+
+* `Clear-TssNotificationNewStatus` - Clear the new notification indicator for the current user (POST v1/notifications/clear-new-message-status).
+* `Copy-TssInboxTemplate` - Copy an inbox notification template (POST v1/inbox/templates/copy).
+* `Get-TssInboxMessage` - Get an inbox message (GET v1/inbox/message/{messageId}).
+* `Get-TssInboxMessageDefinition` - Get the inbox message definitions (GET v1/inbox/message-definition).
+* `Get-TssInboxTemplate` - Get an inbox notification template (GET v1/inbox/templates/{templateId}).
+* `Get-TssInboxTemplateLocale` - Get the subject and body of an inbox template locale (GET v1/inbox/templates/{templateId}/locales/{localeId}).
+* `Get-TssInboxTemplateResource` - Get an image used by inbox notification templates (GET v1/inbox/templates/resources/{id}).
+* `Get-TssNotificationStatus` - Get the notification counts of the current user (GET v1/notifications/status).
+* `New-TssInboxTemplate` - Create an inbox notification template (POST v1/inbox/templates).
+* `New-TssInboxTemplateLocale` - Add a locale to an inbox notification template (POST v1/inbox/templates/template-locale).
+* `New-TssInboxTemplateResource` - Upload an image for inbox notification templates (PUT v1/inbox/templates/resources).
+* `Remove-TssInboxTemplateResource` - Remove an image used by inbox notification templates (DELETE v1/inbox/templates/resources/{id}).
+* `Search-TssInboxDataName` - Search the inbox data names (GET v1/inbox/data-names).
+* `Search-TssInboxMessage` - Search the inbox messages of the current user (GET v1/inbox/messages/{messageTypeId?}).
+* `Search-TssInboxMessageType` - Search the inbox message types (GET v1/inbox/message-types).
+* `Search-TssInboxTemplate` - Search inbox notification templates (GET v1/inbox/templates).
+* `Search-TssInboxTemplateResource` - Search the images used by inbox notification templates (GET v1/inbox/templates/resources).
+* `Search-TssNotification` - Search the system alert notifications of the current user (GET v1/notifications).
+* `Send-TssInboxTestMessage` - Send a test inbox message (POST v1/inbox/send-test-message).
+* `Set-TssInboxMessageRead` - Mark inbox messages as read or unread (POST v1/inbox/update-read).
+* `Set-TssInboxTemplate` - Rename an inbox notification template or change its type (PATCH v1/inbox/templates/{templateId}).
+* `Set-TssInboxTemplateLocale` - Change the subject or body of an inbox template locale (PATCH v1/inbox/templates/{templateId}/locales/{localeId}).
+* `Set-TssNotificationRead` - Mark system alert notifications as read (POST v1/notifications/notification-read).
+* `Set-TssNotificationUnread` - Mark system alert notifications as unread (POST v1/notifications/notification-unread).
+
+#### Inbox Rules
+
+* `Add-TssInboxRuleSubscribe` - Subscribe the current user to an inbox rule (POST v1/inbox-rules/{ruleId}/subscribe).
+* `Copy-TssInboxRule` - Copy an inbox rule (POST v1/inbox-rules/copy).
+* `Get-TssInboxRule` - Get an inbox rule (GET v1/inbox-rules/{id}).
+* `Get-TssInboxRuleActionLog` - Get the action log of an inbox rule (GET v1/inbox-rules/{inboxRuleId}/action-log).
+* `Get-TssInboxRuleCondition` - Get the conditions of an inbox rule (GET v1/inbox-rules/{id}/conditions, GET v1/inbox-rules/conditions/{id}).
+* `Get-TssInboxRuleStub` - Get the default values for a new inbox rule (GET v1/inbox-rules/stub).
+* `New-TssInboxRule` - Create a new inbox rule (POST v1/inbox-rules).
+* `New-TssInboxRuleCondition` - Add a condition to an inbox rule (POST v1/inbox-rules/{inboxRuleId}/conditions).
+* `Remove-TssInboxRuleSubscribe` - Unsubscribe the current user from inbox rules (DELETE v1/inbox-rules/{ruleId}/subscribe).
+* `Search-TssInboxRule` - Search inbox rules (GET v1/inbox-rules).
+* `Search-TssInboxRuleSubscriber` - Search the subscribers of an inbox rule (GET v1/inbox-rules/{inboxRuleId}/subscribers).
+* `Set-TssInboxRule` - Update an inbox rule (PATCH v1/inbox-rules/{id}).
+* `Set-TssInboxRuleAction` - Update the actions of an inbox rule (PATCH v1/inbox-rules/{id}/actions).
+* `Set-TssInboxRuleSubscriber` - Subscribe or unsubscribe users, groups and email addresses to an inbox rule (PATCH v1/inbox-rules/{ruleId}/subscribers).
+* `Update-TssInboxRuleCondition` - Replace the conditions of an inbox rule (PUT v1/inbox-rules/{inboxRuleId}/conditions).
+
+#### IP Address Restrictions
+
+* `Get-TssIpRestriction` - Get an IP address restriction by ID (GET v1/ipaddress-restrictions/{id}).
+* `Get-TssIpRestrictionConfiguration` - Get the IP address restrictions configuration (GET v1/ipaddress-restrictions/configuration).
+* `Update-TssIpRestrictionConfiguration` - Update the IP address restrictions configuration (PUT v1/ipaddress-restrictions/configuration).
+
+#### Jumpbox Route
+
+* `Get-TssJumpboxRoute` - Get a jumpbox route (GET v1/jumpbox-route/{id}).
+* `Get-TssJumpboxRouteAudit` - Get the audit trail of a jumpbox route (GET v1/jumpbox-route/{id}/audit).
+* `Get-TssJumpboxRouteLevel` - Get the levels of a jumpbox route (GET v1/jumpbox-route/{id}/level).
+* `Get-TssJumpboxRouteUser` - Get the jumpbox routes available to the current user (GET v1/jumpbox-route/user).
+* `New-TssJumpboxRoute` - Create a jumpbox route (POST v1/jumpbox-route).
+* `New-TssJumpboxRouteLevel` - Add a level (hop) to a jumpbox route (POST v1/jumpbox-route/{id}/level).
+* `Remove-TssJumpboxRouteLevel` - Remove a level (hop) from a jumpbox route (DELETE v1/jumpbox-route/{id}/level/{order}).
+* `Search-TssJumpboxRoute` - Search jumpbox routes (GET v1/jumpbox-route/search).
+* `Set-TssJumpboxRoute` - Change a jumpbox route (PATCH v1/jumpbox-route/{id}).
+* `Set-TssJumpboxRouteLevel` - Change a level (hop) of a jumpbox route (PATCH v1/jumpbox-route/{id}/level/{order}).
+
+#### Key Management
+
+* `Get-TssKeyManagement` - Get the Key Management configuration (GET v1/key-management).
+* `Get-TssKeyManagementAudit` - Get the Key Management audit trail (GET v1/key-management/audit, GET v1/key-management/audit/users, GET v1/key-management/config/audit).
+* `Get-TssKeyManagementStub` - Get a default Key Management configuration (GET v1/key-management/stub).
+* `Get-TssMekRotationInfo` - Get the master encryption key rotation status (GET v1/key-management/mekrotationinfo).
+* `Restart-TssMekRotation` - Retry a failed master encryption key rotation (PUT v1/key-management/retrymekstatus).
+* `Start-TssMekRotation` - Start a master encryption key rotation (PUT v1/key-management/startmekrotation).
+* `Update-TssKeyManagement` - Replace the Key Management configuration (PUT v1/key-management).
+
+#### Launcher Agents
+
+* `Get-TssLauncherAgent` - Get a launcher agent (GET v1/launcheragents/{id}).
+* `Get-TssLauncherAgentAudit` - Get launcher agent audits (GET v1/launcheragents/audit, GET v1/launcheragents/{id}/audit).
+* `Get-TssLauncherAgentCollection` - Get a launcher agent collection (GET v1/launcheragents/collections/{id}).
+* `Get-TssLauncherAgentCollectionAudit` - Get launcher agent collection audits (GET v1/launcheragents/collections/audit, GET v1/launcheragents/collections/{id}/audit).
+* `Get-TssLauncherAgentCollectionStub` - Get a launcher agent collection stub (GET v1/launcheragents/collections/stub).
+* `Get-TssLauncherAgentConfigurationState` - Get the launcher agent configuration state (GET v1/launcheragents/configuration-state).
+* `New-TssLauncherAgentCollection` - Create a launcher agent collection (POST v1/launcheragents/collections).
+* `Search-TssLauncherAgent` - Search launcher agents (GET v1/launcheragents).
+* `Search-TssLauncherAgentCollection` - Search launcher agent collections (GET v1/launcheragents/collections).
+* `Search-TssLauncherAgentIssue` - Search launcher agents that have issues (GET v1/launcheragents/issues).
+* `Update-TssLauncherAgent` - Update a launcher agent (PUT v1/launcheragents/{id}).
+* `Update-TssLauncherAgentCollection` - Update a launcher agent collection (PUT v1/launcheragents/collections/{id}).
+
+#### Launchers
+
+* `Find-TssLauncher` - Find launchers by name (GET v1/launchers/lookup).
+* `Get-TssLauncher` - Get a launcher (GET v1/launchers/{id}).
+* `Get-TssLauncherType` - Get a launcher type (GET v1/launchers/types/{launcherTypeId}).
+* `New-TssLauncherType` - Create a custom launcher type (POST v1/launchers/types).
+* `Search-TssLauncher` - Search launchers (GET v1/launchers).
+* `Set-TssLauncherType` - Update a launcher type (PATCH v1/launchers/types/{launcherTypeId}).
+* `Set-TssLauncherTypeFileAttachment` - Upload a batch file or shell script for a custom launcher type (POST v1/launchers/types/file-attachments).
+
+#### License
+
+* `Test-TssLicenseForConnectionManager` - Test whether the Secret Server license covers Connection Manager (GET v1/license/validforconnectionmanager).
+
+#### Lists
+
+* `Get-TssListAudit` - Get the audit trail of a list (GET v1/lists/{categorizedListId}/audits).
+* `New-TssListOption` - Add new options to a list (POST v1/lists/{categorizedListId}/options, POST v1/lists/{categorizedListId}/options/file, POST v1/lists/{categorizedListId}/options/single).
+* `Update-TssListOption` - Update the options of a list (PUT v1/lists/{categorizedListId}/options, PUT v1/lists/{categorizedListId}/options/single, PUT v1/lists/{categorizedListId}/options/replace).
+
+#### Mdi Integration
+
+* `Get-TssMdiSynchronization` - Get the MDI synchronization status (GET v1/mdi-integration/synchronization).
+* `Start-TssMdiSynchronization` - Start an MDI synchronization (POST v1/mdi-integration/synchronize-now).
+
+#### Metadata
+
+* `New-TssMetadataFieldSection` - Create a metadata field section (POST v1/metadata/field-sections).
+* `Remove-TssMetadataField` - Disable a metadata field definition (DELETE v1/metadata/fields/{fieldId}).
+* `Remove-TssMetadataFieldSection` - Disable a metadata field section definition (DELETE v1/metadata/field-sections/{fieldSectionId}).
+* `Set-TssMetadataField` - Rename or disable a metadata field definition (PATCH v1/metadata/fields/{fieldId}).
+
+#### Mobile Configuration
+
+* `Get-TssMobileConfiguration` - Get the mobile configuration (GET v1/mobile-configuration).
+
+#### Oauth Expiration
+
+* `Invoke-TssOauthExpireBulk` - Expire OAuth tokens by expiration record ID (POST v1/oauth-expiration/expire-bulk).
+* `Search-TssOauthExpiration` - Search OAuth token expiration records (GET v1/oauth-expiration).
+
+#### One Time Password Code
+
+* `Get-TssOneTimePasswordCode` - Get the current one-time password code of a secret (GET v1/one-time-password-code/{id}).
+
+#### Password Requirements
+
+* `Get-TssPasswordRequirement` - Get a password requirement (GET v1/password-requirements/{id}).
+* `Get-TssPasswordRequirementAudit` - Get audit entries for a password requirement (GET v1/password-requirements/{id}/audit).
+* `New-TssPasswordRequirement` - Create a password requirement (POST v1/password-requirements).
+* `Search-TssPasswordRequirement` - Search password requirements (GET v1/password-requirements).
+* `Set-TssPasswordRequirement` - Update a password requirement (PATCH v1/password-requirements/{id}).
+* `Update-TssPasswordRequirementRule` - Replace the rules of a password requirement (PUT v1/password-requirements/{id}/rules).
+
+#### Pba Configuration
+
+* `Clear-TssPbaChallenge` - Clear Privilege Behavior Analytics (PBA) challenges (PUT v1/clear-pba-challenges).
+* `Confirm-TssPbaPair` - Confirm the Secret Server key pair with Privilege Behavior Analytics (PBA) (POST v1/pba-confirm-pair).
+* `Get-TssPbaConfiguration` - Get the Privilege Behavior Analytics (PBA) configuration (GET v1/pba-configuration).
+* `Get-TssPbaImportStatus` - Get the Privilege Behavior Analytics (PBA) historical import status (GET v1/pba-configuration/get-historical-import-status).
+* `Import-TssPbaHistory` - Import historical events into Privilege Behavior Analytics (PBA) (POST v1/pba-history-import).
+* `Search-TssPbaChallenge` - Search Privilege Behavior Analytics (PBA) challenges (GET v1/pba-challenges).
+* `Sync-TssPbaMetadata` - Sync metadata to Privilege Behavior Analytics (PBA) (POST v1/pba-sync-metadata).
+* `Test-TssPbaConnection` - Test the Privilege Behavior Analytics (PBA) connection (POST v1/pba-test-connection).
+* `Update-TssPbaConfiguration` - Update the Privilege Behavior Analytics (PBA) configuration (PUT v1/pba-configuration).
+
+#### Platform
+
+* `Get-TssPlatformCompatibilityLevel` - Get the Delinea Platform integration compatibility level (GET v1/platform/compatibility-level).
+* `Get-TssPlatformProvisionRequestedDate` - Get when Platform provisioning was requested (GET v1/platform/provision-requested-date).
+* `Get-TssPlatformProvisionStatus` - Get the Platform provisioning status (GET v1/platform/provision-status).
+* `Get-TssPlatformStatus` - Get the status of a Delinea Platform tenant (GET v1/platform/status).
+* `Get-TssPlatformSync` - Get the Platform synchronization status (GET v1/platform/synchronization).
+* `Get-TssPlatformUserMapping` - Get the Platform user mapped to a Secret Server user (GET v1/platform/user/mapping).
+* `Get-TssPlatformVault` - Get the Secret Server vaults the Delinea Platform vault broker returns (GET vaultbroker/api/vaults on the Platform).
+* `Invoke-TssPlatformProvision` - Provision a Delinea Platform tenant for this Secret Server (POST v1/platform/provision).
+* `Invoke-TssPlatformSyncNow` - Start a Platform synchronization now (POST v1/platform/synchronization-now).
+* `New-TssPlatformGroup` - Link a Delinea Platform directory group to Secret Server (POST v1/platform/group).
+* `New-TssPlatformUsersAndGroups` - Create Secret Server users and groups for Platform identities (POST v1/platform/create-users-and-groups).
+* `Remove-TssPlatformGroup` - Unlink a Delinea Platform group from Secret Server (DELETE v1/platform/group/{groupId}).
+* `Reset-TssPlatformUserMapping` - Remove every Platform user mapping (POST v1/platform/reset-user-mappings).
+* `Search-TssPlatformDirectory` - Search the directories configured in the Delinea Platform (GET v1/platform/directories).
+* `Search-TssPlatformGroup` - Search the Delinea Platform directories for groups (GET v1/platform/groups/search-directory).
+* `Search-TssPlatformMember` - Search the Delinea Platform for the members of a directory group (GET v1/platform/members).
+* `Search-TssPlatformRegion` - Search the Delinea Platform regions (GET v1/platform/get-platform-regions).
+* `Search-TssPlatformUser` - Search the Delinea Platform users (GET v1/platform/users).
+* `Search-TssPlatformUsersGroups` - Search Delinea Platform users and groups (GET v1/platform/users-groups-search).
+* `Set-TssPlatformUserMapping` - Map a Delinea Platform user to a Secret Server user (POST v1/platform/user/{platformUserId}/map).
+* `Test-TssPlatformIntegration` - Test the Delinea Platform integration of a Secret Server instance (GET v1/platform/test-integration).
+
+#### Platform Integration
+
+* `Get-TssPlatformAccessProgress` - Get the progress of the secure Platform access step of Delinea Platform data integration (GET v1/platform-integration/platform-access-progress).
+* `Get-TssPlatformIntegrationProgress` - Get the progress of each Delinea Platform data integration step (GET v1/platform-integration/integration-progress, GET v2/platform-integration/integration-progress).
+* `Get-TssPlatformTeamsStatus` - Get the Teams status for Platform data integration (GET v1/platform-integration/teams-status).
+* `Invoke-TssPlatformAccess` - Start the secure Platform access step of Delinea Platform data integration (POST v1/platform-integration/platform-access).
+* `Search-TssPlatformSsDomain` - Search the Secret Server domains for Platform integration (GET v1/platform-integration/ss-domains).
+* `Search-TssPlatformSsFederation` - Get the Secret Server federations for Platform integration (GET v1/platform-integration/ss-federations).
+* `Set-TssPlatformIntegrationStep` - Set the status of a Delinea Platform data integration step (PATCH v1/platform-integration/update-step, PATCH v2/platform-integration/update-step).
+* `Set-TssPlatformTenantCustomization` - Update the Platform tenant customization (POST v1/platform-integration/update-tenant-customization).
+
+#### Platform Migration
+
+* `Enable-TssUnifiedMode` - Enable Platform unified mode (POST v1/platform-migration/enable-unified-mode).
+* `Get-TssPlatformMigration` - Get a Delinea Platform migration run (GET v1/platform-migration/migrations/{migrationId}).
+* `Get-TssPlatformMigrationDataSummary` - Get the Delinea Platform migration totals (GET v1/platform-migration/data-summary).
+* `Get-TssPlatformMigrationProgress` - Get the progress of a Delinea Platform migration run (GET v1/platform-migration/progress/{migrationId?}).
+* `Get-TssPlatformPreCheckData` - Get the Delinea Platform migration pre-check of users, groups and roles (GET v1/platform-migration/pre-check-data).
+* `Get-TssPlatformPreCheckDomain` - Get the Delinea Platform migration pre-check of directory domains (GET v1/platform-migration/pre-check-domains).
+* `Get-TssPlatformPreCheckFederatedUserSource` - Get the Delinea Platform migration pre-check of federated user sources (GET v1/platform-migration/federated-user-sources).
+* `Get-TssPlatformPreCheckGroup` - Get the group pre-check summary for a Platform migration (GET v1/platform-migration/pre-check-groups).
+* `Get-TssPlatformPreCheckRole` - Get the role pre-check summary for a Platform migration (GET v1/platform-migration/pre-check-roles).
+* `Get-TssPlatformPreCheckUser` - Get the user pre-check summary for a Platform migration (GET v1/platform-migration/pre-check-users).
+* `Get-TssUnifiedModeProgress` - Get the progress of enabling Platform unified mode (GET v1/platform-migration/enable-unified-mode/progress).
+* `Search-TssPlatformMigration` - Search the Delinea Platform migration runs (GET v1/platform-migration/migrations).
+* `Search-TssPlatformMigrationGroup` - Search the Secret Server groups in scope for Delinea Platform migration (POST v1/platform-migration/groups).
+* `Search-TssPlatformMigrationLog` - Search the Delinea Platform migration log (GET v1/platform-migration/logs).
+* `Search-TssPlatformMigrationRole` - Search the Secret Server roles in scope for Delinea Platform migration (POST v1/platform-migration/roles).
+* `Search-TssPlatformMigrationUser` - Search the Secret Server users in scope for Delinea Platform migration (POST v1/platform-migration/users).
+* `Set-TssPlatformMigrationGroup` - Include or exclude groups from Delinea Platform migration (POST v1/platform-migration/set-groups-to-migrate).
+* `Set-TssPlatformUsersToMigrate` - Mark Secret Server users to migrate to the Platform (POST v1/platform-migration/set-users-to-migrate).
+* `Set-TssUnifiedModeStatus` - Set the Platform unified mode status (PATCH v1/platform-migration/update-unified-mode-status).
+* `Start-TssPlatformMigration` - Start a migration of users and groups to the Delinea Platform (POST v1/platform-migration/migrate).
+
+#### Proxy
+
+* `Get-TssProxyAudit` - Get the proxy audit log (GET v1/proxy/audit).
+* `Get-TssProxyEndpointNotification` - Get the proxy endpoint warning message (GET v1/proxy/endpoints/notification).
+* `Get-TssProxyExplanation` - Get the explanations of the SSH proxy, SSH terminal and RDP proxy features (GET v1/proxy/explanation).
+* `Get-TssProxyRdpConfiguration` - Get the RDP proxy configuration (GET v1/proxy/rdp/config).
+* `Get-TssProxyRdpNotification` - Get the RDP proxy status message (GET v1/proxy/rdp/notification).
+* `Get-TssProxySshClientHistory` - Get the authentication history of SSH terminal clients (GET v1/proxy/ssh/clienthistory).
+* `Get-TssProxySshConfiguration` - Get the SSH proxy configuration (GET v1/proxy/ssh/config).
+* `Get-TssProxySshNotification` - Get the SSH proxy status message (GET v1/proxy/ssh/notification).
+* `Get-TssProxyState` - Get the proxy state (GET v1/proxy/state).
+* `New-TssProxyRdpCertificate` - Generate a new RDP proxy server certificate (POST v1/proxy/rdp/generate-certificate).
+* `New-TssProxySshClientOverride` - Add an SSH terminal client override (POST v1/proxy/ssh/client-overrides).
+* `New-TssProxySshKey` - Generate a new SSH proxy host key (POST v1/proxy/ssh/generate-key).
+* `Remove-TssProxySshClientOverride` - Remove an SSH terminal client override (DELETE v1/proxy/ssh/client-overrides/{clientOverrideId}).
+* `Search-TssProxyEndpoint` - Get the proxy endpoints of every site, engine and node (GET v1/proxy/endpoints).
+* `Search-TssProxySshClient` - Search the clients that connected to the SSH terminal (GET v1/proxy/ssh/clients).
+* `Search-TssProxySshClientOverride` - Get the SSH terminal client overrides (GET v1/proxy/ssh/client-overrides).
+* `Set-TssProxyEndpointEngine` - Set the proxy public host or bind address of a distributed engine (PATCH v1/proxy/endpoints/engines/{id}).
+* `Set-TssProxyEndpointNode` - Set the proxy public host, bind address or jumpbox port range of a web node (PATCH v1/proxy/endpoints/nodes/{id}).
+* `Set-TssProxyEndpointSite` - Set the SSH proxy, RDP proxy and RDP gateway settings of a site (PATCH v1/proxy/endpoints/sites/{id}).
+* `Set-TssProxyRdpConfiguration` - Set the RDP proxy configuration (PATCH v1/proxy/rdp/config).
+* `Set-TssProxySshClient` - Set the allow or block list type of an SSH terminal client (PATCH v1/proxy/ssh/clients/{clientId}).
+* `Set-TssProxySshClientOverride` - Update an SSH terminal client override (PATCH v1/proxy/ssh/client-overrides/{clientOverrideId}).
+* `Set-TssProxySshConfiguration` - Set the SSH proxy configuration (PATCH v1/proxy/ssh/config).
+
+#### Recorded Sessions
+
+* `Get-TssRecordedSession` - Get a recorded session (GET v1/recorded-sessions/{id}).
+* `Get-TssRecordedSessionInstaller` - Save the Advanced Session Recording Agent installer (GET v1/recorded-sessions/download-installer/{id}).
+* `Get-TssRecordedSessionPointOfInterest` - Get the points of interest of a recorded session (GET v1/recorded-sessions/{id}/points-of-interest).
+* `Get-TssRecordedSessionPointOfInterestSummary` - Get the points of interest summary of a recorded session (GET v1/recorded-sessions/{id}/points-of-interest-summary).
+* `Get-TssRecordedSessionRecording` - Save the video of a recorded session (GET v1/recorded-sessions/{id}/session-recordings).
+* `Get-TssRecordedSessionSummary` - Get the summary of a recorded session (GET v1/recorded-sessions/{id}/summary).
+* `Get-TssSecretSessionSummary` - Get the summary of a secret session (GET v1/secret-sessions/{id}/summary).
+* `Get-TssSessionFrame` - Get the captured frames of a recorded session (GET v1/recorded-sessions/session-frames/{secretSessionId}/{topImageIdRecovered}).
+* `Get-TssSessionImage` - Save a captured screen image of a recorded session (GET v1/recorded-sessions/session-image-by-key/{secretSessionKey}/{imageId?}, GET v1/recorded-sessions/session-image-by-launcher-guid/{launcherGuid}/{imageId?}, GET v1/recorded-sessions/session-image/{secretSessionId}/{imageId?}).
+* `Get-TssSessionMonitoringConfiguration` - Get the Session Monitoring configuration (GET v1/recorded-sessions/configuration).
+* `Get-TssSshSession` - Get the data of an SSH proxy session (GET v1/recorded-sessions/ssh-session).
+* `Get-TssSshSessionLog` - Save the log of an SSH proxy session (GET v1/recorded-sessions/ssh-session-file).
+* `Get-TssSshSessionReplayData` - Get the replay data of an SSH proxy session (GET v1/recorded-sessions/ssh-session/replay-data).
+* `Invoke-TssRecordedSessionRequestProcessing` - Request processing of a recorded session video (POST v1/recorded-sessions/{id}/request-processing).
+* `Search-TssRecordedSession` - Search recorded sessions (GET v1/recorded-sessions).
+
+#### Remote Password Changing
+
+* `Get-TssHeartbeatStatusOverview` - Get the heartbeat status overview (GET v1/remote-password-changing/heartbeat-status-overview).
+* `Get-TssPasswordTypeAuth` - Get the command credentials of a password type (GET v1/remote-password-changing/password-type-auth/{id}).
+* `Get-TssPasswordTypeUsage` - Get active-secret usage counts per password type (GET v1/remote-password-changing/password-type-usage).
+* `Get-TssRpcLdapSettings` - Get the LDAP connection settings for a password type (GET v1/remote-password-changing/ldap-settings/{id}).
+* `Get-TssRpcScanTemplate` - Get the scan item templates available to password types (GET v1/remote-password-changing/scan-templates).
+* `New-TssCustomCommand` - Create a custom command on a password type (POST v1/remote-password-changing/custom-commands).
+* `New-TssPasswordType` - Create a custom password type (POST v1/remote-password-changing/password-types).
+* `New-TssPasswordTypeAuth` - Add a command credential to a password type (POST v1/remote-password-changing/password-type-auth/{id}).
+* `Remove-TssCustomCommand` - Delete a custom command (DELETE v1/remote-password-changing/custom-commands/{id}).
+* `Remove-TssPasswordType` - Delete a password type (DELETE v1/remote-password-changing/password-types/{id}).
+* `Save-TssCustomCommand` - Create, update and delete the custom commands of a password type in one request (POST v1/remote-password-changing/custom-commands/{id}).
+* `Search-TssCustomCommand` - List the custom commands of a password type (GET v1/remote-password-changing/custom-commands/{id}).
+* `Set-TssPasswordTypeAuth` - Update a command credential of a password type (PATCH v1/remote-password-changing/password-type-auth/{id}).
+* `Set-TssRpcLdapSettings` - Update the LDAP settings for an RPC password type (PATCH v1/remote-password-changing/ldap-settings/{id}).
+* `Set-TssRpcScanTemplateField` - Map the fields of a password type to the fields of a scan item template (PATCH v1/remote-password-changing/scan-templates-fields/{id}).
+* `Test-TssCustomCommand` - Test the custom commands of a password type against a target (POST v1/remote-password-changing/custom-command/test).
+* `Update-TssCustomCommand` - Update a custom command (PUT v1/remote-password-changing/custom-commands/{id}).
+* `Update-TssPasswordType` - Update a custom password type by field or by full object (PUT v1/remote-password-changing/password-types/{id}, PUT v2/remote-password-changing/password-types/{id}).
+
+#### Reports
+
+* `Get-TssReportCategoryPermissionDefault` - Get the report permissions a report category passes down (GET v1/reports/{reportCategoryId}/permissions-from-category).
+* `Get-TssReportScheduleStub` - Get a default report schedule for a report (GET v1/reports/schedules/stub/{reportId}).
+* `New-TssReportCategory` - Create a new report category (POST v1/reports/categories).
+* `Restore-TssReport` - Restore a deleted system report (PUT v1/reports/{reportId}/undelete).
+* `Restore-TssReportSchedule` - Restore a deleted report schedule (PUT v1/reports/schedules/{reportScheduleId}/undelete).
+* `Save-TssReportScheduleHistory` - Save the stored report file of a report schedule run (POST v1/reports/schedules/{reportScheduleHistoryId}/history/download).
+* `Search-TssReportAudit` - Search report audit entries (GET v1/reports/audits, GET v1/reports/{id}/audits).
+* `Search-TssReportCategoryPermission` - Search the permissions of a report category (GET v1/reports/categories/{reportCategoryId}/permissions, GET v1/reports/categories/permissions/options).
+* `Search-TssReportChartType` - List the chart types available for reports (GET v1/reports/charttypes).
+* `Search-TssReportPermission` - Search the permissions of a report (GET v1/reports/{reportId}/permissions, GET v1/reports/permissions/options).
+* `Search-TssReportScheduleHistory` - Search the run history of a report schedule (GET v1/reports/schedules/{reportScheduleHistoryId}/history, GET v1/reports/schedules/{reportScheduleId}/history/search).
+* `Send-TssReportEmail` - Email a report (POST v1/reports/{id}/email).
+* `Set-TssReportCategory` - Set the name or description of a report category (PATCH v1/reports/categories/{reportCategoryId}).
+* `Set-TssReportCategoryPermission` - Set the permissions of a report category (PATCH v1/reports/categories/{reportCategoryId}/permissions).
+* `Set-TssReportPermission` - Set the permissions of a report (PATCH v1/reports/{reportId}/permissions).
+* `Set-TssReportSchedule` - Set the properties of a report schedule (PATCH v1/reports/schedules/{reportScheduleId}).
+* `Update-TssReport` - Update a report (PUT v1/reports/{id}).
+
+#### Rest Documentation
+
+* `Search-TssRestDocumentationService` - List the REST API services documented by Secret Server (GET v1/rest-documentation/services).
+
+#### Roles
+
+* `Get-TssRole` - Get a role by ID (GET v1/roles/{id}).
+* `Get-TssRoleStub` - Get the default values for a new role (GET v1/roles/stub).
+* `Get-TssRoleUnassignedPermission` - Get the permissions not assigned to any role (GET v1/rolepermissions/unassigned).
+* `New-TssRole` - Create a new role (POST v1/roles).
+* `Search-TssRoleAudit` - Search role audit records (GET v1/role-audits).
+* `Search-TssRoleGroup` - Search the groups assigned to a role (GET v1/roles/{id}/groups).
+* `Search-TssRolePermission` - Search the permissions of a role (GET v1/roles/{id}/permissions, GET v1/roles/{id}/permissions/eligible, GET v1/roles/{id}/permissions/unassigned).
+* `Set-TssRole` - Update the name or enabled state of a role (PATCH v1/roles/{id}).
+* `Set-TssRoleGroup` - Add or remove groups assigned to a role (PATCH v1/roles/{roleId}/groups).
+* `Update-TssRolePermission` - Replace the permissions assigned to a role (PUT v1/roles/{id}/permissions).
+
+#### Schedules
+
+* `Get-TssSchedule` - Get a recurring schedule (GET v1/schedules/{scheduleId}).
+* `New-TssSchedule` - Create a recurring schedule (POST v1/schedules).
+* `Search-TssScheduleLog` - Search the recurring schedule log (GET v1/schedules-log).
+* `Set-TssSchedule` - Update a recurring schedule (PATCH v1/schedules/{scheduleId}).
+
+#### Scripts
+
+* `Get-TssUserScript` - Get a user script by ID, including its body and type settings (GET v2/userscripts/{scriptId}).
+* `Get-TssUserScriptAudit` - Get the audit trail of user script changes (GET v1/userscripts/audit).
+* `Get-TssUserScriptHistory` - Get an earlier version of a user script (GET v2/userscripts/history/{scriptHistoryId}).
+* `Get-TssUserScriptUsage` - Get where user scripts are used (GET v1/userscripts/usage).
+* `New-TssUserScript` - Create a user script (POST v2/userscripts).
+* `Search-TssUserScriptCategory` - Search user script categories (GET v1/userscripts/categories).
+* `Set-TssUserScript` - Update a user script (PATCH v1/userscripts/{scriptId}).
+* `Update-TssUserScriptParameter` - Replace the parameters and type settings of a user script (PUT v1/userscripts/{scriptId}/parameters).
+
+#### Sdk Client Accounts
+
+* `Get-TssSdkClientAccount` - Get an SDK client account by ID (GET v1/sdk-client-accounts/{id}).
+* `Get-TssSdkClientEnabled` - Get whether SDK client accounts are enabled (GET v1/sdk-client-accounts/enabled).
+* `New-TssSdkClientAccount` - Register a new SDK client account (POST v1/sdk-client-accounts).
+* `Revoke-TssSdkClientAccount` - Revoke an SDK client account (POST v1/sdk-client-accounts/{id}/revoke).
+* `Search-TssSdkClientAccount` - Search SDK client accounts (GET v1/sdk-client-accounts).
+* `Set-TssSdkClientEnabled` - Enable or disable SDK client accounts (POST v1/sdk-client-accounts/enabled).
+* `Update-TssSdkClientAccount` - Update an SDK client account (PUT v1/sdk-client-accounts/{id}).
+
+#### Sdk Client Audits
+
+* `Search-TssSdkClientAudit` - Search SDK client audit entries (GET v1/sdk-client-audits).
+
+#### Sdk Client Rules
+
+* `Get-TssSdkClientOnboardingKey` - Get the onboarding key of an SDK client rule (GET v1/sdk-client-rules/{id}/onboarding-key).
+* `Get-TssSdkClientRule` - Get an SDK client rule by ID (GET v1/sdk-client-rules/{id}).
+* `Get-TssSdkClientRuleStub` - Get the default values for a new SDK client rule (GET v1/sdk-client-rules/stub).
+* `New-TssSdkClientRule` - Create a new SDK client rule (POST v1/sdk-client-rules).
+* `Remove-TssSdkClientRule` - Delete an SDK client rule (DELETE v1/sdk-client-rules/{id}).
+* `Search-TssSdkClientRule` - Search SDK client rules (GET v1/sdk-client-rules).
+* `Update-TssSdkClientRule` - Update an SDK client rule (PUT v1/sdk-client-rules/{id}).
+
+#### Secret Access Requests
+
+* `Get-TssSecretAccessRequestHistory` - Get the history of a secret access request (GET v1/secret-access-requests/{id}/history, GET v2/secret-access-requests/{id}/history).
+* `Get-TssSecretAccessRequestPending` - Get a secret access request with its current and eligible reviewers (GET v1/secret-access-requests/{id}/pending, GET v2/secret-access-requests/{id}/pending).
+* `New-TssSecretAccessRequest` - Create a secret access request (POST v1/secret-access-requests, POST v2/secret-access-requests).
+* `Submit-TssSecretAccessRequestApproval` - Submit an approval decision for a secret access request by approval ID (POST v1/secret-access-requests/approvals/{id}, POST v2/secret-access-requests/approvals/{id}).
+
+#### Secret Dependencies
+
+* `Remove-TssSecretDependencyGroup` - Delete a secret dependency group (DELETE v1/secret-dependencies/groups/{secretDependencyGroupId}).
+* `Update-TssSecretDependency` - Update a secret dependency (PUT v1/secret-dependencies/{id}).
+* `Update-TssSecretDependencyGroup` - Rename a secret dependency group or change its site (PUT v1/secret-dependencies/groups/{secretId}).
+
+#### Secret Erase Requests
+
+* `Get-TssSecretEraseRequest` - Get a secret erase request (GET v1/secret-erase-requests/{id}).
+* `Get-TssSecretEraseRequestHistory` - Get the history of a secret erase request (GET v1/secret-erase-requests/{id}/history).
+* `Get-TssSecretEraseRequestInbox` - Get the secret erase requests in your inbox (GET v1/secret-erase-requests/inbox).
+* `New-TssSecretEraseRequest` - Create a secret erase request (POST v1/secret-erase-requests).
+* `Search-TssSecretEraseRequest` - Search secret erase requests (GET v1/secret-erase-requests/search).
+* `Search-TssSecretEraseSecret` - Get the secrets of a secret erase request (GET v1/secret-erase-requests/secrets).
+* `Start-TssSecretErase` - Run approved secret erase requests now (GET v1/secret-erase-requests/run-now).
+* `Update-TssSecretEraseRequest` - Approve, deny, cancel or reschedule a secret erase request (PUT v1/secret-erase-requests).
+
+#### Secret Extensions
+
+* `Get-TssSecretExtensionAutofillValue` - Get the web autofill values of a secret (POST v1/secret-extensions/autofill-values).
+* `Search-TssSecretExtensionAd` - Search secrets by Active Directory domain (POST v1/secret-extensions/search-ad-secrets-by-domain).
+* `Search-TssSecretExtensionWindowsAccount` - Search Windows account secrets by computer name (POST v1/secret-extensions/search-windows-account-secrets-by-computer-name).
+
+#### Secret Hooks
+
+* `Update-TssSecretJumpboxRouteSelection` - Set or clear the jumpbox route of a secret (PUT v1/secret-detail/{secretId}/jumpbox-route-selection).
+
+#### Secret Permissions
+
+* `Get-TssSecretPermissionDetail` - Get a secret permission by ID (GET v1/secret-permissions/{id}).
+* `Get-TssSecretPermissionRoleOption` - Get the roles that can be granted on a secret (GET v1/secret-permissions/role-options).
+* `Get-TssSecretPermissionStub` - Get the default values for a new secret permission (GET v1/secret-permissions/stub).
+* `Set-TssSecretPlatformPermission` - Grant a platform service account a role on a secret (POST v1/secret-permissions/platform-permission).
+* `Test-TssSecretOwner` - Test whether you would still own a secret with the given permissions (POST v1/secret-permissions/is-current-user-secret-owner).
+
+#### Secret Policies
+
+* `Get-TssSecretPolicyAudit` - Get the audit trail of a Secret Policy (GET v1/secret-policy/{id}/audit).
+* `Get-TssSecretPolicyStatus` - Get the application status of a Secret Policy (GET v1/secret-policy/{id}/status).
+
+#### Secret Server Settings
+
+* `Export-TssServerSettings` - Export Secret Server settings (POST v3/secretserversettings/export).
+* `Get-TssServerSettingsCapability` - Get which Secret Server settings sections can be exported or imported (POST v3/secretserversettings/capabilities).
+* `Get-TssServerSettingsExportStub` - Get an empty Secret Server settings template (GET v2/secretserversettings/export/stub).
+* `Import-TssServerSettings` - Import Secret Server settings (POST v1/secretserversettings/import, POST v3/secretserversettings/import).
+
+#### Secret Template Permissions
+
+* `Get-TssSecretTemplatePermissionGrouped` - Get secret template permissions grouped by template and role (GET v1/secret-template-permissions/grouped).
+* `Search-TssSecretTemplatePermission` - Search secret template permissions (GET v1/secret-template-permissions).
+* `Search-TssSecretTemplatePermissionRole` - Get the roles that can be assigned on secret templates (GET v1/secret-template-permissions/roles).
+* `Update-TssSecretTemplatePermission` - Update the roles that groups hold on secret templates (PUT v1/secret-template-permissions, PUT v1/secret-template-permissions/{secretTypeId}).
+
+#### Secret Templates
+
+* `Copy-TssSecretTemplate` - Copy a secret template (POST v1/secret-templates/{id}/copy).
+* `Export-TssSecretTemplate` - Export a secret template (GET v1/secret-templates/{id}/export).
+* `Get-TssPasswordDictionary` - Get the items of a custom password dictionary (GET v1/secret-templates/password-requirements/password-dictionaries/{id}).
+* `Get-TssSecretTemplateExtendedMapping` - Get an extended mapping of a secret template (GET v1/secret-templates/{secretTemplateId}/extended-mappings/{extendedTypeId}).
+* `Get-TssSecretTemplateExtendedMappingStub` - Get a stub for a new extended mapping of a secret template (GET v1/secret-templates/{secretTemplateId}/extended-mappings/{extendedTypeId}/stub).
+* `Get-TssSecretTemplateField` - Get secret template fields (GET v1/secret-templates/fields/{secretFieldId}, GET v1/secret-templates/fields/basic/{templateId}).
+* `Get-TssSecretTemplateFieldStub` - Get a new secret template field with default values (GET v1/secret-templates/fields/stub).
+* `Get-TssSecretTemplateLauncher` - Get a launcher configured on a secret template (GET v1/secret-templates/{secretTemplateId}/launchers/{launcherTypeId}).
+* `Get-TssSecretTemplateLauncherStub` - Get the default launcher settings for a launcher type on a secret template (GET v1/secret-templates/{secretTemplateId}/launchers/{launcherTypeId}/stub).
+* `Get-TssSecretTemplatePasswordType` - Get the password changing settings of a secret template (GET v1/secret-templates/{secretTemplateId}/password-type).
+* `Import-TssSecretTemplate` - Import a secret template from XML (POST v1/secret-templates/import).
+* `New-TssGeneratedPassword` - Generate a password for a secret template field (POST v1/secret-templates/generate-password/{secretfieldId}).
+* `New-TssPasswordDictionary` - Create a custom password dictionary (POST v1/secret-templates/password-requirements/password-dictionaries).
+* `New-TssSecretTemplateExtendedMapping` - Add an extended mapping to a secret template (POST v1/secret-templates/{secretTemplateId}/extended-mappings/{extendedTypeId}).
+* `New-TssSecretTemplateLauncher` - Add a launcher to a secret template (POST v1/secret-templates/{secretTemplateId}/launchers/{launcherTypeId}).
+* `Remove-TssPasswordDictionary` - Remove a custom password dictionary (DELETE v1/secret-templates/password-requirements/password-dictionaries/{id}).
+* `Remove-TssSecretTemplateExtendedMapping` - Remove an extended mapping from a secret template (DELETE v1/secret-templates/{secretTemplateId}/extended-mappings/{extendedTypeId}).
+* `Remove-TssSecretTemplateField` - Remove a field from a secret template (DELETE v1/secret-templates/fields/{templateFieldId}).
+* `Remove-TssSecretTemplateLauncher` - Remove a launcher from a secret template (DELETE v1/secret-templates/{secretTemplateId}/launchers/{launcherTypeId}).
+* `Search-TssPasswordDictionary` - Search custom password dictionaries (GET v1/secret-templates/password-requirements/password-dictionaries).
+* `Search-TssSecretTemplateExtendedMapping` - Search the extended mappings of a secret template (GET v1/secret-templates/extended-mappings).
+* `Search-TssSecretTemplateExtendedType` - Search extended types (GET v1/secret-templates/extended-types).
+* `Search-TssSecretTemplateField` - Search secret template fields (GET v1/secret-templates/fields/search, GET v1/secret-templates/fields/search-basic).
+* `Search-TssSecretTemplateLauncher` - Search the launchers of a secret template, or the available launcher types (GET v1/secret-templates/launcher-types, GET v1/secret-templates/launchers).
+* `Search-TssSecretTemplateSimple` - Search the secret templates the current user can use (GET v1/secret-templates-list).
+* `Set-TssSecretTemplateExtendedMapping` - Set the field assignments of an extended mapping (PATCH v1/secret-templates/{secretTemplateId}/extended-mappings/{extendedTypeId}).
+* `Set-TssSecretTemplateField` - Set properties of a secret template field (PATCH v1/secret-templates/fields/{secretTemplateFieldId}).
+* `Set-TssSecretTemplateFieldOrder` - Set the order of the fields on a secret template (POST v1/secret-templates/{secretTemplateId}/fields/sort).
+* `Set-TssSecretTemplateLauncher` - Set the launcher settings of a secret template (PATCH v1/secret-templates/{secretTemplateId}/launchers/{launcherTypeId}).
+* `Set-TssSecretTemplatePasswordType` - Set the password changing settings of a secret template (PATCH v1/secret-templates/{secretTemplateId}/password-type).
+* `Update-TssPasswordDictionary` - Update a custom password dictionary (PUT v1/secret-templates/password-requirements/password-dictionaries).
+* `Update-TssSecretTemplate` - Update the settings of a secret template (PATCH v2/secret-templates/{secretTemplateId}).
+* `Update-TssSecretTemplatePasswordType` - Assign a password type to a secret template, replacing its field mappings (PUT v1/secret-templates/password-type/{templateId}).
+
+#### Secrets
+
+* `Approve-TssSecretForceCheckout` - Approve a pending force checkout request on a secret (POST v1/secrets/{id}/approve-force-check-out-request).
+* `Convert-TssSecretTemplate` - Convert secrets to a different secret template (POST v1/secrets/convert-template).
+* `Enable-TssSecret` - Activate a deleted secret (PUT v3/secrets/{id}/activate).
+* `Export-TssSecretBulk` - Export secrets in bulk (POST v1/secrets/export, POST v2/secrets/export/job).
+* `Get-TssSecretAssociatedSecret` - Get the secrets associated with a custom launcher on a secret (GET v1/secrets/{secretId}/launchers/{id}/associated-secrets).
+* `Get-TssSecretBulkExport` - Get a bulk secret export job (GET v2/secrets/export, GET v2/secrets/export/{jobId}/details, GET v2/secrets/export/job/{jobId}).
+* `Get-TssSecretConvertInfo` - Get template conversion details for secrets (POST v1/secrets/get-convert-info).
+* `Get-TssSecretDetail` - Get the general details of a secret (GET v1/secrets/secret-detail/{id}/general).
+* `Get-TssSecretFieldListDetail` - Get the lists assigned to a list field on a secret (GET v1/secrets/{id}/fields/{slug}/listdetails).
+* `Get-TssSecretForceCheckoutDetail` - Get details of a pending force checkout request on a secret (GET v1/secrets/get-force-checkout-request-details/{secretId}/{requesterId}).
+* `Get-TssSecretHasAny` - Test whether the current user can see any secret (GET v2/secrets/has-any).
+* `Get-TssSecretHealthExposure` - Get the users who viewed a secret since its last password change (GET v1/secrethealth/exposure).
+* `Get-TssSecretImportConfiguration` - Get the secret import settings (GET v1/secrets/import-configuration).
+* `Get-TssSecretMfa` - Test whether a secret requires multifactor authentication (GET v1/secrets/{id}/mfa).
+* `Get-TssSecretPreview` - Get a preview of a secret (GET v1/secrets/{id}/preview).
+* `Get-TssSecretRpcScript` - Get the remote password changing settings of a secret, with the secrets its RPC scripts may use (GET v3/secrets/{id}/rpc-script-secrets).
+* `Get-TssSecretSearchTotal` - Get the number of secrets matching a search filter (GET v2/secrets/search-total).
+* `Get-TssSecretTransitionHistory` - Get the password transition history of a secret (GET v1/secrets/{secretId}/transition-history).
+* `Import-TssSecretCsv` - Import secrets from CSV (POST v1/secrets/import-csv-process, POST v1/secrets/import-csv-verify).
+* `Import-TssSecretXml` - Import secrets from Secret Server XML (POST v1/secrets/import-xml-process).
+* `Invoke-TssSecretChangePassword` - Queue a remote password change on a secret (POST v1/secrets/{id}/change-password).
+* `Invoke-TssSecretCheckout` - Check out a secret (POST v1/secrets/{id}/check-out).
+* `Invoke-TssSecretExtendCheckout` - Extend a secret check out (POST v1/secrets/{id}/extend-check-out).
+* `Remove-TssSecretFieldListDetail` - Remove a list from a list field on a secret (DELETE v1/secrets/{id}/fields/{slug}/listdetails).
+* `Request-TssSecretForceCheckout` - Request a force checkout of a secret another user has checked out (POST v1/secrets/{id}/request-force-check-out).
+* `Search-TssSecretExtended` - Get extended search details for secrets (POST v1/secrets/extended-search-details).
+* `Search-TssSecretFavorite` - Get the favorite secrets of the current user (GET v1/secrets/favorite).
+* `Search-TssSecretField` - Get the options of a list field on a secret (GET v1/secrets/{id}/fields/{slug}/list).
+* `Search-TssSecretIds` - Get the IDs of secrets matching a search filter (GET v1/secrets/search-for-ids).
+* `Search-TssSecretLauncherSession` - Search active secret launcher sessions (GET v1/secrets/launcher-sessions).
+* `Search-TssSecretSshRestrictedCommand` - Get the SSH command restrictions of a secret (GET v1/secrets/{id}/ssh-restricted-commands).
+* `Set-TssSecretFavorite` - Add or remove a secret from your favorites (POST v1/secrets/{secretId}/favorite).
+* `Set-TssSecretLauncherSession` - Act on an active secret launcher session (PATCH v1/secrets/launcher-sessions).
+* `Set-TssSecretSecurityMfa` - Turn multifactor authentication on or off for a secret (PATCH v1/secrets/{id}/security-multifactor-authentication).
+* `Set-TssSecretShare` - Turn permission inheritance on or off for a secret (PATCH v1/secrets/{secretId}/share).
+* `Update-TssSecretAssociatedSecret` - Set the secrets associated with a custom launcher on a secret (PUT v1/secrets/{secretId}/launchers/{id}/associated-secrets).
+* `Update-TssSecretFieldListDetail` - Assign lists to a list field on a secret (PUT v1/secrets/{id}/fields/{slug}/listdetails).
+* `Update-TssSecretRpcScript` - Replace the associated secrets a secret's RPC scripts may use (PUT v3/secrets/{id}/rpc-script-secrets, PUT v2/secrets/{id}/rpc-script-secrets).
+* `Update-TssSecretSecurityApproval` - Update the approval settings of a secret (PUT v3/secrets/{id}/security-approval).
+* `Update-TssSecretSshRestrictedCommand` - Update the SSH command restrictions of a secret (PUT v1/secrets/{secretId}/update-ssh-restricted-commands).
+* `Update-TssSecretWebLauncher` - Update the web launcher settings of a secret (PUT v1/secrets/{id}/web-launcher-settings).
+
+#### Security Audit Logs
+
+* `Search-TssSecurityAuditLog` - Search the security audit log (GET v1/security-audit-logs).
+
+#### Server Nodes
+
+* `Get-TssServerNode` - Get a Secret Server web node (GET v1/nodes/{nodeId}).
+* `Get-TssServerNodeAudit` - Get the server node audit history (GET v1/nodes/audit).
+* `Get-TssServerNodeState` - Get the clustering and SQL Server replication state (GET v1/nodes-state).
+* `Set-TssServerNodeConfiguration` - Update the roles, cluster membership, read-only mode and log level of a server node (POST v1/nodes/{nodeId}/configuration).
+* `Set-TssServerNodeState` - Turn clustering on or off (PATCH v1/nodes-state).
+
+#### Shared Audits
+
+* `Search-TssSharedAudit` - Search the audit entries of an audited item (GET v1/shared-audits).
+
+#### Slack
+
+* `Get-TssSlackConfiguration` - Get the Slack integration configuration (GET v3/slack-configuration).
+* `Test-TssSlack` - Send a test message to Slack (GET v2/slack-test).
+* `Update-TssSlackConfiguration` - Update the Slack integration configuration (PUT v3/slack-configuration).
+
+#### Sql Server Replication
+
+* `Get-TssSqlReplication` - Get the SQL Server replication configuration (GET v1/sql-server-replication).
+
+#### SSH Cipher Suite
+
+* `Get-TssSshCipherSuite` - Get an SSH cipher suite (GET v1/ssh-cipher-suite/{id}).
+* `Get-TssSshCipherSuiteAudit` - Get the audit trail of an SSH cipher suite (GET v1/ssh-cipher-suite/{id}/audit).
+* `Search-TssSshCipherSuite` - Search SSH cipher suites (GET v1/ssh-cipher-suite/search).
+* `Set-TssSshCipherSuite` - Change an SSH cipher suite (PATCH v1/ssh-cipher-suite/{id}).
+
+#### SSH Ciphers
+
+* `Search-TssSshCipher` - Search the algorithms available to SSH cipher suites (GET v1/ssh-ciphers/search).
+
+#### SSH Command
+
+* `Get-TssSshCommand` - Get an SSH command (GET v1/ssh-command/{id}).
+* `Get-TssSshCommandStub` - Get a blank SSH command (GET v1/ssh-command/stub).
+* `New-TssSshCommand` - Create an SSH command (POST v1/ssh-command).
+* `Search-TssSshCommand` - Search SSH commands (GET v1/ssh-command/list).
+* `Set-TssSshCommand` - Change an SSH command (PATCH v1/ssh-command/{sshCommandId}).
+
+#### SSH Command Blocklist
+
+* `Get-TssSshCommandBlocklist` - Get an SSH command blocklist (GET v1/ssh-command-blocklist/{id}).
+* `Get-TssSshCommandBlocklistPolicy` - Get the secret policies that apply an SSH command blocklist (GET v1/ssh-command-blocklist/policies).
+* `Get-TssSshCommandBlocklistStub` - Get a blank SSH command blocklist (GET v1/ssh-command-blocklist/stub).
+* `New-TssSshCommandBlocklist` - Create an SSH command blocklist (POST v1/ssh-command-blocklist).
+* `Search-TssSshCommandBlocklist` - Search SSH command blocklists (GET v1/ssh-command-blocklist/list).
+* `Set-TssSshCommandBlocklist` - Change an SSH command blocklist (PATCH v1/ssh-command-blocklist/{sshCommandBlocklistId}).
+
+#### SSH Command Item
+
+* `Get-TssSshCommandItemAudit` - Get the audit trail of SSH commands, blocklists and menus (GET v1/ssh-command-item/audit/search).
+
+#### SSH Command Menu
+
+* `Get-TssSshCommandMenu` - Get an SSH command menu (GET v1/ssh-command-menu/{sshCommandMenuId}).
+* `Get-TssSshCommandMenuAudit` - Get the audit trail of SSH command menus (GET v1/ssh-command-menu/audit/search).
+* `Get-TssSshCommandMenuState` - Get what the current user can do with SSH command menus (GET v1/ssh-command-menu/state).
+* `New-TssSshCommandMenu` - Create an SSH command menu (POST v1/ssh-command-menu).
+* `Search-TssSshCommandMenu` - Search SSH command menus (GET v1/ssh-command-menu/search).
+* `Set-TssSshCommandMenu` - Change an SSH command menu (PATCH v1/ssh-command-menu/{sshCommandMenuId}).
+
+#### Subscriptions
+
+* `Search-TssSubscription` - Search the subscriptions of a Secret Server Cloud tenant (GET v1/subscriptions).
+
+#### Teams
+
+* `Add-TssTeamList` - Add categorized lists to a team (POST v1/teams/{id}/lists).
+* `Add-TssTeamMember` - Add groups to a team (POST v1/teams/{id}/members, POST v2/teams/{id}/members).
+* `Add-TssTeamSite` - Add sites to a team (POST v1/teams/{id}/sites).
+* `Get-TssTeam` - Get a team (GET v1/teams/{id}).
+* `Get-TssTeamAudit` - Get the audit entries of a team (GET v1/teams/{id}/audits).
+* `Get-TssTeamMember` - Get the members of a team (GET v1/teams/{id}/members).
+* `Get-TssTeamStub` - Get the default values for a new team (GET v1/teams/stub).
+* `New-TssTeam` - Create a new team (POST v1/teams).
+* `Remove-TssTeamMember` - Remove groups from a team (DELETE v1/teams/{id}/members).
+* `Search-TssTeam` - Search teams (GET v1/teams).
+* `Search-TssTeamList` - Get the categorized lists assigned to a team (GET v1/teams/lists, GET v1/teams/{id}/lists).
+* `Search-TssTeamMember` - Search the members of a team (GET v1/teams/{id}/members/search).
+* `Search-TssTeamSite` - Get the sites assigned to a team (GET v1/teams/{id}/sites).
+* `Update-TssTeam` - Update a team (PUT v1/teams/{id}).
+
+#### Ticket Systems
+
+* `Get-TssTicketSystem` - Get a ticket system (GET v2/ticket-systems/{id}, GET v1/ticket-systems/{id}).
+* `Get-TssTicketSystemOverride` - Get a ticket number override request (GET v1/ticket-systems/overrides/{ticketSystemOverrideId}).
+* `Get-TssTicketSystemOverrideStatus` - Get the approval status of a ticket number override request (GET v1/ticket-systems/override/{ticketSystemOverrideId}).
+* `New-TssTicketSystem` - Create a ticket system (POST v1/ticket-systems).
+* `Search-TssTicketSystem` - Search ticket systems (GET v3/ticket-systems, GET v2/ticket-systems, GET v1/ticket-systems).
+* `Search-TssTicketSystemOverride` - Search ticket number override requests (GET v1/ticket-systems/overrides).
+* `Set-TssTicketSystem` - Update a ticket system (PATCH v1/ticket-systems/{id}).
+* `Test-TssTicketSystem` - Test a ticket number against a ticket system (POST v1/ticket-systems/{ticketSystemId}/test).
+
+#### Upgrade
+
+* `Confirm-TssManualUpgradeStaging` - Record that the staging test of a manual upgrade passed (POST v1/upgrade/manual/staging-test-successful).
+* `Get-TssManualUpgradeState` - Get the manual upgrade state (GET v1/upgrade/manual/state).
+* `Get-TssUpgradeState` - Get the upgrade state (GET v1/upgrade/state).
+* `Get-TssUpgradeStatus` - Get the progress of the most recent upgrade (GET v1/upgrade/upgrade-status).
+* `Install-TssUpgrade` - Install a staged Secret Server upgrade (POST v1/upgrade/install).
+* `New-TssManualUpgradeAppZip` - Generate the application ZIP for a manual upgrade (POST v1/upgrade/manual/generate-application-zip).
+* `New-TssManualUpgradeSqlScript` - Generate the SQL script for a manual upgrade (POST v1/upgrade/manual/generate-sql-script).
+* `Save-TssManualUpgradePackage` - Download a generated manual upgrade file (GET v2/upgrade/manual/download, GET v1/upgrade/manual/download).
+* `Search-TssManualUpgradeNode` - List the nodes of a manual upgrade (GET v1/upgrade/manual/nodes).
+* `Start-TssUpgrade` - Install a staged Secret Server upgrade and wait for it to finish (PATCH v1/configuration/read-only-mode).
+* `Start-TssUpgradeDownload` - Download and stage the latest upgrade from the Delinea update server (POST v1/upgrade/download).
+* `Stop-TssManualUpgrade` - Cancel a manual upgrade (POST v1/upgrade/manual/cancel).
+* `Test-TssManualUpgradeSqlDelta` - Verify that the SQL script of a manual upgrade applies cleanly (POST v1/upgrade/manual/verify-sql-deltas).
+
+#### Users
+
+* `Add-TssUserOwner` - Add an owner to a user (POST v1/users/{id}/owners).
+* `Add-TssUserRole` - Add roles to a user (POST v1/users/{id}/roles).
+* `Disable-TssUserSshKey` - Deactivate a user public SSH key (PATCH v1/users/public-ssh-keys/{id}).
+* `Get-TssCurrentUserSummary` - Get the user ID of the current user (GET v1/users/current-summary).
+* `Get-TssUserPreference` - Get a stored preference of the current user (GET v1/users/preference).
+* `Get-TssUserSecretActivity` - Get the secrets a user has accessed (GET v1/users/{userId}/secret-activity).
+* `Get-TssUserStub` - Get the default values for a new user (GET v1/users/stub).
+* `Get-TssUserTotpStatus` - Get the authenticator app setup of the current user (GET v1/users/totp-status).
+* `Invoke-TssExpireUserSecretActivity` - Expire the secrets a user has accessed (POST v1/users/{userId}/secret-activity/expire).
+* `Invoke-TssForgotPassword` - Send a password reset email to a user (POST v1/users/forgot-password).
+* `New-TssUserSshKey` - Create an SSH key pair for the current user (POST v1/users/public-ssh-keys).
+* `Remove-TssUser` - Delete a user, which deactivates the account (DELETE v1/users/{id}).
+* `Remove-TssUserGroup` - Remove a user from groups (DELETE v1/users/{id}/groups).
+* `Remove-TssUserOwner` - Remove an owner from a user (DELETE v1/users/{id}/owners/{ownerId}).
+* `Remove-TssUserRole` - Remove roles from a user (DELETE v1/users/{id}/roles).
+* `Reset-TssUserTwoFactor` - Reset the two-factor authentication of a user (POST v1/users/{userId}/reset-two-factor).
+* `Search-TssUserSession` - List the login sessions of the current user (GET v1/users/sessions).
+* `Search-TssUserSshKey` - List user public SSH keys (GET v1/users/public-ssh-keys).
+* `Search-TssUserTeam` - List the teams of a user (GET v1/users/{userId}/teams).
+* `Set-TssUserOwner` - Add or remove group owners of a user (PATCH v1/users/{id}/owners).
+* `Stop-TssUserSession` - End login sessions of the current user (POST v1/users/sessions/terminate).
+* `Test-TssCurrentUserPassword` - Test whether a password is the password of the current user (POST v1/users/verify-password).
+* `Update-TssDefaultAppSettings` - Set the default application of the current user (PUT v1/users/set-default-app-settings).
+* `Update-TssDoubleLockPassword` - Unlock DoubleLock for the current user with their DoubleLock password (PUT v1/users/doublelock-password).
+
+#### Workflow Templates
+
+* `Get-TssWorkflowInstance` - Get the workflow instances of a workflow template (GET v1/workflows/instances/template/{id}).
+* `Get-TssWorkflowTemplate` - Get a workflow template by ID (GET v1/workflows/templates/{id}).
+* `Get-TssWorkflowTemplateAudit` - Get the audit records of a workflow template (GET v1/workflows/templates/{id}/audits).
+* `Get-TssWorkflowTemplateEntityCount` - Get the number of items that use a workflow template (GET v1/workflows/templates/{id}/entities/{includeAll}).
+* `Get-TssWorkflowTemplateStep` - Get the steps of a workflow template (GET v1/workflows/templates/{id}/steps, GET v1/workflows/templates/{id}/steps/{stepNum}).
+* `Get-TssWorkflowTemplateStepStub` - Get a workflow template step stub (GET v1/workflows/templates/steps/stub).
+* `Get-TssWorkflowTemplateStub` - Get a workflow template stub (GET v1/workflows/templates/stub).
+* `New-TssWorkflowTemplate` - Create a workflow template (POST v1/workflows/templates).
+* `New-TssWorkflowTemplateStep` - Add a step to a workflow template (POST v1/workflows/templates/{id}/steps).
+* `Stop-TssWorkflowRequest` - Cancel the active requests of a workflow template (POST v1/workflows/templates/{id}/cancel-requests).
+* `Update-TssWorkflowTemplate` - Update a workflow template (PUT v1/workflows/templates/{id}).
+* `Update-TssWorkflowTemplateStep` - Update a step of a workflow template (PUT v1/workflows/templates/{id}/steps/{stepNum}).
+* `Update-TssWorkflowTemplateStepList` - Replace all the steps of a workflow template (PUT v1/workflows/templates/{id}/steps).
+
+### General Updates
+
+* `New-TssSession` - Delinea Platform authentication (Refs #481): new parameter sets `platform` (`-PlatformUrl -Credential`, Platform service user, client credentials grant) and `platformToken` (`-PlatformUrl -AccessToken`), with `-VaultId`, `-SecretServer` (vault override), `-AllowedVaultHost` and `-AutoRefresh`. The vault comes from the Platform vault broker and must pass a trust check (https, Secret Server Cloud host, the Platform host, or `-AllowedVaultHost`). Existing parameter sets, positions, the `nts` alias and the output type are unchanged.
+* `TssSession` - new properties `AuthProvider` (default `SecretServer`), `PlatformUrl`, `VaultId`, `VaultType`, `IsPlatformToken`, read-only `AutoRefresh`; `SessionRefresh()` re-grants a Platform token only with `-AutoRefresh` (client secret held as a private SecureString, #455); `SessionExpire()` does not call oauth-expiration for Platform tokens.
+* `Close-TssSession` - a Platform session returns False with a verbose note instead of calling oauth-expiration.
+* Docs: "Delinea Platform" section on the Authentication getting started page.
+* `Export-TssReport` - new parameter set for GET v1/reports/download-csv; existing parameter sets keep their parameters.
+* `Add-TssSecretTemplateField` - new parameter set `Name` (`-Name`, `-FieldSlugName`, `-Description`, `-DataType`) for POST v1/secret-templates/{secretTemplateId}/fields, output `Thycotic.PowerShell.SecretTemplates.FieldDetail`; `-Field` now names parameter set `Default` (the default set); positions, aliases and the existing output unchanged.
+* `Get-TssSecretTemplate` - new `-Detail` switch reads GET v2/secret-templates/{secretTemplateId} and returns `Thycotic.PowerShell.SecretTemplates.Detail`; existing parameters and output unchanged.
+* `Get-TssSecretAttachment` - new parameter set for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
+* `Get-TssSecretField` - new parameter set `checkout` (`-AutoCheckout`, `-AutoCheckIn`, `-AutoComment`) for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
+* `Get-TssSecretState` - new parameter sets `flags` (`-Flags`, GET v1/secrets/{id}/state/flags) and `flagsV2` (`-FlagsV2`, GET v2/secrets/{id}/state/flags), output `Thycotic.PowerShell.Secrets.StateFlags`; existing parameter set unchanged.
+* `Get-TssUserAudit` - new parameter set for GET v1/users/action/audit; existing parameter sets unchanged.
+* `Get-TssUserOwner` - new parameter set for GET v1/users/{id}/owners/{ownerId}; existing parameter sets unchanged.
+* `Lock-TssUser` - new parameter set for POST v1/users/{userId}/lock-out; existing parameter sets unchanged.
+* `Get-TssSecretPasswordStatus` - new `-RestApi` switch reads GET v1/secrets/secret-detail/{id}/password-status instead of the internal route (and writes no internal endpoint note); default behavior, parameters and output unchanged. Existing shape test tests/secrets/Get-TssSecretPasswordStatus.Tests.ps1 gains RestApi in its known parameters.
+* `SiteConnectorQueueType` enum: added `RabbitMqQuorum` (server value 3), so site connectors of that queue type cast (used by `Get-TssDistributedEngineSiteConnectorStub -QueueType RabbitMqQuorum`; also lets the existing site connector cmdlets return quorum connectors). Additive, existing values unchanged.
+* `Search-TssEventPipeline` - new `-Detailed` switch (parameter set `detailed`, GET v1/event-pipeline/list) returns `Thycotic.PowerShell.EventPipeline.List[]` with triggers, filters and tasks; existing parameters, positions and `Summary[]` output unchanged.
+* `New-TssMetadataField` - new parameter set `field` (`-SectionId`, `-FieldName`, `-FieldDataType`, no item parameters) for POST v1/metadata/fields, output `Thycotic.PowerShell.Metadata.FieldSummary` as a second OutputType; existing parameter sets `currentsection` and `newsection` unchanged.
+* `Thycotic.PowerShell.Metadata.FieldSummary` and `Thycotic.PowerShell.Metadata.FieldSectionSummary` gain an `Enabled` property (server field `enabled`); `Get-TssMetadataField` and `Search-TssMetadataSection` output now carries it.
+* `Search-TssAutoExportStorage` - new optional -ConfigurationId parameter: GET v1/configuration/auto-export-storage/{id} (storage items of one automatic export configuration); calls without it are unchanged.
+* `Get-TssDiscoveryStatus` - new switch parameter sets `-ItemMetrics`, `-OsMetrics` and `-ScanResults` (GET v1/discovery/status/item-metrics, os-metrics, scan-results); default set, output and existing code path unchanged.
+* `Search-TssWorkflowTemplate` output (`Thycotic.PowerShell.WorkflowTemplates.Detail`) gains `DeactivatedAt`; the class is shared with the new `Get-TssWorkflowTemplate`, `Get-TssWorkflowTemplateStub` and `Update-TssWorkflowTemplate`.
+
+### Bug Fixes
+
+* Verbose output - the "Command invocation" line (private Get-TssInvocation) printed `-AccessToken` and `-OtpCode` values; values of `-AccessToken`, `-OtpCode`, `-ClientSecret`, `-OnboardingKey` and `-PersonalAccessToken` now print as `Redacted`, and a parameter of a type the line does not render (for example `[uri]`) no longer repeats the previous parameter's value.
+* `Export-TssReport` - the export set no longer sends `format`, which Secret Server read as a date format and answered with a 400.
+* `Get-TssReportCategory` - `-Id` returns `Thycotic.PowerShell.Reports.CategoryDetail` instead of failing on a missing type; `-All` returns the categories instead of a single null.
+* `New-TssSecretDependency` - a stub from `Get-TssSecretDependencyStub` carries SshKeySecretId 0, which the server treats as a secret ID and rejects with Access denied; SshKeySecretId, PrivilegedAccountSecretId and ConditionDependencyId of 0 are now sent as null, as `Update-TssSecretDependency` does.
+* `Get-TssEventPipeline` - output kept only the last task and last trigger, and a pipeline with no filters showed the previous pipeline's filters (shared GetEventPipelineList part).
+* `Search-TssEventPipeline` - `-PipelinePolicyId` was never sent to Secret Server; it now filters by policy.
+* `Get-TssConfigurationSaml` - Returns the SAML configuration again when an identity provider exists (`SamlProvider` gains `BypassSecretServerMFA` and `PublicCertificateThumbprint`).
+
+### Tests
+
+* Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
+* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `New-TssSession`, `Search-TssAutoExportStorage`, `Search-TssEventPipeline`.
+
 ## 0.62.1 -- 2026-06-29
 
 ### Breaking Changes
