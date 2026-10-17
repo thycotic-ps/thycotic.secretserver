@@ -20,6 +20,7 @@ grand_parent: Types
 |---|---|---|---|
 | `Active` | `bool` | read/write | — |
 | `AuthnContext` | `string` | read/write | — |
+| `BypassSecretServerMFA` | `bool` | read/write | - |
 | `ClockSkew` | `int` | read/write | — |
 | `Description` | `string` | read/write | — |
 | `DisableAssertionReplayCheck` | `bool` | read/write | — |
@@ -41,6 +42,7 @@ grand_parent: Types
 | `Name` | `string` | read/write | — |
 | `OverridePendingAuthnRequest` | `bool` | read/write | — |
 | `PublicCertificate` | `string` | read/write | — |
+| `PublicCertificateThumbprint` | `string` | read/write | - |
 | `SignAuthnRequest` | `bool` | read/write | — |
 | `SignLogoutRequest` | `bool` | read/write | — |
 | `SignLogoutResponse` | `bool` | read/write | — |
