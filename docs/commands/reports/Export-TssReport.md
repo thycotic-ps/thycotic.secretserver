@@ -10,9 +10,16 @@ Export results of a Report to CSV format.
 
 ## SYNTAX
 
+### export (Default)
 ```
 Export-TssReport [-TssSession] <Session> [-ReportId <Int32>] [-ReportName <String>] [-Parameters <Hashtable>]
  [-Delimiter <String>] [-Format <String>] [<CommonParameters>]
+```
+
+### download
+```
+Export-TssReport [-TssSession] <Session> [-ReportId <Int32>] [-ReportName <String>] [-Parameters <Hashtable>]
+ [-Delimiter <String>] [-Format <String>] [-Download] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -43,6 +50,14 @@ Export-TssReport -TssSession $session -ReportId 60 -Delimiter '|'
 ```
 
 Exports report 60 (Changed90DaysReportName) in CSV format, delimited by pipe character ("|")
+
+### EXAMPLE 4
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Export-TssReport -TssSession $session -ReportId 60 -Download
+```
+
+Streams report 60 as CSV through the download endpoint
 
 ## PARAMETERS
 
@@ -132,6 +147,23 @@ Aliases:
 Required: False
 Position: Named
 Default value: Csv
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Download
+Stream the report as CSV instead of exporting it.
+Requires ReportId; ReportName and Delimiter do not apply.
+Secret Server streams only some reports this way.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: download
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

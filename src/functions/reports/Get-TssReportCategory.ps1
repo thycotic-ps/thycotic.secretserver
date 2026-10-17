@@ -14,7 +14,7 @@ function Get-TssReportCategory {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssReportCategory -TssSession $session
+    Get-TssReportCategory -TssSession $session -All
 
     Returns a list of all categories
 
@@ -72,7 +72,7 @@ function Get-TssReportCategory {
                     }
 
                     if ($restResponse) {
-                        [TssReportCategoryDetail]$restResponse
+                        [Thycotic.PowerShell.Reports.CategoryDetail](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Reports.CategoryDetail]))
                     }
                 }
             }
@@ -93,7 +93,7 @@ function Get-TssReportCategory {
                 }
 
                 if ($restResponse) {
-                    [Thycotic.PowerShell.Reports.Category[]](. $FilterTssResponse $restResponse.model ([Thycotic.PowerShell.Reports.Category]))
+                    [Thycotic.PowerShell.Reports.Category[]](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Reports.Category]))
                 }
             }
         } else {

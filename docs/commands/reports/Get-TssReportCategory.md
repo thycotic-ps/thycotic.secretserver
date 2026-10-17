@@ -30,7 +30,7 @@ Returns Report Category details for 26
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssReportCategory -TssSession $session
+Get-TssReportCategory -TssSession $session -All
 ```
 
 Returns a list of all categories
