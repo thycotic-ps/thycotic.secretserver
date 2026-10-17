@@ -12,6 +12,24 @@ function Get-TssSecretState {
 
     Add minimum example for each parameter
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretState -TssSession $session -Id 42 -Flags
+
+    Returns the heartbeat status, password change state and password compliance of secret 42
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretState -TssSession $session -Id 42 -FlagsV2
+
+    Returns the state flags of secret 42 from the v2 endpoint, where PasswordChangeState can also be PreRunValidationFailed
+
+    .PARAMETER Flags
+    Return the state flags (heartbeat status, password change state, password compliance) instead of the state details
+
+    .PARAMETER FlagsV2
+    Return the state flags from the v2 endpoint, which adds PreRunValidationFailed to PasswordChangeState
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretState
 
@@ -21,8 +39,9 @@ function Get-TssSecretState {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'state')]
     [OutputType('Thycotic.PowerShell.Secrets.DetailState')]
+    [OutputType('Thycotic.PowerShell.Secrets.StateFlags', ParameterSetName = ('flags', 'flagsV2'))]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -33,7 +52,15 @@ function Get-TssSecretState {
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, Position = 1)]
         [Alias('SecretId')]
         [int[]]
-        $Id
+        $Id,
+
+        [Parameter(Mandatory, ParameterSetName = 'flags')]
+        [switch]
+        $Flags,
+
+        [Parameter(Mandatory, ParameterSetName = 'flagsV2')]
+        [switch]
+        $FlagsV2
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -46,6 +73,33 @@ function Get-TssSecretState {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
+                if ($PSCmdlet.ParameterSetName -ne 'state') {
+                    switch ($PSCmdlet.ParameterSetName) {
+                        'flagsV2' {
+                            $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', $secret, 'state', 'flags' -join '/'
+                        }
+                        default {
+                            $uri = $TssSession.ApiUrl, 'secrets', $secret, 'state', 'flags' -join '/'
+                        }
+                    }
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Method = 'GET'
+
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        $restResponse = . $ProcessResponse $apiResponse
+                    } catch {
+                        Write-Warning "Issue getting state flags for secret [$secret]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+
+                    if ($restResponse) {
+                        [Thycotic.PowerShell.Secrets.StateFlags](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Secrets.StateFlags]))
+                    }
+                    continue
+                }
                 $uri = $TssSession.ApiUrl, 'secrets', $secret, 'state' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
