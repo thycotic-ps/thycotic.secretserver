@@ -9,6 +9,7 @@ namespace Thycotic.PowerShell.Metadata
     public class FieldSectionSummary
     {
         public MetadataFieldSectionAction[] Actions { get; set; }
+        public bool Enabled { get; set; }
         public string MetadataFieldSectionDescription { get; set; }
         public int MetadataFieldSectionId { get; set; }
         public string MetadataFieldSectionName { get; set; }

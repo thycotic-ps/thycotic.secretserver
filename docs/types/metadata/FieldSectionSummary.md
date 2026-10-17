@@ -19,6 +19,7 @@ grand_parent: Types
 | Name | Type | Access | Default |
 |---|---|---|---|
 | `Actions` | `MetadataFieldSectionAction[]` | read/write | — |
+| `Enabled` | `bool` | read/write | - |
 | `MetadataFieldSectionDescription` | `string` | read/write | — |
 | `MetadataFieldSectionId` | `int` | read/write | — |
 | `MetadataFieldSectionName` | `string` | read/write | — |
