@@ -6,6 +6,7 @@ function Update-TssDoubleLockPassword {
     .DESCRIPTION
     Verifies the existing DoubleLock password of the user who owns the session and unlocks DoubleLock for that user, so DoubleLock secrets can be read.
     The server keeps the unlock per user, not per session: every session of the same user is unlocked, for up to an hour.
+    A new sign-in by the same user ends the unlock for all of that user's sessions, so call it again after signing in.
     It does not create or change a DoubleLock password.
     A user without a DoubleLock password gets the error "User has not created a QuantumLock password." (QuantumLock is the former name of DoubleLock).
     A wrong password fails, and repeated wrong passwords block further attempts for a few minutes.
