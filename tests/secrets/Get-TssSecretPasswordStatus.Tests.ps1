@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id'
+        [object[]]$knownParameters = 'TssSession', 'Id', 'RestApi'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -19,6 +19,44 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to Thycotic.PowerShell.Secrets.PasswordStatus" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Secrets.PasswordStatus'
+        }
+    }
+}
+
+Describe "$commandName parameter sets" {
+    Context "Additive parameters" {
+        It "$commandName should take RestApi as System.Management.Automation.SwitchParameter" -TestCases @{ CommandName = $commandName } {
+            (Get-Command $CommandName).Parameters['RestApi'].ParameterType.FullName | Should -Be 'System.Management.Automation.SwitchParameter'
+        }
+        It "$commandName should keep RestApi optional in every set" -TestCases @{ CommandName = $commandName } {
+            @((Get-Command $CommandName).Parameters['RestApi'].Attributes | Where-Object { $_ -is [System.Management.Automation.ParameterAttribute] -and $_.Mandatory }).Count | Should -Be 0
+        }
+    }
+    BeforeDiscovery {
+        $setCases = @(
+            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'Id'); Optional = @('RestApi'); Absent = @() }
+        )
+    }
+    Context "Parameter set <SetName>" -Foreach $setCases {
+        BeforeAll {
+            $set = (Get-Command $CommandName).ParameterSets.Where({ $_.Name -eq $SetName })[0]
+        }
+        It "should exist" {
+            $set | Should -Not -BeNullOrEmpty
+        }
+        It "should require exactly <Mandatory>" {
+            $actual = $set.Parameters.Where({ $_.IsMandatory }).Name | Sort-Object
+            ($actual -join ',') | Should -BeExactly (($Mandatory | Sort-Object) -join ',')
+        }
+        It "should have exactly <Optional> as optional" {
+            $common = [System.Management.Automation.PSCmdlet]::CommonParameters + [System.Management.Automation.PSCmdlet]::OptionalCommonParameters
+            $actual = $set.Parameters.Where({ -not $_.IsMandatory -and $_.Name -notin $common }).Name | Sort-Object
+            ($actual -join ',') | Should -BeExactly (($Optional | Sort-Object) -join ',')
+        }
+        It "should not offer <Absent>" {
+            foreach ($name in $Absent) {
+                $set.Parameters.Name | Should -Not -Contain $name
+            }
         }
     }
 }

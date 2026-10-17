@@ -6,11 +6,20 @@ function Get-TssSecretPasswordStatus {
     .DESCRIPTION
     Get status of password change
 
+    .PARAMETER RestApi
+    Read the status from the public REST route (secrets/secret-detail/{id}/password-status) instead of the internal route
+
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecretPasswordStatus -TssSession $session -Id 26
 
     Get password change status of Secret ID 26
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretPasswordStatus -TssSession $session -Id 26 -RestApi
+
+    Get password change status of Secret ID 26 from the public REST route
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus
@@ -33,7 +42,10 @@ function Get-TssSecretPasswordStatus {
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('SecretId')]
         [int[]]
-        $Id
+        $Id,
+
+        [switch]
+        $RestApi
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -41,13 +53,19 @@ function Get-TssSecretPasswordStatus {
     }
 
     process {
-        Write-TssInternalNote $PSCmdlet.MyInvocation
+        if (-not $RestApi) {
+            Write-TssInternalNote $PSCmdlet.MyInvocation
+        }
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'password-status' -join '/'
+                if ($RestApi) {
+                    $uri = $TssSession.ApiUrl, 'secrets', 'secret-detail', $secret, 'password-status' -join '/'
+                } else {
+                    $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'password-status' -join '/'
+                }
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 

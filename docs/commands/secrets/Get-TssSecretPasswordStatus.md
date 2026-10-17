@@ -11,7 +11,8 @@ Get status of password change
 ## SYNTAX
 
 ```
-Get-TssSecretPasswordStatus [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretPasswordStatus [-TssSession] <Session> -Id <Int32[]> [-RestApi]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,6 +27,14 @@ Get-TssSecretPasswordStatus -TssSession $session -Id 26
 ```
 
 Get password change status of Secret ID 26
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssSecretPasswordStatus -TssSession $session -Id 26 -RestApi
+```
+
+Get password change status of Secret ID 26 from the public REST route
 
 ## PARAMETERS
 
@@ -56,6 +65,21 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -RestApi
+Read the status from the public REST route (secrets/secret-detail/{id}/password-status) instead of the internal route
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
