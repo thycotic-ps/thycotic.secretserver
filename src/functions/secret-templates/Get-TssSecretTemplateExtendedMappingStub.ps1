@@ -1,0 +1,77 @@
+function Get-TssSecretTemplateExtendedMappingStub {
+    <#
+    .SYNOPSIS
+    Get a stub for a new extended mapping of a secret template
+
+    .DESCRIPTION
+    Returns the extended fields of an extended type with the template fields the server would map them to, as a starting point for New-TssSecretTemplateExtendedMapping.
+    Nothing is created.
+
+    .PARAMETER TssSession
+    TssSession object created by New-TssSession for authentication
+
+    .PARAMETER ExtendedTypeId
+    Extended type ID (Search-TssSecretTemplateExtendedType lists them)
+
+    .PARAMETER SecretTemplateId
+    Secret template ID
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretTemplateExtendedMappingStub -TssSession $session -SecretTemplateId 6 -ExtendedTypeId 1
+
+    Returns the stub for mapping extended type 1 onto secret template 6
+
+    .LINK
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Get-TssSecretTemplateExtendedMappingStub
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/secret-templates/Get-TssSecretTemplateExtendedMappingStub.ps1
+
+    .NOTES
+    Requires TssSession object returned by New-TssSession
+    #>
+    [CmdletBinding()]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.ExtendedMapping')]
+    param (
+        [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
+        [Thycotic.PowerShell.Authentication.Session]
+        $TssSession,
+
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [int]
+        $ExtendedTypeId,
+
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
+        [Alias('SecretTypeId')]
+        [int]
+        $SecretTemplateId
+    )
+    begin {
+        $tssParams = $PSBoundParameters
+        $invokeParams = . $GetInvokeApiParams $TssSession
+    }
+    process {
+        Get-TssInvocation $PSCmdlet.MyInvocation
+        if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
+            Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            $uri = $TssSession.ApiUrl, 'secret-templates', $SecretTemplateId, 'extended-mappings', $ExtendedTypeId, 'stub' -join '/'
+            $invokeParams.Uri = $uri
+            $invokeParams.Method = 'GET'
+            Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+            try {
+                $apiResponse = Invoke-TssApi @invokeParams
+                $restResponse = . $ProcessResponse $apiResponse
+            } catch {
+                Write-Warning 'Issue with Get-TssSecretTemplateExtendedMappingStub request'
+                $err = $_
+                . $ErrorHandling $err
+            }
+            if ($restResponse) {
+                [Thycotic.PowerShell.SecretTemplates.ExtendedMapping](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretTemplates.ExtendedMapping]))
+            }
+        } else {
+            Write-Warning 'No valid session found'
+        }
+    }
+}
