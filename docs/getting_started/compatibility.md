@@ -818,7 +818,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Start-TssPlatformMigration]        | 12.3.000024               |
 | [Start-TssSecretErase]              | 12.3.000024               |
 | [Start-TssSecretKeyRotation]        | 12.3.000024               |
-| [Start-TssUpgrade]                  | 12.3.000024               |
 | [Start-TssUpgradeDownload]          | 12.3.000024               |
 | [Stop-TssBulkOperation]             | 12.3.000024               |
 | [Stop-TssManualUpgrade]             | 12.3.000024               |
@@ -1011,7 +1010,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 [New-TssManualUpgradeSqlScript]:/thycotic.secretserver/commands/upgrade/New-TssManualUpgradeSqlScript
 [Save-TssManualUpgradePackage]:/thycotic.secretserver/commands/upgrade/Save-TssManualUpgradePackage
 [Search-TssManualUpgradeNode]:/thycotic.secretserver/commands/upgrade/Search-TssManualUpgradeNode
-[Start-TssUpgrade]:/thycotic.secretserver/commands/upgrade/Start-TssUpgrade
 [Start-TssUpgradeDownload]:/thycotic.secretserver/commands/upgrade/Start-TssUpgradeDownload
 [Stop-TssManualUpgrade]:/thycotic.secretserver/commands/upgrade/Stop-TssManualUpgrade
 [Test-TssManualUpgradeSqlDelta]:/thycotic.secretserver/commands/upgrade/Test-TssManualUpgradeSqlDelta

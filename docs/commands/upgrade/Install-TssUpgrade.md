@@ -18,7 +18,7 @@ Install-TssUpgrade [-TssSession] <Session> [-ImpersonationCredential <PSCredenti
 ## DESCRIPTION
 Starts the install of the upgrade package staged by Start-TssUpgradeDownload or uploaded through the web UI.
 The upgrade runs in the background on the server and this call returns once it has started: UpgradeStartSuccess is true when it started.
-A missing or broken staged package fails later, in the background run, so poll Get-TssUpgradeStatus (Start-TssUpgrade does this for you).
+A missing or broken staged package fails later, in the background run, so poll Get-TssUpgradeStatus.
 An upgrade cannot be undone.
 Back up the database first.
 When the application pool identity cannot write to the application or temp folder (AppPoolHasDiskAccessApplication or AppPoolHasDiskAccessTemp false in Get-TssUpgradeState), pass -ImpersonationCredential with a Windows account that can.

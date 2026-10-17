@@ -4,7 +4,7 @@ function Start-TssUpgradeDownload {
     Download and stage the latest upgrade from the Delinea update server
 
     .DESCRIPTION
-    Has the server download the latest upgrade package from the Delinea update server, unzip it, check its integrity, and stage it for Install-TssUpgrade or Start-TssUpgrade.
+    Has the server download the latest upgrade package from the Delinea update server, unzip it, check its integrity, and stage it for Install-TssUpgrade.
     -EarlyAdopter downloads early adopter (pre-release) versions instead of generally available ones.
     This is a real download on the server. Get-TssUpgradeState shows whether a newer version is available (IsLatestVersion, LatestVersionToDownload).
     When the application pool identity cannot write to the application or temp folder (AppPoolHasDiskAccessApplication or AppPoolHasDiskAccessTemp false in Get-TssUpgradeState), pass -ImpersonationCredential with a Windows account that can. A failed logon returns LoginFail true. Nothing is downloaded when the logon fails.

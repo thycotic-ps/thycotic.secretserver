@@ -1092,7 +1092,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `New-TssManualUpgradeSqlScript` - Generate the SQL script for a manual upgrade (POST v1/upgrade/manual/generate-sql-script).
 * `Save-TssManualUpgradePackage` - Download a generated manual upgrade file (GET v2/upgrade/manual/download, GET v1/upgrade/manual/download).
 * `Search-TssManualUpgradeNode` - List the nodes of a manual upgrade (GET v1/upgrade/manual/nodes).
-* `Start-TssUpgrade` - Install a staged Secret Server upgrade and wait for it to finish (PATCH v1/configuration/read-only-mode).
 * `Start-TssUpgradeDownload` - Download and stage the latest upgrade from the Delinea update server (POST v1/upgrade/download).
 * `Stop-TssManualUpgrade` - Cancel a manual upgrade (POST v1/upgrade/manual/cancel).
 * `Test-TssManualUpgradeSqlDelta` - Verify that the SQL script of a manual upgrade applies cleanly (POST v1/upgrade/manual/verify-sql-deltas).

@@ -16,7 +16,7 @@ Start-TssUpgradeDownload [-TssSession] <Session> [-EarlyAdopter] [-Impersonation
 ```
 
 ## DESCRIPTION
-Has the server download the latest upgrade package from the Delinea update server, unzip it, check its integrity, and stage it for Install-TssUpgrade or Start-TssUpgrade.
+Has the server download the latest upgrade package from the Delinea update server, unzip it, check its integrity, and stage it for Install-TssUpgrade.
 -EarlyAdopter downloads early adopter (pre-release) versions instead of generally available ones.
 This is a real download on the server.
 Get-TssUpgradeState shows whether a newer version is available (IsLatestVersion, LatestVersionToDownload).
