@@ -10,12 +10,22 @@ Get the owners for a User ID
 
 ## SYNTAX
 
+### all (Default)
 ```
-Get-TssUserOwner [-TssSession] <Session> -Id <Int32[]> [-SortBy <String>] [<CommonParameters>]
+Get-TssUserOwner [-TssSession] <Session> -Id <Int32[]> [-SortBy <String>]
+ [<CommonParameters>]
+```
+
+### owner
+```
+Get-TssUserOwner [-TssSession] <Session> -Id <Int32[]> [-SortBy <String>] -OwnerId <Int32>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Get the owners of a User ID
+
+With -OwnerId a single owner record is returned.
 
 ## EXAMPLES
 
@@ -26,6 +36,14 @@ Get-TssUserOwner -TssSession $session -Id 42
 ```
 
 Get Owners of the User ID 42
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssUserOwner -TssSession $session -Id 42 -OwnerId 3
+```
+
+Get owner record 3 of the User ID 42
 
 ## PARAMETERS
 
@@ -74,6 +92,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -OwnerId
+ID of the owner record (the Id property of Get-TssUserOwner output)
+
+```yaml
+Type: Int32
+Parameter Sets: owner
+Aliases:
+
+Required: True
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -81,7 +114,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.Users.OwnerSummary
+### Thycotic.PowerShell.Users.OwnerSummary[]
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

@@ -10,12 +10,22 @@ Lock a Secret Server User Account
 
 ## SYNTAX
 
+### user (Default)
 ```
-Lock-TssUser [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<CommonParameters>]
+Lock-TssUser [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
+### lockout
+```
+Lock-TssUser [-TssSession] <Session> -Id <Int32[]> -ReasonType <String> [-Description <String>]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Lock a Secret Server User Account
+
+With -ReasonType the user is locked out through the lock-out endpoint, which records the reason and description with the lockout.
 
 ## EXAMPLES
 
@@ -26,6 +36,14 @@ Lock-TssUser -TssSession $session -Id 28
 ```
 
 Lock User 28
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Lock-TssUser -TssSession $session -Id 28 -ReasonType SuspiciousActivity -Description 'Logins from an unknown network'
+```
+
+Lock out User 28 and record the reason with the lockout
 
 ## PARAMETERS
 
@@ -56,6 +74,36 @@ Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -ReasonType
+Why the user is locked out: SuspiciousActivity, LoginAttemptsExceeded, Other or InvalidSecurityBlob
+
+```yaml
+Type: String
+Parameter Sets: lockout
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Description
+Free text stored with the lockout
+
+```yaml
+Type: String
+Parameter Sets: lockout
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
