@@ -6,11 +6,20 @@ function Get-TssSecretTemplate {
     .DESCRIPTION
     Get a secret template(s) from Secret Server
 
+    .PARAMETER Detail
+    Return the template settings (name pattern, expiration, one-time password, SSH key and other settings) from the version 2 endpoint instead of the template and its fields
+
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecretTemplate -Id 93
 
     Returns secret associated with the Secret ID, 93
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretTemplate -TssSession $session -Id 6007 -Detail
+
+    Returns the settings of secret template 6007, such as name pattern, expiration, one-time password and SSH key settings
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secret-templates/Get-TssSecretTemplate
@@ -23,6 +32,7 @@ function Get-TssSecretTemplate {
     #>
     [cmdletbinding()]
     [OutputType('Thycotic.PowerShell.SecretTemplates.Template')]
+    [OutputType('Thycotic.PowerShell.SecretTemplates.Detail')]
     param(
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -34,7 +44,10 @@ function Get-TssSecretTemplate {
         [Alias('SecretTemplateId')]
         [Alias('TemplateId')]
         [int[]]
-        $Id
+        $Id,
+
+        [switch]
+        $Detail
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -47,6 +60,9 @@ function Get-TssSecretTemplate {
             foreach ($template in $Id) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'secret-templates', $template -join '/'
+                if ($Detail) {
+                    $uri = ($TssSession.ApiUrl -replace 'v1$','v2'), 'secret-templates', $template -join '/'
+                }
                 $invokeParams.Uri = $Uri
                 $invokeParams.Method = 'GET'
 
@@ -60,7 +76,9 @@ function Get-TssSecretTemplate {
                     . $ErrorHandling $err
                 }
 
-                if ($restResponse) {
+                if ($restResponse -and $Detail) {
+                    [Thycotic.PowerShell.SecretTemplates.Detail](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretTemplates.Detail]))
+                } elseif ($restResponse) {
                     [Thycotic.PowerShell.SecretTemplates.Template](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.SecretTemplates.Template]))
                 }
             }
