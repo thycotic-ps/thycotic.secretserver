@@ -18,13 +18,18 @@ namespace Thycotic.SecretServer.Cmdlets
         [Parameter(Mandatory = true, Position = 0, ValueFromPipeline = true, ValueFromPipelineByPropertyName = true)]
         public InvocationInfo Invocation {get; set;}
 
+        private static readonly HashSet<string> SecretParameterNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "AccessToken", "ClientSecret", "OnboardingKey", "OtpCode", "PersonalAccessToken"
+        };
+
         protected override void ProcessRecord()
         {
             var cmdText = Invocation.InvocationName;
             var paramKeys = Invocation.BoundParameters.Keys;
-            string paramValue = null;
             foreach (var p in paramKeys)
             {
+                string paramValue = null;
                 switch (Invocation.BoundParameters[p].GetType().ToString())
                 {
                     case "Thycotic.PowerShell.Authentication.Session":
@@ -37,7 +42,7 @@ namespace Thycotic.SecretServer.Cmdlets
                         paramValue = Invocation.BoundParameters[p].ToString();
                         break;
                     case "System.String":
-                        paramValue = Invocation.BoundParameters[p].ToString();
+                        paramValue = SecretParameterNames.Contains(p) ? "Redacted" : Invocation.BoundParameters[p].ToString();
                         break;
                     case "System.Management.Automation.SwitchParameter":
                         paramValue = Invocation.BoundParameters[p].ToString();

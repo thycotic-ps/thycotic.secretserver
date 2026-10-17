@@ -10,6 +10,18 @@ Create new session
 
 ## SYNTAX
 
+### platformToken
+```
+New-TssSession [-SecretServer <Uri>] -AccessToken <Object> -PlatformUrl <Uri> [-VaultId <String>]
+ [-AllowedVaultHost <String[]>] [-SkipCertificateCheck] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
+### platform
+```
+New-TssSession [-SecretServer <Uri>] -Credential <PSCredential> -PlatformUrl <Uri> [-VaultId <String>]
+ [-AllowedVaultHost <String[]>] [-AutoRefresh] [-SkipCertificateCheck] [-WhatIf] [-Confirm] [<CommonParameters>]
+```
+
 ### clientSdk
 ```
 New-TssSession -SecretServer <Uri> [-UseSdkClient] -ConfigPath <String> [-SkipCertificateCheck] [-WhatIf]
@@ -36,6 +48,10 @@ New-TssSession -SecretServer <Uri> [-Credential] <PSCredential> [[-OtpCode] <Str
 
 ## DESCRIPTION
 Create a new TssSession for working with a Secret Server
+
+With -PlatformUrl the session authenticates to the Delinea Platform instead: -Credential takes a Platform service user (client credentials grant, scope xpmheadless) or -AccessToken takes a Platform access token you already have.
+The Platform vault broker supplies the Secret Server vault URL (the active vault with -VaultId, else the global default, else the default, else the first active vault) and the Platform token is sent to that vault.
+The vault URL must use https and its host must be a Secret Server Cloud host, the Platform host itself, or a host listed in -AllowedVaultHost; nothing is sent to any other host.
 
 ## EXAMPLES
 
@@ -103,14 +119,59 @@ Creates a session object and pulls a list of Secrets to process.
 Uses method CheckTokenTtl() on the TssSession object if the TimeOfDeath is within 3 minutes of expiring will run the SessionRefresh() method to request a new access token.
 Once processing is complete, run the SessionExpire() method to expire the access token.
 
+### EXAMPLE 7
+```
+$serviceUser = Get-Credential platform-automation
+$session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser
+Search-TssFolder -TssSession $session
+```
+
+Authenticates the Delinea Platform service user platform-automation with the client credentials grant, finds the default Secret Server vault through the Platform vault broker, and searches folders in that vault.
+
+### EXAMPLE 8
+```
+$session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser -AutoRefresh
+if ($session.CheckTokenTtl(5)) { $session.SessionRefresh() }
+```
+
+Creates a Platform session that keeps the service user client secret (as a SecureString) so SessionRefresh() can request a new Platform access token when fewer than 5 minutes remain.
+
+### EXAMPLE 9
+```
+$session = New-TssSession -PlatformUrl https://mytenant.delinea.app -AccessToken $platformToken -VaultId 5b2e8f1c-0d3a-4b7e-9c61-2f4a8d9e0b13
+```
+
+Uses a Delinea Platform access token obtained elsewhere, validates it with the Platform vault broker, and connects to the active vault with that id.
+
+### EXAMPLE 10
+```
+$session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser -SecretServer https://vault.example.com/SecretServer -AllowedVaultHost vault.example.com
+```
+
+Sends the Platform token to an on-premises Secret Server connected to the Platform.
+The host is not a Secret Server Cloud host, so it is trusted only because -AllowedVaultHost lists it.
+
 ## PARAMETERS
 
 ### -SecretServer
-Secret Server URL
+Secret Server URL.
+With -PlatformUrl, the vault URL to use instead of the vault broker answer (with -Credential the vault broker is not called).
 
 ```yaml
 Type: Uri
-Parameter Sets: (All)
+Parameter Sets: platformToken, platform
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: Uri
+Parameter Sets: clientSdk, winauth, sdk, new
 Aliases:
 
 Required: True
@@ -122,6 +183,7 @@ Accept wildcard characters: False
 
 ### -Credential
 Specify a Secret Server user account.
+With -PlatformUrl, a Delinea Platform service user: the user name is the client id and the password is the client secret.
 
 ```yaml
 Type: PSCredential
@@ -130,6 +192,18 @@ Aliases:
 
 Required: True
 Position: 2
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: PSCredential
+Parameter Sets: platform
+Aliases:
+
+Required: True
+Position: Named
 Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
@@ -152,11 +226,12 @@ Accept wildcard characters: False
 ```
 
 ### -AccessToken
-Specify Access Token
+Specify Access Token.
+With -PlatformUrl, a Delinea Platform access token you already have; it is validated with the Platform vault broker.
 
 ```yaml
 Type: Object
-Parameter Sets: sdk
+Parameter Sets: platformToken, sdk
 Aliases:
 
 Required: True
@@ -207,6 +282,70 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -PlatformUrl
+URL of the Delinea Platform tenant, for example https://mytenant.delinea.app.
+Only https is accepted.
+
+```yaml
+Type: Uri
+Parameter Sets: platformToken, platform
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -VaultId
+Vault id to use from the Platform vault broker.
+The vault must be active.
+
+```yaml
+Type: String
+Parameter Sets: platformToken, platform
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AllowedVaultHost
+Additional vault hosts to trust, as host or host:port (a host alone covers port 443 only).
+Needed when the vault is not a Secret Server Cloud host, for example an on-premises Secret Server connected to the Platform.
+
+```yaml
+Type: String[]
+Parameter Sets: platformToken, platform
+Aliases:
+
+Required: False
+Position: Named
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -AutoRefresh
+Keep the Platform service user client secret on the session (as a SecureString) so SessionRefresh() can request a new Platform access token.
+Without it nothing is kept and SessionRefresh() returns False for a Platform session.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: platform
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
