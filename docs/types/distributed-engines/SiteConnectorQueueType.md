@@ -17,5 +17,6 @@ grand_parent: Types
 | `MemoryMq` | _(default)_ |
 | `RabbitMq` | _(default)_ |
 | `AzureServiceBus` | _(default)_ |
+| `RabbitMqQuorum` | _(default)_ |
 
 
