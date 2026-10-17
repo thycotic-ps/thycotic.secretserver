@@ -4,6 +4,7 @@ param(
 )
 process {
     foreach ($pipeline in $Object) {
+        $filterLists = $taskLists = $triggerLists = $null
         if ($pipeline.filterList) {
             $filterLists = @()
             foreach ($filter in $pipeline.filterList) {
@@ -52,7 +53,7 @@ process {
                         }
                     }
                 }
-                $taskLists = [Thycotic.PowerShell.EventPipeline.TaskView]@{
+                $taskLists += [Thycotic.PowerShell.EventPipeline.TaskView]@{
                     EventEntityTypeId            = if (-not $task.EventEntityTypeId) { 0 } else { $task.EventEntityTypeId }
                     EventPipelineTaskDescription = $task.EventPipelineTaskDescription
                     EventPipelineTaskDisplayName = $task.EventPipelineTaskDisplayName
@@ -68,7 +69,7 @@ process {
         if ($pipeline.triggers) {
             $triggerLists = @()
             foreach ($trigger in $pipeline.triggers) {
-                $triggerLists = [Thycotic.PowerShell.EventPipeline.TriggerView]@{
+                $triggerLists += [Thycotic.PowerShell.EventPipeline.TriggerView]@{
                     EntityTypeDisplayName  = $trigger.EntityTypeDisplayName
                     EventActionId          = $trigger.EventActionId
                     EventPipelineId        = $trigger.EventPipelineId

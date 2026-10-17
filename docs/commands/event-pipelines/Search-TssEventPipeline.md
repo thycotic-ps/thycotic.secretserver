@@ -12,9 +12,17 @@ Get a list of Event Pipeline Policies
 
 ## SYNTAX
 
+### summary (Default)
 ```
 Search-TssEventPipeline [-TssSession] <Session> [-PipelinePolicyId <Int32>] [-PipelineName <String>]
  [-EventEntityType <EventEntityType>] [-IncludeInactive] [-ExcludeActive] [-SortBy <String>]
+ [<CommonParameters>]
+```
+
+### detailed
+```
+Search-TssEventPipeline [-TssSession] <Session> [-PipelinePolicyId <Int32>] [-PipelineName <String>]
+ [-EventEntityType <EventEntityType>] [-IncludeInactive] [-ExcludeActive] [-SortBy <String>] [-Detailed]
  [<CommonParameters>]
 ```
 
@@ -38,6 +46,14 @@ Search-TssEventPipeline -TssSession $session -IncludeInactive
 ```
 
 Return a list of all active and inactive Event Pipeline Policies
+
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssEventPipeline -TssSession $session -IncludeInactive -Detailed
+```
+
+Return all active and inactive Event Pipelines with their triggers, filters and tasks
 
 ## PARAMETERS
 
@@ -147,6 +163,21 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
+### -Detailed
+Return full Event Pipeline objects, with triggers, filters and tasks, instead of summaries
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: detailed
+Aliases:
+
+Required: True
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -154,7 +185,8 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.EventPipeline.Summary
+### Thycotic.PowerShell.EventPipeline.Summary[]
+### Thycotic.PowerShell.EventPipeline.List[]
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

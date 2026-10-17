@@ -18,6 +18,15 @@ function Search-TssEventPipeline {
 
     Return a list of all active and inactive Event Pipeline Policies
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Search-TssEventPipeline -TssSession $session -IncludeInactive -Detailed
+
+    Return all active and inactive Event Pipelines with their triggers, filters and tasks
+
+    .PARAMETER Detailed
+    Return full Event Pipeline objects, with triggers, filters and tasks, instead of summaries
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/event-pipeline/Search-TssEventPipeline
 
@@ -27,8 +36,9 @@ function Search-TssEventPipeline {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'summary')]
     [OutputType('Thycotic.PowerShell.EventPipeline.Summary[]')]
+    [OutputType('Thycotic.PowerShell.EventPipeline.List[]')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -58,7 +68,11 @@ function Search-TssEventPipeline {
 
         # Sort by specific property, default EventPipelineName
         [string]
-        $SortBy = 'EventPipelineName'
+        $SortBy = 'EventPipelineName',
+
+        [Parameter(Mandatory, ParameterSetName = 'detailed')]
+        [switch]
+        $Detailed
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -69,11 +83,14 @@ function Search-TssEventPipeline {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'event-pipeline', 'summaries' -join '/'
+            if ($Detailed) {
+                $uri = $TssSession.ApiUrl, 'event-pipeline', 'list' -join '/'
+            }
             $uri = $uri, "sortBy[0].direction=asc&sortBy[0].name=$SortBy&take=$($TssSession.Take)" -join '?'
 
             $filters = @()
             switch ($tssParams.Keys) {
-                'PipelineId' { $filters += "filter.eventPipelineId=$PipelineId" }
+                'PipelinePolicyId' { $filters += "filter.eventPipelinePolicyId=$PipelinePolicyId" }
                 'PipelineName' { $filters += "filter.eventPipelineName=$PipelineName" }
                 'EventEntityType' { $filters += "filter.eventEntityTypeId=$EventEntityType"}
                 'IncludeInactive' { $filters += "filter.includeInactive=$([boolean]$IncludeInactive)" }
@@ -100,7 +117,28 @@ function Search-TssEventPipeline {
                 . $ErrorHandling $err
             }
 
-            if ($restResponse.records) {
+            if ($Detailed) {
+                if ($restResponse.records) {
+                    $unwrapViewField = {
+                        param($node)
+                        if ($node -is [System.Collections.IList]) {
+                            return , @(foreach ($item in $node) { & $unwrapViewField $item })
+                        }
+                        if ($null -eq $node -or $node.GetType().FullName -ne 'System.Management.Automation.PSCustomObject') {
+                            return $node
+                        }
+                        if ($node.PSObject.Properties['fieldInputType'] -and $node.PSObject.Properties['value']) {
+                            return & $unwrapViewField $node.value
+                        }
+                        $flat = [ordered]@{ }
+                        foreach ($property in $node.PSObject.Properties) {
+                            $flat[$property.Name] = & $unwrapViewField $property.Value
+                        }
+                        [pscustomobject]$flat
+                    }
+                    . $GetEventPipelineList (& $unwrapViewField $restResponse.records)
+                }
+            } elseif ($restResponse.records) {
                 [Thycotic.PowerShell.EventPipeline.Summary[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.EventPipeline.Summary]))
             }
         } else {
