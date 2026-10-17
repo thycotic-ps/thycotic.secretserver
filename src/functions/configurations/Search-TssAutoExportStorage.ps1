@@ -18,6 +18,15 @@ function Search-TssAutoExportStorage {
 
     Returns a list of items in Automatic Export Storage
 
+    .PARAMETER ConfigurationId
+    Automatic export configuration id; returns that configuration's storage items instead of the default configuration's
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
+    Search-TssAutoExportStorage -TssSession $session -ConfigurationId 2
+
+    Returns the items in Automatic Export Storage for automatic export configuration 2
+
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
@@ -27,7 +36,10 @@ function Search-TssAutoExportStorage {
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
-        $TssSession
+        $TssSession,
+
+        [int]
+        $ConfigurationId
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -39,6 +51,9 @@ function Search-TssAutoExportStorage {
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '11.0.000005' $PSCmdlet.MyInvocation
             $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage' -join '/'
+            if ($tssParams.ContainsKey('ConfigurationId')) {
+                $uri = $TssSession.ApiUrl, 'configuration', 'auto-export-storage', $ConfigurationId -join '/'
+            }
             $uri = $uri, "sortBy[0].direction=desc&sortBy[0].name=Id&take=$($TssSession.Take)" -join '?'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
