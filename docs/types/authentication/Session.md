@@ -22,11 +22,8 @@ grand_parent: Types
 | `AccessToken` | `string` | read/write | — |
 | `ApiUrl` | `string` | read/write | — |
 | `ApiVersion` | `string` | read/write | `"api/v1"` |
-| `AuthProvider` | `string` | read/write | `"SecretServer"` |
 | `expires_in` | `int` | read/write | — |
 | `ExpiresIn` | `int` | read/write | — |
-| `IsPlatformToken` | `bool` | read/write | `false` |
-| `PlatformUrl` | `string` | read/write | - |
 | `refresh_token` | `string` | read/write | — |
 | `RefreshToken` | `string` | read/write | — |
 | `SecretServer` | `string` | read/write | — |
@@ -37,18 +34,14 @@ grand_parent: Types
 | `TimeOfDeath` | `DateTime` | read/write | — |
 | `token_type` | `string` | read/write | — |
 | `TokenType` | `string` | read/write | — |
-| `VaultId` | `string` | read/write | - |
-| `VaultType` | `string` | read/write | - |
 | `WindowsAuth` | `string` | readonly | `"winauthwebservices"` |
 
 ## Methods
 
 - `[static RestResponse] AccessToken(string SecretServerHost, string Username, string Password, string ProxyServer, int Timeout = 0)`
 - `[bool] CheckTokenTtl(int Value)`
-- `[void] EnablePlatformAutoRefresh(PSCredential Credential)`
 - `[bool] IsValidSession()`
 - `[bool] IsValidToken()`
-- `[static RestResponse] PlatformToken(string PlatformUrl, string ClientId, SecureString ClientSecret, bool SkipCertificateCheck, int Timeout = 0)`
 - `[static RestResponse] RefreshToken(string SecretServerHost, string TokenValue, string ProxyServer, int Timeout = 0)`
 - `[bool] SessionExpire()`
 - `[bool] SessionRefresh()`

@@ -6,8 +6,6 @@ function Close-TssSession {
     .DESCRIPTION
     Expire the current session to Secret Server
 
-    A Delinea Platform session (New-TssSession -PlatformUrl) is not expired: Secret Server does not govern Platform tokens, so the token stays valid until it expires at the Platform and False is returned.
-
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Close-TssSession -TssSession $session
@@ -36,10 +34,6 @@ function Close-TssSession {
         switch ($TssSession.TokenType) {
             'WindowsAuth' { Write-Warning "Not supported token type for closing" }
             'SdkClient' { Write-Warning "Not supported token type for closing" }
-            'Platform' {
-                Write-Verbose 'Delinea Platform token: Secret Server oauth-expiration does not apply, the token stays valid until it expires at the Platform'
-                $TssSession.SessionExpire()
-            }
             default { $TssSession.SessionExpire() }
         }
     }

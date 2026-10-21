@@ -17,8 +17,6 @@ Close-TssSession [-TssSession] <Session> [<CommonParameters>]
 ## DESCRIPTION
 Expire the current session to Secret Server
 
-A Delinea Platform session (New-TssSession -PlatformUrl) is not expired: Secret Server does not govern Platform tokens, so the token stays valid until it expires at the Platform and False is returned.
-
 ## EXAMPLES
 
 ### EXAMPLE 1

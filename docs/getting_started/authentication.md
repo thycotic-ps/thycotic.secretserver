@@ -66,29 +66,6 @@ TokenType    : bearer
 ExpiresIn    : 1199
 ```
 
-## Delinea Platform
-
-When Secret Server is a vault behind the Delinea Platform, authenticate to the Platform and let the module find the vault with the `-PlatformUrl` parameter of `New-TssSession`:
-
-- Service user (unattended): `-Credential` takes a Platform service user. The user name is the client id and the password is the client secret (client credentials grant, scope `xpmheadless`). Human and federated Platform users cannot use this grant, and the error says so.
-- Existing token: `-AccessToken` takes a Platform access token you already have. It is validated with the Platform vault broker.
-
-```powershell
-$serviceUser = Get-Credential platform-automation
-$session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser
-Get-TssVersion -TssSession $session
-```
-
-The Platform vault broker lists the vaults (see [Get-TssPlatformVault](/thycotic.secretserver/commands/platform/Get-TssPlatformVault)). The module picks the active vault given by `-VaultId`, else the global default, else the default, else the first active vault. `-SecretServer` names the vault URL directly instead.
-
-The vault URL must use https and be a Secret Server Cloud host or the Platform host. For any other host, for example an on-premises Secret Server connected to the Platform, list it with `-AllowedVaultHost`. The Platform token is never sent to a host that is not trusted.
-
-The session properties `AuthProvider` (`Platform`), `PlatformUrl`, `VaultId`, `VaultType` and `IsPlatformToken` describe the connection. `SecretServer` and `ApiUrl` point at the vault, so every command works unchanged.
-
-Platform access tokens last about an hour. `SessionRefresh()` requests a new token only when the session was created with `-AutoRefresh`, which keeps the client secret on the session as a SecureString. `Close-TssSession` does not expire a Platform token: it stays valid until it expires at the Platform.
-
-[Test-TssPlatformIntegration](/thycotic.secretserver/commands/platform/Test-TssPlatformIntegration) and [Get-TssPlatformCompatibilityLevel](/thycotic.secretserver/commands/platform/Get-TssPlatformCompatibilityLevel) report whether a Secret Server instance is integrated with the Platform.
-
 ## SecretManagement Module
 
 Microsoft's PowerShell Team's [SecretManagement](https://devblogs.microsoft.com/powershell/secretmanagement-and-secretstore-are-generally-available/) modules give you a universal abstraction layer for management of credentials that you need to use in your scripts on a given machine. These modules are cross-platform and can be used on **any** operating system that Windows PowerShell or Powershell 7+ are supported. Your admins can leverage these two modules to more secure store the credential needed for authenticating to Secret Server.

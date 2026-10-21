@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Net;
-using System.Security;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -26,14 +25,6 @@ namespace Thycotic.PowerShell.Authentication
         public DateTime TimeOfDeath { get; set; }
         public int Take { get; set; } = int.MaxValue;
         public bool SkipCertificateCheck { get; set; } = false;
-        public string AuthProvider { get; set; } = "SecretServer";
-        public string PlatformUrl { get; set; }
-        public string VaultId { get; set; }
-        public string VaultType { get; set; }
-        public bool IsPlatformToken { get; set; } = false;
-        public bool AutoRefresh { get; private set; } = false;
-        private string platformClientId;
-        private SecureString platformClientSecret;
 
         public bool IsValidSession()
         {
@@ -94,10 +85,6 @@ namespace Thycotic.PowerShell.Authentication
 
         public bool SessionExpire()
         {
-            if (this.IsPlatformToken)
-            {
-                return false;
-            }
 			if (!this.TokenType.Equals("WindowsAuth") || !this.TokenType.Equals("SdkClient"))
             {
                 try
@@ -121,10 +108,6 @@ namespace Thycotic.PowerShell.Authentication
 
         public bool SessionRefresh()
         {
-            if (this.IsPlatformToken)
-            {
-                return PlatformSessionRefresh();
-            }
 			try
             {
 				var obj = Request.RefreshToken(this.SecretServer, this.RefreshToken, null);
@@ -138,45 +121,6 @@ namespace Thycotic.PowerShell.Authentication
 				this.TimeOfDeath = DateTime.Now.Add(TimeSpan.FromSeconds(jsonObj.expires_in));
 				return true;
 			}
-            catch
-            {
-                return false;
-            }
-        }
-
-        public void EnablePlatformAutoRefresh(PSCredential Credential)
-        {
-            this.platformClientId = Credential.UserName;
-            this.platformClientSecret = Credential.Password.Copy();
-            this.platformClientSecret.MakeReadOnly();
-            this.AutoRefresh = true;
-        }
-
-        private bool PlatformSessionRefresh()
-        {
-            if (!this.AutoRefresh)
-            {
-                return false;
-            }
-            try
-            {
-                var response = Request.PlatformToken(this.PlatformUrl, this.platformClientId, this.platformClientSecret, this.SkipCertificateCheck, 0);
-                if (!response.IsSuccessful)
-                {
-                    return false;
-                }
-                SystemTextJsonSerializer ds = new SystemTextJsonSerializer();
-                var jsonObj = ds.Deserialize<ApiTokenResponse>(response);
-                if (string.IsNullOrEmpty(jsonObj.access_token))
-                {
-                    return false;
-                }
-                this.AccessToken = jsonObj.access_token;
-                this.ExpiresIn = jsonObj.expires_in;
-                this.StartTime = DateTime.Now;
-                this.TimeOfDeath = DateTime.Now.Add(TimeSpan.FromSeconds(jsonObj.expires_in));
-                return true;
-            }
             catch
             {
                 return false;
@@ -229,26 +173,6 @@ namespace Thycotic.PowerShell.Authentication
 			RestResponse response = client.Execute(request);
 			return response;
 		}
-
-        public static RestResponse PlatformToken(string PlatformUrl, string ClientId, SecureString ClientSecret, bool SkipCertificateCheck, int Timeout = 0)
-        {
-            var options = new RestClientOptions(PlatformUrl + "/identity/api/oauth2/token/xpmplatform");
-            options.Timeout = Timeout > 0 ? TimeSpan.FromMilliseconds(Timeout) : TimeSpan.FromSeconds(100);
-            if (SkipCertificateCheck)
-            {
-                options.RemoteCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-            }
-            var client = new RestClient(options);
-            var request = new RestRequest() { Method = Method.Post };
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
-            request.AddHeader("X-CENTRIFY-NATIVE-CLIENT", "true");
-            request.AddParameter("grant_type", "client_credentials");
-            request.AddParameter("client_id", ClientId);
-            request.AddParameter("client_secret", new NetworkCredential(string.Empty, ClientSecret).Password);
-            request.AddParameter("scope", "xpmheadless");
-            RestResponse response = client.Execute(request);
-            return response;
-        }
     }
 
 }

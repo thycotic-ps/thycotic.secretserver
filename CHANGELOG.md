@@ -647,7 +647,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssPlatformStatus` - Get the status of a Delinea Platform tenant (GET v1/platform/status).
 * `Get-TssPlatformSync` - Get the Platform synchronization status (GET v1/platform/synchronization).
 * `Get-TssPlatformUserMapping` - Get the Platform user mapped to a Secret Server user (GET v1/platform/user/mapping).
-* `Get-TssPlatformVault` - Get the Secret Server vaults the Delinea Platform vault broker returns (GET vaultbroker/api/vaults on the Platform).
 * `Invoke-TssPlatformProvision` - Provision a Delinea Platform tenant for this Secret Server (POST v1/platform/provision).
 * `Invoke-TssPlatformSyncNow` - Start a Platform synchronization now (POST v1/platform/synchronization-now).
 * `New-TssPlatformGroup` - Link a Delinea Platform directory group to Secret Server (POST v1/platform/group).
@@ -1141,10 +1140,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### General Updates
 
-* `New-TssSession` - Delinea Platform authentication (Refs #481): new parameter sets `platform` (`-PlatformUrl -Credential`, Platform service user, client credentials grant) and `platformToken` (`-PlatformUrl -AccessToken`), with `-VaultId`, `-SecretServer` (vault override), `-AllowedVaultHost` and `-AutoRefresh`. The vault comes from the Platform vault broker and must pass a trust check (https, Secret Server Cloud host, the Platform host, or `-AllowedVaultHost`). Existing parameter sets, positions, the `nts` alias and the output type are unchanged.
-* `TssSession` - new properties `AuthProvider` (default `SecretServer`), `PlatformUrl`, `VaultId`, `VaultType`, `IsPlatformToken`, read-only `AutoRefresh`; `SessionRefresh()` re-grants a Platform token only with `-AutoRefresh` (client secret held as a private SecureString, #455); `SessionExpire()` does not call oauth-expiration for Platform tokens.
-* `Close-TssSession` - a Platform session returns False with a verbose note instead of calling oauth-expiration.
-* Docs: "Delinea Platform" section on the Authentication getting started page.
 * `Export-TssReport` - new parameter set for GET v1/reports/download-csv; existing parameter sets keep their parameters.
 * `Add-TssSecretTemplateField` - new parameter set `Name` (`-Name`, `-FieldSlugName`, `-Description`, `-DataType`) for POST v1/secret-templates/{secretTemplateId}/fields, output `Thycotic.PowerShell.SecretTemplates.FieldDetail`; `-Field` now names parameter set `Default` (the default set); positions, aliases and the existing output unchanged.
 * `Get-TssSecretTemplate` - new `-Detail` switch reads GET v2/secret-templates/{secretTemplateId} and returns `Thycotic.PowerShell.SecretTemplates.Detail`; existing parameters and output unchanged.
@@ -1176,7 +1171,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Tests
 
 * Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
-* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `New-TssSession`, `Search-TssAutoExportStorage`, `Search-TssEventPipeline`.
+* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssEventPipeline`.
 
 ## 0.62.1 -- 2026-06-29
 

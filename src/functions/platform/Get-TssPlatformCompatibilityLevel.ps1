@@ -17,11 +17,11 @@ function Get-TssPlatformCompatibilityLevel {
     Returns the compatibility level the Secret Server instance reports for Delinea Platform integration
 
     .EXAMPLE
-    $session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -AccessToken $platformToken
     $level = Get-TssPlatformCompatibilityLevel -TssSession $session
     '{0}.{1}' -f $level.Major, $level.Minor
 
-    Connects through the Delinea Platform and shows the major and minor compatibility level of the vault
+    Uses a Delinea Platform access token and shows the major and minor compatibility level of the vault
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/platform/Get-TssPlatformCompatibilityLevel

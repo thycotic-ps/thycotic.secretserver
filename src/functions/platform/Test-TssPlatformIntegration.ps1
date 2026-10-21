@@ -5,7 +5,7 @@ function Test-TssPlatformIntegration {
 
     .DESCRIPTION
     Asks Secret Server whether Delinea Platform integration is configured and whether the session token was issued by that Platform.
-    With a Platform session (New-TssSession -PlatformUrl) every flag is True when the vault is integrated with the Platform that issued the token.
+    With a Delinea Platform access token (New-TssSession -AccessToken) every flag is True when the vault is integrated with the Platform that issued the token.
     Every flag is False when the session token is not a Platform token the server accepts, for example a Secret Server token or an instance with no Platform integration.
     The endpoint allows anonymous access; the session token is sent so the server can inspect it.
 
@@ -13,10 +13,10 @@ function Test-TssPlatformIntegration {
     TssSession object created by New-TssSession for authentication
 
     .EXAMPLE
-    $session = New-TssSession -PlatformUrl https://mytenant.delinea.app -Credential $serviceUser
+    $session = New-TssSession -SecretServer https://vault.secretservercloud.com -AccessToken $platformToken
     Test-TssPlatformIntegration -TssSession $session
 
-    Connects through the Delinea Platform and shows whether the vault accepts the Platform token and matches the Platform issuer
+    Uses a Delinea Platform access token and shows whether the vault accepts the Platform token and matches the Platform issuer
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred

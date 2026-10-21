@@ -275,7 +275,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Get-TssPlatformSync]               | 12.3.000024               |
 | [Get-TssPlatformTeamsStatus]        | 12.3.000024               |
 | [Get-TssPlatformUserMapping]        | 12.3.000024               |
-| [Get-TssPlatformVault]              | 11.10.000000              |
 | [Get-TssProxyAudit]                 | 12.3.000024               |
 | [Get-TssProxyEndpointNotification]  | 12.3.000024               |
 | [Get-TssProxyExplanation]           | 12.3.000024               |
@@ -924,7 +923,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 [Search-TssConfigurationBackupLog]:/thycotic.secretserver/commands/configurations/Search-TssConfigurationBackupLog
 [New-TssSecretPolicy]:/thycotic.secretserver/commands/configurations/New-TssSecretPolicy
 [Get-TssPlatformCompatibilityLevel]:/thycotic.secretserver/commands/platform/Get-TssPlatformCompatibilityLevel
-[Get-TssPlatformVault]:/thycotic.secretserver/commands/platform/Get-TssPlatformVault
 [Test-TssPlatformIntegration]:/thycotic.secretserver/commands/platform/Test-TssPlatformIntegration
 [Get-TssUnlimitedAdmin]:/thycotic.secretserver/commands/configurations/Get-TssUnlimitedAdmin
 [Get-TssUnlimitedAdminAudit]:/thycotic.secretserver/commands/configurations/Get-TssUnlimitedAdminAudit
