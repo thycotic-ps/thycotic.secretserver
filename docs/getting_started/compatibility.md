@@ -72,13 +72,11 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Clear-TssLogCollection]            | 12.3.000024               |
 | [Clear-TssLongRunningTask]          | 12.3.000024               |
 | [Clear-TssNotificationNewStatus]    | 12.3.000024               |
-| [Clear-TssPbaChallenge]             | 12.3.000024               |
 | [Clear-TssQuartzJobError]           | 12.3.000024               |
 | [Clear-TssSystemLog]                | 12.3.000024               |
 | [Clear-TssUpgradeInProgress]        | 12.3.000024               |
 | [Complete-TssManualUpgrade]         | 12.3.000024               |
 | [Confirm-TssManualUpgradeStaging]   | 12.3.000024               |
-| [Confirm-TssPbaPair]                | 12.3.000024               |
 | [Convert-TssSecretTemplate]         | 12.3.000024               |
 | [Copy-TssDiscoveryScanner]          | 12.3.000024               |
 | [Copy-TssEventPipelinePolicy]       | 12.3.000024               |
@@ -254,8 +252,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Get-TssPasswordRequirementAudit]   | 12.3.000024               |
 | [Get-TssPasswordTypeAuth]           | 12.3.000024               |
 | [Get-TssPasswordTypeUsage]          | 12.3.000024               |
-| [Get-TssPbaConfiguration]           | 12.3.000024               |
-| [Get-TssPbaImportStatus]            | 12.3.000024               |
 | [Get-TssPlatformAccessProgress]     | 12.3.000024               |
 | [Get-TssPlatformCompatibilityLevel] | 12.3.000024               |
 | [Get-TssPlatformConfiguration]      | 12.3.000024               |
@@ -402,7 +398,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Import-TssDiscoveryAccountRule]    | 12.3.000024               |
 | [Import-TssDiscoveryDependencyRule] | 12.3.000024               |
 | [Import-TssEventPipelinePolicy]     | 12.3.000024               |
-| [Import-TssPbaHistory]              | 12.3.000024               |
 | [Import-TssSecretCsv]               | 12.3.000024               |
 | [Import-TssSecretTemplate]          | 12.3.000024               |
 | [Import-TssSecretXml]               | 12.3.000024               |
@@ -620,7 +615,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Search-TssOauthExpiration]         | 12.3.000024               |
 | [Search-TssPasswordDictionary]      | 12.3.000024               |
 | [Search-TssPasswordRequirement]     | 12.3.000024               |
-| [Search-TssPbaChallenge]            | 12.3.000024               |
 | [Search-TssPlatformConfigurationAudit] | 12.3.000024               |
 | [Search-TssPlatformDirectory]       | 12.3.000024               |
 | [Search-TssPlatformGroup]           | 12.3.000024               |
@@ -824,7 +818,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Stop-TssUserSession]               | 12.3.000024               |
 | [Stop-TssWorkflowRequest]           | 12.3.000024               |
 | [Submit-TssSecretAccessRequestApproval] | 12.3.000024               |
-| [Sync-TssPbaMetadata]               | 12.3.000024               |
 | [Test-TssConfigurationRadius]       | 12.3.000024               |
 | [Test-TssCurrentUserPassword]       | 12.3.000024               |
 | [Test-TssCustomCommand]             | 12.3.000024               |
@@ -834,7 +827,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Test-TssEventLog]                  | 12.3.000024               |
 | [Test-TssLicenseForConnectionManager] | 12.3.000024               |
 | [Test-TssManualUpgradeSqlDelta]     | 12.3.000024               |
-| [Test-TssPbaConnection]             | 12.3.000024               |
 | [Test-TssPlatformIntegration]       | 12.3.000024               |
 | [Test-TssSecretOwner]               | 12.3.000024               |
 | [Test-TssSessionRecordingArchive]   | 12.3.000024               |
@@ -873,7 +865,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Update-TssPasswordDictionary]      | 12.3.000024               |
 | [Update-TssPasswordRequirementRule] | 12.3.000024               |
 | [Update-TssPasswordType]            | 12.3.000024               |
-| [Update-TssPbaConfiguration]        | 12.3.000024               |
 | [Update-TssReport]                  | 12.3.000024               |
 | [Update-TssRolePermission]          | 12.3.000024               |
 | [Update-TssSdkClientAccount]        | 12.3.000024               |
@@ -1720,15 +1711,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 [Start-TssDataReplication]:/thycotic.secretserver/commands/disaster-recovery/Start-TssDataReplication
 [Test-TssDataReplication]:/thycotic.secretserver/commands/disaster-recovery/Test-TssDataReplication
 [Get-TssSqlReplication]:/thycotic.secretserver/commands/sql-server-replication/Get-TssSqlReplication
-[Clear-TssPbaChallenge]:/thycotic.secretserver/commands/pba-configuration/Clear-TssPbaChallenge
-[Confirm-TssPbaPair]:/thycotic.secretserver/commands/pba-configuration/Confirm-TssPbaPair
-[Get-TssPbaConfiguration]:/thycotic.secretserver/commands/pba-configuration/Get-TssPbaConfiguration
-[Get-TssPbaImportStatus]:/thycotic.secretserver/commands/pba-configuration/Get-TssPbaImportStatus
-[Import-TssPbaHistory]:/thycotic.secretserver/commands/pba-configuration/Import-TssPbaHistory
-[Search-TssPbaChallenge]:/thycotic.secretserver/commands/pba-configuration/Search-TssPbaChallenge
-[Sync-TssPbaMetadata]:/thycotic.secretserver/commands/pba-configuration/Sync-TssPbaMetadata
-[Test-TssPbaConnection]:/thycotic.secretserver/commands/pba-configuration/Test-TssPbaConnection
-[Update-TssPbaConfiguration]:/thycotic.secretserver/commands/pba-configuration/Update-TssPbaConfiguration
 [Get-TssHsmAudit]:/thycotic.secretserver/commands/hsm-configuration/Get-TssHsmAudit
 [Get-TssKeyManagement]:/thycotic.secretserver/commands/key-management/Get-TssKeyManagement
 [Get-TssKeyManagementAudit]:/thycotic.secretserver/commands/key-management/Get-TssKeyManagementAudit

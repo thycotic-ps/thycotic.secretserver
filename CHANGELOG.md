@@ -627,18 +627,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Set-TssPasswordRequirement` - Update a password requirement (PATCH v1/password-requirements/{id}).
 * `Update-TssPasswordRequirementRule` - Replace the rules of a password requirement (PUT v1/password-requirements/{id}/rules).
 
-#### Pba Configuration
-
-* `Clear-TssPbaChallenge` - Clear Privilege Behavior Analytics (PBA) challenges (PUT v1/clear-pba-challenges).
-* `Confirm-TssPbaPair` - Confirm the Secret Server key pair with Privilege Behavior Analytics (PBA) (POST v1/pba-confirm-pair).
-* `Get-TssPbaConfiguration` - Get the Privilege Behavior Analytics (PBA) configuration (GET v1/pba-configuration).
-* `Get-TssPbaImportStatus` - Get the Privilege Behavior Analytics (PBA) historical import status (GET v1/pba-configuration/get-historical-import-status).
-* `Import-TssPbaHistory` - Import historical events into Privilege Behavior Analytics (PBA) (POST v1/pba-history-import).
-* `Search-TssPbaChallenge` - Search Privilege Behavior Analytics (PBA) challenges (GET v1/pba-challenges).
-* `Sync-TssPbaMetadata` - Sync metadata to Privilege Behavior Analytics (PBA) (POST v1/pba-sync-metadata).
-* `Test-TssPbaConnection` - Test the Privilege Behavior Analytics (PBA) connection (POST v1/pba-test-connection).
-* `Update-TssPbaConfiguration` - Update the Privilege Behavior Analytics (PBA) configuration (PUT v1/pba-configuration).
-
 #### Platform
 
 * `Get-TssPlatformCompatibilityLevel` - Get the Delinea Platform integration compatibility level (GET v1/platform/compatibility-level).
