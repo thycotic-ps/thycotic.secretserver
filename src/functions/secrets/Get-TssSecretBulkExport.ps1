@@ -72,13 +72,13 @@ function Get-TssSecretBulkExport {
                 $restResponse = $null
                 switch ($PSCmdlet.ParameterSetName) {
                     'Detail' {
-                        $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', 'export', $currentId, 'details' -join '/'
+                        $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'secrets', 'export', $currentId, 'details' -join '/'
                     }
                     'Status' {
-                        $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', 'export', 'job', $currentId -join '/'
+                        $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'secrets', 'export', 'job', $currentId -join '/'
                     }
                     default {
-                        $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', 'export' -join '/'
+                        $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'secrets', 'export' -join '/'
                         $uri = $uri, "jobId=$([uri]::EscapeDataString($currentId))" -join '?'
                     }
                 }

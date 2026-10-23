@@ -97,7 +97,7 @@ function Update-TssSecretSecurityApproval {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $uri = ($TssSession.ApiUrl -replace 'v1','v3'), 'secrets', $Id, 'security-approval' -join '/'
+            $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v3'), 'secrets', $Id, 'security-approval' -join '/'
             $queryParams = @()
             switch ($tssParams.Keys) {
                 'AutoCheckIn' {

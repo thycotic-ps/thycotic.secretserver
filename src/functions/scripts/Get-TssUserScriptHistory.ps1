@@ -56,7 +56,7 @@ function Get-TssUserScriptHistory {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($currentId in $Id) {
                 $restResponse = $null
-                $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'userscripts', 'history', $currentId -join '/'
+                $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'userscripts', 'history', $currentId -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"

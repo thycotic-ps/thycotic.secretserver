@@ -165,7 +165,7 @@ function New-TssDiscoverySource {
                     }
                 }
                 default {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'discovery', 'source' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'discovery', 'source' -join '/'
                     $body = @{
                         data = @{
                             discoverySourceType = $DiscoverySourceType

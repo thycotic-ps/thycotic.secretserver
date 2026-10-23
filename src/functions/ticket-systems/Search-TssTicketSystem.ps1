@@ -69,7 +69,7 @@ function Search-TssTicketSystem {
             $queryParams = @()
             switch ($PSCmdlet.ParameterSetName) {
                 'V2' {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'ticket-systems' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'ticket-systems' -join '/'
                     $queryParams += "take=$($TssSession.Take)"
                     $queryParams += "includeInactive=$([boolean]$IncludeInactive)"
                 }
@@ -78,7 +78,7 @@ function Search-TssTicketSystem {
                     $queryParams += "includeInactive=$([boolean]$IncludeInactive)"
                 }
                 default {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v3'), 'ticket-systems' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v3'), 'ticket-systems' -join '/'
                     $queryParams += "take=$($TssSession.Take)"
                     if ($tssParams.ContainsKey('IncludeInactive')) {
                         $queryParams += "filter.includeInactive=$([boolean]$IncludeInactive)"

@@ -135,7 +135,7 @@ function Get-TssSecretSearchTotal {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', 'search-total' -join '/'
+            $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'secrets', 'search-total' -join '/'
             $queryParams = @()
             $queryParams += "take=$($TssSession.Take)"
             $queryParams += 'sortBy[0].direction=asc'

@@ -91,7 +91,7 @@ function Set-TssPlatformIntegrationStep {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             switch ($PSCmdlet.ParameterSetName) {
                 'StepType' {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'platform-integration', 'update-step' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'platform-integration', 'update-step' -join '/'
                     $body = @{ data = @{ } }
                     switch ($tssParams.Keys) {
                         'StepType' {

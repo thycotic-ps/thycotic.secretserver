@@ -56,7 +56,7 @@ function Get-TssPlatformIntegrationProgress {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             switch ($PSCmdlet.ParameterSetName) {
                 'ByStepType' {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'platform-integration', 'integration-progress' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'platform-integration', 'integration-progress' -join '/'
                 }
                 default {
                     $uri = $TssSession.ApiUrl, 'platform-integration', 'integration-progress' -join '/'

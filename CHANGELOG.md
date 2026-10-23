@@ -1155,6 +1155,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Tests
 
 * Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
+* `tests/Module.ApiUrlRewrite.Tests.ps1` fails when a function rewrites `ApiUrl` with a `-replace` pattern that is not anchored at the end of `/api/v1` (an unanchored `'v1'` also rewrites a `v1` in the host or install path). `Search-TssConfigurationBackupLog` and `Search-TssSystemLog` predate this release and are left for a separate fix.
 * Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssDirectoryServiceDomain`, `Search-TssEventPipeline`, `Start-TssDirectoryServiceSync`.
 
 ## 0.62.1 -- 2026-06-29

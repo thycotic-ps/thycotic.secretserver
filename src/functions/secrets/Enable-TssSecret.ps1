@@ -57,7 +57,7 @@ function Enable-TssSecret {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($currentId in $Id) {
                 $restResponse = $null
-                $uri = ($TssSession.ApiUrl -replace 'v1','v3'), 'secrets', $currentId, 'activate' -join '/'
+                $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v3'), 'secrets', $currentId, 'activate' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'PUT'
                 if ($PSCmdlet.ShouldProcess("Secret: $currentId", "$($invokeParams.Method) $uri")) {

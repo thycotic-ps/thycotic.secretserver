@@ -76,7 +76,7 @@ function Get-TssSecretState {
                 if ($PSCmdlet.ParameterSetName -ne 'state') {
                     switch ($PSCmdlet.ParameterSetName) {
                         'flagsV2' {
-                            $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'secrets', $secret, 'state', 'flags' -join '/'
+                            $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'secrets', $secret, 'state', 'flags' -join '/'
                         }
                         default {
                             $uri = $TssSession.ApiUrl, 'secrets', $secret, 'state', 'flags' -join '/'

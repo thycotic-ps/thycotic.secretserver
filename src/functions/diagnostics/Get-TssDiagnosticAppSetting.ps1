@@ -61,7 +61,7 @@ function Get-TssDiagnosticAppSetting {
                     $uri = $TssSession.ApiUrl, 'diagnostics', 'app-settings' -join '/'
                 }
                 default {
-                    $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'diagnostics', 'app-settings' -join '/'
+                    $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'diagnostics', 'app-settings' -join '/'
                 }
             }
             $invokeParams.Uri = $uri

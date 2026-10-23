@@ -89,7 +89,7 @@ function Add-TssTeamMember {
                     domainId = $domainField
                 }
             } else {
-                $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'teams', $Id, 'members' -join '/'
+                $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'teams', $Id, 'members' -join '/'
                 $body = @{ data = @{ groupIds = @($GroupId) } }
             }
             $invokeParams.Uri = $uri

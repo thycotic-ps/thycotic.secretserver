@@ -68,7 +68,7 @@ function Get-TssTicketSystem {
                         $uri = $TssSession.ApiUrl, 'ticket-systems', $currentId -join '/'
                     }
                     default {
-                        $uri = ($TssSession.ApiUrl -replace 'v1','v2'), 'ticket-systems', $currentId -join '/'
+                        $uri = ($TssSession.ApiUrl -replace '/api/v1$','/api/v2'), 'ticket-systems', $currentId -join '/'
                     }
                 }
                 $invokeParams.Uri = $uri
