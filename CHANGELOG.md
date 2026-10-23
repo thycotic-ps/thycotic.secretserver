@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.63.0 -- unreleased
 
+### Breaking Changes
+
+* `Get-TssSecretPasswordStatus` - reads the published route GET v1/secrets/secret-detail/{id}/password-status instead of the internal route internals/secret-detail/{id}/password-status, which is unsupported and can change in any Secret Server release. Parameters and output are unchanged, and the internal endpoint verbose note is gone.
+
 ### New Stuff
 
 #### Advanced Config Settings
@@ -1131,7 +1135,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssUserAudit` - new parameter set for GET v1/users/action/audit; existing parameter sets unchanged.
 * `Get-TssUserOwner` - new parameter set for GET v1/users/{id}/owners/{ownerId}; existing parameter sets unchanged.
 * `Lock-TssUser` - new parameter set for POST v1/users/{userId}/lock-out; existing parameter sets unchanged.
-* `Get-TssSecretPasswordStatus` - new `-RestApi` switch reads GET v1/secrets/secret-detail/{id}/password-status instead of the internal route (and writes no internal endpoint note); default behavior, parameters and output unchanged. Existing shape test tests/secrets/Get-TssSecretPasswordStatus.Tests.ps1 gains RestApi in its known parameters.
 * `SiteConnectorQueueType` enum: added `RabbitMqQuorum` (server value 3), so site connectors of that queue type cast (used by `Get-TssDistributedEngineSiteConnectorStub -QueueType RabbitMqQuorum`; also lets the existing site connector cmdlets return quorum connectors). Additive, existing values unchanged.
 * `Search-TssEventPipeline` - new `-Detailed` switch (parameter set `detailed`, GET v1/event-pipeline/list) returns `Thycotic.PowerShell.EventPipeline.List[]` with triggers, filters and tasks; existing parameters, positions and `Summary[]` output unchanged.
 * `New-TssMetadataField` - new parameter set `field` (`-SectionId`, `-FieldName`, `-FieldDataType`, no item parameters) for POST v1/metadata/fields, output `Thycotic.PowerShell.Metadata.FieldSummary` as a second OutputType; existing parameter sets `currentsection` and `newsection` unchanged.
@@ -1155,8 +1158,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Tests
 
 * Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
+* Request tests run commands in a runspace that cannot prompt, with `Invoke-TssApi` replaced by a recorder (`tests/_helperscripts/NoHostRunspace.ps1`); `Get-TssSecretPasswordStatus` is checked to call the published route.
 * `tests/Module.ApiUrlRewrite.Tests.ps1` fails when a function rewrites `ApiUrl` with a `-replace` pattern that is not anchored at the end of `/api/v1` (an unanchored `'v1'` also rewrites a `v1` in the host or install path). `Search-TssConfigurationBackupLog` and `Search-TssSystemLog` predate this release and are left for a separate fix.
-* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssDirectoryServiceDomain`, `Search-TssEventPipeline`, `Start-TssDirectoryServiceSync`.
+* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssDirectoryServiceDomain`, `Search-TssEventPipeline`, `Start-TssDirectoryServiceSync`.
 
 ## 0.62.1 -- 2026-06-29
 

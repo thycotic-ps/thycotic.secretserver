@@ -5,21 +5,13 @@ function Get-TssSecretPasswordStatus {
 
     .DESCRIPTION
     Get status of password change
-
-    .PARAMETER RestApi
-    Read the status from the public REST route (secrets/secret-detail/{id}/password-status) instead of the internal route
+    Reads the published route GET secrets/secret-detail/{id}/password-status. Before 0.63.0 this command read the internal route internals/secret-detail/{id}/password-status, which is unsupported and can change in any Secret Server release; the output type is unchanged.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecretPasswordStatus -TssSession $session -Id 26
 
     Get password change status of Secret ID 26
-
-    .EXAMPLE
-    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssSecretPasswordStatus -TssSession $session -Id 26 -RestApi
-
-    Get password change status of Secret ID 26 from the public REST route
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretPasswordStatus
@@ -42,10 +34,7 @@ function Get-TssSecretPasswordStatus {
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('SecretId')]
         [int[]]
-        $Id,
-
-        [switch]
-        $RestApi
+        $Id
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -53,19 +42,12 @@ function Get-TssSecretPasswordStatus {
     }
 
     process {
-        if (-not $RestApi) {
-            Write-TssInternalNote $PSCmdlet.MyInvocation
-        }
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
             foreach ($secret in $Id) {
                 $restResponse = $null
-                if ($RestApi) {
-                    $uri = $TssSession.ApiUrl, 'secrets', 'secret-detail', $secret, 'password-status' -join '/'
-                } else {
-                    $uri = $TssSession.ApiUrl.Replace('api/v1', 'internals'), 'secret-detail', $secret, 'password-status' -join '/'
-                }
+                $uri = $TssSession.ApiUrl, 'secrets', 'secret-detail', $secret, 'password-status' -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
 

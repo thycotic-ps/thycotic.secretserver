@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'Id', 'RestApi'
+        [object[]]$knownParameters = 'TssSession', 'Id'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -23,40 +23,27 @@ Describe "$commandName verify parameters" {
     }
 }
 
-Describe "$commandName parameter sets" {
-    Context "Additive parameters" {
-        It "$commandName should take RestApi as System.Management.Automation.SwitchParameter" -TestCases @{ CommandName = $commandName } {
-            (Get-Command $CommandName).Parameters['RestApi'].ParameterType.FullName | Should -Be 'System.Management.Automation.SwitchParameter'
-        }
-        It "$commandName should keep RestApi optional in every set" -TestCases @{ CommandName = $commandName } {
-            @((Get-Command $CommandName).Parameters['RestApi'].Attributes | Where-Object { $_ -is [System.Management.Automation.ParameterAttribute] -and $_.Mandatory }).Count | Should -Be 0
-        }
+Describe "$commandName request" {
+    BeforeAll {
+        . ([System.IO.Path]::Combine($PSScriptRoot, '..', '_helperscripts', 'NoHostRunspace.ps1'))
+        $shell = New-TssNoHostShell
+        $case = Invoke-TssNoHostCase -Shell $shell -Script 'Get-TssSecretPasswordStatus -TssSession (New-TssTestSession) -Id 26 -Verbose' -ResponseContent '{"status":"Pending"}'
     }
-    BeforeDiscovery {
-        $setCases = @(
-            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'Id'); Optional = @('RestApi'); Absent = @() }
-        )
+    AfterAll {
+        $shell.Dispose()
     }
-    Context "Parameter set <SetName>" -Foreach $setCases {
-        BeforeAll {
-            $set = (Get-Command $CommandName).ParameterSets.Where({ $_.Name -eq $SetName })[0]
-        }
-        It "should exist" {
-            $set | Should -Not -BeNullOrEmpty
-        }
-        It "should require exactly <Mandatory>" {
-            $actual = $set.Parameters.Where({ $_.IsMandatory }).Name | Sort-Object
-            ($actual -join ',') | Should -BeExactly (($Mandatory | Sort-Object) -join ',')
-        }
-        It "should have exactly <Optional> as optional" {
-            $common = [System.Management.Automation.PSCmdlet]::CommonParameters + [System.Management.Automation.PSCmdlet]::OptionalCommonParameters
-            $actual = $set.Parameters.Where({ -not $_.IsMandatory -and $_.Name -notin $common }).Name | Sort-Object
-            ($actual -join ',') | Should -BeExactly (($Optional | Sort-Object) -join ',')
-        }
-        It "should not offer <Absent>" {
-            foreach ($name in $Absent) {
-                $set.Parameters.Name | Should -Not -Contain $name
-            }
-        }
+    It "$commandName should read the published route secrets/secret-detail/{id}/password-status" {
+        $case.Calls.Count | Should -Be 1
+        $case.Calls[0].Uri | Should -BeExactly 'https://tss.example.test/SecretServer/api/v1/secrets/secret-detail/26/password-status'
+        $case.Calls[0].Method | Should -Be 'GET'
+    }
+    It "$commandName should not call an internal endpoint" {
+        $case.Calls.Uri | Should -Not -Match '/internals/'
+        $case.Verbose | Should -Not -Match 'calling an internal endpoint'
+    }
+    It "$commandName should output the status as Thycotic.PowerShell.Secrets.PasswordStatus" {
+        $case.Errors | Should -BeNullOrEmpty
+        $case.Output.Count | Should -Be 1
+        $case.Output[0].GetType().FullName | Should -Be 'Thycotic.PowerShell.Secrets.PasswordStatus'
     }
 }
