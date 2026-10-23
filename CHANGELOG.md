@@ -9,12 +9,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### New Stuff
 
-#### Active Directory
-
-* `New-TssActiveDirectoryDomain` - Create a directory domain through the legacy Active Directory endpoint (POST v1/active-directory/domains).
-* `Search-TssActiveDirectoryDomain` - Search directory domains through the legacy Active Directory endpoint (GET v1/active-directory/domains).
-* `Start-TssActiveDirectorySync` - Start the Active Directory group and user synchronization (POST v1/active-directory/synchronize).
-
 #### Advanced Config Settings
 
 * `New-TssAdvancedConfigurationSetting` - Create an advanced configuration setting value (POST v1/advanced-config-settings).
@@ -224,13 +218,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Directory Services
 
-* `Get-TssDirectoryConfiguration` - Get the Directory Services configuration (GET v1/directory-services/configuration).
-* `Get-TssDirectoryConfigurationAudit` - Get the audit trail of Directory Services configuration changes (GET v1/directory-services/configuration/audits).
-* `Get-TssDirectoryDomainStub` - Get a template for a new Directory Services domain (GET v1/directory-services/domains/stub, GET v2/directory-services/domains/stub).
-* `Search-TssDirectorySyncLog` - Search the Directory Services synchronization log (GET v1/directory-services/synchronization/logs).
+* `Get-TssDirectoryServiceConfiguration` - Get the Directory Services configuration (GET v1/directory-services/configuration).
+* `Get-TssDirectoryServiceConfigurationAudit` - Get the audit trail of Directory Services configuration changes (GET v1/directory-services/configuration/audits).
+* `Get-TssDirectoryServiceDomainStub` - Get a template for a new Directory Services domain (GET v1/directory-services/domains/stub, GET v2/directory-services/domains/stub).
+* `Search-TssDirectoryServiceSyncLog` - Search the Directory Services synchronization log (GET v1/directory-services/synchronization/logs).
 * `Search-TssDomain` - Search the domains a user can log in with (GET v1/domains).
-* `Set-TssDirectoryConfiguration` - Update the Directory Services configuration (PATCH v1/directory-services/configuration).
-* `Set-TssDirectoryDomain` - Update a Directory Services domain (PATCH v1/directory-services/domains/{domainId}, PATCH v2/directory-services/domains/{domainId}).
+* `Set-TssDirectoryServiceConfiguration` - Update the Directory Services configuration (PATCH v1/directory-services/configuration).
+* `Set-TssDirectoryServiceDomain` - Update a Directory Services domain (PATCH v1/directory-services/domains/{domainId}, PATCH v2/directory-services/domains/{domainId}).
 
 #### Disaster Recovery
 
@@ -1145,6 +1139,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Search-TssAutoExportStorage` - new optional -ConfigurationId parameter: GET v1/configuration/auto-export-storage/{id} (storage items of one automatic export configuration); calls without it are unchanged.
 * `Get-TssDiscoveryStatus` - new switch parameter sets `-ItemMetrics`, `-OsMetrics` and `-ScanResults` (GET v1/discovery/status/item-metrics, os-metrics, scan-results); default set, output and existing code path unchanged.
 * `Search-TssWorkflowTemplate` output (`Thycotic.PowerShell.WorkflowTemplates.Detail`) gains `DeactivatedAt`; the class is shared with the new `Get-TssWorkflowTemplate`, `Get-TssWorkflowTemplateStub` and `Update-TssWorkflowTemplate`.
+* `Search-TssDirectoryServiceDomain` - new parameter set `searchText` (`-SearchText`, GET v1/active-directory/domains) matches the domain name or the friendly name; `Thycotic.PowerShell.DirectoryServices.DomainSummary` gains `DistinguishedName` and `SiteId`, filled by that set. The default parameter set `filter`, its parameters and its output are unchanged.
+* `Start-TssDirectoryServiceSync` - new `-PassThru` switch outputs the Boolean Secret Server returns (True when the synchronization is queued); without it nothing is output, as before.
 
 ### Bug Fixes
 
@@ -1159,7 +1155,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Tests
 
 * Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
-* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssEventPipeline`.
+* Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretPasswordStatus`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssDirectoryServiceDomain`, `Search-TssEventPipeline`, `Start-TssDirectoryServiceSync`.
 
 ## 0.62.1 -- 2026-06-29
 

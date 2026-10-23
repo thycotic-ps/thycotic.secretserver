@@ -6,27 +6,40 @@ function Start-TssDirectoryServiceSync {
     .DESCRIPTION
     Run synchronization to update users and groups for all enabled Directories
 
+    .PARAMETER PassThru
+    Output the Boolean Secret Server returns, True when the synchronization is queued
+
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Start-TssDirectoryServiceSync -TssSession $session
 
     Run Directory Services synchronization
 
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/active-directory/Start-TssDirectoryServiceSync
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Start-TssDirectoryServiceSync -TssSession $session -PassThru
+
+    Run Directory Services synchronization and output True when it is queued
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/active-directory/Start-TssDirectoryServiceSync.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Start-TssDirectoryServiceSync
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Start-TssDirectoryServiceSync.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(SupportsShouldProcess)]
+    [OutputType('System.Boolean')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
-        $TssSession
+        $TssSession,
+
+        [switch]
+        $PassThru
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -53,6 +66,9 @@ function Start-TssDirectoryServiceSync {
 
             if ($restResponse) {
                 Write-Verbose "Directory Service sync successfully started"
+            }
+            if ($PassThru -and $null -ne $restResponse) {
+                [System.Convert]::ToBoolean($restResponse)
             }
         } else {
             Write-Warning 'No valid session found'

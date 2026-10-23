@@ -11,7 +11,8 @@ Run synchronization to update users and groups for all enabled Directories
 ## SYNTAX
 
 ```
-Start-TssDirectoryServiceSync [-TssSession] <Session> [-WhatIf] [-Confirm] [<CommonParameters>]
+Start-TssDirectoryServiceSync [-TssSession] <Session> [-PassThru]
+ [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,6 +28,14 @@ Start-TssDirectoryServiceSync -TssSession $session
 
 Run Directory Services synchronization
 
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Start-TssDirectoryServiceSync -TssSession $session -PassThru
+```
+
+Run Directory Services synchronization and output True when it is queued
+
 ## PARAMETERS
 
 ### -TssSession
@@ -41,6 +50,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -PassThru
+Output the Boolean Secret Server returns, True when the synchronization is queued
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -82,11 +106,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
+### System.Boolean
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/active-directory/Start-TssDirectoryServiceSync](https://thycotic-ps.github.io/thycotic.secretserver/commands/active-directory/Start-TssDirectoryServiceSync)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Start-TssDirectoryServiceSync](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Start-TssDirectoryServiceSync)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/active-directory/Start-TssDirectoryServiceSync.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/active-directory/Start-TssDirectoryServiceSync.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Start-TssDirectoryServiceSync.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Start-TssDirectoryServiceSync.ps1)

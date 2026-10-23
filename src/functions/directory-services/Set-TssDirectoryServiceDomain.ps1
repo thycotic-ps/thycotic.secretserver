@@ -1,4 +1,4 @@
-function Set-TssDirectoryDomain {
+function Set-TssDirectoryServiceDomain {
     <#
     .SYNOPSIS
     Update a Directory Services domain
@@ -61,27 +61,27 @@ function Set-TssDirectoryDomain {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssDirectoryDomain -TssSession $session -Id 3 -FriendlyName CORP
+    Set-TssDirectoryServiceDomain -TssSession $session -Id 3 -FriendlyName CORP
 
     Change the friendly name of domain 3
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssDirectoryServiceDomain -TssSession $session -IncludeInactive | Where-Object DomainName -EQ corp.example.com | Set-TssDirectoryDomain -TssSession $session -Active:$false
+    Search-TssDirectoryServiceDomain -TssSession $session -IncludeInactive | Where-Object DomainName -EQ corp.example.com | Set-TssDirectoryServiceDomain -TssSession $session -Active:$false
 
     Deactivate a domain found by name
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssDirectoryDomain -TssSession $session -Id 3 -SecretId 42 -V2
+    Set-TssDirectoryServiceDomain -TssSession $session -Id 3 -SecretId 42 -V2
 
     Change the synchronization secret through the v2 endpoint
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryDomain
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceDomain
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryDomain.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceDomain.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -89,7 +89,7 @@ function Set-TssDirectoryDomain {
     Requires the Administer Active Directory permission.
     #>
     [CmdletBinding(DefaultParameterSetName = 'Default', SupportsShouldProcess)]
-    [OutputType('Thycotic.PowerShell.DirectoryServices.DirectoryDomain')]
+    [OutputType('Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
@@ -284,12 +284,12 @@ function Set-TssDirectoryDomain {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
                 } catch {
-                    Write-Warning 'Issue with Set-TssDirectoryDomain request'
+                    Write-Warning 'Issue with Set-TssDirectoryServiceDomain request'
                     $err = $_
                     . $ErrorHandling $err
                 }
                 if ($restResponse) {
-                    [Thycotic.PowerShell.DirectoryServices.DirectoryDomain](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.DirectoryDomain]))
+                    [Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain]))
                 }
             }
         } else {

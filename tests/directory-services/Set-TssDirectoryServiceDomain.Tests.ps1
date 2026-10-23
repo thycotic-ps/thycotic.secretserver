@@ -21,8 +21,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.DirectoryServices.DirectoryDomain" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DirectoryServices.DirectoryDomain'
+        It "$commandName should set OutputType to Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain'
         }
         It "$commandName should support ShouldProcess" -TestCases $commandDetails {
             $_.Parameters.ContainsKey('WhatIf') | Should -Be $true
@@ -105,8 +105,8 @@ Describe "$commandName verify parameters" {
         It "$commandName should bind TssSession at position 0" -TestCases $commandDetails {
             @($_.Parameters['TssSession'].Attributes | Where-Object { $_ -is [System.Management.Automation.ParameterAttribute] }).Position | Should -Contain 0
         }
-        It "$commandName pipeline/output type Thycotic.PowerShell.ActiveDirectory.DomainSummary should expose DomainId as System.Int32" {
-            ([type]'Thycotic.PowerShell.ActiveDirectory.DomainSummary').GetProperty('DomainId').PropertyType.FullName | Should -Be 'System.Int32'
+        It "$commandName pipeline/output type Thycotic.PowerShell.DirectoryServices.DomainSummary should expose DomainId as System.Int32" {
+            ([type]'Thycotic.PowerShell.DirectoryServices.DomainSummary').GetProperty('DomainId').PropertyType.FullName | Should -Be 'System.Int32'
         }
     }
     Context "Parameter set <SetName>" -Foreach $setCases {

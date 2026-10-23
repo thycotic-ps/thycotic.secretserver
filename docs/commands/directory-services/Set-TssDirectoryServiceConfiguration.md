@@ -1,9 +1,9 @@
 ---
-title: Set-TssDirectoryConfiguration
+title: Set-TssDirectoryServiceConfiguration
 parent: Directory Services
 grand_parent: Commands
 ---
-# Set-TssDirectoryConfiguration
+# Set-TssDirectoryServiceConfiguration
 
 ## SYNOPSIS
 Update the Directory Services configuration
@@ -11,7 +11,7 @@ Update the Directory Services configuration
 ## SYNTAX
 
 ```
-Set-TssDirectoryConfiguration [-TssSession] <Session> [-DaysToKeepOperationalLogs <Int32>]
+Set-TssDirectoryServiceConfiguration [-TssSession] <Session> [-DaysToKeepOperationalLogs <Int32>]
  [-DisableInactiveUsersMonths <Int32>] [-EnableDirectoryIntegration] [-EnableDirectorySynchronization]
  [-EnableIntegratedWindowsAuthentication] [-EnableUserDisabling] [-SynchronizationIntervalDays <Int32>]
  [-SynchronizationIntervalHours <Int32>] [-SynchronizationIntervalMinutes <Int32>]
@@ -32,7 +32,7 @@ Returns the updated configuration.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssDirectoryConfiguration -TssSession $session -SynchronizationIntervalDays 0 -SynchronizationIntervalHours 4 -SynchronizationIntervalMinutes 0
+Set-TssDirectoryServiceConfiguration -TssSession $session -SynchronizationIntervalDays 0 -SynchronizationIntervalHours 4 -SynchronizationIntervalMinutes 0
 ```
 
 Synchronize the directory every four hours (directory synchronization must already be on)
@@ -40,7 +40,7 @@ Synchronize the directory every four hours (directory synchronization must alrea
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssDirectoryConfiguration -TssSession $session -EnableUserDisabling -DisableInactiveUsersMonths 6
+Set-TssDirectoryServiceConfiguration -TssSession $session -EnableUserDisabling -DisableInactiveUsersMonths 6
 ```
 
 Disable directory users after six months without a login
@@ -258,6 +258,6 @@ Requires the Administer Active Directory permission.
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryConfiguration](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryConfiguration)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceConfiguration](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceConfiguration)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryConfiguration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryConfiguration.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceConfiguration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceConfiguration.ps1)

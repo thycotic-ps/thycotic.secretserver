@@ -124,9 +124,9 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Get-TssDcm]                        | 12.3.000024               |
 | [Get-TssDependencyChanger]          | 12.3.000024               |
 | [Get-TssDiagnosticAppSetting]       | 12.3.000024               |
-| [Get-TssDirectoryConfiguration]     | 12.3.000024               |
-| [Get-TssDirectoryConfigurationAudit] | 12.3.000024               |
-| [Get-TssDirectoryDomainStub]        | 12.3.000024               |
+| [Get-TssDirectoryServiceConfiguration] | 12.3.000024               |
+| [Get-TssDirectoryServiceConfigurationAudit] | 12.3.000024               |
+| [Get-TssDirectoryServiceDomainStub] | 12.3.000024               |
 | [Get-TssDiscoveryAccountRule]       | 12.3.000024               |
 | [Get-TssDiscoveryAccountRuleInfo]   | 12.3.000024               |
 | [Get-TssDiscoveryAccountRuleMatch]  | 12.3.000024               |
@@ -424,7 +424,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Move-TssDistributedEngine]         | 12.3.000024               |
 | [Move-TssDistributedEngineSiteSecret] | 12.3.000024               |
 | [Move-TssSecret]                    | 12.3.000024               |
-| [New-TssActiveDirectoryDomain]      | 12.3.000024               |
 | [New-TssAdvancedConfigurationSetting] | 12.3.000024               |
 | [New-TssAppClient]                  | 12.3.000024               |
 | [New-TssCharacterSet]               | 12.3.000024               |
@@ -538,7 +537,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Save-TssCustomCommand]             | 12.3.000024               |
 | [Save-TssManualUpgradePackage]      | 12.3.000024               |
 | [Save-TssReportScheduleHistory]     | 12.3.000024               |
-| [Search-TssActiveDirectoryDomain]   | 12.3.000024               |
 | [Search-TssAdvancedConfigurationSetting] | 12.3.000024               |
 | [Search-TssApplicationAccessRequest] | 12.3.000024               |
 | [Search-TssApplicationAccessRequestAudit] | 12.3.000024               |
@@ -556,7 +554,7 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Search-TssDependencyChangerScript] | 12.3.000024               |
 | [Search-TssDependencyChangerSetting] | 12.3.000024               |
 | [Search-TssDependencyScanField]     | 12.3.000024               |
-| [Search-TssDirectorySyncLog]        | 12.3.000024               |
+| [Search-TssDirectoryServiceSyncLog] | 12.3.000024               |
 | [Search-TssDisasterRecoveryAudit]   | 12.3.000024               |
 | [Search-TssDiscoveryAccountRule]    | 12.3.000024               |
 | [Search-TssDiscoveryBaseScanner]    | 12.3.000024               |
@@ -698,8 +696,8 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Set-TssDataReplication]            | 12.3.000024               |
 | [Set-TssDcm]                        | 12.3.000024               |
 | [Set-TssDependencyChanger]          | 12.3.000024               |
-| [Set-TssDirectoryConfiguration]     | 12.3.000024               |
-| [Set-TssDirectoryDomain]            | 12.3.000024               |
+| [Set-TssDirectoryServiceConfiguration] | 12.3.000024               |
+| [Set-TssDirectoryServiceDomain]     | 12.3.000024               |
 | [Set-TssDiscoveryAccountRule]       | 12.3.000024               |
 | [Set-TssDiscoveryAccountRuleOrder]  | 12.3.000024               |
 | [Set-TssDiscoveryCommandSet]        | 12.3.000024               |
@@ -800,7 +798,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Set-TssUserOwner]                  | 12.3.000024               |
 | [Set-TssUserScript]                 | 12.3.000024               |
 | [Set-TssUserTwoFactor]              | 12.3.000024               |
-| [Start-TssActiveDirectorySync]      | 12.3.000024               |
 | [Start-TssAutoExport]               | 12.3.000024               |
 | [Start-TssConfigurationRpc]         | 12.3.000024               |
 | [Start-TssDataReplication]          | 12.3.000024               |
@@ -1684,16 +1681,13 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 [Get-TssSshSessionReplayData]:/thycotic.secretserver/commands/recorded-sessions/Get-TssSshSessionReplayData
 [Invoke-TssRecordedSessionRequestProcessing]:/thycotic.secretserver/commands/recorded-sessions/Invoke-TssRecordedSessionRequestProcessing
 [Search-TssRecordedSession]:/thycotic.secretserver/commands/recorded-sessions/Search-TssRecordedSession
-[New-TssActiveDirectoryDomain]:/thycotic.secretserver/commands/active-directory/New-TssActiveDirectoryDomain
-[Search-TssActiveDirectoryDomain]:/thycotic.secretserver/commands/active-directory/Search-TssActiveDirectoryDomain
-[Start-TssActiveDirectorySync]:/thycotic.secretserver/commands/active-directory/Start-TssActiveDirectorySync
-[Get-TssDirectoryConfiguration]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfiguration
-[Get-TssDirectoryConfigurationAudit]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfigurationAudit
-[Get-TssDirectoryDomainStub]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryDomainStub
-[Search-TssDirectorySyncLog]:/thycotic.secretserver/commands/directory-services/Search-TssDirectorySyncLog
+[Get-TssDirectoryServiceConfiguration]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfiguration
+[Get-TssDirectoryServiceConfigurationAudit]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfigurationAudit
+[Get-TssDirectoryServiceDomainStub]:/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceDomainStub
+[Search-TssDirectoryServiceSyncLog]:/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceSyncLog
 [Search-TssDomain]:/thycotic.secretserver/commands/directory-services/Search-TssDomain
-[Set-TssDirectoryConfiguration]:/thycotic.secretserver/commands/directory-services/Set-TssDirectoryConfiguration
-[Set-TssDirectoryDomain]:/thycotic.secretserver/commands/directory-services/Set-TssDirectoryDomain
+[Set-TssDirectoryServiceConfiguration]:/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceConfiguration
+[Set-TssDirectoryServiceDomain]:/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceDomain
 [Clear-TssDomainIndex]:/thycotic.secretserver/commands/domain-index/Clear-TssDomainIndex
 [Invoke-TssDomainIndexExpire]:/thycotic.secretserver/commands/domain-index/Invoke-TssDomainIndexExpire
 [New-TssDomainIndex]:/thycotic.secretserver/commands/domain-index/New-TssDomainIndex

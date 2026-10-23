@@ -1,9 +1,9 @@
 ---
-title: Get-TssDirectoryConfiguration
+title: Get-TssDirectoryServiceConfiguration
 parent: Directory Services
 grand_parent: Commands
 ---
-# Get-TssDirectoryConfiguration
+# Get-TssDirectoryServiceConfiguration
 
 ## SYNOPSIS
 Get the Directory Services configuration
@@ -11,7 +11,8 @@ Get the Directory Services configuration
 ## SYNTAX
 
 ```
-Get-TssDirectoryConfiguration [-TssSession] <Session> [<CommonParameters>]
+Get-TssDirectoryServiceConfiguration [-TssSession] <Session>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -22,7 +23,7 @@ Get the Directory Services settings: whether directory integration, synchronizat
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssDirectoryConfiguration -TssSession $session
+Get-TssDirectoryServiceConfiguration -TssSession $session
 ```
 
 Show the Directory Services settings
@@ -57,6 +58,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfiguration](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfiguration)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfiguration](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfiguration)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryConfiguration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryConfiguration.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceConfiguration.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceConfiguration.ps1)

@@ -1,4 +1,4 @@
-function Search-TssDirectorySyncLog {
+function Search-TssDirectoryServiceSyncLog {
     <#
     .SYNOPSIS
     Search the Directory Services synchronization log
@@ -20,21 +20,21 @@ function Search-TssDirectorySyncLog {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssDirectorySyncLog -TssSession $session -StartDate (Get-Date).AddDays(-1)
+    Search-TssDirectoryServiceSyncLog -TssSession $session -StartDate (Get-Date).AddDays(-1)
 
     Show the synchronization log of the last day
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Search-TssDirectorySyncLog -TssSession $session -SearchText error
+    Search-TssDirectoryServiceSyncLog -TssSession $session -SearchText error
 
     Find synchronization log entries that mention error
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectorySyncLog
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceSyncLog
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectorySyncLog.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceSyncLog.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -87,7 +87,7 @@ function Search-TssDirectorySyncLog {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning 'Issue with Search-TssDirectorySyncLog request'
+                Write-Warning 'Issue with Search-TssDirectoryServiceSyncLog request'
                 $err = $_
                 . $ErrorHandling $err
             }

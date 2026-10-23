@@ -1,9 +1,9 @@
 ---
-title: Set-TssDirectoryDomain
+title: Set-TssDirectoryServiceDomain
 parent: Directory Services
 grand_parent: Commands
 ---
-# Set-TssDirectoryDomain
+# Set-TssDirectoryServiceDomain
 
 ## SYNOPSIS
 Update a Directory Services domain
@@ -12,7 +12,7 @@ Update a Directory Services domain
 
 ### Default (Default)
 ```
-Set-TssDirectoryDomain [-TssSession] <Session> -Id <Int32> [-Active] [-AuthType <LdapAuthType>]
+Set-TssDirectoryServiceDomain [-TssSession] <Session> -Id <Int32> [-Active] [-AuthType <LdapAuthType>]
  [-ClientId <String>] [-ClientSecret <SecureString>] [-DistinguishedName <String>] [-DomainName <String>]
  [-FriendlyName <String>] [-PreventNoUsersLockout] [-MfaProvider <String>] [-SiteId <Int32>]
  [-SecretId <Int32>] [-TenantId <String>] [-UserAuthType <UserAuthType>] [-UseSecureLdap]
@@ -21,7 +21,7 @@ Set-TssDirectoryDomain [-TssSession] <Session> -Id <Int32> [-Active] [-AuthType 
 
 ### V2
 ```
-Set-TssDirectoryDomain [-TssSession] <Session> -Id <Int32> [-Active] [-AuthType <LdapAuthType>]
+Set-TssDirectoryServiceDomain [-TssSession] <Session> -Id <Int32> [-Active] [-AuthType <LdapAuthType>]
  [-DistinguishedName <String>] [-DomainName <String>] [-FriendlyName <String>] [-PreventNoUsersLockout]
  [-MfaProvider <String>] [-SiteId <Int32>] [-SecretId <Int32>] [-UserAuthType <UserAuthType>] [-UseSecureLdap]
  [-V2] [-WhatIf] [-Confirm] [<CommonParameters>]
@@ -40,7 +40,7 @@ Returns the updated domain.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssDirectoryDomain -TssSession $session -Id 3 -FriendlyName CORP
+Set-TssDirectoryServiceDomain -TssSession $session -Id 3 -FriendlyName CORP
 ```
 
 Change the friendly name of domain 3
@@ -48,7 +48,7 @@ Change the friendly name of domain 3
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssDirectoryServiceDomain -TssSession $session -IncludeInactive | Where-Object DomainName -EQ corp.example.com | Set-TssDirectoryDomain -TssSession $session -Active:$false
+Search-TssDirectoryServiceDomain -TssSession $session -IncludeInactive | Where-Object DomainName -EQ corp.example.com | Set-TssDirectoryServiceDomain -TssSession $session -Active:$false
 ```
 
 Deactivate a domain found by name
@@ -56,7 +56,7 @@ Deactivate a domain found by name
 ### EXAMPLE 3
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Set-TssDirectoryDomain -TssSession $session -Id 3 -SecretId 42 -V2
+Set-TssDirectoryServiceDomain -TssSession $session -Id 3 -SecretId 42 -V2
 ```
 
 Change the synchronization secret through the v2 endpoint
@@ -358,7 +358,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.DirectoryServices.DirectoryDomain
+### Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
@@ -366,6 +366,6 @@ Requires the Administer Active Directory permission.
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryDomain](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryDomain)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceDomain](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceDomain)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryDomain.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryDomain.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceDomain.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceDomain.ps1)

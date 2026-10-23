@@ -1,9 +1,9 @@
 ---
-title: Get-TssDirectoryDomainStub
+title: Get-TssDirectoryServiceDomainStub
 parent: Directory Services
 grand_parent: Commands
 ---
-# Get-TssDirectoryDomainStub
+# Get-TssDirectoryServiceDomainStub
 
 ## SYNOPSIS
 Get a template for a new Directory Services domain
@@ -12,13 +12,13 @@ Get a template for a new Directory Services domain
 
 ### Default (Default)
 ```
-Get-TssDirectoryDomainStub [-TssSession] <Session> -DomainType <String>
+Get-TssDirectoryServiceDomainStub [-TssSession] <Session> -DomainType <String>
  [<CommonParameters>]
 ```
 
 ### V2
 ```
-Get-TssDirectoryDomainStub [-TssSession] <Session> -DomainType <String> [-V2]
+Get-TssDirectoryServiceDomainStub [-TssSession] <Session> -DomainType <String> [-V2]
  [<CommonParameters>]
 ```
 
@@ -32,7 +32,7 @@ Nothing is created.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssDirectoryDomainStub -TssSession $session -DomainType ActiveDirectory
+Get-TssDirectoryServiceDomainStub -TssSession $session -DomainType ActiveDirectory
 ```
 
 Show the defaults for a new Active Directory domain
@@ -40,7 +40,7 @@ Show the defaults for a new Active Directory domain
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssDirectoryDomainStub -TssSession $session -DomainType OpenLdap -V2
+Get-TssDirectoryServiceDomainStub -TssSession $session -DomainType OpenLdap -V2
 ```
 
 Show the defaults for a new OpenLDAP domain from the v2 endpoint
@@ -99,12 +99,12 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.DirectoryServices.DirectoryDomain
+### Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain
 ## NOTES
 Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryDomainStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryDomainStub)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceDomainStub](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceDomainStub)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryDomainStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryDomainStub.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceDomainStub.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceDomainStub.ps1)

@@ -21,8 +21,8 @@ Describe "$commandName verify parameters" {
         }
     }
     Context "Command specific details" {
-        It "$commandName should set OutputType to Thycotic.PowerShell.DirectoryServices.DirectoryDomain" -TestCases $commandDetails {
-            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DirectoryServices.DirectoryDomain'
+        It "$commandName should set OutputType to Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain'
         }
         It "$commandName should default to the Default parameter set" -TestCases $commandDetails {
             $_.DefaultParameterSet | Should -Be 'Default'

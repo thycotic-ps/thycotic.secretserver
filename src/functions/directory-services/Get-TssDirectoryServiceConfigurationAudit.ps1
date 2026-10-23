@@ -1,31 +1,31 @@
-function Get-TssDirectoryConfiguration {
+function Get-TssDirectoryServiceConfigurationAudit {
     <#
     .SYNOPSIS
-    Get the Directory Services configuration
+    Get the audit trail of Directory Services configuration changes
 
     .DESCRIPTION
-    Get the Directory Services settings: whether directory integration, synchronization and integrated Windows authentication are enabled, the synchronization interval, how new users are imported, inactive user disabling and how long operational logs are kept.
+    Get the audit records written when the Directory Services configuration changes: date, user, action and notes.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssDirectoryConfiguration -TssSession $session
+    Get-TssDirectoryServiceConfigurationAudit -TssSession $session | Sort-Object Date -Descending | Select-Object -First 5
 
-    Show the Directory Services settings
-
-    .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfiguration
+    Show the five most recent Directory Services configuration changes
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryConfiguration.ps1
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfigurationAudit
+
+    .LINK
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceConfigurationAudit.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding()]
-    [OutputType('Thycotic.PowerShell.DirectoryServices.Configuration')]
+    [OutputType('Thycotic.PowerShell.Configuration.Audit[]')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
@@ -39,7 +39,12 @@ function Get-TssDirectoryConfiguration {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
-            $uri = $TssSession.ApiUrl, 'directory-services', 'configuration' -join '/'
+            $uri = $TssSession.ApiUrl, 'directory-services', 'configuration', 'audits' -join '/'
+            $queryParams = @()
+            $queryParams += "take=$($TssSession.Take)"
+            if ($queryParams) {
+                $uri = $uri, ($queryParams -join '&') -join '?'
+            }
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'GET'
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
@@ -47,12 +52,12 @@ function Get-TssDirectoryConfiguration {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning 'Issue with Get-TssDirectoryConfiguration request'
+                Write-Warning 'Issue with Get-TssDirectoryServiceConfigurationAudit request'
                 $err = $_
                 . $ErrorHandling $err
             }
-            if ($restResponse) {
-                [Thycotic.PowerShell.DirectoryServices.Configuration](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.Configuration]))
+            if ($restResponse.records) {
+                [Thycotic.PowerShell.Configuration.Audit[]](. $FilterTssResponse $restResponse.records ([Thycotic.PowerShell.Configuration.Audit]))
             }
         } else {
             Write-Warning 'No valid session found'

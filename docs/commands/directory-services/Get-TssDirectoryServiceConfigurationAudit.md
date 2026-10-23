@@ -1,9 +1,9 @@
 ---
-title: Get-TssDirectoryConfigurationAudit
+title: Get-TssDirectoryServiceConfigurationAudit
 parent: Directory Services
 grand_parent: Commands
 ---
-# Get-TssDirectoryConfigurationAudit
+# Get-TssDirectoryServiceConfigurationAudit
 
 ## SYNOPSIS
 Get the audit trail of Directory Services configuration changes
@@ -11,7 +11,7 @@ Get the audit trail of Directory Services configuration changes
 ## SYNTAX
 
 ```
-Get-TssDirectoryConfigurationAudit [-TssSession] <Session>
+Get-TssDirectoryServiceConfigurationAudit [-TssSession] <Session>
  [<CommonParameters>]
 ```
 
@@ -23,7 +23,7 @@ Get the audit records written when the Directory Services configuration changes:
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Get-TssDirectoryConfigurationAudit -TssSession $session | Sort-Object Date -Descending | Select-Object -First 5
+Get-TssDirectoryServiceConfigurationAudit -TssSession $session | Sort-Object Date -Descending | Select-Object -First 5
 ```
 
 Show the five most recent Directory Services configuration changes
@@ -58,6 +58,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfigurationAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryConfigurationAudit)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfigurationAudit](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceConfigurationAudit)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryConfigurationAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryConfigurationAudit.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceConfigurationAudit.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceConfigurationAudit.ps1)

@@ -1,13 +1,13 @@
 ---
-title: DirectoryDomain
+title: DirectoryServiceDomain
 parent: Directory Services
 grand_parent: Types
 ---
 
-# DirectoryDomain
+# DirectoryServiceDomain
 
 **Kind:** class  
-**Full name:** `Thycotic.PowerShell.DirectoryServices.DirectoryDomain`  
+**Full name:** `Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain`  
 **Namespace:** `Thycotic.PowerShell.DirectoryServices`  
 
 ## Constructors

@@ -3,7 +3,7 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession'
+        [object[]]$knownParameters = 'TssSession', 'PassThru'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
@@ -14,6 +14,17 @@ Describe "$commandName verify parameters" {
         }
         It "$commandName should not contain parameter: <_>" -TestCases $unknownParameters {
             $_ | Should -BeNullOrEmpty
+        }
+    }
+    Context "Command specific details" {
+        It "$commandName should set OutputType to System.Boolean" -TestCases $commandDetails {
+            $_.OutputType.Name | Should -Be 'System.Boolean'
+        }
+        It "$commandName should take PassThru as a switch" -TestCases $commandDetails {
+            $_.Parameters['PassThru'].ParameterType.FullName | Should -Be 'System.Management.Automation.SwitchParameter'
+        }
+        It "$commandName should support ShouldProcess" -TestCases $commandDetails {
+            $_.Parameters.ContainsKey('WhatIf') | Should -Be $true
         }
     }
 }

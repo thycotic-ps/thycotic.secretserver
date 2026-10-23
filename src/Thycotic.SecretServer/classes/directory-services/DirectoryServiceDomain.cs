@@ -5,7 +5,7 @@ using System.Management.Automation.Runspaces;
 
 namespace Thycotic.PowerShell.DirectoryServices
 {
-    public class DirectoryDomain
+    public class DirectoryServiceDomain
     {
         public bool Active { get; set; }
         public int? DomainId { get; set; }

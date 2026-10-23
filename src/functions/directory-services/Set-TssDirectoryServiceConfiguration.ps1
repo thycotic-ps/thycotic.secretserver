@@ -1,4 +1,4 @@
-function Set-TssDirectoryConfiguration {
+function Set-TssDirectoryServiceConfiguration {
     <#
     .SYNOPSIS
     Update the Directory Services configuration
@@ -43,21 +43,21 @@ function Set-TssDirectoryConfiguration {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssDirectoryConfiguration -TssSession $session -SynchronizationIntervalDays 0 -SynchronizationIntervalHours 4 -SynchronizationIntervalMinutes 0
+    Set-TssDirectoryServiceConfiguration -TssSession $session -SynchronizationIntervalDays 0 -SynchronizationIntervalHours 4 -SynchronizationIntervalMinutes 0
 
     Synchronize the directory every four hours (directory synchronization must already be on)
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Set-TssDirectoryConfiguration -TssSession $session -EnableUserDisabling -DisableInactiveUsersMonths 6
+    Set-TssDirectoryServiceConfiguration -TssSession $session -EnableUserDisabling -DisableInactiveUsersMonths 6
 
     Disable directory users after six months without a login
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryConfiguration
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Set-TssDirectoryServiceConfiguration
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryConfiguration.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Set-TssDirectoryServiceConfiguration.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
@@ -153,7 +153,7 @@ function Set-TssDirectoryConfiguration {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
                 } catch {
-                    Write-Warning 'Issue with Set-TssDirectoryConfiguration request'
+                    Write-Warning 'Issue with Set-TssDirectoryServiceConfiguration request'
                     $err = $_
                     . $ErrorHandling $err
                 }

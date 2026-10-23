@@ -1,4 +1,4 @@
-function Get-TssDirectoryDomainStub {
+function Get-TssDirectoryServiceDomainStub {
     <#
     .SYNOPSIS
     Get a template for a new Directory Services domain
@@ -18,27 +18,27 @@ function Get-TssDirectoryDomainStub {
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssDirectoryDomainStub -TssSession $session -DomainType ActiveDirectory
+    Get-TssDirectoryServiceDomainStub -TssSession $session -DomainType ActiveDirectory
 
     Show the defaults for a new Active Directory domain
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-    Get-TssDirectoryDomainStub -TssSession $session -DomainType OpenLdap -V2
+    Get-TssDirectoryServiceDomainStub -TssSession $session -DomainType OpenLdap -V2
 
     Show the defaults for a new OpenLDAP domain from the v2 endpoint
 
     .LINK
-    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryDomainStub
+    https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Get-TssDirectoryServiceDomainStub
 
     .LINK
-    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryDomainStub.ps1
+    https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Get-TssDirectoryServiceDomainStub.ps1
 
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
     [CmdletBinding(DefaultParameterSetName = 'Default')]
-    [OutputType('Thycotic.PowerShell.DirectoryServices.DirectoryDomain')]
+    [OutputType('Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
@@ -95,12 +95,12 @@ function Get-TssDirectoryDomainStub {
                 $apiResponse = Invoke-TssApi @invokeParams
                 $restResponse = . $ProcessResponse $apiResponse
             } catch {
-                Write-Warning 'Issue with Get-TssDirectoryDomainStub request'
+                Write-Warning 'Issue with Get-TssDirectoryServiceDomainStub request'
                 $err = $_
                 . $ErrorHandling $err
             }
             if ($restResponse) {
-                [Thycotic.PowerShell.DirectoryServices.DirectoryDomain](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.DirectoryDomain]))
+                [Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.DirectoryServices.DirectoryServiceDomain]))
             }
         } else {
             Write-Warning 'No valid session found'

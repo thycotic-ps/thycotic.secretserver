@@ -1,9 +1,9 @@
 ---
-title: Search-TssDirectorySyncLog
+title: Search-TssDirectoryServiceSyncLog
 parent: Directory Services
 grand_parent: Commands
 ---
-# Search-TssDirectorySyncLog
+# Search-TssDirectoryServiceSyncLog
 
 ## SYNOPSIS
 Search the Directory Services synchronization log
@@ -11,7 +11,7 @@ Search the Directory Services synchronization log
 ## SYNTAX
 
 ```
-Search-TssDirectorySyncLog [-TssSession] <Session> [-EndDate <DateTime>] [-SearchText <String>]
+Search-TssDirectoryServiceSyncLog [-TssSession] <Session> [-EndDate <DateTime>] [-SearchText <String>]
  [-StartDate <DateTime>] [<CommonParameters>]
 ```
 
@@ -24,7 +24,7 @@ Without -StartDate the server returns the last five days.
 ### EXAMPLE 1
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssDirectorySyncLog -TssSession $session -StartDate (Get-Date).AddDays(-1)
+Search-TssDirectoryServiceSyncLog -TssSession $session -StartDate (Get-Date).AddDays(-1)
 ```
 
 Show the synchronization log of the last day
@@ -32,7 +32,7 @@ Show the synchronization log of the last day
 ### EXAMPLE 2
 ```
 $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
-Search-TssDirectorySyncLog -TssSession $session -SearchText error
+Search-TssDirectoryServiceSyncLog -TssSession $session -SearchText error
 ```
 
 Find synchronization log entries that mention error
@@ -112,6 +112,6 @@ Requires TssSession object returned by New-TssSession
 
 ## RELATED LINKS
 
-[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectorySyncLog](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectorySyncLog)
+[https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceSyncLog](https://thycotic-ps.github.io/thycotic.secretserver/commands/directory-services/Search-TssDirectoryServiceSyncLog)
 
-[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectorySyncLog.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectorySyncLog.ps1)
+[https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceSyncLog.ps1](https://github.com/thycotic-ps/thycotic.secretserver/blob/main/src/functions/directory-services/Search-TssDirectoryServiceSyncLog.ps1)
