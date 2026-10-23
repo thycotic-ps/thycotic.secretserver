@@ -9,6 +9,11 @@ BeforeDiscovery {
             @{ Name = 'Set-TssUnifiedModeStatus'; Arguments = "-Status Started"; Danger = 'PlatformAccess' }
             @{ Name = 'Reset-TssPlatformUserMapping'; Arguments = ""; Danger = 'PlatformAccess' }
             @{ Name = 'Set-TssPlatformUserMapping'; Arguments = "-PlatformUserId 'pester' -UserId 2"; Danger = 'PlatformAccess' }
+            @{ Name = 'Start-TssSecretKeyRotation'; Arguments = ""; Danger = 'EncryptionKeys' }
+            @{ Name = 'Stop-TssSecretKeyRotation'; Arguments = ""; Danger = 'EncryptionKeys' }
+            @{ Name = 'Update-TssKeyManagement'; Arguments = "-KeyManagementTypeId 0"; Danger = 'EncryptionKeys' }
+            @{ Name = 'Start-TssMekRotation'; Arguments = ""; Danger = 'EncryptionKeys' }
+            @{ Name = 'Restart-TssMekRotation'; Arguments = ""; Danger = 'EncryptionKeys' }
     )
 }
 Describe 'Dangerous operations' {

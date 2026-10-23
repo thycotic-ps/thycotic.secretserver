@@ -11,13 +11,17 @@ Cancel a running secret key rotation
 ## SYNTAX
 
 ```
-Stop-TssSecretKeyRotation [-TssSession] <Session> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Stop-TssSecretKeyRotation [-TssSession] <Session> [-Force] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Requests cancellation of the Rotate Secret Keys run in progress and returns the rotation status.
 Nothing changes when no rotation is running.
+This changes how Secret Server encrypts its data: a wrong or interrupted change can leave Secret Server or its secrets unreadable.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -43,6 +47,23 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

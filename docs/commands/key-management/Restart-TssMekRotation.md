@@ -11,14 +11,18 @@ Retry a failed master encryption key rotation
 ## SYNTAX
 
 ```
-Restart-TssMekRotation [-TssSession] <Session> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Restart-TssMekRotation [-TssSession] <Session> [-Force] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Retries the master encryption key rotation process from its current status, after a step failed.
 The server answers even when there is nothing to retry: check CanRetryStatus, ProcessState and ErrorMessage on the output.
 Follow progress with Get-TssMekRotationInfo.
+This changes how Secret Server encrypts its data: a wrong or interrupted change can leave Secret Server or its secrets unreadable.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -52,6 +56,23 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

@@ -3,12 +3,12 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'AwsKmsAccessKeyId', 'AwsKmsKeyArn', 'AwsKmsSecretAccessKey', 'AzureManagedHsmKeyUrl', 'AzureManagedHsmPrincipalId', 'AzureManagedHsmPrincipalSecret', 'AzureManagedHsmTenantId', 'KeyManagementTypeId'
+        [object[]]$knownParameters = 'TssSession', 'AwsKmsAccessKeyId', 'AwsKmsKeyArn', 'AwsKmsSecretAccessKey', 'AzureManagedHsmKeyUrl', 'AzureManagedHsmPrincipalId', 'AzureManagedHsmPrincipalSecret', 'AzureManagedHsmTenantId', 'KeyManagementTypeId', 'Force'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
         $setCases = @(
-            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'KeyManagementTypeId'); Optional = @('AwsKmsAccessKeyId', 'AwsKmsKeyArn', 'AwsKmsSecretAccessKey', 'AzureManagedHsmKeyUrl', 'AzureManagedHsmPrincipalId', 'AzureManagedHsmPrincipalSecret', 'AzureManagedHsmTenantId'); Absent = @() }
+            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'KeyManagementTypeId'); Optional = @('AwsKmsAccessKeyId', 'AwsKmsKeyArn', 'AwsKmsSecretAccessKey', 'AzureManagedHsmKeyUrl', 'AzureManagedHsmPrincipalId', 'AzureManagedHsmPrincipalSecret', 'AzureManagedHsmTenantId', 'Force'); Absent = @() }
         )
     }
     Context "Verify parameters" -Foreach @{currentParams = $currentParams } {

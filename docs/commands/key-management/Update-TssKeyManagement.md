@@ -14,7 +14,7 @@ Replace the Key Management configuration
 Update-TssKeyManagement [-TssSession] <Session> [-AwsKmsAccessKeyId <String>] [-AwsKmsKeyArn <String>]
  [-AwsKmsSecretAccessKey <SecureString>] [-AzureManagedHsmKeyUrl <String>]
  [-AzureManagedHsmPrincipalId <String>] [-AzureManagedHsmPrincipalSecret <SecureString>]
- [-AzureManagedHsmTenantId <String>] -KeyManagementTypeId <Int32>
+ [-AzureManagedHsmTenantId <String>] -KeyManagementTypeId <Int32> [-Force]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -25,6 +25,10 @@ Changing the provider re-protects the master encryption key with the new provide
 Take a database and encryption key backup first.
 Requires a license that includes advanced encryption and the permission to edit Key Management.
 Refused in read-only mode, and while the last secret key rotation has not finished successfully.
+This changes how Secret Server encrypts its data: a wrong or interrupted change can leave Secret Server or its secrets unreadable.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -178,6 +182,23 @@ Aliases:
 Required: True
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
