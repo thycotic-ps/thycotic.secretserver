@@ -11,7 +11,7 @@ Create an advanced configuration setting value
 ## SYNTAX
 
 ```
-New-TssAdvancedConfigurationSetting [-TssSession] <Session> -AdvancedSettingId <Int32> -Value <String>
+New-TssAdvancedConfigurationSetting [-TssSession] <Session> -AdvancedSettingId <Int32> -Value <String> [-Force]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -21,6 +21,10 @@ Advanced configuration settings are server-wide tuning options meant to be chang
 Use Search-TssAdvancedConfigurationSetting to find setting ids and current values.
 Secret Server returns no setting from this request, so nothing is output; read the stored value back with Search-TssAdvancedConfigurationSetting.
 Listing the settings stores a value for every setting that has none, and this request changes nothing (and reports no error) for a setting that already has a value: change an existing value with Update-TssAdvancedConfigurationSetting.
+Advanced configuration settings are only to be updated by Delinea Support: modifying them will have a major impact on Secret Server.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -75,6 +79,23 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

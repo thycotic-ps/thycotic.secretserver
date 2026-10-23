@@ -6,12 +6,17 @@ function Remove-TssAdvancedConfigurationSetting {
     .DESCRIPTION
     Removes the stored value of an advanced configuration setting, so the setting goes back to its default.
     Advanced configuration settings are server-wide tuning options meant to be changed under Delinea support direction.
+    Advanced configuration settings are only to be updated by Delinea Support: modifying them will have a major impact on Secret Server.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
 
     .PARAMETER Id
     Advanced configuration setting id
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -34,7 +39,7 @@ function Remove-TssAdvancedConfigurationSetting {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     [OutputType('Thycotic.PowerShell.Common.Delete')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -44,7 +49,10 @@ function Remove-TssAdvancedConfigurationSetting {
         [Parameter(Mandatory, ValueFromPipelineByPropertyName)]
         [Alias('AdvancedSettingId')]
         [int[]]
-        $Id
+        $Id,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -59,7 +67,7 @@ function Remove-TssAdvancedConfigurationSetting {
                 $uri = $TssSession.ApiUrl, 'advanced-config-settings', $currentId -join '/'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'DELETE'
-                if ($PSCmdlet.ShouldProcess("Advanced configuration setting: $currentId", "$($invokeParams.Method) $uri")) {
+                if (Confirm-TssDangerousOperation $PSCmdlet SupportOnlySetting "Advanced configuration setting: $currentId" "$($invokeParams.Method) $uri" -Force:$Force) {
                     Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                     try {
                         $apiResponse = Invoke-TssApi @invokeParams

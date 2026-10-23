@@ -7,6 +7,8 @@ function New-TssAdvancedConfigurationSetting {
     Creates a value for an advanced configuration setting, identified by its setting id.
     Advanced configuration settings are server-wide tuning options meant to be changed under Delinea support direction. Use Search-TssAdvancedConfigurationSetting to find setting ids and current values.
     Secret Server returns no setting from this request, so nothing is output; read the stored value back with Search-TssAdvancedConfigurationSetting. Listing the settings stores a value for every setting that has none, and this request changes nothing (and reports no error) for a setting that already has a value: change an existing value with Update-TssAdvancedConfigurationSetting.
+    Advanced configuration settings are only to be updated by Delinea Support: modifying them will have a major impact on Secret Server.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
@@ -16,6 +18,9 @@ function New-TssAdvancedConfigurationSetting {
 
     .PARAMETER Value
     Value to store for the setting
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -32,7 +37,7 @@ function New-TssAdvancedConfigurationSetting {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
@@ -44,7 +49,10 @@ function New-TssAdvancedConfigurationSetting {
 
         [Parameter(Mandatory)]
         [string]
-        $Value
+        $Value,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -67,7 +75,7 @@ function New-TssAdvancedConfigurationSetting {
                 }
             }
             $invokeParams.Body = $body | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("Advanced configuration setting", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet SupportOnlySetting "Advanced configuration setting" "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

@@ -1144,6 +1144,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Search-TssWorkflowTemplate` output (`Thycotic.PowerShell.WorkflowTemplates.Detail`) gains `DeactivatedAt`; the class is shared with the new `Get-TssWorkflowTemplate`, `Get-TssWorkflowTemplateStub` and `Update-TssWorkflowTemplate`.
 * `Search-TssDirectoryServiceDomain` - new parameter set `searchText` (`-SearchText`, GET v1/active-directory/domains) matches the domain name or the friendly name; `Thycotic.PowerShell.DirectoryServices.DomainSummary` gains `DistinguishedName` and `SiteId`, filled by that set. The default parameter set `filter`, its parameters and its output are unchanged.
 * `Start-TssDirectoryServiceSync` - new `-PassThru` switch outputs the Boolean Secret Server returns (True when the synchronization is queued); without it nothing is output, as before.
+* `New-TssAdvancedConfigurationSetting`, `Update-TssAdvancedConfigurationSetting` and `Remove-TssAdvancedConfigurationSetting` write the warning "These settings are only to be updated by Delinea Support. Modifying them will have a major impact on Secret Server" and ask OK to proceed? before they send anything. New `-Force` skips the question (and the confirmation prompt unless `-Confirm` is passed) for unattended runs; `-WhatIf` sends nothing. ConfirmImpact is High. The warning, question and `-Force` handling live in the new private helper `Confirm-TssDangerousOperation`.
 
 ### Bug Fixes
 
@@ -1159,6 +1160,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 * Shape tests (known parameters, no unknown parameters, OutputType) for every new cmdlet.
 * Request tests run commands in a runspace that cannot prompt, with `Invoke-TssApi` replaced by a recorder (`tests/_helperscripts/NoHostRunspace.ps1`); `Get-TssSecretPasswordStatus` is checked to call the published route.
+* `tests/Module.DangerousOperation.Tests.ps1` checks `Confirm-TssDangerousOperation` (`-Force` approves without a prompt, no `-Force` asks even with `-Confirm:$false`, `-Force -Confirm` still confirms, `-WhatIf` and `$WhatIfPreference` approve nothing without a prompt, one warning text per danger) and, for every command that uses it: `-Force`, ConfirmImpact High, help, nothing sent for `-WhatIf`, a prompt and nothing sent without `-Force`, one request and no prompt with `-Force`.
 * `tests/Module.ApiUrlRewrite.Tests.ps1` fails when a function rewrites `ApiUrl` with a `-replace` pattern that is not anchored at the end of `/api/v1` (an unanchored `'v1'` also rewrites a `v1` in the host or install path). `Search-TssConfigurationBackupLog` and `Search-TssSystemLog` predate this release and are left for a separate fix.
 * Existing shape tests extended for the new parameters and output types: `Add-TssSecretTemplateField`, `Export-TssReport`, `Get-TssDiscoveryStatus`, `Get-TssSecretAttachment`, `Get-TssSecretField`, `Get-TssSecretState`, `Get-TssSecretTemplate`, `Get-TssUserAudit`, `Get-TssUserOwner`, `Lock-TssUser`, `New-TssMetadataField`, `Search-TssAutoExportStorage`, `Search-TssDirectoryServiceDomain`, `Search-TssEventPipeline`, `Start-TssDirectoryServiceSync`.
 

@@ -12,12 +12,16 @@ Update an advanced configuration setting value
 
 ```
 Update-TssAdvancedConfigurationSetting [-TssSession] <Session> -AdvancedSettingId <Int32> -Value <String>
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Replaces the stored value of an advanced configuration setting, identified by its setting id, and returns the updated setting.
 Advanced configuration settings are server-wide tuning options meant to be changed under Delinea support direction.
+Advanced configuration settings are only to be updated by Delinea Support: modifying them will have a major impact on Secret Server.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -72,6 +76,23 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
