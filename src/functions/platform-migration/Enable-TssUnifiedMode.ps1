@@ -6,12 +6,17 @@ function Enable-TssUnifiedMode {
     .DESCRIPTION
     Enable unified mode, which makes Secret Server read identities from the Delinea Platform. Secret Server documents this endpoint as internal use only: enabling it before the Platform migration is complete can cause unwanted results.
     Follow progress with Get-TssUnifiedModeProgress. Returns Success.
+    Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
 
     .PARAMETER AllowCompleteWithErrors
     Complete even when some objects failed to migrate
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -39,7 +44,10 @@ function Enable-TssUnifiedMode {
         $TssSession,
 
         [switch]
-        $AllowCompleteWithErrors
+        $AllowCompleteWithErrors,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -59,7 +67,7 @@ function Enable-TssUnifiedMode {
                 }
             }
             $invokeParams.Body = $body | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("Unified mode", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet PlatformAccess "Unified mode" "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

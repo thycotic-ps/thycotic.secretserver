@@ -3,12 +3,12 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'PlatformUserId', 'DirectoryServiceName', 'ExternalUserSource', 'UserId'
+        [object[]]$knownParameters = 'TssSession', 'PlatformUserId', 'DirectoryServiceName', 'ExternalUserSource', 'UserId', 'Force'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
         $setCases = @(
-            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'PlatformUserId', 'UserId'); Optional = @('DirectoryServiceName', 'ExternalUserSource'); Absent = @() }
+            @{ CommandName = $commandName; SetName = '__AllParameterSets'; Mandatory = @('TssSession', 'PlatformUserId', 'UserId'); Optional = @('DirectoryServiceName', 'ExternalUserSource', 'Force'); Absent = @() }
         )
     }
     Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
@@ -26,8 +26,8 @@ Describe "$commandName verify parameters" {
         It "$commandName should support ShouldProcess" -TestCases $commandDetails {
             $_.Parameters.ContainsKey('WhatIf') | Should -Be $true
         }
-        It "$commandName should set ConfirmImpact to Medium" -TestCases $commandDetails {
-            ($_.ScriptBlock.Attributes | Where-Object { $_ -is [System.Management.Automation.CmdletBindingAttribute] }).ConfirmImpact | Should -Be 'Medium'
+        It "$commandName should set ConfirmImpact to High" -TestCases $commandDetails {
+            ($_.ScriptBlock.Attributes | Where-Object { $_ -is [System.Management.Automation.CmdletBindingAttribute] }).ConfirmImpact | Should -Be 'High'
         }
         It "$commandName should take TssSession as Thycotic.PowerShell.Authentication.Session" -TestCases $commandDetails {
             $_.Parameters['TssSession'].ParameterType.FullName | Should -Be 'Thycotic.PowerShell.Authentication.Session'

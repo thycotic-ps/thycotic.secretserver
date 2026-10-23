@@ -5,12 +5,17 @@ function Set-TssUnifiedModeStatus {
 
     .DESCRIPTION
     Set the unified mode status recorded for the Platform migration, for example to clear a stale InProgress status. Returns Success.
+    Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
 
     .PARAMETER Status
     New status: NotStarted, Started, InProgress, Completed, CompletedWithErrors or UnresolvedError
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -29,7 +34,7 @@ function Set-TssUnifiedModeStatus {
 
     Requires Platform integration: a Secret Server without it answers 500 API_PlatformNotEnabled.
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     [OutputType('Thycotic.PowerShell.PlatformMigration.OperationResult')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -39,7 +44,10 @@ function Set-TssUnifiedModeStatus {
         [Parameter(Mandatory)]
         [ValidateSet('NotStarted', 'Started', 'InProgress', 'Completed', 'CompletedWithErrors', 'UnresolvedError')]
         [string]
-        $Status
+        $Status,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -59,7 +67,7 @@ function Set-TssUnifiedModeStatus {
                 }
             }
             $invokeParams.Body = $body | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("Unified mode status", "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet PlatformAccess "Unified mode status" "$($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n$($invokeParams.Body)`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

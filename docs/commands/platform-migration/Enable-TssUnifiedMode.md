@@ -11,7 +11,7 @@ Enable Platform unified mode
 ## SYNTAX
 
 ```
-Enable-TssUnifiedMode [-TssSession] <Session> [-AllowCompleteWithErrors]
+Enable-TssUnifiedMode [-TssSession] <Session> [-AllowCompleteWithErrors] [-Force]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -20,6 +20,10 @@ Enable unified mode, which makes Secret Server read identities from the Delinea 
 Secret Server documents this endpoint as internal use only: enabling it before the Platform migration is complete can cause unwanted results.
 Follow progress with Get-TssUnifiedModeProgress.
 Returns Success.
+Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -51,6 +55,23 @@ Accept wildcard characters: False
 
 ### -AllowCompleteWithErrors
 Complete even when some objects failed to migrate
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
 
 ```yaml
 Type: SwitchParameter

@@ -16,17 +16,22 @@ Set-TssPlatformConfiguration [-TssSession] <Session> [-EnablePlatformAuditIntegr
  [-OpenIdConnectClientId <String>] [-OpenIdConnectClientSecret <SecureString>] [-OpenIdConnectEnabled]
  [-OpenIdConnectLoginUrl <String>] [-OpenIdConnectLogoutUrl <String>] [-PlatformTenantId <String>]
  [-ProfileName <String>] [-RequirePlatformMfa] [-SynchronizationIntervalDays <Int32>]
- [-SynchronizationIntervalHours <Int32>]
- [-WhatIf] [-Confirm] [<CommonParameters>]
+ [-SynchronizationIntervalHours <Int32>] [-Force] [-WhatIf] [-Confirm]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Set the Delinea Platform integration settings.
 Secret Server applies the synchronization intervals, audit and inventory forwarding, MFA and login page options only while OpenIdConnectEnabled is on; with it off they are ignored, and every update resets the login page options to false.
 ForcePlatformOnlyLogin turns off local login: make sure a Platform login works before you set it.
-The permission cache expiration, provisioning mode, UsePlatformSettings, vault Id and tenant Id that Get-TssPlatformConfiguration returns cannot be set here. While OpenIdConnectEnabled is off, every update clears the vault Id and tenant Id.
+The permission cache expiration, provisioning mode, UsePlatformSettings, vault Id and tenant Id that Get-TssPlatformConfiguration returns cannot be set here.
+While OpenIdConnectEnabled is off, every update clears the vault Id and tenant Id.
 Only the parameters you pass are sent.
 Returns the Delinea Platform configuration after the update.
+Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -262,6 +267,23 @@ Aliases:
 Required: False
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

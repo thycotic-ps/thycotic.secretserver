@@ -415,7 +415,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 | [Invoke-TssForgotPassword]          | 12.3.000024               |
 | [Invoke-TssOauthExpireBulk]         | 12.3.000024               |
 | [Invoke-TssPlatformAccess]          | 12.3.000024               |
-| [Invoke-TssPlatformProvision]       | 12.3.000024               |
 | [Invoke-TssPlatformSyncNow]         | 12.3.000024               |
 | [Invoke-TssRecordedSessionRequestProcessing] | 12.3.000024               |
 | [Invoke-TssSecretChangePassword]    | 12.3.000024               |
@@ -1534,7 +1533,6 @@ If you've been seeing `Cannot convert value` errors on older module releases, up
 [Get-TssPlatformStatus]:/thycotic.secretserver/commands/platform/Get-TssPlatformStatus
 [Get-TssPlatformSync]:/thycotic.secretserver/commands/platform/Get-TssPlatformSync
 [Get-TssPlatformUserMapping]:/thycotic.secretserver/commands/platform/Get-TssPlatformUserMapping
-[Invoke-TssPlatformProvision]:/thycotic.secretserver/commands/platform/Invoke-TssPlatformProvision
 [Invoke-TssPlatformSyncNow]:/thycotic.secretserver/commands/platform/Invoke-TssPlatformSyncNow
 [New-TssPlatformUsersAndGroups]:/thycotic.secretserver/commands/platform/New-TssPlatformUsersAndGroups
 [Reset-TssPlatformUserMapping]:/thycotic.secretserver/commands/platform/Reset-TssPlatformUserMapping

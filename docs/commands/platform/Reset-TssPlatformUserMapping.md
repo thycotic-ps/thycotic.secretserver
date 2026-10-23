@@ -11,14 +11,18 @@ Remove every Platform user mapping
 ## SYNTAX
 
 ```
-Reset-TssPlatformUserMapping [-TssSession] <Session> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+Reset-TssPlatformUserMapping [-TssSession] <Session> [-Force] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Delete every mapping between Delinea Platform users and Secret Server users.
 This is instance-wide and cannot be undone; it is usually only needed before Platform integration is set up again.
 Returns True.
+Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -44,6 +48,23 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

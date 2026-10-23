@@ -633,7 +633,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Get-TssPlatformStatus` - Get the status of a Delinea Platform tenant (GET v1/platform/status).
 * `Get-TssPlatformSync` - Get the Platform synchronization status (GET v1/platform/synchronization).
 * `Get-TssPlatformUserMapping` - Get the Platform user mapped to a Secret Server user (GET v1/platform/user/mapping).
-* `Invoke-TssPlatformProvision` - Provision a Delinea Platform tenant for this Secret Server (POST v1/platform/provision).
 * `Invoke-TssPlatformSyncNow` - Start a Platform synchronization now (POST v1/platform/synchronization-now).
 * `New-TssPlatformGroup` - Link a Delinea Platform directory group to Secret Server (POST v1/platform/group).
 * `New-TssPlatformUsersAndGroups` - Create Secret Server users and groups for Platform identities (POST v1/platform/create-users-and-groups).
@@ -1146,6 +1145,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Start-TssDirectoryServiceSync` - new `-PassThru` switch outputs the Boolean Secret Server returns (True when the synchronization is queued); without it nothing is output, as before.
 * `New-TssAdvancedConfigurationSetting`, `Update-TssAdvancedConfigurationSetting` and `Remove-TssAdvancedConfigurationSetting` write the warning "These settings are only to be updated by Delinea Support. Modifying them will have a major impact on Secret Server" and ask OK to proceed? before they send anything. New `-Force` skips the question (and the confirmation prompt unless `-Confirm` is passed) for unattended runs; `-WhatIf` sends nothing. ConfirmImpact is High. The warning, question and `-Force` handling live in the new private helper `Confirm-TssDangerousOperation`.
 * `Set-TssDatabaseConfiguration` warns that the database configuration is set per web node (the change applies only to the node that receives the request, so the session must point directly at that node) and asks OK to proceed? before it sends anything; new `-Force` skips the question. `Get-TssDatabaseConfiguration` help says the result comes from the node that answered.
+* `Set-TssPlatformConfiguration`, `Enable-TssUnifiedMode`, `Set-TssUnifiedModeStatus`, `Reset-TssPlatformUserMapping` and `Set-TssPlatformUserMapping` warn that the change can cause loss of access to the Delinea Platform and ask OK to proceed? before they send anything; new `-Force` skips the question. ConfirmImpact is High on all five.
 
 ### Bug Fixes
 

@@ -12,14 +12,18 @@ Map a Delinea Platform user to a Secret Server user
 
 ```
 Set-TssPlatformUserMapping [-TssSession] <Session> -PlatformUserId <String> [-DirectoryServiceName <String>]
- [-ExternalUserSource <String>] -UserId <Int32> [-WhatIf] [-Confirm]
- [<CommonParameters>]
+ [-ExternalUserSource <String>] -UserId <Int32> [-Force] [-WhatIf]
+ [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Map a Delinea Platform user to an existing Secret Server user.
 DirectoryServiceName Delinea with ExternalUserSource ThycoticOne maps through Thycotic One, EntraId maps through the Entra ID tenant of the Platform; anything else maps through the Platform login URL.
 Returns Success and a Message.
+Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -105,6 +109,23 @@ Aliases:
 Required: True
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

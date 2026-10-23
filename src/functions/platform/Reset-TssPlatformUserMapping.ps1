@@ -5,9 +5,14 @@ function Reset-TssPlatformUserMapping {
 
     .DESCRIPTION
     Delete every mapping between Delinea Platform users and Secret Server users. This is instance-wide and cannot be undone; it is usually only needed before Platform integration is set up again. Returns True.
+    Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -31,7 +36,10 @@ function Reset-TssPlatformUserMapping {
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
         [Thycotic.PowerShell.Authentication.Session]
-        $TssSession
+        $TssSession,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -44,7 +52,7 @@ function Reset-TssPlatformUserMapping {
             $uri = $TssSession.ApiUrl, 'platform', 'reset-user-mappings' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
-            if ($PSCmdlet.ShouldProcess("All Platform user mappings", "$($invokeParams.Method) $uri")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet PlatformAccess "All Platform user mappings" "$($invokeParams.Method) $uri" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

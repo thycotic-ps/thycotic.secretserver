@@ -9,6 +9,8 @@ function Set-TssPlatformConfiguration {
     ForcePlatformOnlyLogin turns off local login: make sure a Platform login works before you set it.
     The permission cache expiration, provisioning mode, UsePlatformSettings, vault Id and tenant Id that Get-TssPlatformConfiguration returns cannot be set here. While OpenIdConnectEnabled is off, every update clears the vault Id and tenant Id.
     Only the parameters you pass are sent. Returns the Delinea Platform configuration after the update.
+    Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
@@ -55,6 +57,9 @@ function Set-TssPlatformConfiguration {
     .PARAMETER SynchronizationIntervalHours
     Hours between Platform synchronizations
 
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
+
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Set-TssPlatformConfiguration -TssSession $session -SynchronizationIntervalHours 6
@@ -70,7 +75,7 @@ function Set-TssPlatformConfiguration {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding(SupportsShouldProcess)]
+    [CmdletBinding(SupportsShouldProcess, ConfirmImpact = 'High')]
     [OutputType('Thycotic.PowerShell.Configuration.PlatformConfiguration')]
     param (
         [Parameter(Mandatory, ValueFromPipeline, Position = 0)]
@@ -117,7 +122,10 @@ function Set-TssPlatformConfiguration {
         $SynchronizationIntervalDays,
 
         [int]
-        $SynchronizationIntervalHours
+        $SynchronizationIntervalHours,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -176,7 +184,7 @@ function Set-TssPlatformConfiguration {
                 }
             }
             $invokeParams.Body = $body | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("Platform configuration", "$($invokeParams.Method) $uri (request body not shown: it carries sensitive values)")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet PlatformAccess "Platform configuration" "$($invokeParams.Method) $uri (request body not shown: it carries sensitive values)" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri (request body not shown: it carries sensitive values)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

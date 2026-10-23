@@ -11,13 +11,17 @@ Set the Platform unified mode status
 ## SYNTAX
 
 ```
-Set-TssUnifiedModeStatus [-TssSession] <Session> -Status <String>
+Set-TssUnifiedModeStatus [-TssSession] <Session> -Status <String> [-Force]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Set the unified mode status recorded for the Platform migration, for example to clear a stale InProgress status.
 Returns Success.
+Changing the Platform configuration, unified mode or Platform user mappings can cause loss of access to the Delinea Platform.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -57,6 +61,23 @@ Aliases:
 Required: True
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

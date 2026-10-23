@@ -4,6 +4,11 @@ BeforeDiscovery {
             @{ Name = 'Update-TssAdvancedConfigurationSetting'; Arguments = "-AdvancedSettingId 12 -Value '30'"; Danger = 'SupportOnlySetting' }
             @{ Name = 'Remove-TssAdvancedConfigurationSetting'; Arguments = "-Id 12"; Danger = 'SupportOnlySetting' }
             @{ Name = 'Set-TssDatabaseConfiguration'; Arguments = "-DatabaseName 'SecretServer'"; Danger = 'NodeDatabaseConfiguration' }
+            @{ Name = 'Set-TssPlatformConfiguration'; Arguments = "-ProfileName 'pester'"; Danger = 'PlatformAccess' }
+            @{ Name = 'Enable-TssUnifiedMode'; Arguments = ""; Danger = 'PlatformAccess' }
+            @{ Name = 'Set-TssUnifiedModeStatus'; Arguments = "-Status Started"; Danger = 'PlatformAccess' }
+            @{ Name = 'Reset-TssPlatformUserMapping'; Arguments = ""; Danger = 'PlatformAccess' }
+            @{ Name = 'Set-TssPlatformUserMapping'; Arguments = "-PlatformUserId 'pester' -UserId 2"; Danger = 'PlatformAccess' }
     )
 }
 Describe 'Dangerous operations' {
