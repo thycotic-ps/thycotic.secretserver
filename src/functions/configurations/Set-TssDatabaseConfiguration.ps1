@@ -7,6 +7,8 @@ function Set-TssDatabaseConfiguration {
     Updates the SQL Server connection settings Secret Server uses and returns the updated configuration. Secret Server validates the new connection before it saves it.
     With SQL Server authentication, send the Password parameter even when the password is not changing.
     A wrong value can take Secret Server offline. Only the parameters you pass are sent; switch parameters send their value, so -Name:$false turns a setting off.
+    The database configuration is set per web node: the change applies only to the node that receives the request, so the session must point directly at that node, not at a load-balanced address.
+    The command writes that warning and asks OK to proceed? before it sends the request. -Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication
@@ -46,6 +48,9 @@ function Set-TssDatabaseConfiguration {
 
     .PARAMETER UserName
     SQL Server login name, used with SQL Server authentication
+
+    .PARAMETER Force
+    Skip the OK to proceed? question, and the confirmation prompt unless -Confirm is passed. The warning is still written.
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
@@ -106,7 +111,10 @@ function Set-TssDatabaseConfiguration {
         $TrustServerCertificate,
 
         [string]
-        $UserName
+        $UserName,
+
+        [switch]
+        $Force
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -159,7 +167,7 @@ function Set-TssDatabaseConfiguration {
                 }
             }
             $invokeParams.Body = $body | ConvertTo-Json -Depth 100
-            if ($PSCmdlet.ShouldProcess("Database configuration", "$($invokeParams.Method) $uri (request body not shown: it carries sensitive values)")) {
+            if (Confirm-TssDangerousOperation $PSCmdlet NodeDatabaseConfiguration "Database configuration" "$($invokeParams.Method) $uri (request body not shown: it carries sensitive values)" -Force:$Force) {
                 Write-Verbose "Performing the operation $($invokeParams.Method) $uri (request body not shown: it carries sensitive values)"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams

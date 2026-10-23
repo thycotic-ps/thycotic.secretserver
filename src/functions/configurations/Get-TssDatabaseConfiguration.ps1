@@ -5,6 +5,7 @@ function Get-TssDatabaseConfiguration {
 
     .DESCRIPTION
     Returns the SQL Server connection settings Secret Server uses: server, database, authentication type and login name, encryption, failover and timeout, plus the configuration file path and application pool identity. No password is returned.
+    The database configuration is set per web node: the result comes from the node that answered the request, which behind a load-balanced address can be any node. Point the session directly at a node to read that node's configuration.
 
     .PARAMETER TssSession
     TssSession object created by New-TssSession for authentication

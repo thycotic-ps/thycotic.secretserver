@@ -3,6 +3,7 @@ BeforeDiscovery {
             @{ Name = 'New-TssAdvancedConfigurationSetting'; Arguments = "-AdvancedSettingId 12 -Value '30'"; Danger = 'SupportOnlySetting' }
             @{ Name = 'Update-TssAdvancedConfigurationSetting'; Arguments = "-AdvancedSettingId 12 -Value '30'"; Danger = 'SupportOnlySetting' }
             @{ Name = 'Remove-TssAdvancedConfigurationSetting'; Arguments = "-Id 12"; Danger = 'SupportOnlySetting' }
+            @{ Name = 'Set-TssDatabaseConfiguration'; Arguments = "-DatabaseName 'SecretServer'"; Danger = 'NodeDatabaseConfiguration' }
     )
 }
 Describe 'Dangerous operations' {

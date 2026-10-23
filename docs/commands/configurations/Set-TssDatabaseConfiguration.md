@@ -14,7 +14,7 @@ Set the database configuration
 Set-TssDatabaseConfiguration [-TssSession] <Session> [-AuthenticationType <String>]
  [-ConnectionTimeout <Int32>] [-DatabaseName <String>] [-EnableMultiSubnetFailover] [-EnableSslEncryption]
  [-FailoverPartner <String>] [-FileOverridePassword <SecureString>] [-FileOverrideUserName <String>]
- [-Password <SecureString>] [-ServerName <String>] [-TrustServerCertificate] [-UserName <String>]
+ [-Password <SecureString>] [-ServerName <String>] [-TrustServerCertificate] [-UserName <String>] [-Force]
  [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
@@ -24,6 +24,10 @@ Secret Server validates the new connection before it saves it.
 With SQL Server authentication, send the Password parameter even when the password is not changing.
 A wrong value can take Secret Server offline.
 Only the parameters you pass are sent; switch parameters send their value, so -Name:$false turns a setting off.
+The database configuration is set per web node: the change applies only to the node that receives the request, so the session must point directly at that node, not at a load-balanced address.
+The command writes that warning and asks OK to proceed?
+before it sends the request.
+-Force skips the question, and the confirmation prompt unless -Confirm is passed, for unattended runs; -WhatIf shows the request without sending it.
 
 ## EXAMPLES
 
@@ -228,6 +232,23 @@ Aliases:
 Required: False
 Position: Named
 Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -Force
+Skip the OK to proceed?
+question, and the confirmation prompt unless -Confirm is passed.
+The warning is still written.
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
