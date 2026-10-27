@@ -71,6 +71,9 @@ task UpdateManifest -Before stage, build, docs {
         LicenseUri           = $manifestData.PrivateData.PSData.LicenseUri
         ReleaseNotes         = $manifestData.PrivateData.PSData.ReleaseNotes
     }
+    if ($manifestData.PrivateData.PSData.Prerelease) {
+        $updateManifestParams.Prerelease = $manifestData.PrivateData.PSData.Prerelease
+    }
     Update-ModuleManifest @updateManifestParams
 }
 
@@ -202,6 +205,21 @@ task build {
             }
         }
 
+        if ($Configuration -eq 'Prerelease' -and -not [string]::IsNullOrEmpty($GalleryKey)) {
+            $preLabel = $moduleData.PrivateData.PSData.Prerelease
+            if ($preLabel -ne $GitHubPreTag) {
+                throw "Manifest Prerelease [$preLabel] does not match GitHubPreTag [$GitHubPreTag]"
+            }
+            $preVersion = "$($moduleData.ModuleVersion)-$preLabel"
+            if (Find-Module -Name $moduleName -RequiredVersion $preVersion -AllowPrerelease -ErrorAction SilentlyContinue) {
+                throw "PowerShell Gallery already has $moduleName $preVersion"
+            }
+
+            Write-Output "Publishing $moduleName [$preVersion] to PowerShell Gallery as prerelease"
+            Publish-Module -Path $moduleTempPath -NuGetApiKey $gallerykey
+            Write-Output "Publishing to PS Gallery, completed"
+        }
+
         $tagName = "v$($moduleData.ModuleVersion)"
         $releaseTitle = "$moduleName $($moduleData.ModuleVersion)"
         if ($Configuration -eq 'PreRelease') {
@@ -210,7 +228,7 @@ task build {
         }
         Compress-Archive "$staging\$moduleName\*" -DestinationPath $zipFilePath -CompressionLevel Fastest -Force
 
-        $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog"
+        $ghArgs = "release create `"$tagName`" `"$($zipFilePath)#$($zipFileName)`" --title `"$releaseTitle`" --notes-file $changeLog --target $(git rev-parse HEAD)"
 
         if ($Configuration -eq 'Prerelease') {
             $ghArgs = $ghArgs + " --prerelease"
