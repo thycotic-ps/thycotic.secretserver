@@ -18,6 +18,21 @@ function Get-TssSecretField {
 
     Get the private key from Secret 432, writing to the file private-key.json
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretField -TssSession $session -Id 14 -Slug password -AutoCheckout -AutoComment 'Quarterly access review'
+
+    Get the password of secret ID 14, checking the secret out first when it requires checkout and recording the comment
+
+    .PARAMETER AutoCheckout
+    Check out the secret automatically when it requires checkout
+
+    .PARAMETER AutoCheckIn
+    Check the secret back in after the field is read
+
+    .PARAMETER AutoComment
+    Comment to record with the automatic checkout, for secrets that require a comment
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretField
 
@@ -38,6 +53,7 @@ function Get-TssSecretField {
         # Secret ID to retrieve
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'field')]
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'restricted')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'checkout')]
         [Alias('SecretId')]
         [int[]]
         $Id,
@@ -45,6 +61,7 @@ function Get-TssSecretField {
         # Secret ID to retrieve
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'field')]
         [Parameter(Mandatory, ParameterSetName = 'restricted')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'checkout')]
         [Alias('FieldName')]
         [string]
         $Slug,
@@ -89,7 +106,19 @@ function Get-TssSecretField {
         # Associated ticket system ID (required for ticket integrations)
         [Parameter(ParameterSetName = 'restricted')]
         [int]
-        $TicketSystemId
+        $TicketSystemId,
+
+        [Parameter(ParameterSetName = 'checkout')]
+        [switch]
+        $AutoCheckout,
+
+        [Parameter(ParameterSetName = 'checkout')]
+        [switch]
+        $AutoCheckIn,
+
+        [Parameter(ParameterSetName = 'checkout')]
+        [string]
+        $AutoComment
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -133,6 +162,25 @@ function Get-TssSecretField {
                     $invokeParams.Uri = $uri
                     $invokeParams.Method = 'POST'
                     $invokeParams.Body = $body | ConvertTo-Json
+                } elseif ($PSCmdlet.ParameterSetName -eq 'checkout') {
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Slug -join '/'
+                    $queryParams = @()
+                    switch ($tssParams.Keys) {
+                        'AutoCheckout' {
+                            $queryParams += "autoCheckout=$([boolean]$AutoCheckout)"
+                        }
+                        'AutoCheckIn' {
+                            $queryParams += "autoCheckIn=$([boolean]$AutoCheckIn)"
+                        }
+                        'AutoComment' {
+                            $queryParams += "autoComment=$([uri]::EscapeDataString($AutoComment))"
+                        }
+                    }
+                    if ($queryParams) {
+                        $uri = $uri, ($queryParams -join '&') -join '?'
+                    }
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Method = 'GET'
                 } else {
                     $uri = $uri, 'fields', $Slug -join '/'
                     if ($tssParams.ContainsKey('NoAutoCheckout')) {

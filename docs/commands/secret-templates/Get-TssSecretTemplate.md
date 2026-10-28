@@ -11,7 +11,8 @@ Get a secret template from Secret Server
 ## SYNTAX
 
 ```
-Get-TssSecretTemplate [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretTemplate [-TssSession] <Session> -Id <Int32[]> [-Detail]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -26,6 +27,14 @@ Get-TssSecretTemplate -Id 93
 ```
 
 Returns secret associated with the Secret ID, 93
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssSecretTemplate -TssSession $session -Id 6007 -Detail
+```
+
+Returns the settings of secret template 6007, such as name pattern, expiration, one-time password and SSH key settings
 
 ## PARAMETERS
 
@@ -59,6 +68,21 @@ Accept pipeline input: True (ByPropertyName)
 Accept wildcard characters: False
 ```
 
+### -Detail
+Return the template settings (name pattern, expiration, one-time password, SSH key and other settings) from the version 2 endpoint instead of the template and its fields
+
+```yaml
+Type: SwitchParameter
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: False
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
 ### CommonParameters
 This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable, -InformationAction, -InformationVariable, -OutVariable, -OutBuffer, -PipelineVariable, -Verbose, -WarningAction, and -WarningVariable. For more information, see [about_CommonParameters](http://go.microsoft.com/fwlink/?LinkID=113216).
 
@@ -67,6 +91,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Thycotic.PowerShell.SecretTemplates.Template
+### Thycotic.PowerShell.SecretTemplates.Detail
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

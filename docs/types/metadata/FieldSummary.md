@@ -20,6 +20,7 @@ grand_parent: Types
 |---|---|---|---|
 | `containsPersonalInformation` | `bool` | read/write | — |
 | `DefaultSortOrder` | `int` | read/write | — |
+| `Enabled` | `bool` | read/write | - |
 | `FieldDataType` | `MetadataFieldDataType` | read/write | — |
 | `MetadataFieldId` | `int` | read/write | — |
 | `MetadataFieldName` | `string` | read/write | — |

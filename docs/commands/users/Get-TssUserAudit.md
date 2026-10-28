@@ -10,12 +10,22 @@ Get audit for a user
 
 ## SYNTAX
 
+### user (Default)
 ```
-Get-TssUserAudit [-TssSession] <Session> -UserId <Int32[]> [<CommonParameters>]
+Get-TssUserAudit [-TssSession] <Session> -UserId <Int32[]>
+ [<CommonParameters>]
+```
+
+### action
+```
+Get-TssUserAudit [-TssSession] <Session> -Action <String[]>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Get audit for a Secret Server User
+
+With -Action the audit records of those actions are returned across all users.
 
 ## EXAMPLES
 
@@ -26,6 +36,14 @@ Get-TssUserAudit -TssSession $session -UserId 2
 ```
 
 Get all of the audits for UserId 2
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssUserAudit -TssSession $session -Action CREATEUSER, EDIT
+```
+
+Get the user creation and user edit audits of all users
 
 ## PARAMETERS
 
@@ -49,13 +67,28 @@ Secret ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: (All)
+Parameter Sets: user
 Aliases: Id
 
 Required: True
 Position: Named
 Default value: None
 Accept pipeline input: True (ByPropertyName)
+Accept wildcard characters: False
+```
+
+### -Action
+Audit actions to return across all users, as they appear in the Action property (for example CREATEUSER, EDIT or 'LOGIN SUCCESS')
+
+```yaml
+Type: String[]
+Parameter Sets: action
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
@@ -66,7 +99,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.Users.AuditSummary
+### Thycotic.PowerShell.Users.AuditSummary[]
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

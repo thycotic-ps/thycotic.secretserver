@@ -9,6 +9,7 @@ namespace Thycotic.PowerShell.Configuration
     {
         public bool Active { get; set; }
         public string AuthnContext { get; set; }
+        public bool BypassSecretServerMFA { get; set; }
         public int ClockSkew { get; set; }
         public string Description { get; set; }
         public bool DisableAssertionReplayCheck { get; set; }
@@ -30,6 +31,7 @@ namespace Thycotic.PowerShell.Configuration
         public string Name { get; set; }
         public bool OverridePendingAuthnRequest { get; set; }
         public string PublicCertificate { get; set; }
+        public string PublicCertificateThumbprint { get; set; }
         public bool SignAuthnRequest { get; set; }
         public bool SignLogoutRequest { get; set; }
         public bool SignLogoutResponse { get; set; }

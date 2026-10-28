@@ -11,11 +11,14 @@ Get status of password change
 ## SYNTAX
 
 ```
-Get-TssSecretPasswordStatus [-TssSession] <Session> -Id <Int32[]> [<CommonParameters>]
+Get-TssSecretPasswordStatus [-TssSession] <Session> -Id <Int32[]>
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Get status of password change
+Reads the published route GET secrets/secret-detail/{id}/password-status.
+Before 0.63.0 this command read the internal route internals/secret-detail/{id}/password-status, which is unsupported and can change in any Secret Server release; the output type is unchanged.
 
 ## EXAMPLES
 

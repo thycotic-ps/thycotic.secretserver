@@ -3,12 +3,16 @@ BeforeDiscovery {
 }
 Describe "$commandName verify parameters" {
     BeforeDiscovery {
-        [object[]]$knownParameters = 'TssSession', 'UserId'
+        [object[]]$knownParameters = 'TssSession', 'UserId', 'Action'
         [object[]]$currentParams = ([Management.Automation.CommandMetaData]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')).Parameters.Keys
         [object[]]$commandDetails = [System.Management.Automation.CommandInfo]$ExecutionContext.SessionState.InvokeCommand.GetCommand($commandName,'Function')
         $unknownParameters = Compare-Object -ReferenceObject $knownParameters -DifferenceObject $currentParams -PassThru
+        $setCases = @(
+            @{ CommandName = $commandName; SetName = 'user'; Mandatory = @('TssSession', 'UserId'); Optional = @(); Absent = @('Action') }
+            @{ CommandName = $commandName; SetName = 'action'; Mandatory = @('TssSession', 'Action'); Optional = @(); Absent = @('UserId') }
+        )
     }
-    Context "Verify parameters" -ForEach @{currentParams = $currentParams } {
+    Context "Verify parameters" -Foreach @{currentParams = $currentParams } {
         It "$commandName should contain <_> parameter" -TestCases $knownParameters {
             $_ -in $currentParams | Should -Be $true
         }
@@ -19,6 +23,37 @@ Describe "$commandName verify parameters" {
     Context "Command specific details" {
         It "$commandName should set OutputType to Thycotic.PowerShell.Users.AuditSummary[]" -TestCases $commandDetails {
             $_.OutputType.Name | Should -Be 'Thycotic.PowerShell.Users.AuditSummary[]'
+        }
+        It "$commandName should default to the user parameter set" -TestCases $commandDetails {
+            $_.DefaultParameterSet | Should -Be 'user'
+        }
+        It "$commandName should take UserId as System.Int32[]" -TestCases $commandDetails {
+            $_.Parameters['UserId'].ParameterType.FullName | Should -Be 'System.Int32[]'
+        }
+        It "$commandName should take Action as System.String[]" -TestCases $commandDetails {
+            $_.Parameters['Action'].ParameterType.FullName | Should -Be 'System.String[]'
+        }
+    }
+    Context "Parameter set <SetName>" -Foreach $setCases {
+        BeforeAll {
+            $set = (Get-Command $CommandName).ParameterSets.Where({ $_.Name -eq $SetName })[0]
+        }
+        It "should exist" {
+            $set | Should -Not -BeNullOrEmpty
+        }
+        It "should require exactly <Mandatory>" {
+            $actual = $set.Parameters.Where({ $_.IsMandatory }).Name | Sort-Object
+            ($actual -join ',') | Should -BeExactly (($Mandatory | Sort-Object) -join ',')
+        }
+        It "should have exactly <Optional> as optional" {
+            $common = [System.Management.Automation.PSCmdlet]::CommonParameters + [System.Management.Automation.PSCmdlet]::OptionalCommonParameters
+            $actual = $set.Parameters.Where({ -not $_.IsMandatory -and $_.Name -notin $common }).Name | Sort-Object
+            ($actual -join ',') | Should -BeExactly (($Optional | Sort-Object) -join ',')
+        }
+        It "should not offer <Absent>" {
+            foreach ($name in $Absent) {
+                $set.Parameters.Name | Should -Not -Contain $name
+            }
         }
     }
 }

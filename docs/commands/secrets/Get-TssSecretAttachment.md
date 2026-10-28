@@ -10,16 +10,24 @@ Get a Secret attachment
 
 ## SYNTAX
 
-### id
+### outfile
 ```
-Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-NoAutoCheckout]
- [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> -OutFile <String>
+ [<CommonParameters>]
 ```
 
 ### path
 ```
-Get-TssSecretAttachment [-TssSession] <Session> -Slug <String> -Path <String> [-NoAutoCheckout]
- [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>] [<CommonParameters>]
+Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> -Path <String> [-NoAutoCheckout]
+ [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>]
+ [<CommonParameters>]
+```
+
+### id
+```
+Get-TssSecretAttachment [-TssSession] <Session> -Id <Int32[]> -Slug <String> [-NoAutoCheckout]
+ [-Comment <String>] [-ForceCheckIn] [-TicketNumber <String>] [-TicketSystemId <Int32>]
+ [<CommonParameters>]
 ```
 
 ### restricted
@@ -33,6 +41,7 @@ Get a Secret attachment with the filename in order to write it out to disk.
 Combining the use of two public functions to write the attachment out to the given filename in the Secret.
 The filename of an attachment is in Get-TssSecret output (items)
 The content of the file is in Get-TssSecretField.
+With -OutFile the field is downloaded straight to that file path in one request (GET secrets/{id}/fields/{slug}).
 
 ## EXAMPLES
 
@@ -43,6 +52,14 @@ Get-TssSecretAttachment -TssSession $session -Id 35 -Slug attached-file -Path 'c
 ```
 
 Get the Secert ID 35's field Attached File (using slug name attached-file), writing the file to c:\thycotic directory using the filename stored on that Secret
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Get-TssSecretAttachment -TssSession $session -Id 35 -Slug private-key -OutFile ./id_rsa
+```
+
+Downloads the private-key field of secret 35 to the file id_rsa in the current folder
 
 ## PARAMETERS
 
@@ -66,7 +83,7 @@ Secret ID
 
 ```yaml
 Type: Int32[]
-Parameter Sets: id
+Parameter Sets: outfile, path, id
 Aliases: SecretId
 
 Required: True
@@ -111,7 +128,7 @@ Don't check out the secret automatically (added in 11.0+)
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: id, path
+Parameter Sets: path, id
 Aliases:
 
 Required: False
@@ -126,7 +143,7 @@ Comment to provide for restricted secret (Require Comment is enabled)
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: path, id, restricted
 Aliases:
 
 Required: False
@@ -141,7 +158,7 @@ Check in the secret if it is checked out
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: path, id, restricted
 Aliases:
 
 Required: False
@@ -156,7 +173,7 @@ Associated ticket number (required for ticket integrations)
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: path, id, restricted
 Aliases:
 
 Required: False
@@ -171,12 +188,27 @@ Associated ticket system ID (required for ticket integrations)
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: path, id, restricted
 Aliases:
 
 Required: False
 Position: Named
 Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -OutFile
+Full path of the file to write the field content to
+
+```yaml
+Type: String
+Parameter Sets: outfile
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```

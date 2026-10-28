@@ -11,7 +11,8 @@ Search list of items in Automatic Export Storage for Secret Server Cloud
 ## SYNTAX
 
 ```
-Search-TssAutoExportStorage [-TssSession] <Session> [<CommonParameters>]
+Search-TssAutoExportStorage [-TssSession] <Session> [-ConfigurationId <Int32>]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
@@ -27,6 +28,14 @@ Search-TssAutoExportStorage -TssSession $session
 
 Returns a list of items in Automatic Export Storage
 
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://tenant.secretservercloud.com -Credential $ssCred
+Search-TssAutoExportStorage -TssSession $session -ConfigurationId 2
+```
+
+Returns the items in Automatic Export Storage for automatic export configuration 2
+
 ## PARAMETERS
 
 ### -TssSession
@@ -41,6 +50,21 @@ Required: True
 Position: 1
 Default value: None
 Accept pipeline input: True (ByValue)
+Accept wildcard characters: False
+```
+
+### -ConfigurationId
+Automatic export configuration id; returns that configuration's storage items instead of the default configuration's
+
+```yaml
+Type: Int32
+Parameter Sets: (All)
+Aliases:
+
+Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
 Accept wildcard characters: False
 ```
 

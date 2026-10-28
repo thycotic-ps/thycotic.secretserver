@@ -47,7 +47,13 @@ function New-TssSecretDependency {
             $uri = $TssSession.ApiUrl, 'secret-dependencies' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
-            $invokeParams.Body = ($DependencyStub | ConvertTo-Json -Depth 9)
+            $dependencyBody = $DependencyStub | ConvertTo-Json -Depth 9 | ConvertFrom-Json
+            foreach ($optionalId in 'SshKeySecretId', 'PrivilegedAccountSecretId', 'ConditionDependencyId') {
+                if ($dependencyBody.$optionalId -eq 0) {
+                    $dependencyBody.$optionalId = $null
+                }
+            }
+            $invokeParams.Body = ($dependencyBody | ConvertTo-Json -Depth 9)
 
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with:`n $newBody"
             if (-not $PSCmdlet.ShouldProcess("", "$($invokeParams.Method) $uri with $($invokeParams.Body)")) { return }

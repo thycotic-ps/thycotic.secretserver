@@ -7,12 +7,22 @@ function Get-TssSecretAttachment {
     Get a Secret attachment with the filename in order to write it out to disk. Combining the use of two public functions to write the attachment out to the given filename in the Secret.
     The filename of an attachment is in Get-TssSecret output (items)
     The content of the file is in Get-TssSecretField.
+    With -OutFile the field is downloaded straight to that file path in one request (GET secrets/{id}/fields/{slug}).
+
+    .PARAMETER OutFile
+    Full path of the file to write the field content to
 
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     Get-TssSecretAttachment -TssSession $session -Id 35 -Slug attached-file -Path 'c:\thycotic'
 
     Get the Secert ID 35's field Attached File (using slug name attached-file), writing the file to c:\thycotic directory using the filename stored on that Secret
+
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Get-TssSecretAttachment -TssSession $session -Id 35 -Slug private-key -OutFile ./id_rsa
+
+    Downloads the private-key field of secret 35 to the file id_rsa in the current folder
 
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/secrets/Get-TssSecretAttachment
@@ -33,6 +43,7 @@ function Get-TssSecretAttachment {
         # Secret ID
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'id')]
         [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'path')]
+        [Parameter(Mandatory, ValueFromPipelineByPropertyName, ParameterSetName = 'outfile')]
         [Alias('SecretId')]
         [int[]]
         $Id,
@@ -81,10 +92,15 @@ function Get-TssSecretAttachment {
         [Parameter(ParameterSetName = 'path')]
         [Parameter(ParameterSetName = 'restricted')]
         [int]
-        $TicketSystemId
+        $TicketSystemId,
+
+        [Parameter(Mandatory, ParameterSetName = 'outfile')]
+        [string]
+        $OutFile
     )
     begin {
         $tssParams = $PSBoundParameters
+        $invokeParams = . $GetInvokeApiParams $TssSession
 
         $restrictedParamSet = . $ParameterSetParams $PSCmdlet.MyInvocation.MyCommand.Name 'restricted'
         $restrictedParams = @()
@@ -98,7 +114,32 @@ function Get-TssSecretAttachment {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            if ($PSCmdlet.ParameterSetName -eq 'outfile' -and $Id.Count -gt 1) {
+                Write-Error 'OutFile takes a single secret ID'
+                return
+            }
             foreach ($secret in $Id) {
+                if ($PSCmdlet.ParameterSetName -eq 'outfile') {
+                    $uri = $TssSession.ApiUrl, 'secrets', $secret, 'fields', $Slug -join '/'
+                    $invokeParams.Uri = $uri
+                    $invokeParams.Method = 'GET'
+                    $outFilePath = $PSCmdlet.GetUnresolvedProviderPathFromPSPath($OutFile)
+                    Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
+                    try {
+                        $apiResponse = Invoke-TssApi @invokeParams
+                        if ($apiResponse.IsSuccessful -and $apiResponse.StatusCode -eq 200) {
+                            [IO.File]::WriteAllBytes($outFilePath, $apiResponse.RawBytes)
+                            Get-ChildItem -LiteralPath $outFilePath
+                        } else {
+                            $null = . $ProcessResponse $apiResponse
+                        }
+                    } catch {
+                        Write-Warning "Issue getting field [$Slug] on secret [$secret]"
+                        $err = $_
+                        . $ErrorHandling $err
+                    }
+                    continue
+                }
                 $currentSecret = $null
 
                 $getSecretParams = @{

@@ -1,0 +1,38 @@
+using System;
+using System.Threading.Tasks;
+using System.Management.Automation;
+using System.Management.Automation.Runspaces;
+
+namespace Thycotic.PowerShell.Discovery
+{
+    public class DiscoveryPublicKey
+    {
+        public bool AddedManually { get; set; }
+        public bool CanLaunch { get; set; }
+        public int? ComputerId { get; set; }
+        public string ComputerName { get; set; }
+        public DateTime? CreatedDate { get; set; }
+        public int? DiscoveryItemScannerId { get; set; }
+        public string DiscoveryItemScannerName { get; set; }
+        public int? DiscoverySourceId { get; set; }
+        public string DiscoverySourceName { get; set; }
+        public string DisplayName { get; set; }
+        public bool Excluded { get; set; }
+        public bool FoundOnComputer { get; set; }
+        public bool? HasLocalAdminRights { get; set; }
+        public bool HeartbeatFailed { get; set; }
+        public bool? IsLocalAdministrator { get; set; }
+        public string LastHeartBeatStatus { get; set; }
+        public int NetworkItemId { get; set; }
+        public int? OrganizationUnitId { get; set; }
+        public string OrganizationUnitName { get; set; }
+        public DateTime? PasswordExpirationDate { get; set; }
+        public int? PasswordExpirationStatus { get; set; }
+        public DateTime? PasswordLastSet { get; set; }
+        public string PublicKey { get; set; }
+        public int? ScanItemTemplateId { get; set; }
+        public string ScanItemTemplateName { get; set; }
+        public int? SecretId { get; set; }
+        public string SecretName { get; set; }
+    }
+}

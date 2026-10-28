@@ -20,6 +20,7 @@ grand_parent: Types
 |---|---|---|---|
 | `Active` | `bool` | read/write | — |
 | `ConfigurationJson` | `string` | read/write | — |
+| `DeactivatedAt` | `DateTime?` | read/write | - |
 | `Description` | `string` | read/write | — |
 | `ExpirationMinutes` | `int` | read/write | — |
 | `Name` | `string` | read/write | — |

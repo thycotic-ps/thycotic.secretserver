@@ -24,8 +24,18 @@ New-TssMetadataField [-TssSession] <Session> -ItemId <Int32> -ItemType <Metadata
  [-RequireItemEdit] [-WhatIf] [-Confirm] [<CommonParameters>]
 ```
 
+### field
+```
+New-TssMetadataField [-TssSession] <Session> -SectionId <Int32> -FieldName <String>
+ -FieldDataType <MetadataFieldDataType> [-WhatIf] [-Confirm]
+ [<CommonParameters>]
+```
+
 ## DESCRIPTION
 Create a metadata field for an item
+
+The field parameter set (-SectionId, -FieldName and -FieldDataType, no item parameters) instead creates a metadata field definition in an existing metadata field section (POST metadata/fields) and returns Thycotic.PowerShell.Metadata.FieldSummary.
+It requires the Administer Metadata permission.
 
 ## EXAMPLES
 
@@ -64,6 +74,14 @@ New-TssMetadataField @newMetaParams
 
 Create the metadata field CurrentOwner with a User ID set to 6, under new section called "TempInfo" (with a description)
 
+### EXAMPLE 3
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+New-TssMetadataField -TssSession $session -SectionId 2 -FieldName 'CostCenter' -FieldDataType String
+```
+
+Create the String metadata field definition CostCenter in metadata field section 2, without setting a value on any item
+
 ## PARAMETERS
 
 ### -TssSession
@@ -86,7 +104,7 @@ Item ID
 
 ```yaml
 Type: Int32
-Parameter Sets: (All)
+Parameter Sets: newsection, currentsection
 Aliases:
 
 Required: True
@@ -101,7 +119,7 @@ Item Type
 
 ```yaml
 Type: MetadataType
-Parameter Sets: (All)
+Parameter Sets: newsection, currentsection
 Aliases:
 Accepted values: Secret, User, Folder, Group
 
@@ -121,6 +139,18 @@ Parameter Sets: currentsection
 Aliases:
 
 Required: False
+Position: Named
+Default value: 0
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+```yaml
+Type: Int32
+Parameter Sets: field
+Aliases:
+
+Required: True
 Position: Named
 Default value: 0
 Accept pipeline input: False
@@ -193,7 +223,7 @@ Item Value
 
 ```yaml
 Type: Object
-Parameter Sets: (All)
+Parameter Sets: newsection, currentsection
 Aliases:
 
 Required: True
@@ -208,7 +238,7 @@ Requires Administer Metadata permission to modify
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: newsection, currentsection
 Aliases:
 
 Required: False
@@ -223,7 +253,7 @@ Requires Edit permission on the Item to modify
 
 ```yaml
 Type: SwitchParameter
-Parameter Sets: (All)
+Parameter Sets: newsection, currentsection
 Aliases:
 
 Required: False
@@ -272,6 +302,7 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 ## OUTPUTS
 
 ### Thycotic.PowerShell.Metadata.Field
+### Thycotic.PowerShell.Metadata.FieldSummary
 ## NOTES
 Requires TssSession object returned by New-TssSession
 

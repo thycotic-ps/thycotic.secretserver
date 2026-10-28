@@ -18,12 +18,12 @@ grand_parent: Types
 
 | Name | Type | Access | Default |
 |---|---|---|---|
-| `Active` | `bool` | read/write | — |
-| `DomainId` | `int` | read/write | — |
-| `DomainName` | `string` | read/write | — |
-| `DomainType` | `string` | read/write | — |
-| `FriendlyName` | `string` | read/write | — |
-| `RequireRadiusAuthentication` | `bool` | read/write | — |
-| `UseSecureLdap` | `bool` | read/write | — |
-
-
+| `Active` | `bool` | read/write | - |
+| `DistinguishedName` | `string` | read/write | - |
+| `DomainId` | `int` | read/write | - |
+| `DomainName` | `string` | read/write | - |
+| `DomainType` | `string` | read/write | - |
+| `FriendlyName` | `string` | read/write | - |
+| `RequireRadiusAuthentication` | `bool` | read/write | - |
+| `SiteId` | `int?` | read/write | - |
+| `UseSecureLdap` | `bool` | read/write | - |

@@ -9,6 +9,7 @@ namespace Thycotic.PowerShell.Enums
     {
         MemoryMq,
         RabbitMq,
-        AzureServiceBus
+        AzureServiceBus,
+        RabbitMqQuorum
     }
 }

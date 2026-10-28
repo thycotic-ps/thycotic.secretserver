@@ -9,6 +9,7 @@ namespace Thycotic.PowerShell.WorkflowTemplates
     {
         public bool Active { get; set; }
         public string ConfigurationJson { get; set; }
+        public DateTime? DeactivatedAt { get; set; }
         public string Description { get; set; }
         public int ExpirationMinutes { get; set; }
         public string Name { get; set; }

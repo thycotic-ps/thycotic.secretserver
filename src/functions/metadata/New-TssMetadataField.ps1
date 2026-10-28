@@ -6,6 +6,8 @@ function New-TssMetadataField {
     .DESCRIPTION
     Create a metadata field for an item
 
+    The field parameter set (-SectionId, -FieldName and -FieldDataType, no item parameters) instead creates a metadata field definition in an existing metadata field section (POST metadata/fields) and returns Thycotic.PowerShell.Metadata.FieldSummary. It requires the Administer Metadata permission.
+
     .EXAMPLE
     $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
     $newMetaParams = @{
@@ -37,6 +39,12 @@ function New-TssMetadataField {
 
     Create the metadata field CurrentOwner with a User ID set to 6, under new section called "TempInfo" (with a description)
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    New-TssMetadataField -TssSession $session -SectionId 2 -FieldName 'CostCenter' -FieldDataType String
+
+    Create the String metadata field definition CostCenter in metadata field section 2, without setting a value on any item
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/metadata/New-TssMetadataField
 
@@ -48,6 +56,7 @@ function New-TssMetadataField {
     #>
     [CmdletBinding(SupportsShouldProcess)]
     [OutputType('Thycotic.PowerShell.Metadata.Field')]
+    [OutputType('Thycotic.PowerShell.Metadata.FieldSummary', ParameterSetName = 'field')]
     param (
         # TssSession object created by New-TssSession for authentication
         [Parameter(Mandatory,ValueFromPipeline,Position = 0)]
@@ -68,6 +77,7 @@ function New-TssMetadataField {
 
         # Field Section ID
         [Parameter(ParameterSetName = 'currentsection')]
+        [Parameter(Mandatory, ParameterSetName = 'field')]
         [int]
         $SectionId,
 
@@ -84,12 +94,14 @@ function New-TssMetadataField {
         # Field Name
         [Parameter(Mandatory, ParameterSetName = 'currentsection')]
         [Parameter(Mandatory, ParameterSetName = 'newsection')]
+        [Parameter(Mandatory, ParameterSetName = 'field')]
         [string]
         $FieldName,
 
         # Field Data Type
         [Parameter(Mandatory, ParameterSetName = 'currentsection')]
         [Parameter(Mandatory, ParameterSetName = 'newsection')]
+        [Parameter(Mandatory, ParameterSetName = 'field')]
         [Thycotic.PowerShell.Enums.MetadataFieldDataType]
         $FieldDataType,
 
@@ -119,6 +131,35 @@ function New-TssMetadataField {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssNewParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000064' $PSCmdlet.MyInvocation
+            if ($PSCmdlet.ParameterSetName -eq 'field') {
+                $uri = $TssSession.ApiUrl, 'metadata', 'fields' -join '/'
+                $invokeParams.Uri = $uri
+                $invokeParams.Method = 'POST'
+                $fieldBody = @{
+                    data = @{
+                        fieldDataType          = [string]$FieldDataType
+                        metadataFieldName      = $FieldName
+                        metadataFieldSectionId = $SectionId
+                    }
+                }
+                $invokeParams.Body = $fieldBody | ConvertTo-Json -Depth 10
+
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)`n"
+                if (-not $PSCmdlet.ShouldProcess("Metadata Field Section ID: $SectionId", "$($invokeParams.Method) $uri with: `n$($invokeParams.Body)`n")) { return }
+                try {
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    $restResponse = . $ProcessResponse $apiResponse
+                } catch {
+                    Write-Warning "Issue creating Metadata Field [$FieldName] in Section [$SectionId]"
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+
+                if ($restResponse) {
+                    [Thycotic.PowerShell.Metadata.FieldSummary](. $FilterTssResponse $restResponse ([Thycotic.PowerShell.Metadata.FieldSummary]))
+                }
+                return
+            }
             $uri = $TssSession.ApiUrl, 'metadata', $ItemType, $ItemId -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'

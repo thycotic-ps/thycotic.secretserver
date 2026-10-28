@@ -10,13 +10,21 @@ Search Directory Services domains
 
 ## SYNTAX
 
+### filter (Default)
 ```
-Search-TssDirectoryServiceDomain [-TssSession] <Session> [-DomainName <Int32>] [-IncludeInactive]
+Search-TssDirectoryServiceDomain [-TssSession] <Session> [-DomainName <String>] [-IncludeInactive]
  [-SortBy <String>] [<CommonParameters>]
+```
+
+### searchText
+```
+Search-TssDirectoryServiceDomain [-TssSession] <Session> -SearchText <String> [-IncludeInactive]
+ [<CommonParameters>]
 ```
 
 ## DESCRIPTION
 Search Directory Services domains
+-SearchText matches the domain name or the friendly name and adds DistinguishedName and SiteId to the output; it reads the active-directory/domains endpoint because the directory-services endpoint filters on the domain name only.
 
 ## EXAMPLES
 
@@ -27,6 +35,14 @@ Search-TssDirectoryServiceDomain -TssSession $session -DomainName lab.local
 ```
 
 Return the domain lab.local information
+
+### EXAMPLE 2
+```
+$session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+Search-TssDirectoryServiceDomain -TssSession $session -SearchText corp | Select-Object DomainId, DomainName, FriendlyName, DistinguishedName
+```
+
+Find domains whose name or friendly name matches corp and show their distinguished names
 
 ## PARAMETERS
 
@@ -49,13 +65,28 @@ Accept wildcard characters: False
 Domain Name
 
 ```yaml
-Type: Int32
-Parameter Sets: (All)
+Type: String
+Parameter Sets: filter
 Aliases: Domain
 
 Required: False
 Position: Named
-Default value: 0
+Default value: None
+Accept pipeline input: False
+Accept wildcard characters: False
+```
+
+### -SearchText
+Text to match in the domain name or friendly name
+
+```yaml
+Type: String
+Parameter Sets: searchText
+Aliases:
+
+Required: True
+Position: Named
+Default value: None
 Accept pipeline input: False
 Accept wildcard characters: False
 ```
@@ -80,7 +111,7 @@ Sort by specific property, default DomainName
 
 ```yaml
 Type: String
-Parameter Sets: (All)
+Parameter Sets: filter
 Aliases:
 
 Required: False
@@ -97,9 +128,11 @@ This cmdlet supports the common parameters: -Debug, -ErrorAction, -ErrorVariable
 
 ## OUTPUTS
 
-### Thycotic.PowerShell.DirectoryServices.DomainSummary
+### Thycotic.PowerShell.DirectoryServices.DomainSummary[]
 ## NOTES
 Requires TssSession object returned by New-TssSession
+
+Secret Server marks the active-directory/domains endpoint used by -SearchText obsolete in favor of the directory-services endpoints; it still answers on current versions.
 
 ## RELATED LINKS
 

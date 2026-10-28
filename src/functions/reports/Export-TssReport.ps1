@@ -24,6 +24,15 @@ function Export-TssReport {
 
     Exports report 60 (Changed90DaysReportName) in CSV format, delimited by pipe character ("|")
 
+    .EXAMPLE
+    $session = New-TssSession -SecretServer https://alpha -Credential $ssCred
+    Export-TssReport -TssSession $session -ReportId 60 -Download
+
+    Streams report 60 as CSV through the download endpoint
+
+    .PARAMETER Download
+    Stream the report as CSV instead of exporting it. Requires ReportId; ReportName and Delimiter do not apply. Secret Server streams only some reports this way.
+
     .LINK
     https://thycotic-ps.github.io/thycotic.secretserver/commands/reports/Export-TssReport
 
@@ -33,7 +42,7 @@ function Export-TssReport {
     .NOTES
     Requires TssSession object returned by New-TssSession
     #>
-    [CmdletBinding()]
+    [CmdletBinding(DefaultParameterSetName = 'export')]
     [OutputType('System.String')]
     param (
         # TssSession object created by New-TssSession for authentication
@@ -61,7 +70,11 @@ function Export-TssReport {
         # Format of export, CSV only supported option at this time
         [ValidateSet('csv')]
         [string]
-        $Format = 'csv'
+        $Format = 'csv',
+
+        [Parameter(Mandatory, ParameterSetName = 'download')]
+        [switch]
+        $Download
     )
     begin {
         $tssParams = $PSBoundParameters
@@ -71,6 +84,32 @@ function Export-TssReport {
         Get-TssInvocation $PSCmdlet.MyInvocation
         if ($tssParams.ContainsKey('TssSession') -and $TssSession.IsValidSession()) {
             Compare-TssVersion $TssSession '10.9.000000' $PSCmdlet.MyInvocation
+            if ($PSCmdlet.ParameterSetName -eq 'download') {
+                if (-not $tssParams.ContainsKey('ReportId')) {
+                    Write-Error 'Download requires ReportId'
+                    return
+                }
+                $uri = $TssSession.ApiUrl, 'reports', 'download-csv' -join '/'
+                $queryParams = @("reportId=$ReportId")
+                $parameterIndex = 0
+                foreach ($param in $Parameters.Keys) {
+                    $queryParams += "parameters[$parameterIndex].name=$([uri]::EscapeDataString([string]$param))"
+                    $queryParams += "parameters[$parameterIndex].value=$([uri]::EscapeDataString([string]$Parameters.$param))"
+                    $parameterIndex++
+                }
+                $invokeParams.Uri = $uri, ($queryParams -join '&') -join '?'
+                $invokeParams.Method = 'GET'
+                Write-Verbose "Performing the operation $($invokeParams.Method) $($invokeParams.Uri)"
+                try {
+                    $apiResponse = Invoke-TssApi @invokeParams
+                    . $ProcessResponse $apiResponse
+                } catch {
+                    Write-Warning 'Issue downloading report data'
+                    $err = $_
+                    . $ErrorHandling $err
+                }
+                return
+            }
             $uri = $TssSession.ApiUrl, 'reports', 'export' -join '/'
             $invokeParams.Uri = $uri
             $invokeParams.Method = 'POST'
@@ -92,9 +131,6 @@ function Export-TssReport {
             }
             if ($Delimiter) {
                 $exportBody.Add('delimiter', $Delimiter)
-            }
-            if ($Format) {
-                $exportBody.Add('format', $Format)
             }
             $invokeParams.Body = $exportBody | ConvertTo-Json -Depth 100
             Write-Verbose "Performing the operation $($invokeParams.Method) $uri with: `n$($invokeParams.Body)"

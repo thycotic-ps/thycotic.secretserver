@@ -9,6 +9,7 @@ namespace Thycotic.PowerShell.Metadata
     public class FieldSummary
     {
         public int DefaultSortOrder { get; set; }
+        public bool Enabled { get; set; }
         public MetadataFieldDataType FieldDataType {get;set;}
         public int MetadataFieldId { get; set; }
         public string MetadataFieldName { get; set; }
