@@ -15,12 +15,12 @@ $script:Version = $Manifest.ModuleVersion
 
 # Ensure and call the module.
 if ($MyInvocation.ScriptName -notlike '*Invoke-Build.ps1') {
-    $InvokeBuildVersion = '5.7.3'
+    $InvokeBuildVersion = '5.12.2'
     $ErrorActionPreference = 'Stop'
     try {
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
     } catch {
-        Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope AllUsers -Force
+        Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope CurrentUser -Force
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
     }
     Invoke-Build -Task $Tasks -File $MyInvocation.MyCommand.Path @PSBoundParameters
