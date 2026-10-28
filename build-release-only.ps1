@@ -27,6 +27,7 @@ $moduleManifest = [IO.Path]::Combine($PSScriptRoot,'src',"$ModuleName.psd1")
 $libraryFolderName = 'Thycotic.SecretServer'
 $staging = [IO.Path]::Combine($PSScriptRoot, 'release_dir')
 $libraryBuildScript = [IO.Path]::Combine($PSScriptRoot, 'build.library.ps1')
+$functionsBuildScript = [IO.Path]::Combine($PSScriptRoot, 'build.functions.ps1')
 $zipFilePath = Join-Path $staging "$moduleName.zip"
 $moduleTempPath = Join-Path $staging $moduleName
 
@@ -78,6 +79,10 @@ task stage -Before build {
 
         # remove project files
         Remove-Item -Recurse "$moduleTempPath\$libraryFolderName" -Force
+
+        # ship one psm1 instead of dot-sourcing every function file at import (#486)
+        . $functionsBuildScript
+        Merge-ModuleFunction -ModulePath $moduleTempPath
         $script:moduleData = Import-PowerShellDataFile $moduleManifest
     } else {
         Write-Output "Debug mode, skipping staging"
