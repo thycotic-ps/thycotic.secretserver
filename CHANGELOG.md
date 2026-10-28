@@ -7,9 +7,31 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.63.0 -- unreleased
 
-### Breaking Changes
+### General Updates
 
+* `Search-TssDirectoryServiceDomain` - output (`Thycotic.PowerShell.DirectoryServices.DomainSummary`) gains `DistinguishedName` and `SiteId` in every parameter set. The new parameter set `searchText` (`-SearchText`, GET v1/active-directory/domains) matches the domain name or the friendly name and fills both; the default parameter set `filter` returns them empty (`DistinguishedName` is an empty string, `SiteId` is null). The default set's parameters and request are unchanged, but scripts that export or compare whole objects (for example `Export-Csv`, or `Compare-Object` without `-Property`) see two new columns.
 * `Get-TssSecretPasswordStatus` - reads the published route GET v1/secrets/secret-detail/{id}/password-status instead of the internal route internals/secret-detail/{id}/password-status, which is unsupported and can change in any Secret Server release. Parameters and output are unchanged, and the internal endpoint verbose note is gone.
+* `Export-TssReport` - new parameter set for GET v1/reports/download-csv; existing parameter sets keep their parameters.
+* `Add-TssSecretTemplateField` - new parameter set `Name` (`-Name`, `-FieldSlugName`, `-Description`, `-DataType`) for POST v1/secret-templates/{secretTemplateId}/fields, output `Thycotic.PowerShell.SecretTemplates.FieldDetail`; `-Field` now names parameter set `Default` (the default set); positions, aliases and the existing output unchanged.
+* `Get-TssSecretTemplate` - new `-Detail` switch reads GET v2/secret-templates/{secretTemplateId} and returns `Thycotic.PowerShell.SecretTemplates.Detail`; existing parameters and output unchanged.
+* `Get-TssSecretAttachment` - new parameter set for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
+* `Get-TssSecretField` - new parameter set `checkout` (`-AutoCheckout`, `-AutoCheckIn`, `-AutoComment`) for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
+* `Get-TssSecretState` - new parameter sets `flags` (`-Flags`, GET v1/secrets/{id}/state/flags) and `flagsV2` (`-FlagsV2`, GET v2/secrets/{id}/state/flags), output `Thycotic.PowerShell.Secrets.StateFlags`; existing parameter set unchanged.
+* `Get-TssUserAudit` - new parameter set for GET v1/users/action/audit; existing parameter sets unchanged.
+* `Get-TssUserOwner` - new parameter set for GET v1/users/{id}/owners/{ownerId}; existing parameter sets unchanged.
+* `Lock-TssUser` - new parameter set for POST v1/users/{userId}/lock-out; existing parameter sets unchanged.
+* `SiteConnectorQueueType` enum: added `RabbitMqQuorum` (server value 3), so site connectors of that queue type cast (used by `Get-TssDistributedEngineSiteConnectorStub -QueueType RabbitMqQuorum`; also lets the existing site connector cmdlets return quorum connectors). Additive, existing values unchanged.
+* `Search-TssEventPipeline` - new `-Detailed` switch (parameter set `detailed`, GET v1/event-pipeline/list) returns `Thycotic.PowerShell.EventPipeline.List[]` with triggers, filters and tasks; existing parameters, positions and `Summary[]` output unchanged.
+* `New-TssMetadataField` - new parameter set `field` (`-SectionId`, `-FieldName`, `-FieldDataType`, no item parameters) for POST v1/metadata/fields, output `Thycotic.PowerShell.Metadata.FieldSummary` as a second OutputType; existing parameter sets `currentsection` and `newsection` unchanged.
+* `Thycotic.PowerShell.Metadata.FieldSummary` and `Thycotic.PowerShell.Metadata.FieldSectionSummary` gain an `Enabled` property (server field `enabled`); `Get-TssMetadataField` and `Search-TssMetadataSection` output now carries it.
+* `Search-TssAutoExportStorage` - new optional -ConfigurationId parameter: GET v1/configuration/auto-export-storage/{id} (storage items of one automatic export configuration); calls without it are unchanged.
+* `Get-TssDiscoveryStatus` - new switch parameter sets `-ItemMetrics`, `-OsMetrics` and `-ScanResults` (GET v1/discovery/status/item-metrics, os-metrics, scan-results); default set, output and existing code path unchanged.
+* `Search-TssWorkflowTemplate` output (`Thycotic.PowerShell.WorkflowTemplates.Detail`) gains `DeactivatedAt`; the class is shared with the new `Get-TssWorkflowTemplate`, `Get-TssWorkflowTemplateStub` and `Update-TssWorkflowTemplate`.
+* `Start-TssDirectoryServiceSync` - new `-PassThru` switch outputs the Boolean Secret Server returns (True when the synchronization is queued); without it nothing is output, as before.
+* `New-TssAdvancedConfigurationSetting`, `Update-TssAdvancedConfigurationSetting` and `Remove-TssAdvancedConfigurationSetting` write the warning "These settings are only to be updated by Delinea Support. Modifying them will have a major impact on Secret Server" and ask OK to proceed? before they send anything. New `-Force` skips the question (and the confirmation prompt unless `-Confirm` is passed) for unattended runs; `-WhatIf` sends nothing. ConfirmImpact is High. The warning, question and `-Force` handling live in the new private helper `Confirm-TssDangerousOperation`.
+* `Set-TssDatabaseConfiguration` warns that the database configuration is set per web node (the change applies only to the node that receives the request, so the session must point directly at that node) and asks OK to proceed? before it sends anything; new `-Force` skips the question. `Get-TssDatabaseConfiguration` help says the result comes from the node that answered.
+* `Set-TssPlatformConfiguration`, `Enable-TssUnifiedMode`, `Set-TssUnifiedModeStatus`, `Reset-TssPlatformUserMapping` and `Set-TssPlatformUserMapping` warn that the change can cause loss of access to the Delinea Platform and ask OK to proceed? before they send anything; new `-Force` skips the question. ConfirmImpact is High on all five.
+* `Start-TssSecretKeyRotation`, `Stop-TssSecretKeyRotation`, `Update-TssKeyManagement`, `Start-TssMekRotation` and `Restart-TssMekRotation` warn that a wrong or interrupted change to how Secret Server encrypts its data can leave Secret Server or its secrets unreadable, and ask OK to proceed? before they send anything; new `-Force` skips the question. ConfirmImpact is High on all five.
 
 ### New Stuff
 
@@ -1122,31 +1144,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 * `Update-TssWorkflowTemplate` - Update a workflow template (PUT v1/workflows/templates/{id}).
 * `Update-TssWorkflowTemplateStep` - Update a step of a workflow template (PUT v1/workflows/templates/{id}/steps/{stepNum}).
 * `Update-TssWorkflowTemplateStepList` - Replace all the steps of a workflow template (PUT v1/workflows/templates/{id}/steps).
-
-### General Updates
-
-* `Export-TssReport` - new parameter set for GET v1/reports/download-csv; existing parameter sets keep their parameters.
-* `Add-TssSecretTemplateField` - new parameter set `Name` (`-Name`, `-FieldSlugName`, `-Description`, `-DataType`) for POST v1/secret-templates/{secretTemplateId}/fields, output `Thycotic.PowerShell.SecretTemplates.FieldDetail`; `-Field` now names parameter set `Default` (the default set); positions, aliases and the existing output unchanged.
-* `Get-TssSecretTemplate` - new `-Detail` switch reads GET v2/secret-templates/{secretTemplateId} and returns `Thycotic.PowerShell.SecretTemplates.Detail`; existing parameters and output unchanged.
-* `Get-TssSecretAttachment` - new parameter set for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
-* `Get-TssSecretField` - new parameter set `checkout` (`-AutoCheckout`, `-AutoCheckIn`, `-AutoComment`) for GET v1/secrets/{id}/fields/{slug}; existing parameter sets unchanged.
-* `Get-TssSecretState` - new parameter sets `flags` (`-Flags`, GET v1/secrets/{id}/state/flags) and `flagsV2` (`-FlagsV2`, GET v2/secrets/{id}/state/flags), output `Thycotic.PowerShell.Secrets.StateFlags`; existing parameter set unchanged.
-* `Get-TssUserAudit` - new parameter set for GET v1/users/action/audit; existing parameter sets unchanged.
-* `Get-TssUserOwner` - new parameter set for GET v1/users/{id}/owners/{ownerId}; existing parameter sets unchanged.
-* `Lock-TssUser` - new parameter set for POST v1/users/{userId}/lock-out; existing parameter sets unchanged.
-* `SiteConnectorQueueType` enum: added `RabbitMqQuorum` (server value 3), so site connectors of that queue type cast (used by `Get-TssDistributedEngineSiteConnectorStub -QueueType RabbitMqQuorum`; also lets the existing site connector cmdlets return quorum connectors). Additive, existing values unchanged.
-* `Search-TssEventPipeline` - new `-Detailed` switch (parameter set `detailed`, GET v1/event-pipeline/list) returns `Thycotic.PowerShell.EventPipeline.List[]` with triggers, filters and tasks; existing parameters, positions and `Summary[]` output unchanged.
-* `New-TssMetadataField` - new parameter set `field` (`-SectionId`, `-FieldName`, `-FieldDataType`, no item parameters) for POST v1/metadata/fields, output `Thycotic.PowerShell.Metadata.FieldSummary` as a second OutputType; existing parameter sets `currentsection` and `newsection` unchanged.
-* `Thycotic.PowerShell.Metadata.FieldSummary` and `Thycotic.PowerShell.Metadata.FieldSectionSummary` gain an `Enabled` property (server field `enabled`); `Get-TssMetadataField` and `Search-TssMetadataSection` output now carries it.
-* `Search-TssAutoExportStorage` - new optional -ConfigurationId parameter: GET v1/configuration/auto-export-storage/{id} (storage items of one automatic export configuration); calls without it are unchanged.
-* `Get-TssDiscoveryStatus` - new switch parameter sets `-ItemMetrics`, `-OsMetrics` and `-ScanResults` (GET v1/discovery/status/item-metrics, os-metrics, scan-results); default set, output and existing code path unchanged.
-* `Search-TssWorkflowTemplate` output (`Thycotic.PowerShell.WorkflowTemplates.Detail`) gains `DeactivatedAt`; the class is shared with the new `Get-TssWorkflowTemplate`, `Get-TssWorkflowTemplateStub` and `Update-TssWorkflowTemplate`.
-* `Search-TssDirectoryServiceDomain` - new parameter set `searchText` (`-SearchText`, GET v1/active-directory/domains) matches the domain name or the friendly name; `Thycotic.PowerShell.DirectoryServices.DomainSummary` gains `DistinguishedName` and `SiteId`, filled by that set. The default parameter set `filter`, its parameters and its output are unchanged.
-* `Start-TssDirectoryServiceSync` - new `-PassThru` switch outputs the Boolean Secret Server returns (True when the synchronization is queued); without it nothing is output, as before.
-* `New-TssAdvancedConfigurationSetting`, `Update-TssAdvancedConfigurationSetting` and `Remove-TssAdvancedConfigurationSetting` write the warning "These settings are only to be updated by Delinea Support. Modifying them will have a major impact on Secret Server" and ask OK to proceed? before they send anything. New `-Force` skips the question (and the confirmation prompt unless `-Confirm` is passed) for unattended runs; `-WhatIf` sends nothing. ConfirmImpact is High. The warning, question and `-Force` handling live in the new private helper `Confirm-TssDangerousOperation`.
-* `Set-TssDatabaseConfiguration` warns that the database configuration is set per web node (the change applies only to the node that receives the request, so the session must point directly at that node) and asks OK to proceed? before it sends anything; new `-Force` skips the question. `Get-TssDatabaseConfiguration` help says the result comes from the node that answered.
-* `Set-TssPlatformConfiguration`, `Enable-TssUnifiedMode`, `Set-TssUnifiedModeStatus`, `Reset-TssPlatformUserMapping` and `Set-TssPlatformUserMapping` warn that the change can cause loss of access to the Delinea Platform and ask OK to proceed? before they send anything; new `-Force` skips the question. ConfirmImpact is High on all five.
-* `Start-TssSecretKeyRotation`, `Stop-TssSecretKeyRotation`, `Update-TssKeyManagement`, `Start-TssMekRotation` and `Restart-TssMekRotation` warn that a wrong or interrupted change to how Secret Server encrypts its data can leave Secret Server or its secrets unreadable, and ask OK to proceed? before they send anything; new `-Force` skips the question. ConfirmImpact is High on all five.
 
 ### Bug Fixes
 
