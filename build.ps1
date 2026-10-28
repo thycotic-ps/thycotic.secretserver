@@ -16,12 +16,12 @@ if ($PSEdition -eq 'Desktop') {
 }
 # Ensure and call the module.
 if ($MyInvocation.ScriptName -notlike '*Invoke-Build.ps1') {
-    $InvokeBuildVersion = '5.8.4'
+    $InvokeBuildVersion = '5.12.2'
     $ErrorActionPreference = 'Stop'
     try {
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
     } catch {
-        Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope AllUsers -Force
+        Install-Module InvokeBuild -RequiredVersion $InvokeBuildVersion -Scope CurrentUser -Force
         Import-Module InvokeBuild -RequiredVersion $InvokeBuildVersion
     }
     Invoke-Build -Task $Tasks -File $MyInvocation.MyCommand.Path @PSBoundParameters
@@ -111,7 +111,7 @@ task docs {
     if (-not (Get-Module platyPs -List)) {
         Write-Output "platyPs module not found, attempting to install"
         try {
-            Install-Module platyPs -Scope AllUsers -Force
+            Install-Module platyPs -Scope CurrentUser -Force
         } catch {
             throw "Unable to install platyPs module: $($_)"
         }
