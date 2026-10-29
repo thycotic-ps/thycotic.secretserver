@@ -15,7 +15,7 @@ RootModule = 'Thycotic.SecretServer.psm1'
 ModuleVersion = '0.63.0'
 
 # Supported PSEditions
-CompatiblePSEditions = 'Desktop', 'Core'
+CompatiblePSEditions = 'Core'
 
 # ID used to uniquely identify this module
 GUID = 'e6b56c5f-41ac-4ba4-8b88-2c063f683176'
