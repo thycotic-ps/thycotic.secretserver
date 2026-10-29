@@ -88,11 +88,11 @@ function Get-TssUserAudit {
             foreach ($user in $UserId) {
                 $restResponse = $null
                 $uri = $TssSession.ApiUrl, 'users', $user, 'audit' -join '/'
+                $uri = $uri, "take=$($TssSession.Take)" -join '?'
                 $invokeParams.Uri = $uri
                 $invokeParams.Method = 'GET'
-                $uri = $uri, "take=$($TssSession.Take)"
 
-                Write-Verbose "Performing the operation $($invokeParams.Method) $uri with $body"
+                Write-Verbose "Performing the operation $($invokeParams.Method) $uri"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse

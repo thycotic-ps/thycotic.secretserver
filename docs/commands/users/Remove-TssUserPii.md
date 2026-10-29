@@ -15,7 +15,16 @@ Remove-TssUserPii [-TssSession] <Session> -Id <Int32[]> [-WhatIf] [-Confirm] [<C
 ```
 
 ## DESCRIPTION
-Delete a user's personally identifiable info
+Delete a user's personally identifiable info.
+This cannot be undone.
+
+Applies the same rules as the Remove PII button in the Secret Server UI.
+A user is skipped with a warning unless:
+- the user is disabled (run Disable-TssUser first)
+- the user has at least one user audit record
+- the user's PII has not already been removed
+
+The audit check reads up to TssSession.Take records, so a session with a low Take can miss an earlier removal.
 
 ## EXAMPLES
 
