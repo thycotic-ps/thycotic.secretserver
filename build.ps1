@@ -4,7 +4,7 @@ param(
     [string]
     $Configuration,
 
-    [ValidateScript({ $_ -match '^alpha' })]
+    [ValidateScript({ $_ -match '^(alpha|beta|rc)\d+$' })]
     [string]
     $GitHubPreTag,
 

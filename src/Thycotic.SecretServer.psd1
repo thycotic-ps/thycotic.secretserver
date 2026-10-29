@@ -686,7 +686,7 @@ PrivateData = @{
         ReleaseNotes = 'https://github.com/thycotic-ps/thycotic.secretserver/blob/main/CHANGELOG.md'
 
         # Prerelease string of this module
-        Prerelease = 'alpha1'
+        Prerelease = 'rc1'
 
         # Flag to indicate whether the module requires explicit user acceptance for install/update/save
         # RequireLicenseAcceptance = $false
