@@ -94,8 +94,14 @@ If a script broke after upgrading from 0.62.0 and the migration options above do
 ```powershell
 Remove-Module Thycotic.SecretServer -Force -ErrorAction SilentlyContinue
 Invoke-WebRequest -Uri 'https://github.com/thycotic-ps/thycotic.secretserver/releases/download/v0.62.0/Thycotic.SecretServer.zip' -OutFile '.\Thycotic.SecretServer-0.62.0.zip'
+
+# Verify before extracting - SHA256 from Thycotic.SecretServer_hash.txt on the v0.62.0 release
+$expected = 'FBF3AB0EA1CF74B20A751B29E2526A9E7ACEF0A4B698864944A5715CE8B07B6B'
+$actual = (Get-FileHash -Path '.\Thycotic.SecretServer-0.62.0.zip' -Algorithm SHA256).Hash
+if ($actual -ne $expected) { throw "SHA256 mismatch: got $actual" }
+
 Expand-Archive -Path '.\Thycotic.SecretServer-0.62.0.zip' -DestinationPath '.\Thycotic.SecretServer-0.62.0' -Force
-Import-Module '.\Thycotic.SecretServer-0.62.0\Thycotic.SecretServer\Thycotic.SecretServer.psd1' -Force
+Import-Module '.\Thycotic.SecretServer-0.62.0\Thycotic.SecretServer.psd1' -Force
 (Get-Module Thycotic.SecretServer).Version  # should report 0.62.0
 ```
 
