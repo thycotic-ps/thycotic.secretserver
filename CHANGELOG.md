@@ -1150,6 +1150,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Bug Fixes
 
 * `Get-TssUserAudit` - return the full audit history. The cmdlet built the `take=` query string but never applied it to the request, so it only returned the server's default first page.
+* `Start-TssSecretChangePassword` - with `-Type Manual`, the `-NextPassword` value no longer appears in plain text in `-Verbose` or `-WhatIf` output (it prints as `Redacted`), and the unmanaged copy of the password is zeroed and freed after use. Fixes part 1 of #474.
 * Verbose output - the "Command invocation" line (private Get-TssInvocation) printed `-AccessToken` and `-OtpCode` values; values of `-AccessToken`, `-OtpCode`, `-ClientSecret`, `-OnboardingKey` and `-PersonalAccessToken` now print as `Redacted`, and a parameter of a type the line does not render (for example `[uri]`) no longer repeats the previous parameter's value.
 * `Export-TssReport` - the export set no longer sends `format`, which Secret Server read as a date format and answered with a 400.
 * `Get-TssReportCategory` - `-Id` returns `Thycotic.PowerShell.Reports.CategoryDetail` instead of failing on a missing type; `-All` returns the categories instead of a single null.

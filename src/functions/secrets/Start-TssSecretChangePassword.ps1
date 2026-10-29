@@ -71,7 +71,12 @@ function Start-TssSecretChangePassword {
                 switch ($Type) {
                     'Manual' {
                         if ($tssParams.ContainsKey('NextPassword')) {
-                            $rpcBody.data.Add('NextPassword', [Runtime.InteropServices.Marshal]::PtrToStringAuto([Runtime.InteropServices.Marshal]::SecureStringToBSTR($NextPassword)))
+                            $bstr = [Runtime.InteropServices.Marshal]::SecureStringToBSTR($NextPassword)
+                            try {
+                                $rpcBody.data.Add('NextPassword', [Runtime.InteropServices.Marshal]::PtrToStringAuto($bstr))
+                            } finally {
+                                [Runtime.InteropServices.Marshal]::ZeroFreeBSTR($bstr)
+                            }
                             $rpcBody.data.Add('PasswordType', 1)
                         } else {
                             Write-Error '-NextPassword parameter must be provided when using PasswordType of [Manual]'
@@ -89,9 +94,13 @@ function Start-TssSecretChangePassword {
                     }
                 }
                 $invokeParams.Body = $rpcBody | ConvertTo-Json
+                $displayBody = $invokeParams.Body
+                if ($rpcBody.data.NextPassword) {
+                    $displayBody = @{ data = @{ NextPassword = 'Redacted'; PasswordType = $rpcBody.data.PasswordType } } | ConvertTo-Json
+                }
 
-                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n")) { return }
-                Write-Verbose "$($invokeParams.Method) $uri with:`t$($invokeParams.Body)`n"
+                if (-not $PSCmdlet.ShouldProcess("Secret ID: $secret", "$($invokeParams.Method) $uri with:`t$displayBody`n")) { return }
+                Write-Verbose "$($invokeParams.Method) $uri with:`t$displayBody`n"
                 try {
                     $apiResponse = Invoke-TssApi @invokeParams
                     $restResponse = . $ProcessResponse $apiResponse
