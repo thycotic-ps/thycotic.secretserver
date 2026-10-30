@@ -4,7 +4,7 @@ param(
     [string]
     $Configuration,
 
-    [ValidateScript({ $_ -match '^(alpha|beta|rc)\d+$' })]
+    [ValidateScript({ $_ -cmatch '^(alpha|beta|rc)[1-9]\d*$' })]
     [string]
     $GitHubPreTag,
 
@@ -180,6 +180,24 @@ task build {
         $git = git status
         if ($git[1] -notmatch "Your branch is up to date") {
             throw "Local branch has commits not in GitHub"
+        }
+
+        # Naming rules in RELEASING.md
+        $branch = git rev-parse --abbrev-ref HEAD
+        $releaseBranch = "release/$($moduleData.ModuleVersion)"
+        if ($branch -ne $releaseBranch) {
+            throw "$Configuration builds run from [$releaseBranch], not [$branch]"
+        }
+        $preLabel = $moduleData.PrivateData.PSData.Prerelease
+        if ($Configuration -eq 'Prerelease') {
+            if ([string]::IsNullOrEmpty($GitHubPreTag)) {
+                throw "-GitHubPreTag must be provided for a Prerelease build"
+            }
+            if ($preLabel -cne $GitHubPreTag) {
+                throw "Manifest Prerelease [$preLabel] does not match GitHubPreTag [$GitHubPreTag]"
+            }
+        } elseif (-not [string]::IsNullOrEmpty($preLabel)) {
+            throw "Manifest Prerelease is [$preLabel]; clear it for a $Configuration build"
         }
 
         if ([string]::IsNullOrEmpty($GalleryKey) -and ($Configuration -ne 'PreRelease')) {
