@@ -7,7 +7,7 @@ How branches, tags and releases are named, and the steps to cut a prerelease or 
 | Branch | Purpose |
 | --- | --- |
 | `dev` | Integration branch. Every pull request targets `dev`. |
-| `main` | The latest final release. Fast-forwarded to the release tag after each final release. Prereleases never touch it. |
+| `main` | The latest final release. Fast-forwarded to the release tag after each final release. Prereleases never touch it. The `Protect main` ruleset blocks deletion and any push that is not a fast-forward. |
 | `release/X.Y.Z` | One per version, cut from `dev` when the version is ready for testing. Every prerelease and the final release of `X.Y.Z` is tagged on this branch. |
 | `type/issue-slug` | Work branches. See below. |
 
@@ -52,11 +52,14 @@ Prerelease labels, in order:
 
 ## Cutting a prerelease
 
-1. Cut the release branch from `dev`, or update it with cherry-picked fixes if it already exists:
+1. Cut the release branch from `dev`, or update it with cherry-picked fixes if it already exists. When you cut it, record the previous release as an ancestor so `main` can later fast-forward to this one:
 
     ```powershell
     git switch -c release/0.64.0 origin/dev
+    git merge -s ours --no-edit 'v0.63.0^{commit}'
     ```
+
+    `-s ours` changes no files. Pull requests reach `dev` as new commits, so the previous release tag is usually not in `dev`'s history; this merge puts it there for the release branch only. Use the latest final release tag, not a prerelease tag.
 
 2. In `src/Thycotic.SecretServer.psd1`, set `ModuleVersion = '0.64.0'` and `Prerelease = 'rc1'`. Commit as `chore: 0.64.0-rc1`.
 3. Make sure the `CHANGELOG.md` section for the version is complete, and write the release notes in `release.md` (ignored by git; `build.ps1` passes it to `gh release create`).
@@ -78,14 +81,15 @@ Prerelease labels, in order:
     .\build.ps1 -Configuration Release -GalleryKey $key
     ```
 
-3. Fast-forward `main` to the release, and merge the release branch back into `dev` so the version stamp and any release-only commits reach `dev`:
+3. Fast-forward `main` to the release:
 
     ```powershell
     git push origin 'vX.Y.Z^{commit}:refs/heads/main'
-    git switch dev; git merge --no-ff release/X.Y.Z; git push origin dev
     ```
 
-    If the push to `main` is rejected as not a fast-forward, stop and ask a maintainer. Do not force-push `main`.
+    The `Protect main` ruleset allows only fast-forward pushes to `main` and blocks deletion. If the push is rejected as not a fast-forward, the release branch is missing the `-s ours` merge from step 1 of the prerelease steps. Stop and ask a maintainer; do not change the ruleset to force it.
+
+4. If the release branch has a fix that is not yet in `dev`, open a pull request into `dev` for it. Do not merge the release branch into `dev`: the `Protect dev` ruleset requires pull requests and linear history.
 
 ## What build.ps1 checks
 
