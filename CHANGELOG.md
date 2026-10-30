@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.63.0 -- unreleased
+
+### General Updates
+
+* Release process - new [RELEASING.md](RELEASING.md) sets the naming for branches (`dev`, `main`, `release/X.Y.Z`, `type/issue-slug`), tags (`vX.Y.Z`, `vX.Y.Z-alphaN`, `-betaN`, `-rcN`) and release titles, with the steps to cut a prerelease and a release. `build.ps1` now stops a Prerelease, Release or PSGalleryRetry build that does not run from `release/<ModuleVersion>` or whose `-GitHubPreTag` and manifest `Prerelease` do not match, and accepts `beta` and `rc` labels as well as `alpha`. Fixes #487.
+
 ## 0.62.1 -- 2026-06-29
 
 ### Breaking Changes
