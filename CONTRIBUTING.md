@@ -26,6 +26,12 @@ We add the [help-wanted](https://github.com/thycotic-ps/thycotic.secretserver/la
 
 You will need to fork this repository to your local machine. See [github help page](https://help.github.com/articles/fork-a-repo) for help.
 
+## Branch Names
+
+Create your branch from `dev` and name it `type/issue-slug`, where `type` is the conventional-commit type of the change (`feat`, `fix`, `docs`, `chore`, `refactor` or `test`) and `issue` is the number of the issue it resolves. For example: `fix/474-nextpassword-verbose`. Pull requests target `dev`.
+
+Release branches (`release/X.Y.Z`), tags and the release steps are covered in [RELEASING.md](RELEASING.md).
+
 ## Please Consider Your Commit Messages
 
 The git history of a branch is utilized in building the CHANGELOG for the project. Please be considerate of this when you are committing to your fork to submit a PR.
